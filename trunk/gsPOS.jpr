@@ -24,7 +24,9 @@
    <value n="defaultPackage" v="com.gs.pos"/>
    <hash n="oracle.ide.model.TechnologyScopeConfiguration">
       <list n="technologyScope">
+         <string v="Ant"/>
          <string v="Java"/>
+         <string v="XML"/>
       </list>
    </hash>
    <hash n="oracle.jdeveloper.compiler.OjcConfiguration">

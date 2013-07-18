@@ -313,7 +313,7 @@ public class DlgReportePedidosComprobantes extends JDialog
       e.printStackTrace();
 			FarmaUtility.showMessage(this,"Error al cargar lista de pedidos comprobantes. \n " + e.getMessage(),tblListaComprobantes);
 		}
-  //JMIRANDA 12.01.2011 SUMAR SI SE PUEDE MOSTRAR 
+  //  12.01.2011 SUMAR SI SE PUEDE MOSTRAR 
   if(VariablesCaja.vMostrarMontoComprobante.equalsIgnoreCase("S"))
       sumarTotal();
   
@@ -389,7 +389,7 @@ public class DlgReportePedidosComprobantes extends JDialog
   }
   
   private void mostrarMontos(){
-      //JMIRANDA 12.01.2011 
+      //  12.01.2011 
       VariablesCaja.vMostrarMontoComprobante = "S";
       if(VariablesPtoVenta.vTipAccesoListaComprobantes.equalsIgnoreCase(ConstantsPtoVenta.TIP_ACC_LISTA_COMP_CAJA)) 
         VariablesCaja.vMostrarMontoComprobante = "N";

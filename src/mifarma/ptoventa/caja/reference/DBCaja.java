@@ -16,10 +16,10 @@ import mifarma.ptoventa.reference.VariablesPtoVenta;
 import mifarma.ptoventa.ventas.reference.ConstantsVentas;
 import mifarma.ptoventa.ventas.reference.VariablesVentas;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.net.*;//JCHAVEZ 30.06.2009.n
+import java.net.*;//  30.06.2009.n
 
 /**
  * Copyright (c) 2009 MIFARMA S.A.C.<br>
@@ -28,8 +28,8 @@ import java.net.*;//JCHAVEZ 30.06.2009.n
  * Nombre de la Aplicación : DlgListaIPSImpresora.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JCHAVEZ 30.06.2009 Modificación<br>
- * ASOSA   17.02.2010 Modificación<br>
+ *   30.06.2009 Modificación<br>
+ *     17.02.2010 Modificación<br>
  * <br>
  * @version 1.0<br>
  * 
@@ -39,7 +39,7 @@ public class DBCaja
 {
 
   private static ArrayList parametros;
-  private static final Log log = LogFactory.getLog(DBCaja.class);
+  private static final Logger log = LoggerFactory.getLogger(DBCaja.class);
 
   public DBCaja()
   {
@@ -198,7 +198,7 @@ public class DBCaja
         parametros.add(FarmaVariables.vCodGrupoCia);
         parametros.add(FarmaVariables.vCodLocal);
         parametros.add(VariablesCaja.vSecMovCajaOrigen);
-        //JMIRANDA 12.01.2011 PARA OCULTAR MONTO COMPROBANTE EN FORMA DE PAGO
+        //  12.01.2011 PARA OCULTAR MONTO COMPROBANTE EN FORMA DE PAGO
         parametros.add(VariablesCaja.vMostrarMontoComprobante);
         System.out.println("PTOVENTA_CAJ.CAJ_LISTA_RELACION_PEDIDO_COMP(?,?,?,?)");
         for(int i =0;i<parametros.size();i++){
@@ -285,7 +285,7 @@ public class DBCaja
   
   /**
    * Lista las Formas de Pago
-   * @author : dubilluz
+   * @author :  
    * @since  : 06.09.2007
    */
  
@@ -420,8 +420,8 @@ public class DBCaja
     parametros.add(FarmaConstants.COD_NUMERA_SEC_KARDEX);
     parametros.add(FarmaVariables.vIdUsu);
     parametros.add(VariablesCaja.vDescripcionDetalleFormasPago);
-    parametros.add(vPermiteCampaña);//jcortez
-     parametros.add(Dni);//jcortez 18.08.09
+    parametros.add(vPermiteCampaña);// 
+     parametros.add(Dni);//  18.08.09
      System.out.println("ERROR cobrarPedido: "+parametros);
     return FarmaDBUtility.executeSQLStoredProcedureStr("PTOVENTA_CAJ.CAJ_COBRA_PEDIDO(?,?,?,?,?,?,?,?,?,?,?,?,?)",parametros);
     //FarmaDBUtility.executeSQLStoredProcedure(null,"PTOVENTA_CAJ.CAJ_COBRA_PEDIDO(?,?,?,?,?,?,?,?,?,?,?)",parametros,false);
@@ -526,7 +526,7 @@ public class DBCaja
     parametros.add(correlativo);
     parametros.add(new Double(monto));
     parametros.add( VariablesCaja.vIndAnulacionConReclamoNavsat ? FarmaConstants.INDICADOR_S : FarmaConstants.INDICADOR_N );
-    log.debug("jcallo : PTOVENTA_CAJ_ANUL.CAJ_VERIFICA_PEDIDO parametros : "+parametros);
+    log.debug("  : PTOVENTA_CAJ_ANUL.CAJ_VERIFICA_PEDIDO parametros : "+parametros);
     FarmaDBUtility.executeSQLStoredProcedure(null,"PTOVENTA_CAJ_ANUL.CAJ_VERIFICA_PEDIDO(?,?,?,?,?)", parametros, false);
   }
 
@@ -584,7 +584,7 @@ public class DBCaja
     parametros.add(FarmaVariables.vIdUsu);
     parametros.add( VariablesCaja.vIndAnulacionConReclamoNavsat ? FarmaConstants.INDICADOR_S : FarmaConstants.INDICADOR_N );
     parametros.add(motivoAnulacion);
-    parametros.add(vValidarMin);//add jcallo
+    parametros.add(vValidarMin);//add  
     log.debug("invocando PTOVENTA_CAJ_ANUL.CAJ_ANULAR_PEDIDO(?,?,?,?,?,?,?,?,?,?,?):"+parametros);
     FarmaDBUtility.executeSQLStoredProcedure(null,"PTOVENTA_CAJ_ANUL.CAJ_ANULAR_PEDIDO(?,?,?,?,?,?,?,?,?,?,?)", parametros, false);
   }
@@ -832,7 +832,7 @@ public class DBCaja
     FarmaDBUtility.executeSQLStoredProcedureArrayList(pArrayList,"PTOVENTA_CAJ.CAJ_OBTIENE_INFO_VENDEDOR(?,?,?)", parametros);
    
   }
-  //27/09/2007  DUBILLUZ MODIFICADO
+  //27/09/2007    MODIFICADO
   public static void intercambiarComprobante(String numDocA,String monDocA,String numDocB,String monDocB,String tipComp) throws SQLException
   {
     parametros = new ArrayList();
@@ -1046,7 +1046,7 @@ public class DBCaja
   }
   /**
    * LLena el Array con las Forma de Pago del Pedido Delivery
-   * @author : dubilluz
+   * @author :  
    * @since  : 26.07.2007
    */
   public static void colocaFormaPagoDeliveryArray(ArrayList pArrayList,
@@ -1060,7 +1060,7 @@ public class DBCaja
   } 
   /**
    *Obtien el Codigo de la Forma de Pago del Convenio
-   * @author : dubilluz
+   * @author :  
    * @since  : 26.07.2007
    */
     public static String cargaFormaPagoConvenio(String vConvenio) throws SQLException
@@ -1072,7 +1072,7 @@ public class DBCaja
   }
   /**
    * Retorna el Codigo de Forma de PAgo  , del COnvenio si tiene Credito
-   * @author  dubilluz
+   * @author   
    * @since   08.09.2007
    */    
   public static String verifica_Credito_Convenio(String cod_Convenio) throws SQLException {
@@ -1086,7 +1086,7 @@ public class DBCaja
   
    /**
    *obtiene el saldo actual del cliente en matriz
-   * @author  jcallo
+   * @author   
    * @since   08.01.2009
    */
     public static String getSaldoCredClienteMatriz(String vCodCliente,
@@ -1121,7 +1121,7 @@ public class DBCaja
   
   /**
    * Retorna el Cod FP Dolares
-   * @author  dubilluz
+   * @author   
    * @since   13.10.2007
    */
   public static String getCodFPDolares() throws SQLException
@@ -1134,7 +1134,7 @@ public class DBCaja
   
  /**
   * Obtiene Informacion de los datos para la boleta de Recarga Virtual
-  * @author dubilluz
+  * @author  
   * @since  02.11.2007
   */
   public static void obtieneInfImpresionRecarga (ArrayList pArrayList,String pNumped,
@@ -1152,7 +1152,7 @@ public class DBCaja
   
   /**
    * Retorna el tiempo maximo para anular un pedido de recarga virtual.
-   * @author  dubilluz
+   * @author   
    * @since   09.11.2007
    */
   public static String getTimeMaxAnulacion(String pNum_ped) throws SQLException
@@ -1169,7 +1169,7 @@ public class DBCaja
 
   /**
    * Retorna el numero de recarga
-   * @author  dubilluz
+   * @author   
    * @since   14.11.2007
    */
   public static String getNumeroRecarga(String pNumPed) throws SQLException
@@ -1184,7 +1184,7 @@ public class DBCaja
 
   /**
    * Retorna el numero de Pedido
-   * @author  dubilluz
+   * @author   
    * @since   31.03.2008
    */
   public static String getNumeroPedido(String pnumeroComp) throws SQLException
@@ -1241,7 +1241,7 @@ public class DBCaja
         parametros = new ArrayList();
         parametros.add(FarmaVariables.vCodGrupoCia);
          parametros.add(FarmaVariables.vCodLocal);
-       //JCHAVEZ 30.06.2009.sn se obtiene el IP de la pc del cliente, para pasar como parámetro a la funcion 
+       //  30.06.2009.sn se obtiene el IP de la pc del cliente, para pasar como parámetro a la funcion 
        /*
         * InetAddress ip=null;   
         try { 
@@ -1254,7 +1254,7 @@ public class DBCaja
         parametros.add( ip.getHostAddress());
         */
         System.out.println("Antes de obtener impresora consejo    PTOVENTA_IMP_CONSEJOS.IMP_GET_NAME_IMP_CONSEJO(?,?)\":" );        
-        //JCHAVEZ 30.06.2009.en
+        //  30.06.2009.en
         return FarmaDBUtility.executeSQLStoredProcedureStr("PTOVENTA_IMP_CONSEJOS.IMP_GET_NAME_IMP_CONSEJO(?,?)",parametros);  
      }
     
@@ -1263,7 +1263,7 @@ public class DBCaja
         parametros = new ArrayList();
         parametros.add(FarmaVariables.vCodGrupoCia);
          parametros.add(FarmaVariables.vCodLocal);
-       //JCHAVEZ 30.06.2009.sn se obtiene el IP de la pc del cliente, para pasar como parámetro a la funcion 
+       //  30.06.2009.sn se obtiene el IP de la pc del cliente, para pasar como parámetro a la funcion 
        /*
         * InetAddress ip=null;   
         try { 
@@ -1276,7 +1276,7 @@ public class DBCaja
         parametros.add( ip.getHostAddress());
         */
         System.out.println("Antes de obtener impresora consejo    PTOVENTA_IMP_CONSEJOS.IMP_GET_NAME_IMP_STICKER(?,?)\":" );        
-        //JCHAVEZ 30.06.2009.en
+        //  30.06.2009.en
         return FarmaDBUtility.executeSQLStoredProcedureStr("PTOVENTA_IMP_CONSEJOS.IMP_GET_NAME_IMP_STICKER(?,?)",parametros);  
      }
   
@@ -1347,7 +1347,7 @@ public class DBCaja
   
    /**
    * Se obtiene indicador de impresion de comanda 
-   * @author JCORTEZ
+   * @author  
    * @since 27.06.2008
    */
   public static String obtieneIndImpresion() throws SQLException{
@@ -1360,7 +1360,7 @@ public class DBCaja
   
   /**
    * Se obtiene indicador de impresion por error en recarga virtual
-   * @author JCORTEZ
+   * @author  
    * @since 27.06.2008
    */
   public static String obtieneIndImpresionRecarga(String pCodError) throws SQLException{
@@ -1403,7 +1403,7 @@ public class DBCaja
     parametros.add(pNumPedVta);
     parametros.add(pIpServ);
     parametros.add(pCodCupon.trim());
-    //JMIRANDA Prueba 06/07/09
+    //  Prueba 06/07/09
     log.debug("invocando a PTOVENTA_IMP_CUPON.IMP_PROCESA_CUPON(?,?,?,?,?):"+parametros);
     return FarmaDBUtility.executeSQLStoredProcedureStr("PTOVENTA_IMP_CUPON.IMP_PROCESA_CUPON(?,?,?,?,?)",parametros);
  }
@@ -1430,7 +1430,7 @@ public class DBCaja
      
    /**
    * Se valida la existencia de forma de pago por campaña
-   * @author  JCORTEZ
+   * @author   
    * @since   02.07.2008
    */
   public static void getFormaPagoCampaña(ArrayList array,String pNumPed) throws SQLException
@@ -1445,7 +1445,7 @@ public class DBCaja
   
  /**
    * actualiza estado de pedido cupon
-   * @author JCORTEZ
+   * @author  
    * @since 03.07.2008
    */
   public static void actualizaIndImpre(String CodCamp,String pNumPed,String estado,String todos)throws SQLException{
@@ -1463,7 +1463,7 @@ public class DBCaja
   
   /**
    * Se genera los cupones que se aceptaron al cobrar pedido
-   * @author JCORTEZ
+   * @author  
    * @since 03.07.2008
    */
   public static void generarCuponPedido(String pNumPed)throws SQLException{
@@ -1479,7 +1479,7 @@ public class DBCaja
   
   /**
    * Se verifica si el pedido contiene productos de campaña
-   * @author JCORTEZ
+   * @author  
    * @since 03.07.2008
    */
   public static String verificaPedidoCamp(String pNumPed) throws SQLException{
@@ -1494,7 +1494,7 @@ public class DBCaja
   
   /**
    * Se obtiene forma pago pedido campaña
-   * @author  JCORTEZ
+   * @author   
    * @since   07.07.2008
    */
   public static void getDetalleFormaPagoCampaña(ArrayList array,String pNumPed) throws SQLException
@@ -1509,7 +1509,7 @@ public class DBCaja
   
    /**
    * Se procesan las campañas que no tengan forma de pago para el pedido
-   * @author JCORTEZ
+   * @author  
    * @since 10.07.2008
    */
   public static void procesaCampSinFormaPago(String pNumPed)throws SQLException{
@@ -1524,7 +1524,7 @@ public class DBCaja
   
   /**
    * Se obtiene obtiene el numero de pedido delivery 
-   * @author JCORTEZ
+   * @author  
    * @since 16.07.2008
    */
   public static String obtieneNumPedDelivery(String NumPed) throws SQLException{
@@ -1696,7 +1696,7 @@ public class DBCaja
     }
     
     /**
-     * @author Dubilluz
+     * @author  
      * @since  25.11.2008
      * @param pSecIni
      * @param pSecFin
@@ -1718,7 +1718,7 @@ public class DBCaja
     /**
      * Retorna la cadena con el numero de pedido de Delivery
      * Si el pedido no es de Delivery retorna el parametros "N"
-     * @author DUBILLUZ
+     * @author  
      * @since  26.11.2008
      * @param pNumPed
      * @return
@@ -1753,7 +1753,7 @@ public class DBCaja
 
     /**
      * 
-     * @author dubilluz
+     * @author  
      * @since  27.11.2008
      * @param pFechaCierreDia
      * @return
@@ -1771,7 +1771,7 @@ public class DBCaja
 
     /**
      * Valida si existen delivery pendiente sin regularizar
-     * @author Dubilluz
+     * @author  
      * @return
      * @throws SQLException
      */
@@ -1797,7 +1797,7 @@ public class DBCaja
     
     /**
      * Valida si existen comprobantes manuales declarados sin regularizar
-     * @author Dubilluz
+     * @author  
      * @since  01.12.2008
      * @return
      * @throws SQLException
@@ -1826,7 +1826,7 @@ public class DBCaja
     
     /**
      * Activa los cupones que se activaron
-     * @author Dubilluz
+     * @author  
      * @since  02.12.2008
      * @param pNumPedido
      * @throws SQLException
@@ -1874,7 +1874,7 @@ public class DBCaja
     
     /**
      * Lista las Formas de Pago Convenio
-     * @author : asolis
+     * @author :  
      * @since  : 11.12.2008
      * */
     public static void obtieneFormasPagoConvenio(FarmaTableModel pTableModel,
@@ -1900,7 +1900,7 @@ public class DBCaja
     
     /**
      * Lista las Formas de Pago Sin Convenio
-     * @author : asolis
+     * @author :  
      * @since  : 11.12.2008
      * */
     public static void obtieneFormasPagoSinConvenio(FarmaTableModel pTableModel,
@@ -1977,7 +1977,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
                                               FarmaConstants.CONECTION_MATRIZ, 
                                               FarmaConstants.INDICADOR_N);
       */
-      //JMIRANDA 16/07/09
+      //  16/07/09
       FarmaDBUtility.executeSQLStoredProcedure(null,
                       "PTOVENTA_MATRIZ_CA_CLI.CA_P_ANALIZA_CANJE(?,?,?,?,?,?)",parametros,false);
       
@@ -2048,7 +2048,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
                 "PTOVENTA_MATRIZ_CA_CLI.CA_F_CUR_CAMP_MATRIZ_REST(?,?,?,?)", 
                 parametros, FarmaConstants.CONECTION_MATRIZ, 
                 FarmaConstants.INDICADOR_N); */
-        //JMIRANDA 16/07/09
+        //  16/07/09
         FarmaDBUtility.executeSQLStoredProcedureArrayList(listaMatriz,
                                "PTOVENTA_MATRIZ_CA_CLI.CA_F_CUR_CAMP_MATRIZ_REST(?,?,?,?)",parametros);
                 
@@ -2125,7 +2125,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     /**
      * 
      * Valida que el pedido fidelizado tenga relacion con productos canje y regalo
-     * @author:  JCORTEZ  
+     * @author:     
      * @since: 18.12.2008
      * */
     public static String VerificaProdFidel(String NumPed,String Dni) throws SQLException
@@ -2141,7 +2141,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Valida que el pedido fidelizado productos canje
-     * @author:  JCORTEZ  
+     * @author:     
      * @since: 18.12.2008
      * */
     public static int ExistProdCanje(String pNumPedVta) throws SQLException
@@ -2156,7 +2156,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Se anula Pedido Fidelizado y Canje si es que hubiera linea
-     * @author:  JCORTEZ  
+     * @author:     
      * @since: 18.12.2008
      * */
     public static void anulaPedidoFidelizado(String numPedVta,String Dni,String IndLocal) throws SQLException
@@ -2175,7 +2175,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Se anula Pedido Fidelizado y Canje en Matriz
-     * @author:  JCORTEZ  
+     * @author:     
      * @since: 18.12.2008
      * */
     public static void anulaPedidoFidelizadoMatriz(String numPedVta,String Dni,String IndLocal,String pIndCloseConecction) throws SQLException
@@ -2248,7 +2248,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
                                                      FarmaConstants.INDICADOR_N
                                                      );
       */
-        //JMIRANDA 16/07/09
+        //  16/07/09
         FarmaDBUtility.executeSQLStoredProcedure(null,
                         "PTOVENTA_MATRIZ_CA_CLI.CA_P_INSERT_CANJ_PED_CLI(?,?,?,?,?,?,?,?,?,?,?,?)",parametros,false);
     }    
@@ -2296,7 +2296,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
                                                      FarmaConstants.INDICADOR_N
                                                      );
       */
-        //JMIRANDA 16/07/09
+        //  16/07/09
         FarmaDBUtility.executeSQLStoredProcedure(null,
                         "PTOVENTA_MATRIZ_CA_CLI.CA_P_INSERT_ORIG_PED_CLI(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",parametros,false);
       
@@ -2316,7 +2316,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Se lista los remitos registrados
-     * @author JCORTEZ
+     * @author  
      * @since 13.01.09
      * */
      public static void getListaRemitos(FarmaTableModel pTableModel,
@@ -2334,7 +2334,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Se lista fechas no asociadas a remitos
-     * @author JCORTEZ
+     * @author  
      * @since 13.01.09
      * */
      
@@ -2349,7 +2349,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
 
     /**
      * Se lista las fechas asociadas al remito
-     * @author JCORTEZ
+     * @author  
      * @since 14.01.09
      * */
      
@@ -2365,7 +2365,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
 
     /**
      * Se lista los sobres de las fechas asociadas al remito
-     * @author JCORTEZ
+     * @author  
      * @since 14.01.09
      * */
      
@@ -2389,7 +2389,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
       parametros.add(vCodremito.trim());
       System.err.println("PTOVENTA_CE_REMITO.SEG_F_CUR_SOBRE_REMITO_DU");
       System.err.println("parametros:"+parametros);
-      //DUBILLUZ 27.07.2010
+      //  27.07.2010
       //FarmaDBUtility.executeSQLStoredProcedure(pTableModel,"PTOVENTA_CE_SEGURIDAD.SEG_F_CUR_SOBRE_REMITO(?,?,?)",parametros, false);
       FarmaDBUtility.executeSQLStoredProcedure(pTableModel,"PTOVENTA_CE_REMITO.SEG_F_CUR_SOBRE_REMITO_DU(?,?,?)",parametros, false);
     }        
@@ -2408,7 +2408,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
 
     /**
      * Realiza los cambios de la relacion remito Fecha Venta
-     * @author JCORTEZ
+     * @author  
      * @since  14.01.2009
      */
     public static void AsignarRemito(ArrayList arrayLocales)
@@ -2430,7 +2430,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Se obtiene datos VAUCHER
-     * @author JCORTEZ
+     * @author  
      * @since 14.01.09
      */
     public static String obtieneDatosVoucherRem(String pNumPedVta, String pIpServ) throws SQLException{
@@ -2446,7 +2446,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
 
     /**
      * Se valida codigo remito
-     * @author JCORTEZ
+     * @author  
      * @since 14.01.09
      */
     public static String validarCodigo(String CodRemito) throws SQLException{
@@ -2475,7 +2475,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     
     /**
-        * @author asolis 
+        * @author   
         * @fecha  01-02-09
         * Obtiene valor secuencial de comprobantes :Boleta y Factura
         * @throws SQLException
@@ -2495,7 +2495,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * 
-     * @author asolis 
+     * @author   
      * @fecha  02-02-09
      * Obtiene el valor máximo de diferencia para los comprobantes :Boleta y Factura
      * @throws SQLException
@@ -2507,7 +2507,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
      return FarmaDBUtility.executeSQLStoredProcedureStr("Ptoventa_Caj.CAJ_F_VALOR_MAXIMA_DIFERENCIA()", parametros);
     }
     
-    /**@author asolis 
+    /**@author   
      * @fecha  05-02-09
      * Busca recarga virtual
      * @throws SQLException
@@ -2523,7 +2523,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
                                                                FarmaConstants.INDICADOR_N);
     }
     
-    /**@author asolis 
+    /**@author   
      * @fecha  05-02-09
      * Anular recarga virtual
      * @throws SQLException
@@ -2541,7 +2541,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
   
   
     /**
-        * @author asolis 
+        * @author   
         * @fecha  05-02-09
         * DEVUELVE LOS DATOS QUE SE ENVIARAN AL PUNTO DE VENTA
         * @throws SQLException
@@ -2558,7 +2558,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     }
     
     
-    /**@author asolis 
+    /**@author   
      * @fecha  05-02-09
      * Cantidad de intentos para obtener respuesta de  recarga virtual
      * @throws SQLException
@@ -2573,7 +2573,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     
     /**
-        * @author asolis 
+        * @author   
         * @fecha  06-02-09
         * Obtiene valor secuencial de comprobantes :Boleta
         * @throws SQLException
@@ -2594,7 +2594,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     
     /**
-	* @author asolis 
+	* @author   
 	* @fecha  06-02-09
 	* Obtiene valor secuencial de comprobantes :Factura
 	* @throws SQLException
@@ -2622,7 +2622,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     	   parametros.add(FarmaVariables.vCodGrupoCia);
     	   parametros.add(FarmaVariables.vCodLocal);
     	   parametros.add(nroPedido);     
-    	   log.debug("jcallo : invocando a Ptoventa_Caj.CAJ_F_CHAR_DNI_CLIENTE(?,?,?): " + parametros);
+    	   log.debug("  : invocando a Ptoventa_Caj.CAJ_F_CHAR_DNI_CLIENTE(?,?,?): " + parametros);
     	   return FarmaDBUtility.executeSQLStoredProcedureStr("Ptoventa_Caj.CAJ_F_CHAR_DNI_CLIENTE(?,?,?)",parametros);
        }
        
@@ -2636,7 +2636,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     	   parametros.add(FarmaVariables.vCodGrupoCia);
     	   parametros.add(FarmaVariables.vCodLocal);
     	   parametros.add(nroPedido);     
-    	   log.debug("jcallo : invocando a Ptoventa_Caj.CAJ_F_LISTA_CAMP_AUTOMATIC(?,?,?): " + parametros);
+    	   log.debug("  : invocando a Ptoventa_Caj.CAJ_F_LISTA_CAMP_AUTOMATIC(?,?,?): " + parametros);
     	   
     	   FarmaDBUtility.executeSQLStoredProcedureArrayList(listaCampVenta, "Ptoventa_Caj.CAJ_F_LISTA_CAMP_AUTOMATIC(?,?,?)",parametros);
     	   
@@ -2653,7 +2653,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     	   parametros.add(FarmaVariables.vCodGrupoCia);
     	   parametros.add(FarmaVariables.vCodLocal);
     	   parametros.add(dniCliente);     
-    	   log.debug("jcallo : invocando a Ptoventa_FIDELIZACION.FID_F_LISTA_CAMPCL_USADOS(?,?,?): " + parametros);
+    	   log.debug("  : invocando a Ptoventa_FIDELIZACION.FID_F_LISTA_CAMPCL_USADOS(?,?,?): " + parametros);
     	   
     	   FarmaDBUtility.executeSQLStoredProcedureArrayList(listaCampLimitUsoLocal, "Ptoventa_FIDELIZACION.FID_F_LISTA_CAMPCL_USADOS(?,?,?)",parametros);
     	   
@@ -2670,7 +2670,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     	   parametros.add(FarmaVariables.vCodGrupoCia);
     	   parametros.add(FarmaVariables.vCodLocal);
     	   parametros.add(dniCliente);     
-    	   log.debug("jcallo : invocando a PTOVENTA_MATRIZ_FID.FID_F_LISTA_CAMPCL_USADOS(?,?,?): " + parametros);
+    	   log.debug("  : invocando a PTOVENTA_MATRIZ_FID.FID_F_LISTA_CAMPCL_USADOS(?,?,?): " + parametros);
     	   
     	   FarmaDBUtilityRemoto.executeSQLStoredProcedureArrayList(listaCampLimitUsoMatriz, "PTOVENTA_MATRIZ_FID.FID_F_LISTA_CAMPCL_USADOS(?,?,?)",
     			   													parametros,
@@ -2720,7 +2720,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Se obtiene datos Ticket al consultar Recarga Virtual
-     * @author ASOLIS
+     * @author  
      * @since 11.02.09
      */
   //  public static String obtieneDatosTicket(String pNumPedVta,String pFechaVenta,String pProveedor,String pTelefono,int pMonto,String pRespRecarga ,String pComunicado) throws SQLException{
@@ -2758,7 +2758,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     }
     
     
-    /**@author asolis 
+    /**@author   
      * @fecha  13-02-09
      * Obtiene directorio
      * @throws SQLException
@@ -2782,7 +2782,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Se obtiene el tipo de comprobante actual de la caja
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE 25.03.09
      * */
     public static String getObtieneTipoComp(String numCaja,String tipComp) throws SQLException
@@ -2797,7 +2797,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * SE OBTIENE EL MENSAJE DE LA CAMPAÑA ASOCIADA
-     * @AUTHOR MFAJARDO
+     * @AUTHOR  
      * @SINCE 13.04.09
      * */    
     public static String ObtieneCampanas(String pNumPedVta) throws SQLException{
@@ -2811,10 +2811,10 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * SE OBTIENE EL MENSAJE DE anulacion de ticket y La caja del usuario
-     * @AUTHOR MFAJARDO
+     * @AUTHOR  
      * @SINCE 24.04.09
      * */    
-    //Mfajardo 24/04/09 metodo imprimir ticket de anulacion             
+    //  24/04/09 metodo imprimir ticket de anulacion             
     public static String ImprimeMensajeAnulacion(String cajero,String turno,String numpedido,String cod_igv,String pIndReimpresion) throws SQLException{
       parametros = new ArrayList();
       parametros.add(FarmaVariables.vCodGrupoCia);
@@ -2823,11 +2823,11 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
       parametros.add(turno);      
       parametros.add(numpedido);
       parametros.add(cod_igv);
-      parametros.add(pIndReimpresion); //JCHAVEZ 08.07.2009.n parámetro indicador del tipo de impresión de anulación: impresión o reimpesión  
+      parametros.add(pIndReimpresion); //  08.07.2009.n parámetro indicador del tipo de impresión de anulación: impresión o reimpesión  
       System.out.println("Parametros "+ parametros);
       return FarmaDBUtility.executeSQLStoredProcedureStr("PTOVENTA_TICKETERA.CAMP_F_VAR_MSJ_ANULACION(?,?,?,?,?,?,?)",parametros);
     }
-    //Mfajardo 24/04/09 metodo imprimir ticket de anulacion            
+    //  24/04/09 metodo imprimir ticket de anulacion            
     public static int obtieneNumeroCajaUsuarioAux() throws SQLException{
         parametros = new ArrayList();
         parametros.add(FarmaVariables.vCodGrupoCia);
@@ -2837,7 +2837,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
         return FarmaDBUtility.executeSQLStoredProcedureInt("PTOVENTA_CAJ.CAJ_OBTIENE_CAJA_USUARIO(?,?,?)",parametros);
     }
     
-    //JCORTEZ 14/05/2009 Setea numero de caja al antes cobrar pedido          
+    //  14/05/2009 Setea numero de caja al antes cobrar pedido          
     public static int obtieneNumeroCajaUsuarioAux2() throws SQLException{
         parametros = new ArrayList();
         parametros.add(FarmaVariables.vCodGrupoCia);
@@ -2850,7 +2850,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Se obtiene el tipo de comprobante actual de la caja
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE 25.03.09
      * */
     public static String getObtieneTipoComp2(String numCaja) throws SQLException
@@ -2864,7 +2864,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
       
     /**
      * Se obtiene el secuencial de comprobante por 
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE 28.04.09
      * */ 
     public static void obtieneNumCompTip_ForUpdate(ArrayList pArrayList,
@@ -2880,7 +2880,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Se valida y/o bloquea caja pago para el cobro
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE 18.05.09
      * */  
     
@@ -2896,7 +2896,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Se valida la ip desde donde se emite impresion ticket
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE 09.06.09
      * */    
     public static String validaImpresioPorIP(String IP,String TipComp) throws SQLException{
@@ -2910,7 +2910,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Se obtiene el tipo de comprobante por IP
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE 09.06.09
      * */
     public static String getObtieneTipoCompPorIP(String IP,String tipComp) throws SQLException
@@ -2925,7 +2925,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Se obtiene secuencial de impresora por IP
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE 09.06.09
      * */
     public static String getObtieneSecImpPorIP(String IP) throws SQLException
@@ -2948,7 +2948,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Se obtiene secuencial de impresora por origen de anulacion
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE 15.06.09
      * */
     public static String getObtieneSecImpPorOrigen(String IP,String tipComp, String NumPedAnul) throws SQLException
@@ -2964,7 +2964,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Se obtiene secuencial de impresora por IP
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE 09.06.09
      * */
     public static String getExistSecImp(String SecImpr,String IP) throws SQLException
@@ -2980,7 +2980,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Se obtiene descripcion de impresora
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE 15.06.09
      * */
     public static String getNombreImpresora(String SecImpr) throws SQLException
@@ -2995,7 +2995,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
 
     /**
      * Se obtiene descripcion de impresora
-     * @AUTHOR JCHAVEZ
+     * @AUTHOR  
      * @SINCE 03.07.2009
      * */
     public static String obtieneTipoImprConsejoXIp() throws SQLException
@@ -3009,7 +3009,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Se verifica si el pedido está anulado
-     * @author JCHAVEZ
+     * @author  
      * @since 06.07.2009
      */
      public static void verificaPedidoAnulado(String pCorrelativo,String pMonto) throws SQLException
@@ -3020,13 +3020,13 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
        parametros.add(pCorrelativo);
        parametros.add(new Double(pMonto));              
        parametros.add(ConstantsPtoVenta.TIP_COMP_TICKET);          
-       log.debug("jcallo : PTOVENTA_CAJ_ANUL.CAJ_VERIFICA_PEDIDO parametros : "+parametros);
+       log.debug("  : PTOVENTA_CAJ_ANUL.CAJ_VERIFICA_PEDIDO parametros : "+parametros);
        FarmaDBUtility.executeSQLStoredProcedure(null,"PTOVENTA_CAJ_ANUL.CAJ_VERIFICA_PEDIDO_ANU(?,?,?,?,?)", parametros, false);
      }
     
     /**
      * Lista el detalle del pedido anulado
-     * @author JCHAVEZ
+     * @author  
      * @since 06.07.2009
      */
     public static void getListaDetallePedidoAnulado(FarmaTableModel pTableModel,String correlativo,String tipoComp,String numComp) throws SQLException
@@ -3042,7 +3042,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Lista el detalle del pedido anulado
-     * @author JCHAVEZ
+     * @author  
      * @since 06.07.2009
      */
     public static String obtieneCajaTurnoPedidoAnulado(String pCorrelativo) throws SQLException
@@ -3054,7 +3054,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
       return FarmaDBUtility.executeSQLStoredProcedureStr("PTOVENTA_CAJ_ANUL.CAJA_TURNO_PEDIDO_ANULADO(?,?,?)",parametros);
     }
 
-/**@author jmiranda 
+/**@author   
      * @fecha  08-07-09
      * Obtiene Cantidad de Dias
      * @throws SQLException
@@ -3069,7 +3069,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Graba inicio y fin del proceso de cobro del pedido
-     * @author JCHAVEZ
+     * @author  
      * @since 09.07.2009
      */
     public static void grabaInicioFinProcesoCobroPedido( String pCorrelativo,String pTipoTmp) throws SQLException
@@ -3087,7 +3087,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Se actualiza campo fech impresion ANULACION
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE 17.07.09
      * */
     public static void actualizaFechaImpr(String pNumPedVta,
@@ -3106,7 +3106,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Actualiza datos delivery (Aun por confirmar datos)
-     * @author JCORTEZ
+     * @author  
      * @since 07.08.09
      */
     public static void actualizaDatosDelivery(String pNumPedVta, String pEstPedVta,String CodCli,String nombreCli,
@@ -3127,7 +3127,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Se obtiene los datos par tipo de pedido Delivery
-     * @author JCORTEZ
+     * @author  
      * @since 07.08.09
      */
     public static String obtieneDatosDeliveryLocal(String pNumPedVta, String pIpServ) throws SQLException{
@@ -3143,7 +3143,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Se obtiene y elimina productos regalo por encarte
-     * @author JCORTEZ
+     * @author  
      * @since 13.08.09
      */
     public static void eliminaProdRegalo(String pNumPed,
@@ -3167,7 +3167,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     /**
      * Se obtiene datos de cupona regalo para imprimir.
      * @return cadena a imprimir
-     * @AUGTHOR JCORTEZ
+     * @AUGTHOR  
      * @SINCE 18.08.09
      */
     public static String obtieneImprCuponRegalo(String pIpServ,String pCodCupon,String Dni) throws SQLException{
@@ -3195,7 +3195,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     /**
      * Se obtiene mensaje de ahorro si es fidelizado o no
      * @return mensaje de ahorro
-     * @AUGTHOR JCORTEZ
+     * @AUGTHOR  
      * @SINCE 03.09.09
      */
     public static String obtieneMensajeAhorro(String indFid) throws SQLException{
@@ -3209,7 +3209,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
      /**
       * Se obtiene mensaje ticket
-      * @AUTHOR JCORTEZ
+      * @AUTHOR  
       * @SINCE 07.09.09
       * */
     public static String obtieneMensajeTicket() throws SQLException {
@@ -3222,7 +3222,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Se valida si existen guis pendientes por confirmar hacia almacen
-     * @AUTHOR JCORTEZ 
+     * @AUTHOR   
      * @SINCE  27.10.09
      * */   
     public static String ExistsGuiasPendAlmc() throws SQLException {
@@ -3234,7 +3234,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Se valida Se ha superado un monto minimo para generar sober
-     * @AUTHOR JCORTEZ 
+     * @AUTHOR   
      * @SINCE  03.10.09
      * */   
     public static String permiteIngreSobre(String SecMovCaja) throws SQLException{
@@ -3242,13 +3242,13 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
       parametros.add(FarmaVariables.vCodGrupoCia);
       parametros.add(FarmaVariables.vCodLocal);
       parametros.add(SecMovCaja);
-      System.out.println("PARAMETROS: "+parametros);//ASOSA, 03.06.2010
+      System.out.println("PARAMETROS: "+parametros);// , 03.06.2010
       return FarmaDBUtility.executeSQLStoredProcedureStr("PTOVENTA_CAJ.CAJ_F_PERMITE_INGRESO_SOBRE(?,?,?)",parametros);
     }
     
     /**
      * Se elimina el sobre fisicamente del temporal, aun no registrado
-     * @AUTHOR JCORTEZ 
+     * @AUTHOR   
      * @SINCE  03.11.09
      * */  
     public static void eliminaSobreRegistrado(String SecMov,
@@ -3270,7 +3270,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Se agregan sobres temporalmente
-     * @AUTHOR JCORTEZ 
+     * @AUTHOR   
      * @SINCE  03.11.09
      * */  
     public static String agregaSobre(String pSecMovCaja,
@@ -3293,7 +3293,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Se lista los sobres registrados
-     * @author JCORTEZ
+     * @author  
      * @since 04.11.09
      * */
      public static void getListaSobres(FarmaTableModel pTableModel,String SecMovCaj) throws SQLException
@@ -3307,7 +3307,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
      
     /**
      * Se lista los sobres registrados para formas pago entrega
-     * @author JCORTEZ
+     * @author  
      * @since 04.11.09
      * */
      public static void getListaSobresEntrega(FarmaTableModel pTableModel,String SecMovCaj) throws SQLException
@@ -3321,7 +3321,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
      
     /**
      * Se obtiene lista sobres entrega
-     * @author JCORTEZ
+     * @author  
      * @since 04.11.09
      * */
     public static void getListaSobresEntrega(ArrayList pArrayList, String SecMovCaj) throws SQLException {
@@ -3335,7 +3335,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Se obtiene venta del turno
-     * @author JCORTEZ
+     * @author  
      * @since 04.11.09
      * */
     public static String getMontoVentas(String SecMovCaja) throws SQLException
@@ -3350,7 +3350,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
    /**
     * Se envia correo del sobre declarado
-    * @AUTHOR JCORTEZ 
+    * @AUTHOR   
     * @SINCE  04.11.09
     * */  
    public static void enviaCorreoSobre(String codSobre)throws SQLException
@@ -3366,7 +3366,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
    
     /**
      * Se valida si existen guis pendientes por confirmar hacia local
-     * @AUTHOR JMIRANDA 
+     * @AUTHOR   
      * @SINCE  15.12.09
      * */   
     public static String ExisteGuiasXConfirmarLocal() throws SQLException {
@@ -3379,7 +3379,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Busca el Punto de Partida y Llegada para la venta institucional
-     * @AUTHOR JMIRANDA 
+     * @AUTHOR   
      * @SINCE  15.12.09
      * */   
     public static String getPuntoPartidaLlegada() throws SQLException {
@@ -3396,7 +3396,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Determina si se utilizara la nueva ventana de cobro o la antigua
-     * @author ASOSA
+     * @author  
      * @since 17.02.2010
      * @return flag
      * @throws SQLException
@@ -3411,7 +3411,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Determina si se debe abrir o no la ventana nueva de cobro o se debe de cobrar
-     * @author ASOSA
+     * @author  
      * @since 17.02.2010
      * @param numPed
      * @return flag
@@ -3430,7 +3430,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Obtiene la informacion de la tarjeta seleccionada(a que forma de pago pertenece y que tipo de tarjeta es)
-     * @author ASOSA
+     * @author  
      * @since 24.02.2010
      * @param pArrayList
      * @param nrotarj
@@ -3446,7 +3446,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Grabar forma de pago pedido para el nuevo proceso de cobro
-     * @author ASOSA
+     * @author  
      * @since 25.02.2010
      * @param pCodFormaPago
      * @param pImPago
@@ -3499,7 +3499,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Saber si el pedido es recarga virtual y ademas con convenio credito
-     * @author ASOSA
+     * @author  
      * @since 25.02.2010
      * @param numPed
      * @return
@@ -3517,7 +3517,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * obtiene la forma de pago de un convenio cualquiera
-     * @author ASOSA
+     * @author  
      * @since 01.03.2010
      * @param codconv
      * @return
@@ -3534,7 +3534,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Lista el detalle de un pedido para la nueva ventana de cobro
-     * @author ASOSA
+     * @author  
      * @since 05.03.2010
      * @param pTableModel
      * @param numped
@@ -3551,7 +3551,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Se obtiene los datos de convenio
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE 07.03.10
      */
     public static String obtieneDatosConvenio(String pNumPedVta,
@@ -3572,7 +3572,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Se VALIDA Pedido Fidelizado y Canje
-     * @author:  JCORTEZ  
+     * @author:     
      * @since: 18.03.2010
      * */
     public static void validarPedidoFidelizado(String numPedVta,String Dni,String IndLocal) throws SQLException
@@ -3591,7 +3591,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Se valida si se permite el ingreo de uno o mas sobres
-     * @AUTHOR JCORTEZ 
+     * @AUTHOR   
      * @SINCE  28.03.2010
      * */   
     public static String permiteIngreMasSobre() throws SQLException{
@@ -3603,7 +3603,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Se lista los sobres pendientes por aprobar
-     * @author JCORTEZ
+     * @author  
      * @since 08.04.2010
      * */
      public static void getListaSobresPorAprobar(FarmaTableModel pTableModel,
@@ -3621,7 +3621,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Se valida el estado del sobre antes de aprobarlo
-     * @author JCORTEZ
+     * @author  
      * @since 08.04.2010
      * */
     public static void validaEstadosobre( String FecVta,
@@ -3637,7 +3637,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Se aprueba el sobre seleccionado
-     * @author JCORTEZ
+     * @author  
      * @since 08.04.2010
      * */
     public static void aprobarSobre(String FecVta,String CodSobre)
@@ -3658,7 +3658,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Se valida rol de usuario 
-     * @author JCORTEZ
+     * @author  
      * @since 08.04.2010
      */
      public static String verificaRolUsuario(String SecUsu,
@@ -3675,7 +3675,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Valida indicador de control de sobres
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE 09.04.2010
      * */
      public static boolean obtieneIndicadorControlSobres() throws SQLException
@@ -3695,7 +3695,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
 
     /**
      * Valida indicador Prosegur
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE 09.04.2010
      * */
      public static boolean obtieneIndicadorProsegur() throws SQLException
@@ -3715,7 +3715,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Obtengo el valor de tolerancia de diferencia solo cuando la tarjeta es en dolares
-     * @author ASOSA
+     * @author  
      * @since 26.05.2010
      * @return
      * @throws SQLException
@@ -3728,7 +3728,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Enviar un correo informando que se cobro un pedido utilizando "el cambio de precio ¡¡¡"
-     * @author ASOSA
+     * @author  
      * @since 26.05.2010
      * @param numped
      * @param monto
@@ -3755,7 +3755,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     }
     
     /**
-     * @author Dubilluz
+     * @author  
      * @since  07.06.2010
      * @param pSecMovCaja
      * @param pCodFormaPago
@@ -3827,7 +3827,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Anula los pedidos pendientes despues de X minutos
-     * @author ASOSA
+     * @author  
      * @since 12.07.2010
      * @throws SQLException
      */
@@ -3842,7 +3842,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
       FarmaDBUtility.executeSQLStoredProcedure(null,"PTOVTA_RESPALDO_STK.CAJ_ANULA_PED_PEND_MASIVO(?,?,?,?)", parametros,false);
     }
 /**
-     * @author ASOSA
+     * @author  
      * @since  26.07.2010
      * @param pSecMovCaja
      * @param pCodFormaPago
@@ -3883,7 +3883,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
         
     /**
      * Anula Pedido Pendiente.
-     * @author ASOSA
+     * @author  
      * @since 13.07.2010
      * @param pNumPed
      * @throws SQLException
@@ -3901,7 +3901,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Se obtiene y elimina productos regalo por encarte
-     * @author ASOSA
+     * @author  
      * @since 13.07.2010
      * @param pNumPed
      * @param pAccion
@@ -3927,7 +3927,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
     
     /**
      * Anula los regalos de campaña acumulada y automatico
-     * @author ASOSA
+     * @author  
      * @since 13.07.2010
      * @param pNumPed
      * @throws SQLException
@@ -3966,7 +3966,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
         
     /**
      * Valida si Permite cobrar por stock negativo
-     * dubilluz 22.06.2011
+     *   22.06.2011
      * @param pNumPedVta
      * @return
      * @throws SQLException
@@ -3979,7 +3979,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
       System.out.println("PTOVTA_RESPALDO_STK.F_EXISTE_STOCK_PEDIDO(?,?,?):"+parametros);
       return FarmaDBUtility.executeSQLStoredProcedureStr("PTOVTA_RESPALDO_STK.F_EXISTE_STOCK_PEDIDO(?,?,?)",parametros);
     }    
-//dubilluz 2011.09.16
+//  2011.09.16
     public static String getMensajeFideicomizo()throws SQLException{
         parametros = new ArrayList();
         parametros.add(FarmaVariables.vCodGrupoCia);
@@ -4004,7 +4004,7 @@ public static String obtCodigoRptaProdVirtual() throws SQLException{
       parametros.add(FarmaVariables.vIdUsu);
       parametros.add(VariablesCaja.vIndAnulacionConReclamoNavsat ? FarmaConstants.INDICADOR_S : FarmaConstants.INDICADOR_N );
       parametros.add(motivoAnulacion);
-      parametros.add(vValidarMin);//add jcallo
+      parametros.add(vValidarMin);//add  
       log.debug("invocando PTOVENTA_CAJ_ANUL.CAJ_ANULAR_PEDIDO_BTL_MF(?,?,?,?,?,?,?,?,?,?,?):"+parametros);
       FarmaDBUtility.executeSQLStoredProcedure(null,"PTOVENTA_CAJ_ANUL.CAJ_ANULAR_PEDIDO_BTL_MF(?,?,?,?,?,?,?,?,?,?,?)", parametros, false);
     }

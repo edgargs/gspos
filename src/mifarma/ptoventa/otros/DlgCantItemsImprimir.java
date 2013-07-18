@@ -34,9 +34,9 @@ import com.gs.mifarma.componentes.JTextFieldSanSerif;
  * Nombre de la Aplicación : DlgSelecLocal.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JCALLO      20.10.2008   Creación<br>
+ *        20.10.2008   Creación<br>
  * <br>
- * @author JCALLO<br>
+ * @author  <br>
  * @version 1.0<br>
  * 
  */
@@ -247,7 +247,7 @@ public class DlgCantItemsImprimir extends JDialog {
     
     /**
      * Metodo encargado de validar cantidad ingresado
-     *@autor jcallo
+     *@autor  
      *@since 20.10.2008
      */
     public boolean CantidadValida( String cantidad ) {

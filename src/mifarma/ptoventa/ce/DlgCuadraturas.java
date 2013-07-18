@@ -259,7 +259,7 @@ public class DlgCuadraturas extends JDialog
         DlgDatosCuadratura dlgDatosCuadratura = new DlgDatosCuadratura(myParentFrame,"",true);
         dlgDatosCuadratura.setVisible(true);
         cargaLista();
-      }//Paulo
+      }// 
       else if(tipCuadratura.equals("02"))
       {
         VariablesCajaElectronica.vCodCuadratura = tblLista.getValueAt(row,0).toString().trim();
@@ -267,7 +267,7 @@ public class DlgCuadraturas extends JDialog
         DlgListaCuadratura dlgListaCuadratura = new DlgListaCuadratura(myParentFrame,"",true);
         dlgListaCuadratura.setVisible(true);
         cargaLista();
-      }//paulo
+      }// 
     }
   }
   

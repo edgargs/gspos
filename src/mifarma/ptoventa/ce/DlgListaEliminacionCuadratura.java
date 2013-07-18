@@ -36,7 +36,7 @@ import java.awt.event.KeyListener;
  * Nombre de la Aplicación : DlgListaEliminacionCuadratura.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * PAULO      31.07.2006   Creación<br>
+ *        31.07.2006   Creación<br>
  * <br>
  * @author Edgar Rios Navarro<br>
  * @version 1.0<br>
@@ -172,7 +172,7 @@ public class DlgListaEliminacionCuadratura
       initTableRobo(); 
     }else if (VariablesCajaElectronica.vCodCuadratura.equalsIgnoreCase(ConstantsCajaElectronica.CUADRATURA_COTIZA_COMPETENCIA_CAJERO))
     {
-      initTableCotizacionCompetencia(); //ASOSA, 10.08.2010
+      initTableCotizacionCompetencia(); // , 10.08.2010
     }
     else initTableOtrasCuadraturas();
     
@@ -291,7 +291,7 @@ public class DlgListaEliminacionCuadratura
           {
             cargaListaCuadraturaIngreso();
           }else if(VariablesCajaElectronica.vTipCuadratura.equals("05")){
-                cargaListaCotizacionCompetencia(); //ASOSA, 10.08.2010
+                cargaListaCotizacionCompetencia(); // , 10.08.2010
             }
         } else FarmaUtility.showMessage(this, "No es posible realizar esta operacion.", tblListaEliminacion);
       }
@@ -448,7 +448,7 @@ public class DlgListaEliminacionCuadratura
   
         /**
          * Para listar campos CotizacionCompetencia
-         * @author ASOSA
+         * @author  
          * @since 10.08.2010
          */
         private void cargaListaCotizacionCompetencia()

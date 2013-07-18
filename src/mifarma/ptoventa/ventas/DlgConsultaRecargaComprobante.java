@@ -39,16 +39,16 @@ import mifarma.ptoventa.ventas.reference.DBVentas;
 import mifarma.ptoventa.caja.reference.VariablesVirtual;
 import mifarma.ptoventa.ventas.reference.*;
 import mifarma.ptoventa.reference.*;
-import  org.apache.commons.logging.Log;
-import  org.apache.commons.logging.LogFactory;
+ import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DlgConsultaRecargaComprobante extends JDialog {
     /* ********************************************************************** */
     /*                        DECLARACION PROPIEDADES                         */
     /* ********************************************************************** */
 
-    private static final Log log = 
-        LogFactory.getLog(DlgConsultaRecargaComprobante.class);
+    private static final Logger log = 
+        LoggerFactory.getLogger(DlgConsultaRecargaComprobante.class);
 
    
     Frame myParentFrame;

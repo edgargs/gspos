@@ -55,18 +55,6 @@
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
-            <value n="id" v="Jbarcode-0.2.8.jar"/>
-            <value n="isJDK" v="false"/>
-         </hash>
-         <hash>
-            <value n="id" v="Jcommon-1.0.13.jar"/>
-            <value n="isJDK" v="false"/>
-         </hash>
-         <hash>
-            <value n="id" v="Jfreechart-1.0.10.jar"/>
-            <value n="isJDK" v="false"/>
-         </hash>
-         <hash>
             <value n="id" v="Logback-classic-1.0.13.jar"/>
             <value n="isJDK" v="false"/>
          </hash>
@@ -75,11 +63,11 @@
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
-            <value n="id" v="Mybatis-3.2.2.jar"/>
+            <value n="id" v="Slf4j-api-1.7.5.jar"/>
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
-            <value n="id" v="Slf4j-api-1.7.5.jar"/>
+            <value n="id" v="Postgresql-9.2-1003.jdbc4.jar"/>
             <value n="isJDK" v="false"/>
          </hash>
       </list>
@@ -105,33 +93,6 @@
             </hash>
             <hash>
                <list n="classPath">
-                  <url path="lib/jbarcode-0.2.8.jar" jar-entry=""/>
-               </list>
-               <value n="deployedByDefault" v="true"/>
-               <value n="description" v="Jbarcode-0.2.8.jar"/>
-               <value n="id" v="Jbarcode-0.2.8.jar"/>
-               <value n="locked" v="true"/>
-            </hash>
-            <hash>
-               <list n="classPath">
-                  <url path="lib/jcommon-1.0.13.jar" jar-entry=""/>
-               </list>
-               <value n="deployedByDefault" v="true"/>
-               <value n="description" v="Jcommon-1.0.13.jar"/>
-               <value n="id" v="Jcommon-1.0.13.jar"/>
-               <value n="locked" v="true"/>
-            </hash>
-            <hash>
-               <list n="classPath">
-                  <url path="lib/jfreechart-1.0.10.jar" jar-entry=""/>
-               </list>
-               <value n="deployedByDefault" v="true"/>
-               <value n="description" v="Jfreechart-1.0.10.jar"/>
-               <value n="id" v="Jfreechart-1.0.10.jar"/>
-               <value n="locked" v="true"/>
-            </hash>
-            <hash>
-               <list n="classPath">
                   <url path="lib/logback-classic-1.0.13.jar" jar-entry=""/>
                </list>
                <value n="deployedByDefault" v="true"/>
@@ -150,20 +111,20 @@
             </hash>
             <hash>
                <list n="classPath">
-                  <url path="lib/mybatis-3.2.2.jar" jar-entry=""/>
-               </list>
-               <value n="deployedByDefault" v="true"/>
-               <value n="description" v="Mybatis-3.2.2.jar"/>
-               <value n="id" v="Mybatis-3.2.2.jar"/>
-               <value n="locked" v="true"/>
-            </hash>
-            <hash>
-               <list n="classPath">
                   <url path="lib/slf4j-api-1.7.5.jar" jar-entry=""/>
                </list>
                <value n="deployedByDefault" v="true"/>
                <value n="description" v="Slf4j-api-1.7.5.jar"/>
                <value n="id" v="Slf4j-api-1.7.5.jar"/>
+               <value n="locked" v="true"/>
+            </hash>
+            <hash>
+               <list n="classPath">
+                  <url path="lib/postgresql-9.2-1003.jdbc4.jar" jar-entry=""/>
+               </list>
+               <value n="deployedByDefault" v="true"/>
+               <value n="description" v="Postgresql-9.2-1003.jdbc4.jar"/>
+               <value n="id" v="Postgresql-9.2-1003.jdbc4.jar"/>
                <value n="locked" v="true"/>
             </hash>
          </list>
@@ -183,18 +144,6 @@
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
-            <value n="id" v="Jbarcode-0.2.8.jar"/>
-            <value n="isJDK" v="false"/>
-         </hash>
-         <hash>
-            <value n="id" v="Jcommon-1.0.13.jar"/>
-            <value n="isJDK" v="false"/>
-         </hash>
-         <hash>
-            <value n="id" v="Jfreechart-1.0.10.jar"/>
-            <value n="isJDK" v="false"/>
-         </hash>
-         <hash>
             <value n="id" v="Logback-classic-1.0.13.jar"/>
             <value n="isJDK" v="false"/>
          </hash>
@@ -203,11 +152,11 @@
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
-            <value n="id" v="Mybatis-3.2.2.jar"/>
+            <value n="id" v="Slf4j-api-1.7.5.jar"/>
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
-            <value n="id" v="Slf4j-api-1.7.5.jar"/>
+            <value n="id" v="Postgresql-9.2-1003.jdbc4.jar"/>
             <value n="isJDK" v="false"/>
          </hash>
       </list>

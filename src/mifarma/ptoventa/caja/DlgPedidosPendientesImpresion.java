@@ -28,8 +28,8 @@ import mifarma.common.*;
 import mifarma.ptoventa.caja.reference.*;
 import mifarma.ptoventa.reference.*;
 import mifarma.ptoventa.ventas.reference.*;
-import oracle.jdeveloper.layout.XYConstraints;
-import oracle.jdeveloper.layout.XYLayout;
+ 
+ 
 
 import com.gs.mifarma.componentes.JLabelFunction;
 import com.gs.mifarma.componentes.JButtonLabel;
@@ -48,10 +48,10 @@ public class DlgPedidosPendientesImpresion extends JDialog
   private JLabelFunction lblF11 = new JLabelFunction();
   private JScrollPane scrPendientes = new JScrollPane();
   private JPanel pnlRelacion = new JPanel();
-  private XYLayout xYLayout2 = new XYLayout();
+   
   private JScrollPane scrDetalle = new JScrollPane();
   private JPanel pnlItems = new JPanel();
-  private XYLayout xYLayout3 = new XYLayout();
+   
   private JButton btnDetalle = new JButton();
   private JLabel jLabel3 = new JLabel();
   private JLabelFunction lblEsc = new JLabelFunction();
@@ -114,7 +114,7 @@ public class DlgPedidosPendientesImpresion extends JDialog
     scrPendientes.setBounds(new Rectangle(15, 40, 615, 100));
     scrPendientes.setBackground(new Color(255, 130, 14));
     pnlRelacion.setBackground(new Color(255, 130, 14));
-    pnlRelacion.setLayout(xYLayout2);
+    pnlRelacion. setLayout(null);
     pnlRelacion.setFont(new Font("SansSerif", 0, 11));
     pnlRelacion.setBounds(new Rectangle(15, 15, 615, 25));
     scrDetalle.setFont(new Font("SansSerif", 0, 11));
@@ -122,7 +122,7 @@ public class DlgPedidosPendientesImpresion extends JDialog
     scrDetalle.setBackground(new Color(255, 130, 14));
     pnlItems.setBackground(new Color(255, 130, 14));
     pnlItems.setFont(new Font("SansSerif", 0, 11));
-    pnlItems.setLayout(xYLayout3);
+    pnlItems. setLayout(null);
     pnlItems.setBounds(new Rectangle(15, 145, 615, 25));
     btnDetalle.setText("Detalle del Pedido :");
     btnDetalle.setFont(new Font("SansSerif", 1, 11));
@@ -182,13 +182,13 @@ public class DlgPedidosPendientesImpresion extends JDialog
     jLabelFunction1.setText("[ F2 ] Configurar Comprobantes");
     scrPendientes.getViewport();
     scrDetalle.getViewport();
-    pnlItems.add(btnDetalle, new XYConstraints(10, 5, 125, 15));
+    pnlItems.add(btnDetalle);
     this.getContentPane().add(jContentPane, BorderLayout.CENTER);
     scrPendientes.getViewport().add(tblListaPendientes, null);
     jContentPane.add(jLabelFunction1, null);
     jContentPane.add(lblF11, null);
     jContentPane.add(scrPendientes, null);
-    pnlRelacion.add(btnCabecera, new XYConstraints(10, 5, 210, 15));
+    pnlRelacion.add(btnCabecera);
     jContentPane.add(pnlRelacion, null);
     scrDetalle.getViewport().add(tblDetalle, null);
     jContentPane.add(scrDetalle, null);

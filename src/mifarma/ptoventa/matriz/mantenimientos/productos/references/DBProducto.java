@@ -84,7 +84,7 @@ public class DBProducto
   
   /**
    * Se obiene el listado de los pedidos de distribucion 
-   * @author: JCORTEZ
+   * @author:  
    * @since 08.11.2007
    */
   public static void cargaPedidosDistribucion(FarmaTableModel pTableModel) throws SQLException {
@@ -98,7 +98,7 @@ public class DBProducto
   
    /**
    * Se obiene el listado de los pedidos de distribucion 
-   * @author: JCORTEZ
+   * @author:  
    * @since 08.11.2007
    */
   public static void cargaPedidosPorFecha(FarmaTableModel pTableModel,String FechaIncio, String FechaFin) throws SQLException {
@@ -113,7 +113,7 @@ public class DBProducto
 
    /**
    * Se obtiene el detalle de los Productos
-   * @author: JCORTEZ
+   * @author:  
    * @since 09.11.2007
    */
   public static void cargaDetalleProductos(FarmaTableModel pTableModel,String cNumPedido) throws SQLException {
@@ -127,7 +127,7 @@ public class DBProducto
    
     /**
    * Se obtiene el detalle de los Locales 
-   * @author: JCORTEZ
+   * @author:  
    * @since 09.11.2007
    */
   public static void cargaDetalleLocales(FarmaTableModel pTableModel,String cNumPedido,String cCodProd) throws SQLException {
@@ -142,7 +142,7 @@ public class DBProducto
 
    /**
    * Se obtiene los productos para generar el pedido
-   * @author: JCORTEZ
+   * @author:  
    * @since 09.11.2007
    */
  public static void cargaListaProductosDist(FarmaTableModel pTableModel,
@@ -165,7 +165,7 @@ public class DBProducto
   
  /**
    * Se obtiene el listado de laboratorios
-   * @author: JCORTEZ
+   * @author:  
    * @since 12.11.2007
    */
   public static void cargaListaLaboratorios(FarmaTableModel pTableModel)throws SQLException
@@ -177,7 +177,7 @@ public class DBProducto
   
    /**
    * Se obtiene el listado de laboratorios
-   * @author: JCORTEZ
+   * @author:  
    * @since 12.11.2007
    */
   public static void obtieneDescripcionLaboratorio(ArrayList pArrayList,String vCodLab)throws SQLException
@@ -201,7 +201,7 @@ public class DBProducto
   
   /**
    * Se carga locales por producto
-   * @author: JCORTEZ
+   * @author:  
    * @since 12.11.2007
    */
    public static void cargaListaLocalesProd(FarmaTableModel pTableModel,
@@ -217,7 +217,7 @@ public class DBProducto
   
   /**
    * Se genera el pedido de distribucion final
-   * @author: JCORTEZ
+   * @author:  
    * @since 15.11.2007
    */
    public static void insertarPedidoDistribucion(String NumPedido) throws SQLException {
@@ -233,7 +233,7 @@ public class DBProducto
   
   /**
    * Se Ingresa la cabecera del Pedido
-   * @author: JCORTEZ
+   * @author:  
    * @since 12.11.2007
    */
   /* public static void insertarCabeceraPedido(String NumPedido,
@@ -269,7 +269,7 @@ public class DBProducto
   
   /**
    * Se Ingresa la detalle del Pedido
-   * @author: JCORTEZ
+   * @author:  
    * @since 12.11.2007
    */
   /* public static void insertarDetallePedido(String vNumPedido,
@@ -315,7 +315,7 @@ public class DBProducto
   
   /**
    * Se valida la anulacion del pedido
-   * @author: JCORTEZ
+   * @author:  
    * @since 12.11.2007
    */ 
  public static void validaEstado(String NumPedido) throws SQLException {
@@ -351,7 +351,7 @@ public class DBProducto
   
   /**
    * Se carga Lista OC Pendientes
-   * @author: JCORTEZ
+   * @author:  
    * @since 15.11.2007
    */
    public static void cargaListaOCPendiente(FarmaTableModel pTableModel,
@@ -365,7 +365,7 @@ public class DBProducto
   
    /**
    * Se carga Lista OC Ingresados
-   * @author: JCORTEZ
+   * @author:  
    * @since 15.11.2007
    */
    public static void cargaListaOCIngresos(FarmaTableModel pTableModel,
@@ -379,7 +379,7 @@ public class DBProducto
   
   /**
    * Se carga las unidades vendidas 
-   * @author: JCORTEZ
+   * @author:  
    * @since 15.11.2007
    */
    public static void listarUnidVendProd(FarmaTableModel pTableModel,String pCodProd) throws SQLException
@@ -394,7 +394,7 @@ public class DBProducto
   
   /**
    * Obtiene el resumen de Saldos
-   * @author: JCORTEZ
+   * @author:  
    * @since 15.11.2007
    */
   public static void listarSaldosProd(FarmaTableModel pTableModel,String pCodProd) throws SQLException
@@ -409,7 +409,7 @@ public class DBProducto
   
   /**
    * Retorna el saldo en almacen QS.
-   * @author: JCORTEZ
+   * @author:  
    * @since 15.11.2007
    */
   public static String  listarSaldoQSProd(String pCodProd) throws SQLException
@@ -425,7 +425,7 @@ public class DBProducto
   
    /**
    * Se se verifica la existencia de pedidos temporales aceptados
-   * @author: JCORTEZ
+   * @author:  
    * @since 15.11.2007
    */
   public static String getExistPedTemporalAcep() throws SQLException
@@ -438,7 +438,7 @@ public class DBProducto
   
   /**
    * Se se verifica la existencia de pedidos temporales pendientes
-   * @author: JCORTEZ
+   * @author:  
    * @since 15.11.2007
    */
   public static String getExistPedTemporalPend() throws SQLException
@@ -452,7 +452,7 @@ public class DBProducto
   
   /**
    * Obtiene cantidad de productos por local en pedidos temporales
-   * @author: JCORTEZ
+   * @author:  
    * @since 15.11.2007
    */
   public static void obtieneCantidadProducto(ArrayList pArrayList, String CodProd) throws SQLException {
@@ -479,7 +479,7 @@ public class DBProducto
   
    /**
    * Se  verifica la existencia del producto en el pedido temporal
-   * @author: JCORTEZ
+   * @author:  
    * @since 15.11.2007
    */
   public static String getExistProdTemporal(String cCodProd) throws SQLException
@@ -493,7 +493,7 @@ public class DBProducto
 
   /**
    * Se obtiene los productos para generar el pedido
-   * @author: JCORTEZ
+   * @author:  
    * @since:  16.01.2008
    */
  public static void cargaListaProductosAlmc(FarmaTableModel pTableModel,
@@ -509,7 +509,7 @@ public class DBProducto
 
    /**
    * Se anula la distribucion del producto en local
-   * @author: JCORTEZ
+   * @author:  
    * @since:  04.02.2008
    */
    public static void anularPedidoLocal(String cNumPedido,
@@ -532,7 +532,7 @@ public class DBProducto
 
    /**
    * Se valida la anulacion de la distribucion en local
-   * @author: JCORTEZ
+   * @author:  
    * @since 04.02.2008
    */ 
  public static void validaEstadoProdLocal(String cNumPedido,
@@ -551,7 +551,7 @@ public class DBProducto
    
   /**
    * Se actualiza o ingresa el parametro para el calculo de pedidos de reposicion
-   * @author: JCORTEZ
+   * @author:  
    * @since 11.09.2008
    */ 
     public static void insertarParametroRepLocal(String vNumPedido,
@@ -573,7 +573,7 @@ public class DBProducto
 
    /**
      * Lista los locales con la cantidad de pvm actualizado. 
-     * @author DVELIZ
+     * @author  
      * @since  22.09.08
      * @throws SQLException
      */
@@ -589,7 +589,7 @@ public class DBProducto
    
    /**
      * Lista los PVM de los productos de cierto local
-     * @author DVELIZ
+     * @author  
      * @since  22.09.08
      * @param pTableModel
      * @throws SQLException
@@ -642,7 +642,7 @@ public class DBProducto
     }
 
   /**
-     * @author DUBILLUZ
+     * @author  
      * @param pTableModel
      * @throws SQLException
      */
@@ -662,7 +662,7 @@ public class DBProducto
 
   /**
      * 
-     * @author DUbilluz
+     * @author  
      * @param NumPedEsp
      * @param ArrayProd
      * @throws SQLException
@@ -687,7 +687,7 @@ public class DBProducto
 
     /**
      * 
-     * @author Dubilluz
+     * @author  
      * @param pNumPedEsp
      * @param pCodLocal
      * @param pEstado
@@ -708,7 +708,7 @@ public class DBProducto
     }
     
     /**
-       * @author JCORTEZ
+       * @author  
        * @param pTableModel
        * @throws SQLException
        */
@@ -724,7 +724,7 @@ public class DBProducto
     }
     /**
      * Se obtiene el historico del ultimo PVM autorizado por local
-     * @author JCORTEZ
+     * @author  
      * @since  19.09.2008
      */
     public static void cargaHistoricoParamLocal(FarmaTableModel pTableModel,
@@ -745,7 +745,7 @@ public class DBProducto
     
     /**
      * Se obtiene los productos para generar el pedido
-     * @author JCORTEZ
+     * @author  
      * @since  04.02.10  
      */
     public static void cargaListaProdEspecialMatriz(FarmaTableModel pTableModel,
@@ -762,7 +762,7 @@ public class DBProducto
     /**
      * Se guarda la cabecera del pedido Especial Matriz
      * @throws SQLException
-     * @author JCORTEZ
+     * @author  
      * @since   04.02.10
      */
     public static void agregarCabeceraPedEsp(String  NumPedEsp,
@@ -783,7 +783,7 @@ public class DBProducto
     /**
      * Se guarda el detalle del pedido Especial Matriz
      * @throws SQLException
-     * @author JCORTEZ
+     * @author  
      * @since  04.02.10
      */
     public static void agregarDetallePedEsp(ArrayList ArrayProd,
@@ -812,7 +812,7 @@ public class DBProducto
     /***************************NUEVO MODULO DISTRIBUCION**********************************/
     /**
      * validar rol para creacion de pedidos
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE 10.02.10
      */
      public static String verificaRolUsuario(String SecUsu,String CodRol) throws SQLException

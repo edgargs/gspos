@@ -2,11 +2,11 @@ package mifarma.ptoventa.caja.reference;
 
 import java.util.ArrayList;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class VariablesSobre {
-   private static final Log log = LogFactory.getLog(VariablesSobre.class);
+   private static final Logger log = LoggerFactory.getLogger(VariablesSobre.class);
 	
    public VariablesSobre(){
 	

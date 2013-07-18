@@ -52,8 +52,8 @@ import mifarma.ptoventa.recepcionCiega.reference.VariablesRecepCiega;
 import mifarma.ptoventa.tomainventario.reference.DBTomaInv;
     import mifarma.ptoventa.tomainventario.reference.VariablesTomaInv;
     import mifarma.ptoventa.tomainventario.reference.ConstantsTomaInv;
-    import org.apache.commons.logging.Log;
-    import org.apache.commons.logging.LogFactory;
+    import org.slf4j.Logger;
+    import org.slf4j.LoggerFactory;
 
     public class DlgIngresoCodigoBarra extends JDialog {
         Frame myParentFrame;
@@ -63,7 +63,7 @@ import mifarma.ptoventa.tomainventario.reference.DBTomaInv;
         private JTable tblRelacionProductosConteo = new JTable();
         private JTable myJTable;
         
-        private static final Log log = LogFactory.getLog(DlgIngresoCodigoBarra.class);
+        private static final Logger log = LoggerFactory.getLogger(DlgIngresoCodigoBarra.class);
         
         private JPanelWhite jContentPane = new JPanelWhite();
         private BorderLayout borderLayout1 = new BorderLayout();
@@ -305,7 +305,7 @@ import mifarma.ptoventa.tomainventario.reference.DBTomaInv;
         }
            
         private void ingresaProducto() {
-            //JMIRANDA 22.12.09 INGRESA PRODUCTO 
+            //  22.12.09 INGRESA PRODUCTO 
             try{
                     DBTomaInv.insertAuxConteo(VariablesTomaInv.vSecToma,
                                                           VariablesTomaInv.vSecAuxConteo,
@@ -438,7 +438,7 @@ import mifarma.ptoventa.tomainventario.reference.DBTomaInv;
                     muestraInfoProd(FarmaConstants.INDICADOR_S);
                     if (FarmaVariables.vAceptar) {
                         VariablesTomaInv.vIndIngresaProd = "S";
-                        //JMIRANDA 21.12.09
+                        //  21.12.09
                         //INGRESO EN TABLA AUXILIAR AUX_LGT_PROD_TOMA_CONTEOS
                         log.info("vIndIngresaProd: " + 
                                  VariablesTomaInv.vIndIngresaProd);
@@ -482,7 +482,7 @@ import mifarma.ptoventa.tomainventario.reference.DBTomaInv;
                             FarmaUtility.ShowInput(this, "No existe el código de Barra. \nPor favor Ingrese una descripción del Producto.");
                         */
                         String pDatoProducto = ingresoGlosa();
-                        //JMIRANDA 30.12.09 ENVIA ALERTA
+                        //  30.12.09 ENVIA ALERTA
                         enviaCorreoCodBarraNoExiste(VariablesTomaInv.vSecToma, 
                                                     VariablesTomaInv.vCodBarraIngresado, 
                                                     pDatoProducto);
@@ -719,7 +719,7 @@ import mifarma.ptoventa.tomainventario.reference.DBTomaInv;
     }    
     /**
      * Elimina Fila Seleccionada 
-     * @author DUBILLUZ
+     * @author  
      * @since  30.12.2009
      */
     private void eliminaFilaSeleccionada()

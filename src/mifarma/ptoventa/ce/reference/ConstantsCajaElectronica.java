@@ -138,7 +138,7 @@ public class ConstantsCajaElectronica {
     new FarmaColumnData("", 0, JLabel.LEFT),//dia de cierre campo ordenamiento
     /**
      * Indicador de VB Contable
-     * @author : dubilluz
+     * @author :  
      * @since  : 06.09.2007
      */
     new FarmaColumnData("", 0, JLabel.LEFT)//ind VB Contable
@@ -217,7 +217,7 @@ public class ConstantsCajaElectronica {
   
   /***************LMESIA******************/
 
-/******************************PAULO*********************************/
+/****************************** *********************************/
   public static final String CUADRATURA_ANULADO_PENDIENTE = "001";
   public static final String CUADRATURA_REGULARIZACION_ANULADO_PENDIENTE = "002";
   public static final String CUADRATURA_DELIVERY_PENDIENTE  = "003";
@@ -243,7 +243,7 @@ public class ConstantsCajaElectronica {
   public static final String CUADRATURA_DELIVERY_PERDIDO = "023";  
   public static final String CUADRATURA_ADELANTO = "024";  
   public static final String CUADRATURA_GRATIFICACION = "025";  
-  public static final String CUADRATURA_COTIZA_COMPETENCIA_CAJERO = "032"; //ASOSA, 11.08.2010
+  public static final String CUADRATURA_COTIZA_COMPETENCIA_CAJERO = "032"; // , 11.08.2010
   
 
   public static final FarmaColumnData[] columsListaFormasPagoEntrega = 
@@ -276,8 +276,8 @@ public class ConstantsCajaElectronica {
     new FarmaColumnData("",0,JLabel.LEFT),//mon
     new FarmaColumnData("",0,JLabel.LEFT),//ind
     new FarmaColumnData("",0,JLabel.LEFT),//indicador automatico
-    new FarmaColumnData("",0,JLabel.LEFT)//SecFormaPagoORigen DUBILLUZ 14.01.2009
-    //new FarmaColumnData("",0,JLabel.LEFT),//indicador si se asociara a Sobre DUBILLUZ 14.01.2009
+    new FarmaColumnData("",0,JLabel.LEFT)//SecFormaPagoORigen   14.01.2009
+    //new FarmaColumnData("",0,JLabel.LEFT),//indicador si se asociara a Sobre   14.01.2009
   };
   
   public static final Object[] defaultListaDetallePago = {" "," ", " "," "," "," "," "," "," "," "," "," "};
@@ -734,11 +734,11 @@ public class ConstantsCajaElectronica {
   public static final String  IND_DEBITO = "DB";
   
   
-  /******************************PAULO*********************************/
+  /****************************** *********************************/
   
  /**
   * Columnas para lista de trabajadores y se mostrara el codigo de RR.HH
-  * @author dubilluz
+  * @author  
   * @since  22.11.2007
   */
   public static final FarmaColumnData columnsListaTrabajadore[] = {
@@ -752,7 +752,7 @@ public class ConstantsCajaElectronica {
   /**************************Cambio en formas de PAgo*****************************/
   
   /**
-   * @AUTHOR JCORTEZ
+   * @AUTHOR  
    * @SINCE 28.02.10
    * */
   public static final FarmaColumnData columnsListaCambioFormaPago[] = {
@@ -794,7 +794,7 @@ public class ConstantsCajaElectronica {
     
     public static final Object[] defaultValuesListaFormasPago2 = {" "," "," "," "};
     
-    public static final FarmaColumnData[] columnsEliminacionCotizacionCompetencia_Turno = {   //ASOSA, 12.08.2010
+    public static final FarmaColumnData[] columnsEliminacionCotizacionCompetencia_Turno = {   // , 12.08.2010
                     new FarmaColumnData("Sel", 30, JLabel.CENTER),
                     new FarmaColumnData("Documento", 80, JLabel.LEFT),
                     new FarmaColumnData("Tipo", 80, JLabel.LEFT),
@@ -810,6 +810,6 @@ public class ConstantsCajaElectronica {
                     new FarmaColumnData("",0, JLabel.LEFT),//sec
                     new FarmaColumnData("",0, JLabel.LEFT),//feccierre
     };
-    public static final Object[] defaultValuesEliminacionCotizacionCompetencia_Turno = {" "," "," ", " ", " ", " ", " "," "," ", " ", " "," "," "," "};   //ASOSA, 12.08.2010
+    public static final Object[] defaultValuesEliminacionCotizacionCompetencia_Turno = {" "," "," ", " ", " ", " ", " "," "," ", " ", " "," "," "," "};   // , 12.08.2010
     
 }

@@ -206,7 +206,7 @@ public class DlgRecepcionProductosGuias extends JDialog
       int i = tblListaGuias.getSelectedRow();
       boolean check = ((Boolean)tblListaGuias.getValueAt(i,0)).booleanValue();
       FarmaUtility.setearCheckInRow(tblListaGuias,new Boolean(check),true,false,"",0);    
-        //seleccionarGuia(tblListaGuias.getSelectedRow());    //ASOSA, 08.02.2010
+        //seleccionarGuia(tblListaGuias.getSelectedRow());    // , 08.02.2010
         
     }
 		else if (e.getKeyCode() == KeyEvent.VK_F1) 
@@ -238,8 +238,8 @@ public class DlgRecepcionProductosGuias extends JDialog
 				try {
                                     
         if (VariablesPtoVenta.vIndRecepCiega.equalsIgnoreCase("N")) {
-            //ASOSA 08.02.10 
-            //----------------------- JMIRANDA 09.02.10
+            //  08.02.10 
+            //-----------------------   09.02.10
             String valorTipo = validaTiposEspeciales();
             if(valorTipo.trim().equalsIgnoreCase("2")){
                 //No puede mezclar ingreso tipo ZREG, ZTNL o UB con otras
@@ -258,7 +258,7 @@ public class DlgRecepcionProductosGuias extends JDialog
                 tblListaGuias.repaint();
                 }
                 else {
-                    //JMIRANDA 18.03.2010 ASOCIAR ENTREGAS A CABECERA
+                    //  18.03.2010 ASOCIAR ENTREGAS A CABECERA
                     asociaCabecera();
                 }
             }
@@ -270,7 +270,7 @@ public class DlgRecepcionProductosGuias extends JDialog
             }
         }
         else{
-            // JMIRANDA 09.02.10 COMO ANTES
+            //   09.02.10 COMO ANTES
             //-----------------------
             String valorTipo = validaTiposEspeciales();
             //-----------------------
@@ -282,7 +282,7 @@ public class DlgRecepcionProductosGuias extends JDialog
                 cargarGuiaSeleccionada(i); 
                 System.out.println("CARGA_GUIA,VariablesInventario.vNumEntAfectar: "+VariablesInventario.vNumEntAfectar);
                 
-                //JCHAVEZ 17122009 se valida que la recepcion ciega este activa
+                //  17122009 se valida que la recepcion ciega este activa
                 if (VariablesPtoVenta.vIndRecepCiega.equalsIgnoreCase("S")) {// si esta activa la recepcion ciega
                     if(validaTipoPedReg(VariablesInventario.vTipoPedRep.trim())){
                         System.out.println("vTipoPedRep: "+VariablesInventario.vTipoPedRep);
@@ -294,7 +294,7 @@ public class DlgRecepcionProductosGuias extends JDialog
                     }
                  }/*else if (VariablesPtoVenta.vIndRecepCiega.equalsIgnoreCase("N")){
                      DBInventario.actualizaPagina(); 
-                   --JMIRANDA 09.02.2010 Agregado en AfectaEntregaTipoEspecial
+                   --  09.02.2010 Agregado en AfectaEntregaTipoEspecial
                  } */
             
               }
@@ -357,7 +357,7 @@ public class DlgRecepcionProductosGuias extends JDialog
      
     /**
      * Remueve un elemento de la lista de guias
-     * @author ASOSA
+     * @author  
      * @since 08.02.2010
      * @param fila
      */
@@ -373,7 +373,7 @@ public class DlgRecepcionProductosGuias extends JDialog
     
     /**
      * Agregar un elemento a la lista
-     * @author ASOSA
+     * @author  
      * @since 08.02.2010
      * @param pFila
      */
@@ -398,7 +398,7 @@ public class DlgRecepcionProductosGuias extends JDialog
      
      /**
      * Selecciona o deselecciona guias
-     * @autor ASOSA
+     * @autor  
      * @since 08.02.2010
      * @param fila
      */
@@ -419,7 +419,7 @@ public class DlgRecepcionProductosGuias extends JDialog
 		VariablesInventario.vNumGuia = tblListaGuias.getValueAt(row,1).toString();
     VariablesInventario.vNumPag = tblListaGuias.getValueAt(row,2).toString();
     VariablesInventario.vCantItems = tblListaGuias.getValueAt(row,4).toString();
-    VariablesInventario.vNumEntAfectar = tblListaGuias.getValueAt(row,5).toString(); //JMIRANDA 09.02.10
+    VariablesInventario.vNumEntAfectar = tblListaGuias.getValueAt(row,5).toString(); //  09.02.10
     VariablesInventario.vNumNotaEs = tblListaGuias.getValueAt(row, 8).toString().trim(); //ERA 7 SE AUMENTO TIPO_PED_REP
     VariablesInventario.vTipoPedRep = tblListaGuias.getValueAt(row, 7).toString().trim();    
     VariablesInventario.vFecCreaNota = tblListaGuias.getValueAt(row, 6).toString().trim();
@@ -626,7 +626,7 @@ public class DlgRecepcionProductosGuias extends JDialog
             if (FarmaVariables.vAceptar) {
                 VariablesRecepCiega.vNro_Recepcion = 
                         DBInventario.creaRecepEntrega();
-                int CantGuias = 0; //JMIRANDA 09.02.10
+                int CantGuias = 0; //  09.02.10
                 for (int i = 0; i < tblListaGuias.getRowCount(); i++) {
                     boolean check = 
                         ((Boolean)tblListaGuias.getValueAt(i, 0)).booleanValue();
@@ -637,7 +637,7 @@ public class DlgRecepcionProductosGuias extends JDialog
 
                         DBInventario.actualizaPagina();
 
-                        //JMIRANDA 09.02.10
+                        //  09.02.10
                         //Cambio para asociar las entregas en la tabla lgt_recep_entrega solo si no esta activado la RecepCiega
                         DBInventario.asociaRecepEntrega(VariablesRecepCiega.vNro_Recepcion);
                         CantGuias += 1;
@@ -676,7 +676,7 @@ public class DlgRecepcionProductosGuias extends JDialog
             if (FarmaVariables.vAceptar) {
                 VariablesRecepCiega.vNro_Recepcion = 
                         DBInventario.creaRecepEntrega();
-                int CantGuias = 0; //JMIRANDA 09.02.10
+                int CantGuias = 0; //  09.02.10
                 for (int i = 0; i < tblListaGuias.getRowCount(); i++) {
                     boolean check = 
                         ((Boolean)tblListaGuias.getValueAt(i, 0)).booleanValue();
@@ -687,7 +687,7 @@ public class DlgRecepcionProductosGuias extends JDialog
 
                         DBInventario.actualizaPagina();
 
-                        //JMIRANDA 09.02.10
+                        //  09.02.10
                         //Cambio para asociar las entregas en la tabla lgt_recep_entrega solo si no esta activado la RecepCiega
                         DBInventario.asociaRecepEntrega(VariablesRecepCiega.vNro_Recepcion);
                         CantGuias += 1;
@@ -756,8 +756,8 @@ public class DlgRecepcionProductosGuias extends JDialog
 
                if (FarmaVariables.vAceptar) {
                    //VariablesRecepCiega.vNro_Recepcion =  DBInventario.creaRecepEntrega();
-                   //JMIRANDA 18.03.2010 comentado para utilizar la Recepción 
-                   int CantGuias = 0; //JMIRANDA 09.02.10
+                   //  18.03.2010 comentado para utilizar la Recepción 
+                   int CantGuias = 0; //  09.02.10
                    for (int i = 0; i < tblListaGuias.getRowCount(); i++) {
                        boolean check = 
                            ((Boolean)tblListaGuias.getValueAt(i, 0)).booleanValue();
@@ -768,7 +768,7 @@ public class DlgRecepcionProductosGuias extends JDialog
 
                            DBInventario.actualizaPagina();
 
-                           //JMIRANDA 09.02.10
+                           //  09.02.10
                            //Cambio para asociar las entregas en la tabla lgt_recep_entrega solo si no esta activado la RecepCiega
                            DBInventario.asociaRecepEntrega(VariablesRecepCiega.vTran_NroRecepcion);
                            CantGuias += 1;
@@ -809,8 +809,8 @@ public class DlgRecepcionProductosGuias extends JDialog
 
               if (FarmaVariables.vAceptar) {
                   //VariablesRecepCiega.vNro_Recepcion =  DBInventario.creaRecepEntrega();
-                  //JMIRANDA 18.03.2010 comentado para utilizar la Recepción 
-                  int CantGuias = 0; //JMIRANDA 09.02.10
+                  //  18.03.2010 comentado para utilizar la Recepción 
+                  int CantGuias = 0; //  09.02.10
                   for (int i = 0; i < tblListaGuias.getRowCount(); i++) {
                       boolean check = 
                           ((Boolean)tblListaGuias.getValueAt(i, 0)).booleanValue();
@@ -821,7 +821,7 @@ public class DlgRecepcionProductosGuias extends JDialog
 
                           DBInventario.actualizaPagina();
 
-                          //JMIRANDA 09.02.10
+                          //  09.02.10
                           //Cambio para asociar las entregas en la tabla lgt_recep_entrega solo si no esta activado la RecepCiega
                           DBInventario.asociaRecepEntrega(VariablesRecepCiega.vTran_NroRecepcion);
                           CantGuias += 1;

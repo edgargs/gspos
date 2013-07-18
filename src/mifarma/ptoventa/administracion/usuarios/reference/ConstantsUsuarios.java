@@ -11,7 +11,7 @@ public class ConstantsUsuarios {
  public static final String ESTADO_ACTIVO="A";
  public static final String USUARIO_TODOS="";
  //Se agrego la columna de RRHH
- //28.11.2007  dubilluz  modificacion
+ //28.11.2007     modificacion
 	public static final FarmaColumnData[] columnsListaUsuarios = {
 			new FarmaColumnData("Nro. Sec.", 70, JLabel.CENTER),
 			new FarmaColumnData("Ap. Paterno", 120, JLabel.LEFT),
@@ -19,7 +19,7 @@ public class ConstantsUsuarios {
 			new FarmaColumnData("Nombres", 150, JLabel.LEFT),
 			new FarmaColumnData("Id. Usuario", 96, JLabel.LEFT),
 			new FarmaColumnData("Estado", 60, JLabel.CENTER),
-			//new FarmaColumnData("clave", 0, JLabel.LEFT), Modificado dveliz 02.09.08
+			//new FarmaColumnData("clave", 0, JLabel.LEFT), Modificado   02.09.08
 			new FarmaColumnData("direcc", 0, JLabel.LEFT),
 			new FarmaColumnData("telf", 0, JLabel.LEFT),
 			new FarmaColumnData("fecnac", 0, JLabel.LEFT),
@@ -51,7 +51,7 @@ public class ConstantsUsuarios {
 
 
    //Se agrego la columna de Recursos Humanos
-   //27.11.2007 dubilluz modificacion
+   //27.11.2007   modificacion
   public static final FarmaColumnData[] columnsListaTrabajadores = { 
     new FarmaColumnData("",0, JLabel.CENTER), 
     new FarmaColumnData("Código", 60, JLabel.CENTER),     
@@ -68,7 +68,7 @@ public class ConstantsUsuarios {
 
   public static final Object[] defaultValuesListaTrabajadores ={ " "," ", " ", " ", " ", " ", " "," "," ", " ", " "," "};
 
-  // ASOLIS
+  //  
   //17.02.2009 
   public static final FarmaColumnData[] columnsListaTrabajadoresLocal = {
    new FarmaColumnData("",0, JLabel.CENTER), 

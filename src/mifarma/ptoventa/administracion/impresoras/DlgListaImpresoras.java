@@ -171,7 +171,7 @@ public class DlgListaImpresoras extends JDialog {
         if (!VariablesPtoVenta.vEjecutaAccionTecla) {
             VariablesPtoVenta.vEjecutaAccionTecla = true;
             if (e.getKeyCode() == KeyEvent.VK_F1) {
-            //JCORTEZ 17/03/09
+            //  17/03/09
                 String tipComp= tblListaImpresoras.getValueAt(
                                 tblListaImpresoras.getSelectedRow(), 7).toString().trim();
                 if (tipComp.trim().equalsIgnoreCase(ConstantsPtoVenta.TIP_COMP_TICKET)){//tipo ticket solamente
@@ -199,7 +199,7 @@ public class DlgListaImpresoras extends JDialog {
                 }
             } else if (e.getKeyCode() == KeyEvent.VK_F3) {
             
-            //JCORTEZ 14.04.09
+            //  14.04.09
             VariablesImpresoras.vTipoComp=tblListaImpresoras.getValueAt(
                              tblListaImpresoras.getSelectedRow(), 7).toString().trim();
             
@@ -249,7 +249,7 @@ public class DlgListaImpresoras extends JDialog {
                 UtilityCaja.pruebaImpresoraTermica(this,tblListaImpresoras);
             }else if (e.getKeyCode() == KeyEvent.VK_F6) {
             
-             //JCORTEZ 04.06.09
+             //  04.06.09
              //Se mostrara lista de IP relacionadas a la impresora
            /* VariablesImpresoras.vTipoComp = tblListaImpresoras.getValueAt(tblListaImpresoras.getSelectedRow(), 7).toString().trim();  
             VariablesImpresoras.vSecImpr = tblListaImpresoras.getValueAt(tblListaImpresoras.getSelectedRow(), 0).toString().trim();  

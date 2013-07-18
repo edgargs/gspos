@@ -320,7 +320,7 @@ DlgPedidoReposicionCantidadMatriz
       {
         /**
          * Completar con vacios
-         * @author dubilluz
+         * @author  
          * @since  23.10.2007
          */
         int espacios = VariablesInventario.vCant_PedRep.length();

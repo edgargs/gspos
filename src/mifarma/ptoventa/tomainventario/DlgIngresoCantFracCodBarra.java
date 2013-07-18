@@ -43,15 +43,15 @@ import mifarma.ptoventa.tomainventario.reference.VariablesTomaInv;
 import mifarma.ptoventa.tomainventario.reference.ConstantsTomaInv;
 import mifarma.ptoventa.tomainventario.reference.DBTomaInv;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public class DlgIngresoCantFracCodBarra extends JDialog{
     Frame myParentFrame;
 
     FarmaTableModel tableModel;
-    private static final Log log = LogFactory.getLog(DlgIngresoCantFracCodBarra.class);
+    private static final Logger log = LoggerFactory.getLogger(DlgIngresoCantFracCodBarra.class);
     private BorderLayout borderLayout1 = new BorderLayout();
     private JPanelWhite jContentPane = new JPanelWhite();
     private JPanelWhite pnlTitle1 = new JPanelWhite();

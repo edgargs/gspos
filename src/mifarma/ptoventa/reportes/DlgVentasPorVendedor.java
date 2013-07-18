@@ -36,11 +36,11 @@ import mifarma.common.*;
 import mifarma.ptoventa.reportes.reference.*;
 import mifarma.ptoventa.reportes.reference.VariablesReporte;
 import mifarma.ptoventa.reportes.reference.ConstantsReporte;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.DefaultCategoryDataset;
+ 
+ 
+ 
+ 
+ 
 
 
 
@@ -419,10 +419,7 @@ public class DlgVentasPorVendedor extends JDialog
     }
     else if(e.getKeyCode() == KeyEvent.VK_F5)
     {
-       if(tblVentasVendedor.getRowCount() <= 0)
-           FarmaUtility.showMessage(this,"Debe realizar una busqueda antes de ver el gráfico.",txtFechaIni);
-       else
-        muestraGrafico();
+
     }  
   }
   private void buscaRegistroVentasVendedor(String pFechaInicio, String pFechaFin)
@@ -848,45 +845,7 @@ public class DlgVentasPorVendedor extends JDialog
   {
   FarmaUtility.showMessage(this, "Debe presionar la tecla ESC para cerrar la ventana.", null);
   }
-  
-  
-  private void muestraGrafico(){
-      VariablesReporte.vDataSet_Reporte = load_data_xy();
-      if(VariablesReporte.vDataSet_Reporte!=null)
-      {   
-          DlgGrafico dlgGrafico = new DlgGrafico(myParentFrame,"Grafico",true);  
-          dlgGrafico.setVisible(true);
 
-          if(FarmaVariables.vAceptar)
-          {
-              FarmaVariables.vAceptar = false;
-          }
-      }    
-  }
-  
-  private DefaultCategoryDataset load_data_xy(){
-      
-      DefaultCategoryDataset dataset_return = new DefaultCategoryDataset();
-      for(int i=0;i<tblVentasVendedor.getRowCount();i++){
-          if(FarmaUtility.getValueFieldJTable(tblVentasVendedor,i,COL_TIPO_FILA).toString().trim().
-             equalsIgnoreCase("VENDEDOR")){
-              
-              dataset_return.setValue(FarmaUtility.getDecimalNumber(
-                                            FarmaUtility.getValueFieldJTable(tblVentasVendedor,
-                                                                             i,
-                                                                             COL_PORCENTAJE).toString().trim()),
-                               "Vendedores",
-                               FarmaUtility.getValueFieldJTable(tblVentasVendedor,
-                                                                i,
-                                                                COL_LOGIN).toString().trim());
-          }
-      }
-      
-      return dataset_return;
-  }
-  
-  
-      
     private void imprimir_modelo_3(FarmaPrintService vPrint)
     {
         ArrayList listaImprimir = new ArrayList();

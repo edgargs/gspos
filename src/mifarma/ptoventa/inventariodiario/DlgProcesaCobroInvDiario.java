@@ -28,16 +28,16 @@ import mifarma.ptoventa.caja.reference.DBCaja;
 import mifarma.ptoventa.caja.reference.UtilityCaja;
 import mifarma.ptoventa.caja.reference.VariablesCaja;
 import mifarma.ptoventa.caja.reference.VariablesVirtual;
-import mifarma.ptoventa.convenio.reference.DBConvenio;
-import mifarma.ptoventa.convenio.reference.VariablesConvenio;
+ 
+ 
 import mifarma.ptoventa.fidelizacion.reference.VariablesFidelizacion;
 import mifarma.ptoventa.fidelizacion.reference.UtilityFidelizacion;
 import mifarma.ptoventa.ventas.reference.ConstantsVentas;
 import mifarma.ptoventa.ventas.reference.DBVentas;
 import mifarma.ptoventa.ventas.reference.VariablesVentas;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.gs.mifarma.componentes.JPanelWhite;
 
@@ -49,7 +49,7 @@ import com.gs.mifarma.componentes.JPanelWhite;
  * Nombre de la Aplicación : DlgProcesaCobroInvDiario.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * DUBILLUZ   23.06.2009   Creación<br>
+ *     23.06.2009   Creación<br>
  * <br>
  * @author Diego Armando Ubilluz<br>
  * @version 1.0
@@ -58,7 +58,7 @@ import com.gs.mifarma.componentes.JPanelWhite;
  */
 public class DlgProcesaCobroInvDiario extends JDialog {
 	
-  private static final Log log = LogFactory.getLog(DlgProcesaCobroInvDiario.class);
+  private static final Logger log = LoggerFactory.getLogger(DlgProcesaCobroInvDiario.class);
 
   private Frame myParentFrame;
   //private boolean vValorProceso;
@@ -147,7 +147,7 @@ public class DlgProcesaCobroInvDiario extends JDialog {
   
   /**
    * Validaciones de Cobro de Pedido
-   * @author Dubilluz
+   * @author  
    * @since  05.03.2009
    */
   private boolean validacionesCobroPedido(){
@@ -166,12 +166,12 @@ public class DlgProcesaCobroInvDiario extends JDialog {
            return false;
        } 
 
-       //Inicio Adicion Paulo. Validacion para cajeros
+       //Inicio Adicion  . Validacion para cajeros
        if (!UtilityCaja.existeCajaUsuarioImpresora(this, null)){
                cerrarVentana(false);
            return false;
        }
-       //Fin Adicion Paulo.
+       //Fin Adicion  .
        
        /*
         * Validacion de Fecha actual del sistema contra
@@ -201,7 +201,7 @@ public class DlgProcesaCobroInvDiario extends JDialog {
       
       /**
        * Se valida que la caja este abierta y se bloquea al mismo tiempo.
-       * @AUTHOR JCORTEZ 
+       * @AUTHOR   
        * @SINCE 18.05.09
        * */
       tmpT3 = System.currentTimeMillis();      
@@ -221,7 +221,7 @@ public class DlgProcesaCobroInvDiario extends JDialog {
         //verificar si es pedido por convenio
         String pIndPedConvenio = DBCaja.getIndPedConvenio(VariablesCaja.vNumPedVta);
         VariablesVentas.vEsPedidoConvenio = (pIndPedConvenio.equals("S")) ? true:false;
-        log.debug("jcallo VariablesVentas.vEsPedidoConvenio:"+VariablesVentas.vEsPedidoConvenio);
+        log.debug("  VariablesVentas.vEsPedidoConvenio:"+VariablesVentas.vEsPedidoConvenio);
         //fin verificar si es pedido por convenio
         //numero de liner por BOLETA
         if ( VariablesVentas.vTip_Comp_Ped.equalsIgnoreCase(ConstantsVentas.TIPO_COMP_BOLETA)){
@@ -248,7 +248,7 @@ public class DlgProcesaCobroInvDiario extends JDialog {
                  VariablesCaja.vNumSecImpresionComprobantes = DBCaja.agrupaImpresionDetallePedido(
                 		 VariablesCaja.TOTAL_LINEAS_POR_FACTURA_CONVENIO);
              }
-        }else if (VariablesVentas.vTip_Comp_Ped.equalsIgnoreCase(ConstantsVentas.TIPO_COMP_TICKET)) { //JCORTEZ 25.03.09 numero de linea por TICKET
+        }else if (VariablesVentas.vTip_Comp_Ped.equalsIgnoreCase(ConstantsVentas.TIPO_COMP_TICKET)) { //  25.03.09 numero de linea por TICKET
              if(VariablesVentas.vEsPedidoConvenio){
                  VariablesCaja.TOTAL_LINEAS_POR_TICKET = Integer.parseInt(
                 		 DBCaja.getLineasDetalleDocumento(ConstantsVentas.LINEAS_TICKET));
@@ -263,12 +263,12 @@ public class DlgProcesaCobroInvDiario extends JDialog {
         }
         
         //muestra las secuencia de numero de comprobantes
-        log.debug("jcallo:VariablesCaja.vNumSecImpresionComprobantes : " + VariablesCaja.vNumSecImpresionComprobantes);
+        log.debug(" :VariablesCaja.vNumSecImpresionComprobantes : " + VariablesCaja.vNumSecImpresionComprobantes);
         
         //obtiene la descrip de la formas de pago para la impresion
-        log.debug("jcallo: antes de la descripcion de formas de pago impresion");
+        log.debug(" : antes de la descripcion de formas de pago impresion");
         formasPagoImpresion();
-        log.debug("jcallo: fin de descripcion de formas de pago");
+        log.debug(" : fin de descripcion de formas de pago");
         //actualiza datos del cliente como nombre direccion ruc, etc
         //cobrar pedido DEVOLVERA EXITO. si cobro correctamente
         String resultado = DBCaja.cobraPedido(VariablesVentas.vTip_Comp_Ped,VariablesCaja.vPermiteCampaña.trim(),"");
@@ -290,13 +290,10 @@ public class DlgProcesaCobroInvDiario extends JDialog {
                           " milisegundos");
 
                 VariablesCaja.vIndPedidoCobrado = true;
-                log.debug("jcallo:VariablesCaja.vIndPedidoConvenio=" + 
-                          VariablesCaja.vIndPedidoConvenio + 
-                          ", VariablesConvenio.vValCoPago=" + 
-                          VariablesConvenio.vValCoPago);
+                
                 //si es pedido convenio y va usar credito de convenio
                 tmpT1 = System.currentTimeMillis();
-                log.debug("jcallo: VariablesCaja.vIndPedidoConProdVirtual=" + 
+                log.debug(" : VariablesCaja.vIndPedidoConProdVirtual=" + 
                           VariablesCaja.vIndPedidoConProdVirtual);
                 //obtener flag de IND PARA SABER SI IMPRIMIRA ANTES DE LA RECARGA VIRTUAL
 
@@ -305,7 +302,7 @@ public class DlgProcesaCobroInvDiario extends JDialog {
                          * la fecha del cajero que cobrara
                          * Se añadio para validar pedido Cobrado
                          * despues de una fecha establecida al inicio
-                         * dubilluz 04.03.2009
+                         *   04.03.2009
                          **/
                 if (!UtilityCaja.validaFechaMovimientoCaja(this, 
                                                            tblFormasPago)) {
@@ -321,7 +318,7 @@ public class DlgProcesaCobroInvDiario extends JDialog {
                 //obtiene informacion del vendedor
                 UtilityCaja.obtieneInfoVendedor();
                 //proceso de impresion de comprobante del pedido
-                //JCALLO ...corregir todo este metodo, se agrego el indicador de linea con matriz
+                //  ...corregir todo este metodo, se agrego el indicador de linea con matriz
                 //pIndLineaMatriz
                 tmpT2 = System.currentTimeMillis();
                 log.debug("t17 Obtiene informacion de cajero y de vendedor: " + 
@@ -412,7 +409,7 @@ public class DlgProcesaCobroInvDiario extends JDialog {
 
   /**
    * Obtiene el codFormaPago Dolares
-   * @author dubilluz
+   * @author  
    * @since  13.10.2007
    */
   public String getCodFormaPagoDolares()
@@ -428,7 +425,7 @@ public class DlgProcesaCobroInvDiario extends JDialog {
       FarmaUtility.showMessage(this, "Error al Obtener el codidgo de Forma de Pago Dolares.\n" + 
                                ex.getMessage(), tblFormasPago);
     }
-    log.debug("jcallo: codforma de pago dolares "+codFP);
+    log.debug(" : codforma de pago dolares "+codFP);
     return codFP;
   }
 

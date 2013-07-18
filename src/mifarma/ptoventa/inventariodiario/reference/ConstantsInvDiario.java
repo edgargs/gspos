@@ -170,7 +170,7 @@ public class ConstantsInvDiario
 
  /**
      * Columnas para el listado de productos al generar el Pedido
-     * @author dubilluz
+     * @author  
      * @since  15.06.2009
      */
     public static final FarmaColumnData[] columnsListaProductosPedido = 
@@ -188,7 +188,7 @@ public class ConstantsInvDiario
 
  /**
   * Columna para el listado de trabajadores seleccionados
-  * @author dubilluz
+  * @author  
   * @since  15.06.2009
   */
     public static final FarmaColumnData[] columnsListaTrabajadores =     
@@ -206,7 +206,7 @@ public class ConstantsInvDiario
      
   /**
    * Columnas para lista de trabajadores y se mostrara el codigo de RR.HH
-   * @author dubilluz
+   * @author  
    * @since  15.06.2009
    */
   public static final FarmaColumnData columnsListaMaeTrab[] = {

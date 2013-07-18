@@ -1,6 +1,5 @@
 package mifarma.ptoventa.caja.reference;
 
-import com.gs.mifarma.RespuestaTXBean;
 
 //import tarjetas.RespuestaNavSatBean;
 import java.util.ArrayList;
@@ -11,14 +10,6 @@ public class VariablesVirtual
   {
   }
   
-  //public static RespuestaNavSatBean respuestaNavSatBean = new RespuestaNavSatBean();
-  
-  /**
-   * Bean del nuevo proveedor (Brightstar).
-   * @author Edgar Rios Navarro
-   * @since 27.09.2007
-   */
-  public static RespuestaTXBean respuestaTXBean = new RespuestaTXBean();
    
   public static String vCodigoComercio = "";
   public static String vTipoTarjeta = "";
@@ -54,14 +45,14 @@ public class VariablesVirtual
   
   /**
    * Array que guarda la cadena de la informacion requerida por el proveedor
-   * @author dubilluz
+   * @author  
    * @since  02.11.2007
    */
   public static ArrayList vArrayList_InfoProvRecarga = new ArrayList();
   
   /**
    * indicador de pedido con productos virtual
-   * @author dveliz
+   * @author  
    * @since  05.01.2009
    */
    

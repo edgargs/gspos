@@ -22,8 +22,8 @@ import mifarma.ptoventa.reference.ConstantsPtoVenta;
 import mifarma.ptoventa.reference.VariablesPtoVenta;
 import mifarma.ptoventa.ventas.reference.*;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Copyright (c) 2006 MIFARMA S.A.C.<br>
@@ -33,7 +33,7 @@ import org.apache.commons.logging.LogFactory;
  * <br>
  * Histórico de Creación/Modificación<br>
  * ERIOS      22.03.2005   Creación<br>
- * ASOSA      06.04.2010   Modificación<br>
+ *        06.04.2010   Modificación<br>
  * <br>
  * @author Edgar Rios Navarro<br>
  * @version 1.0<br>
@@ -42,7 +42,7 @@ import org.apache.commons.logging.LogFactory;
 
 public class UtilityRecepCiega {
     
-  private static final Log log = LogFactory.getLog(UtilityRecepCiega.class);
+  private static final Logger log = LoggerFactory.getLogger(UtilityRecepCiega.class);
   private ArrayList myDatos = new ArrayList();
   private int pagComprobante = 1;
 
@@ -89,7 +89,7 @@ public class UtilityRecepCiega {
     }
     
     /**
-     * @author DUBILLUZ
+     * @author  
      * @since  07.12.2009
      * @return
      */
@@ -135,7 +135,7 @@ public class UtilityRecepCiega {
             flag = true;
         }catch(SQLException sql){
             sql.printStackTrace();
-            log.error(sql);
+             log.error("",sql);
             FarmaUtility.liberarTransaccion();
             /*FarmaUtility.showMessage(pDialog, "No se pudo modificar el estado en la Recepción.\n" +
                                      "Vuelva a Intentarlo.\n" +
@@ -184,7 +184,7 @@ public class UtilityRecepCiega {
             FarmaUtility.liberarTransaccion();
         }
     }
-    //JMIRANDA 02.02.10
+    //  02.02.10
     public static boolean indLimiteTransf(String pNroRecepcion){    
         boolean flag = false;
         String rpta = "";
@@ -202,7 +202,7 @@ public class UtilityRecepCiega {
         }
         return flag;
     }
-    //JMIRANDA 11.02.2010 VALIDA SI LA FECHA DE VENCIMIENTO ESTA DENTRO DE POLITICA CANJE
+    //  11.02.2010 VALIDA SI LA FECHA DE VENCIMIENTO ESTA DENTRO DE POLITICA CANJE
     public static boolean indFechaVencTransf(String pCodProd, String pFechaVenc){    
         boolean flag = false;
         String rpta = "";
@@ -228,7 +228,7 @@ public class UtilityRecepCiega {
 
     /**
     * Se imprime VOUCHER de Confirmación Transportista
-    * @author JMIRANDA
+    * @author  
     * @since 17.03.10
     */     
     public static void imprimeVoucherTransportista(JDialog pDialogo,
@@ -259,7 +259,7 @@ public class UtilityRecepCiega {
        }
     }     
 
-    //JMIRANDA 21.03.2010 VALIDA SI TIENE LOTE
+    //  21.03.2010 VALIDA SI TIENE LOTE
     public static boolean indLoteValido(String pNroRecepcion,
                                         String pCodProd, String pLote){    
         boolean flag = false;
@@ -340,7 +340,7 @@ public class UtilityRecepCiega {
     
     /**
      * Imprime voucher de transportista
-     * @autho ASOSA
+     * @autho  
      * @since 06.04.2010
      * @param pDialogo
      * @param pNroRecepcion

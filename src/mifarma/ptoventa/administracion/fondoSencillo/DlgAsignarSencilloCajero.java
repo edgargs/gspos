@@ -46,15 +46,15 @@ import mifarma.ptoventa.administracion.fondoSencillo.reference.VariablesFondoSen
 import mifarma.ptoventa.recepcionCiega.reference.DBRecepCiega;
 import mifarma.ptoventa.recepcionCiega.reference.VariablesRecepCiega;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DlgAsignarSencilloCajero extends JDialog {
     //Declarando Variables Globales 
     Frame myParentFrame;
     FarmaTableModel tableModelCajeros;
     
-    private static final Log log = LogFactory.getLog(DlgAsignarSencilloCajero.class);
+    private static final Logger log = LoggerFactory.getLogger(DlgAsignarSencilloCajero.class);
     
     private JPanelWhite jContentPane = new JPanelWhite();
     private BorderLayout borderLayout1 = new BorderLayout();
@@ -236,7 +236,7 @@ public class DlgAsignarSencilloCajero extends JDialog {
         VariablesFondoSencillo.vLoginUsuCaje = FarmaUtility.getValueFieldArrayList(tableModelCajeros.data,vFila,ColLoginUsuCaje).trim();
         System.out.println("Var.vSecUsuCajero:"+VariablesFondoSencillo.vSecUsuCajero);
         
-        //JMIRANDA 04.05.2010 valida que no tenga asignado monto
+        //  04.05.2010 valida que no tenga asignado monto
         
         mostrarMontoFondo();
             if(FarmaVariables.vAceptar){

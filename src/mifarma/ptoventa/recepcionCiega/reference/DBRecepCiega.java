@@ -11,8 +11,8 @@ import mifarma.common.FarmaVariables;
 
 import mifarma.ptoventa.inventariodiario.reference.VariablesInvDiario;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 import mifarma.ptoventa.recepcionCiega.reference.*;
@@ -23,7 +23,7 @@ public class DBRecepCiega {
 
 
     
-    private static final Log log = LogFactory.getLog(DBRecepCiega.class);
+    private static final Logger log = LoggerFactory.getLogger(DBRecepCiega.class);
     private static ArrayList parametros;
     
    /* public DBRecepCiega() {
@@ -32,7 +32,7 @@ public class DBRecepCiega {
 
   /**
    * Se obtiene listado de guias por asociar
-   * @AUTHOR: JCORTEZ
+   * @AUTHOR:  
    * @SINCE 16.11.2009
    */
   public static void getListaGuias(FarmaTableModel pTableModel) throws SQLException
@@ -46,7 +46,7 @@ public class DBRecepCiega {
   
     /**
      * Se obtiene listado de guias asociadas
-     * @AUTHOR: JCORTEZ
+     * @AUTHOR:  
      * @SINCE 16.11.2009
      */
     public static void getListaGuiaAso(FarmaTableModel pTableModel,String NumIngreso) throws SQLException
@@ -61,7 +61,7 @@ public class DBRecepCiega {
   
     /**
      * Se lista detalle de las guias
-     * @AUTHOR: JCORTEZ
+     * @AUTHOR:  
      * @SINCE 16.11.2009
      */
   public static void getListaDetGuias(FarmaTableModel pTableModel,String NumNotaEs,String NumGuia) throws SQLException {
@@ -79,7 +79,7 @@ public class DBRecepCiega {
   
     /**
      * Se lista detalle de las guias
-     * @AUTHOR: JCORTEZ
+     * @AUTHOR:  
      * @SINCE 16.11.2009
      */
     public static void getListaRecepcionMercaderiaRango(FarmaTableModel pTableModel,String FechaIni,String FechaFin) throws SQLException {
@@ -96,7 +96,7 @@ public class DBRecepCiega {
     
     /**
      * Se lista detalle de las guias
-     * @AUTHOR: JCORTEZ
+     * @AUTHOR:  
      * @SINCE 16.11.2009
      */
     public static void getListaRecepcionMercaderia(FarmaTableModel pTableModel) throws SQLException {
@@ -111,7 +111,7 @@ public class DBRecepCiega {
     
     /**
      * Se crea la nueva recepcion
-     * @author JCORTEZ
+     * @author  
      * @since  16.11.2009
      */
     public static String agregarRecepcion(int cantGuias)
@@ -127,7 +127,7 @@ public class DBRecepCiega {
         parametros.add(VariablesRecepCiega.vPlacaUnidTrans);
         parametros.add(new Integer(VariablesRecepCiega.vCantBultos));
         parametros.add(new Integer(VariablesRecepCiega.vCantPrecintos));
-        //JMIRANDA 05.03.2010 agrega Glosa
+        //  05.03.2010 agrega Glosa
         parametros.add(VariablesRecepCiega.vGlosa);
         System.out.println("INGRESO EXITOSO...................................");
       return FarmaDBUtility.executeSQLStoredProcedureStr("PTOVENTA_RECEP_CIEGA_JC.RECEP_P_NEW_RECEPCION(?,?,?,?,?,?,?,?,?,?)",parametros).trim();
@@ -137,7 +137,7 @@ public class DBRecepCiega {
     
     /**
      * Se asocian las guias a la nueva recepcion
-     * @author JCORTEZ
+     * @author  
      * @since  16.11.2009
      */
     public static void asignarGuias(ArrayList arrayGuias,String NumRecep)
@@ -162,7 +162,7 @@ public class DBRecepCiega {
     
     /**
      * Se lista guias asociadas 
-     * @AUTHOR: JCORTEZ
+     * @AUTHOR:  
      * @SINCE 16.11.2009
      */
     public static void getListaDetGuiasEntrega(FarmaTableModel pTableModel,String numEntrega) throws SQLException {
@@ -179,7 +179,7 @@ public class DBRecepCiega {
     
     /**
      * Se valida IP para ingreso a funcionalidad
-     * @AUTHOR JCORTEZ 
+     * @AUTHOR   
      * @SINCE  16.11.2009
      * */   
     public static String permiteIngreso() throws SQLException{
@@ -473,7 +473,7 @@ public class DBRecepCiega {
     
     /**
      * Obtiene indicador de opcion deacuerdo al rl del usuario
-     * @AUTHOR JCHAVEZ 
+     * @AUTHOR   
      * @SINCE  16.11.2009
      * */ 
     public static String verificaRolUsuario(String SecUsu,String CodRol) throws SQLException
@@ -489,7 +489,7 @@ public class DBRecepCiega {
     
     /**
      * Verifica el IP para realizar la verificacion de conteo
-     * @AUTHOR JCHAVEZ 
+     * @AUTHOR   
      * @SINCE  16.11.2009
      * */ 
     public static String verificaIPVeriricarConteo() throws SQLException
@@ -521,11 +521,11 @@ public class DBRecepCiega {
     
     
     public static void enviaErrorCorreoPorDB(String pMensaje, String pNroRecepcion)  {
-        //JMIRANDA 27/11/09 envia via email correo cod barra no Encontrado 
+        //  27/11/09 envia via email correo cod barra no Encontrado 
         FarmaUtility.enviaCorreoPorBD(FarmaVariables.vCodGrupoCia,
                                       FarmaVariables.vCodLocal,                                      
                                       VariablesRecepCiega.vDestEmailCodBarraNoFound, //destinatario
-                                      //"JMIRANDA",
+                                      //" ",
                                       "Código de barra No Encontrado en conteo de Recepción Ciega. ", //titulo
                                       "Alerta Código de Barra no encontrado. ",
                                       "Datos de Conteo: <br>"+
@@ -558,7 +558,7 @@ public class DBRecepCiega {
     }
 /**
      * Obtiene información de un producto
-     * @AUTHOR JCHAVEZ 
+     * @AUTHOR   
      * @SINCE  27.11.2009
      * */ 
     public static void obtieneInfoProducto(ArrayList pArrayList, String pCodProducto)  throws SQLException{
@@ -572,7 +572,7 @@ public class DBRecepCiega {
     
     /**
      * Verifica si existe stock disponible para poder realizar la transferencia
-     * @AUTHOR JCHAVEZ 
+     * @AUTHOR   
      * @SINCE  27.11.2009
      * */ 
     public static boolean verificaStockDisponible(String pCodProducto,String pCantidad) throws SQLException{
@@ -628,7 +628,7 @@ public class DBRecepCiega {
     }
     
     /**
-     * @author DUBILLUZ
+     * @author  
      * @since  07.12.2009
      * @return
      * @throws SQLException
@@ -644,7 +644,7 @@ public class DBRecepCiega {
 
     /**
      * Se bloqueara el estado de la recepcion
-     * @author dubilluz
+     * @author  
      * @since  07.12.2009
      * @param pNumRecepcion
      * @throws SQLException
@@ -679,7 +679,7 @@ public class DBRecepCiega {
     }    
     
     /**
-     * @author JCHAVEZ
+     * @author  
      * @since  09.12.2009
      * @return 
      * @throws SQLException
@@ -703,7 +703,7 @@ public class DBRecepCiega {
         return resultado;
     }
     /**
-     * @author JCHAVEZ
+     * @author  
      * @since  09.12.2009
      * @return 
      * @throws SQLException
@@ -716,7 +716,7 @@ public class DBRecepCiega {
       FarmaDBUtility.executeSQLStoredProcedureArrayList(array,"PTOVENTA_RECEP_CIEGA_JCG.RECEP_F_CUR_LISTA_MATRIZ(?)",parametros);
     }
     /**
-     * @author JCHAVEZ
+     * @author  
      * @since  09.12.2009
      * @return 
      * @throws SQLException
@@ -734,7 +734,7 @@ public class DBRecepCiega {
       FarmaDBUtility.executeSQLStoredProcedure(null, "PTOVENTA_RECEP_CIEGA_JCG.RECEP_P_COMPLETA_CON_CEROS(?,?,?,?,?,?)",parametros, false);
     }
     /**
-     * @author JCHAVEZ
+     * @author  
      * @since  09.12.2009
      * @return 
      * @throws SQLException
@@ -758,7 +758,7 @@ public class DBRecepCiega {
     
     /**
      * Se lista los productos dentro de la recepción que se va a escoger para transferir.
-     * @AUTHOR: JMIRANDA
+     * @AUTHOR:  
      * @SINCE 07.01.2010
      */
     public static void getListaProductosTransf(FarmaTableModel pTableModel, 
@@ -774,7 +774,7 @@ public class DBRecepCiega {
     
     /**
      * Obtiene mensaje de advertencia en la pantalla de asociar entregas 
-     * @AUTHOR: JMIRANDA
+     * @AUTHOR:  
      * @SINCE 07.01.2010
      */
     public static String getMensajePendientes() throws SQLException{
@@ -783,7 +783,7 @@ public class DBRecepCiega {
         return FarmaDBUtility.executeSQLStoredProcedureString("PTOVENTA_RECEP_CIEGA_JM.RECEP_F_GET_MSG_PEND",
                                 parametros); 
     }   
-    //JMIRANDA 02.02.10
+    //  02.02.10
     public static String getIndLimiteTransf(String pNumRecep) throws SQLException{
         parametros = new ArrayList();
         parametros.add(FarmaVariables.vCodGrupoCia);
@@ -792,7 +792,7 @@ public class DBRecepCiega {
         System.out.println("invocando a PTOVENTA_RECEP_CIEGA_JCG.RECEP_F_GET_LIM_TRANSF(?,?,?)" + parametros);
         return FarmaDBUtility.executeSQLStoredProcedureStr("PTOVENTA_RECEP_CIEGA_JCG.RECEP_F_GET_LIM_TRANSF(?,?,?)",parametros);
     }    
-    //JMIRANDA 11.02.10
+    //  11.02.10
     public static String getIndFechaVencTransf(String pCodProd, String pFechaVenc) throws SQLException{
         parametros = new ArrayList();
         parametros.add(FarmaVariables.vCodGrupoCia);
@@ -805,7 +805,7 @@ public class DBRecepCiega {
 
     /**
      * Guarda Datos Transportistas
-     * @author JMIRANDA
+     * @author  
      * @since  16.03.2009
      */
     public static String ingresaDatosTrans(String pCantGuias)
@@ -826,7 +826,7 @@ public class DBRecepCiega {
         return FarmaDBUtility.executeSQLStoredProcedureStr("PTOVENTA_RECEP_CIEGA_JC.RECEP_F_INS_TRANSPORTISTA(?,?,?,?,?,?,?,?,?,?)",parametros);
     }    
     
-    //JMIRANDA 17.03.2010 
+    //  17.03.2010 
     public static void getListaTransp(FarmaTableModel pTableModel) throws SQLException {
     pTableModel.clearTable();
     parametros = new ArrayList();
@@ -837,7 +837,7 @@ public class DBRecepCiega {
     
     }    
 
-    //JMIRANDA 17.03.2010 
+    //  17.03.2010 
     public static void getListaTranspFecha(FarmaTableModel pTableModel,
                                       String pFechaIni,
                                       String pFechaFin) throws SQLException {
@@ -851,7 +851,7 @@ public class DBRecepCiega {
     FarmaDBUtility.executeSQLStoredProcedure(pTableModel,"PTOVENTA_RECEP_CIEGA_JC.RECEP_F_LISTA_TRANSP_RANGO(?,?,?,?)", parametros,false);
     
     }   
-    //JMIRANDA IMPRESION VOUCHER TRANSPORTISTA    
+    //  IMPRESION VOUCHER TRANSPORTISTA    
     public static String getDatosVoucherTransportista(String pNroRecepcion) throws SQLException{
       parametros = new ArrayList();
       parametros.add(FarmaVariables.vCodGrupoCia);
@@ -937,7 +937,7 @@ public class DBRecepCiega {
     
     /**
      * Inserta la recepcion adicionalmente con el codigo de empresa de transporte para recepcion ciega
-     * @author ASOSA
+     * @author  
      * @since 06.04.2010
      * @param pCantGuias
      * @param codTransp
@@ -965,7 +965,7 @@ public class DBRecepCiega {
     
     /**
      * Obtiene listado de empresas de transporte para recepcion ciega
-     * @author ASOSA
+     * @author  
      * @since 06.04.2010
      * @param pNroRecepcion
      * @return

@@ -48,7 +48,7 @@ import mifarma.common.*;
  * Nombre de la Aplicación : DlgIngresoMonto.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JCORTEZ      26.02.2010   Creación<br>
+ *        26.02.2010   Creación<br>
  * <br>
  * @AUTHOR JORGE CORTEZ ALVAREZ<br>
  * @VERSION 1.0<br>

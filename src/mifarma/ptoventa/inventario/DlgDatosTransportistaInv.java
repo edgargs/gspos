@@ -44,8 +44,8 @@ import mifarma.ptoventa.inventario.reference.DBInventario;
 import mifarma.ptoventa.recepcionCiega.reference.*;
 import mifarma.ptoventa.reference.ConstantsPtoVenta;
 
-import oracle.jdeveloper.layout.XYConstraints;
-import oracle.jdeveloper.layout.XYLayout;
+ 
+ 
 
 /**
  * Copyright (c) 2009 MIFARMA S.A.C.<br>
@@ -54,7 +54,7 @@ import oracle.jdeveloper.layout.XYLayout;
  * Nombre de la Aplicación : DlgDatosTransportistaInv.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * ASOSA 08.02.2010 Creación<br>
+ *   08.02.2010 Creación<br>
  * <br>
  * 
  * @author Alfredo Sosa Dordán<br>
@@ -212,7 +212,7 @@ public class DlgDatosTransportistaInv extends JDialog {
         lblCodPromocion.setVisible(false);
         lblCodPromocion.setBounds(new Rectangle(0, 10, 105, 15));
         //--Se cambio el tamaño de digitos
-        //  12.09.2008 Dubilluz
+        //  12.09.2008  
         jLabelOrange1.setText("Hora Llegada (HH24:MI) :");
         jLabelOrange1.setBounds(new Rectangle(10, 45, 130, 20));
         jLabelOrange2.setText("Placa Unidad :");
@@ -255,13 +255,13 @@ public class DlgDatosTransportistaInv extends JDialog {
         pnlTitle1.add(txtHora, null);
         pnlTitle1.add(jLabelOrange2, null);
         pnlTitle1.add(jLabelOrange1, null);
-        pnlTitle1.add(lblCodPromocion, new XYConstraints(0, 10, 105, 15));
-        pnlTitle1.add(txtPrecintos, new XYConstraints(115, 70, 195, 20));
-        pnlTitle1.add(txtBultos, new XYConstraints(115, 45, 195, 20));
-        pnlTitle1.add(lblValor_T, new XYConstraints(15, 70, 90, 15));
-        pnlTitle1.add(btnFechaInicial, new XYConstraints(15, 20, 90, 15));
-        pnlTitle1.add(txtNombre, new XYConstraints(115, 15, 195, 20));
-        pnlTitle1.add(lblFechaFinal_T, new XYConstraints(15, 50, 90, 15));
+        pnlTitle1.add(lblCodPromocion);
+        pnlTitle1.add(txtPrecintos);
+        pnlTitle1.add(txtBultos);
+        pnlTitle1.add(lblValor_T);
+        pnlTitle1.add(btnFechaInicial);
+        pnlTitle1.add(txtNombre);
+        pnlTitle1.add(lblFechaFinal_T);
         jContentPane.add(pnlTitle1, null);
         jContentPane.add(lblEsc, null);
         jContentPane.add(lblF11, null);
@@ -404,7 +404,7 @@ public class DlgDatosTransportistaInv extends JDialog {
         VariablesRecepCiega.vCantBultos = txtBultos.getText().trim();
         VariablesRecepCiega.vCantPrecintos = txtPrecintos.getText().trim();
         
-        //JMIRANDA 05.03.10
+        //  05.03.10
         VariablesRecepCiega.vGlosa = txtGlosa.getText().trim();
 
         System.out.println("VariablesRecepCiega.vNombreTrans " + 

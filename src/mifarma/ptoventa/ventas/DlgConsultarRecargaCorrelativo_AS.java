@@ -58,14 +58,14 @@ import mifarma.ptoventa.ventas.reference.DBVentas;
 import mifarma.ptoventa.ventas.reference.UtilityVentas;
 import mifarma.ptoventa.ventas.reference.VariablesVentas;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DlgConsultarRecargaCorrelativo_AS extends JDialog {
     /* ********************************************************************** */
     /*                        DECLARACION PROPIEDADES                         */
     /* ********************************************************************** */
-    private static final Log log = LogFactory.getLog(DlgConsultarRecargaCorrelativo_AS.class);
+    private static final Logger log = LoggerFactory.getLogger(DlgConsultarRecargaCorrelativo_AS.class);
     Frame myParentFrame;
     private boolean vAceptar = false;
     
@@ -92,7 +92,7 @@ public class DlgConsultarRecargaCorrelativo_AS extends JDialog {
     private JLabel lblValorFec = new JLabel();
     private JLabelFunction lblImprimir = new JLabelFunction();
     private JLabelFunction lblEsc = new JLabelFunction();
-    //JMIRANDA 25.08.2011 Fijar Objeto para Focus
+    //  25.08.2011 Fijar Objeto para Focus
     private Object pObj = txtCorrelativo;
 
     public DlgConsultarRecargaCorrelativo_AS() {
@@ -508,7 +508,7 @@ public class DlgConsultarRecargaCorrelativo_AS extends JDialog {
                                                         }
                             /******************************************************************************************************************/
                             
-                            //INI ASOSA, 19.04.2010
+                            //INI  , 19.04.2010
                             String indlabel=DBVentas.getIND_LABEL(VariablesCaja.vRespuestaExito);
                             String msg=DBVentas.getMensajeRptaRecarga(VariablesCaja.vRespuestaExito);
                             if(indlabel.equalsIgnoreCase("S")){
@@ -552,7 +552,7 @@ public class DlgConsultarRecargaCorrelativo_AS extends JDialog {
                                 //FarmaUtility.showMessage(this,msg.replaceAll("ººº","\n"),txtCorrelativo);
                                 FarmaUtility.showMessage(this,msg.replaceAll("ººº","\n"),pObj);
                             }
-                            //FIN ASOSA, 19.04.2010
+                            //FIN  , 19.04.2010
                         }     
                         log.debug(" indExitoRecarga : " + 
                                   VariablesCaja.vRespuestaExito);
@@ -605,7 +605,7 @@ public class DlgConsultarRecargaCorrelativo_AS extends JDialog {
             VariablesVirtual.vConProductoVirtual = true;
         
       }
-      System.err.println("asolis: VariablesVirtual.vConProductoVirtual :" + VariablesVirtual.vConProductoVirtual);
+      System.err.println(" : VariablesVirtual.vConProductoVirtual :" + VariablesVirtual.vConProductoVirtual);
     }
     
     private int cantidadProductosVirtualesPedido(String pNumPedido)
@@ -696,7 +696,7 @@ public class DlgConsultarRecargaCorrelativo_AS extends JDialog {
     /**
      * Valida si se muestra la nueva versión para Imprimir o 
      * no Imprimir Correlativo, así como usar pantalla para Ingresar Numero Comprobante y Monto Neto si es Negativo
-     * @author JMIRANDA
+     * @author  
      * @since 22.08.2011
      * @return true si imprime correlativo
      */
@@ -733,19 +733,19 @@ public class DlgConsultarRecargaCorrelativo_AS extends JDialog {
     }
     
     private void ejecutarBusqueda(){
-        FarmaConnectionRemoto.closeConnection(); //JCHAVEZ 28092009 para asegurar el cierre de conexion a adm_central
+        FarmaConnectionRemoto.closeConnection(); //  28092009 para asegurar el cierre de conexion a adm_central
         if(validarCampos())
         {
-            //Agregado por DVELIZ 05.01.2009
+            //Agregado por   05.01.2009
             VariablesCaja.vIndLineaADMCentral = "N";//indicador de linea en N
             evaluaPedidoProdVirtual(txtCorrelativo.getText().trim());//verifica si es un pedido virtual
             if(VariablesVirtual.vConProductoVirtual){
                 validarConexionADMCentral();//VariablesCaja.vIndLineaADMCentral
             }
             else
-            {    FarmaUtility.showMessage(this,"Este pedido no corresponde a un producto virtual",pObj); //JCHAVEZ 28092009
+            {    FarmaUtility.showMessage(this,"Este pedido no corresponde a un producto virtual",pObj); //  28092009
             }
-            log.debug("asolis: antes de buscar pedido VariablesCaja.vIndLineaADMCentral:"+VariablesCaja.vIndLineaADMCentral);
+            log.debug(" : antes de buscar pedido VariablesCaja.vIndLineaADMCentral:"+VariablesCaja.vIndLineaADMCentral);
             try 
             {
                 this.setVisible(false);
@@ -766,9 +766,9 @@ public class DlgConsultarRecargaCorrelativo_AS extends JDialog {
             }
     }
     
-    //JMIRANDA 25.08.2011 Setear el Objeto para enfocar después de los mensajes.
+    //  25.08.2011 Setear el Objeto para enfocar después de los mensajes.
     private void setearObjetoFocus(){
-        //JMIRANDA 25.08.2011 verificar si se utiliza funcionalidad nueva
+        //  25.08.2011 verificar si se utiliza funcionalidad nueva
                if(validarMostrarCorrelativo())
                    pObj = txtCorrelativo;
                else 

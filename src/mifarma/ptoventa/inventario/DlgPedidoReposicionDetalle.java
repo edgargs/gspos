@@ -63,7 +63,7 @@ public class DlgPedidoReposicionDetalle extends JDialog
   private JLabelFunction lblEsc = new JLabelFunction();
   private JLabelWhite lblLaboratorio_T = new JLabelWhite();
   private JLabelWhite lblTransito_T = new JLabelWhite();
-  //Modificado por DVELIZ 16.09.08
+  //Modificado por   16.09.08
   //private JLabelWhite lblRotProm_T = new JLabelWhite();
   //private JLabelWhite lblRotacionPromedio = new JLabelWhite();
   //private JLabelWhite lblMinimoDias = new JLabelWhite();
@@ -102,7 +102,7 @@ public class DlgPedidoReposicionDetalle extends JDialog
   private JLabelWhite lblCantAdicional = new JLabelWhite();
   /**
    * Agegado para la busqueda
-   * @author dubilluz
+   * @author  
    * @since  26.09.2007
    */
   private int COLUMN_CODIGO = 0;
@@ -185,7 +185,7 @@ public class DlgPedidoReposicionDetalle extends JDialog
     lblTransito_T.setBounds(new Rectangle(500, 5, 55, 15));
     lblTransito_T.setHorizontalAlignment(SwingConstants.CENTER);
     
-    //Modificado por DVELIZ 16.09.08
+    //Modificado por   16.09.08
     //lblRotProm_T.setText("Rot Prom");
     //lblRotProm_T.setBounds(new Rectangle(425, 5, 55, 15));
     //lblRotProm_T.setHorizontalAlignment(SwingConstants.CENTER);
@@ -335,7 +335,7 @@ public class DlgPedidoReposicionDetalle extends JDialog
         jContentPane.add(lblF2, null);
         jContentPane.add(lblEsc, null);
         jContentPane.add(pnlWhite2, null);
-        //Modificado por DVELIZ 16.09.08
+        //Modificado por   16.09.08
         //pnlTitle2.add(lblRotProm_T, null);
         jContentPane.add(pnlTitle2, null);
         scrListaProductos.getViewport().add(tblListaProductos, null);
@@ -348,7 +348,7 @@ public class DlgPedidoReposicionDetalle extends JDialog
         pnlTitle1.add(lblIndTipoProd, null);
         pnlTitle1.add(btnRelacionProductos, null);
         pnlHeader1.add(lblFechaPedido, null);
-        //Modificado por DVELIZ 16.09.08
+        //Modificado por   16.09.08
         //pnlHeader1.add(lblMaximoDias, null);
         //pnlHeader1.add(lblMinimoDias, null);
         //pnlHeader1.add(lblRotacionPromedio, null);
@@ -443,7 +443,7 @@ public class DlgPedidoReposicionDetalle extends JDialog
   {
     lblPedido.setText(VariablesInventario.vNroPed_PedRep);
     lblFechaPedido.setText(VariablesInventario.vFecPed_PedRep);
-    //Modificado por DVELIZ 16.09.08
+    //Modificado por   16.09.08
     //lblRotacionPromedio.setText(VariablesInventario.vRotProm_PedRep);
     //lblMinimoDias.setText(VariablesInventario.vMinDias_PedRep);
     //lblMaximoDias.setText(VariablesInventario.vMaxDias_PedRep);
@@ -584,7 +584,7 @@ public class DlgPedidoReposicionDetalle extends JDialog
     //lblExhibicion.setText(tblListaProductos.getValueAt(row,5).toString());
     lblExhibicion.setText(tblListaProductos.getValueAt(row,6).toString());
     lblTransito.setText(tblListaProductos.getValueAt(row,8).toString());
-    //Modificado por DVELIZ 16.09.08
+    //Modificado por   16.09.08
     //lblRotProm.setText(tblListaProductos.getValueAt(row,14).toString());
     lbl120d.setText(tblListaProductos.getValueAt(row,12).toString());
     lbl90d.setText(tblListaProductos.getValueAt(row,11).toString());
@@ -612,7 +612,7 @@ public class DlgPedidoReposicionDetalle extends JDialog
         
         /**
          * Valida que RDM ya haya validado el producto desde ADM 
-         * @author JCORTEZ
+         * @author  
          * @since 15.10.2007
          * */
         CodProdTemp=tblListaProductos.getValueAt(row,0).toString();
@@ -629,7 +629,7 @@ public class DlgPedidoReposicionDetalle extends JDialog
         dlgPedidoReposicionCantidadMatriz.setVisible(true);
         if (FarmaVariables.vAceptar)
         {
-          /// 26.09.2007  DUBILLUZ  AGREGADO ORDEN
+          /// 26.09.2007     AGREGADO ORDEN
           //String codigo = FarmaUtility.getValueFieldJTable(tblListaProductos,row,COLUMN_CODIGO);
           //cargaListaProductos(); 
           tblListaProductos.setValueAt(VariablesInventario.vCant_PedRep,row,COLUMN_CANT_PEDREP);
@@ -637,7 +637,7 @@ public class DlgPedidoReposicionDetalle extends JDialog
           mostrarDetalles(row);
           UtilityInventario.muestraIndTipoProd(13,lblIndTipoProd,tblListaProductos);
           FarmaVariables.vAceptar = false;
-          /// 26.09.2007  DUBILLUZ  AGREGADO ORDEN
+          /// 26.09.2007     AGREGADO ORDEN
           /*FarmaUtility.ordenar(tblListaProductos,tableModel,VariablesInventario.vCampo,VariablesInventario.vOrden);
           tblListaProductos.repaint();
           for(int a=0 ; a < tblListaProductos.getRowCount(); a++)
@@ -666,7 +666,7 @@ public class DlgPedidoReposicionDetalle extends JDialog
     int pos = tblListaProductos.getSelectedRow();
     VariablesInventario.vPos_PedRep = pos;
     /**Por cada producto selecccionado se inicializa el 0 el contador para el mensaje
-     * @author JCORTEZ
+     * @author  
      * @since  16.10.2007
      * */
     if(!CodProdTemp.equalsIgnoreCase(tblListaProductos.getValueAt(pos,0).toString())){
@@ -723,7 +723,7 @@ public class DlgPedidoReposicionDetalle extends JDialog
 
 /**
  * Valida que el producto haya sido revisado por el RDM
- * @author JCORTEZ
+ * @author  
  * @since 15.10.2007
  * */
  private void  validarCambioRDM(String vCodProd){

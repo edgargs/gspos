@@ -9,7 +9,7 @@ public class VariablesCampAcumulada {
     public static ArrayList vListaCampanias;
     
     
-    // JCALLO doc validos de identificacion
+    //   doc validos de identificacion
     public static String vDocValidos = "";
     
     public static boolean vIndExisteCliente = false;

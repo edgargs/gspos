@@ -37,7 +37,7 @@ public class VariablesTomaInv {
 	public static String vNomLab = "";
 
   /**Alamacena el valos del laboratorio si es farma o no
-  *22/03/2006   Paulo   Variable para guardra el valor del tipo de laboratorio */
+  *22/03/2006       Variable para guardra el valor del tipo de laboratorio */
   public static String vLaboratorio = "";
   
 
@@ -85,21 +85,21 @@ public class VariablesTomaInv {
   public static String vIndProceso = "";
     /**
      * Para el Usuario Modificacion de Toma
-     * @author : dubilluz
+     * @author :  
      * @since  : 11.07.2007
      */
   public static String vIdUsu_Toma = "" ;
   
   /**
    * Para colocar el filtro de estado de Laboratorios
-   * @author dubilluz
+   * @author  
    * @since  08.01.2008
    */
   public static String vCodFiltroEstado = "";
   
   /**
    * Variables declaradas para ingreso de codBarra en Inventario Tradicional
-   * @author dubilluz
+   * @author  
    * @since  21.12.2009
    */
   public static String vCodBarraIngresado = "";

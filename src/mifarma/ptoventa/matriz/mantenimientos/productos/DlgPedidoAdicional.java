@@ -42,7 +42,7 @@ import mifarma.ptoventa.reference.*;
 * Nombre de la Aplicación : DlgPedidoReposicionAdicionalNuevo.java<br>
 * <br>
 * Histórico de Creación/Modificación<br>
-* DVELIZ      10.09.08   Creación<br>
+*        10.09.08   Creación<br>
 * <br>
 * @author Daniel Fernando Veliz La Rosa<br>
 * @version 1.0<br>
@@ -483,7 +483,7 @@ public class DlgPedidoAdicional extends JDialog
 
           int pos = tblListaProductos.getSelectedRow();
 
-          //JCORTEZ 27.10.09 Se sete al mismo valor autorizado y se permite 0 como autorizado
+          //  27.10.09 Se sete al mismo valor autorizado y se permite 0 como autorizado
           VariablesProducto.vCantAutorizado = tblListaProductos.getValueAt(pos,6).toString();
           VariablesProducto.vCodProd_PedAdic = tblListaProductos.getValueAt(pos,0).toString();
          // if(Integer.parseInt(VariablesProducto.vCantAutorizado) > 0){

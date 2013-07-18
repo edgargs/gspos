@@ -43,8 +43,8 @@ import mifarma.ptoventa.reference.ConstantsPtoVenta;
 
 import mifarma.ptoventa.recepcionCiega.DlgConteoRecepMercaderia;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Copyright (c) 2009 MIFARMA S.A.C.<br>
@@ -53,7 +53,7 @@ import org.apache.commons.logging.LogFactory;
  * Nombre de la Aplicación : DlgHistoricoRecepcion.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JCORTEZ 16.11.2009 Creación<br>
+ *   16.11.2009 Creación<br>
  * <br>
  *
  * @author JORGE CORTEZ ALVAREZ<br>
@@ -62,7 +62,7 @@ import org.apache.commons.logging.LogFactory;
  */
 public class DlgHistoricoRecepcion extends JDialog 
 {
-  private static final Log log = LogFactory.getLog(DlgHistoricoRecepcion.class);
+  private static final Logger log = LoggerFactory.getLogger(DlgHistoricoRecepcion.class);
   private FarmaTableModel tableModelRecepcion;
   private Frame myParentFrame;
   
@@ -88,7 +88,7 @@ public class DlgHistoricoRecepcion extends JDialog
     private JLabelFunction lblF5 = new JLabelFunction();
     private JLabelFunction lblF8 = new JLabelFunction();
     
-    //JMIRANDA 19.03.2010 COLUMNAS
+    //  19.03.2010 COLUMNAS
     private static final int COL_NRO_RECEP = 0;
     private static final int COL_FECHA = 1;
     private static final int COL_USU_CREA = 2;
@@ -429,7 +429,7 @@ public class DlgHistoricoRecepcion extends JDialog
       System.out.println(FechFin);
       DBRecepCiega.getListaRecepcionMercaderiaRango(tableModelRecepcion,FechIni, FechFin);
         FarmaUtility.ordenar(tblRecepcion,tableModelRecepcion,COL_ORDEN,FarmaConstants.ORDEN_DESCENDENTE);
-        //JMIRANDA 18.03.2010
+        //  18.03.2010
         //**
         ArrayList rowsWithOtherColor = new ArrayList();
         for(int i = 0; i < tableModelRecepcion.data.size(); i++){
@@ -493,12 +493,12 @@ public class DlgHistoricoRecepcion extends JDialog
 
   private void txtFechaIni_keyPressed(KeyEvent e)
   {
-    //DUBILLUZ - 03.12.2009
+    //  - 03.12.2009
     FarmaGridUtils.aceptarTeclaPresionada(e,tblRecepcion,null,0);
     
     if(e.getKeyCode() == KeyEvent.VK_ENTER)
         FarmaUtility.moveFocus(txtFechaFin);   
-    //JMIRANDA 02.12.09
+    //  02.12.09
     /*else if(e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_UP){    
         FarmaUtility.moveFocus(tblRecepcion);
     }*/
@@ -513,12 +513,12 @@ public class DlgHistoricoRecepcion extends JDialog
 
   private void txtFechaFin_keyPressed(KeyEvent e)
   {
-      //DUBILLUZ - 03.12.2009
+      //  - 03.12.2009
       FarmaGridUtils.aceptarTeclaPresionada(e,tblRecepcion,null,0);    
        if(e.getKeyCode() == KeyEvent.VK_ENTER){
          btnBuscar.doClick();
       }
-   //JMIRANDA 02.12.09
+   //  02.12.09
    /*
    else if(e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_UP){    
           FarmaUtility.moveFocus(tblRecepcion);
@@ -539,7 +539,7 @@ public class DlgHistoricoRecepcion extends JDialog
     FarmaUtility.moveFocus(txtFechaIni);
     //lbllocal.setText(FarmaVariables.vDescLocal);
      // cargaLogin();
-    //JMIRANDA 02.12.09 VISUALIZAR BOTONES
+    //  02.12.09 VISUALIZAR BOTONES
     visualizarBotones();
 /*     lblF1.setVisible(false);
      lblF3.setVisible(false);
@@ -622,7 +622,7 @@ public class DlgHistoricoRecepcion extends JDialog
 
   private void tblRecepcion_keyPressed(KeyEvent e) {
       
-      //JMIRANDA 02.12.09
+      //  02.12.09
       if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT){    
           FarmaUtility.moveFocus(txtFechaIni);
       }
@@ -850,7 +850,7 @@ public class DlgHistoricoRecepcion extends JDialog
 
     /**
      * Se valida rol para mostrar opciones
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE 27.11.2009
      * */
     private boolean validaRolUsu(String Rol)
@@ -876,7 +876,7 @@ public class DlgHistoricoRecepcion extends JDialog
             }
     }
     
-    //JMIRANDA 01.12.09
+    //  01.12.09
     private void validaRol(){
         //se guarda datos
         VariablesRecepCiega.vNuSecUsu=FarmaVariables.vNuSecUsu;
@@ -896,7 +896,7 @@ public class DlgHistoricoRecepcion extends JDialog
                FarmaVariables.vAceptar =false;
            }
            else{
-               //JMIRANDA 04.12.09
+               //  04.12.09
                if ( FarmaVariables.dlgLogin.verificaRol(FarmaConstants.ROL_VENDEDOR) ) {
                    FarmaVariables.vAceptar = true;
                }   
@@ -917,13 +917,13 @@ public class DlgHistoricoRecepcion extends JDialog
            
         }
          /*
-          * dubilluz - 04.12.2009
+          *   - 04.12.2009
           * else
           cerrarVentana(false);
             */
      }
 
-    //JMIRANDA 01.12.09
+    //  01.12.09
     private void verificaRolUsuario(){
         if ( FarmaVariables.dlgLogin.verificaRol(FarmaConstants.ROL_VENDEDOR) ) {
             FarmaVariables.vAceptar = true;
@@ -987,7 +987,7 @@ public class DlgHistoricoRecepcion extends JDialog
     }
 
     /**
-     * @author Jmiranda
+     * @author  
      * @since  07.12.2009
      */
     private void funcionF5() {
@@ -1067,7 +1067,7 @@ public class DlgHistoricoRecepcion extends JDialog
                                                                      tblRecepcion);
                                             FarmaUtility.moveFocus(txtFechaIni);
                                         }
-                                        //JMIRANDA 02.12.09
+                                        //  02.12.09
                                         else if (pEstado.trim().equalsIgnoreCase(ConstantsRecepCiega.EstadoAfectadoTotal) || 
                                                  pEstado.trim().equalsIgnoreCase(ConstantsRecepCiega.EstadoAfectadoParcial)) {
                                             FarmaUtility.showMessage(this, 
@@ -1094,7 +1094,7 @@ public class DlgHistoricoRecepcion extends JDialog
                                                      tblRecepcion);
                             FarmaUtility.moveFocus(txtFechaIni);
                         }
-                        //JMIRANDA 02.12.09
+                        //  02.12.09
                         else if (pEstado.trim().equalsIgnoreCase(ConstantsRecepCiega.EstadoAfectadoTotal) || 
                                  pEstado.trim().equalsIgnoreCase(ConstantsRecepCiega.EstadoAfectadoParcial)) {
                             FarmaUtility.showMessage(this, 
@@ -1123,7 +1123,7 @@ public class DlgHistoricoRecepcion extends JDialog
       }
       */
      
-        //JMIRANDA 01.12.09
+        //  01.12.09
         //ACTUALIZO TABLE
         actualizaListado();
     }
@@ -1174,7 +1174,7 @@ public class DlgHistoricoRecepcion extends JDialog
                 else if (VariablesRecepCiega.vEstado.trim().equalsIgnoreCase("R") || 
                          VariablesRecepCiega.vEstado.trim().equalsIgnoreCase("T"))
                     verConteo(VariablesRecepCiega.vEstado);
-                //JMIRANDA 01.12.09
+                //  01.12.09
                 //ACTUALIZA LA TABLA
                 actualizaListado();
 
@@ -1190,7 +1190,7 @@ public class DlgHistoricoRecepcion extends JDialog
         }
     }
 
-    //JMIRANDA VALIDA FECHA
+    //  VALIDA FECHA
     private boolean validaFecha(String pFecha, String pHora){
         //pFecha.trim().equalsIgnoreCase("");
         boolean flag = false;    

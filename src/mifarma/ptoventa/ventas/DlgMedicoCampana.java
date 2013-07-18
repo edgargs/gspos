@@ -47,8 +47,8 @@ import mifarma.ptoventa.ventas.reference.DBVentas;
 import mifarma.ptoventa.fidelizacion.reference.VariablesFidelizacion;
 import mifarma.ptoventa.ventas.reference.VariablesVentas;
 
-import oracle.jdeveloper.layout.XYConstraints;
-import oracle.jdeveloper.layout.XYLayout;
+ 
+ 
 
 public class DlgMedicoCampana extends JDialog {
 

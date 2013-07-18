@@ -39,7 +39,7 @@ import mifarma.ptoventa.matriz.mantenimientos.productos.references.VariablesProd
  * Nombre de la Aplicación : DlgIngresoCantidadPedidoAdicional.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * DVELIZ      10.09.08   Creación<br>
+ *        10.09.08   Creación<br>
  * <br>
  * @author Daniel Fernando Veliz La Rosa<br>
  * @version 1.0<br>
@@ -291,7 +291,7 @@ public class DlgPedidoAdicionalIngresarCantidad extends JDialog
                 
                 try
                 {
-                //JCORTEZ 27.10.09 Se podra autorizar cantidad 0
+                //  27.10.09 Se podra autorizar cantidad 0
                 /*  if(Integer.parseInt(VariablesProducto.vCantAutorizado)>0)*/
                     vIndAutorizado = "S";
                   if(FarmaVariables.vEconoFar_Matriz){

@@ -492,7 +492,7 @@ public class DlgGuiaIngresoCabecera extends JDialog
       {
         habilitarCompetencia(true);
         /**
-         * dubilluz modificado 12.11.2007
+         *   modificado 12.11.2007
          */
         txtNombre.setEnabled(false);
         FarmaUtility.moveFocus(txtRuc);
@@ -621,7 +621,7 @@ public class DlgGuiaIngresoCabecera extends JDialog
           /**
            * Colocando los Datos de la Competencia 
            * Si por alguna motivo modificaron la informacion
-           * 12.11.2007  dubilluz
+           * 12.11.2007   
            */
           if(!txtNombre.getText().trim().equals(VariablesInventario.vDescripcionCompetencia.trim())){
             System.out.println("Cambiaron el Nombre de la competencia");
@@ -901,7 +901,7 @@ public class DlgGuiaIngresoCabecera extends JDialog
 
   /**
    * Carga el dialogo de listado de maestros de empresa.
-   * @author dubilluz
+   * @author  
    * @since  12.11.2007
    */  
   private void listaCompetencias()
@@ -922,7 +922,7 @@ public class DlgGuiaIngresoCabecera extends JDialog
   }
  /**
   * Valida si se repite la cotizacion
-  * @author dubilluz
+  * @author  
   * @since  12.11.2007
   */
   private boolean validaCotizacion()
@@ -955,7 +955,7 @@ public class DlgGuiaIngresoCabecera extends JDialog
  /**
   * Realiza el proceso de busqueda de la empresa por el RUC
   * de no encontrarlo procedera a mostrar la lista general de las empresas
-  * @author dubilluz
+  * @author  
   * @since  12.11.2007
   */
  private void buscaRucEmpresa()
@@ -996,7 +996,7 @@ public class DlgGuiaIngresoCabecera extends JDialog
  /**
   * Se carga los datos de la cotizacion que ya existe para mostrarla y saber si desea
   * anular y generarla
-  * @author dubilluz
+  * @author  
   * @since  26.11.2007
   */
   public void cargaDatosCotizacion(String num_doc,String tipo_doc, String ruc_empresa)

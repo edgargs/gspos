@@ -44,9 +44,9 @@ import mifarma.ptoventa.caja.reference.VariablesVirtual;
  * Nombre de la Aplicación : DlgControlIngreso.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * PAULO      11.10.2007   Creación<br>
+ *        11.10.2007   Creación<br>
  * <br>
- * @author Paulo Cesar Ameghino Rojas<br>
+ * @author   Cesar Ameghino Rojas<br>
  * @version 1.0<br>
  * 
  */
@@ -57,7 +57,7 @@ public class DlgControlIngreso extends JDialog
   private Frame myParentFrame;
   private FarmaTableModel tableModel;
   //Se modifico el orden al añadir las dos columnas de ingreso y salida 2
-  //23.11.2007  dubilluz modificacion
+  //23.11.2007    modificacion
   private final int COL_ORD = 6;
   private BorderLayout borderLayout1 = new BorderLayout();
   private GridLayout gridLayout1 = new GridLayout();
@@ -460,7 +460,7 @@ public class DlgControlIngreso extends JDialog
                 //PTOVENTA_INGR_PERS pakete funcion VERIFICA_ROL_TRAB_LOCAL
                 //SI EL USUARIO  TIENE ROL DE CAJERO,VENDEDOR,QF DEBE APARECER EL MENSAJE 
               
-              //---------------------------------------@Agregado por Asolis-------------------------------------------------------------------
+              //---------------------------------------@Agregado por  -------------------------------------------------------------------
                if(ValidaRolTrabLocal())
                {
                    
@@ -523,7 +523,7 @@ public class DlgControlIngreso extends JDialog
                   }
                 
                     
-    //-------------------------------@Agregado por Asolis-------------------------------------
+    //-------------------------------@Agregado por  -------------------------------------
     //--------------@Envia Alerta al Registrar Ingreso si no tiene Carné Registrado
                     if (vTipo.equalsIgnoreCase(ConstantsControlIngreso.TIPO_ENTRADA)){ 
                           //Envia Alerta.   
@@ -548,7 +548,7 @@ public class DlgControlIngreso extends JDialog
                      limpiarDatos();
                      flag=true;
       
-                    //JCORTEZ 17.08.09 Se generan cupones de regalo
+                    //  17.08.09 Se generan cupones de regalo
                      if(ValidaRolQF(Dniaux))
                       generarCuponesRegalo(vTipo,Dniaux);
                     
@@ -561,7 +561,7 @@ public class DlgControlIngreso extends JDialog
                     lblIndFiscalizado.setText("");
                   }
                   else if(s.getErrorCode() == 20002)
-                  { //13.11.2007  dubilluz  añadido
+                  { //13.11.2007     añadido
                     FarmaUtility.showMessage(this,"No puede registrar su entrada porque ya existe un registro de entrada para el día de hoy.",txtDni);  
                   }
                   else{
@@ -580,7 +580,7 @@ public class DlgControlIngreso extends JDialog
   
     /**
      * Se ingreso temperatura
-     * @author JCORTEZ
+     * @author  
      * @since 12.02.2009
      * */
     private boolean existeRegistroTemp(){
@@ -798,7 +798,7 @@ public class DlgControlIngreso extends JDialog
   
   /**
    * Se genera  N° cupones de X Campaña cuando el usuario marque ingreso 
-   * @AUTHOR  JCORTEZ 
+   * @AUTHOR    
    * @SINCE   17.08.09
    * */
   private  boolean generarCupones(String tipo,String Dni){
@@ -824,7 +824,7 @@ public class DlgControlIngreso extends JDialog
   
     /**
      * Se obtiene cupones generados 
-     * @AUTHOR  JCORTEZ 
+     * @AUTHOR    
      * @SINCE   17.08.09
      * */
   private void obtieneCuponesRegalo(ArrayList cuponRegalos,String Dni){
@@ -848,7 +848,7 @@ public class DlgControlIngreso extends JDialog
   
     /***
      * valida impresion de cupones
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE 17.08.09
      * */
   private void generarCuponesRegalo(String vTipo,String Dniaux){
@@ -878,7 +878,7 @@ public class DlgControlIngreso extends JDialog
   
   /***
    * Valida primera generacion de cupones
-   * @AUTHOR JCORTEZ
+   * @AUTHOR  
    * @SINCE 18.08.09
    * */
   private boolean existCuponesRegalos(String Dniaux){

@@ -9,17 +9,17 @@ import mifarma.common.FarmaTableModel;
 
 import mifarma.common.FarmaVariables;
 
-import mifarma.ptoventa.convenio.reference.DBConvenio;
-import mifarma.ptoventa.convenio.reference.VariablesConvenio;
+ 
+ 
 
 import mifarma.ptoventa.ventas.reference.VariablesVentas;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DBCampana {
 
-    private static final Log log = LogFactory.getLog(DBConvenio.class);
+    private static final Logger log = LoggerFactory.getLogger(DBCampana.class);
     
     private static ArrayList parametros = new ArrayList();
 

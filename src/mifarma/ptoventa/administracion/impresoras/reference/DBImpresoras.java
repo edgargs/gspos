@@ -14,7 +14,7 @@ import mifarma.common.FarmaVariables;
  * Nombre de la Aplicación : DlgListaIPSImpresora.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JCHAVEZ 26.06.2009 Modificación<br>
+ *   26.06.2009 Modificación<br>
  * <br>
  * @version 1.0<br>
  * 
@@ -36,7 +36,7 @@ public class DBImpresoras {
 				"PTOVENTA_ADMIN_IMP.IMP_LISTA_IMPRESORAS(?,?)", parametros, false);
 	}
 
-    //JMIRANDA 25/06/2009 LISTA IMPRESORAS TERMICAS
+    //  25/06/2009 LISTA IMPRESORAS TERMICAS
     public static void getListaImpresorasTermicas(FarmaTableModel pTableModel)
                     throws SQLException {
             pTableModel.clearTable();
@@ -81,7 +81,7 @@ public class DBImpresoras {
 
 	}
 
-//JMIRANDA  30/06/2009
+//   30/06/2009
     public static void ingresaImpresoraTermica(String pCodGrupoCia, String pCodLocal,
                     String pDescImprLocalTerm, String pTipoImprTermica, 
                     String pEstImprLocal) throws SQLException {
@@ -125,7 +125,7 @@ public class DBImpresoras {
 
 	}
         
-        //JMIRANDA 30/06/2009
+        //  30/06/2009
         public static void modificaImpresoraTermica(String pCodGrupoCia, String pCodLocal,
                         String pSecImprLocTerm, String pDescImprLocalTerm,
                         String pTipoImprTermica,String pEstImprLocal)
@@ -187,7 +187,7 @@ public class DBImpresoras {
          System.out.println(parametros);
          return FarmaDBUtility.executeSQLStoredProcedureStr("PTOVENTA_ADMIN_IMP.IMP_GET_RUTA_EXIST(?,?,?,?,?)",parametros);
      }
-    //JMIRANDA 26/06/2009
+    //  26/06/2009
     public static String getExistImpTermica(String descImpTerm) throws SQLException{
         parametros = new ArrayList();
         parametros.add(FarmaVariables.vCodGrupoCia);
@@ -199,7 +199,7 @@ public class DBImpresoras {
     }
        
     /**
-     * @author JCORTEZ 
+     * @author   
      * @since 08.06.09
      * Se lista las IP registradas
      * */
@@ -212,7 +212,7 @@ public class DBImpresoras {
     }
     
     /**
-     * @author JCORTEZ 
+     * @author   
      * @since 08.06.09
      * Se ingresa una nueva IP para la relacion maquina - Ticket
      * */
@@ -227,7 +227,7 @@ public class DBImpresoras {
     }
     
     /**
-     * @author JCORTEZ 
+     * @author   
      * @since 08.06.09
      * Se elimina IP para la relacion maquina - Ticket
      * */
@@ -243,7 +243,7 @@ public class DBImpresoras {
     }
     
     /**
-     * @author JCORTEZ 
+     * @author   
      * @since 08.06.09
      * Se lista las impresoras disponibles
      * */
@@ -260,7 +260,7 @@ public class DBImpresoras {
     
     
     /**
-     * @author JCORTEZ 
+     * @author   
      * @since 08.06.09
      * Se actualiza la relacion maquina - Ticket
      * */
@@ -281,7 +281,7 @@ public class DBImpresoras {
     
     
     /**
-     * @author JCORTEZ 
+     * @author   
      * @since 08.06.09
      * Se elimina la relacion maquina - Ticket
      * */
@@ -298,7 +298,7 @@ public class DBImpresoras {
     }
     
     /**
-     * @author JCHAVEZ 
+     * @author   
      * @since 25.06.09
      * Se lista las impresoras térmicas disponibles
      * */
@@ -314,7 +314,7 @@ public class DBImpresoras {
     }
     
     /**
-     * @author JCHAVEZ 
+     * @author   
      * @since 25.06.09
      * Se lista las impresoras térmicas disponibles
      * */

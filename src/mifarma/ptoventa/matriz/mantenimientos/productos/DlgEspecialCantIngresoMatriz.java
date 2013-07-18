@@ -39,7 +39,7 @@ import mifarma.ptoventa.matriz.mantenimientos.productos.references.VariablesProd
  * Nombre de la Aplicación : DlgEspecialCantIngresoMatriz.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JCORTEZ     04.01.2010   Creación<br>
+ *       04.01.2010   Creación<br>
  * <br>
  * @author JORGE CORTEZ ALVAREZ 
  * @version 1.0<br>

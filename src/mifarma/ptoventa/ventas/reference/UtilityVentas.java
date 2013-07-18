@@ -36,8 +36,8 @@ import mifarma.ptoventa.reference.DBPtoVenta;
 import mifarma.ptoventa.caja.reference.DBCaja;
 import mifarma.ptoventa.reference.VariablesPtoVenta;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -56,7 +56,7 @@ import org.apache.commons.logging.LogFactory;
 
 public class UtilityVentas {
   
-  private static final Log log = LogFactory.getLog(UtilityVentas.class);
+  private static final Logger log = LoggerFactory.getLogger(UtilityVentas.class);
   	/**
 	 * Constructor
 	 */
@@ -344,7 +344,7 @@ public class UtilityVentas {
         
 	  }catch(SQLException e) {
 		  retorno = false;
-		  log.error(e);
+		  log.error("",e);
 		  pProducto.setText("");		  
 		  switch(e.getErrorCode()) {
 			  case 20003: FarmaUtility.showMessage(pDialogo,"La campaña no es valida.",pProducto); break;
@@ -385,7 +385,7 @@ public class UtilityVentas {
     try
     {
         //Se valida el Cupon en el local
-         //Modificado por DVELIZ 04.10.08
+         //Modificado por   04.10.08
         DBVentas.verificaCupon(cadena,arreglo,indMultiUso, VariablesFidelizacion.vDniCliente);
         valida = FarmaConstants.INDICADOR_S;
         //Se verifica si hay linea para validar el cupon en Matriz
@@ -451,7 +451,7 @@ public class UtilityVentas {
         case 20008: FarmaUtility.showMessage(pDialogo,"Cupón esta anulado.",pProducto); break;
         case 20009: FarmaUtility.showMessage(pDialogo,"Campaña no valido.",pProducto); break;
         
-          //Agregado por DVELIZ 04.10.08
+          //Agregado por   04.10.08
         case 20010: FarmaUtility.showMessage(pDialogo,"Cupon solo de uso para Fidelizados.",pProducto); break;
 
         case 20011: FarmaUtility.showMessage(pDialogo,"Cupon no esta vigente .",pProducto); break;
@@ -578,7 +578,7 @@ public class UtilityVentas {
   /**
    * Se valida el codigo de barra a nivel de local
    * @since 28.08.08
-   * @author JCORTEZ 
+   * @author   
    * */
   private static boolean validaCodBarraLocal(String cadena, JDialog pDialogo,JTextField pProducto){
   
@@ -635,7 +635,7 @@ public class UtilityVentas {
     /**
      * Elimina los Archivos de Texto con antiguedad mayor a 2 dias
      * @return
-     * @author JMIRANDA
+     * @author  
      * @throws Exception
      */
     public static void eliminaArchivoTxt2() throws Exception {
@@ -650,7 +650,7 @@ public class UtilityVentas {
         
         //Archivos desde hasta ---------
         
-        //JMIRANDA  07/07/2009
+        //   07/07/2009
         Date vFecImpr = new Date();
         
         String fechaImpresion;
@@ -726,7 +726,7 @@ del C:\mifarma\bk\*.txt
     /**
      * Elimina los Archivos de Texto con antiguedad mayor a 2 dias
      * @return
-     * @author DUBILLUZ
+     * @author  
      * @since 08.07.09
      * @throws Exception
      */
@@ -737,7 +737,7 @@ del C:\mifarma\bk\*.txt
         //valores de BD
         //String dir = "C:\\mifarma\\"; 
         String dir = DBCaja.ObtieneDirectorio();
-        //JMIRANDA 17.10.09 Directorio Log
+        //  17.10.09 Directorio Log
         String dirLog = DBVentas.ObtieneDirectorioLog();
         System.out.println("dirLog: "+dirLog);
         //int ndias = 3;
@@ -796,7 +796,7 @@ del C:\mifarma\bk\*.txt
         //output.write("del " + dir.trim() + "9*.jpg");
         output.write("del /Q " + dir.trim() + "9*.jpg");
         output.newLine();        
-        //JMIRANDA 17.10.09 SE AÑADE LINEA PARA ELIMINAR LOG
+        //  17.10.09 SE AÑADE LINEA PARA ELIMINAR LOG
         output.write("del /Q " + dirLog.trim()+"*.txt");
         output.newLine();                
         output.write("exit");
@@ -823,7 +823,7 @@ del C:\mifarma\bk\*.txt
     
     /**
      * este metodo obtiene los descuentos para actualizacion de pedido vta detalle
-     * @author dveliz
+     * @author  
      * @since 09.10.08
      * @param codProd
      * @param porcDcto1
@@ -844,7 +844,7 @@ del C:\mifarma\bk\*.txt
         VariablesVentas.vActDctoDetPedVta.add(ahorro);
         VariablesVentas.vActDctoDetPedVta.add(porcDctoCalc);
         */
-        // 19.02.2009 DUBILLUZ
+        // 19.02.2009  
         
         log.debug("diego 11 ");
         ArrayList vActDctoDetPedVta = new ArrayList();
@@ -873,7 +873,7 @@ del C:\mifarma\bk\*.txt
     public static boolean isAplicoPrecioCampanaCupon(String pCodProd,String pIndProdCamp){
         
         String pCodAux = "";
-        log.debug("jcallo: metodo isAplicoPrecioCampanaCupon() VariablesVentas.vListaProdAplicoPrecioDescuento : "+VariablesVentas.vListaProdAplicoPrecioDescuento);
+        log.debug(" : metodo isAplicoPrecioCampanaCupon() VariablesVentas.vListaProdAplicoPrecioDescuento : "+VariablesVentas.vListaProdAplicoPrecioDescuento);
         if (VariablesVentas.vListaProdAplicoPrecioDescuento.size() > 0) {
             for (int i = 0; 
                  i < VariablesVentas.vListaProdAplicoPrecioDescuento.size(); 
@@ -1027,7 +1027,7 @@ del C:\mifarma\bk\*.txt
 	}
     
     */
-    //14.10.2009 jcortez
+    //14.10.2009  
     /*reemplazo de
      * aux  = (long)Math.floor(nD * Math.pow(10,nDec));
      * por
@@ -1101,7 +1101,7 @@ del C:\mifarma\bk\*.txt
                      String pNombreImpresora = "";
                      //String vIndExisteImpresora = DBCaja.obtieneNameImpConsejos();
                      VariablesPtoVenta.vIndExisteImpresoraConsejo = DBCaja.obtieneNameImpConsejos();
-                     VariablesPtoVenta.vTipoImpTermicaxIp=DBCaja.obtieneTipoImprConsejoXIp();//JCHAVEZ 03.07.2009 obtiene tipo de imopresora por IP
+                     VariablesPtoVenta.vTipoImpTermicaxIp=DBCaja.obtieneTipoImprConsejoXIp();//  03.07.2009 obtiene tipo de imopresora por IP
                        System.out.println("Tipo Impresora :" + VariablesPtoVenta.vTipoImpTermicaxIp);  
                      System.out.println("Buscando impresora :"+VariablesPtoVenta.vIndExisteImpresoraConsejo);
                      System.out.println("impresoras..encontradas...");
@@ -1126,7 +1126,7 @@ del C:\mifarma\bk\*.txt
                      
                      /**0
                       * 03/07/2009 
-                      * dubilluz 
+                      *   
                       * se genero error en produccion
                       * String vIndExisteImpresora = DBCaja.obtieneNameImpConsejos();
                      
@@ -1175,7 +1175,7 @@ del C:\mifarma\bk\*.txt
         return pPalabraOut.trim();
     }    
    
-   //JMIRANDA 23.09.09 
+   //  23.09.09 
     public static boolean validaCodBarraLocal(String cadena){
     
     boolean retorno=true;
@@ -1197,7 +1197,7 @@ del C:\mifarma\bk\*.txt
     
     /**
      * Genera Salto de Linea al traer Mensaje de base de Datos con limitador definido en tab_gral
-     * @author JMIRANDA
+     * @author  
      * @since  29.09.2009
      * @return sMensaje  Mensaje Editado
      * @param pMensaje   Mensaje al que se le va realizar el salto de linea 
@@ -1222,7 +1222,7 @@ del C:\mifarma\bk\*.txt
     
     /**
      * Opera el stock comprometido, copia modificada de otro metodo
-     * @author ASOSA
+     * @author  
      * @since 01.07.2010
      * @param pCodigoProducto
      * @param pCantidadStk
@@ -1387,7 +1387,7 @@ del C:\mifarma\bk\*.txt
       myArray.add(VariablesVentas.vCantxDia); //23 
       myArray.add(VariablesVentas.vCantxDias); //24
       myArray.add(""); //25
-      myArray.add(secRespStk); //ASOSA, 01.07.2010
+      myArray.add(secRespStk); // , 01.07.2010
       log.info("Producto agregado al pedidoVenta: "+myArray);
       
       FarmaUtility.operaListaProd(VariablesVentas.vArrayList_PedidoVenta, myArray, valor, 0);

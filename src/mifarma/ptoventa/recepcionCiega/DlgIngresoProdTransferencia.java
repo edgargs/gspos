@@ -239,7 +239,7 @@ public class DlgIngresoProdTransferencia extends JDialog  {
         if (e.getKeyCode() == KeyEvent.VK_ENTER)
         {
             /**
-             * JMIRANDA 08.01.10
+             *   08.01.10
              * validar que no sea cero
              * */
             if(txtCantidad.getText().trim().equalsIgnoreCase("0")){
@@ -286,7 +286,7 @@ public class DlgIngresoProdTransferencia extends JDialog  {
         String pTipoStkComprometido = "";
         String pTipoRespaldoStock = "";
         int pCantidadRespaldo = 0;
-        String secRespaldo=""; //ASOSA, 21.07.2010
+        String secRespaldo=""; // , 21.07.2010
         if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
             cerrarVentana(false);
         } else if (e.getKeyCode() == KeyEvent.VK_F11) {
@@ -301,7 +301,7 @@ public class DlgIngresoProdTransferencia extends JDialog  {
                                                  txtCantidad);
                     } else {
                         
-                        //inicio-dubilluz
+                        //inicio- 
                         int cantidadEnteroTotal = 0;
                         int i = 0;
                         String codProd = "", cantidadParcial = "";
@@ -337,7 +337,7 @@ public class DlgIngresoProdTransferencia extends JDialog  {
                                                          ConstantsInventario.INDICADOR_D, 
                                                          ConstantsInventario.TIP_OPERACION_RESPALDO_ACTUALIZAR, 
                                                         cantidadNewPblRespaldo*Integer.parseInt(VariablesRecepCiega.vValFrac));*/
-                            actualizaStkComprometidoProd_02(VariablesRecepCiega.vCodProd,   //ASOSA, 21.07.2010
+                            actualizaStkComprometidoProd_02(VariablesRecepCiega.vCodProd,   // , 21.07.2010
                                                             (cantIngresada_old-cantIngresada),
                                                             ConstantsInventario.INDICADOR_D, 
                                                             ConstantsInventario.TIP_OPERACION_RESPALDO_ACTUALIZAR,
@@ -354,7 +354,7 @@ public class DlgIngresoProdTransferencia extends JDialog  {
                                                          ConstantsInventario.INDICADOR_A, 
                                                          ConstantsInventario.TIP_OPERACION_RESPALDO_ACTUALIZAR,
                                                         cantidadNewPblRespaldo*Integer.parseInt(VariablesRecepCiega.vValFrac));*/
-                            actualizaStkComprometidoProd_02(VariablesRecepCiega.vCodProd,   //ASOSA, 21.07.2010
+                            actualizaStkComprometidoProd_02(VariablesRecepCiega.vCodProd,   // , 21.07.2010
                                                             (cantIngresada-cantIngresada_old),
                                                             ConstantsInventario.INDICADOR_A, 
                                                             ConstantsInventario.TIP_OPERACION_RESPALDO_ACTUALIZAR,
@@ -419,7 +419,7 @@ public class DlgIngresoProdTransferencia extends JDialog  {
                                                                  ConstantsInventario.TIP_OPERACION_RESPALDO_SUMAR, 
                                                                  Integer.parseInt(VariablesRecepCiega.vCantProdTransferir)
                                                             );*/
-                                actualizaStkComprometidoProd_02(VariablesRecepCiega.vCodProd,   //ASOSA, 21.07.2010
+                                actualizaStkComprometidoProd_02(VariablesRecepCiega.vCodProd,   // , 21.07.2010
                                                                 VariablesRecepCiega.vCantIngreso,
                                                                 ConstantsInventario.INDICADOR_A, 
                                                                 ConstantsInventario.TIP_OPERACION_RESPALDO_SUMAR,
@@ -444,7 +444,7 @@ public class DlgIngresoProdTransferencia extends JDialog  {
                                                                  ConstantsInventario.INDICADOR_A, 
                                                                  ConstantsInventario.TIP_OPERACION_RESPALDO_ACTUALIZAR, 
                                                                  Integer.parseInt(VariablesRecepCiega.vCantProdTransferir)); */
-                                actualizaStkComprometidoProd_02(VariablesRecepCiega.vCodProd,   //ASOSA, 21.07.2010
+                                actualizaStkComprometidoProd_02(VariablesRecepCiega.vCodProd,   // , 21.07.2010
                                                                 VariablesRecepCiega.vCantIngreso,
                                                                 ConstantsInventario.INDICADOR_A, 
                                                                 ConstantsInventario.TIP_OPERACION_RESPALDO_ACTUALIZAR,
@@ -526,7 +526,7 @@ public class DlgIngresoProdTransferencia extends JDialog  {
             rpta = false;
         }
             /**
-             * JMIRANDA 08.01.10
+             *   08.01.10
              * validar que no sea cero
              * */
         else if(txtCantidad.getText().trim().equalsIgnoreCase("0")){                
@@ -567,14 +567,14 @@ public class DlgIngresoProdTransferencia extends JDialog  {
             FarmaUtility.showMessage(this, "El producto no está fuera de política de canje.", txtFechaVcto);
             rpta = false;
         }*/
-        //JMIRANDA 22.03.2010 VALIDA PROD
+        //  22.03.2010 VALIDA PROD
         else if(!UtilityRecepCiega.indFechaCanjeProd(VariablesRecepCiega.vCodProd,txtFechaVcto.getText().trim(),
                                                      txtLote.getText().trim())
                 && VariablesRecepCiega.vMotivoTransferencia.equalsIgnoreCase("F1")){
                     FarmaUtility.showMessage(this, "El producto no está fuera de política de canje.", txtFechaVcto);
                     rpta = false;
         }
-        //JMIRANDA 21.03.2010
+        //  21.03.2010
         /*else if(!UtilityRecepCiega.indLoteValido(VariablesRecepCiega.vNumIngreso,
                     VariablesRecepCiega.vCodProd,txtLote.getText().toUpperCase().trim())){
             //valido si lote es correcto            
@@ -583,7 +583,7 @@ public class DlgIngresoProdTransferencia extends JDialog  {
         }*/
         /*
         /**
-         * JMIRANDA 11.02.10
+         *   11.02.10
          * VALIDA FECHA TRANSF
          * * /
         else if(!UtilityRecepCiega.indFechaVencTransf(VariablesRecepCiega.vCodProd,txtFechaVcto.getText().trim())
@@ -597,7 +597,7 @@ public class DlgIngresoProdTransferencia extends JDialog  {
             String fecha = FarmaSearch.getFechaHoraBD(FarmaConstants.FORMATO_FECHA);
             Date sysdate = FarmaUtility.getStringToDate(fecha,"dd/MM/yyyy"),
                 fechaVec = FarmaUtility.getStringToDate(txtFechaVcto.getText().trim(),"dd/MM/yyyy");
-            //JMIRANDA 15.02.10
+            //  15.02.10
             /*if(!sysdate.before(fechaVec))
             {
               FarmaUtility.showMessage(this,"La Fecha de Vencimiento debe ser posterior a la fecha de hoy: "+fecha+" ."
@@ -745,7 +745,7 @@ public class DlgIngresoProdTransferencia extends JDialog  {
             }
        return rpta; 
     }
-    //JMIRANDA VALIDA FECHA
+    //  VALIDA FECHA
     private boolean validaFecha(String pFecha, String pHora){
         //pFecha.trim().equalsIgnoreCase("");
         boolean flag = false;    
@@ -765,7 +765,7 @@ public class DlgIngresoProdTransferencia extends JDialog  {
         return flag; 
     }
     
-    /****************************************** ASOSA, 21.07.2010 ********************************************************/
+    /******************************************  , 21.07.2010 ********************************************************/
     
     //copiado para ser modificado unicamente lo de stkcomprometido asumiendo que lo demas esta bien
     private void actualizaStkComprometidoProd_02(String pCodigoProducto, 
@@ -777,8 +777,8 @@ public class DlgIngresoProdTransferencia extends JDialog  {
         VariablesRecepCiega.secRepStk="0";
         /*
         try {
-            VariablesRecepCiega.secRepStk=""; //ASOSA, 26.08.2010
-            VariablesRecepCiega.secRepStk=DBVentas.operarResStkAntesDeCobrar(pCodigoProducto,   //ASOSA, 21.07.2010
+            VariablesRecepCiega.secRepStk=""; // , 26.08.2010
+            VariablesRecepCiega.secRepStk=DBVentas.operarResStkAntesDeCobrar(pCodigoProducto,   // , 21.07.2010
                                                                              String.valueOf(pCantidadTrans),
                                                                              VariablesRecepCiega.vValFrac,
                                                                              secRespaldo,

@@ -5,8 +5,8 @@ import java.net.InetAddress;
 import java.util.ArrayList;
 import java.sql.SQLException;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 import mifarma.common.FarmaVariables;
@@ -32,7 +32,7 @@ import mifarma.ptoventa.recepcionCiega.reference.VariablesRecepCiega;
  * <br>
  * Histórico de Creación/Modificación<br>
  * ERIOS      14.02.2006   Creación<br>
- * ASOSA      18.01.2010   Modificación<br>
+ *        18.01.2010   Modificación<br>
  * <br>
  * @author Edgar Rios Navarro<br>
  * @version 1.0<br>
@@ -40,7 +40,7 @@ import mifarma.ptoventa.recepcionCiega.reference.VariablesRecepCiega;
  */
 public class DBInventario 
 {
-	private static final Log log = LogFactory.getLog(DlgProcesarCobro.class);
+	private static final Logger log = LoggerFactory.getLogger(DlgProcesarCobro.class);
 	private static ArrayList parametros = new ArrayList();
   
   
@@ -229,7 +229,7 @@ public class DBInventario
     parametros.add(codProd);
     parametros.add(new Double(valUnit));
     parametros.add(new Double(valTotal));
-    //revisar error de framework dubilluz 27.06.20//
+    //revisar error de framework   27.06.20//
     //parametros.add(""+FarmaUtility.getDecimalNumber(valUnit));
     //parametros.add(""+FarmaUtility.getDecimalNumber(valTotal));
     parametros.add(new Integer(cantMov));
@@ -288,7 +288,7 @@ public class DBInventario
    FarmaDBUtility.executeSQLStoredProcedure(pTableModel,"PTOVENTA_INV.INV_GET_DET_TRANSFERENCIA(?,?,?)",parametros,false);
   }
   
-  //JCHAVEZ
+  // 
   public static void anularTransferenciaMatriz(String numNota)throws SQLException
   {
     parametros = new ArrayList();
@@ -304,7 +304,7 @@ public class DBInventario
                                                   parametros,
                                                   false,
                                                   FarmaConstants.CONECTION_MATRIZ,
-                                                  FarmaConstants.INDICADOR_N);//JCHAVEZ 27112009 nuevo modo de anular transferencia
+                                                  FarmaConstants.INDICADOR_N);//  27112009 nuevo modo de anular transferencia
       
   }
   
@@ -318,7 +318,7 @@ public class DBInventario
       parametros.add(ConstantsPtoVenta.TIP_DOC_KARDEX_GUIA_ES);
       parametros.add(FarmaVariables.vIdUsu);
       log.debug("invocando a PTOVENTA_INV.INV_ANULA_TRANSFERENCIA(?,?,?,?,?,?):"+parametros);
-      FarmaDBUtility.executeSQLStoredProcedure(null,"PTOVENTA_INV.INV_ANULA_TRANSFERENCIA(?,?,?,?,?,?)",parametros,false); //JCHAVEZ 29122009
+      FarmaDBUtility.executeSQLStoredProcedure(null,"PTOVENTA_INV.INV_ANULA_TRANSFERENCIA(?,?,?,?,?,?)",parametros,false); //  29122009
     }
   
 
@@ -880,7 +880,7 @@ public class DBInventario
     parametros.add(codProd);
     parametros.add(FarmaVariables.vIdUsu);
     log.debug("invocando a PTOVENTA_INV.INV_ACT_KARDEX_GUIA_REC(?,?,?,?,?,?):"+parametros);
-    FarmaDBUtility.executeSQLStoredProcedure(null,"PTOVENTA_INV.INV_ACT_KARDEX_GUIA_REC(?,?,?,?,?,?)", parametros, false);//JCHAVEZ 29122009
+    FarmaDBUtility.executeSQLStoredProcedure(null,"PTOVENTA_INV.INV_ACT_KARDEX_GUIA_REC(?,?,?,?,?,?)", parametros, false);//  29122009
   }
   
   public static String getEstadoProcesoSap(String numNotaEs, String tipoNotaEs) throws SQLException
@@ -1094,7 +1094,7 @@ public class DBInventario
     parametros.add(numPedido);
     parametros.add(codProd);
     //modificando para realizae un trim cuando guardara
-    //23.10.2007 dubilluz modificacion
+    //23.10.2007   modificacion
     parametros.add(new Integer(cant.trim()));
     parametros.add(FarmaVariables.vIdUsu);   
     log.debug("invocando a PTOVENTA_INV.INV_SET_CANT_PEDREP_MATRIZ(?,?,?,?,?,?):"+parametros);
@@ -1233,7 +1233,7 @@ public class DBInventario
   }
   
   /**Nuevo
-   * @Autor: Luis Reque Orellana
+   * @Autor:  
    * @Fecha:  20/04/2007
    * */
   public static void guardarCantAdicPedRepTemp(String codProd,String cant) throws SQLException
@@ -1249,7 +1249,7 @@ public class DBInventario
   }
     
   /**Nuevo
-   * @Autor: Luis Reque Orellana
+   * @Autor:  
    * @Fecha:  25/04/2007
    * */
   public static void verProductosCantAdic(ArrayList pArreglo) throws SQLException
@@ -1262,7 +1262,7 @@ public class DBInventario
   }
   
   /**Nuevo
-   * @Autor: Luis Reque Orellana
+   * @Autor:  
    * @Fecha:  25/04/2007
    * */
   public static void getPedidoActualReposicionAdic(ArrayList array) throws SQLException
@@ -1275,7 +1275,7 @@ public class DBInventario
   }
 
   /**Nuevo
-   * @Autor: Paulo Cesar Ameghino Rojas
+   * @Autor:   Cesar Ameghino Rojas
    * @Fecha:  11/06/2007
    * */
   public static void actualizaIndLinea() throws SQLException
@@ -1289,7 +1289,7 @@ public class DBInventario
   }
 
   /**Nuevo
-   * @Autor: Paulo Cesar Ameghino Rojas
+   * @Autor:   Cesar Ameghino Rojas
    * @Fecha:  11/06/2007
    * */
   public static String obtieneIndLinea() throws SQLException
@@ -1302,7 +1302,7 @@ public class DBInventario
   }
 
   /**Nuevo
-   * @Autor: Paulo Cesar Ameghino Rojas
+   * @Autor:   Cesar Ameghino Rojas
    * @Fecha:  11/06/2007
    * */
    public static void actualizaIndCalMaxMin(String  pCodProd,
@@ -1321,7 +1321,7 @@ public class DBInventario
    }
    
   /**Nuevo
-   * @Autor: Paulo Cesar Ameghino Rojas
+   * @Autor:   Cesar Ameghino Rojas
    * @Fecha:  02/08/2007
    * */
   public static String obtieneFechaLimiteIngresoCC(String pFechaIngreso) throws SQLException
@@ -1335,7 +1335,7 @@ public class DBInventario
   }
    
   /**Nuevo
-   * @Autor: Paulo Cesar Ameghino Rojas
+   * @Autor:   Cesar Ameghino Rojas
    * @Fecha:  08/08/2007
    * */
   public static void actualizaIndStkPedidoReposicion() throws SQLException
@@ -1349,7 +1349,7 @@ public class DBInventario
   }
                                                                                    
   /**Nuevo
-   * @Autor: Paulo Cesar Ameghino Rojas
+   * @Autor:   Cesar Ameghino Rojas
    * @Fecha:  08/08/2007
    * */
   public static void actualizaIndStkPedidoReposicionNull() throws SQLException
@@ -1363,7 +1363,7 @@ public class DBInventario
   }
  /**
   * Retorna el valor actual del IndLinea Actual
-  * @author dubilluz
+  * @author  
   * @since  24.09.2007
   */  
   public static String getIndLinea() throws SQLException
@@ -1376,7 +1376,7 @@ public class DBInventario
   }
   /**
    * Obtiene el Time Estimado
-   * @Autor dubilluz
+   * @Autor  
    * @Fecha 12.09.2007
    * */
   public static String getTimeEstimado() throws SQLException
@@ -1389,7 +1389,7 @@ public class DBInventario
 
   /**
    * Realiza una consulta a Delivery
-   * @Autor dubilluz
+   * @Autor  
    * @Fecha 12.09.2007
    * */
   public static String consulta_Delivery(String vQuery,
@@ -1402,7 +1402,7 @@ public class DBInventario
   
   /**
    * Actualiza el IndLinea directamente
-   * @author dubilluz
+   * @author  
    * @sice   24.09.2007
    * */
   public static void actualizaIndLinea(String vIndicador,int vTiempoConexion) throws SQLException
@@ -1419,7 +1419,7 @@ public class DBInventario
   /**
    * Consultara el motivo Seleccionado
    * para saber si se habilitara el text Fraccion
-   * @author dubilluz
+   * @author  
    * @since  15.10.2007
    */
   public static String consultaMotivo(String pCodMotivo,String pCodTipo) throws SQLException
@@ -1433,7 +1433,7 @@ public class DBInventario
   }
  /**
   * Se lista las competencias
-  * @author dubilluz
+  * @author  
   * @since  12.11.2007
   */
   public static void cargaListaCompetencias(FarmaTableModel pTableModel) throws SQLException {
@@ -1447,7 +1447,7 @@ public class DBInventario
   
   /**
    * Valida que el numero de comprobante de la competencia no exista
-   * @author dubilluz
+   * @author  
    * @since  12.11.2007
    */
   public static String validaNumeroDocCompetencia(String pNumDoc,
@@ -1466,7 +1466,7 @@ public class DBInventario
   
  /**
   * Se lista las competencias
-  * @author dubilluz
+  * @author  
   * @since  12.11.2007
   */
   public static void buscaEmpresa(ArrayList pArreglo,String pRuc) throws SQLException {
@@ -1479,7 +1479,7 @@ public class DBInventario
   
   /**
    * Obtiene los datos de cotizacion
-   * @author dubilluz
+   * @author  
    * @since  26.11.2007
    */
   public static void getDatosCotizacion(ArrayList pArreglo,
@@ -1499,7 +1499,7 @@ public class DBInventario
   
   /**
    * Obtiene la confirmacion de la revision del producto por parte del RDM
-   * @author JCORTEZ
+   * @author  
    * @sice   15.10.2007
    * */
   
@@ -1518,7 +1518,7 @@ public class DBInventario
      * Lista los productos Adicionales
      * @param pTableModel
      * @param nroPedido
-     * @auhtor DUbilluz
+     * @auhtor  
      * @throws SQLException
      */
   public static void cargaParametrosProductosLocal(FarmaTableModel pTableModel) throws SQLException
@@ -1534,7 +1534,7 @@ public class DBInventario
      * Se Obtiene el indicador de hacer pedido reposicion de modo automatico
      * @return
      * @throws SQLException
-     * @author Dubilluz
+     * @author  
      */
   public static String getIndPedReposicionAutomatico() throws SQLException
   {
@@ -1546,7 +1546,7 @@ public class DBInventario
   }  
   
   /**
-     * @author DVELIZ
+     * @author  
      * @since 10.09.08
      * @param pTableModel
      * @throws SQLException
@@ -1563,7 +1563,7 @@ public class DBInventario
   }
   
   /**
-     * @author DVELIZ
+     * @author  
      * @since 10.09.08
      * @param lista
      * @param pCodProd
@@ -1582,7 +1582,7 @@ public class DBInventario
     }
     
     /**
-     * @author DVELIZ
+     * @author  
      * @since 10.09.08
      * @param codProd
      * @param cCantSol
@@ -1610,7 +1610,7 @@ public class DBInventario
     }
     
     /**
-     * @author DVELIZ
+     * @author  
      * @since 23.09.08
      * @param codProd
      * @param cCantAuto
@@ -1635,7 +1635,7 @@ public class DBInventario
     }
     
     /**
-     * @Author DVELIZ
+     * @Author  
      * @Since 12.09.08
      * @param pTableModel
      * @param cCodProd
@@ -1657,7 +1657,7 @@ public class DBInventario
 
     /**
      * Lista el historial de PVM por productos en Matriz
-     * @author DVELIZ
+     * @author  
      * @since 23.09.08
      * @param pTableModel
      * @param cCodProd
@@ -1680,7 +1680,7 @@ public class DBInventario
     /**
      * Se Lista los pedidos especiales realizados
      * @throws SQLException
-     * @author JCORTEZ
+     * @author  
      * @since 09.09.2008
      */
     public static void cargaListaPedidosEspeciales(FarmaTableModel pTableModel, String pFecIni, String pFecFin) throws SQLException
@@ -1698,7 +1698,7 @@ public class DBInventario
  /**
      * Se Lista los productos para el pedido especial
      * @throws SQLException
-     * @author JCORTEZ
+     * @author  
      * @since 09.09.2008
      */
   public static void cargaListaProductosEspeciales(FarmaTableModel pTableModel) throws SQLException {
@@ -1713,7 +1713,7 @@ public class DBInventario
    /**
     * Se guarda la cabecera del pedido Especial 
     * @throws SQLException
-    * @author JCORTEZ
+    * @author  
     * @since 09.09.2008
     */
   public static void agregarCabeceraPedEsp(String  NumPedEsp,
@@ -1733,7 +1733,7 @@ public class DBInventario
    /**
     * Se guarda el detalle del pedido Especial 
     * @throws SQLException
-    * @author JCORTEZ
+    * @author  
     * @since 09.09.2008
     */
   public static void agregarDetallePedEsp(ArrayList ArrayProd,
@@ -1774,7 +1774,7 @@ public class DBInventario
    /**
     * Se guarda la confirmacion del pedido especial Det
     * @throws SQLException
-    * @author JCORTEZ
+    * @author  
     * @since 09.09.2008
     */
   public static void confirmarPedidoDet(String    NumPedEsp,
@@ -1798,7 +1798,7 @@ public class DBInventario
    /**
     * Se guarda la confirmacion del pedido especial Cab
     * @throws SQLException
-    * @author JCORTEZ
+    * @author  
     * @since 09.09.2008
     */
   public static void confirmarPedidoCab(String    NumPedEsp)throws SQLException
@@ -1814,7 +1814,7 @@ public class DBInventario
   
     /**
     * Se obtiene el detalle del pedido
-    * @author JCORTEZ
+    * @author  
     * @since  09.09.2008
     */
   public static void obtieneDetPedido(ArrayList pArreglo,String NumPed) throws SQLException {
@@ -1830,7 +1830,7 @@ public class DBInventario
   
     /**
      * Retorna la cantidad Maxima de Item de Productos Especiales
-     * @author Dubilluz
+     * @author  
      * @since  22.09.2008
      * @return
      * @throws SQLException
@@ -1849,7 +1849,7 @@ public class DBInventario
      /**
       * Se anula el pedido especial generado
       * @throws SQLException
-      * @author JCORTEZ
+      * @author  
       * @since 25.09.2008
       */
      public static void anularPedidoEspecial(String    NumPedEsp)throws SQLException
@@ -1886,7 +1886,7 @@ public class DBInventario
     
     /**
      * Modifica el estado del pedido especial
-     * @author DVELIZ
+     * @author  
      * @since 18.10.08
      * @param vEstado
      * @param vNumPedVta
@@ -1992,7 +1992,7 @@ public class DBInventario
     /**
      * Se otiene indicador del tipo fraccionamiento del producto en el local destino,conexion a matriz
      * @throws SQLException
-     * @author JCHAVEZ
+     * @author  
      * @since 25.08.2009
      */
     public static String obtieneIndFraccLocalDestino(String pCodDestino,String pCodProd, 
@@ -2018,7 +2018,7 @@ public class DBInventario
     /**
      * Se otiene el fraccionamiento del producto en el local origen
      * @throws SQLException
-     * @author JCHAVEZ
+     * @author  
      * @since 25.08.2009
      */
     public static int getValFracProducto(String pCodProd)throws SQLException{
@@ -2033,7 +2033,7 @@ public class DBInventario
     /**
      * Se valida guias emitidas e impresas por transferencia
      * @throws SQLException
-     * @author JCORTEZ
+     * @author  
      * @since 28.10.2009
      */
     public static String validaGuiasTransf(String numNotaEs) throws SQLException
@@ -2046,7 +2046,7 @@ public class DBInventario
       return FarmaDBUtility.executeSQLStoredProcedureStr("PTOVENTA_INV.INV_F_EXISTS_GUIAS_TRANSF(?,?,?)",parametros);
     }
     
-    //JMIRANDA 10.12.09
+    //  10.12.09
     public static String getObtieneDescLargaTransf(String pLlaveTabGral, 
                                                    String pDescCorta
                                                    ) throws SQLException {
@@ -2059,7 +2059,7 @@ public class DBInventario
     }
 /**
      * Graba inicio y fin del proceso de creacion de transferencia
-     * @author JCHAVEZ
+     * @author  
      * @since 10.12.2009
      */
     public static void grabaInicioFinCreaTransferencia( String pNumNotaEs,String pTipoTmp) throws SQLException
@@ -2074,7 +2074,7 @@ public class DBInventario
     }
     /**
      * Graba inicio y fin del proceso de confirmacion de transferencia
-     * @author JCHAVEZ
+     * @author  
      * @since 10.12.2009
      */
     public static void grabaInicioFinConfirmacionTransferencia( String pNumNotaEs,String pTipoTmp,String ptipoConf) throws SQLException
@@ -2090,7 +2090,7 @@ public class DBInventario
     }
     /**
      * Graba inicio y fin del proceso de impresión de guías en una transferencia
-     * @author JCHAVEZ
+     * @author  
      * @since 10.12.2009
      */
     public static void grabaInicioFinGuiasTransferencia( String pNumNotaEs,String pTipoTmp) throws SQLException
@@ -2105,7 +2105,7 @@ public class DBInventario
     }
     /**
      * Graba inicio y fin del proceso de anulación de una transferencia
-     * @author JCHAVEZ
+     * @author  
      * @since 10.12.2009
      */
     public static void grabaInicioFinAnulaTransferencia( String pNumNotaEs,String pTipoTmp) throws SQLException
@@ -2121,7 +2121,7 @@ public class DBInventario
     
     /**
      * 
-     * @author ASOSA
+     * @author  
      * @since 18.01.2010
      * @param codcia
      * @param codloc
@@ -2142,7 +2142,7 @@ public class DBInventario
     }
   
     /**
-     * @author JMIRANDA
+     * @author  
      * @since 09.02.2010     
      * @throws SQLException
      */
@@ -2168,7 +2168,7 @@ public class DBInventario
             parametros.add(VariablesRecepCiega.vPlacaUnidTrans);
             parametros.add(VariablesRecepCiega.vCantBultos);
             parametros.add(VariablesRecepCiega.vCantPrecintos);
-        //JMIRANDA 05.03.2010 agrega Glosa
+        //  05.03.2010 agrega Glosa
         parametros.add(VariablesRecepCiega.vGlosa);
             log.debug("invocando a PTOVENTA_INV.INV_F_INS_RECEP_CAB(?,?,?,?,?,?,?,?,?):"+parametros);            
         return FarmaDBUtility.executeSQLStoredProcedureStr("PTOVENTA_INV.INV_F_INS_RECEP_CAB(?,?,?,?,?,?,?,?,?)",parametros);
@@ -2193,7 +2193,7 @@ public class DBInventario
     
     /**
      * Inserta un lote nuevo en la transferencia de mercaderia
-     * @author ASOSA
+     * @author  
      * @since 14.04.2010
      * @param codprod
      * @param numlote
@@ -2225,7 +2225,7 @@ public class DBInventario
     
     /**
      * Elimina un lote, solo lo eliminara si fue el quien lo ingreso
-     * @author ASOSA
+     * @author  
      * @since 05.04.2010
      * @param codprod
      * @param numlote
@@ -2272,7 +2272,7 @@ public class DBInventario
 
     /**
          * Consulta si debe pedir el lote para transferencia
-         * @author JMIRANDA
+         * @author  
          * @since 14.05.2010              
          * @throws SQLException
          */ 
@@ -2286,7 +2286,7 @@ public class DBInventario
     
     /**
          * Consulta si debe pedir el fecha de vencimiento para transferencia
-         * @author JMIRANDA
+         * @author  
          * @since 14.05.2010              
          * @throws SQLException
          */ 
@@ -2300,7 +2300,7 @@ public class DBInventario
     
     /**
      * Agrega el detalle de una guia de ingreso.
-     * @author ASOSA
+     * @author  
      * @since 15.07.2010
      * @param numGuia
      * @param codProd
@@ -2329,7 +2329,7 @@ public class DBInventario
      parametros.add(codProd);
      parametros.add(new Double(valUnit));
      parametros.add(new Double(valTotal));
-     //revisar error de framework dubilluz 27.06.20//
+     //revisar error de framework   27.06.20//
      //parametros.add(""+FarmaUtility.getDecimalNumber(valUnit));
      //parametros.add(""+FarmaUtility.getDecimalNumber(valTotal));
      parametros.add(new Integer(cantMov));
@@ -2343,7 +2343,7 @@ public class DBInventario
      parametros.add(tipDestino);
      parametros.add(codDestino);
      parametros.add(pIndFrac);
-     parametros.add(secRespaldo.trim()); //ASOSA, 15.07.2010
+     parametros.add(secRespaldo.trim()); // , 15.07.2010
      System.out.println("WAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaa: "+secRespaldo);
      log.debug("invocando a PTOVTA_RESPALDO_STK.INV_AGREGA_DET_TRANSFERENCIA(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?):"+parametros);
      
@@ -2352,7 +2352,7 @@ public class DBInventario
     
     /**
      * Anula de una transferencia.
-     * @author ASOSA
+     * @author  
      * @since 15.07.2010
      * @param numNota
      * @throws SQLException
@@ -2367,6 +2367,6 @@ public class DBInventario
        parametros.add(ConstantsPtoVenta.TIP_DOC_KARDEX_GUIA_ES);
        parametros.add(FarmaVariables.vIdUsu);
        log.debug("invocando a PTOVTA_RESPALDO_STK.INV_ANULA_TRANSFERENCIA(?,?,?,?,?,?):"+parametros);
-       FarmaDBUtility.executeSQLStoredProcedure(null,"PTOVTA_RESPALDO_STK.INV_ANULA_TRANSFERENCIA(?,?,?,?,?,?)",parametros,false); //JCHAVEZ 29122009
+       FarmaDBUtility.executeSQLStoredProcedure(null,"PTOVTA_RESPALDO_STK.INV_ANULA_TRANSFERENCIA(?,?,?,?,?,?)",parametros,false); //  29122009
      }
 }

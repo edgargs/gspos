@@ -89,7 +89,7 @@ public class DBInvDiario
     System.out.println("PTOVENTA_TOMA_DIA.GET_LISTA_PRODS(?,?,?)" + parametros);
     FarmaDBUtility.executeSQLStoredProcedure(pTableModel, 
                                              "PTOVENTA_TOMA_DIA.GET_LISTA_PRODS(?,?,?)", 
-                                             parametros, true);//JCHAVEZ 09102009
+                                             parametros, true);//  09102009
   }
 
   /**
@@ -577,7 +577,7 @@ public class DBInvDiario
     }    
  /**
       * Se ajusta los productos seleccionados
-      * @AUTHOR JCORTEZ
+      * @AUTHOR  
       * @SINCE 15.06.09
       * */
      public static void ajustarProd(String pCodProd,String pSecToma,String pCodMotivo,String pSecKardex,String pCantMov,
@@ -611,7 +611,7 @@ public class DBInvDiario
     
     /**
         * Se genera el ajuste
-        * @AUTHOR JCORTEZ
+        * @AUTHOR  
         * @SINCE 15.06.09
         * */
        public static void grabarAjuste(String pCodMotivo,String pCodAjuste)throws SQLException
@@ -629,7 +629,7 @@ public class DBInvDiario
 
        /**
         * Se guarda ajuste por productos
-        * @AUTHOR JCORTEZ
+        * @AUTHOR  
         * @SINCE 15.06.09
         * */
        public static void grabarAjusteProd(String cCodAjuste,String cCotToma,String cCodProd)throws SQLException
@@ -647,7 +647,7 @@ public class DBInvDiario
        
        /**
         * Se guarda ajuste por productos
-        * @AUTHOR JCORTEZ
+        * @AUTHOR  
         * @SINCE 15.06.09
         * */
        public static void grabarAjusteTrab(String cCodAjust,String cCodTrabRRHH,String cCodTrab,String Monto)throws SQLException
@@ -666,7 +666,7 @@ public class DBInvDiario
 
 /**
      * Graba el pedido Temporal Nuevo y retorna el numero de Pedido del Temporal
-     * @author dubilluz
+     * @author  
      * @param pDNI
      * @return
      * @throws SQLException
@@ -681,7 +681,7 @@ public class DBInvDiario
     }   
     /**
      * Añade el producto al pedido Temporal
-     * @author dubilluz
+     * @author  
      * @param pSecPedido
      * @param pSecDetalle
      * @param pCodProd
@@ -845,7 +845,7 @@ public class DBInvDiario
       return FarmaDBUtility.executeSQLStoredProcedureStr("PTOVENTA_TOMA_DIA.TI_F_VAR2_MONTO_PEDIDO(?,?,?)",parametros);
     }
 
-//JMIRANDA 03/08/09
+//  03/08/09
     public static void modificaSegConteo()throws SQLException
     {
       parametros = new ArrayList();

@@ -12,7 +12,7 @@ public class ConstantsTomaInv {
 
 	public static final String TIPO_OPERACION_CONSULTA_HIST = "H";
   /*
-       * 22/03/2006   Paulo   Variables creadas para identificar el tipo de laboratorio
+       * 22/03/2006       Variables creadas para identificar el tipo de laboratorio
   */
   public static final String  TIPO_FARMA = "01";
   public static final String  TIPO_NO_FARMA = "02";
@@ -28,7 +28,7 @@ public class ConstantsTomaInv {
 			new FarmaColumnData("Codigo", 75, JLabel.CENTER),
 			new FarmaColumnData("Laboratorio", 290, JLabel.LEFT), 
       /*
-       * 22/03/2006   Paulo   Agregacion de una nueva columna para la lista de laboratorios
+       * 22/03/2006       Agregacion de una nueva columna para la lista de laboratorios
        */
 			new FarmaColumnData("Tipo", 0, JLabel.LEFT), };
 
@@ -53,7 +53,7 @@ public class ConstantsTomaInv {
       new FarmaColumnData("",0, JLabel.LEFT),//};
       /**
        * Usuario de Creacion de la Toma
-       * @author : dubilluz
+       * @author :  
        * @since  : 11.07.2007
        */
       new FarmaColumnData("",0, JLabel.LEFT)};
@@ -190,7 +190,7 @@ public class ConstantsTomaInv {
 
     /**
      * Diferencias TOtales
-     * dubilluz 29.12.2009
+     *   29.12.2009
      */
     public static final FarmaColumnData[] columnsListaDiferenciasTotales= {
                     new FarmaColumnData("Laboratorio", 160, JLabel.LEFT),

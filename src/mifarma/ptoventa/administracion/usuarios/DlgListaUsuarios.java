@@ -275,7 +275,7 @@ public class DlgListaUsuarios extends JDialog {
         if (tieneRegistroSeleccionado(tblListausuarios)) {
             /**
              * Valida accion al modificar datos de usuario
-             * @author : JCORTEZ
+             * @author :  
              * @since  : 20.07.2007
              */
           VariablesUsuarios.vfocus=true;
@@ -306,7 +306,7 @@ public class DlgListaUsuarios extends JDialog {
             try {
             /**
              * VALida si tiene caja asignada
-             * @author : dubilluz
+             * @author :  
              * @since  : 11.07.2007
              */
              String num_caja_pago = busca_Caja_Asignada().trim();
@@ -414,7 +414,7 @@ public class DlgListaUsuarios extends JDialog {
 		/*VariablesUsuarios.vClaveUsu = tblListausuarios.getValueAt(
 				tblListausuarios.getSelectedRow(), 6).toString().trim();*/
                                 
-                //Modificado por Dveliz 02.09.08
+                //Modificado por   02.09.08
                 try {
                     VariablesUsuarios.vClaveUsu = 
                         DBUsuarios.obtenerClave(VariablesUsuarios.vSecUsuLocal);
@@ -496,7 +496,7 @@ public class DlgListaUsuarios extends JDialog {
   }
   /**
    * Busca si el El cajero tiene caja asignada
-   * @author : dubilluz
+   * @author :  
    * @since  : 11.07.2007
    */
   private String busca_Caja_Asignada(){
@@ -517,7 +517,7 @@ public class DlgListaUsuarios extends JDialog {
   /**
    * Verifica si los cajeros estan todos asignados a una caja
    * , si todos estan asignados retorna "TRUE"
-   * @author : dubilluz
+   * @author :  
    * @since  : 11.07.2007
    */
   private boolean busca_cajeros_caja(){
@@ -539,7 +539,7 @@ public class DlgListaUsuarios extends JDialog {
   }
   /**
    * Cambia el estado de la caja
-   * @author : dubilluz
+   * @author :  
    * @since  : 12.07.2007
    */
   private String modifica_estado_caja(String num_caja_pago){
@@ -562,7 +562,7 @@ public class DlgListaUsuarios extends JDialog {
   }
   /**
    * Obtiene el estado de la caja
-   * @author : dubilluz
+   * @author :  
    * @since  : 12.07.2007
    */
   private String  obtiene_estado_caja(String num_caja_pago){
@@ -582,7 +582,7 @@ public class DlgListaUsuarios extends JDialog {
   
  /**
    * Valida dias maximos para validar codigo de trabajador
-   * @author : JCORTEZ
+   * @author :  
    * @since  : 3.07.2007
    */
   private void validarCodigoTrabajador()
@@ -631,7 +631,7 @@ public class DlgListaUsuarios extends JDialog {
   
   /**
    * Consultara si podra modificar los campos del trabajador
-   * @author dubilluz
+   * @author  
    * @since  28.11.2007
    */
    public String validaCamposModificar(String pcod)

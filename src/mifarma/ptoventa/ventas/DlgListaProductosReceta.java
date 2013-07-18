@@ -904,7 +904,7 @@ public class DlgListaProductosReceta
     VariablesReceta.vVal_Igv_Prod = valIgv;
     myArray.add(VariablesReceta.vVal_Igv_Prod);
 
-    //JCALLO  13.10.2008 validar tratamiento en receta
+    //   13.10.2008 validar tratamiento en receta
     ArrayList infoProd = new ArrayList();
     //agregando el indicador si es aplicable el valor fraccion a dicho producto
     try {

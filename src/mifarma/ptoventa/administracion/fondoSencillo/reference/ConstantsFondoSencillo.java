@@ -1,5 +1,5 @@
 /**
-* @AUTHOR  JMIRANDA
+* @AUTHOR   
 * @SINCE  24.02.2010
 * */
 

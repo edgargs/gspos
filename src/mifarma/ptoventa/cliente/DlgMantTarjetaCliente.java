@@ -40,9 +40,9 @@ import java.awt.event.ActionListener;
 * Nombre de la Aplicación : DlgMantClienteNatural.java<br>
 * <br>
 * Histórico de Creación/Modificación<br>
-* PAULO      06.03.2006   Creación<br>
+*        06.03.2006   Creación<br>
 * <br>
-* @author Paulo Cesar Ameghino Rojas<br>
+* @author   Cesar Ameghino Rojas<br>
 * @version 1.0<br>
 *
 */

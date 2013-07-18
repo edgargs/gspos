@@ -184,7 +184,7 @@ public class DlgFormasPago extends JDialog
   }
 
   /** Permite mover el foco a la tabla comprobantesw y tabla detalle de comprobantes
-   * @author: JCORTEZ
+   * @author:  
    * @since: 04/07/07
    */
   private void btnComprobantes_actionPerformed(ActionEvent e)

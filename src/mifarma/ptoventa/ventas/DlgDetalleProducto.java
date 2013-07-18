@@ -38,8 +38,8 @@ import mifarma.ptoventa.ventas.reference.ConstantsVentas;
 import mifarma.ptoventa.ventas.reference.DBVentas;
 import mifarma.ptoventa.ventas.reference.VariablesVentas;
 
-import oracle.jdeveloper.layout.XYConstraints;
-import oracle.jdeveloper.layout.XYLayout;
+ 
+ 
 
 
 /**
@@ -66,7 +66,7 @@ public class DlgDetalleProducto extends JDialog {
   private BorderLayout borderLayout1 = new BorderLayout();
   private JPanel jContentPane = new JPanel();
   JPanel pnlStock = new JPanel();
-  XYLayout xYLayout2 = new XYLayout();
+   
   JLabel lblUnidades = new JLabel();
   JLabel lblStock = new JLabel();
   JLabel lblFechaHora = new JLabel();
@@ -167,7 +167,7 @@ public class DlgDetalleProducto extends JDialog {
     pnlStock.setBounds(new Rectangle(15, 10, 370, 55));
     pnlStock.setFont(new Font("SansSerif", 0, 11));
     pnlStock.setBackground(new Color(255, 130, 14));
-    pnlStock.setLayout(xYLayout2);
+    pnlStock. setLayout(null);
     pnlStock.setBorder(BorderFactory.createLineBorder(Color.black, 1));
     pnlStock.setForeground(Color.white);
     lblUnidades.setText("unidades");
@@ -282,10 +282,10 @@ public class DlgDetalleProducto extends JDialog {
     lblZan.setFont(new Font("SansSerif", 0, 11));
     lblZan.setBounds(new Rectangle(230, 10, 50, 20));
     scrListaAccionTerapeutica.getViewport();
-    pnlStock.add(lblUnidades, new XYConstraints(260, 15, 75, 20));
-    pnlStock.add(lblStock, new XYConstraints(170, 10, 80, 30));
-    pnlStock.add(lblFechaHora, new XYConstraints(20, 25, 130, 20));
-    pnlStock.add(lblStockTexto, new XYConstraints(20, 5, 125, 20));
+    pnlStock.add(lblUnidades);
+    pnlStock.add(lblStock);
+    pnlStock.add(lblFechaHora);
+    pnlStock.add(lblStockTexto);
     pnlTitle3.add(btnAccTerap, null);
     pnlDetalleProducto.add(lblZan, null);
     pnlDetalleProducto.add(lblZan_T, null);

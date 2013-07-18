@@ -418,7 +418,7 @@ public class DBReportes
   }
   
   /** Listado de formas de pago por pedido
-   *@author: JCORTEZ 
+   *@author:   
    *@since: 05/08/07
    */
     
@@ -434,7 +434,7 @@ public class DBReportes
   
   /**
    * Obtiene el Numero de  Dias Sin Ventas 
-   * @author : dubilluz
+   * @author :  
    * @since  : 21.08.2007
    */
   public static String obtieneNumeroDiasSinVentas() throws SQLException {
@@ -457,7 +457,7 @@ public class DBReportes
 
 /**
  * Obtiene el Reporte Detalle del vendedor por tipo de Venta
- * @author : asolis-
+ * @author :  -
  * @since  : 26.11.2008
  * */
   
@@ -484,7 +484,7 @@ public class DBReportes
 
     /**
      * Obtiene el Reporte  del vendedor por tipo de Venta según parametro enciado 
-     * @author : asolis
+     * @author :  
      * @since  : 26.11.2008
      * */
       

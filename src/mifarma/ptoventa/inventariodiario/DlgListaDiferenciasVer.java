@@ -228,7 +228,7 @@ public class DlgListaDiferenciasVer extends JDialog {
         {
             VariablesInvDiario.vFlagTimer=true;
             //this.setVisible(false);        
-            //JMIRANDA 03/08/09
+            //  03/08/09
             boolean rptaCerrar;
             rptaCerrar =  FarmaUtility.rptaConfirmDialogDefaultNo(this,"Después de Cerrar la Ventana, NO PODRA "+
                           "REALIZAR MODIFICACIONES!\n" +

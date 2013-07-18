@@ -11,12 +11,12 @@ import mifarma.ptoventa.recepcionCiega.reference.VariablesRecepCiega;
 import mifarma.ptoventa.reference.*;
 import mifarma.ptoventa.tomainventario.DlgIngresoCodigoBarra;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DBTomaInv {
 	private static ArrayList parametros;
-    private static final Log log = LogFactory.getLog(DBTomaInv.class);
+    private static final Logger log = LoggerFactory.getLogger(DBTomaInv.class);
 	public DBTomaInv() {
 	}
 
@@ -34,7 +34,7 @@ public class DBTomaInv {
 		parametros.add(pTipTomaInv.trim());
     /**
      * Modificado : usuario quien se logueo
-     * @author : dubilluz
+     * @author :  
      * @since  : 20.07.2007
      */
      parametros.add(pIdUsu.trim());
@@ -50,7 +50,7 @@ public class DBTomaInv {
 		parametros.add(pSecToma.trim());
     /**
      * Modificado : usuario quien se logueo
-     * @author : dubilluz
+     * @author :  
      * @since  : 20.07.2007
      */
      parametros.add(pIdUsu.trim());
@@ -67,7 +67,7 @@ public class DBTomaInv {
 		parametros.add(pCodLab.trim());
     /**
      * Modificado : usuario quien se logueo
-     * @author : dubilluz
+     * @author :  
      * @since  : 20.07.2007
      */
      parametros.add(pIdUsu.trim());    
@@ -317,7 +317,7 @@ public class DBTomaInv {
 	}
   /**
    * Lista los laboratorios segun el estado
-   * @author dubilluz
+   * @author  
    * @since  08.01.2008
    */
 	public static void cargaLabxTomaFiltro(FarmaTableModel pTableModel,String pfiltroEstado) throws SQLException {
@@ -340,7 +340,7 @@ public class DBTomaInv {
 
     /**
      * retorna los datos del producto para ingresar cantidad y Fraccion.
-     * @author dubilluz
+     * @author  
      * @since  21.12.2009
      * @param pArrayList
      * @param pCodProducto
@@ -358,7 +358,7 @@ public class DBTomaInv {
 
     /**
      * INSERTA LOS DATOS PARA EL CONTEO DE PRODUCTOS EN LA TOMA TRADICIONAL
-     * @author JMIRANDA
+     * @author  
      * @since  21.12.2009
      * @param pSecTomaInv
      * @param pSecAuxConteo
@@ -395,7 +395,7 @@ public class DBTomaInv {
                        "PTOVENTA_TOMA_INV.TI_P_INS_AUX_CONTEO_TOMA(?,?,?,?,?,?,?,?,?,?,?)",parametros,false);
     } 
     
-    //JMIRANDA 23.12.09
+    //  23.12.09
     public static String getSecAuxConteo(String pSecTomaInv) throws SQLException{
         parametros = new ArrayList();
         parametros.add(FarmaVariables.vCodGrupoCia);

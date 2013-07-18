@@ -34,8 +34,8 @@ import mifarma.ptoventa.inventariodiario.reference.DBInvDiario;
 
 import mifarma.ptoventa.caja.reference.VariablesCaja;
 
-import oracle.jdeveloper.layout.XYConstraints;
-import oracle.jdeveloper.layout.XYLayout;
+ 
+ 
 
 import com.gs.mifarma.componentes.JLabelFunction;
 import com.gs.mifarma.componentes.JButtonLabel;
@@ -55,8 +55,8 @@ import mifarma.ptoventa.reference.ConstantsPtoVenta;
 import mifarma.ptoventa.ventas.DlgMensajeUsuario;
 import mifarma.ptoventa.ventas.reference.VariablesVentas;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 /**
  * Copyright (c) 2009 MIFARMA S.A.C.<br>
  * <br>
@@ -64,15 +64,15 @@ import org.apache.commons.logging.LogFactory;
  * Nombre de la Aplicación : DlgInicioInvDiario.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * DUBILLUZ    23.06.2009   Creación<br>
+ *      23.06.2009   Creación<br>
  * <br>
  * @author Diego Armando Ubilluz Carrillo<br>
  * @version 1.0<br>
  * 
  */
 public class DlgPedidoPendienteDiario extends JDialog {
-    private static final Log log = 
-        LogFactory.getLog(DlgPedidoPendienteDiario.class);
+    private static final Logger log = 
+        LoggerFactory.getLogger(DlgPedidoPendienteDiario.class);
     Frame myParentFrame;
     FarmaTableModel tableModelDetallePedido;
     FarmaTableModel tableModelListaPendientes;
@@ -82,10 +82,10 @@ public class DlgPedidoPendienteDiario extends JDialog {
     JLabelFunction lblEnter = new JLabelFunction();
     JScrollPane scrPendientes = new JScrollPane();
     JPanel pnlRelacion = new JPanel();
-    XYLayout xYLayout2 = new XYLayout();
+     
     JScrollPane scrDetalle = new JScrollPane();
     JPanel pnlItems = new JPanel();
-    XYLayout xYLayout3 = new XYLayout();
+     
     JButton btnDetalle = new JButton();
     JLabelFunction lblEsc = new JLabelFunction();
     JTable tblDetalle = new JTable();
@@ -142,7 +142,7 @@ public class DlgPedidoPendienteDiario extends JDialog {
         scrPendientes.setBounds(new Rectangle(5, 40, 655, 100));
         scrPendientes.setBackground(new Color(255, 130, 14));
         pnlRelacion.setBackground(new Color(255, 130, 14));
-        pnlRelacion.setLayout(xYLayout2);
+        pnlRelacion. setLayout(null);
         pnlRelacion.setFont(new Font("SansSerif", 0, 11));
         pnlRelacion.setBounds(new Rectangle(5, 15, 655, 25));
         scrDetalle.setFont(new Font("SansSerif", 0, 11));
@@ -150,7 +150,7 @@ public class DlgPedidoPendienteDiario extends JDialog {
         scrDetalle.setBackground(new Color(255, 130, 14));
         pnlItems.setBackground(new Color(255, 130, 14));
         pnlItems.setFont(new Font("SansSerif", 0, 11));
-        pnlItems.setLayout(xYLayout3);
+        pnlItems. setLayout(null);
         pnlItems.setBounds(new Rectangle(5, 145, 655, 25));
         btnDetalle.setText("Detalle del Pedido :");
         btnDetalle.setFont(new Font("SansSerif", 1, 11));
@@ -200,12 +200,11 @@ public class DlgPedidoPendienteDiario extends JDialog {
         scrPendientes.getViewport().add(tblListaPendientes, null);
         jContentPane.add(lblEnter, null);
         jContentPane.add(scrPendientes, null);
-        pnlRelacion.add(btnPedidosPendeintes, 
-                        new XYConstraints(10, 5, 245, 15));
+        pnlRelacion.add(btnPedidosPendeintes);
         jContentPane.add(pnlRelacion, null);
         scrDetalle.getViewport().add(tblDetalle, null);
         jContentPane.add(scrDetalle, null);
-        pnlItems.add(btnDetalle, new XYConstraints(10, 5, 125, 15));
+        pnlItems.add(btnDetalle);
         jContentPane.add(pnlItems, null);
         jContentPane.add(lblEsc, null);
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);

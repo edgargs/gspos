@@ -11,12 +11,12 @@ import mifarma.common.FarmaTableModel;
 import mifarma.common.FarmaVariables;
 
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DBCampAcumulada {
     
-    private static final Log log = LogFactory.getLog(DBCampAcumulada.class);    
+    private static final Logger log = LoggerFactory.getLogger(DBCampAcumulada.class);    
     private static ArrayList parametros = new ArrayList();
     
     public DBCampAcumulada() {
@@ -25,7 +25,7 @@ public class DBCampAcumulada {
     /**
      * metodo encargado de cargar todas campañas de acumulacion vigentes.
      * @since 15.12.2008
-     * @autor jcallo
+     * @autor  
      * @param tblModel
      * @throws SQLException
      */
@@ -45,7 +45,7 @@ public class DBCampAcumulada {
     /**
      * metodo encargado de cargar todas campañas de acumulacion vigentes.
      * @since 15.12.2008
-     * @autor jcallo
+     * @autor  
      * @param tblModel
      * @throws SQLException
      */
@@ -65,7 +65,7 @@ public class DBCampAcumulada {
     /**
      * metodo encargado de obtener todos los campos necesarios de los clientes para la campañas de acumulacion
      * @since 15.12.2008
-     * @autor jcallo
+     * @autor  
      * @param pTableModel
      * @throws SQLException
      */
@@ -79,7 +79,7 @@ public class DBCampAcumulada {
     /**
      * metodo encargado de obtener todos los COD campos necesarios de los clientes para las campañas de acumulacion
      * @since 15.12.2008
-     * @autor jcallo
+     * @autor  
      * @param array
      * @throws SQLException
      */
@@ -93,7 +93,7 @@ public class DBCampAcumulada {
     /**
      * metodo encargado de obtener datos del cliente si es que existe
      * @since 15.12.2008
-     * @autor jcallo
+     * @autor  
      * @param array
      * @param pDni
      * @throws SQLException
@@ -127,7 +127,7 @@ public class DBCampAcumulada {
                             parametros,
                             FarmaConstants.CONECTION_MATRIZ,pIndCloseConecction);
             */
-        //JMIRANDA 16/07/09
+        //  16/07/09
         FarmaDBUtility.executeSQLStoredProcedure(null,
                         "PTOVENTA_MATRIZ_CA_CLI.CA_F_CUR_DATOS_DNI(?)",parametros,false);
             
@@ -135,7 +135,7 @@ public class DBCampAcumulada {
     
     /**
      * Obtiene parametro de validacion de longitud de doc de identificacion
-     * @Author JCALLO
+     * @Author  
      * @since 15.12.2008
      * @throws SQLException
      */
@@ -201,7 +201,7 @@ public class DBCampAcumulada {
                 "PTOVENTA_MATRIZ_CA_CLI.CA_P_INSERT_CLIENTE_MATRIZ(?,?,?,?,?,?,?,?,?,?,?,?,?)", 
                 parametros, false,FarmaConstants.CONECTION_MATRIZ,FarmaConstants.INDICADOR_N);
         */
-        //JMIRANDA 16/07/09
+        //  16/07/09
         FarmaDBUtility.executeSQLStoredProcedure(null,
                         "PTOVENTA_MATRIZ_CA_CLI.CA_P_INSERT_CLIENTE_MATRIZ(?,?,?,?,?,?,?,?,?,?,?,?,?)",parametros,false);
     }
@@ -275,7 +275,7 @@ public class DBCampAcumulada {
                 "PTOVENTA_MATRIZ_CA_CLI.CA_P_UPD_TARJETA_CLIENTE(?,?,?,?)",
                         parametros, false,FarmaConstants.CONECTION_MATRIZ,FarmaConstants.INDICADOR_N);
         */
-        //JMIRANDA 16/07/09
+        //  16/07/09
         FarmaDBUtility.executeSQLStoredProcedure(null,
                         "PTOVENTA_MATRIZ_CA_CLI.CA_P_UPD_TARJETA_CLIENTE(?,?,?,?)",parametros,false);
     }
@@ -309,7 +309,7 @@ public class DBCampAcumulada {
                 "PTOVENTA_MATRIZ_CA_CLI.CA_P_INSERT_CLI_CAMPANIA(?,?,?,?)", 
                 parametros, false,FarmaConstants.CONECTION_MATRIZ,FarmaConstants.INDICADOR_N);
         */
-        //JMIRANDA 16/07/09
+        //  16/07/09
         FarmaDBUtility.executeSQLStoredProcedure(null,
                         "PTOVENTA_MATRIZ_CA_CLI.CA_P_INSERT_CLI_CAMPANIA(?,?,?,?)",parametros,false);
     }

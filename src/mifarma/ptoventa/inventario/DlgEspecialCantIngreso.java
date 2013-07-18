@@ -37,7 +37,7 @@ import com.gs.mifarma.componentes.JTextFieldSanSerif;
 * Nombre de la Aplicación : DlgEspecialCantIngreso.java<br>
 * <br>
 * Histórico de Creación/Modificación<br>
-* JCORTEZ      09.09.2008   Creación<br>
+*        09.09.2008   Creación<br>
 * <br>
 * @author Jorge Cortez Alvarez<br>
 * @version 1.0<br>
@@ -338,7 +338,7 @@ DlgEspecialCantIngreso
   
   /**
    * metodo encargado de modificar la cantidad ingresada de un producto
-   *@author jcallo
+   *@author  
    *@since  17.10.2008 
    */
   private void modificarCantidad()

@@ -39,7 +39,7 @@ import mifarma.ptoventa.caja.reference.UtilityCaja;
 import mifarma.ptoventa.reference.ConstantsPtoVenta;
 import mifarma.ptoventa.reference.VariablesPtoVenta;
 
-//JMIRANDA 25/06/2009
+//  25/06/2009
 public class DlgListaImpresoraTermCreaMod extends JDialog {
     Frame myParentFrame;
 
@@ -179,9 +179,9 @@ public class DlgListaImpresoraTermCreaMod extends JDialog {
 
         if (!VariablesPtoVenta.vEjecutaAccionTecla) {
             VariablesPtoVenta.vEjecutaAccionTecla = true;
-            //JMIRANDA 25/06/2009
+            //  25/06/2009
             /*if (e.getKeyCode() == KeyEvent.VK_F1) {
-                //JCORTEZ 17/03/09
+                //  17/03/09
               
             } else if*/
             if (e.getKeyCode() == KeyEvent.VK_F2) {
@@ -202,8 +202,8 @@ public class DlgListaImpresoraTermCreaMod extends JDialog {
                 }
             } else if (e.getKeyCode() == KeyEvent.VK_F3) {
 
-                //JCORTEZ 14.04.09
-                //JMIRANDA MODIFICADO 24/06/2009
+                //  14.04.09
+                //  MODIFICADO 24/06/2009
 
                 if (FarmaVariables.vEconoFar_Matriz)
                     FarmaUtility.showMessage(this, 
@@ -258,11 +258,11 @@ public class DlgListaImpresoraTermCreaMod extends JDialog {
                                                     tblListaImpresoras.getSelectedRow(), 
                                                     4));
                      //PrintConsejo.imprimirCupon("hola","CONSEJO",002,"", "");
-                     // JMIRANDA  26/06/2009
+                     //    26/06/2009
                 
             } else if (e.getKeyCode() == KeyEvent.VK_F6) {
 
-                //JCORTEZ 04.06.09
+                //  04.06.09
                 //Se mostrara lista de IP relacionadas a la impresora
                 /* VariablesImpresoras.vTipoComp = tblListaImpresoras.getValueAt(tblListaImpresoras.getSelectedRow(), 7).toString().trim();
             VariablesImpresoras.vSecImpr = tblListaImpresoras.getValueAt(tblListaImpresoras.getSelectedRow(), 0).toString().trim();
@@ -333,7 +333,7 @@ public class DlgListaImpresoraTermCreaMod extends JDialog {
     }
 
     private void cargaListaImpresoras() {
-    //JMIRANDA MODIFICACION 25/06/2009
+    //  MODIFICACION 25/06/2009
         try {
             DBImpresoras.getListaImpresorasTermicas(tableModel);
             if (tblListaImpresoras.getRowCount() > 0)

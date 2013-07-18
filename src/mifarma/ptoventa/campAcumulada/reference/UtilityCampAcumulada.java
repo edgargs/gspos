@@ -4,18 +4,18 @@ import java.util.regex.Pattern;
 
 import mifarma.ptoventa.otros.reference.UtilityOtros;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class UtilityCampAcumulada {
     public UtilityCampAcumulada() {
     }
     
-    private static final Log log = LogFactory.getLog(UtilityOtros.class);
+    private static final Logger log = LoggerFactory.getLogger(UtilityOtros.class);
         
     /**
      * Metodo encargado de validar formato de correo.
-     *@autor jcallo
+     *@autor  
      *@since 15.12.2008
      */
     public static boolean validarEmail( String email ) { 
@@ -27,7 +27,7 @@ public class UtilityCampAcumulada {
     
     /**
      * Metodo encargado de validacion del documento de identificacion ( DNI, CARNE DE EXTRANJERIA)     * 
-     *@autor jcallo
+     *@autor  
      *@since 15.12.2008
      *@param String docIden , String valoresValidos
      */

@@ -417,7 +417,7 @@ public class DlgListaEliminacionEfectivoRendido
                                                             VariablesCajaElectronica.vFechaCierreDia);*/
       DBCajaElectronica.listaEliminacionCuadraturaCierreDia_02(tableModel,
                                                                     VariablesCajaElectronica.vCodCuadratura,
-                                                                    VariablesCajaElectronica.vFechaCierreDia); //ASOSA, 25.04.2010
+                                                                    VariablesCajaElectronica.vFechaCierreDia); // , 25.04.2010
       VariablesCajaElectronica.vArrayListEliminacionEfectivoRendido.clear();                                                            
       if(tblListaEliminacion.getRowCount()>0){
         //FarmaUtility.ordenar(tblListaEliminacion,tableModel,ConstantsCajaElectronica.INDICE_COLUMNA_SEC_CUAD_CD,FarmaConstants.ORDEN_ASCENDENTE);

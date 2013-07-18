@@ -195,7 +195,7 @@ public class DlgListaTomasInventarioDiario extends JDialog {
 	if (tieneRegistroSeleccionado(tblRelacionTomas)) {
 	  cargaTomasInventario();  //Carga la Lista
 	  cargarRegistroSeleccionado();
-                //JMIRANDA 04/08/09
+                //  04/08/09
           if (VariablesInvDiario.vIndSegConteo.equalsIgnoreCase("N")){
                 DlgProductosPorTomaDiario dlgProductosPorTomaDiario = new DlgProductosPorTomaDiario(myParentFrame, "", true);
 		dlgProductosPorTomaDiario.setVisible(true);                
@@ -374,7 +374,7 @@ public class DlgListaTomasInventarioDiario extends JDialog {
 
 	private void cargarToma() throws SQLException {
 		DBInvDiario.cargarToma();
-                //JMIRANDA 03/08/09
+                //  03/08/09
                 //DBInvDiario.modificaSegConteo();                
 	}
         

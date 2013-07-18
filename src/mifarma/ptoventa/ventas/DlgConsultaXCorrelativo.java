@@ -41,11 +41,11 @@ import mifarma.ptoventa.ventas.reference.DBVentas;
 
 import mifarma.ptoventa.ventas.reference.VariablesVentas;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DlgConsultaXCorrelativo extends JDialog {
-    private static final Log log = LogFactory.getLog(DlgConsultaXCorrelativo.class);
+    private static final Logger log = LoggerFactory.getLogger(DlgConsultaXCorrelativo.class);
     private JPanelWhite jContentPane = new JPanelWhite();
     private BorderLayout borderLayout1 = new BorderLayout();    
     private JPanelTitle pnlTitle = new JPanelTitle();

@@ -223,7 +223,7 @@ public class DlgInicioToma extends JDialog {
 	}
 
   /*
-   * 23/03/2006 Paulo Metodo creado para conseguir la cantidad de items seleccionados
+   * 23/03/2006   Metodo creado para conseguir la cantidad de items seleccionados
    */
   private void cantidadseleccion()
   { 
@@ -251,13 +251,13 @@ public class DlgInicioToma extends JDialog {
 			//seleccionarTodos();
       /*
      * Fecha        Usuario     Comentario
-     * 22/03/2006   Paulo       llama a la nueva funcionalidad q carga los tipos de laboratorio
+     * 22/03/2006           llama a la nueva funcionalidad q carga los tipos de laboratorio
      */
 			listadoSeleccionTipoLaboratorio();
 		} else if (e.getKeyCode() == KeyEvent.VK_F11) {
       /**
        * VAlidacion si el Usuario tiene el Rol Auditor
-       * @author : dubilluz
+       * @author :  
        * @since  : 20.07.2007
        */
       if(FarmaVariables.vEconoFar_Matriz)
@@ -293,7 +293,7 @@ public class DlgInicioToma extends JDialog {
                 }
               }
               FarmaUtility.aceptarTransaccion();
-              //DUBILLUZ - 07.01.2010
+              //  - 07.01.2010
               if(tipToma.equals("T"))
               {
                 System.err.println("Actualizara los indices por Toma TOTAL");  
@@ -301,7 +301,7 @@ public class DlgInicioToma extends JDialog {
                 DBTomaInv.actualizarInidices();
                 System.err.println("Fin");  
               }
-              //FIN - DUBILLUZ - 07.01.2010  
+              //FIN -   - 07.01.2010  
               deseleccionarTodos();
               FarmaUtility.showMessage(this,"La operación se realizó correctamente",txtLaboratorio);
               cerrarVentana(true);
@@ -399,7 +399,7 @@ public class DlgInicioToma extends JDialog {
 		}
 	}
 
-  /*22/03/2006 Paulo Metodo Creado para la selecion de laboratorio
+  /*22/03/2006   Metodo Creado para la selecion de laboratorio
   */
   private void seleccionaLaboratorios()
   {
@@ -448,7 +448,7 @@ public class DlgInicioToma extends JDialog {
 
   /*
    * Fecha        Usuario     Comentario
-   * 22/03/2006   Paulo       Implementar la funcionalidad de Seleccion de tipo de Laboratorio
+   * 22/03/2006           Implementar la funcionalidad de Seleccion de tipo de Laboratorio
    */
   private void listadoSeleccionTipoLaboratorio()
   {
@@ -486,7 +486,7 @@ public class DlgInicioToma extends JDialog {
       dlgLogin.setVisible(true);
       FarmaVariables.vNuSecUsu  = numsec ;
       /**
-       * @author : dubilluz
+       * @author :  
        * @since  : 19.07.2007
        */
       VariablesTomaInv.vIdUsu_Toma = FarmaVariables.vIdUsu;

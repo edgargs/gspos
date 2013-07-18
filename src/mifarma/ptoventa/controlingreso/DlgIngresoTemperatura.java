@@ -38,8 +38,8 @@ import mifarma.common.FarmaSearch;
 import mifarma.common.FarmaUtility;
 import mifarma.common.FarmaVariables;
 
-import oracle.jdeveloper.layout.XYConstraints;
-import oracle.jdeveloper.layout.XYLayout;
+ 
+ 
 import java.awt.event.KeyListener;
 
 
@@ -53,7 +53,7 @@ import mifarma.ptoventa.controlingreso.reference.*;
  * Nombre de la Aplicación : DlgIngresoTemperatura.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JCORTEZ 11.02.2009 Creación<br>
+ *   11.02.2009 Creación<br>
  * <br>
  *
  * @author JORGE CORTEZ ALVAREZ<br>
@@ -248,14 +248,14 @@ public class DlgIngresoTemperatura
     lblCodPromocion.setVisible(false);
     lblCodPromocion.setBounds(new Rectangle(0, 10, 105, 15));
         //--Se cambio el tamaño de digitos
-    //  12.09.2008 Dubilluz
-        pnlTitle1.add(lblCodPromocion, new XYConstraints(0, 10, 105, 15));
-        pnlTitle1.add(txtRefrig, new XYConstraints(115, 70, 195, 20));
-        pnlTitle1.add(txtAlmc, new XYConstraints(115, 45, 195, 20));
-        pnlTitle1.add(lblValor_T, new XYConstraints(15, 70, 90, 15));
-        pnlTitle1.add(btnFechaInicial, new XYConstraints(15, 20, 90, 15));
-        pnlTitle1.add(txtVTa, new XYConstraints(115, 15, 195, 20));
-        pnlTitle1.add(lblFechaFinal_T, new XYConstraints(15, 50, 90, 15));
+    //  12.09.2008  
+        pnlTitle1.add(lblCodPromocion);
+        pnlTitle1.add(txtRefrig);
+        pnlTitle1.add(txtAlmc);
+        pnlTitle1.add(lblValor_T);
+        pnlTitle1.add(btnFechaInicial);
+        pnlTitle1.add(txtVTa);
+        pnlTitle1.add(lblFechaFinal_T);
         pnlHeader1.add(lblFecha, null);
         pnlHeader1.add(lblCodigo_T, null);
         pnlHeader1.add(lblDescLocal, null);

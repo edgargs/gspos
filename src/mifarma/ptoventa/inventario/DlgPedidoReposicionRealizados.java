@@ -401,7 +401,7 @@ public class DlgPedidoReposicionRealizados extends JDialog
 
    
    /**
-    * @AUTHOR JCORTEZ 
+    * @AUTHOR   
     * @SINCE 16/10/2008
     * eventos fecha
     * */
@@ -433,7 +433,7 @@ public class DlgPedidoReposicionRealizados extends JDialog
     }
     
     /**
-     * @AUTHOR JCORTEZ 
+     * @AUTHOR   
      * @SINCE 16/10/2008
      * Se valida el ingreso de los campos fecha 
      * */

@@ -56,8 +56,8 @@ import mifarma.ptoventa.ce.reference.VariablesCajaElectronica;
 import mifarma.ptoventa.reference.ConstantsPtoVenta;
 import mifarma.ptoventa.reference.VariablesPtoVenta;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -67,7 +67,7 @@ import org.apache.commons.logging.LogFactory;
  * Nombre de la Aplicación : DlgIngresoSobre.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JCORTEZ     03.11.2009   Creación<br>
+ *       03.11.2009   Creación<br>
  * <br>
  * @AUTHOR JORGE LUIS CORTEZ ALVAREZ<br>
  * @VERSION 1.0<br>
@@ -339,7 +339,7 @@ public class DlgControlSobres extends JDialog
 
     private void btnPeriodo_actionPerformed(ActionEvent e)
   {
-    //FarmaUtility.moveFocus(txtFecInicio); ASOSA, 07.06.2010
+    //FarmaUtility.moveFocus(txtFecInicio);  , 07.06.2010
   }
   
   private void btnListado_actionPerformed(ActionEvent e)
@@ -426,7 +426,7 @@ public class DlgControlSobres extends JDialog
   
     /**
      * imprime sobres
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE 08.04.2010
      */
     private void imprimeSobre(JDialog pDialogo)
@@ -592,10 +592,10 @@ public class DlgControlSobres extends JDialog
     try
     {  
         //DBCaja.getListaSobresPorAprobar(tableModelLista,fechIni,fecFin); antes
-        DBCajaElectronica.listarSobresParcialesXAprobar(tableModelLista); //ASOSA, 07.06.2010
+        DBCajaElectronica.listarSobresParcialesXAprobar(tableModelLista); // , 07.06.2010
         if(tblSobres.getRowCount()>0){
-           //FarmaUtility.ordenar(tblSobres, tableModelLista, COL_ORDEN, FarmaConstants.ORDEN_DESCENDENTE); ASOSA, 07.06.2010
-           //FarmaUtility.moveFocus(txtFecInicio); ASOSA, 07.06.2010
+           //FarmaUtility.ordenar(tblSobres, tableModelLista, COL_ORDEN, FarmaConstants.ORDEN_DESCENDENTE);  , 07.06.2010
+           //FarmaUtility.moveFocus(txtFecInicio);  , 07.06.2010
         }
         lblRegistros.setText(tblSobres.getRowCount()+"");
         
@@ -619,9 +619,9 @@ public class DlgControlSobres extends JDialog
                 }
             }
             FarmaUtility.initSimpleListCleanColumns(tblSobres, tableModelLista, 
-                ConstantsCaja.columnsListaSobresControl_02,aux,Color.white,Color.red,false); //ASOSA, 07.06.2010
+                ConstantsCaja.columnsListaSobresControl_02,aux,Color.white,Color.red,false); // , 07.06.2010
         }
-        lblTotal.setText(FarmaUtility.formatNumber(FarmaUtility.sumColumTable(tblSobres,8))); //ASOSA, 07.06.2010
+        lblTotal.setText(FarmaUtility.formatNumber(FarmaUtility.sumColumTable(tblSobres,8))); // , 07.06.2010
         
     }catch(SQLException sql)
     {
@@ -693,7 +693,7 @@ public class DlgControlSobres extends JDialog
         if(e.getKeyCode()==KeyEvent.VK_ENTER){
            if(txtFecFin.getText().trim().length()>1){
             btnBuscar.doClick();
-            //FarmaUtility.moveFocus(txtFecInicio); ASOSA, 07.06.2010
+            //FarmaUtility.moveFocus(txtFecInicio);  , 07.06.2010
            }
         }
         chkKeyPressed(e);
@@ -727,10 +727,10 @@ public class DlgControlSobres extends JDialog
           else if(txtFecFin.getText().length()<1||txtFecFin.getText().length()<10){
           retorno = false;
           FarmaUtility.showMessage(this,"Formato de fecha fin  inválido",txtFecFin);
-          }else if(!FarmaUtility.validaFecha(fechaini.trim(),"dd/MM/yyyy")){//ASOSA, 01.06.2010
+          }else if(!FarmaUtility.validaFecha(fechaini.trim(),"dd/MM/yyyy")){// , 01.06.2010
           retorno = false;
           FarmaUtility.showMessage(this,"Fecha de inicio inválida",txtFecInicio);
-          }else if(!FarmaUtility.validaFecha(fechafin.trim(),"dd/MM/yyyy")){ //ASOSA, 01.06.2010
+          }else if(!FarmaUtility.validaFecha(fechafin.trim(),"dd/MM/yyyy")){ // , 01.06.2010
           retorno = false;
           FarmaUtility.showMessage(this,"Fecha de fin inválida",txtFecFin);
           FarmaUtility.moveFocus(txtFecFin);
@@ -759,7 +759,7 @@ public class DlgControlSobres extends JDialog
     
     /**
      * ACtivar segun rol
-     * @author ASOSA
+     * @author  
      * @since 07.06.2010
      */
     private void activarSegunRol(){
@@ -804,7 +804,7 @@ public class DlgControlSobres extends JDialog
         int pPos = tblSobres.getSelectedRow();
         
         //if(pPos>0) {
-        if(pPos>=0||pTipoAccion.toUpperCase().trim().equalsIgnoreCase(ConstantsSobres.ACC_INGRESO)) { //ASOSA, 10.06.2010
+        if(pPos>=0||pTipoAccion.toUpperCase().trim().equalsIgnoreCase(ConstantsSobres.ACC_INGRESO)) { // , 10.06.2010
             if (pTipoAccion.toUpperCase().trim().equalsIgnoreCase(ConstantsSobres.ACC_MODIFICA) || 
                 pTipoAccion.toUpperCase().trim().equalsIgnoreCase(ConstantsSobres.ACC_ELIMINA) || 
                 pTipoAccion.toUpperCase().trim().equalsIgnoreCase(ConstantsSobres.ACC_APRUEBA)
@@ -823,14 +823,14 @@ public class DlgControlSobres extends JDialog
         else{
             FarmaUtility.showMessage(this,"Debe de seleccionar una fila de la tabla.", tblSobres);
         }
-        listarSobres();//ASOSA, 10.06.2010
+        listarSobres();// , 10.06.2010
         if(tblSobres.getRowCount()>0)
            FarmaGridUtils.moveRowSelection(tblSobres,0);
     }
     
     /**
      * Reimprime un sobre
-     * @author ASOSA
+     * @author  
      * @since 04.08.2010
      */
     private void reimprimir(){

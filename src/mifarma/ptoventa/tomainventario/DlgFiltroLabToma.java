@@ -38,7 +38,7 @@ import mifarma.ptoventa.reference.ConstantsPtoVenta;
 * Nombre de la Aplicación : DlgFiltroLabToma.java<br>
 * <br>
 * Histórico de Creación/Modificación<br>
-* Dubilluz      30.07.2007   Creación<br>
+*        30.07.2007   Creación<br>
 * <br>
 * @author Diego Ubilluz Carrillo<br>
 * @version 1.0<br>

@@ -50,7 +50,7 @@ public class VariablesInvCiclico
   public static String vNomLab = "";
 
   /**Alamacena el valos del laboratorio si es farma o no
-   * 22/03/2006   Paulo   Variable para guardra el valor del tipo de laboratorio
+   * 22/03/2006       Variable para guardra el valor del tipo de laboratorio
    */
   public static String vLaboratorio = "";
 
@@ -102,6 +102,6 @@ public class VariablesInvCiclico
 
   public static String vIndProceso = "";
 
-  //Variables Paulo
+  //Variables  
 
 }

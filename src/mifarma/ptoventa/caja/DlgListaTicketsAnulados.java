@@ -24,8 +24,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import mifarma.common.FarmaConnectionRemoto;
 import mifarma.common.FarmaConstants;
@@ -75,7 +75,7 @@ import mifarma.ptoventa.ventas.reference.UtilityVentas;
  * Nombre de la Aplicación : DlgDatosLaboratorio.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JCHAVEZ      06.07.2009   Creación <br>
+ *        06.07.2009   Creación <br>
  * <br>
  * @author Jenny Chavez<br>
  * @version 1.0<br>
@@ -88,7 +88,7 @@ public class DlgListaTicketsAnulados extends JDialog
     FarmaTableModel tableModelCabeceraPedido;
     FarmaTableModel tableModelDetallePedido;
     Frame myParentFrame;
-    private static final Log log = LogFactory.getLog(DlgAnularPedido.class);           
+    private static final Logger log = LoggerFactory.getLogger(DlgAnularPedido.class);           
     private boolean vAceptar=false;
     private BorderLayout borderLayout1 = new BorderLayout();
     private JPanel jContentPane = new JPanel();
@@ -393,7 +393,7 @@ public class DlgListaTicketsAnulados extends JDialog
     /* ************************************************************************ */
     private void btnCorrelativo_actionPerformed(ActionEvent e)
     {
-        //JMIRANDA 22.08.2011
+        //  22.08.2011
         if(UtilityVentas.getIndImprimeCorrelativo()){
           txtCorrelativo.enable(true);
           txtMonto.enable(true);
@@ -472,7 +472,7 @@ public class DlgListaTicketsAnulados extends JDialog
     private void btnCabecera_actionPerformed(ActionEvent e)
     {
       //FarmaUtility.moveFocus(btnCabecera);
-      //JMIRANDA 22.08.2011
+      //  22.08.2011
       if(UtilityVentas.getIndImprimeCorrelativo()){
           FarmaUtility.moveFocus(tblCabeceraPedido);}
       else{        
@@ -671,7 +671,7 @@ public class DlgListaTicketsAnulados extends JDialog
     }
     
     private void obtieneImpresTicket(){        
-        log.debug("JCORTEZ: =VariablesCaja.vTipComp--> "+VariablesCaja.vTipComp);
+        log.debug(" : =VariablesCaja.vTipComp--> "+VariablesCaja.vTipComp);
         if(VariablesCaja.vTipComp.equalsIgnoreCase(ConstantsVentas.TIPO_COMP_TICKET)){
           try{
              String DescImpr="";
@@ -684,17 +684,17 @@ public class DlgListaTicketsAnulados extends JDialog
              String exist="";
              exist=DBCaja.getExistSecImp(VariablesCaja.vSecImprLocalTicket,FarmaVariables.vIpPc);
              log.debug("c");
-             log.debug("JCORTEZ: Secuencia Impr--> "+result);
+             log.debug(" : Secuencia Impr--> "+result);
              if(exist.trim().equalsIgnoreCase("2")){   
-                log.debug("JCORTEZ:SecImp por IP--> "+result); 
+                log.debug(" :SecImp por IP--> "+result); 
                 VariablesCaja.vSecImprLocalTicket=result;
              }
              else if (exist.equalsIgnoreCase("X")){
                 VariablesCaja.vSecImprLocalTicket=exist.trim();                
              }else if(exist.equalsIgnoreCase("1")){
-                log.debug("JCORTEZ: Se encontro impresora origen--> "+exist); 
+                log.debug(" : Se encontro impresora origen--> "+exist); 
              }else {
-                log.debug("JCORTEZ: Sec disponible--> "+exist); 
+                log.debug(" : Sec disponible--> "+exist); 
                 VariablesCaja.vSecImprLocalTicket=exist.trim();
              }
              if(!VariablesCaja.vSecImprLocalTicket.equalsIgnoreCase("X")){
@@ -766,7 +766,7 @@ public class DlgListaTicketsAnulados extends JDialog
             
             ruta=DBCaja.ObtieneDirectorio();
             //ruta=ruta+"T_"+VariablesCaja.vNumPedVta_Anul+"_Anul";
-            //JMIRANDA 08/07/09
+            //  08/07/09
             ruta=ruta+fechaImpresion+"_"+"T_"+VariablesCaja.vNumPedVta_Anul+"_Anul";
             
             caja_turno=DBCaja.obtieneCajaTurnoPedidoAnulado(VariablesCaja.vNumPedVta_Anul);
@@ -805,13 +805,13 @@ public class DlgListaTicketsAnulados extends JDialog
             e.printStackTrace();
             FarmaUtility.enviaCorreoPorBD(FarmaVariables.vCodGrupoCia,
                                           FarmaVariables.vCodLocal,
-                                          //"dubilluz",
+                                          //" ",
                                           VariablesPtoVenta.vDestEmailErrorAnulacion,
                                           "Error de Impresión Ticket Anulado",
                                           "Error de Impresión",
                                           "Error al imprimir ticket Anulado :<br>"+
                                           "Correlativo : " +VariablesCaja.vNumPedVta_Anul+"<br>"+
-                                          "IP PC: " + FarmaVariables.vIpPc + "<br>"+ //JMIRANDA 30/07/09
+                                          "IP PC: " + FarmaVariables.vIpPc + "<br>"+ //  30/07/09
                                           "Error: " + e,
                                           //"joliva;operador;daubilluz@gmail.com");
                                           "");
@@ -823,7 +823,7 @@ public class DlgListaTicketsAnulados extends JDialog
     /**
      * Valida si se muestra la nueva versión para Imprimir o 
      * no Imprimir Correlativo, así como usar pantalla para Ingresar Numero Comprobante y Monto Neto si es Negativo
-     * @author JMIRANDA
+     * @author  
      * @since 22.08.2011
      * @return true si imprime correlativo
      */
@@ -859,9 +859,9 @@ public class DlgListaTicketsAnulados extends JDialog
         chkKeyPressed(e);
     }
     
-    //JMIRANDA 25.08.2011 Setear el Objeto para enfocar después de los mensajes.
+    //  25.08.2011 Setear el Objeto para enfocar después de los mensajes.
     private void setearObjetoFocus(){
-        //JMIRANDA 25.08.2011 verificar si se utiliza funcionalidad nueva
+        //  25.08.2011 verificar si se utiliza funcionalidad nueva
                if(validarMostrarCorrelativo())
                    pObj = txtCorrelativo;
                else 

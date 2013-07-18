@@ -44,8 +44,8 @@ import mifarma.ptoventa.ventas.reference.ConstantsVentas;
 import mifarma.ptoventa.ventas.reference.DBVentas;
 import mifarma.ptoventa.ventas.reference.VariablesVentas;
 
-import oracle.jdeveloper.layout.XYConstraints;
-import oracle.jdeveloper.layout.XYLayout;
+ 
+ 
 
 import mifarma.common.FarmaConnectionRemoto;
 
@@ -62,7 +62,7 @@ public class DlgStockLocales extends JDialog
   private GridLayout gridLayout1 = new GridLayout();
   private JPanelTitle jPanelTitle1 = new JPanelTitle();
   JPanel pnlRelacion = new JPanel();
-  XYLayout xYLayout2 = new XYLayout();
+  
   private JButtonLabel btnStockLocales = new JButtonLabel();
   private JPanelTitle pnlDatosCliente = new JPanelTitle();
   private JLabelWhite lblProducto = new JLabelWhite();
@@ -73,7 +73,7 @@ public class DlgStockLocales extends JDialog
   private JScrollPane srcStockLocalesPreferidos = new JScrollPane();
   private JTable tblStockLocalesPreferidos = new JTable();
   JPanel pnlRelacion1 = new JPanel();
-  XYLayout xYLayout3 = new XYLayout();
+  
   private JScrollPane jScrollPane3 = new JScrollPane();
   private JButtonLabel btnDemasLocales = new JButtonLabel();
   private JScrollPane srcDemasLocales = new JScrollPane();
@@ -93,7 +93,7 @@ public class DlgStockLocales extends JDialog
   
   /**
    * Constantes para los INdicadores de Stock
-   * @author : dubilluz
+   * @author :  
    * @since  : 20.08.2007
    */
   private int POS_INDICADOR_LIMA      = 0; 
@@ -139,7 +139,7 @@ public class DlgStockLocales extends JDialog
       });
     jPanelTitle1.setBounds(new Rectangle(25, 25, 1, 1));
     pnlRelacion.setBackground(new Color(255, 130, 14));
-    pnlRelacion.setLayout(xYLayout2);
+    pnlRelacion. setLayout(null);
     pnlRelacion.setFont(new Font("SansSerif", 0, 11));
     pnlRelacion.setBounds(new Rectangle(10, 145, 475, 25));
     btnStockLocales.setText("Stock Locales Preferidos :");
@@ -173,7 +173,7 @@ public class DlgStockLocales extends JDialog
         }
       });
     pnlRelacion1.setBackground(new Color(255, 130, 14));
-    pnlRelacion1.setLayout(xYLayout3);
+    pnlRelacion1. setLayout(null);
     pnlRelacion1.setFont(new Font("SansSerif", 0, 11));
     pnlRelacion1.setBounds(new Rectangle(10, 430, 475, 25));
     btnDemasLocales.setText("Stock Demas Locales :");
@@ -227,8 +227,8 @@ public class DlgStockLocales extends JDialog
     pnlTitle5.add(lblStockAlmacen, null);
     pnlTitle5.add(lblStockLima, null);
     pnlTitle5.add(lblStockProvincias, null);
-    pnlRelacion1.add(jScrollPane3, new XYConstraints(0, 25, 620, 120));
-    pnlRelacion1.add(btnDemasLocales, new XYConstraints(10, 5, 165, 15));
+    pnlRelacion1.add(jScrollPane3);
+    pnlRelacion1.add(btnDemasLocales);
     pnlDatosCliente.add(lblUnidadPresentacionT, null);
     pnlDatosCliente.add(lblUnidadPresentacion, null);
     pnlDatosCliente.add(lblProducto, null);
@@ -246,8 +246,8 @@ public class DlgStockLocales extends JDialog
     jPanelWhite1.add(srcStockLocalesPreferidos, null);
     jPanelWhite1.add(pnlDatosCliente, null);
     jPanelWhite1.add(pnlRelacion, null);
-    pnlRelacion.add(jScrollPane1, new XYConstraints(0, 25, 620, 120));
-    pnlRelacion.add(btnStockLocales, new XYConstraints(10, 5, 165, 15));
+    pnlRelacion.add(jScrollPane1);
+    pnlRelacion.add(btnStockLocales);
     jPanelWhite1.add(jPanelTitle1, null);
     this.getContentPane().add(jPanelWhite1, null);
   }
@@ -264,7 +264,7 @@ public class DlgStockLocales extends JDialog
       actualizaIndLinea();
      else // No hay linea 
       FarmaUtility.showMessage(this,"No se encontro linea con Matriz.\n Si desea pongase en contacto con el Operador de Sistemas",tblStockLocalesPreferidos);     
-      ////////////////////////////////////////DUBILLUZ
+      //////////////////////////////////////// 
       
       if (UtilityInventario.obtieneIndLinea(this))
       {
@@ -298,7 +298,7 @@ public class DlgStockLocales extends JDialog
     try
     {
       //Aqui se verifica si se consultara el IndVerStockLocales
-      //05.11.2007  dubilluz  modificacion
+      //05.11.2007     modificacion
       if(VariablesPtoVenta.vRevisarIndStockLocales.trim().equalsIgnoreCase(FarmaConstants.INDICADOR_N))
       {
         System.out.println("Fue invocado en el Kardex.");
@@ -507,7 +507,7 @@ public class DlgStockLocales extends JDialog
   }
   
   /**Nuevo
-   * @Autor: Paulo Cesar Ameghino Rojas
+   * @Autor:   Cesar Ameghino Rojas
    * @Fecha:  11/06/2007
    * */
    
@@ -531,7 +531,7 @@ public class DlgStockLocales extends JDialog
      try
      {
        //Aqui se verifica si se consultara el IndVerStockLocales
-       //05.11.2007  dubilluz  modificacion
+       //05.11.2007     modificacion
        if(VariablesPtoVenta.vRevisarIndStockLocales.trim().equalsIgnoreCase(FarmaConstants.INDICADOR_N))
        {
          System.out.println("Fue invocado en el Kardex , no revisara el indicador de ver Stock locales");
@@ -555,7 +555,7 @@ public class DlgStockLocales extends JDialog
  
  /**
   * Actualiza el Indicador en linea en el local
-  * @author dubilluz
+  * @author  
   * @since  24.09.2007
   */
   public void actualizaIndLinea()
@@ -585,7 +585,7 @@ public class DlgStockLocales extends JDialog
    } 
  /**
   * Obtiene el Tiempo que demoro la consulta actual
-  * @author dubilluz
+  * @author  
   * @since  12.09.2007
   */
  public String time_diferencia_actual() 
@@ -599,7 +599,7 @@ public class DlgStockLocales extends JDialog
  }   
  /**
   * Tiempo estimado de consulta a Delivery
-  * @author dubilluz
+  * @author  
   * @since  24.09.2007
   */
   public String time_estimado_consulta()
@@ -618,7 +618,7 @@ public class DlgStockLocales extends JDialog
   }  
  /**
   * Realiza la Consulta a Delivery 
-  * @author dubilluz
+  * @author  
   * @since  24.09.2007
   */
   public String consulta_delivey()
@@ -638,7 +638,7 @@ public class DlgStockLocales extends JDialog
   } 
  /**
   * Obtiene Ind Linea Actual
-  * @author dubilluz
+  * @author  
   * @since  24.09.2007
   */
   public String obtieneIndLineaActual()

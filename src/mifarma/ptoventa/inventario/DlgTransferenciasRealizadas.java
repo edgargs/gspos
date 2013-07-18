@@ -237,11 +237,11 @@ public class DlgTransferenciasRealizadas extends JDialog
       dlgTransferenciasNueva.setVisible(true);
           if(FarmaVariables.vAceptar)
           {
-              //JCORTEZ 28.10.09 Se confirmara automaticamente si es que se generaron e imprimieron guias.
-               System.out.println(":JCORTEZ:::::vTipoDestino_Transf::::::"+VariablesInventario.vTipoDestino_Transf);
+              //  28.10.09 Se confirmara automaticamente si es que se generaron e imprimieron guias.
+               System.out.println(": :::::vTipoDestino_Transf::::::"+VariablesInventario.vTipoDestino_Transf);
               if(VariablesInventario.vTipoDestino_Transf.equalsIgnoreCase("01")){//solo confirmacion automatica para locales
                   if(validaGuiasEmitidas()){
-                      System.out.println(":JCORTEZ:::::Confirmando transferencia::::"+VariablesInventario.vNumNotaEs);
+                      System.out.println(": :::::Confirmando transferencia::::"+VariablesInventario.vNumNotaEs);
                         confirmaTransferencia();
                   }
               }/*else{
@@ -339,7 +339,7 @@ public class DlgTransferenciasRealizadas extends JDialog
   }
 
     /**
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE 28.10.09
      * */
    private boolean  validaGuiasEmitidas(){
@@ -350,15 +350,15 @@ public class DlgTransferenciasRealizadas extends JDialog
      int fila = tblListaTransferencias.getSelectedRow();
        String[] val;
       
-   System.out.println(":JCORTEZ:::::Confirmando Guias generadas e impresas::::"+numTransf);
+   System.out.println(": :::::Confirmando Guias generadas e impresas::::"+numTransf);
     try{
        if(fila > -1){
         numTransf = tblListaTransferencias.getModel().getValueAt(fila,0).toString();
         ind=DBInventario.validaGuiasTransf(numTransf);//si existe guias
         
-         System.out.println(":JCORTEZ:::ind:::"+ind);
+         System.out.println(": :::ind:::"+ind);
          val = ind.split("Ã");
-           System.out.println(":JCORTEZ:::val:::"+val);
+           System.out.println(": :::val:::"+val);
            
         if(val[0].trim().equalsIgnoreCase("S"))
           valor=true;
@@ -366,7 +366,7 @@ public class DlgTransferenciasRealizadas extends JDialog
           valor=false;
           
            CodOrigenTranf=val[1].trim(); //local origen
-            System.out.println(":JCORTEZ:::CodOrigenTranf:::"+CodOrigenTranf);
+            System.out.println(": :::CodOrigenTranf:::"+CodOrigenTranf);
        }
        }catch(SQLException e) {
            FarmaUtility.liberarTransaccion();
@@ -400,9 +400,9 @@ public class DlgTransferenciasRealizadas extends JDialog
                                   System.out.println("numTransf:"+numTransf+"***");
                                   System.out.println("VariablesInventario.vCodDestino_Transf:"+VariablesInventario.vCodDestino_Transf);
                                   
-                                  DBInventario.grabaInicioFinConfirmacionTransferencia(numTransf,"I","N");//JCHAVEZ 10122009 graba inicio de confimacion de transferencia en local origen
+                                  DBInventario.grabaInicioFinConfirmacionTransferencia(numTransf,"I","N");//  10122009 graba inicio de confimacion de transferencia en local origen
                                   DBInventario.confirmarTransferencia(numTransf);
-                                  DBInventario.grabaInicioFinConfirmacionTransferencia(numTransf,"F","N");//JCHAVEZ 10122009 graba fin de confimacion de transferencia en local origen
+                                  DBInventario.grabaInicioFinConfirmacionTransferencia(numTransf,"F","N");//  10122009 graba fin de confimacion de transferencia en local origen
                               
                                   FarmaUtility.aceptarTransaccion();
                                   
@@ -414,11 +414,11 @@ public class DlgTransferenciasRealizadas extends JDialog
                                           //si ocurriera algun error, se realizara solo la confirmacion en local origen
                                           if ( VariablesInventario.vIndLineaMatriz.equals(FarmaConstants.INDICADOR_S)){
                                                   System.out.println("tratando de realizar la transferencia a local destino y matriz con estado L");                                               
-                                                  DBInventario.grabaInicioFinConfirmacionTransferencia(numTransf,"I","S");//JCHAVEZ 10122009 graba inicio de confimacion remota de transferencia de local origen a matriz
+                                                  DBInventario.grabaInicioFinConfirmacionTransferencia(numTransf,"I","S");//  10122009 graba inicio de confimacion remota de transferencia de local origen a matriz
                                                   String resultado = DBInventario.realizarTransfDestino(  numTransf, 
                                                                                                                                                                   codLocalDestino, 
                                                                                                                                                                   FarmaConstants.INDICADOR_N).trim();
-                                                 DBInventario.grabaInicioFinConfirmacionTransferencia(numTransf,"F","S");//JCHAVEZ 10122009 graba fin de confimacion remota de transferencia de local origen a matriz
+                                                 DBInventario.grabaInicioFinConfirmacionTransferencia(numTransf,"F","S");//  10122009 graba fin de confimacion remota de transferencia de local origen a matriz
                                                   System.out.println("despues de invocar a matriz RESPUESTA:"+resultado);
                                                   if(resultado.equals(FarmaConstants.INDICADOR_S)){                                                       
                                                           FarmaUtility.aceptarTransaccionRemota(FarmaConstants.CONECTION_MATRIZ,

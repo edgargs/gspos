@@ -7,7 +7,7 @@ package mifarma.ptoventa.inventario.transfDelivery.reference;
 * Nombre de la Aplicación : VariablesTranfDelivery.java<br>
 * <br>
 * Histórico de Creación/Modificación<br>
-* JCALLO    11.10.2008   Creación<br>
+*      11.10.2008   Creación<br>
 * <br>
 * @author Javier Callo Quispe<br>
 * @version 1.0<br>

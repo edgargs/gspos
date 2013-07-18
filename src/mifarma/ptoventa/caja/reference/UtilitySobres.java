@@ -7,8 +7,8 @@ import java.sql.SQLException;
 
 import mifarma.ptoventa.caja.DlgControlSobres;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.gs.mifarma.componentes.JTextFieldSanSerif;
 
 import java.awt.Frame;
@@ -37,7 +37,7 @@ import mifarma.ptoventa.reference.VariablesPtoVenta;
  * Nombre de la Aplicación : UtilitySobres.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * DUBILLUZ  07.06.2010   Creación<br>
+ *    07.06.2010   Creación<br>
  * <br>
  * @author Diego Armando Ubilluz Carrillo<br>
  * @version 1.0<br>
@@ -45,7 +45,7 @@ import mifarma.ptoventa.reference.VariablesPtoVenta;
  */
 public class UtilitySobres {
 
-    private static final Log log = LogFactory.getLog(UtilitySobres.class);
+    private static final Logger log = LoggerFactory.getLogger(UtilitySobres.class);
     
     private static int numeroCorrel = 1;
     /**
@@ -57,7 +57,7 @@ public class UtilitySobres {
 
     /**
      * Metodo que realiza la accion del sobre
-     * @author dubilluz
+     * @author  
      * @since  07.06.2010
      * @param pTipoAccion
      * @param pSec
@@ -157,7 +157,7 @@ public class UtilitySobres {
                            
                        FarmaUtility.aceptarTransaccion();
                        FarmaUtility.showMessage(pDialogo,"Se pudo "+pMensaje+" sobre con éxito",jfoco); 
-                       /*INICION DE IMPRESION DE SOBRES EN VOUCHER ASOSA, 26.07.2010*/
+                       /*INICION DE IMPRESION DE SOBRES EN VOUCHER  , 26.07.2010*/
                        imprimeSobresDeclarados(null,VariablesSobre.vSecMovCaja,pResultadoAccion); 
                        /*FIN DE IMPRESION DE SOBE4S EN VOUCHER*/
                        
@@ -219,7 +219,7 @@ public class UtilitySobres {
     }
     
     /**
-     * @author ASOSA
+     * @author  
      * @since 26.07.2010
      */
     public static void imprimeSobresDeclarados(JDialog pDialogo,String pSecMovCaja, String pSecSobre)
@@ -245,7 +245,7 @@ public class UtilitySobres {
                          for(int f=0;f<pLista.size();f++){
                              //pCodSobre = FarmaUtility.getValueFieldArrayList(pLista,f,0);
                              String html = DBCajaElectronica.getHtmlSobreDeclarados_02(pSecMovCaja,pSecSobre);                             
-                             PrintConsejo.imprimirHtml(html.trim(),VariablesPtoVenta.vImpresoraActual,VariablesPtoVenta.vTipoImpTermicaxIp);//JCHAVEZ 03.07.2009 se reemplaza la variable pTipoImp por la constante VariablesPtoVenta.vTipoImpTermicaxIp
+                             PrintConsejo.imprimirHtml(html.trim(),VariablesPtoVenta.vImpresoraActual,VariablesPtoVenta.vTipoImpTermicaxIp);//  03.07.2009 se reemplaza la variable pTipoImp por la constante VariablesPtoVenta.vTipoImpTermicaxIp
                              indImp = true;
                          }
                          if(indImp)
@@ -270,7 +270,7 @@ public class UtilitySobres {
     
     /**
      * Reimprime un voucher en control de sobres
-     * @author ASOSA
+     * @author  
      * @since 04.08.2010
      * @param pSecMovCaja
      * @param pSecSobre
@@ -284,7 +284,7 @@ public class UtilitySobres {
             String vIndImpre = FarmaConstants.INDICADOR_S;
             if (!vIndExisteImpresora.trim().equalsIgnoreCase("")) {
                 String html = DBCajaElectronica.getHtmlSobreDeclarados_03(pSecMovCaja,pSecSobre);
-                PrintConsejo.imprimirHtml(html.trim(),VariablesPtoVenta.vImpresoraActual,VariablesPtoVenta.vTipoImpTermicaxIp);//JCHAVEZ 03.07.2009 se reemplaza la variable pTipoImp por la constante VariablesPtoVenta.vTipoImpTermicaxIp
+                PrintConsejo.imprimirHtml(html.trim(),VariablesPtoVenta.vImpresoraActual,VariablesPtoVenta.vTipoImpTermicaxIp);//  03.07.2009 se reemplaza la variable pTipoImp por la constante VariablesPtoVenta.vTipoImpTermicaxIp
                 indImp = true;
                 if(indImp)
                     FarmaUtility.showMessage(pDialogo,
@@ -302,7 +302,7 @@ public class UtilitySobres {
     
     /**
      * Reimprime un voucher en forma de pago entrega
-     * @author ASOSA
+     * @author  
      * @since 09.08.2010
      * @param pSecMovCaja
      * @param pSecSobre
@@ -316,7 +316,7 @@ public class UtilitySobres {
             String vIndImpre = FarmaConstants.INDICADOR_S;
             if (!vIndExisteImpresora.trim().equalsIgnoreCase("")) {
                 String html = DBCajaElectronica.getHtmlSobreDeclarados_04(pSecMovCaja,pSecSobre);
-                PrintConsejo.imprimirHtml(html.trim(),VariablesPtoVenta.vImpresoraActual,VariablesPtoVenta.vTipoImpTermicaxIp);//JCHAVEZ 03.07.2009 se reemplaza la variable pTipoImp por la constante VariablesPtoVenta.vTipoImpTermicaxIp
+                PrintConsejo.imprimirHtml(html.trim(),VariablesPtoVenta.vImpresoraActual,VariablesPtoVenta.vTipoImpTermicaxIp);//  03.07.2009 se reemplaza la variable pTipoImp por la constante VariablesPtoVenta.vTipoImpTermicaxIp
                 indImp = true;
                 if(indImp)
                     FarmaUtility.showMessage(pDialogo,

@@ -188,7 +188,7 @@ public class DlgDiferenciasFinales extends JDialog {
     // **************************************************************************
     private void this_windowOpened(WindowEvent e) {
            FarmaUtility.centrarVentana(this);
-           //JMIRANDA 02.12.09
+           //  02.12.09
            FarmaUtility.moveFocus(this.tblListaProductosFaltantes);
           // FarmaUtility.moveFocus(this.tblListaProductos.getValueAt(0,0));         
     }
@@ -223,7 +223,7 @@ public class DlgDiferenciasFinales extends JDialog {
             cerrarVentana(false);
         } else if (e.getKeyCode() == KeyEvent.VK_F1){
             System.out.println("Politica de Canje");
-            //JMIRANDA 02.02.10 
+            //  02.02.10 
             if(UtilityRecepCiega.indLimiteTransf(VariablesRecepCiega.vNro_Recepcion)){
                 VariablesRecepCiega.vMotivoTransferencia = "F1";
                 DlgConteoProdTransferencia vConteoTransferencia = new DlgConteoProdTransferencia(this.myParentFrame,"Lectura Producto-Productos de Política de Canje",true);
@@ -238,7 +238,7 @@ public class DlgDiferenciasFinales extends JDialog {
         }
         else if (e.getKeyCode() == KeyEvent.VK_F2){
             System.out.println("Deteriorado");      
-            //JMIRANDA 02.02.10 
+            //  02.02.10 
             if(UtilityRecepCiega.indLimiteTransf(VariablesRecepCiega.vNro_Recepcion)){
                 VariablesRecepCiega.vMotivoTransferencia = "F2";
                 DlgConteoProdTransferencia vConteoTransferencia = new DlgConteoProdTransferencia(this.myParentFrame,"Lectura Producto-Productos Deteriorados",true);
@@ -324,7 +324,7 @@ public class DlgDiferenciasFinales extends JDialog {
                           for (int i = 0; i < tblListaProductosFaltantes.getRowCount(); i++) {
 
          vPrint.printCondensed(//FarmaPRNUtility.alinearIzquierda((String) tblListaProductosFaltantes.getValueAt(i, 0), 10)+" "+
-          //JMIRANDA 14.01.10          
+          //  14.01.10          
           FarmaPRNUtility.alinearIzquierda(FarmaUtility.getValueFieldArrayList(tableModelFaltantes.data,i,7), 7)+" "+   //COD_PROD
           FarmaPRNUtility.alinearIzquierda((String) tblListaProductosFaltantes.getValueAt(i,0), 20)+" "+
           FarmaPRNUtility.alinearIzquierda((String) tblListaProductosFaltantes.getValueAt(i,1), 8)+" "+
@@ -338,7 +338,7 @@ public class DlgDiferenciasFinales extends JDialog {
                       for (int i = 0; i < tblListaProductosSobrantes.getRowCount(); i++) {
 
                      vPrint.printCondensed(//FarmaPRNUtility.alinearIzquierda((String) tblListaProductosSobrantes.getValueAt(i, 0), 10)+" "+
-                     //JMIRANDA 14.01.10
+                     //  14.01.10
                           FarmaPRNUtility.alinearIzquierda(FarmaUtility.getValueFieldArrayList(tableModelSobrantes.data,i,7), 7)+" "+   //COD_PROD
                       FarmaPRNUtility.alinearIzquierda((String) tblListaProductosSobrantes.getValueAt(i,0), 20)+" "+
                       FarmaPRNUtility.alinearIzquierda((String) tblListaProductosSobrantes.getValueAt(i,1), 8)+" "+

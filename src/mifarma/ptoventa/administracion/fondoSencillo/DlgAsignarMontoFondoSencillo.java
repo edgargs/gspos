@@ -41,15 +41,15 @@ import mifarma.ptoventa.administracion.fondoSencillo.reference.UtilityFondoSenci
 
 import mifarma.ptoventa.administracion.fondoSencillo.reference.VariablesFondoSencillo;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DlgAsignarMontoFondoSencillo extends JDialog {
     //Declarando Variables Globales 
     Frame myParentFrame;
     
-    private static final Log log = 
-        LogFactory.getLog(DlgAsignarMontoFondoSencillo.class);
+    private static final Logger log = 
+        LoggerFactory.getLogger(DlgAsignarMontoFondoSencillo.class);
     
     private BorderLayout borderLayout1 = new BorderLayout();
     private JPanelWhite jContentPane = new JPanelWhite();

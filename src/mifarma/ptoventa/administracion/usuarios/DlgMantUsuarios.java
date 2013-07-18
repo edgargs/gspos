@@ -169,7 +169,7 @@ public class DlgMantUsuarios extends JDialog {
       
       /**
        * SOLO LETRAS 
-       * @author : dubilluz
+       * @author :  
        * @since  : 20.08.2007
        */
       public void keyTyped(KeyEvent e) {
@@ -424,13 +424,13 @@ public class DlgMantUsuarios extends JDialog {
 			if (txtNroEmpleado.getText().length() > 0) {
 				VariablesUsuarios.vSecTrab = txtNroEmpleado.getText();
         //se verifica si existe el usuario
-        //27.11.2007  dubilluz  modificacion
+        //27.11.2007     modificacion
         if(existeUsuario(VariablesUsuarios.vSecTrab)){
            System.out.println("El usuario existe en maestros");
             if (!esUsuarioDuplicado()) {
               obtenerDatosUsuario();
               //SE MODIFICO AHORA SOLO EL IDUSUARIO Y CLAVE
-              //27.11.2007 DUBILLUZ MODIFICACION
+              //27.11.2007   MODIFICACION
               habilitaTexto(false);
               FarmaUtility.moveFocus(txtIdUsuario);
               //FarmaUtility.moveFocus(txtApePat);
@@ -484,7 +484,7 @@ public class DlgMantUsuarios extends JDialog {
     	cargarDatos();
     /**
      * Valida accion al modificar datos de usuario
-     * @author : JCORTEZ
+     * @author :  
      * @since  : 20.07.2007
      */
     System.out.println("VariablesUsuarios.vF3 " + VariablesUsuarios.vF3);
@@ -525,7 +525,7 @@ public class DlgMantUsuarios extends JDialog {
 	}
   /**
    * Solo se permitira numeros en telefono y DNI
-   * @author dubilluz
+   * @author  
    * @since  28.11.2007
    */
 	private void txtDni_keyTyped(KeyEvent e) {
@@ -657,7 +657,7 @@ public class DlgMantUsuarios extends JDialog {
 	}
  /**
   * PARA EL IDUSUARIO
-  * @author : dubilluz
+  * @author :  
   * @since  : 20.08.2007
   */
 	private void txtIdUsuario_keyTyped(KeyEvent e) {
@@ -781,7 +781,7 @@ public class DlgMantUsuarios extends JDialog {
 			return false;
 		}*/
     //Valida que el Nro De Trab.RRHH
-    //28.11.2007  dubilluz modificacion
+    //28.11.2007    modificacion
 	  if(!isValidoCodTrabRRHH(txtNroEmpleado.getText().trim()))
     { 
 			FarmaUtility.showMessage(this, "Ingrese el numero de Trabajador en el formato correcto.",
@@ -865,7 +865,7 @@ public class DlgMantUsuarios extends JDialog {
 		if (!VariablesUsuarios.vSecUsuLocal.equals("")) {
 			//txtNroEmpleado.setText(VariablesUsuarios.vSecUsuLocal.toUpperCase().trim());
       //Modificado 
-      //28.11.2007 dubilluz modificacion
+      //28.11.2007   modificacion
       txtNroEmpleado.setText(VariablesUsuarios.vCodTrab_RRHH.toUpperCase().trim());
 			txtIdUsuario.setText(VariablesUsuarios.vLoginUsu.toUpperCase().trim());
 			txtClaveUsuario.setText(VariablesUsuarios.vClaveUsu.trim());
@@ -1026,7 +1026,7 @@ public class DlgMantUsuarios extends JDialog {
 			txtDireccion.setText(myArray2.get(5).toString().trim());
 			txtFecNacimiento.setText(myArray2.get(6).toString().trim());
       //Se coloca el DNI del trabajador
-      //29.11.2007  dubilluz  modificacion
+      //29.11.2007     modificacion
       txtDni.setText(myArray2.get(7).toString().trim());
       
       if(txtIdUsuario.getText().trim().equalsIgnoreCase("") && txtClaveUsuario.getText().trim().equalsIgnoreCase("")){
@@ -1093,7 +1093,7 @@ public class DlgMantUsuarios extends JDialog {
   }
 
   /** Se habilita el campo de Codigo de trabajador
-   * @author:  JCortez
+   * @author:   
    * @since:   03.07.07
    */
    private void habilitarCodigo()
@@ -1125,7 +1125,7 @@ public class DlgMantUsuarios extends JDialog {
   
   /**
    * Habilita los campos de textos para ingreso de usuario
-   * @author dubilluz
+   * @author  
    * @since  27.11.2007
    */
   private void habilitaTexto(boolean valor)
@@ -1140,7 +1140,7 @@ public class DlgMantUsuarios extends JDialog {
   }
  /**
   * Verifica si el usuario existe en la tabla de maestros
-  * @author dubilluz
+  * @author  
   * @since  27.11.2007
   */
   public boolean existeUsuario(String secUsu){
@@ -1160,7 +1160,7 @@ public class DlgMantUsuarios extends JDialog {
 	}
   /**
    * Obtendra el indicador si validara la existencia de un usuario para su registro
-   * @author dubilluz
+   * @author  
    * @since  27.11.2007
    */
   public boolean isValidarUsuario(){
@@ -1180,7 +1180,7 @@ public class DlgMantUsuarios extends JDialog {
 	}
   /**
    * Valida el codigo de trabajador de RRHH
-   * @author dubilluz
+   * @author  
    * @since  28.11.2007
    */
   public boolean isValidoCodTrabRRHH(String codigo)

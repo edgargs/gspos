@@ -51,7 +51,7 @@ import mifarma.ptoventa.ventas.reference.VariablesVentas;
  * Nombre de la Aplicación : DlgListaCupones.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JCORTEZ      04.08.2009   Creación<br>
+ *        04.08.2009   Creación<br>
  * <br>
  * @author  JORGE LUIS CORTEZ ALVAREZ <br>
  * @version 1.0<br>

@@ -52,9 +52,9 @@ import mifarma.ptoventa.ventas.reference.DBVentas;
  * Nombre de la Aplicación : DlgTransfDeliveryDetalle.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JCALLO      20.10.2008   Creación<br>
+ *        20.10.2008   Creación<br>
  * <br>
- * @author JCALLO<br>
+ * @author  <br>
  * @version 1.0<br>
  *
  */
@@ -98,8 +98,8 @@ public class DlgTransfDeliveryDetalle extends JDialog
 	private JButtonLabel lblCantProductosT = new JButtonLabel();
 
 	private JLabel lblError = new JLabel();
-        private ArrayList listaSecResp; //ASOSA, 19.07.2010
-        ArrayList tableModel_02;  //ASOSA, 19.07.2010
+        private ArrayList listaSecResp; // , 19.07.2010
+        ArrayList tableModel_02;  // , 19.07.2010
 
 	/* ********************************************************************** */
 	/*                        CONSTRUCTORES                                   */
@@ -325,7 +325,7 @@ public class DlgTransfDeliveryDetalle extends JDialog
 	}
 	private void this_windowOpened(WindowEvent e)
 	{
-                listaSecResp=new ArrayList(); //ASOSA, 19.07.2010
+                listaSecResp=new ArrayList(); // , 19.07.2010
 		FarmaUtility.centrarVentana(this);
 		FarmaUtility.moveFocus(btnRelacionProductos);  
 		lblCantProductosT.setText(""+tblListaProductos.getRowCount());
@@ -378,7 +378,7 @@ public class DlgTransfDeliveryDetalle extends JDialog
 			}else{
 				//VariablesTranfDelivery.vFlagDialogAbierto
 
-				/* JCALLO 05.11.2008*/
+				/*   05.11.2008*/
 				/*DlgIngresoDetalleProd DlgIngresoDetalleProd = new DlgIngresoDetalleProd(myParentFrame,"",true);
               DlgIngresoDetalleProd.setVisible(true);*/
 				/* --- */
@@ -428,8 +428,8 @@ public class DlgTransfDeliveryDetalle extends JDialog
 					}else{          
 						FarmaVariables.vAceptar = false;
 						//DlgGenerarTransfDelivery dlgGenerarTransfDelivery = new DlgGenerarTransfDelivery(myParentFrame,"",true,tblListaProductos);
-                                                fusionarListas(); //INI ASOSA, 31.08.2010
-						DlgGenerarTransfDelivery dlgGenerarTransfDelivery = new DlgGenerarTransfDelivery(myParentFrame,"",true,tblListaProductos,tableModel_02);    //FIN ASOSA, 31.08.2010
+                                                fusionarListas(); //INI  , 31.08.2010
+						DlgGenerarTransfDelivery dlgGenerarTransfDelivery = new DlgGenerarTransfDelivery(myParentFrame,"",true,tblListaProductos,tableModel_02);    //FIN  , 31.08.2010
 						dlgGenerarTransfDelivery.setVisible(true);
 						if(FarmaVariables.vAceptar){
 							cerrarVentana(true);
@@ -451,9 +451,9 @@ public class DlgTransfDeliveryDetalle extends JDialog
 					!VariablesTranfDelivery.vFlagErrorStock){
 				for(int i = 0; i < tableModel.getRowCount();i++){
 					//recuperaStock(i); antes
-					//recuperaStock(i); //ASOSA, 20.07.2010
-                                        fusionarListas();   ////ASOSA, 31.08.2010
-					recuperaStock_02(i); //ASOSA, 31.08.2010
+					//recuperaStock(i); // , 20.07.2010
+                                        fusionarListas();   //// , 31.08.2010
+					recuperaStock_02(i); // , 31.08.2010
 				}
 			}
 
@@ -679,8 +679,8 @@ public class DlgTransfDeliveryDetalle extends JDialog
 					ConstantsInventario.TIP_OPERACION_RESPALDO_SUMAR, 
 					Integer.parseInt(tableModel.getValueAt(row,4).toString().trim()),
 					tableModel.getValueAt(row,10).toString().trim(),
-                                                     ""); //ASOSA, 19.07.2010
-                        listaSecResp.add(VariablesInventario.secRespStk); //ASOSA, 19.07.2010
+                                                     ""); // , 19.07.2010
+                        listaSecResp.add(VariablesInventario.secRespStk); // , 19.07.2010
 		}catch(Exception e){
 			System.err.println("ERROR : "+e);
 			valor = false;
@@ -706,18 +706,18 @@ public class DlgTransfDeliveryDetalle extends JDialog
 	}
         
         
-//-----------------------=- ASOSA, 19.07.2001 -=------------------------//
+//-----------------------=-  , 19.07.2001 -=------------------------//
         
     private void actualizaStkComprometidoProd_02(String pCodigoProducto, int pCantidadStk, String pTipoStkComprometido, String pTipoRespaldoStock, int pCantidadRespaldo,String pValFracProd, String secRespaldo) {
         VariablesInventario.secRespStk="0";
         /*
             try 
             {
-                            VariablesInventario.secRespStk=""; //ASOSA, 26.08.2010
+                            VariablesInventario.secRespStk=""; // , 26.08.2010
                     VariablesInventario.secRespStk = DBVentas.operarResStkAntesDeCobrar(pCodigoProducto,
                                                                             String.valueOf(pCantidadStk),
                                                                             //VariablesInventario.vValFrac_Transf,
-                                                                            pValFracProd,   //ASOSA, 31.08.2010
+                                                                            pValFracProd,   // , 31.08.2010
                                                                             secRespaldo,
                                                                             ConstantsPtoVenta.MODULO_TRANSFERENCIA);                    
                     FarmaUtility.aceptarTransaccion();
@@ -732,7 +732,7 @@ public class DlgTransfDeliveryDetalle extends JDialog
     
     /**
      * Adiciona los secuenciales a la lista mostrada para que luego se pueda descomprometer
-     * @author ASOSA
+     * @author  
      * @since 19.07.2010
      */
     private void fusionarListas(){

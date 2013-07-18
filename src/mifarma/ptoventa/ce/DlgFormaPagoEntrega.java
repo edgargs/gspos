@@ -61,11 +61,11 @@ import mifarma.ptoventa.reference.ConstantsPtoVenta;
 
 import mifarma.ptoventa.reference.VariablesPtoVenta;
 
-import oracle.jdeveloper.layout.XYConstraints;
-import oracle.jdeveloper.layout.XYLayout;
+ 
+ 
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -75,9 +75,9 @@ import org.apache.commons.logging.LogFactory;
  * Nombre de la Aplicación : DlgFormaPagoEntrega.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * PAULO      31.07.2006   Creación<br>
+ *        31.07.2006   Creación<br>
  * <br>
- * @author Paulo Cesar Ameghino Rojas<br>
+ * @author   Cesar Ameghino Rojas<br>
  * @version 1.0<br>
  *
  */
@@ -86,7 +86,7 @@ public class DlgFormaPagoEntrega extends JDialog
   /* ********************************************************************** */
   /*                        DECLARACION PROPIEDADES                         */
   /* ********************************************************************** */
-  private static final Log log = LogFactory.getLog(DlgFormaPagoEntrega.class);
+  private static final Logger log = LoggerFactory.getLogger(DlgFormaPagoEntrega.class);
 
   Frame myParentFrame;
   FarmaTableModel tableModelFormasPago;
@@ -105,12 +105,12 @@ public class DlgFormaPagoEntrega extends JDialog
   private JLabel lblRazSoc_T = new JLabel();
   private JTextField txtCantidad = new JTextField();
   private JPanel pnlTotales = new JPanel();
-  private XYLayout xYLayout5 = new XYLayout();
+   
   private JLabel lblSaldoT = new JLabel();
   private JLabel lblTotal = new JLabel();
   private JScrollPane scrDetallePago = new JScrollPane();
   private JPanel pnlDetallePago = new JPanel();
-  private XYLayout xYLayout1 = new XYLayout();
+  
   private JButton btnDetallePago = new JButton();  
   private JButton btnCantidad = new JButton();
   private JButton btnMonto = new JButton();
@@ -283,7 +283,7 @@ public class DlgFormaPagoEntrega extends JDialog
     pnlTotales.setBounds(new Rectangle(15, 445, 735, 40));
     pnlTotales.setFont(new Font("SansSerif", 0, 11));
     pnlTotales.setBackground(new Color(43, 141, 39));
-    pnlTotales.setLayout(xYLayout5);
+    pnlTotales. setLayout(null);
     lblSaldoT.setText("TOTAL A ENTREGAR :  S/.");
     lblSaldoT.setFont(new Font("SansSerif", 1, 13));
     lblSaldoT.setForeground(Color.white);
@@ -297,7 +297,7 @@ public class DlgFormaPagoEntrega extends JDialog
     pnlDetallePago.setBounds(new Rectangle(15, 295, 735, 25));
     pnlDetallePago.setFont(new Font("SansSerif", 0, 11));
     pnlDetallePago.setBackground(new Color(255, 130, 14));
-    pnlDetallePago.setLayout(xYLayout1);
+    pnlDetallePago. setLayout(null);
     btnDetallePago.setText("Entregas Realizadas :");
     btnDetallePago.setFont(new Font("SansSerif", 1, 11));
     btnDetallePago.setForeground(Color.white);
@@ -427,8 +427,8 @@ public class DlgFormaPagoEntrega extends JDialog
         jPanel1.add(lblSObre, null);
         jPanel1.add(cmbSobre, null);
         jPanel1.add(btnLote, null);
-        pnlTotales.add(lblSaldoT, new XYConstraints(470, 10, 170, 20));
-        pnlTotales.add(lblTotal, new XYConstraints(640, 10, 90, 20));
+        pnlTotales.add(lblSaldoT);
+        pnlTotales.add(lblTotal);
         scrDetallePago.getViewport();
         scrDetallePago.getViewport();
         jPanel1.add(txtLote, null);
@@ -466,8 +466,8 @@ public class DlgFormaPagoEntrega extends JDialog
         lblmensaje.setFont(new Font("SansSerif", 1, 14));
         btnReimp.setBounds(new Rectangle(290, 490, 117, 19));
         btnReimp.setText("[ F6 ] Reimprimir");
-        pnlDetallePago.add(mensaje, new XYConstraints(320, 0, 415, 25));
-        pnlDetallePago.add(btnDetallePago, new XYConstraints(10, 5, 125, 15));
+        pnlDetallePago.add(mensaje);
+        pnlDetallePago.add(btnDetallePago);
         jContentPane.add(jPanel3, null);
         jContentPane.add(jPanel1, null);
         this.getContentPane().add(jContentPane, BorderLayout.CENTER);
@@ -487,13 +487,13 @@ public class DlgFormaPagoEntrega extends JDialog
 
     listaFormasPagoEntrega(false);
     FarmaVariables.vAceptar=false;
-      //JCORTEZ 03.11.09 Se cargan los sobres temporales automaticamente por turno.
+      //  03.11.09 Se cargan los sobres temporales automaticamente por turno.
        System.out.println("***********1.1");
       cargarSobres();
     
       System.out.println("***********1.2");
     //validando que se pueda o cambio la forma de declarar en sobres
-    //jcallo 02/02/2009
+    //  02/02/2009
     try{
         VariablesCajaElectronica.vIndChangeSobre =  DBCajaElectronica.getIndChangeComboSobre();
     }catch(Exception e){
@@ -638,7 +638,7 @@ public class DlgFormaPagoEntrega extends JDialog
     System.out.println("VariablesCaja.vIndTarjetaSeleccionada : " + VariablesCaja.vIndTarjetaSeleccionada);
     FarmaUtility.moveFocusJTable(tblFormasPago);
       determinarVisibilidadMsgRed();
-      if(VariablesCajaElectronica.indAutoFSEN.equalsIgnoreCase("S")){ //ASOSA, 21.06.2010
+      if(VariablesCajaElectronica.indAutoFSEN.equalsIgnoreCase("S")){ // , 21.06.2010
           VariablesCajaElectronica.indAutoFSEN="N";
           FarmaGridUtils.moveRowSelection(tblFormasPago,2);
           validaFormaPagoSeleccionada();
@@ -661,17 +661,17 @@ public class DlgFormaPagoEntrega extends JDialog
       }
       UtilityCajaElectronica.getIndicadorVB(VariablesCajaElectronica.vSecMovCaja,ConstantsCajaElectronica.TIPO_VB_CAJERO);
       if(VariablesCajaElectronica.vUsuarioCajero && VariablesCajaElectronica.vIndVBCajero.equals(FarmaConstants.INDICADOR_N))
-            if(buscarSobres()){ //INI ASOSA, 09.08.2010 - otro cambio imprevisto
+            if(buscarSobres()){ //INI  , 09.08.2010 - otro cambio imprevisto
                 if (cargaValidaLogin()) { 
                     agregaFormaPagoEntrega();
-                    cargarSobres(); //ASOSA, 09.08.2010
+                    cargarSobres(); // , 09.08.2010
                 }else {
                     FarmaUtility.showMessage(this, "Necesita autorización del Jefe del Local.", 
                                              tblFormasPago);
                 }
             }else{
                 agregaFormaPagoEntrega();
-            }   //FIN ASOSA, 09.08.2010 - otro cambio imprevisto
+            }   //FIN  , 09.08.2010 - otro cambio imprevisto
       else
         FarmaUtility.showMessage(this, "No es posible realizar esta operacion.", tblFormasPago);        
     } else if (e.getKeyCode() == KeyEvent.VK_F5) {
@@ -685,7 +685,7 @@ public class DlgFormaPagoEntrega extends JDialog
         eliminaFormaPagoEntrega();
       else
         FarmaUtility.showMessage(this, "No es posible realizar esta operacion.", tblFormasPago);        
-      }else if (e.getKeyCode() == KeyEvent.VK_F6){ //ASOSA, 09.05.2010
+      }else if (e.getKeyCode() == KeyEvent.VK_F6){ // , 09.05.2010
             reimprimir();
       }
   }
@@ -706,10 +706,10 @@ public class DlgFormaPagoEntrega extends JDialog
     {
       //DBCaja.obtieneFormasPago(tableModelFormasPago);
       DBCajaElectronica.obtieneFormasPago(tableModelFormasPago);
-      //Solo aplica para fondo de Sencillo dubilluz - 19.07.2010
+      //Solo aplica para fondo de Sencillo   - 19.07.2010
       if(!UtilityFondoSencillo.indActivoFondo()) {
           //FarmaUtility.showMessage(this, "Error ",null);
-          //...ahora ya no,  para que muestre el fondo de sencillo(00058) luego de efectivo soles y dolares, en tercer lugar ASOSA, 18.06.2010 - antes, ...
+          //...ahora ya no,  para que muestre el fondo de sencillo(00058) luego de efectivo soles y dolares, en tercer lugar  , 18.06.2010 - antes, ...
           FarmaUtility.ordenar(tblFormasPago, tableModelFormasPago, 0, FarmaConstants.ORDEN_ASCENDENTE); 
       }  
       
@@ -727,7 +727,7 @@ public class DlgFormaPagoEntrega extends JDialog
   {
     FarmaLoadCVL.loadCVLfromArrays(cmbMoneda,FarmaConstants.HASHTABLE_MONEDA,FarmaConstants.MONEDAS_CODIGO,FarmaConstants.MONEDAS_DESCRIPCION,true);
     //Coloca por defecto el combo de sobre en "S" ya que tiene el indicador de SObre el local
-    //dubilluz 16.12.2008
+    //  16.12.2008
     FarmaLoadCVL.loadCVLfromArrays(cmbSobre,CMB_SOBRE,INDICADORES_CODIGO,INDICADORES_DESCRIPCION,true);
     FarmaLoadCVL.setSelectedValueInComboBox(cmbSobre,CMB_SOBRE, FarmaConstants.INDICADOR_S);
   } 
@@ -777,11 +777,11 @@ public class DlgFormaPagoEntrega extends JDialog
       cmbMoneda.setEnabled(true);
       VariablesCaja.vIndCambioMoneda = true;
       txtCantidad.setEnabled(true);
-      // JMIRANDA 19.07.2010
+      //   19.07.2010
       txtLote.setEnabled(true);
       txtMontoPagado.setEnabled(true);
       btnAdicionar.setEnabled(true);
-      // JMIRANDA 19.07.2010
+      //   19.07.2010
       FarmaUtility.moveFocus(txtLote);
       //FarmaUtility.moveFocus(txtCantidad);
     } else if( indTarjeta.equalsIgnoreCase(FarmaConstants.INDICADOR_S) )
@@ -796,7 +796,7 @@ public class DlgFormaPagoEntrega extends JDialog
       btnAdicionar.setEnabled(true);
       FarmaUtility.moveFocus(txtCantidad);
     } 
-      //JMIRANDA 10.03.2010
+      //  10.03.2010
       else if(codFormaPago.trim().equalsIgnoreCase(ConstantsCaja.FORMA_PAGO_FONDO_SENCILLO)){
           System.out.println("FORMA DE PAGO - FONDO DE SENCILLO"); 
           cmbMoneda.setEnabled(false);
@@ -839,7 +839,7 @@ public class DlgFormaPagoEntrega extends JDialog
     }
     //Validara si la forma de pago 
     //puede o no puede ser con sobre o no
-    //DUbilluz 14.01.2008
+    //  14.01.2008
     cargaProcesoProsegur(codFormaPago.trim());   
     
   }
@@ -849,8 +849,8 @@ public class DlgFormaPagoEntrega extends JDialog
     obtieneDatosFormaPago();
             if(!validaMontoIngresado()) return;
             
-            //if(!isLocalProsegur(VariablesCaja.vCodFormaPago)){    ANTES, //ASOSA, 31.05.2010
-            if(!isLocalProsegur(VariablesCaja.vCodFormaPago) && !obtenerIndSobresXFPago(VariablesCaja.vCodFormaPago)){ //ASOSA, 31.05.2010
+            //if(!isLocalProsegur(VariablesCaja.vCodFormaPago)){    ANTES, // , 31.05.2010
+            if(!isLocalProsegur(VariablesCaja.vCodFormaPago) && !obtenerIndSobresXFPago(VariablesCaja.vCodFormaPago)){ // , 31.05.2010
                 if(VariablesCajaElectronica.vIndSobre.equalsIgnoreCase(FarmaConstants.INDICADOR_S)){
                     FarmaUtility.showMessage(this,"No puede registrar la forma de pago como Sobre. Verifique!!!", tblFormasPago);
                     return;
@@ -888,7 +888,7 @@ public class DlgFormaPagoEntrega extends JDialog
         String codMoneda = FarmaLoadCVL.getCVLCode(FarmaConstants.HASHTABLE_MONEDA,cmbMoneda.getSelectedIndex());
         VariablesCaja.vCodMonedaPago = codMoneda;
         VariablesCaja.vDescMonedaPago = FarmaLoadCVL.getCVLDescription(FarmaConstants.HASHTABLE_MONEDA, codMoneda);
-    //JMIRANDA 10.03.2010
+    //  10.03.2010
     if (VariablesCaja.vCodFormaPago.trim().equalsIgnoreCase(ConstantsCaja.FORMA_PAGO_FONDO_SENCILLO)) {         
         VariablesCaja.vValMontoPagado = FarmaUtility.formatNumber(FarmaUtility.getDecimalNumber(VariablesFondoSencillo.vMonto));
         VariablesCajaElectronica.vCantidad = "0";
@@ -913,7 +913,7 @@ public class DlgFormaPagoEntrega extends JDialog
         }
         
         //Para el proceso de los sobres 
-        //DUBILLUZ 14.01.2008
+        //  14.01.2008
         VariablesCajaElectronica.vIndSobre = FarmaConstants.INDICADOR_N;
         if (cmbSobre.isVisible())
         {
@@ -1014,7 +1014,7 @@ public class DlgFormaPagoEntrega extends JDialog
     myArray.add(VariablesCaja.vValTotalPagado);
     myArray.add(VariablesCajaElectronica.vLote);
     myArray.add(VariablesCajaElectronica.vIndSobre);//Ind si se asociara a un sobre
-    myArray.add(" ");//CODIGO DE SOBRE DUBILLUZ 14.01.2009
+    myArray.add(" ");//CODIGO DE SOBRE   14.01.2009
     myArray.add(VariablesCajaElectronica.vSecMovCaja);
     myArray.add(VariablesCaja.vCodMonedaPago);
     myArray.add(FarmaConstants.INDICADOR_N);
@@ -1047,7 +1047,7 @@ public class DlgFormaPagoEntrega extends JDialog
       
     //indicador para saber si es una forma de pago donde se
     //asociara con un sobre 
-    //dubilluz 14.01.2009  
+    //  14.01.2009  
     String pIndSobre = FarmaConstants.INDICADOR_N;
     String pSecFormaPagoEntrega = ""; 
     try 
@@ -1066,23 +1066,23 @@ public class DlgFormaPagoEntrega extends JDialog
             
             //INICIO 
             //Se opera el sobre para la forma de pago ingresada
-            //dubilluz 14.01.2009
+            //  14.01.2009
             System.out.println("Secuencial de Forma Pago Sec Caja:"+pSecFormaPagoEntrega); 
             pIndSobre = ((String)tblDetallePago.getValueAt(i,COL_IND_SOBRE)).trim();
             if(pIndSobre.trim().equalsIgnoreCase(FarmaConstants.INDICADOR_S)){
                 DBCajaElectronica.agregaSobre(((String)tblDetallePago.getValueAt(i,COL_SEC_CAJA)).trim(),
                                               pSecFormaPagoEntrega.trim(),
-                                              //JCORTEZ 04.11.09 Se envia codigo para saber si se creo el sobre
+                                              //  04.11.09 Se envia codigo para saber si se creo el sobre
                                               ((String)tblDetallePago.getValueAt(i,8)).trim());
             }
-            ArrayList listaSobres02=colectarSobresRecienDeclarados(VariablesCajaElectronica.vSecMovCaja);   //ASOSA, 13.08.2010
+            ArrayList listaSobres02=colectarSobresRecienDeclarados(VariablesCajaElectronica.vSecMovCaja);   // , 13.08.2010
                DBCajaElectronica.aprobarSobres(VariablesCajaElectronica.vSecMovCaja,
                             VariablesCajaElectronica.idUsu_APRUEBA_SOBRE, 
-                            VariablesCajaElectronica.pSecUsu_APRUEBA_SOBRE);    //ASOSA, 11.08.2010
+                            VariablesCajaElectronica.pSecUsu_APRUEBA_SOBRE);    // , 11.08.2010
             //FIN
-            //--JMIRANDA 11.03.2010 
+            //--  11.03.2010 
             // Graba la devolución del fondo de Sencillo
-            System.err.println("JMIRANDA 11.03.2010 ");
+            System.err.println("  11.03.2010 ");
             String CodFormPago = FarmaUtility.getValueFieldArrayList(tableModelDetallePago.data,i,0);
             if (CodFormPago.trim().equalsIgnoreCase(ConstantsCaja.FORMA_PAGO_FONDO_SENCILLO)&&UtilityFondoSencillo.indActivoFondo()) {
                 System.err.println("antes de ind Tiene Monto Devolver VariablesFondoSencillo.vIndTieneMontoDevolver:"+VariablesFondoSencillo.vIndTieneMontoDevolver);
@@ -1107,7 +1107,7 @@ public class DlgFormaPagoEntrega extends JDialog
             }
             //--
             FarmaUtility.aceptarTransaccion();
-               imprimeSobresDeclarados_0X(listaSobres02,VariablesCajaElectronica.vSecMovCaja); //ASOSA, 13.08.2010 - Ahora se imprimiran aca porq es un cambio inesperado
+               imprimeSobresDeclarados_0X(listaSobres02,VariablesCajaElectronica.vSecMovCaja); // , 13.08.2010 - Ahora se imprimiran aca porq es un cambio inesperado
             if(cmbSobre.isVisible())
             {
                cmbSobre.setVisible(false);
@@ -1145,7 +1145,7 @@ public class DlgFormaPagoEntrega extends JDialog
     String CodFormPago= tblDetallePago.getValueAt(tblDetallePago.getSelectedRow(),COL_COD_FPAGO).toString();
       
    String TipMensaje="";    
-	//JCORTEZ 04.05.2009
+	//  04.05.2009
     //Se valida que solo se verifique solo se pida pass de operador por limite al borrar para las formas de pago
     //que tengan sobres asociados, y ademas sean soles y dolares 
     if(indSobre.trim().equalsIgnoreCase("S")&&CodSobre.trim().length()>0&&
@@ -1186,7 +1186,7 @@ public class DlgFormaPagoEntrega extends JDialog
         }
         
         
-    //JCORTEZ 04.05.2009
+    //  04.05.2009
     //Se valida que solo se verifique solo se pida pass de operador por limite al borrar para las formas de pago
     //que tengan sobres asociados, y ademas sean soles y dolares      
      /* //verificando la cantidad de sobres que elimino por turno el cajero
@@ -1199,7 +1199,7 @@ public class DlgFormaPagoEntrega extends JDialog
           log.debug("error al obtener la cantidad de sobres eliminados por turno"+e);
       }
       
-      log.debug("jcallo: camtidad de sobres eliminados: "+cantSobreEliminados);
+      log.debug(" : camtidad de sobres eliminados: "+cantSobreEliminados);
       //mostrar emnsaje si excedio la cantidad de veces que puede eliminar
       //esto tb se podria realizar por base de datos
       
@@ -1264,7 +1264,7 @@ public class DlgFormaPagoEntrega extends JDialog
         {
           try
           {
-              //JMIRANDA 16.03.2010
+              //  16.03.2010
               boolean indSigueProce = true;
             if (FarmaUtility.rptaConfirmDialog(this,"¿El sistema eliminará la forma de pago físicamente. Desea Continuar?"))
             {
@@ -1278,7 +1278,7 @@ public class DlgFormaPagoEntrega extends JDialog
                 }
               }
                 //Verifica si Tiene Sobre para eliminarlo antes de Eliminar el ingreso
-                //DUBILLUZ 14.01.2008
+                //  14.01.2008
                 //Inicio 
               
               System.out.println(":::::::::::::VariablesCajaElectronica.vIndSobre::::::::::::::"+VariablesCajaElectronica.vIndSobre);
@@ -1296,7 +1296,7 @@ public class DlgFormaPagoEntrega extends JDialog
                 FarmaUtility.aceptarTransaccion();       
                 System.out.println("Elimina registro Seleccionado BD");
                 listaFormasPagoEntrega(true);
-                //JCORTEZ 03.11.09 Se cargan los sobres temporales automaticamente por turno.
+                //  03.11.09 Se cargan los sobres temporales automaticamente por turno.
                 cargarSobres();
                 lblTotal.setText(FarmaUtility.formatNumber(FarmaUtility.sumColumTable(tblDetallePago,COL_TOTAL)));
                 FarmaUtility.moveFocusJTable(tblFormasPago);
@@ -1307,10 +1307,10 @@ public class DlgFormaPagoEntrega extends JDialog
                                                           VariablesCajaElectronica.vTipMoneda,
                                                           VariablesCajaElectronica.vSecFPEntrega);
                   //---- Elimina el registro del fondo de sencillo asignado
-                  //JMIRANDA 11.03.2010
+                  //  11.03.2010
                   if(CodFormPago.trim().equalsIgnoreCase(ConstantsCaja.FORMA_PAGO_FONDO_SENCILLO)
                     && UtilityFondoSencillo.indActivoFondo()){
-                      //JMIRANDA 16.03.2010 Mensaje que no puede eliminar si tiene Fondo Sencillo
+                      //  16.03.2010 Mensaje que no puede eliminar si tiene Fondo Sencillo
                       String indFondoAceptado = DBFondoSencillo.getIndDevolucionAceptada(VariablesCajaElectronica.vSecMovCaja).trim();
                       if(indFondoAceptado.equalsIgnoreCase("S")){
                           FarmaUtility.showMessage(this,"No puede Eliminar una Forma de Sencillo Aceptada por el Administrador del Local.",tblFormasPago);
@@ -1401,7 +1401,7 @@ public class DlgFormaPagoEntrega extends JDialog
                     myArray.add((ArrayList)tableModelDetallePago.getRow(i).clone());
                 }
             }
-            //System.out.println("DUBILLUZ:myArray:"+myArray);
+            //System.out.println(" :myArray:"+myArray);
         }
 
         try {
@@ -1489,22 +1489,22 @@ public class DlgFormaPagoEntrega extends JDialog
     
     /**
      * Proceso CE Seguridad
-     * @author dubilluz
+     * @author  
      * @since  13.01.2009
      */
     private void cargaProcesoProsegur(String pCodigoFormaPago) {
         boolean pVisible = isLocalProsegur(pCodigoFormaPago.trim());
-        boolean flag=obtenerIndSobresXFPago(pCodigoFormaPago.trim()); //ASOSA, 31.05.2010
+        boolean flag=obtenerIndSobresXFPago(pCodigoFormaPago.trim()); // , 31.05.2010
         System.out.println("pVisible:" + pVisible);
-        System.out.println("flag:" + flag);//ASOSA, 31.05.2010
-        //cmbSobre.setVisible(pVisible); //ASOSA, 31.05.2010
+        System.out.println("flag:" + flag);// , 31.05.2010
+        //cmbSobre.setVisible(pVisible); // , 31.05.2010
         if(pVisible || flag){
             lblSObre.setText("¿Lo ingresará en Sobre?");
-            cmbSobre.setVisible(true); //ASOSA, 31.05.2010
+            cmbSobre.setVisible(true); // , 31.05.2010
         }
         else{
             lblSObre.setText("");
-            cmbSobre.setVisible(false);//ASOSA, 31.05.2010
+            cmbSobre.setVisible(false);// , 31.05.2010
         }
         
             
@@ -1554,7 +1554,7 @@ public class DlgFormaPagoEntrega extends JDialog
    
    /**
     * Se cargan los registros de sobres temporales.
-    * @AUTHOR JCORTEZ 
+    * @AUTHOR   
     * @SINCE 03.11.09
     * */
    private void cargarSobres(){
@@ -1600,7 +1600,7 @@ public class DlgFormaPagoEntrega extends JDialog
           }
        lblTotal.setText(FarmaUtility.formatNumber(FarmaUtility.sumColumTable(tblDetallePago,COL_TOTAL)));
    }
-  //JMIRANDA 10.03.2010
+  //  10.03.2010
     private void mostrarDevFondoSencillo(){
         DlgDevolverMontoFondoSencillo dlgDevMonto = new DlgDevolverMontoFondoSencillo(myParentFrame,"",true);
         dlgDevMonto.setVisible(true);
@@ -1673,7 +1673,7 @@ public class DlgFormaPagoEntrega extends JDialog
                                 FarmaLoadCVL.setSelectedValueInComboBox(cmbMoneda, FarmaConstants.HASHTABLE_MONEDA, FarmaConstants.CODIGO_MONEDA_SOLES);
                                 
                                 btnFormaPago.doClick(); 
-                                //dubilluz - 05.07.2010
+                                //  - 05.07.2010
                                 if(VariablesCajaElectronica.vUsuarioCajero && VariablesCajaElectronica.vIndVBCajero.equals(FarmaConstants.INDICADOR_N))
                                   agregaFormaPagoEntrega();                                
                                 
@@ -1707,7 +1707,7 @@ public class DlgFormaPagoEntrega extends JDialog
     }
 /**
      * Se valida estado del sobre creado.
-     * @AUTHOR JCORTEZ 
+     * @AUTHOR   
      * @SINCE 29.03.2010
      * */
    private String validarEstadoSobre(String codsobre,String codFormaPago){
@@ -1763,7 +1763,7 @@ public class DlgFormaPagoEntrega extends JDialog
     
     /**
      * Si el indicador de concepto de sobres esta en 'S' y la forma de pago puede ponerse en sobres entonces devuelve 'S' sino 'N'
-     * @author ASOSA
+     * @author  
      * @since 31.05.2010
      * @param codFpago
      * @return
@@ -1793,7 +1793,7 @@ public class DlgFormaPagoEntrega extends JDialog
     }
     
     /**
-     * @author ASOSA
+     * @author  
      * @since 09.08.2010
      * Metodo copiado para otro cambio sorpresa
      * @return
@@ -1812,7 +1812,7 @@ public class DlgFormaPagoEntrega extends JDialog
         dlgLogin.setRolUsuario(FarmaConstants.ROL_ADMLOCAL);
         dlgLogin.setVisible(true);
         VariablesCajaElectronica.pSecUsu_APRUEBA_SOBRE = FarmaVariables.vNuSecUsu;
-        VariablesCajaElectronica.idUsu_APRUEBA_SOBRE = FarmaVariables.vIdUsu; //ASOSA, 11.08.2010
+        VariablesCajaElectronica.idUsu_APRUEBA_SOBRE = FarmaVariables.vIdUsu; // , 11.08.2010
         FarmaVariables.vNuSecUsu  = numsec ;
         FarmaVariables.vIdUsu  = idusu ;
         FarmaVariables.vNomUsu  = nomusu ;
@@ -1836,7 +1836,7 @@ public class DlgFormaPagoEntrega extends JDialog
     
     /**
      * Busca sobres recien creados
-     * @author ASOSA
+     * @author  
      * @since 09.08.2010
      * @return
      */
@@ -1860,7 +1860,7 @@ public class DlgFormaPagoEntrega extends JDialog
     
     /**
      * Reimprime un sobre
-     * @author ASOSA
+     * @author  
      * @since 09.08.2010
      */
     private void reimprimir(){
@@ -1869,7 +1869,7 @@ public class DlgFormaPagoEntrega extends JDialog
         String pSecMovCaja = FarmaUtility.getValueFieldArrayList(tableModelDetallePago.data,tblDetallePago.getSelectedRow(),9).trim();
         System.out.println("pSecMovCaja CAmbio waaa: "+pSecMovCaja);
         System.out.println("SecSobre CAmbio waaa: "+secSobre);
-        if(!secSobre.trim().equalsIgnoreCase("")){  //ASOSA, 13.08.2010
+        if(!secSobre.trim().equalsIgnoreCase("")){  // , 13.08.2010
             UtilitySobres.reimprimirSobre_02(null,pSecMovCaja,secSobre);
         }else{
             if(indSobre.equalsIgnoreCase("S")){
@@ -1882,7 +1882,7 @@ public class DlgFormaPagoEntrega extends JDialog
     
     /**
      * colectarSobresRecienDeclarados
-     * @author ASOSA
+     * @author  
      * @since 13.08.2010
      * @param pSecMovCaja
      * @return
@@ -1912,7 +1912,7 @@ public class DlgFormaPagoEntrega extends JDialog
     
     /**
      * Imprime sobres recien grabados y aprobados
-     * @author ASOSA
+     * @author  
      * @since 13.08.2010
      * @param listaS
      * @param pSecMovCaja

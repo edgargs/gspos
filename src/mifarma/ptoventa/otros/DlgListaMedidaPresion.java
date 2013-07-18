@@ -21,8 +21,8 @@ import javax.swing.JDialog;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import mifarma.common.FarmaConnectionRemoto;
 import mifarma.common.FarmaConstants;
@@ -50,9 +50,9 @@ import com.gs.mifarma.componentes.JTextFieldSanSerif;
  * Nombre de la Aplicación : DlgListaMedidaPresion.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JCALLO      23.10.2008   Creación<br>
+ *        23.10.2008   Creación<br>
  * <br>
- * @author JCALLO<br>
+ * @author  <br>
  * @version 1.0<br>
  *
  */
@@ -63,7 +63,7 @@ public class DlgListaMedidaPresion extends JDialog
   /*                        DECLARACION PROPIEDADES                         */
   /* ********************************************************************** */
 	
-  private static final Log log = LogFactory.getLog(DlgListaMedidaPresion.class);
+  private static final Logger log = LoggerFactory.getLogger(DlgListaMedidaPresion.class);
 
   Frame myParentFrame;
   FarmaTableModel tableModel; 
@@ -338,7 +338,7 @@ public class DlgListaMedidaPresion extends JDialog
     chkKeyPressed(e);
   }
   
-  //jcallo 16.10.2008 evento del teclado 
+  //  16.10.2008 evento del teclado 
   private void txtFecIni_keyTyped(KeyEvent e)
   {
     //chkKeyPressed(e);
@@ -492,7 +492,7 @@ public class DlgListaMedidaPresion extends JDialog
   
   
   /**
-   * @author JCALLO
+   * @author  
    * @since 21.10.2008
    * */
   private void nuevoRegMedidaPresion(){
@@ -528,7 +528,7 @@ public class DlgListaMedidaPresion extends JDialog
   
   /**
    * validarFechas 
-   * @author JCALLO
+   * @author  
    * @since 16.10.2008
    * */
   private boolean validarFechas(){
@@ -547,7 +547,7 @@ public class DlgListaMedidaPresion extends JDialog
 
 	/**
 	 * Modificar medida de presion
-	 * @author JCALLO
+	 * @author  
 	 * @since 28.10.08
 	 */
 	private void modificarMedidaPresion() {
@@ -580,7 +580,7 @@ public class DlgListaMedidaPresion extends JDialog
 	
 	/**
 	 * eliminar medida de presion
-	 * @author JCALLO
+	 * @author  
 	 * @since 28.10.08
 	 */
 	private void eliminarMedidaPresion() {	  
@@ -611,7 +611,7 @@ public class DlgListaMedidaPresion extends JDialog
 	
 	/**
 	 * eliminar medida de presion
-	 * @author JCALLO
+	 * @author  
 	 * @since 28.10.08
 	 */
 	private void inactivarMedidaPresion() {	  
@@ -639,7 +639,7 @@ public class DlgListaMedidaPresion extends JDialog
 	
 	/**
 	 * aplicar seguridad del rol del usuario
-	 * @author JCALLO
+	 * @author  
 	 * @since 28.10.08
 	 */
 	private void aplicarSeguiridadRolUsuario() {
@@ -664,7 +664,7 @@ public class DlgListaMedidaPresion extends JDialog
 	/**
 	 * carga parametros como la cantidad por defecto a poder imprimir
 	 * o la cantidad maxima posible a imprimir y tambien limpiar las variables utilizados
-	 * @author JCALLO
+	 * @author  
 	 * @since 28.10.08
 	 */
 	private void cargaVariables() {

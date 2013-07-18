@@ -284,7 +284,7 @@ public class DlgProductoFaltaCero extends JDialog
     }else if(e.getKeyCode() == KeyEvent.VK_F10)
     {
       // Se desabilito la opcion de imprimir.
-      //  conversado segun correo 15.09.2008 dubilluz  
+      //  conversado segun correo 15.09.2008    
       /*funcionF10();
        * */
     }else if(e.getKeyCode() == KeyEvent.VK_ESCAPE)

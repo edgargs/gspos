@@ -44,7 +44,7 @@ import mifarma.ptoventa.ce.reference.UtilityCajaElectronica;
 import mifarma.ptoventa.ce.reference.VariablesCajaElectronica;
 import mifarma.ptoventa.reference.ConstantsPtoVenta;
 import mifarma.ptoventa.reference.VariablesPtoVenta;
-import mifarma.ptoventa.ce.DlgCambioFormaPago;
+
 //cambio para corregir forma de pago.
 //import mifarma.ptoventa.ce.DlgCambioFormaPagoNew;
 
@@ -72,10 +72,10 @@ import mifarma.ptoventa.ce.reference.*;
  * Nombre de la Aplicación : DlgCierreCajaTurno.java<br>
  * <br>
  * Histórico de Creación/_fModificación<br>
- * PAULO      31.07.2006   Creación<br>
+ *        31.07.2006   Creación<br>
  * LMESIA     07.08.2006   Modificacion<br>
  * <br>
- * @author Paulo Cesar Ameghino Rojas<br>
+ * @author   Cesar Ameghino Rojas<br>
  * @version 1.0<br>
  * 
  */
@@ -726,7 +726,7 @@ public class DlgCierreCajaTurno extends JDialog
       } else if (e.getKeyCode() == KeyEvent.VK_F3){
         ingresarRangoComprobantes();
       }else if (e.getKeyCode() == KeyEvent.VK_F4){
-        //JCORTEZ 23.02.10 VariablesCajaElectronica.vIndVBCajero
+        //  23.02.10 VariablesCajaElectronica.vIndVBCajero
           //VariablesCajaElectronica.vIndVBCajero.equalsIgnoreCase(FarmaConstants.INDICADOR_S) && 
           //                VariablesCajaElectronica.vUsuarioCajero
         
@@ -736,13 +736,7 @@ public class DlgCierreCajaTurno extends JDialog
             if(VariablesCajaElectronica.vIndVBCajero.equalsIgnoreCase(FarmaConstants.INDICADOR_S)){    
                  FarmaUtility.showMessage(this,"No se Puede Cambiar la forma de Pago de un Movimiento de Caja \n con V°B° de Cajero.",tblFormasPago);
                 }else{
-                      System.out.println("CAMBIO FORMA PAGO");
-                      if(VariablesCajaElectronica.vIndCambioFormaPago.equals("S"))
-                      { cambioFomaPago();
-                      }
-                      else
-                      {  FarmaUtility.showMessage(this,"Esta función no esta habilitada.",txtFecha);   
-                      }
+                     
                  }
         }    
         else          
@@ -807,7 +801,7 @@ public class DlgCierreCajaTurno extends JDialog
   private void mostrarFormasPago()
   {
       VariablesCajaElectronica.vFecCierreCajaAux = txtFecha.getText().trim();
-      //JMIRANDA 10.03.2010 guarda sec Cajero
+      //  10.03.2010 guarda sec Cajero
       VariablesFondoSencillo.vSecUsuCajeroCierre = txtCodigoCajero.getText().trim();
       VariablesFondoSencillo.vSecMovCajaCierre = VariablesCajaElectronica.vSecMovCaja;
       //VariablesFondoSencillo.vMensajeDevolver = "Nuevo Fondo de Sencillo para Devolver.";     
@@ -1193,7 +1187,7 @@ public class DlgCierreCajaTurno extends JDialog
   private void cambiaVBCajero()
   {
     evaluaExistenciaVBCierreDia(VariablesCajaElectronica.vFechaCuadratura);
-    //JCORTEZ 01.03.2010  Se valida monto efectivo y tarjeta con los declarado 
+    //  01.03.2010  Se valida monto efectivo y tarjeta con los declarado 
     if (!validaMontoDeclarado()) {
         FarmaUtility.liberarTransaccion();
         return;
@@ -1213,7 +1207,7 @@ public class DlgCierreCajaTurno extends JDialog
     if( VariablesCajaElectronica.vIndVBCajero.equalsIgnoreCase(FarmaConstants.INDICADOR_N) && 
         VariablesCajaElectronica.vUsuarioCajero )
     {
-        if(getDeter_neces_fpFSEN()){//ASOSA, 21.06.2010
+        if(getDeter_neces_fpFSEN()){// , 21.06.2010
           //UtilityCajaElectronica.obtieneComprobantesMinMaxIngresoUsuario(this, VariablesCajaElectronica.vSecMovCaja);
           //guardaInformacionComprobantes();
           if( !validaRangoComprobantesIngresados() )
@@ -1236,12 +1230,12 @@ public class DlgCierreCajaTurno extends JDialog
               actualizaObservacionCierreTurno(VariablesCajaElectronica.vSecMovCaja, VariablesCajaElectronica.vObsCierreTurno);
               evaluaMsgEtiquetaVB(ConstantsCajaElectronica.CON_VB_CAJERO);//existe VB de cajero para el mov de caja
               verificaObservacionCierreTurno(true, false);
-              //UtilityCajaElectronica.imprimeSobresDeclarados(this,VariablesCajaElectronica.vSecMovCaja); ASOSA, 09.08.2010 - Ya no se imprimiran aca los sobres
+              //UtilityCajaElectronica.imprimeSobresDeclarados(this,VariablesCajaElectronica.vSecMovCaja);  , 09.08.2010 - Ya no se imprimiran aca los sobres
               FarmaUtility.showMessage(this,"Se otorgó correctamente el VB de Cajero", txtFecha);
             }
           }
           FarmaUtility.liberarTransaccion();
-        }else{//ASOSA, 21.06.2010
+        }else{// , 21.06.2010
             mandarDeclararFSEN();          
         }            
     } else if( VariablesCajaElectronica.vIndVBCajero.equalsIgnoreCase(FarmaConstants.INDICADOR_N) && 
@@ -1426,7 +1420,7 @@ public class DlgCierreCajaTurno extends JDialog
                                                  ConstantsCajaElectronica.TIPO_VB_QF)) {
 
                             //***
-                            //JMIRANDA 11.03.2010 SE ACEPTA LA DEVOLUCION DE FONDO DE SENCILLO
+                            //  11.03.2010 SE ACEPTA LA DEVOLUCION DE FONDO DE SENCILLO
                             if (UtilityFondoSencillo.indActivoFondo()) {
                                 VariablesFondoSencillo.vIndTieneMontoDevolver = 
                                         UtilityFondoSencillo.getIndTieneDevFondo(FarmaVariables.vNuSecUsu, 
@@ -1528,7 +1522,7 @@ public class DlgCierreCajaTurno extends JDialog
     double montoTotalSistema = 0.00;
     double montoTotalCierre = 0.00;
     double montoFaltante = 0.00;
-    //JMIRANDA 11.03.2010
+    //  11.03.2010
     double montoFondoSencillo = 0.00;
     String montoTotalSistema_S = new String();
     //suma de total cierre de caja
@@ -1542,7 +1536,7 @@ public class DlgCierreCajaTurno extends JDialog
     montoTotalSistema = FarmaUtility.getDecimalNumber(montoTotalSistema_S.trim());
     System.out.println("montoTotalSistema : " + montoTotalSistema);
     //faltante o sobrante
-    //JMIRANDA 11.03.2010
+    //  11.03.2010
     montoFaltante = (montoTotalSistema + montoFondoSencillo) - montoTotalCierre;
     //montoFaltante = montoTotalSistema - montoTotalCierre;    
     if( montoFaltante < 0 ){
@@ -1559,7 +1553,7 @@ public class DlgCierreCajaTurno extends JDialog
     lblMontoTotalSistema.setText("" + FarmaUtility.formatNumber(montoTotalSistema));
     lblMontoTotalCierre.setText("" + FarmaUtility.formatNumber(montoTotalCierre));
     lblFaltante.setText("" + FarmaUtility.formatNumber(montoFaltante));
-    //JMIRANDA 10.03.2010
+    //  10.03.2010
     lblFondoSencillo.setText("" + FarmaUtility.formatNumber(montoFondoSencillo));
   }
   
@@ -1716,7 +1710,7 @@ public class DlgCierreCajaTurno extends JDialog
      vPrint.printLine(" ",true);
      vPrint.printDoubleWidthMode(FarmaPRNUtility.llenarBlancos(8)+ "Monto Total Cierre    : " + lblMontoTotalCierre.getText().trim()+ " (A+B)", true);
      vPrint.printDoubleWidthMode(FarmaPRNUtility.llenarBlancos(8)+ "Monto Total Sistema   : " + lblMontoTotalSistema.getText().trim(), true);
-    //JMIRANDA 12.03.2010   
+    //  12.03.2010   
     if(!UtilityFondoSencillo.indActivoFondo()){
      vPrint.printDoubleWidthMode(FarmaPRNUtility.llenarBlancos(8)+ "Diferencia   : " + FarmaUtility.formatNumber(FarmaUtility.getDecimalNumber(lblMontoTotalCierre.getText()) - FarmaUtility.getDecimalNumber(lblMontoTotalSistema.getText())), true);
     }else{
@@ -1863,7 +1857,7 @@ public class DlgCierreCajaTurno extends JDialog
     VariablesCajaElectronica.vIndCompValidos = UtilityCajaElectronica.obtieneIndicadorComprobatesValidosUsuario(this, VariablesCajaElectronica.vSecMovCaja);
     VariablesCajaElectronica.vTipoIngresoComprobantes = ConstantsCajaElectronica.TIP_INGRESO_COMP_CT;
     
-    //JCORTEZ 02/02/2009
+    //  02/02/2009
     String Ind_Multi=getTipoLocal();
     System.out.println("VariablesCajaElectronica.vIndCompValidos-->"+VariablesCajaElectronica.vIndCompValidos);
     if(Ind_Multi.equalsIgnoreCase(FarmaConstants.INDICADOR_S)&&
@@ -1888,8 +1882,8 @@ public class DlgCierreCajaTurno extends JDialog
             DBCajaElectronica.insertaRangoCompMovCaja(VariablesCajaElectronica.vSecMovCaja);
           
            VariablesCajaElectronica.vIndCompValidos = FarmaConstants.INDICADOR_S;
-           if(verificarIndSobresParcialesConcepSobre()){ //ASOSA, 07.06.2010
-                grabarSobresAutomaticamente(); //ASOSA, 04.06.2010
+           if(verificarIndSobresParcialesConcepSobre()){ // , 07.06.2010
+                grabarSobresAutomaticamente(); // , 04.06.2010
            }
            FarmaUtility.aceptarTransaccion();
            FarmaUtility.showMessage(this,"Los rangos de comprobantes se registraron correctamente",null);
@@ -2120,33 +2114,8 @@ public class DlgCierreCajaTurno extends JDialog
   }
 
   /**
-   * Se podra cambiar la forma de pago de los pedidos seleccionados
-   * @AUTHOR JCORTEZ
-   * @SINCE 26.02.2010
-   * */
-  private void cambioFomaPago(){
-        boolean bNewFormapago = false;
-        
-        VariablesCajaElectronica.vFechaDia=txtFecha.getText().trim();
-        System.out.println("fecha de carga "+VariablesCajaElectronica.vFechaDia);
-        
-        
-        //if(bNewFormapago){
-        DlgCambioFormaPago dlgcambio =new DlgCambioFormaPago(myParentFrame,"",true);
-        dlgcambio.setVisible(true);
-        /*}else{
-        DlgCambioFormaPagoNew dlgcambio =new DlgCambioFormaPagoNew(myParentFrame,"",true);
-        dlgcambio.setVisible(true);    
-        }*/
-        
-      if(FarmaVariables.vAceptar){
-         //
-      } 
-  }
-  
-  /**
    * Se valida igualdad entre efectivo declarado y existente en sistema, asi como voucher declarado y existente en sistema
-   * @AUTHOR JCORTEZ 
+   * @AUTHOR   
    * @SINCE 03.03.2010
    * */
   private boolean validaMontoDeclarado(){
@@ -2177,7 +2146,7 @@ public class DlgCierreCajaTurno extends JDialog
     
     /**
      * Se valida el indicador
-     * @AUTHOR JCORTEZ 
+     * @AUTHOR   
      * @SINCE 03.03.2010
      * */
   private void habilitaCambioFormaPago(){
@@ -2206,7 +2175,7 @@ public class DlgCierreCajaTurno extends JDialog
     /*  boolean pPermiteVbCajero = false;        
       
         if (UtilityFondoSencillo.indActivoFondo()) {
-            //JMIRANDA 02.03.2010 validar si tiene monto por devolver   
+            //  02.03.2010 validar si tiene monto por devolver   
             VariablesFondoSencillo.vIndTieneMontoDevolver = 
                     UtilityFondoSencillo.getIndTieneDevFondo(FarmaVariables.vNuSecUsu, 
                                                              VariablesCajaElectronica.vSecMovCaja, 
@@ -2324,7 +2293,7 @@ public class DlgCierreCajaTurno extends JDialog
     
     /**
      * GRABA LOS SOBRES PARCIALES Y LOS APRUEBA(GRABA EN FORMA PAGO ENTREGA Y EN CE_SOBRE
-     * @author ASOSA
+     * @author  
      * @since 03.06.2010
      */
     private void grabarSobresAutomaticamente(){
@@ -2350,7 +2319,7 @@ public class DlgCierreCajaTurno extends JDialog
     
     /**
      * ES verdadero si el indicador de cierre parcial 366 y sobres 317 esta activo
-     * @author ASOSA
+     * @author  
      * @since 07.06.2010
      * @return
      */
@@ -2376,7 +2345,7 @@ public class DlgCierreCajaTurno extends JDialog
     
     /**
      * Determine si se debe dejar dar VB de cajero, en el caso este activo deberia entonces haberlo declarado como forma de pago entrega
-     * @author ASOSA
+     * @author  
      * @since 21.06.2010
      * @return
      */
@@ -2397,14 +2366,14 @@ public class DlgCierreCajaTurno extends JDialog
 
     /**
      * Obliga a que se ingrese el fondo de sencillo desde un principio o cuando quiere dar VB
-     * @author ASOSA
+     * @author  
      * @since 21.06.2010
      */
     private void mandarDeclararFSEN(){
         FarmaUtility.showMessage(this,"Ud. acepto un fondo de sencillo que debe declarar\ncomo devuelto para dar visto bueno",null);
         VariablesCajaElectronica.indAutoFSEN="S";
         VariablesCajaElectronica.vFecCierreCajaAux = txtFecha.getText().trim();
-        //JMIRANDA 10.03.2010 guarda sec Cajero
+        //  10.03.2010 guarda sec Cajero
         VariablesFondoSencillo.vSecUsuCajeroCierre = txtCodigoCajero.getText().trim();
         VariablesFondoSencillo.vSecMovCajaCierre = VariablesCajaElectronica.vSecMovCaja;
         //VariablesFondoSencillo.vMensajeDevolver = "Nuevo Fondo de Sencillo para Devolver.";        

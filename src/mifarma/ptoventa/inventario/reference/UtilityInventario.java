@@ -57,7 +57,7 @@ public class UtilityInventario {
     String fechaBD = FarmaSearch.getFechaHoraBD(FarmaConstants.FORMATO_FECHA_HORA);
     VariablesInventario.vDirecOrigen_Transf = DBInventario.getDireccionOrigenLocal();
     VariablesRecepCiega.vDirecOrigen_Transf = VariablesInventario.vDirecOrigen_Transf;
-      //JMIRANDA 16.02.2010
+      //  16.02.2010
       //MODIFICADO JQUISPE 11.05.2010
       //PEQUEÑA
       if(VariablesInventario.vTipoFormatoImpresion <= 8)
@@ -72,7 +72,7 @@ public class UtilityInventario {
       }
       else{
           // PARA GRANDE
-          //JMIRANDA 16.02.2010
+          //  16.02.2010
           //validar aqui si es Guia generada en Transf x Recepcion Ciega
           if(!VariablesInventario.vIndTransfRecepCiega){
               imprimeGuia(pJDialog, fechaBD, pDetalleComprobante);
@@ -92,7 +92,7 @@ public class UtilityInventario {
     String fechaBD = FarmaSearch.getFechaHoraBD(FarmaConstants.FORMATO_FECHA_HORA);
     VariablesInventario.vDirecOrigen_Transf = DBInventario.getDireccionOrigenLocal();
     VariablesRecepCiega.vDirecOrigen_Transf = VariablesInventario.vDirecOrigen_Transf;
-      //JMIRANDA 16.02.2010
+      //  16.02.2010
       //validar aqui si es Guia generada en Transf x Recepcion Ciega
       if(!VariablesInventario.vIndTransfRecepCiega){
           imprimeGuia(pJDialog, fechaBD, pDetalleComprobante);
@@ -148,7 +148,7 @@ public class UtilityInventario {
         FarmaUtility.aceptarTransaccion();
         System.out.println("VariablesInventario.vCant 2 : " + VariablesInventario.vCant);
         System.out.println("i : " + (i + 1));
-        //Inicio Adicion Paulo
+        //Inicio Adicion  
         if (VariablesInventario.vCant.equalsIgnoreCase("")||VariablesInventario.vCant.equalsIgnoreCase("0"))
         {
           continue;
@@ -156,7 +156,7 @@ public class UtilityInventario {
         {
           break;
         }
-        //Fin Adicion Paulo
+        //Fin Adicion  
       }
       
       //FarmaUtility.liberarTransaccion();
@@ -233,7 +233,7 @@ public class UtilityInventario {
           FarmaUtility.aceptarTransaccion();
           System.out.println("VariablesInventario.vCant 2 : " + VariablesInventario.vCant);
           System.out.println("i : " + (i + 1));
-          //Inicio Adicion Paulo
+          //Inicio Adicion  
           if (VariablesInventario.vCant.equalsIgnoreCase("")||VariablesInventario.vCant.equalsIgnoreCase("0"))
           {
             continue;
@@ -241,7 +241,7 @@ public class UtilityInventario {
           {
             break;
           }
-          //Fin Adicion Paulo
+          //Fin Adicion  
         }
         
         //FarmaUtility.liberarTransaccion();
@@ -295,7 +295,7 @@ public class UtilityInventario {
 /*    vPrint.printLine("     "+"MOTIVO: " + 
                      FarmaPRNUtility.alinearIzquierda(VariablesInventario.vDescMotivo_Transf.trim(), 
                                                       64), true);*/
-    //JMIRANDA 10.12.09
+    //  10.12.09
     if(!VariablesInventario.vDescMotivo_Transf_Larga.trim().equalsIgnoreCase("")){
     vPrint.printLine("     "+"MOTIVO: " + 
                      FarmaPRNUtility.alinearIzquierda(VariablesInventario.vDescMotivo_Transf.trim()
@@ -445,7 +445,7 @@ public class UtilityInventario {
       /*    vPrint.printLine("     "+"MOTIVO: " + 
                            FarmaPRNUtility.alinearIzquierda(VariablesInventario.vDescMotivo_Transf.trim(), 
                                                             64), true);*/
-          //JMIRANDA 10.12.09
+          //  10.12.09
           if(!VariablesInventario.vDescMotivo_Transf_Larga.trim().equalsIgnoreCase("")){
           vPrint.printLine("     "+"MOTIVO: " + 
                            FarmaPRNUtility.alinearIzquierda(VariablesInventario.vDescMotivo_Transf.trim()
@@ -712,7 +712,7 @@ public class UtilityInventario {
   }
   
   /**Nuevo!!
-   * @Autor:  Luis Reque Orellana
+   * @Autor:   
    * @Fecha:  20/04/2007
    * */
   public static void guardarCantidadAdicional() throws SQLException
@@ -721,7 +721,7 @@ public class UtilityInventario {
   }
 
   /**NUEVO
-   * @Autor: Paulo Cesar Ameghino Rojas
+   * @Autor:   Cesar Ameghino Rojas
    * @Fecha: 07-06-2007
    * */
   public static void muestraIndTipoProd(int pColumna, JLabel pLabel, JTable myJTable)
@@ -741,7 +741,7 @@ public class UtilityInventario {
   }
   
   /**NUEVO
-   * @Autor: Paulo Cesar Ameghino Rojas
+   * @Autor:   Cesar Ameghino Rojas
    * @Fecha: 20-04-2007
    * */  
    public static boolean obtieneIndLinea(JDialog dialog)
@@ -853,7 +853,7 @@ public class UtilityInventario {
     /*    vPrint.printLine("     "+"MOTIVO: " +
                        FarmaPRNUtility.alinearIzquierda(VariablesInventario.vDescMotivo_Transf.trim(), 
                                                         64), true);*/
-      //JMIRANDA 10.12.09
+      //  10.12.09
       if(!VariablesRecepCiega.vDescMotivo_Transf_Larga.trim().equalsIgnoreCase("")){
       vPrint.printLine("     "+"MOTIVO: " + 
                        FarmaPRNUtility.alinearIzquierda(VariablesRecepCiega.vDescMotivo_Transf.trim()
@@ -995,7 +995,7 @@ public class UtilityInventario {
     /*    vPrint.printLine("     "+"MOTIVO: " +
                        FarmaPRNUtility.alinearIzquierda(VariablesInventario.vDescMotivo_Transf.trim(), 
                                                         64), true);*/
-      //JMIRANDA 10.12.09
+      //  10.12.09
       if(!VariablesRecepCiega.vDescMotivo_Transf_Larga.trim().equalsIgnoreCase("")){
       vPrint.printLine("     "+"MOTIVO: " + 
                        FarmaPRNUtility.alinearIzquierda(VariablesRecepCiega.vDescMotivo_Transf.trim()

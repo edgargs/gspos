@@ -52,7 +52,7 @@ import mifarma.ptoventa.reference.VariablesPtoVenta;
  * <br>
  * Histórico de Creación/Modificación<br>
  * LMESIA      26.01.2006   Creación<br>
- * ASOSA      13.04.2010   Modificación<br>
+ *        13.04.2010   Modificación<br>
  * <br>
  * @author Luis Mesia Rivera<br>
  * @version 1.0<br>
@@ -248,11 +248,11 @@ public class DlgListaMaestros extends JDialog
   
   private void this_windowOpened(WindowEvent e)
   {
-      btnAgre.setVisible(false);//INI ASOSA, 13.04.2010
-      btnerase.setVisible(false);//ASOSA, 15.04.2010
+      btnAgre.setVisible(false);//INI  , 13.04.2010
+      btnerase.setVisible(false);// , 15.04.2010
     if(ind.equalsIgnoreCase("S") && indtrans.equalsIgnoreCase("S")){ 
         btnAgre.setVisible(true);
-        btnerase.setVisible(true);//ASOSA, 15.04.2010
+        btnerase.setVisible(true);// , 15.04.2010
         /*this.setSize(new Dimension(447, 393));
         jContentPane.setLayout(borderLayout1);
         jContentPane.setSize(new Dimension(623, 393));
@@ -262,7 +262,7 @@ public class DlgListaMaestros extends JDialog
         btnAgre.setBounds(new Rectangle(70, 310, 105, 20));
         btnerase.setBounds(new Rectangle(185, 310, 95, 20));*/
     }
-      //FIN ASOSA, 13.04.2010
+      //FIN  , 13.04.2010
     this.setTitle(VariablesPtoVenta.vTituloListaMaestros);
     FarmaUtility.centrarVentana(this);
     FarmaUtility.moveFocus(txtDescripcion);  
@@ -312,7 +312,7 @@ public class DlgListaMaestros extends JDialog
     {
       guardaValoresMaestro();
       cerrarVentana(true);
-    }else if(e.getKeyCode() == KeyEvent.VK_F1 && ind.equalsIgnoreCase("S") && indtrans.equalsIgnoreCase("S")){ //INI - ASOSA, 13.04.2010
+    }else if(e.getKeyCode() == KeyEvent.VK_F1 && ind.equalsIgnoreCase("S") && indtrans.equalsIgnoreCase("S")){ //INI -  , 13.04.2010
                 DlgIngresarLote objx=new DlgIngresarLote(myParentFrame,"",true);
                 objx.codprodxx=codprodx;
                 objx.tableModelListaMaestroX=tableModelListaMaestro;
@@ -326,8 +326,8 @@ public class DlgListaMaestros extends JDialog
                 }
                 VariablesInventario.fechaVencLoteX="";
                 VariablesInventario.nroLoteX="";
-    }//FIN - ASOSA, 14.04.2010
-    else if(e.getKeyCode() == KeyEvent.VK_F5 && ind.equalsIgnoreCase("S") && indtrans.equalsIgnoreCase("S")){ //INI - ASOSA, 15.04.2010
+    }//FIN -  , 14.04.2010
+    else if(e.getKeyCode() == KeyEvent.VK_F5 && ind.equalsIgnoreCase("S") && indtrans.equalsIgnoreCase("S")){ //INI -  , 15.04.2010
         String codlote=FarmaUtility.getValueFieldArrayList(tableModelListaMaestro.data,tblMaestro.getSelectedRow(),0).trim();
         String prodcod=codprodx;
         try{            
@@ -348,7 +348,7 @@ public class DlgListaMaestros extends JDialog
                 FarmaUtility.showMessage(this,"ERROR al eliminar lote: "+f.getMessage(),txtDescripcion);
             //}
         }
-    }//FIN - ASOSA, 15.04.2010
+    }//FIN -  , 15.04.2010
   }
   
   private void cerrarVentana(boolean pAceptar)

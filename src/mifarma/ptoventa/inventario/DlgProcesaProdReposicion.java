@@ -165,7 +165,7 @@ public class DlgProcesaProdReposicion extends JDialog
   
   
   /**Nuevo
-   * @Autor: Paulo Cesar Ameghino Rojas
+   * @Autor:   Cesar Ameghino Rojas
    * @Fecha:  11/06/2007
    * */
    

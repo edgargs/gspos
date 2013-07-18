@@ -31,8 +31,8 @@ import mifarma.common.FarmaVariables;
 import mifarma.ptoventa.ventas.reference.ConstantsVentas;
 import mifarma.ptoventa.ventas.reference.VariablesVentas;
 
-import oracle.jdeveloper.layout.XYConstraints;
-import oracle.jdeveloper.layout.XYLayout;
+ 
+ 
 
 
 /**
@@ -58,7 +58,7 @@ public class  DlgIngresoCantidadTarjetaVirtual  extends JDialog {
   private BorderLayout borderLayout1 = new BorderLayout();
   private JPanel jContentPane = new JPanel();
   JPanel pnlDetalleProducto = new JPanel();
-  XYLayout xYLayout1 = new XYLayout();
+   
   JTextField txtPrecioVenta = new JTextField();
   JLabel lblUnidadT = new JLabel();
   JLabel lblDescripcionT = new JLabel();
@@ -87,12 +87,6 @@ public class  DlgIngresoCantidadTarjetaVirtual  extends JDialog {
     this(null, "", false);
   }
 
-  /**
-  *Constructor
-  *@param <b>parent</b> Objeto Frame de la Aplicación.
-  *@param <b>title</b> Título de la Ventana.
-  *@param <b>modal</b> Tipo de Ventana.
-  */
   public  DlgIngresoCantidadTarjetaVirtual (Frame parent, String title, boolean modal) {
     super(parent, title, modal);
     myParentFrame = parent;
@@ -133,7 +127,7 @@ public class  DlgIngresoCantidadTarjetaVirtual  extends JDialog {
     jContentPane.setSize(new Dimension(360, 331));
     jContentPane.setBackground(Color.white);
     pnlDetalleProducto.setBounds(new Rectangle(15, 15, 325, 220));
-    pnlDetalleProducto.setLayout(xYLayout1);
+    pnlDetalleProducto. setLayout(null);
     pnlDetalleProducto.setBorder(BorderFactory.createLineBorder(Color.black, 1));
     pnlDetalleProducto.setFont(new Font("SansSerif", 0, 11));
     pnlDetalleProducto.setBackground(Color.white);
@@ -200,19 +194,19 @@ public class  DlgIngresoCantidadTarjetaVirtual  extends JDialog {
     btnPrecioVta.setText("Precio Venta : S/.");
     btnPrecioVta.setForeground(Color.black);
     
-    pnlDetalleProducto.add(btnPrecioVta, new XYConstraints(10, 175, 100, 20));
-    pnlDetalleProducto.add(btnCantidad, new XYConstraints(185, 175, 60, 20));
-    pnlDetalleProducto.add(txtPrecioVenta, new XYConstraints(115, 175, 60, 20));
-    pnlDetalleProducto.add(lblUnidadT, new XYConstraints(10, 145, 50, 20));
-    pnlDetalleProducto.add(lblDescripcionT, new XYConstraints(10, 55, 95, 20));
-    pnlDetalleProducto.add(lblCodigoT, new XYConstraints(10, 10, 55, 20));
-    pnlDetalleProducto.add(lblLaboratorio, new XYConstraints(10, 120, 280, 20));
-    pnlDetalleProducto.add(lblLaboratorioT, new XYConstraints(10, 100, 80, 20));
-    pnlDetalleProducto.add(lblPrecio, new XYConstraints(120, 175, 55, 20));
-    pnlDetalleProducto.add(txtCantidad, new XYConstraints(250, 175, 50, 20));
-    pnlDetalleProducto.add(lblUnidad, new XYConstraints(70, 145, 135, 20));
-    pnlDetalleProducto.add(lblDescripcion, new XYConstraints(10, 75, 270, 20));
-    pnlDetalleProducto.add(lblCodigo, new XYConstraints(10, 30, 55, 20));
+    pnlDetalleProducto.add(btnPrecioVta);
+    pnlDetalleProducto.add(btnCantidad);
+    pnlDetalleProducto.add(txtPrecioVenta);
+    pnlDetalleProducto.add(lblUnidadT);
+    pnlDetalleProducto.add(lblDescripcionT);
+    pnlDetalleProducto.add(lblCodigoT);
+    pnlDetalleProducto.add(lblLaboratorio);
+    pnlDetalleProducto.add(lblLaboratorioT);
+    pnlDetalleProducto.add(lblPrecio);
+    pnlDetalleProducto.add(txtCantidad);
+    pnlDetalleProducto.add(lblUnidad);
+    pnlDetalleProducto.add(lblDescripcion);
+    pnlDetalleProducto.add(lblCodigo);
     this.getContentPane().add(jContentPane, BorderLayout.CENTER);
     jContentPane.add(lblEsc, null);
     jContentPane.add(lblF11, null);
@@ -304,7 +298,7 @@ public class  DlgIngresoCantidadTarjetaVirtual  extends JDialog {
   {
     if(e.getKeyCode() == KeyEvent.VK_ESCAPE)
     {
-      //mfajardo 29/04/09 validar ingreso de productos virtuales 
+      //  29/04/09 validar ingreso de productos virtuales 
       VariablesVentas.vProductoVirtual=false;
       cerrarVentana(false);
     }

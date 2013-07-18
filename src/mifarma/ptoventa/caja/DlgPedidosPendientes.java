@@ -29,8 +29,8 @@ import mifarma.common.FarmaVariables;
 import mifarma.ptoventa.caja.reference.ConstantsCaja;
 import mifarma.ptoventa.caja.reference.DBCaja;
 import mifarma.ptoventa.caja.reference.VariablesCaja;
-import oracle.jdeveloper.layout.XYConstraints;
-import oracle.jdeveloper.layout.XYLayout;
+ 
+ 
 
 import com.gs.mifarma.componentes.JLabelFunction;
 import com.gs.mifarma.componentes.JButtonLabel;
@@ -52,10 +52,10 @@ public class DlgPedidosPendientes extends JDialog {
 	JLabelFunction lblEnter = new JLabelFunction();
 	JScrollPane scrPendientes = new JScrollPane();
 	JPanel pnlRelacion = new JPanel();
-	XYLayout xYLayout2 = new XYLayout();
+	 
 	JScrollPane scrDetalle = new JScrollPane();
 	JPanel pnlItems = new JPanel();
-	XYLayout xYLayout3 = new XYLayout();
+	 
 	JButton btnDetalle = new JButton();
 	JLabel jLabel3 = new JLabel();
 	JLabelFunction lblEsc = new JLabelFunction();
@@ -113,7 +113,7 @@ public class DlgPedidosPendientes extends JDialog {
 		scrPendientes.setBounds(new Rectangle(10, 40, 635, 100));
 		scrPendientes.setBackground(new Color(255, 130, 14));
 		pnlRelacion.setBackground(new Color(255, 130, 14));
-		pnlRelacion.setLayout(xYLayout2);
+		pnlRelacion. setLayout(null);
 		pnlRelacion.setFont(new Font("SansSerif", 0, 11));
 		pnlRelacion.setBounds(new Rectangle(10, 15, 635, 25));
 		scrDetalle.setFont(new Font("SansSerif", 0, 11));
@@ -121,7 +121,7 @@ public class DlgPedidosPendientes extends JDialog {
 		scrDetalle.setBackground(new Color(255, 130, 14));
 		pnlItems.setBackground(new Color(255, 130, 14));
 		pnlItems.setFont(new Font("SansSerif", 0, 11));
-		pnlItems.setLayout(xYLayout3);
+		pnlItems. setLayout(null);
 		pnlItems.setBounds(new Rectangle(10, 145, 635, 25));
 		btnDetalle.setText("Detalle del Pedido :");
 		btnDetalle.setFont(new Font("SansSerif", 1, 11));
@@ -174,13 +174,13 @@ public class DlgPedidosPendientes extends JDialog {
       });
 		scrPendientes.getViewport();
 		scrDetalle.getViewport();
-		pnlItems.add(btnDetalle, new XYConstraints(10, 5, 125, 15));
+		pnlItems.add(btnDetalle);
 		this.getContentPane().add(jContentPane, BorderLayout.CENTER);
 		jContentPane.add(lblF11, null);
 		jContentPane.add(lblEnter, null);
 		scrPendientes.getViewport().add(tblListaPendientes, null);
 		jContentPane.add(scrPendientes, null);
-    pnlRelacion.add(btnPedidosPendeintes, new XYConstraints(10, 5, 245, 15));
+    pnlRelacion.add(btnPedidosPendeintes);
 		jContentPane.add(pnlRelacion, null);
 		scrDetalle.getViewport().add(tblDetalle, null);
 		jContentPane.add(scrDetalle, null);
@@ -361,7 +361,7 @@ public class DlgPedidosPendientes extends JDialog {
           cargarRegSeleccionado();
           DBCaja.anularPedidoPendiente(VariablesCaja.vNumPedVta);
             ///-- inicio de validacion de Campaña 
-            // DUBILLUZ 19.12.2008
+            //   19.12.2008
             String pIndLineaMatriz = FarmaUtility.getIndLineaOnLine(FarmaConstants.CONECTION_MATRIZ,FarmaConstants.INDICADOR_N);
             boolean pRspCampanaAcumulad = UtilityCaja.realizaAccionCampanaAcumulada
                                    (

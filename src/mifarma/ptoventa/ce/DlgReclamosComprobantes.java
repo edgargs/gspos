@@ -24,8 +24,8 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 
 import mifarma.common.*;
-import oracle.jdeveloper.layout.XYConstraints;
-import oracle.jdeveloper.layout.XYLayout;
+ 
+ 
 
 import com.gs.mifarma.componentes.JLabelFunction;
 import com.gs.mifarma.componentes.JButtonLabel;
@@ -49,10 +49,10 @@ public class DlgReclamosComprobantes extends JDialog {
 	ActionMap actionMap1 = new ActionMap();
 	JScrollPane scrPedidosCab = new JScrollPane();
 	JPanel pnlRelacion = new JPanel();
-	XYLayout xYLayout2 = new XYLayout();
+	 
 	JScrollPane scrDetalle = new JScrollPane();
 	JPanel pnlItems = new JPanel();
-	XYLayout xYLayout3 = new XYLayout();
+	 
 	JButton btnDetalle = new JButton();
 	JLabelFunction lblEsc = new JLabelFunction();
 	JTable tblDetalle = new JTable();
@@ -105,7 +105,7 @@ public class DlgReclamosComprobantes extends JDialog {
 		scrPedidosCab.setBounds(new Rectangle(10, 35, 620, 95));
 		scrPedidosCab.setBackground(new Color(255, 130, 14));
 		pnlRelacion.setBackground(new Color(255, 130, 14));
-		pnlRelacion.setLayout(xYLayout2);
+		pnlRelacion. setLayout(null);
 		pnlRelacion.setFont(new Font("SansSerif", 0, 11));
 		pnlRelacion.setBounds(new Rectangle(10, 10, 620, 25));
 		scrDetalle.setFont(new Font("SansSerif", 0, 11));
@@ -113,7 +113,7 @@ public class DlgReclamosComprobantes extends JDialog {
 		scrDetalle.setBackground(new Color(255, 130, 14));
 		pnlItems.setBackground(new Color(255, 130, 14));
 		pnlItems.setFont(new Font("SansSerif", 0, 11));
-		pnlItems.setLayout(xYLayout3);
+		pnlItems. setLayout(null);
 		pnlItems.setBounds(new Rectangle(10, 140, 620, 25));
 		btnDetalle.setText("Detalle del Comprobante :");
 		btnDetalle.setFont(new Font("SansSerif", 1, 11));
@@ -173,13 +173,13 @@ public class DlgReclamosComprobantes extends JDialog {
 		this.getContentPane().add(jContentPane, BorderLayout.CENTER);
     scrPedidosCab.getViewport().add(tblListaPedidosCab, null);
     jContentPane.add(scrPedidosCab, null);
-    pnlRelacion.add(lblTotalReclamo, new XYConstraints(400, 5, 55, 15));
-    pnlRelacion.add(lblTotalReclamo_T, new XYConstraints(285, 5, 105, 15));
-    pnlRelacion.add(btnPedidoCab, new XYConstraints(10, 5, 175, 15));
+    pnlRelacion.add(lblTotalReclamo);
+    pnlRelacion.add(lblTotalReclamo_T);
+    pnlRelacion.add(btnPedidoCab);
     jContentPane.add(pnlRelacion, null);
     scrDetalle.getViewport().add(tblDetalle, null);
     jContentPane.add(scrDetalle, null);
-    pnlItems.add(btnDetalle, new XYConstraints(10, 5, 155, 15));
+    pnlItems.add(btnDetalle);
     jContentPane.add(pnlItems, null);
     jContentPane.add(lblEsc, null);
 		this.setDefaultCloseOperation(javax.swing.JFrame.DO_NOTHING_ON_CLOSE);

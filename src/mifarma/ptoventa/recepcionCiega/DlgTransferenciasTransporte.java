@@ -49,7 +49,7 @@ import mifarma.ptoventa.inventario.reference.VariablesInventario;
 * Nombre de la Aplicación : DlgTransferenciasTransporte.java<br>
 * <br>
 * Histórico de Creación/Modificación<br>
-* JCHAVEZ      30.11.2009   Creación<br>
+*        30.11.2009   Creación<br>
 * <br>
 * @author Jenny Chávez<br>
 * @version 1.0<br>
@@ -862,7 +862,7 @@ public class DlgTransferenciasTransporte extends JDialog
       
        ///---------------------
       System.out.println("vMotivoTransf: "+VariablesRecepCiega.vMotivo_Transf);
-      //JMIRANDA 10.12.09
+      //  10.12.09
       // nombre MOTIVO transf larga
       VariablesRecepCiega.vDescMotivo_Transf = FarmaLoadCVL.getCVLDescription(ConstantsRecepCiega.NOM_HASHTABLE_CMBMOTIVO_TRANSF,VariablesRecepCiega.vMotivo_Transf);    
  
@@ -974,7 +974,7 @@ public class DlgTransferenciasTransporte extends JDialog
   }  
     /**
      * OBTIENE DESCRIPCION LARGA DE MOTIVO DE TRANSFERENCIA
-     * JMIRANDA 10.12.09
+     *   10.12.09
      */
     public String obtieneDescripcionLarga (String pLlaveTabGral, String pDescCorta) {
         String vDescLarga = "";

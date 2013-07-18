@@ -52,16 +52,16 @@ import mifarma.ptoventa.administracion.fondoSencillo.reference.VariablesFondoSen
 import mifarma.ptoventa.recepcionCiega.reference.DBRecepCiega;
 import mifarma.ptoventa.recepcionCiega.reference.UtilityRecepCiega;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DlgHistoricoFondoSencillo extends JDialog {
     //Declarando Variables Globales 
     Frame myParentFrame;
     FarmaTableModel tableModelHistorico;
 
-    private static final Log log = 
-        LogFactory.getLog(DlgHistoricoFondoSencillo.class);
+    private static final Logger log = 
+        LoggerFactory.getLogger(DlgHistoricoFondoSencillo.class);
 
     private JPanelWhite jContentPane = new JPanelWhite();
     private BorderLayout borderLayout1 = new BorderLayout();
@@ -99,7 +99,7 @@ public class DlgHistoricoFondoSencillo extends JDialog {
     private JButtonLabel btnMostrar = new JButtonLabel();
     private JLabelFunction btnF6 = new JLabelFunction();
     
-    //JMIRANDA 20.05.2010
+    //  20.05.2010
     private boolean IndInicialCargaHistorico = true;
 
 
@@ -403,7 +403,7 @@ public class DlgHistoricoFondoSencillo extends JDialog {
                                                                                                               
         try {
             //  DBFondoSencillo.getListaHistorico(tableModelHistorico,VariablesFondoSencillo.vFiltroTipo);
-            //JMIRANDA 04.06.2010 
+            //  04.06.2010 
                 DBFondoSencillo.getListaHistoricoXCajero(tableModelHistorico,
                                                          VariablesFondoSencillo.vFiltroTipo,
                                                          VariablesFondoSencillo.vCajSecUsuCajero);
@@ -432,7 +432,7 @@ public class DlgHistoricoFondoSencillo extends JDialog {
         
         try {
                 //DBFondoSencillo.getListaHistoricoFechas(tableModelHistorico,pFechaIni,pFechaFin,VariablesFondoSencillo.vFiltroTipo);
-                //JMIRANDA 04.06.2010
+                //  04.06.2010
                 DBFondoSencillo.getListaHistoricoFechasXCajero(tableModelHistorico,pFechaIni,
                                                                pFechaFin,VariablesFondoSencillo.vFiltroTipo,
                                                                VariablesFondoSencillo.vCajSecUsuCajero);
@@ -467,7 +467,7 @@ public class DlgHistoricoFondoSencillo extends JDialog {
         FarmaUtility.admitirDigitos(txtFechaFin, e);
     }
     
-    //JMIRANDA VALIDA FECHA
+    //  VALIDA FECHA
     private boolean validaFecha(String pFecha, String pHora){
         //pFecha.trim().equalsIgnoreCase("");
         boolean flag = false;    
@@ -570,7 +570,7 @@ public class DlgHistoricoFondoSencillo extends JDialog {
             mostrarAsignarFondoSencillo();
             if(FarmaVariables.vAceptar){                
                 cargaListaHistorico();                                 
-                //JMIRANDA 03.06.2010 no imprimer voucher
+                //  03.06.2010 no imprimer voucher
                 /*
                 UtilityFondoSencillo.imprimeVoucherDiferencias(this,
                                                             VariablesFondoSencillo.vHisSecFondoSen,txtFechaIni,true);
@@ -578,7 +578,7 @@ public class DlgHistoricoFondoSencillo extends JDialog {
                 */
                 
                 setJTable(tblCajeros,txtFechaIni);
-                //JMIRANDA 04.06.2010 CIERRO PARA MANDAR AL LISTADO DE CAJERO
+                //  04.06.2010 CIERRO PARA MANDAR AL LISTADO DE CAJERO
                 cerrarVentana(true);
             }
         }

@@ -62,13 +62,13 @@ import mifarma.ptoventa.fidelizacion.reference.VariablesFidelizacion;
 
 
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public class DlgFidelizacionBuscarTarjetas extends JDialog {
     
-    private static final Log log = LogFactory.getLog(DlgFidelizacionBuscarTarjetas.class);
+    private static final Logger log = LoggerFactory.getLogger(DlgFidelizacionBuscarTarjetas.class);
     JPopupMenu popup = new JPopupMenu();
     ActionListener menuListener ;
     ArrayList listaTarjetas = new ArrayList();
@@ -345,8 +345,8 @@ public class DlgFidelizacionBuscarTarjetas extends JDialog {
       } 
       else if(e.getKeyCode() == KeyEvent.VK_ENTER)
       {
-          log.debug("JCORTEZ: ENTRA PARA BUSCAR");
-          //JCORTEZ 02.07.09 Se valida un numero de valido de identificacion.
+          log.debug(" : ENTRA PARA BUSCAR");
+          //  02.07.09 Se valida un numero de valido de identificacion.
           if(UtilityFidelizacion.validarDocIndentificacion(txtBuscar.getText().trim())){
               if(isSeleccionFormaPago()) {
                   buscarTarjetas();
@@ -371,16 +371,16 @@ public class DlgFidelizacionBuscarTarjetas extends JDialog {
     public void buscarTarjetas(){
         String vdni = txtBuscar.getText().trim();
         /*
-        //dubilluz 19.07.2011 - inicio
+        //  19.07.2011 - inicio
         if(VariablesFidelizacion.tmp_NumTarjeta_unica_Campana.trim().length()>0){
          grabaTarjetaUnica(VariablesFidelizacion.tmp_NumTarjeta_unica_Campana.trim(),vdni);
         }
-        //dubilluz 19.07.2011 - fin 
+        //  19.07.2011 - fin 
         */
         try{
             
             
-            //JCORTEZ No hay necesidad de validar 
+            //  No hay necesidad de validar 
             //UtilityFidelizacion.validarConexionMatriz();  
             //Se quita conexiones a matriz  agregado
             VariablesFidelizacion.vIndConexion="N";
@@ -388,7 +388,7 @@ public class DlgFidelizacionBuscarTarjetas extends JDialog {
             
             /*
              * no se realizara la busqueda en Matriz
-             * dubilluz 26/07/2009
+             *   26/07/2009
              * if (VariablesFidelizacion.vIndConexion.equals("S")) {
                 log.debug("buscar en matriz al cliente");
                 DBFidelizacion.buscarTarjetasXDNIMatriz(tableModel, vdni,VariablesFidelizacion.vIndConexion);
@@ -404,28 +404,28 @@ public class DlgFidelizacionBuscarTarjetas extends JDialog {
             
           VariablesFidelizacion.NumDniAux="";
           //  if(tableModel.data.size()==0){
-           if(tblLista.getRowCount()==0){ // jcortez 02.07.09 evita error evento espace
+           if(tblLista.getRowCount()==0){ //   02.07.09 evita error evento espace
                 /*FarmaUtility.showMessage(this, "Este cliente no cuenta con tarjetas", null);
                 limpiar();
                 FarmaUtility.moveFocus(txtBuscar);*/
                 
                 /**
-                 * @author      dveliz
+                 * @author       
                  * @since       13.02.2009
                  * Logica para creacion y asignacion de nuevas tarjetas de fidelizacion
                  */
                 
                 VariablesFidelizacion.NumDniAux=vdni;
                 
-                log.debug("JCORTEZ: EL CLIENTE NO EXISTE");
+                log.debug(" : EL CLIENTE NO EXISTE");
                 
                 long tmpIni = System.currentTimeMillis();
-                log.debug("JCORTEZ: INICIO GENRAR TARJ");
+                log.debug(" : INICIO GENRAR TARJ");
                  String vNuevaTarjetaFidelizacion = 
                         UtilityFidelizacion.generaNuevaTarjeta(ConstantsFidelizacion.PREFIJO_TARJETA_FIDELIZACION,
                                                                FarmaVariables.vCodLocal);
                 long tmpFin = System.currentTimeMillis();                                                               
-                log.debug("JCORTEZ: FIN GENRAR TARJ"+ "DURACION: "+(tmpFin - tmpIni)+" milisegundos");
+                log.debug(" : FIN GENRAR TARJ"+ "DURACION: "+(tmpFin - tmpIni)+" milisegundos");
                 
               
                  setNumeroTarjeta(vNuevaTarjetaFidelizacion);
@@ -438,7 +438,7 @@ public class DlgFidelizacionBuscarTarjetas extends JDialog {
                        ArrayList array = new ArrayList();
 
                        try {
-                           log.debug("JCORTEZ: INICIO INGRESO DATOS EN MATRIZ");
+                           log.debug(" : INICIO INGRESO DATOS EN MATRIZ");
                            long tmpIni1 = System.currentTimeMillis();
                            
                            DBCampAcumulada.getDatosExisteDNI(array, vdni);
@@ -480,7 +480,7 @@ public class DlgFidelizacionBuscarTarjetas extends JDialog {
                            //UtilityFidelizacion.insertarTarjetaMatriz(vNuevaTarjetaFidelizacion, VariablesCampAcumulada.vDniCliente);
                             
                            long tmpFin1 = System.currentTimeMillis();                        
-                           log.debug("JCORTEZ: FIN INGRESO DATOS EN MATRIZ -----" +
+                           log.debug(" : FIN INGRESO DATOS EN MATRIZ -----" +
                             "DURACION: "+(tmpFin1 - tmpIni1)+" milisegundos");
                            
                            VariablesCampAcumulada.vDniCliente = "";
@@ -505,10 +505,10 @@ public class DlgFidelizacionBuscarTarjetas extends JDialog {
             }
             else{
             
-                //JCORTEZ 04.08.09 Se obtiene dni del cliente para cargar cupones emitidos
+                //  04.08.09 Se obtiene dni del cliente para cargar cupones emitidos
                 VariablesVentas.dniListCupon=vdni.trim();
                 
-                log.debug("JCORTEZ: EL CLIENTE EXISTE");
+                log.debug(" : EL CLIENTE EXISTE");
                 //System.out.println("\n ENTRA PARTA BUSCAR 2 \n");
                 FarmaUtility.moveFocus(tblLista);
                 
@@ -517,10 +517,10 @@ public class DlgFidelizacionBuscarTarjetas extends JDialog {
                 if(tblLista.getRowCount()>0){
                     tblLista.setRowSelectionInterval(0,0);
                     long tiempoInicio = System.currentTimeMillis();
-                    log.debug("JCORTEZ: INICIO CARGA DEL CLIENTE EXISTENTE");
+                    log.debug(" : INICIO CARGA DEL CLIENTE EXISTENTE");
                     setNumeroTarjeta();
                     long tiempoFin = System.currentTimeMillis();
-                    log.debug("JCORTEZ: FIN CARGA DEL CLIENTE EXISTENTE -----"+
+                    log.debug(" : FIN CARGA DEL CLIENTE EXISTENTE -----"+
                         "DURACION: "+(tiempoFin - tiempoInicio)+" milisegundos");
                     if(FarmaVariables.vAceptar) {
                           limpiar();
@@ -583,7 +583,7 @@ public class DlgFidelizacionBuscarTarjetas extends JDialog {
         */
         //Fin
         
-        log.debug("JCORTEZ: TRAE TARJETA DE MATRIZ A LOCAL");
+        log.debug(" : TRAE TARJETA DE MATRIZ A LOCAL");
         UtilityFidelizacion.creaTarjetaLocal(vCodTarjeta,VariablesFidelizacion.vIndConexion); 
         
         UtilityFidelizacion.validaLecturaTarjeta(vCodTarjeta,myParentFrame);
@@ -593,23 +593,23 @@ public class DlgFidelizacionBuscarTarjetas extends JDialog {
     /**
      * Metodo que valida la nueva tarjeta fidelizacion creada en el local para 
      * que muestre la interfaz para el ingreso de datos del cliente.
-     * @author  dveliz
+     * @author   
      * @since   13.02.2009
     **/
     private void setNumeroTarjeta(String vNuevaTarjetaFidelizacion){
         //FarmaUtility.showMessage(this, vNuevaTarjetaFidelizacion, null);
         String vCodTarjeta = vNuevaTarjetaFidelizacion;
         
-        log.debug("JCORTEZ: VALIDAR DATOS DE CLIENTE");
+        log.debug(" : VALIDAR DATOS DE CLIENTE");
         UtilityFidelizacion.validaLecturaTarjeta(vCodTarjeta,myParentFrame);
         
-        //JCORTEZ 02.07.09 
+        //  02.07.09 
         if(VariablesFidelizacion.auxDataCli.size()>0){ // sigue la creacion de la tarjeta, validacion, etc
          setNumeroTarjeta();
         //buscarTarjetas();
        }
         
-        log.debug("JCORTEZ: LUEGO DE VALIDAR DATOS DEL CLIENTE");
+        log.debug(" : LUEGO DE VALIDAR DATOS DEL CLIENTE");
         System.out.println("****TARJETA******:"+vCodTarjeta);
     }
     

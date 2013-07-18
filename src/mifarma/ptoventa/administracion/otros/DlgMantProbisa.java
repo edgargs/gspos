@@ -42,7 +42,7 @@ import mifarma.ptoventa.administracion.otros.reference.VariablesProbisa;
  * Histórico de Creación/Modificación<br>
  * ERIOS      23.04.2007   Creación<br>
  * <br>
- * @author  Luis Reque Orellana<br>
+ * @author   <br>
  * @version 1.0<br>
  *
  */

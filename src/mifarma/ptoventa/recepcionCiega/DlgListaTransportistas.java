@@ -31,8 +31,8 @@ import mifarma.ptoventa.recepcionCiega.DlgConteoRecepMercaderia.*;
 import mifarma.ptoventa.recepcionCiega.reference.*;
 import mifarma.ptoventa.reference.ConstantsPtoVenta;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Copyright (c) 2009 MIFARMA S.A.C.<br>
@@ -41,7 +41,7 @@ import org.apache.commons.logging.LogFactory;
  * Nombre de la Aplicación : DlgHistoricoRecepcion.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JCORTEZ 16.11.2009 Creación<br>
+ *   16.11.2009 Creación<br>
  * <br>
  * 
  * @author JORGE CORTEZ ALVAREZ<br>
@@ -49,8 +49,8 @@ import org.apache.commons.logging.LogFactory;
  * 
  */
 public class DlgListaTransportistas extends JDialog {
-    private static final Log log = 
-        LogFactory.getLog(DlgListaTransportistas.class);
+    private static final Logger log = 
+        LoggerFactory.getLogger(DlgListaTransportistas.class);
     private FarmaTableModel tableModelTransp;
     private Frame myParentFrame;
 
@@ -77,7 +77,7 @@ public class DlgListaTransportistas extends JDialog {
     private JLabelFunction lblF8 = new JLabelFunction();
     private JLabelFunction lblF2 = new JLabelFunction();
     
-    /* JMIRANDA 17.03.2010 CONSTANTES DE COLUMNAS */
+    /*   17.03.2010 CONSTANTES DE COLUMNAS */
     private static final int COL_NRO_RECEP = 0;
     private static final int COL_FECHA = 1;
     private static final int COL_USU_CREA = 2;
@@ -422,12 +422,12 @@ public class DlgListaTransportistas extends JDialog {
     }
 
     private void txtFechaIni_keyPressed(KeyEvent e) {
-        //DUBILLUZ - 03.12.2009
+        //  - 03.12.2009
         FarmaGridUtils.aceptarTeclaPresionada(e, tblListaTransportista, null, 0);
 
         if (e.getKeyCode() == KeyEvent.VK_ENTER)
             FarmaUtility.moveFocus(txtFechaFin);
-        //JMIRANDA 02.12.09
+        //  02.12.09
         /*else if(e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_UP){
         FarmaUtility.moveFocus(tblRecepcion);
     }*/
@@ -439,7 +439,7 @@ public class DlgListaTransportistas extends JDialog {
     }
 
     private void txtFechaFin_keyPressed(KeyEvent e) {
-        //DUBILLUZ - 03.12.2009
+        //  - 03.12.2009
         FarmaGridUtils.aceptarTeclaPresionada(e, tblListaTransportista, null, 0);
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             if (!VariablesRecepCiega.vIndAsociaTransportista){
@@ -449,7 +449,7 @@ public class DlgListaTransportistas extends JDialog {
                 FarmaUtility.showMessage(this,"No puede realizar una búsqueda cuando esta asociando Entregas a Transportista.",txtFechaIni);
             }
         }
-        //JMIRANDA 02.12.09
+        //  02.12.09
         /*
    else if(e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_UP){
           FarmaUtility.moveFocus(tblRecepcion);
@@ -467,7 +467,7 @@ public class DlgListaTransportistas extends JDialog {
         FarmaUtility.moveFocus(txtFechaIni);
         //lbllocal.setText(FarmaVariables.vDescLocal);
         // cargaLogin();
-        //JMIRANDA 02.12.09 VISUALIZAR BOTONES
+        //  02.12.09 VISUALIZAR BOTONES
         //visualizarBotones();
         verBotones();
    
@@ -523,7 +523,7 @@ public class DlgListaTransportistas extends JDialog {
 
     private void tblListaTransportista_keyPressed(KeyEvent e) {
 
-        //JMIRANDA 02.12.09
+        //  02.12.09
         if (e.getKeyCode() == KeyEvent.VK_LEFT || 
             e.getKeyCode() == KeyEvent.VK_RIGHT) {
             FarmaUtility.moveFocus(txtFechaIni);
@@ -764,7 +764,7 @@ public class DlgListaTransportistas extends JDialog {
 
     /**
      * Se valida rol para mostrar opciones
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE 27.11.2009
      */
     private boolean validaRolUsu(String Rol) {
@@ -791,7 +791,7 @@ public class DlgListaTransportistas extends JDialog {
         }
     }
 
-    //JMIRANDA 01.12.09
+    //  01.12.09
 
     private void validaRol() {
         //se guarda datos
@@ -814,7 +814,7 @@ public class DlgListaTransportistas extends JDialog {
                                          tblListaTransportista);
                 FarmaVariables.vAceptar = false;
             } else {
-                //JMIRANDA 04.12.09
+                //  04.12.09
                 if (FarmaVariables.dlgLogin.verificaRol(FarmaConstants.ROL_VENDEDOR)) {
                     FarmaVariables.vAceptar = true;
                 } else if (FarmaVariables.dlgLogin.verificaRol(FarmaConstants.ROL_ADMLOCAL)) {
@@ -835,13 +835,13 @@ public class DlgListaTransportistas extends JDialog {
 
         }
         /*
-          * dubilluz - 04.12.2009
+          *   - 04.12.2009
           * else
           cerrarVentana(false);
             */
     }
 
-    //JMIRANDA 01.12.09
+    //  01.12.09
 
     private void verificaRolUsuario() {
         if (FarmaVariables.dlgLogin.verificaRol(FarmaConstants.ROL_VENDEDOR)) {
@@ -914,7 +914,7 @@ public class DlgListaTransportistas extends JDialog {
         visualizarBotones();
     }
  
-    //JMIRANDA VALIDA FECHA
+    //  VALIDA FECHA
 
     private boolean validaFecha(String pFecha, String pHora) {
         //pFecha.trim().equalsIgnoreCase("");

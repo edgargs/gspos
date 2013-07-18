@@ -48,7 +48,7 @@ import mifarma.common.FarmaVariables;
  * Nombre de la Aplicación : DlgHistoricoTemperatura.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JCORTEZ 11.02.2009 Creación<br>
+ *   11.02.2009 Creación<br>
  * <br>
  *
  * @author JORGE CORTEZ ALVAREZ<br>
@@ -443,7 +443,7 @@ public class DlgHistoricoTemperatura extends JDialog
   
     /**
      * Se valida el rol del usuario
-     * @author JCORTEZ
+     * @author  
      * @since 12.02.2009
      * */
     private boolean ValidaRolQF(){

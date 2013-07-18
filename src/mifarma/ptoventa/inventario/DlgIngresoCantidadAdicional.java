@@ -39,7 +39,7 @@ import java.awt.event.ActionEvent;
 * Histórico de Creación/Modificación<br>
 * LREQUE      20.04.2007   Creación<br>
 * <br>
-* @author Luis Reque Orellana<br>
+* @author  <br>
 * @version 1.0<br>
 *
 */

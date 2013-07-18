@@ -59,7 +59,7 @@ public class VariablesUsuarios {
 
 	}
   /** Se valida que pueda cambiar el codigo de trabador
-   * @author:  JCortez
+   * @author:   
    * @since:   03.07.07
    */
    
@@ -72,7 +72,7 @@ public class VariablesUsuarios {
    
    /**
     * Variable para guardar el codigo de trabajador RR.HH
-    * @author dubilluz
+    * @author  
     * @since  27.11.2007
     */
     public static String vCodTrab_RRHH  = "";
@@ -83,7 +83,7 @@ public class VariablesUsuarios {
     
     /**
      * Variable para guardar el nro Carné Seleccionado
-     * @author asolis
+     * @author  
      * @since  17.02.2009
      */
    
@@ -92,7 +92,7 @@ public class VariablesUsuarios {
     
     /**
      * Variables para guardar el nro Carné ingresado
-     * @author asolis
+     * @author  
      * @since  17.02.2009
      */
     

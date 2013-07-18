@@ -2,11 +2,11 @@ package mifarma.ptoventa.administracion.fondoSencillo.reference;
 
 import java.util.ArrayList;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class VariablesFondoSencillo {
-    private static final Log log = LogFactory.getLog(VariablesFondoSencillo.class);
+    private static final Logger log = LoggerFactory.getLogger(VariablesFondoSencillo.class);
     
     public VariablesFondoSencillo() {
     }

@@ -194,7 +194,7 @@ public class DlgMotivoAnularPedido extends JDialog {
         FarmaUtility.centrarVentana(this);
         FarmaUtility.moveFocus(txtMotivo);
         lblMensaje.setText("");
-        //JCORTEZ 16.06.09 imprime mensaje para recoger comprobante de anulacion
+        //  16.06.09 imprime mensaje para recoger comprobante de anulacion
          if(VariablesCaja.vTipComp.equalsIgnoreCase(ConstantsVentas.TIPO_COMP_TICKET)){
             if(!VariablesCaja.vDescripImpr.equalsIgnoreCase("X")||VariablesCaja.vDescripImpr.equalsIgnoreCase(""))
             lblMensaje.setText("Recoger comprobante en : "+VariablesCaja.vDescripImpr);

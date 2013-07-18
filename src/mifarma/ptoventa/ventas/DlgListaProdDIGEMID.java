@@ -62,7 +62,7 @@ import mifarma.ptoventa.ventas.reference.VariablesVentas;
  * Nombre de la Aplicación : DlgListaProdDIGEMID.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * ASOSA      02.02.2010   Creación 
+ *        02.02.2010   Creación 
  * @author Alfredo Sosa Dordán<br>
  * @version 1.0<br>
  *
@@ -271,7 +271,7 @@ public class DlgListaProdDIGEMID extends JDialog {
     {
         initTableListaPreciosProductos();
         mostrarMensajeConsumidor();   
-        cargaCombo(); //ASOSA, 28.09.2010
+        cargaCombo(); // , 28.09.2010
         //permite que no se muevan las columnas de Jtable
         tblProds.getTableHeader().setReorderingAllowed(false);
         //permite que no se cambien el tamaño de la columna del Jtable
@@ -291,13 +291,13 @@ public class DlgListaProdDIGEMID extends JDialog {
     }
     
     private void modificar(){
-        //INI, ASOSA, 27.09.2010
+        //INI,  , 27.09.2010
         if(FarmaVariables.vCodGrupoCia.equalsIgnoreCase(ConstantsVentas.COD_CIA_BOL)){
             jPanelHeader1.setVisible(false); //panel donde aparece la cabecera de lista de precios            
         }
-        //FIN, ASOSA, 27.09.2010
+        //FIN,  , 27.09.2010
         //FarmaUtility.moveFocus(txtprod);
-        FarmaUtility.moveFocus(cmbTipo); //ASOSA, 28.09.2010
+        FarmaUtility.moveFocus(cmbTipo); // , 28.09.2010
         FarmaUtility.centrarVentana(this);
     }
     
@@ -415,7 +415,7 @@ public class DlgListaProdDIGEMID extends JDialog {
         if((cadena.trim()).length()>=nNumCaracteres){
             try{
                //DBVentas.getListaProdsCliente(tabmodProds,cadena,);
-               DBVentas.getListaProdsCliente(tabmodProds,cadena,tipo); //ASOSA, 28.09.2010
+               DBVentas.getListaProdsCliente(tabmodProds,cadena,tipo); // , 28.09.2010
                 if(tblProds.getRowCount()>0){
                     setJTable(tblProds,txtprod);
                 }
@@ -438,7 +438,7 @@ public class DlgListaProdDIGEMID extends JDialog {
         FarmaUtility.showMessage(this, "Debe presionar la tecla ESC para cerrar la ventana.", null);
     }
 
-    //INI - ASOSA, 28.09.2010    
+    //INI -  , 28.09.2010    
     private void lblTipo_actionPerformed(ActionEvent e) {
         FarmaUtility.moveFocus(cmbTipo);
     }
@@ -461,9 +461,9 @@ public class DlgListaProdDIGEMID extends JDialog {
             chkKeyPressed(e);
         }
     }
-    //FIN - ASOSA, 28.09.2010
+    //FIN -  , 28.09.2010
     
-    //INI - ASOSA, 29.09.2010
+    //INI -  , 29.09.2010
     private void mostrarPrincAct(){
         if(tabmodProds.getRowCount()>0){
             if(tblProds.getSelectedRow()>=0){
@@ -476,7 +476,7 @@ public class DlgListaProdDIGEMID extends JDialog {
                 }            
                 String codprod=FarmaUtility.getValueFieldArrayList(tabmodProds.data,tblProds.getSelectedRow(),POSICION).trim();        
                 
-                //JMIRANDA 05.10.2010 VERIFICAR SI ES FARMA
+                //  05.10.2010 VERIFICAR SI ES FARMA
                 if(UtilityVentas.getIndProdFarma(codprod,txtprod,this)){
                     DlgPrincAct objPrincAct=new DlgPrincAct(myParentFrame,"Lista de Principios Activos",true,codprod);
                     objPrincAct.setVisible(true);
@@ -488,7 +488,7 @@ public class DlgListaProdDIGEMID extends JDialog {
             FarmaUtility.showMessage(this,"No hay productos en la lista",cmbTipo);
         }
     }
-    //FIN - ASOSA, 29.09.2010
+    //FIN -  , 29.09.2010
     
     private void mostrarPorDCI(){
         int Col_Cod_Prod = 6;
@@ -497,7 +497,7 @@ public class DlgListaProdDIGEMID extends JDialog {
             VariablesVentas.vCodProdDCI = 
                   FarmaUtility.getValueFieldArrayList(tabmodProds.data,tblProds.getSelectedRow(),Col_Cod_Prod).trim(); 
             
-            //JMIRANDA 05.10.2010 VERIFICAR SI ES FARMA
+            //  05.10.2010 VERIFICAR SI ES FARMA
             if(UtilityVentas.getIndProdFarma(VariablesVentas.vCodProdDCI,txtprod,this)){
                 DlgListaProdDigemidDCI mDlgAlter = new DlgListaProdDigemidDCI(myParentFrame,"",true);
                 mDlgAlter.setVisible(true);

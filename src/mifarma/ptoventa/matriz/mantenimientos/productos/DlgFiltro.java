@@ -37,7 +37,7 @@ import mifarma.ptoventa.matriz.mantenimientos.productos.references.*;
 * Nombre de la Aplicación : DlgFiltro.java<br>
 * <br>
 * Histórico de Creación/Modificación<br>
-* JCORTEZ      20.11.2007   Creación<br>
+*        20.11.2007   Creación<br>
 * <br>
 * @author Jorge Luis Cortez<br>
 * @version 1.0<br>

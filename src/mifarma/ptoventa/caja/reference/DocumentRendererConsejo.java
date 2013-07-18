@@ -258,7 +258,7 @@ public class DocumentRendererConsejo implements Printable {
       double paperWidth  =  79/25.4;//3.11;//8.26; mm
       //Se modifico para el tamaño de la imagen que se imprimira en la impresora
       //ticket
-      //dVeliz 03.09.2008
+      //  03.09.2008
       //double paperHeight = 100/25.4; // mm
       double paperHeight = 150/25.4; // mm
       
@@ -424,7 +424,7 @@ public class DocumentRendererConsejo implements Printable {
         double paperWidth  =  980;//110.5;//79/25.4;//3.11;//8.26; mm
         //Se modifico para el tamaño de la imagen que se imprimira en la impresora
         //ticket
-        //dVeliz 03.09.2008
+        //  03.09.2008
         //double paperHeight = 100/25.4; // mm
         //double paperHeight = 70*cantFilas ;//20.7;//20.7;//150/25.4; // mm
         double paperHeight = 58.5*cantFilas ;//20.7;//20.7;//150/25.4; // mm

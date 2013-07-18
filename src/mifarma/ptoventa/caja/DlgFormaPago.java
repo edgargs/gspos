@@ -49,26 +49,26 @@ import mifarma.ptoventa.caja.reference.UtilityCaja;
 import mifarma.ptoventa.caja.reference.VariablesCaja;
 import mifarma.ptoventa.caja.reference.VariablesVirtual;
 import mifarma.ptoventa.cliente.reference.VariablesCliente;
-import mifarma.ptoventa.convenio.reference.DBConvenio;
-import mifarma.ptoventa.convenio.reference.UtilityConvenio;
-import mifarma.ptoventa.convenio.reference.VariablesConvenio;
-import mifarma.ptoventa.convenioBTLMF.DlgProcesarCobroBTLMF;
-import mifarma.ptoventa.convenioBTLMF.reference.ConstantsConvenioBTLMF;
-import mifarma.ptoventa.convenioBTLMF.reference.DBConvenioBTLMF;
-import mifarma.ptoventa.convenioBTLMF.reference.UtilityConvenioBTLMF;
-import mifarma.ptoventa.convenioBTLMF.reference.VariablesConvenioBTLMF;
-import mifarma.ptoventa.delivery.reference.DBDelivery;
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 import mifarma.ptoventa.fidelizacion.reference.VariablesFidelizacion;
 import mifarma.ptoventa.reference.ConstantsPtoVenta;
 import mifarma.ptoventa.reference.DBPtoVenta;
 import mifarma.ptoventa.reference.VariablesPtoVenta;
 import mifarma.ptoventa.ventas.reference.ConstantsVentas;
 import mifarma.ptoventa.ventas.reference.VariablesVentas;
-import oracle.jdeveloper.layout.XYConstraints;
-import oracle.jdeveloper.layout.XYLayout;
+ 
+ 
 import mifarma.ptoventa.fidelizacion.reference.VariablesFidelizacion;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 import com.gs.mifarma.componentes.JLabelFunction;
@@ -77,8 +77,8 @@ import java.text.SimpleDateFormat;
 
 import java.util.Date;
 
-import mifarma.ptoventa.caja.reference.VariablesNewCobro;
-import mifarma.ptoventa.convenio.reference.UtilityConvenio;
+ 
+ 
 
 /**
  * Copyright (c) 2006 MIFARMA S.A.C.<br>
@@ -96,7 +96,7 @@ import mifarma.ptoventa.convenio.reference.UtilityConvenio;
 
 public class DlgFormaPago extends JDialog  {
 
-  private static final Log log = LogFactory.getLog(DlgFormaPago.class);
+  private static final Logger log = LoggerFactory.getLogger(DlgFormaPago.class);
   
   /** Almacena el Objeto Frame de la Aplicación - Ventana Principal */
   private Frame myParentFrame;
@@ -110,7 +110,7 @@ public class DlgFormaPago extends JDialog  {
   private String valor = "" ;
   private double diferencia = 0 ;
   
-  //JCORTEZ 08.07.08
+  //  08.07.08
   private boolean indBorra=false;
 
   private BorderLayout borderLayout1 = new BorderLayout();
@@ -136,7 +136,7 @@ public class DlgFormaPago extends JDialog  {
   private JLabelFunction lblEsc = new JLabelFunction();
   private JLabelFunction lblF11 = new JLabelFunction();
     private JPanel pnlTotales = new JPanel();
-  private XYLayout xYLayout5 = new XYLayout();
+   
   private JLabel lblSaldoT = new JLabel();
   private JLabel lblSaldo = new JLabel();
   private JLabel lblCoPagoT = new JLabel();
@@ -149,7 +149,7 @@ public class DlgFormaPago extends JDialog  {
   private JLabel lblTipoComprobante_T = new JLabel();
   private JLabelFunction lblF3 = new JLabelFunction();
   private JPanel pnlTotal = new JPanel();
-  private XYLayout xYLayout2 = new XYLayout();
+   
   private JTextField txtNroPedido = new JTextField();
   private JButton btnPedido = new JButton();
   private JLabel lblDolares = new JLabel();
@@ -159,7 +159,6 @@ public class DlgFormaPago extends JDialog  {
   private JLabel lblTotalPagar = new JLabel();
   private JScrollPane scrDetallePago = new JScrollPane();
   private JPanel pnlDetallePago = new JPanel();
-  private XYLayout xYLayout1 = new XYLayout();
   private JButton btnDetallePago = new JButton();
   private JTable tblFormasPago = new JTable();
   private JTable tblDetallePago = new JTable();
@@ -215,19 +214,10 @@ public class DlgFormaPago extends JDialog  {
     this.setSize(new Dimension(594, 591));
     this.getContentPane().setLayout(borderLayout1);
     this.setFont(new Font("SansSerif", 0, 11));
-    if(UtilityConvenioBTLMF.esActivoConvenioBTLMF(this, null) && VariablesConvenioBTLMF.vHayDatosIngresadosConvenioBTLMF)
-    {
-    	this.setTitle("Cobrar Pedido por Convenio: "+VariablesConvenioBTLMF.vNomConvenio);
-    	lblCoPagoT.setText("Monto Empresa :  S/.");
-    	lblCoPago.setText("0.00");
-    }
-    else
-    {
     this.setTitle("Cobrar Pedido");
     	lblCoPagoT.setText(" ");
     	lblCoPago.setText("  ");
-    }
-
+    
     this.setDefaultCloseOperation( JFrame.DO_NOTHING_ON_CLOSE  );
     this.addWindowListener(new WindowAdapter()
       {
@@ -364,7 +354,7 @@ public class DlgFormaPago extends JDialog  {
         pnlTotales.setBounds(new Rectangle(10, 405, 565, 45));
     pnlTotales.setFont(new Font("SansSerif", 0, 11));
     pnlTotales.setBackground(new Color(43, 141, 39));
-    pnlTotales.setLayout(xYLayout5);
+    pnlTotales.setLayout(null);
 
 
     lblCoPagoT.setFont(new Font("SansSerif", 1, 13));
@@ -406,7 +396,7 @@ public class DlgFormaPago extends JDialog  {
     pnlTotal.setFont(new Font("SansSerif", 0, 11));
     pnlTotal.setBorder(BorderFactory.createTitledBorder(""));
     pnlTotal.setBackground(new Color(43, 141, 39));
-    pnlTotal.setLayout(xYLayout2);
+    pnlTotal.setLayout(null);
     txtNroPedido.setFont(new Font("SansSerif", 0, 12));
     txtNroPedido.setDocument(new FarmaLengthText(4));
     txtNroPedido.addActionListener(new ActionListener()
@@ -471,7 +461,7 @@ public class DlgFormaPago extends JDialog  {
     pnlDetallePago.setBounds(new Rectangle(10, 300, 565, 25));
     pnlDetallePago.setFont(new Font("SansSerif", 0, 11));
     pnlDetallePago.setBackground(new Color(255, 130, 14));
-    pnlDetallePago.setLayout(xYLayout1);
+    pnlDetallePago.setLayout(null);
     btnDetallePago.setText("Detalle de Pago :");
     btnDetallePago.setFont(new Font("SansSerif", 1, 11));
     btnDetallePago.setForeground(Color.white);
@@ -635,24 +625,24 @@ public class DlgFormaPago extends JDialog  {
     jPanel1.add(btnCantidad, null);
     jPanel1.add(txtCantidad, null);
     jScrollPane1.getViewport();
-        pnlTotales.add(lblSaldoT, new XYConstraints(130, 20, 150, 20));
-        pnlTotales.add(lblSaldo, new XYConstraints(285, 20, 105, 20));
-        pnlTotales.add(lblCoPagoT, new XYConstraints(140, 0,140, 20));
-        pnlTotales.add(lblCoPago, new XYConstraints(285, 0, 105, 20));
-        pnlTotales.add(lblVueltoT, new XYConstraints(395, 20, 80, 20));
-        pnlTotales.add(lblVuelto, new XYConstraints(480, 20, 70, 20));
+        pnlTotales.add(lblSaldoT);
+        pnlTotales.add(lblSaldo);
+        pnlTotales.add(lblCoPagoT);
+        pnlTotales.add(lblCoPago);
+        pnlTotales.add(lblVueltoT);
+        pnlTotales.add(lblVuelto);
     pnlFormaPago.add(lblTipoCambio, null);
     pnlFormaPago.add(lblTipoCambioT, null);
     pnlFormaPago.add(lblTipoComprobante, null);
     pnlFormaPago.add(lblTipoComprobante_T, null);
-    pnlTotal.add(lblFecPed, new XYConstraints(130, 5, 70, 20));
-    pnlTotal.add(txtNroPedido, new XYConstraints(65, 0, 55, 25));
-    pnlTotal.add(btnPedido, new XYConstraints(0, 5, 60, 20));
-    pnlTotal.add(lblDolares, new XYConstraints(470, 5, 70, 20));
-        pnlTotal.add(lblSoles, new XYConstraints(365, 5, 55, 20));
-        pnlTotal.add(lblDolaresT, new XYConstraints(435, 5, 35, 20));
-        pnlTotal.add(lblSolesT, new XYConstraints(315, 5, 45, 20));
-        pnlTotal.add(lblTotalPagar, new XYConstraints(210, 5, 105, 20));
+    pnlTotal.add(lblFecPed);
+    pnlTotal.add(txtNroPedido);
+    pnlTotal.add(btnPedido);
+    pnlTotal.add(lblDolares);
+        pnlTotal.add(lblSoles);
+        pnlTotal.add(lblDolaresT);
+        pnlTotal.add(lblSolesT);
+        pnlTotal.add(lblTotalPagar);
         scrDetallePago.getViewport();
     this.getContentPane().add(jContentPane, BorderLayout.CENTER);
         this.getContentPane().add(jPanel4, BorderLayout.NORTH);
@@ -674,26 +664,14 @@ public class DlgFormaPago extends JDialog  {
         jContentPane.add(pnlTotal, null);
         scrDetallePago.getViewport().add(tblDetallePago, null);
         jContentPane.add(scrDetallePago, null);
-        pnlDetallePago.add(lblDNI_SIN_COMISION,
-                           new XYConstraints(245, 0, 320, 25));
-        pnlDetallePago.add(btnDetallePago, new XYConstraints(10, 5, 115, 15));
+        pnlDetallePago.add(lblDNI_SIN_COMISION);
+        pnlDetallePago.add(btnDetallePago);
         jContentPane.add(pnlDetallePago, null);
         jContentPane.add(lblF3, null);
         jContentPane.add(lblF2, null);
         //this.getContentPane().add(jContentPane, null);
 
 
-         //Agregado Por FRAMIREZ  11.05.2012
-        if (UtilityConvenioBTLMF.esActivoConvenioBTLMF(this, null)
-        	&& VariablesConvenioBTLMF.vCodConvenio != null
-        	&& VariablesConvenioBTLMF.vCodConvenio.trim().length() > 0 )
-        {
-        	lblF5.setVisible(false);
-        	lblF3.setVisible(false);
-        	jLabelFunction1.setVisible(false);
-        	lblF8.setVisible(false);
-        	lblF6.setVisible(false);
-        }
   }
 
 // **************************************************************************
@@ -718,7 +696,7 @@ public class DlgFormaPago extends JDialog  {
   }
   /**
    * Paremtros añadidos para el listado de Formas de Pago
-   * @author : dubilluz
+   * @author :  
    * @since  : 07.09.2007
    */
   
@@ -754,48 +732,7 @@ public class DlgFormaPago extends JDialog  {
      if (indConvenio.equalsIgnoreCase("S"))
      {
 
-    	 if(!UtilityConvenioBTLMF.esActivoConvenioBTLMF(this, null))
-    	  {
-
-
-         //Verificar si el tipo de convenio posee credito (si porcentaje = 100)
-         try{ esCredito = DBConvenio.obtenerPorcentajeCopago(codConvenio); } catch (SQLException e) { e.printStackTrace() ;FarmaUtility.showMessage(this, "Error.", null);}
-
-         //Si posee credito ,verificar si tiene saldo disponible
-         if (esCredito.equalsIgnoreCase("S")){
-             
-            try{ creditoSaldo  = DBConvenio.obtieneConvenioCredito(codConvenio,codCliente,FarmaConstants.INDICADOR_S );} catch (SQLException e) { e.printStackTrace() ;FarmaUtility.showMessage(this, "Error.", null);}
-             
-             if (creditoSaldo.equalsIgnoreCase("S"))
-                 valorCredito ="S";
-             else
-                 
-                 valorCredito ="N";
-         }
-    
-         else
-                 valorCredito ="N";
-         
-         System.err.println("codConvenio : " +  codConvenio);
-         System.err.println("codCliente : "  +  codCliente);
-         System.err.println("valorCredito : "  +  valorCredito);
-         
-         
-       
-             
-         
-       valor = cargaFormasPagoConvenio(indConvenio,codConvenio,codCliente,valorCredito);
-       
-           
-           //cargaFormasPagoConvenio(indConvenio,codConvenio,codCliente,cantCliente,valorCredito); 
-          System.err.println("--------------Forma de Pago Convenio-------------");
-
-     }
-
-
-     }
-     else
-     {
+    	 
           valor = cargaFormasPagoSinConvenio(indConvenio,codConvenio, codCliente);
              System.err.println("---------Forma de Pago Sin Convenio----------");
 
@@ -829,24 +766,7 @@ public class DlgFormaPago extends JDialog  {
           
       }
 
-      //Agregado Por FRAMIREZ 12.01.2012
-      private boolean cargaFormasPagoConvenio(String codConvenio) {
 
-          System.out.println("<<<<Cargando Formas de Pago Convenio BTLMF>>>>");
-            try{
-
-              DBConvenioBTLMF.obtieneFormasPagoConvenio(tableModelFormasPago,codConvenio);
-              FarmaUtility.ordenar(tblFormasPago, tableModelFormasPago, 0, FarmaConstants.ORDEN_ASCENDENTE);
-              String fechaSistema = FarmaSearch.getFechaHoraBD(FarmaConstants.FORMATO_FECHA);
-              lblFecPed.setText(fechaSistema);
-              return true;
-            } catch(SQLException sql)
-            {
-              sql.printStackTrace();
-              FarmaUtility.showMessage(this, "Error al obtener las Formas de Pago Convenio BTLMF.\n" + sql.getMessage(), txtNroPedido);
-              return false;
-            }
-      }
 
 
 
@@ -854,7 +774,7 @@ public class DlgFormaPago extends JDialog  {
       {
       System.out.println("Cargando Formas de Pago Sin Convenio");
       //String numPed=VariablesCaja.vNumPedVta;
-      //DUBILLUZ - 09.06.2011
+      //  - 09.06.2011
       String numPed= "";
       if(VariablesVentas.vNum_Ped_Vta.trim().length()>0){
           numPed= VariablesVentas.vNum_Ped_Vta.trim();
@@ -928,24 +848,9 @@ public class DlgFormaPago extends JDialog  {
         FarmaVariables.vAceptar = false;
 
         System.out.println("<<<<<<<<<<esActivoConvenioBTLMF>>>>>>>>>>>:");
-        //Agregado Por FRAMIREZ CargaForma de Pago por convenio
-        if(UtilityConvenioBTLMF.esActivoConvenioBTLMF(this, null) && VariablesConvenioBTLMF.vCodConvenio.trim().length()>0)
-  	    {
-  	        cargaFormasPagoConvenio(VariablesConvenioBTLMF.vCodConvenio);
-                KeyEvent ke = new KeyEvent( txtNroPedido, KeyEvent.KEY_PRESSED,    
-  	                                       0,                          // When timeStamp   
-  	                                       0,                          // Modifier   
-  	                                       KeyEvent.VK_ENTER,      // Key Code   
-  	                                       KeyEvent.CHAR_UNDEFINED );  // Key Char   
-
-                txtNroPedido_keyPressed(ke);
-
-  	    }
-        else
-        {
+        
         cargaFormasPago("N","N","0");
-        }
-
+        
 
       } else  cerrarVentana(false);
     } else
@@ -956,7 +861,7 @@ public class DlgFormaPago extends JDialog  {
         try{
           DBCaja.anularPedidoPendiente(VariablesVentas.vNum_Ped_Vta);
             
-            //JCORTEZ 07.01.09 devuelve canje o historico
+            //  07.01.09 devuelve canje o historico
             System.out.println("Devolviendo canje o Historico");      
             anularAcumuladoCanje();
             VariablesCaja.vCierreDiaAnul=false;
@@ -984,29 +889,9 @@ public class DlgFormaPago extends JDialog  {
         System.out.println("/*GOGO4*/"+tableModelDetallePago.getRowCount());
       
       
-        //Agregado Por FRAMIREZ 12.01.2012 CargaForma de Pago por convenio
-        if(UtilityConvenioBTLMF.esActivoConvenioBTLMF(this, null) && VariablesConvenioBTLMF.vHayDatosIngresadosConvenioBTLMF)
-            {
-                System.out.println("/*************************GOGO INICIO *******************************/");
-                cargaFormasPagoConvenio(VariablesConvenioBTLMF.vCodConvenio);
-                KeyEvent ke = new KeyEvent( txtNroPedido, KeyEvent.KEY_PRESSED,    
-                                               0,                          // When timeStamp   
-                                               0,                          // Modifier   
-                                               KeyEvent.VK_ENTER,      // Key Code   
-                                               KeyEvent.CHAR_UNDEFINED );  // Key Char   
-
-                //KeyEvent.VK_ENTER
-                 //cargaFormasPagoConvenio(VariablesConvenioBTLMF.vCodConvenio);
-                txtNroPedido_keyPressed(ke);           
-                System.out.println("/*************************GOGO FIN *******************************/");
-                System.out.println("/*GOGO1*/"+tableModelDetallePago.getRowCount());
-
-            }
-        else
-        {
+        
         if(!cargaFormasPago("N","N","0")) return;
-
-        }        
+        
         
       VariablesCaja.vNumPedPendiente = "";
       VariablesCaja.vFecPedACobrar = "";
@@ -1036,17 +921,8 @@ public class DlgFormaPago extends JDialog  {
     } else if(e.getKeyCode() == KeyEvent.VK_F3)
     {
 
-    	//Agregado Por FRAMIREZ 11.05.2012
-    	if (UtilityConvenioBTLMF.esActivoConvenioBTLMF(this, null)
-    	        	&& VariablesConvenioBTLMF.vCodConvenio != null
-    	        	&& VariablesConvenioBTLMF.vCodConvenio.trim().length() > 0 )
-    	 {
-    		          //Funcion deshabilitado
-    	 }
-    	else
-    	 {
+    	
       cambioTipoComprobante();
-    }
     }
     chkkeyPressed(e);
   }
@@ -1081,25 +957,11 @@ public class DlgFormaPago extends JDialog  {
 
         lblTipoComprobante.setVisible(true);
         lblTipoComprobante_T.setVisible(true);
-      //COLOCAR COMPROBANTES A IMPRIMIR
-      if(VariablesConvenioBTLMF.vCodConvenio.trim().length()>0){
-          lblTipoComprobante_T.setBounds(new Rectangle(0, 5, 390, 15));
-          lblTipoComprobante_T.setText(getMensajeComprobanteConvenio(VariablesConvenioBTLMF.vCodConvenio.trim()));
-          lblTipoComprobante.setVisible(false);
-      }
-      else{
+
           lblTipoComprobante_T.setBounds(new Rectangle(0, 5, 155, 15));
           lblTipoComprobante.setVisible(true);
-      }
 
-      System.out.println("2-VariablesConvenioBTLMF.vCodConvenio:"+VariablesConvenioBTLMF.vCodConvenio);
-
-      //Agregado Por FRAMIREZ 16.02.2012
-      if (UtilityConvenioBTLMF.esActivoConvenioBTLMF(this, null) && VariablesConvenioBTLMF.vHayDatosIngresadosConvenioBTLMF)
-       {
-         adicionaDetallePagoCredito();
-       }
-
+      
     }
     chkkeyPressed(e);
   }
@@ -1123,7 +985,7 @@ public class DlgFormaPago extends JDialog  {
       FarmaUtility.moveFocus(tblFormasPago);
       /**
        * Adicionado
-       * @author  dubilluz
+       * @author   
        * @since   10.09.2007
        */
       txtMontoPagado.setText("0.00");
@@ -1201,7 +1063,7 @@ public class DlgFormaPago extends JDialog  {
       
       double monto = obtieneMontoFormaPagoCupon(codFormaPago, cantidad);//promocion
       
-       //JCORTEZ 25/06/08 se valida cobro de pedido por cupones
+       //  25/06/08 se valida cobro de pedido por cupones
       ArrayList array =new ArrayList();
         try{
          DBCaja.obtieneMontoFormaPagoCuponCampaña(array,codFormaPago, cantidad);
@@ -1267,41 +1129,19 @@ public class DlgFormaPago extends JDialog  {
 
       if(!FarmaVariables.vTipCaja.equals(ConstantsPtoVenta.TIP_CAJA_MULTIFUNCIONAL))
       {
-        indBorra=true;//jcortez 08.07.08
+        indBorra=true;//  08.07.08
         limpiarDatos();
         limpiarPagos();
         FarmaUtility.moveFocus(txtNroPedido);
       }
 
-      //Agregado por FRAMIREZ 27.03.2012
-      if (UtilityConvenioBTLMF.esActivoConvenioBTLMF(this, null) && VariablesConvenioBTLMF.vCodConvenio != null && FarmaVariables.vTipCaja.length() > 0)
-      {
-    	  indBorra=true;//jcortez 08.07.08
-          limpiarDatos();
-          limpiarPagos();
-          FarmaUtility.moveFocus(txtNroPedido);
-      }
-
+     
     } else if(e.getKeyCode() == KeyEvent.VK_F4)
     {
         
       if (VariablesCaja.vIndDeliveryAutomatico.trim().equalsIgnoreCase(FarmaConstants.INDICADOR_N)) {
-          if(tblDetallePago.getRowCount() > 0 && validaFomaPagoConvenio()) /*VariablesCaja.vIndPedidoConvenio.equalsIgnoreCase(FarmaConstants.INDICADOR_S)*/
-          {
-            FarmaUtility.showMessage(this, "Este pedido es un convenio.\n" +
-              "Las formas de pago no pueden ser eliminadas.\n" +
-              "Presione F2 si desea reiniciar el cobro del pedido.", tblFormasPago);
-            return;
-          }
-
-          //Agregado por FRAMIREZ 27.03.2012
-          if (UtilityConvenioBTLMF.esActivoConvenioBTLMF(this, null) && VariablesConvenioBTLMF.vCodConvenio != null && FarmaVariables.vTipCaja.length() > 0)
-          {
-        	  FarmaUtility.showMessage(this, "Este pedido es un convenio.\n" +
-                      "Las formas de pago no pueden ser eliminadas.\n" +
-                      "Presione F2 si desea reiniciar el cobro del pedido.", tblFormasPago);
-                 return;
-          }
+          
+          
 
           limpiarPagos();
           btnFormaPago.doClick();
@@ -1309,15 +1149,7 @@ public class DlgFormaPago extends JDialog  {
     } else if(e.getKeyCode() == KeyEvent.VK_F5)
     {
 
-    	//Agregado Por FRAMIREZ 11.05.2012
-    	if (UtilityConvenioBTLMF.esActivoConvenioBTLMF(this, null)
-    	        	&& VariablesConvenioBTLMF.vCodConvenio != null
-    	        	&& VariablesConvenioBTLMF.vCodConvenio.trim().length() > 0 )
-    	 {
-    		          //Funcion deshabilitado
-    	 }
-    	else
-    	 {
+    	
 
       DlgPedidosPendientes dlgPedidosPendientes = new DlgPedidosPendientes(myParentFrame,"",true);
       dlgPedidosPendientes.setVisible(true);
@@ -1338,12 +1170,12 @@ public class DlgFormaPago extends JDialog  {
         if(!validaPedidoDiario()) return;
         buscaPedidoDiario();
         
-        //JCORTEZ - no se deben borrar las variables del pedido luego de seleccinar
+        //  - no se deben borrar las variables del pedido luego de seleccinar
         /*VariablesCaja.vNumPedPendiente = "";
         VariablesCaja.vFecPedACobrar = "";*/
         
         FarmaVariables.vAceptar = false;
-        //añadido 21.09.2007 dubilluz
+        //añadido 21.09.2007  
         System.out.println("VariablesCaja.cobro_Pedido_Conv_Credito : "+VariablesCaja.cobro_Pedido_Conv_Credito);
         if(VariablesCaja.cobro_Pedido_Conv_Credito.equalsIgnoreCase("N"))
         {
@@ -1356,91 +1188,61 @@ public class DlgFormaPago extends JDialog  {
         System.out.println("Foco lo coloco en TxtMonto  2222");
         }
         
-        verificaMontoPagadoPedido();//jcortez
+        verificaMontoPagadoPedido();// 
 
      }
-       }
+       
     } else if(e.getKeyCode() == KeyEvent.VK_F6)
     {
 
-    	//Agregado Por FRAMIREZ 11.05.2012
-    	if (UtilityConvenioBTLMF.esActivoConvenioBTLMF(this, null)
-    	        	&& VariablesConvenioBTLMF.vCodConvenio != null
-    	        	&& VariablesConvenioBTLMF.vCodConvenio.trim().length() > 0 )
-    	 {
-    		          //Funcion deshabilitado
-    	 }
-    	else
-    	 {
+    	
       VariablesCaja.vSecMovCajaOrigen = VariablesCaja.vSecMovCaja;
       VariablesPtoVenta.vSecMovCajaOrigen = VariablesCaja.vSecMovCaja;
       VariablesPtoVenta.vTipAccesoListaComprobantes=ConstantsPtoVenta.TIP_ACC_LISTA_COMP_CAJA;
       DlgReportePedidosComprobantes dlgReportePedidosComprobantes = new DlgReportePedidosComprobantes(myParentFrame,"",true);
       dlgReportePedidosComprobantes.setVisible(true);
 
-    	}
+    	
     } else if(e.getKeyCode() == KeyEvent.VK_F7)
     {
 
-    	//Agregado Por FRAMIREZ 11.05.2012
-    	if (UtilityConvenioBTLMF.esActivoConvenioBTLMF(this, null)
-    	        	&& VariablesConvenioBTLMF.vCodConvenio != null
-    	        	&& VariablesConvenioBTLMF.vCodConvenio.trim().length() > 0 )
-    	 {
-    		          //Funcion deshabilitado
-    	 }
-    	else
-    	{
+   
       configuracionComprobante();
-    	}
+    	
     }else if(e.getKeyCode() == KeyEvent.VK_F8)
     {
 
-    	//Agregado Por FRAMIREZ 11.05.2012
-    	if (UtilityConvenioBTLMF.esActivoConvenioBTLMF(this, null)
-    	        	&& VariablesConvenioBTLMF.vCodConvenio != null
-    	        	&& VariablesConvenioBTLMF.vCodConvenio.trim().length() > 0 )
-    	 {
-    		          //Funcion deshabilitado
-    	 }
-    	else
-         {
-       //JCORTEZ 03.10.09 Se verifica si se permite o no ingreso de sobres
+    
+       //  03.10.09 Se verifica si se permite o no ingreso de sobres
         if(validaIngresoSobre())
          mostrarIngresoSobres();     
         else
         FarmaUtility.showMessage(this, "Opción no habilitada por el momento", null);
-         }
+         
 
     } else if(e.getKeyCode() == KeyEvent.VK_F11)
     {
         boolean permiteCobrar = existeStockPedido(VariablesCaja.vNumPedVta);
         if(permiteCobrar){
-        //JCHAVEZ 09.07.2009.sn graba el tiempo dei nicio de cobro
+        //  09.07.2009.sn graba el tiempo dei nicio de cobro
         try{
             DBCaja.grabaInicioFinProcesoCobroPedido(VariablesCaja.vNumPedVta,"I");
             System.out.println("Grabo el tiempo de inicio de cobro");
         }
         catch(SQLException sql){
             //FALTA CORREGIR ESTO
-            FarmaUtility.liberarTransaccion(); //ASOSA 22.02.2010            
+            FarmaUtility.liberarTransaccion(); //  22.02.2010            
             sql.printStackTrace();
             System.out.println("Error al grabar el tiempo de inicio de cobro");
         }
-        //JCHAVEZ 09.07.2009.en graba el tiempo de nicio de cobro
+        //  09.07.2009.en graba el tiempo de nicio de cobro
         
         //se guarda valores 
         VariablesCaja.vVuelto=lblVuelto.getText().trim();
 
-	        if(UtilityConvenioBTLMF.esActivoConvenioBTLMF(this, null)&&
-	        		VariablesConvenioBTLMF.vHayDatosIngresadosConvenioBTLMF)
-	        {
-	          procesarBTLMF();
-	        }
-	        else
-	        {
+	        
         procesar();
-	        }
+	        
 
         }
         else{
@@ -1460,7 +1262,7 @@ public class DlgFormaPago extends JDialog  {
         
         eventoEscape();
         /*
-        //JCORTEZ 02.07.2008 se deja el indicador de impresio de cupon por pedido en N
+        //  02.07.2008 se deja el indicador de impresio de cupon por pedido en N
         if(!VariablesCaja.vNumPedVta.equalsIgnoreCase("")){
         VariablesCaja.vPermiteCampaña=verificaPedidoCamp(VariablesCaja.vNumPedVta);
           if(VariablesCaja.vPermiteCampaña.trim().equalsIgnoreCase("S")){
@@ -1468,7 +1270,7 @@ public class DlgFormaPago extends JDialog  {
           }
         }
         
-        indBorra=false;//jcortez
+        indBorra=false;// 
         
         if ( FarmaVariables.vTipCaja.equalsIgnoreCase(ConstantsPtoVenta.TIP_CAJA_MULTIFUNCIONAL) )
         {
@@ -1503,7 +1305,7 @@ public class DlgFormaPago extends JDialog  {
               try{
                 DBCaja.anularPedidoPendienteSinRespaldo(VariablesCaja.vNumPedVta);
                   ///-- inicio de validacion de Campaña 
-                  // DUBILLUZ 19.12.2008
+                  //   19.12.2008
                   String pIndLineaMatriz = FarmaUtility.getIndLineaOnLine(FarmaConstants.CONECTION_MATRIZ,FarmaConstants.INDICADOR_N);
                   boolean pRspCampanaAcumulad = UtilityCaja.realizaAccionCampanaAcumulada
                                          (
@@ -1582,13 +1384,10 @@ public class DlgFormaPago extends JDialog  {
     lblMsjNumRecarga.setVisible(false);
     VariablesCaja.vIndPedidoConProdVirtual = false;
     VariablesCaja.vIndPedidoConvenio = "";
-    VariablesConvenio.vCodCliente = "";
-    VariablesConvenio.vCodConvenio = "" ;
-    VariablesConvenio.vCodCliente = "" ; 
-    VariablesConvenio.vValCredDis = 0.00;
+    
     /**
      * VAriables usadas para Convenio Tipo Credito
-     * @author dubilluz
+     * @author  
      * @since  08.09.2007
      */
     VariablesCaja.cobro_Pedido_Conv_Credito = "N";
@@ -1597,11 +1396,11 @@ public class DlgFormaPago extends JDialog  {
     VariablesCaja.monto_forma_credito_ingresado = "0.00";
     VariablesCaja.uso_Credito_Pedido_N_Delivery = "N";
     VariablesCaja.usoConvenioCredito = "";
-    VariablesConvenio.vIndSoloCredito = "" ;
+    
     
     /**
      * Para mostrar datos en ticket
-     * @author JCORTEZ
+     * @author  
      * @since 27.03.09
      * */
     VariablesCaja.vValEfectivo="";
@@ -1621,7 +1420,7 @@ public class DlgFormaPago extends JDialog  {
   txtCantidad.setEnabled(false);
   btnAdicionar.setEnabled(false);
 
-  //JCORTEZ 07.07.08 se carga el detalle de forma de pago del pedido
+  //  07.07.08 se carga el detalle de forma de pago del pedido
   //String numped=((String) ((ArrayList) pArrayList.get(0)).get(0)).trim();
    if(!indBorra){
     cargaDetalleFormaPago(VariablesCaja.vNumPedVta);
@@ -1718,7 +1517,7 @@ public class DlgFormaPago extends JDialog  {
       VariablesCaja.vIndPedidoSeleccionado = FarmaConstants.INDICADOR_S;
       muestraInfoPedido(pArrayList);
       
-      //JCORTEZ 07.07.08 se carga el detalle de forma de pago del pedido
+      //  07.07.08 se carga el detalle de forma de pago del pedido
       if(tblDetallePago.getRowCount()<1){
         cargaDetalleFormaPago(VariablesCaja.vNumPedVta);        
       }
@@ -1765,28 +1564,7 @@ public class DlgFormaPago extends JDialog  {
     VariablesVentas.vCant_Items_Ped = ((String)((ArrayList)pArrayList.get(0)).get(13)).trim();
     //indicador de Convenio
     VariablesCaja.vIndPedidoConvenio = ((String)((ArrayList)pArrayList.get(0)).get(14)).trim();
-    if(!UtilityConvenioBTLMF.esActivoConvenioBTLMF(this, null))
-    {
-    VariablesConvenio.vCodConvenio = ((String)((ArrayList)pArrayList.get(0)).get(15)).trim();
-    VariablesConvenio.vCodCliente = ((String)((ArrayList)pArrayList.get(0)).get(16)).trim();
-    }
-	else
-	{
-	  if(VariablesConvenioBTLMF.vHayDatosIngresadosConvenioBTLMF)
-	  {
-        //VariablesConvenioBTLMF.vCodConvenio = ((String)((ArrayList)pArrayList.get(0)).get(15)).trim();
-
-        System.out.println("1-VariablesConvenioBTLMF.vCodConvenio:"+VariablesConvenioBTLMF.vCodConvenio);
-
-
-        if(((ArrayList)pArrayList.get(0)).get(16) != null)
-        {
-         VariablesConvenioBTLMF.vCodCliente = ((String)((ArrayList)pArrayList.get(0)).get(16)).trim();
-         System.out.println("1-VariablesConvenioBTLMF.vCodCliente:"+VariablesConvenioBTLMF.vCodCliente);
-        }
-
-	  }
-   }
+    
     evaluaPedidoProdVirtual(VariablesCaja.vNumPedVta);
     if(VariablesCaja.vIndDistrGratuita.equalsIgnoreCase(FarmaConstants.INDICADOR_S) ||
        FarmaUtility.getDecimalNumber(VariablesCaja.vValTotalPagar.trim()) <= 0 )
@@ -1798,49 +1576,16 @@ public class DlgFormaPago extends JDialog  {
     {
       VariablesCaja.vIndTotalPedidoCubierto = false;
     }
-     /**
-      * Lista las Formas de Pago si es Por Convenio 
-      * @author : dubilluz
-      * @since  : 06.09.2007
-      */
-      if(VariablesCaja.vIndPedidoConvenio.equalsIgnoreCase("S"))
-      {
-		    if(!UtilityConvenioBTLMF.esActivoConvenioBTLMF(this, null))
-		    {
-        cargaFormasPago(VariablesCaja.vIndPedidoConvenio,VariablesConvenio.vCodConvenio,VariablesConvenio.vCodCliente);
-			}
-			else
-			{
-			  if(VariablesConvenioBTLMF.vHayDatosIngresadosConvenioBTLMF)
-			  {
-		        cargaFormasPago(VariablesCaja.vIndPedidoConvenio,VariablesConvenioBTLMF.vCodConvenio,VariablesConvenioBTLMF.vCodCliente);
-			  }
-			}
-	    //System.err.println("VariablesCaja.vIndPedidoConvenio :" + VariablesCaja.vIndPedidoConvenio);
-	  }
-      else if(VariablesCaja.vIndPedidoConvenio.equalsIgnoreCase("N"))
+    if(VariablesCaja.vIndPedidoConvenio.equalsIgnoreCase("N"))
         cargaFormasPago("N","N","0");
     
-    if(VariablesCaja.vIndDeliveryAutomatico.equalsIgnoreCase(FarmaConstants.INDICADOR_S))
-    {
-      log.info("Es Pedido Delivery");
-      colocaFormaPagoDeliveryAutomatico(VariablesCaja.vNumPedVta);
-      verificaMontoPagadoPedido();
-    }
+
     if(VariablesCaja.vIndPedidoConvenio.equalsIgnoreCase(FarmaConstants.INDICADOR_S))
     {
       log.info("Es Pedido Convenio");
      if(!VariablesCaja.vIndDeliveryAutomatico.equalsIgnoreCase(FarmaConstants.INDICADOR_S)){
       colocaFormaPagoPedidoConvenio(VariablesCaja.vNumPedVta);
-      /**
-       * Colocara el Credito del Pedido si es  por Convenio
-       * @author dubilluz
-       * @since  08.09.2007
-       */
-      if(VariablesCaja.arrayDetFPCredito.size()>0) 
-      carga_Credito_Convenio();
-      else
-      System.out.println("Convenio no da Credito");
+   
       verificaMontoPagadoPedido();
      }
     }
@@ -1862,13 +1607,13 @@ public class DlgFormaPago extends JDialog  {
     if(VariablesVentas.vTip_Comp_Ped.equalsIgnoreCase(ConstantsVentas.TIPO_COMP_FACTURA)){
       lblTipoComprobante.setText("FACTURA");
       lblRazSoc_T.setText("Razon Social :");
-    } else if (VariablesVentas.vTip_Comp_Ped.equalsIgnoreCase(ConstantsVentas.TIPO_COMP_BOLETA)){ //JCHAVEZ 24092009.sn
+    } else if (VariablesVentas.vTip_Comp_Ped.equalsIgnoreCase(ConstantsVentas.TIPO_COMP_BOLETA)){ //  24092009.sn
         lblTipoComprobante.setText("BOLETA");
         lblRazSoc_T.setText("Cliente :");
     } else if (VariablesVentas.vTip_Comp_Ped.equalsIgnoreCase(ConstantsVentas.TIPO_COMP_TICKET)){
         lblTipoComprobante.setText("TICKET");
         lblRazSoc_T.setText("Cliente :");
-    }//JCHAVEZ 24092009.en
+    }//  24092009.en
     lblRUC.setText(VariablesVentas.vRuc_Cli_Ped);
     lblRazSoc.setText(VariablesVentas.vNom_Cli_Ped);
   }
@@ -1904,28 +1649,13 @@ public class DlgFormaPago extends JDialog  {
     ////
     /**
      * Para un Convenio
-     * @author  dubilluz
+     * @author   
      * @since   10.09.2007
      */
-    //Si es Convenio
-    String cod_FP_Convenio = "Notiene";
-     if(VariablesCaja.vIndPedidoConvenio.equalsIgnoreCase("S")){//VariablesVentas.vEsPedidoConvenio){
-       String  indCredConvenio = isConvenioCredito(VariablesConvenio.vCodConvenio);
-        if(indCredConvenio.equalsIgnoreCase("S") && VariablesCaja.arrayDetFPCredito.size()>0)//FarmaUtility.getDecimalNumber(VariablesConvenio.vPorcCoPago)!=0)
-         {
-           cod_FP_Convenio = ((String)((ArrayList)(VariablesCaja.arrayDetFPCredito.get(0))).get(0)).trim();//obtiene_cod_FPago_Convenio(VariablesConvenio.vCodConvenio).trim();
-         }
-     }
-     
-     if (codFormaPago.equalsIgnoreCase(cod_FP_Convenio)) {
-            System.out.println(VariablesCaja.valorCredito_de_PedActual+"el valor del monto, del credito de Convenio");
-            txtMontoPagado.setText(""+VariablesCaja.valorCredito_de_PedActual);//(String)VariablesConvenio.registroFP.get(3));
-            txtMontoPagado.setEnabled(true);
-            btnAdicionar.setEnabled(true);
-            FarmaUtility.moveFocus(txtMontoPagado);
-     }
+    
+    
     ////
-    else if(codFormaPago.equalsIgnoreCase(ConstantsCaja.FORMA_PAGO_EFECTIVO_SOLES))
+    if(codFormaPago.equalsIgnoreCase(ConstantsCaja.FORMA_PAGO_EFECTIVO_SOLES))
     {
       FarmaLoadCVL.setSelectedValueInComboBox(cmbMoneda, FarmaConstants.HASHTABLE_MONEDA, FarmaConstants.CODIGO_MONEDA_SOLES);
       cmbMoneda.setEnabled(false);
@@ -2005,12 +1735,7 @@ public class DlgFormaPago extends JDialog  {
   private void adicionaDetallePago()
   {
     obtieneDatosFormaPagoPedido();
-  /**
-   * Valida si el Monto de Ingreso , que no sea mayor al Credito que Dispone
-   * @author dubilluz
-   * @since  10.09.2007
-   */
-    if(!validaMontoCredito_Convenio()) return ; 
+
     if(!validaMontoIngresado()) return;
     System.out.println("VariablesCaja.vIndTotalPedidoCubierto: "+VariablesCaja.vIndTotalPedidoCubierto);
     if(VariablesCaja.vIndTotalPedidoCubierto)
@@ -2049,48 +1774,7 @@ public class DlgFormaPago extends JDialog  {
   }
 
 
-  private void adicionaDetallePagoCredito()
-  {
-
-
-	double montoCredito = UtilityConvenioBTLMF.obtieneMontoCredito(this, null, new Double(FarmaUtility.getDecimalNumber(VariablesCaja.vValTotalPagar)),VariablesCaja.vNumPedVta,"");
-
-	if (montoCredito > 0)
-	 {
-		    obtieneDatosFormaPagoPedidoCredito();
-
-		    //if(!validaMontoCredito_Convenio()) return ;
-		    //if(!validaMontoIngresado()) return;
-		    System.out.println("VariablesCaja.vIndTotalPedidoCubierto: "+VariablesCaja.vIndTotalPedidoCubierto);
-		    if(VariablesCaja.vIndTotalPedidoCubierto)
-		    {
-		      FarmaUtility.showMessage(this, "El monto total del Pedido ya fue cubierto.\n" +
-		        "Presione F11 para generar comprobante(s).", tblFormasPago);
-		      return;
-		    }
-
-		    //obtieneDatosFormaPagoPedido();
-		    //if(VariablesCaja.vIndTarjetaSeleccionada && FarmaUtility.getDecimalNumber(VariablesCaja.vValMontoPagado) > VariablesCaja.vMontoMaxPagoTarjeta)
-		    //{
-		    //FarmaUtility.showMessage(this,"El monto ingresado no puede ser mayor al saldo del Pedido. Verifique!!!", txtMontoPagado);
-		    //return;
-		    //}
-
-		    //if(VariablesCaja.vIndTarjetaSeleccionada && FarmaUtility.getDecimalNumber(VariablesCaja.vValMontoPagado) > VariablesCaja.vMontoMaxPagoTarjeta)
-		    //{
-		    //  FarmaUtility.showMessage(this,"El monto ingresado no puede ser mayor al saldo del Pedido. Verifique!!!", txtMontoPagado);
-		    //  return;
-		    //}
-
-		    operaListaDetallePago();
-		    verificaMontoPagadoPedido();
-		    complementarDetalle();
-	 }
-
-  }
-
-
-  //JCORTEZ
+  // 
   private void complementarDetalle(){
   
     limpiaVariablesFormaPago();
@@ -2123,43 +1807,6 @@ public class DlgFormaPago extends JDialog  {
       VariablesCaja.vValTotalPagado = FarmaUtility.formatNumber(FarmaUtility.getDecimalNumber(VariablesCaja.vValMontoPagado) * FarmaUtility.getDecimalNumber(VariablesCaja.vValTipoCambioPedido));
   }
 
-  private void obtieneDatosFormaPagoPedidoCredito()
-  {
-    VariablesCaja.vValEfectivo= txtMontoPagado.getText().trim();
-    if(tblFormasPago.getRowCount() <= 0) return;
-    int fila = tblFormasPago.getSelectedRow();
-    VariablesCaja.vCodFormaPago  = ConstantsConvenioBTLMF.COD_FORMA_PAGO_CREDITO;//((String)tblFormasPago.getValueAt(fila,0)).trim();
-    VariablesCaja.vDescFormaPago = UtilityConvenioBTLMF.obtieneFormaPago(this, null, ConstantsConvenioBTLMF.COD_FORMA_PAGO_CREDITO) ;//((String)tblFormasPago.getValueAt(fila,1)).trim();
-    VariablesCaja.vCantidadCupon = "0";//txtCantidad.getText().trim();
-    //VariablesCaja.vCodOperadorTarjeta = ((String)tblFormasPago.getValueAt(fila,2)).trim();
-    String codMoneda = FarmaLoadCVL.getCVLCode(FarmaConstants.HASHTABLE_MONEDA,cmbMoneda.getSelectedIndex());
-    VariablesCaja.vCodMonedaPago = codMoneda;
-    VariablesCaja.vDescMonedaPago = FarmaLoadCVL.getCVLDescription(FarmaConstants.HASHTABLE_MONEDA, codMoneda);
-
-    double montoPagar = UtilityConvenioBTLMF.obtieneMontoCredito(this, null, new Double(FarmaUtility.getDecimalNumber(VariablesCaja.vValTotalPagar)),VariablesCaja.vNumPedVta,"");
-
-    VariablesCaja.vValMontoPagado = FarmaUtility.formatNumber(montoPagar);
-    lblCoPago.setText(VariablesCaja.vValMontoPagado);
-    String porcCopago  = FarmaUtility.formatNumber((FarmaUtility.getDecimalNumber(VariablesCaja.vValMontoPagado)/FarmaUtility.getDecimalNumber(VariablesCaja.vValTotalPagar))*100,"");
-
-
-    System.out.println("Porcentaje Copago:" +porcCopago);
-    String porcCopagoTemp = porcCopago.replace('.', ' ');
-
-    if (porcCopagoTemp.trim().equals("100"))
-    {
-      lblCoPagoT.setText("Crédito("+porcCopago+"%) :  S/.");
-    }
-    else
-    {
-      lblCoPagoT.setText("Monto Empr.("+porcCopago+"%) :  S/.");
-    }
-
-    if(codMoneda.equalsIgnoreCase(FarmaConstants.CODIGO_MONEDA_SOLES))
-      VariablesCaja.vValTotalPagado = VariablesCaja.vValMontoPagado;
-    else
-      VariablesCaja.vValTotalPagado = FarmaUtility.formatNumber(FarmaUtility.getDecimalNumber(VariablesCaja.vValMontoPagado) * FarmaUtility.getDecimalNumber(VariablesCaja.vValTipoCambioPedido));
-  }
 
   private void operaListaDetallePago()
   {
@@ -2279,7 +1926,7 @@ public class DlgFormaPago extends JDialog  {
             new DlgProcesarCobro(myParentFrame, "", true, tblFormasPago, 
                                  lblVuelto, tblDetallePago, txtNroPedido);
         dlgProcesarCobro.setVisible(true);
-        //JCORTEZ 07.01.09
+        //  07.01.09
         if (!FarmaVariables.vAceptar) {
             if (VariablesCaja.vCierreDiaAnul) {
                 anularAcumuladoCanje();
@@ -2294,33 +1941,13 @@ public class DlgFormaPago extends JDialog  {
    }
 
 
-  private void cobrarPedidoBTLMF()
-  {
-        DlgProcesarCobroBTLMF dlgProcesarCobro =
-            new DlgProcesarCobroBTLMF(myParentFrame, "", true, tblFormasPago,
-                                 lblVuelto, tblDetallePago, txtNroPedido);
-        dlgProcesarCobro.setVisible(true);
-        //JCORTEZ 07.01.09
-        if (!FarmaVariables.vAceptar) {
-            if (VariablesCaja.vCierreDiaAnul) {
-                anularAcumuladoCanje();
-                VariablesCaja.vCierreDiaAnul = false;
-            }
-        }
-        /* 06.03.2008 ERIOS Cierra la conexion si se utilizo credito */
-        if (VariablesCaja.usoConvenioCredito.equalsIgnoreCase("S")) {
-            FarmaConnection.closeConnection();
-            FarmaConnection.anularConnection();
-        }
-  }
-
   /**
-   * JCORTEZ 08.01.09
+   *   08.01.09
    * Se movio parte del codigo
    * */
   private void anularAcumuladoCanje(){
       try{
-          // DUBILLUZ 19.12.2008
+          //   19.12.2008
           String pIndLineaMatriz = FarmaUtility.getIndLineaOnLine(FarmaConstants.CONECTION_MATRIZ,FarmaConstants.INDICADOR_N);
           log.debug("pIndLineaMatriz "+pIndLineaMatriz);
           //System.out.println("pIndLineaMatriz "+pIndLineaMatriz);
@@ -2346,7 +1973,7 @@ public class DlgFormaPago extends JDialog  {
           FarmaUtility.aceptarTransaccionRemota(FarmaConstants.CONECTION_MATRIZ,FarmaConstants.INDICADOR_S);
           FarmaUtility.aceptarTransaccion();
           log.info("Pedido anulado sin quitar respaldo.");
-          //JMIRANDA 05.07.2010
+          //  05.07.2010
           cerrarVentana(false);
       } catch(Exception sql){
            FarmaUtility.liberarTransaccion();
@@ -2478,21 +2105,7 @@ public class DlgFormaPago extends JDialog  {
     }
     return monto;
   }
-  
-  private void colocaFormaPagoDeliveryAutomatico(String pNumPedido)
-  {
-    try
-    {
-      DBDelivery.cargaFormaPagoPedidoDelAutomatico(tableModelDetallePago.data, pNumPedido);
-      tableModelDetallePago.fireTableDataChanged();
-    } catch(SQLException ex)
-    {
-      //ex.printStackTrace();
-      log.error(null,ex);
-      FarmaUtility.showMessage(this,"Error al obtener forma de pago delivery automatico.\n" + ex.getMessage(), tblFormasPago);
-    }
-  }
-  
+
   private void colocaFormaPagoPedidoConvenio(String pNumPedido)
   {
     try
@@ -2505,7 +2118,7 @@ public class DlgFormaPago extends JDialog  {
       tableModelDetallePago.fireTableDataChanged();*/
       /**
        * Modificado para que no coloque el detalle de Todo el Credito sino q pueda modificar para el uso q dara
-       * @author dubilluz
+       * @author  
        * @since  08.09.2007
        */
       DBCaja.cargaFormaPagoPedidoConvenio(VariablesCaja.arrayDetFPCredito, pNumPedido);
@@ -2558,7 +2171,7 @@ public class DlgFormaPago extends JDialog  {
       if(tipoProd.equalsIgnoreCase(ConstantsVentas.TIPO_PROD_VIRTUAL_TARJETA))
         lblMsjPedVirtual.setText("El pedido contiene una Tarjeta Virtual. Si lo cobra, No podrá ser anulado.");
       else if(tipoProd.equalsIgnoreCase(ConstantsVentas.TIPO_PROD_VIRTUAL_RECARGA)){
-       //14.11.2007 dubilluz modificado
+       //14.11.2007   modificado
        //lblMsjPedVirtual.setText("El pedido es una Recarga Virtual. Si lo cobra, Sólo podrá anularse dentro de 10 minutos.");
        lblMsjPedVirtual.setText("Recarga Virtual.Sólo podrá anularse dentro de "+ time_max(pNumPedido) +" minutos." +
                                 " Telefono: " );
@@ -2617,126 +2230,6 @@ public class DlgFormaPago extends JDialog  {
     return tipoProd;
   }
   
-  /**
-   * @param f_fp_convenio
-   * @return
-   */
-  private String validaCreditoCliente(int f_fp_convenio) {
-	  String vRes = "";
-      boolean indExisteConv = false;
-      boolean indMontoValido = false;
-	  try {
-		  if( VariablesCaja.vIndDeliveryAutomatico.trim().equalsIgnoreCase("N") ){
-			  VariablesConvenio.vValCoPago = VariablesCaja.monto_forma_credito_ingresado;
-		  }else if (VariablesCaja.vIndDeliveryAutomatico.trim().equalsIgnoreCase("S")){
-                VariablesConvenio.vValCoPago = FarmaUtility.getValueFieldJTable(tblDetallePago, 
-                                                                                f_fp_convenio, 
-                                                                                4).trim();
-		  }
-              
-		  log.debug("VariablesConvenio.vValCoPago=" + VariablesConvenio.vValCoPago);
-		  if(FarmaUtility.getDecimalNumber(VariablesConvenio.vValCoPago)!=0){
-			  log.debug("jcallo: va usar credito por convenio");
-			  //verificar si hay linea con matriz y no cerrar la conexion
-			  String vIndLinea = FarmaUtility.getIndLineaOnLine(FarmaConstants.CONECTION_MATRIZ, 
-                                                     			FarmaConstants.INDICADOR_N);
-
-			  //si hay linea
-		   /*	  if ( vIndLinea.trim().equalsIgnoreCase(FarmaConstants.INDICADOR_S)){
-                   
-                    valor = DBConvenio.validaCreditoCli(VariablesConvenio.vCodConvenio, 
-                                                        VariablesConvenio.vCodCliente,
-                                                        VariablesConvenio.vValCoPago,
-                                                        FarmaConstants.INDICADOR_S);
-                    log.debug("diferencia de credito que le quedaria al cliente por convenio: " + valor);
-                    diferencia = FarmaUtility.getDecimalNumber(valor);
-                    if( diferencia < 0 ) {
-                    	log.debug("credito insuficiente del cliente, ya que se excederia en "+diferencia);
-                        vRes = "S";
-                    } else {//quiere decir que tiene saldo suficiente
-                    	VariablesConvenio.vValCredDis = 
-                        	FarmaUtility.getDecimalNumber(VariablesConvenio.vValCoPago) + diferencia;
-                        
-                        VariablesConvenio.vCredito = 
-                                DBConvenio.obtieneCredito(VariablesConvenio.vCodConvenio, 
-                                                          VariablesConvenio.vCodCliente, 
-                                                          FarmaConstants.INDICADOR_S);
-                        log.debug("VariablesConvenio.vCredito: " +VariablesConvenio.vCredito);
-                        VariablesConvenio.vCreditoUtil = 
-                                DBConvenio.obtieneCreditoUtil(VariablesConvenio.vCodConvenio, 
-                                                              VariablesConvenio.vCodCliente, 
-                                                              FarmaConstants.INDICADOR_S);
-                        log.debug("VariablesConvenio.vCreditoUtil: " +VariablesConvenio.vCreditoUtil);
-                        
-                        VariablesConvenio.vValCredDis = 
-                                FarmaUtility.getDecimalNumber(VariablesConvenio.vValCoPago.trim()); //FarmaUtility.getDecimalNumber(VariablesConvenio.vValCoPago)  + diferencia ;
-                        
-                        vRes = "N";
-                    }
-                    */
-                    //JMIRANDA 23.06.2010
-                    //NUEVO METODO DE CONVENIO
-                    if ( vIndLinea.trim().equalsIgnoreCase(FarmaConstants.INDICADOR_S)){
-                               System.out.println("Existe conexion a Matriz");
-                               //Paso 1 valida que exista el convenio
-                               indExisteConv = 
-                                       UtilityConvenio.getIndClienteConvActivo(this, 
-                                                                               tblFormasPago, 
-                                                                               VariablesConvenio.vCodConvenio, 
-                                                                               VariablesConvenio.vNumDocIdent,
-                                                                               VariablesConvenio.vCodCliente);
-                               log.error("PASO 1. FORMA PAGO.  indExisteConv: "+indExisteConv);
-                               if (indExisteConv) {
-                                   //Paso 2 validar el monto disponible
-                                   indMontoValido = 
-                                           UtilityConvenio.getIndValidaMontoConvenio(this, 
-                                                                                     tblFormasPago, 
-                                                                                     VariablesConvenio.vCodConvenio, 
-                                                                                     VariablesConvenio.vNumDocIdent, 
-                                                                                     FarmaUtility.getDecimalNumber(VariablesConvenio.vValCoPago),
-                                                                                        VariablesConvenio.vCodCliente
-                                                                                     );
-                                   log.error("PASO 2. FORMA PAGO indMontoValido: "+indMontoValido);
-                                   if (indMontoValido) {
-                                       log.error("eNTRO. FORMA PAGO indMontoValido: "+indMontoValido);
-                                       //El convenio está activo y el monto a usar es correcto    
-                                       VariablesConvenio.vValCredDis = 
-                                               FarmaUtility.getDecimalNumber(VariablesConvenio.vValCoPago) + diferencia;
-                                       
-                                       VariablesConvenio.vCredito = 
-                                               DBConvenio.obtieneCredito(VariablesConvenio.vCodConvenio, 
-                                                                         VariablesConvenio.vCodCliente, 
-                                                                         FarmaConstants.INDICADOR_S);
-                                       log.debug("VariablesConvenio.vCredito: " +VariablesConvenio.vCredito);
-                                       VariablesConvenio.vCreditoUtil = 
-                                               DBConvenio.obtieneCreditoUtil(VariablesConvenio.vCodConvenio, 
-                                                                             VariablesConvenio.vCodCliente, 
-                                                                             FarmaConstants.INDICADOR_S);
-                                       log.debug("VariablesConvenio.vCreditoUtil: " +VariablesConvenio.vCreditoUtil);
-                                       
-                                       VariablesConvenio.vValCredDis = 
-                                               FarmaUtility.getDecimalNumber(VariablesConvenio.vValCoPago.trim());
-                                       vRes = "N";
-                                   }
-                               }
-                              
-			  } else {//quiere decir que no hay linea con matriz
-				  vRes = "OUT";
-			  }                         
-		  } else {
-			  vRes = "N";
-		  }
-              
-              
-    } catch(SQLException sql) {
-      log.error(sql);
-      //FarmaUtility.showMessage(this,"Error al validar limite de credito.",null);
-      FarmaUtility.moveFocus(txtNroPedido);
-      vRes = "N";
-    }
-    
-    return vRes ;
-  }
 
   private void txtNroPedido_mouseClicked(MouseEvent e)
   {
@@ -2800,28 +2293,7 @@ public class DlgFormaPago extends JDialog  {
     limpiarDatos();  
     limpiaVariablesFormaPago();
   }
-  
-  private boolean validaFomaPagoConvenio()
-  {
-    if(!VariablesConvenio.vCodConvenio.equalsIgnoreCase("")){
-      for (int i = 0 ; i <= tblDetallePago.getRowCount(); i++)
-      {
-        String fila = FarmaUtility.getValueFieldJTable(tblDetallePago,i,11);
-        if(fila.equalsIgnoreCase(VariablesConvenio.vCodConvenio)) 
-        {
-          return true ;
-        }
-        else return false ;
-      }
-    } return false ;
-  }
-  
-  /**
-   * Carga la el Pedido pero en ARRAY
-   * @author : dubilluz
-   * @since  : 26.07.2007
-   */
-   
+
   private void colocaFormaPagoDeliveryArray(String pNumPedido)
   {
     try
@@ -2835,7 +2307,7 @@ public class DlgFormaPago extends JDialog  {
     }
   }
   /** Obtiene el Codigo de Forma del Convenio
-   * @author : dubilluz
+   * @author :  
    * @since  : 26.07.2007
    */
   private String obtieneCodFormaConvenio(String pConvenio)
@@ -2855,7 +2327,7 @@ public class DlgFormaPago extends JDialog  {
   }
   /**
    * Valida si uso el Credito
-   * @author : dubilluz
+   * @author :  
    * @since  : 26.07.2007
    */
    private int uso_Credito(String codFormaPago)
@@ -2882,7 +2354,7 @@ public class DlgFormaPago extends JDialog  {
    }
   /**
    * Obtiene el Codigo de la Forma de Pago del Convenio
-   *  @author : dubilluz
+   *  @author :  
    *  @since  : 08/09.2007
    */   
   private String  isConvenioCredito(String codConvenio)
@@ -2901,142 +2373,8 @@ public class DlgFormaPago extends JDialog  {
     
     return indCredito;
    }
-   /**
-    * Selecciona la Forma de Pago si es de Credito
-    * @athor  dubilluz
-    * @since  08.09.2007
-    */
-   private void carga_Credito_Convenio(){
-   log.debug("VariablesConvenio.vPorcCoPago:"+VariablesConvenio.vPorcCoPago);
-   log.debug("VariablesCaja.vIndPedidoConvenio:"+VariablesCaja.vIndPedidoConvenio);
-   log.debug("VariablesConvenio.vCodConvenio: "+VariablesConvenio.vCodConvenio);
-   //indicador si es credito convenio
-   String indCredConvenio = isConvenioCredito(VariablesConvenio.vCodConvenio);
-   String codFormaPagoActual =((String)((ArrayList)(VariablesCaja.arrayDetFPCredito.get(0))).get(0)).trim() ;
-   if(VariablesCaja.vIndPedidoConvenio.equalsIgnoreCase("S")){
-	   log.debug("VariablesConvenio.vCodConvenio:"+VariablesConvenio.vCodConvenio );
-	   if(indCredConvenio.equalsIgnoreCase("S")) {
-		   //Selecciona la Forma de PAgo
-		   String codFPago = "";
-		   String cod_FP_Convenio = codFormaPagoActual.trim();//obtiene_cod_FPago_Convenio(VariablesConvenio.vCodConvenio);
-		   cod_FP_Convenio = cod_FP_Convenio.trim() ;
-		   for (int i = 0; i < tblFormasPago.getRowCount(); i++) {
-			   codFPago = ((String)tblFormasPago.getValueAt(i,0)).trim();
-			   log.debug("cod_FP_Convenio:"+cod_FP_Convenio +", codFPago"+codFPago);
-			   if (codFPago.equalsIgnoreCase(cod_FP_Convenio)) {
-				   VariablesCaja.cobro_Pedido_Conv_Credito = "S";
-				   FarmaGridUtils.showCell(tblFormasPago,i,0);
-				   break;
-			   }
-		   }
-        
-		   txtMontoPagado.setEnabled(true);
-		   
-		   //verificar si hay linea con matriz
-	        VariablesCaja.vIndLinea = FarmaUtility.getIndLineaOnLine(FarmaConstants.CONECTION_MATRIZ,
-						 											 FarmaConstants.INDICADOR_S).trim();
-	        String credito_actual = "0";
-	        if(VariablesCaja.vIndLinea.equals(FarmaConstants.INDICADOR_S)){
-	        	//si hay linea con matriz
-	        	//Verirficamos si Tiene Saldo el Cliente..este es el que invocar a un DBLINK CORREGIR a matriz
-	        	credito_actual = existsCreditoDisponible(VariablesConvenio.vCodCliente,VariablesConvenio.vCodConvenio);
-	        	double cred_actual   = FarmaUtility.getDecimalNumber(credito_actual.trim());
-	        	//es el campo de la Tabla Temporal
-	        	double saldo_grabado_credito = FarmaUtility.getDecimalNumber(((String)((ArrayList)(VariablesCaja.arrayDetFPCredito.get(0))).get(5)).trim());
-	        	log.debug("saldo_grabado_credito: " + saldo_grabado_credito);
-	        	if(cred_actual > 0){
-	        		//System.out.println("Total a Pagar" + VariablesCaja.vValTotalPagar);
-	        		VariablesCaja.valorCredito_de_PedActual = saldo_grabado_credito;      
-	        		txtMontoPagado.setText("" + VariablesCaja.valorCredito_de_PedActual);
-	        		txtMontoPagado.selectAll();
-	        		FarmaUtility.moveFocus(txtMontoPagado);
-	        		//System.out.println("Foco en txtMonto");
-	        	} else {
-	        		FarmaUtility.showMessage(this, "El cliente no tiene saldo disponible para la forma de pago por convenio.", tblFormasPago);
-	        		//FarmaUtility.moveFocus(tblFormasPago);
-	        	}
-        }else{
-        	FarmaUtility.showMessage(this, "Error: En este momento no hay linea con matriz.\nNo podra usar la forma de pago por convenio\nSi el problema persiste comunicarse con el operador de sistema", tblFormasPago);
-        }
-	        btnAdicionar.setEnabled(true);
-        } else {
-            FarmaUtility.moveFocusJTable(tblFormasPago);
-        }
-      }
-  }
-  
-  /**
-   * VAlidacion de el Monto mayor al Permitido por el credito
-   * @author  dubilluz
-   * @since   10.09.2007
-   */
-  private boolean validaMontoCredito_Convenio(){
-   String rpta = "S";
-   String indCredConvenio="";
-   if(VariablesCaja.vIndPedidoConvenio.equalsIgnoreCase("S")){
-     indCredConvenio = isConvenioCredito(VariablesConvenio.vCodConvenio);
-     System.out.println("Verificando si el Convenio " +VariablesConvenio.vCodConvenio +" tenga PorCopago > 0");
-        System.out.println("indCredConvenio " +indCredConvenio);
-        System.out.println("VariablesCaja.arrayDetFPCredito.size " +VariablesCaja.arrayDetFPCredito.size());
-    if(indCredConvenio.equalsIgnoreCase("S")&& VariablesCaja.arrayDetFPCredito.size()>0)//FarmaUtility.getDecimalNumber(VariablesConvenio.vPorcCoPago)!=0)
-     { 
-       String cod_forma_pago_seleccionado = ((String)tblFormasPago.getValueAt(tblFormasPago.getSelectedRow(),0)).trim();
-       String cod_FP_Convenio_obt = ((String)((ArrayList)(VariablesCaja.arrayDetFPCredito.get(0))).get(0)).trim() ;
-       //obtiene_cod_FPago_Convenio(VariablesConvenio.vCodConvenio);
-       System.out.println("cod_forma_pago_seleccionado " +cod_forma_pago_seleccionado);
-         System.out.println("cod_FP_Convenio_obt " +cod_FP_Convenio_obt);
-       if(cod_forma_pago_seleccionado.equalsIgnoreCase(cod_FP_Convenio_obt)){
-       double monto_maximo = FarmaUtility.getDecimalNumber(""+VariablesCaja.valorCredito_de_PedActual); //((String)VariablesConvenio.registroFP.get(3)).trim());
-       double monto_colocado = FarmaUtility.getDecimalNumber(txtMontoPagado.getText().trim());
-       if(monto_colocado > monto_maximo ){
-          FarmaUtility.showMessage(this, "El monto ingresado excede al Crédito.Verifique!!!", tblFormasPago);
-          txtMontoPagado.setText("0.00");
-          txtMontoPagado.setEnabled(false);
-          FarmaUtility.moveFocus(tblFormasPago);
-          rpta = "N";
-        }
-      else
-       {
-          System.err.println("entro AQUII"); 
-          VariablesCaja.monto_forma_credito_ingresado = ""+ monto_colocado;
-          VariablesCaja.uso_Credito_Pedido_N_Delivery = "S";
-           System.err.println("VariablesCaja.monto_forma_credito_ingresado:"+VariablesCaja.monto_forma_credito_ingresado); 
-           System.err.println("VariablesCaja.uso_Credito_Pedido_N_Delivery:"+VariablesCaja.uso_Credito_Pedido_N_Delivery); 
-       }
-      }
-     }
-    }
-    if(rpta.equalsIgnoreCase("N"))
-      return false;
-    else
-      return true;
-  }
- /**
-  * Verifica si el Cliente Tiene Credito
-  * @author dubilluz
-  * @since  10.09.2007
-  */
- private String existsCreditoDisponible(String codCliente,String codConvenio){
-    String resultado = "";
-    try
-    {
-      resultado = DBCaja.getSaldoCredClienteMatriz(codCliente,codConvenio, FarmaConstants.INDICADOR_S);
-      FarmaUtility.aceptarTransaccion();
-      log.debug("credito del cliente : "+resultado);
-    }catch(SQLException ex)
-    {
-      FarmaUtility.liberarTransaccion();
-     //ex.printStackTrace();
-      log.error(null,ex);
-     FarmaUtility.showMessage(this,"Error al Obtener credito disponible del Cliente Actual.\n" + ex.getMessage(), tblFormasPago);
-    }    
-    return resultado;
- } 
- /**
-  * Reinicia las Variables de Forma de Pago Auxiliares
-  * @author dubilluz
-  * @since  25.09.2007
-  */
+
+
  public void initVariables_Auxiliares()
  {
      VariablesFidelizacion.vRecalculaAhorroPedido = false; 
@@ -3056,7 +2394,7 @@ public class DlgFormaPago extends JDialog  {
 
   /**
     * Obtiene el tiempo maximo para la anulacion de un pedido recarga virtual
-    * @author dubilluz
+    * @author  
     * @since  09.11.2007
     */
   private String time_max(String pNumPedido)
@@ -3076,7 +2414,7 @@ public class DlgFormaPago extends JDialog  {
   }
   /**
    * Retorna el numerom de telefono de recarga
-   * @author dubilluz
+   * @author  
    * @since  14.11.2007
    */
   private String num_telefono(String numPed)
@@ -3097,7 +2435,7 @@ public class DlgFormaPago extends JDialog  {
   
   /**
   * Se obtiene la informacion de campaña por pedido
-  * @author JCORTEZ
+  * @author  
   * @since 03/07/08
   * */
   private void obtieneFormaPagoCampaña(ArrayList array,String vtaNumPed){
@@ -3117,7 +2455,7 @@ public class DlgFormaPago extends JDialog  {
   
   /**
    * Se valida los montos por productos que esten en una campaña para llevarse los cupones ganados
-   * @author JCORTEZ
+   * @author  
    * @since 03/07/08
    * */
   private boolean validarFormasPagoCupones(String numPedVta){
@@ -3183,7 +2521,7 @@ public class DlgFormaPago extends JDialog  {
   
   /**
    * Se actualiza el estado del pedido cupon para emision
-   * @author JCORTEZ
+   * @author  
    * @since 03.07.2008
    * */
   private void actualizaPedidoCupon(String codCamp,String vtaNumPed,String estado,String indtodos){
@@ -3194,7 +2532,7 @@ public class DlgFormaPago extends JDialog  {
          FarmaUtility.aceptarTransaccion();
         }catch(SQLException e)
         {
-        FarmaUtility.liberarTransaccion(); //ASOSA, 13.07.2010 - faltaba poner
+        FarmaUtility.liberarTransaccion(); // , 13.07.2010 - faltaba poner
           //e.printStackTrace();
       log.error(null,e);
           FarmaUtility.showMessage(this,"Ocurrio un error al validar la forma de pago del pedido.\n" + e.getMessage(),null);
@@ -3203,7 +2541,7 @@ public class DlgFormaPago extends JDialog  {
   
   /**
    * Se valida que el pedido tenga productos de campaña
-   * @author JCORTEZ
+   * @author  
    * @since  03.07.2008
    */
   private String verificaPedidoCamp(String numPed)
@@ -3222,7 +2560,7 @@ public class DlgFormaPago extends JDialog  {
   
   /**
   * Se carga detalle forma pago campaña del pedido
-  * @author JCORTEZ
+  * @author  
   * @since 07/07/08
   * */
   private void cargaDetalleFormaPago(String NumPed){
@@ -3255,7 +2593,7 @@ public class DlgFormaPago extends JDialog  {
   
   /**
   * Se detalle forma pago campaña del pedido
-  * @author JCORTEZ
+  * @author  
   * @since 07/07/08
   * */
   private void obtieneDetalleFormaPagoPedido(ArrayList array,String vtaNumPed){
@@ -3274,7 +2612,7 @@ public class DlgFormaPago extends JDialog  {
   
    /**
    * Se valida la impresion de las campañas que no tengan forma de de pago relacionadas
-   * @author JCORTEZ
+   * @author  
    * @since  10.07.08
    * */
   private void procesaCampSinFormaPago(String vtaNumPed){
@@ -3282,7 +2620,7 @@ public class DlgFormaPago extends JDialog  {
         {
          DBCaja.procesaCampSinFormaPago(vtaNumPed);
          //se comento para evitar problemas de bloqueos anteriores.
-         //dubilluz 13.10.2011
+         //  13.10.2011
          //FarmaUtility.aceptarTransaccion();
         }catch(SQLException e)
         {
@@ -3292,25 +2630,13 @@ public class DlgFormaPago extends JDialog  {
         }
   }
 
-
-  private void procesarBTLMF()
-  {
-          cobrarPedidoBTLMF(); //procesar cobro de pedido
-          pedidoCobrado();
-  }
   
   private void procesar(){
          
        
-        //verificar si es un pedido con convenio
-        if (VariablesCaja.vIndPedidoConvenio.equalsIgnoreCase(FarmaConstants.INDICADOR_S) &&
-            !VariablesConvenio.vCodCliente.equalsIgnoreCase("")) {
-         //if(VariablesVentas.vEsPedidoDelivery){   //JCORTEZ 06.08.09 Se valida tipo delivery, aunque sea convenio.
-            log.debug("***************COBRO PEDIDO TIPO DELIVERY**********************");
-            procesoCobroDelivery();
-        } else {
+      
             log.debug("*Cobro de Pedido Normal");
-            //JCORTEZ 02.07.2008 la generacion de cupones no aplica convenios
+            //  02.07.2008 la generacion de cupones no aplica convenios
             VariablesCaja.vPermiteCampaña = 
                     verificaPedidoCamp(VariablesCaja.vNumPedVta);
             if (VariablesCaja.vPermiteCampaña.trim().equalsIgnoreCase("S") && 
@@ -3326,71 +2652,15 @@ public class DlgFormaPago extends JDialog  {
                 cobrarPedido(); //procesar cobro de pedido
             }
             pedidoCobrado();
-        }
-        //Si la variable indica que de escape y recalcule todo el ahorro del cliente
+        
+        //Si la variable indica que de escape y recalcule to do el ahorro del cliente
         if(VariablesFidelizacion.vRecalculaAhorroPedido){
             eventoEscape();
         }
-      VariablesVentas.vProductoVirtual=false; //ASOSA, 28.04.2010
+      VariablesVentas.vProductoVirtual=false; // , 28.04.2010
   }
   
-  /**
-   * Proceso de Cobro de Delivery
-   * @author Dubilluz
-   * @since  04.03.2009
-   */
-  private void procesoCobroDelivery()
-  {
-      log.debug("jcallo: pedido delivery con convenio");
-      String valido = "S";
-      colocaFormaPagoDeliveryArray(VariablesCaja.vNumPedVta);
-      log.debug("VariablesCaja.arrayPedidoDelivery.size() : " + 
-                VariablesCaja.arrayPedidoDelivery);
-      int f_fp_convenio = -1;
-      if (VariablesCaja.vIndDeliveryAutomatico.trim().equalsIgnoreCase("S")) {
-          f_fp_convenio = 
-                  uso_Credito(obtieneCodFormaConvenio(VariablesConvenio.vCodConvenio).trim());
-      } else {
-          if (VariablesCaja.vIndDeliveryAutomatico.trim().equalsIgnoreCase("N"))
-              f_fp_convenio = uso_Credito("N");
-      }
 
-      log.debug("jcallo: numero de convenio=>" + 
-                VariablesConvenio.vCodConvenio + f_fp_convenio);
-      if (f_fp_convenio == -1) {
-          VariablesCaja.usoConvenioCredito = "N";
-      }
-      if (f_fp_convenio != -1) {
-          VariablesCaja.usoConvenioCredito = "S";
-      }
-      log.debug("Cliente su Credito f_fp_convenio: " + f_fp_convenio);
-      log.debug("DUBILLUZ-24.08.2009 - VariablesCaja.usoConvenioCredito: " + VariablesCaja.usoConvenioCredito);
-      if (VariablesCaja.usoConvenioCredito.equalsIgnoreCase("S")) {
-          String pValidaCredito = 
-              validaCreditoCliente(f_fp_convenio).trim(); //aqui abre conexion remota
-          if (pValidaCredito.equalsIgnoreCase(FarmaConstants.INDICADOR_S)) { //ver si se execedio del credito disponible
-              valido = "N";
-              FarmaUtility.showMessage(this, 
-                                       "No se puede cobrar el Pedido. \n" +
-                      "El cliente excede en S/. " + (diferencia * -1) + 
-                      " el limite de su crédito.", txtNroPedido);
-              return;
-          } else {
-              if (pValidaCredito.equalsIgnoreCase("OUT")) { // NO hay conexion con matriz y no se puede cobrar el pedido
-                  FarmaUtility.showMessage(this, 
-                                           "En este momento no hay linea con matriz.\n " + 
-                                           "Si el problema persiste comunicarse con el operador de sistema", 
-                                           txtNroPedido);
-                  return;
-              }
-          }
-      }
-      log.debug("estado de la validacion de credito=" + valido);
-      if (valido.equalsIgnoreCase("S")) {
-          cobrarPedido();
-          pedidoCobrado();
-      }
-  }
   
   private void pedidoCobrado(){
       System.err.println("VariablesCaja.vIndPedidoCobrado:"+VariablesCaja.vIndPedidoCobrado);
@@ -3398,10 +2668,10 @@ public class DlgFormaPago extends JDialog  {
 		log.info("pedido cobrado !");
 	    if ( FarmaVariables.vTipCaja.equalsIgnoreCase(ConstantsPtoVenta.TIP_CAJA_MULTIFUNCIONAL) && 
 	    		indCerrarPantallaCobrarPed ) {
-                //JCORTEZ 03.11.09 Se valida ingreso de sobre
+                //  03.11.09 Se valida ingreso de sobre
                  System.out.println("VariablesCaja.vSecMovCaja-->"+VariablesCaja.vSecMovCaja);
                     if(validaIngresoSobre()){
-                        //dubilluz 20.07.2010
+                        //  20.07.2010
                         //if(FarmaUtility.rptaConfirmDialog(this, "Existe efectivo suficiente. Desea ingresar sobres en su turno?")){
                         if(FarmaUtility.rptaConfirmDialog(this, "Ha excedido el importe máximo de dinero en su caja. \n" + 
                                                                 "Desea hacer entrega de un nuevo sobre?\n")){
@@ -3426,7 +2696,7 @@ public class DlgFormaPago extends JDialog  {
       System.out.println("indCerrarPantallaAnularPed: "+indCerrarPantallaAnularPed);
       System.out.println("VariablesCaja.vIndPedidoSeleccionado: "+VariablesCaja.vIndPedidoSeleccionado);
       System.out.println("VariablesCaja.vIndDeliveryAutomatico: "+VariablesCaja.vIndDeliveryAutomatico);
-      //JCORTEZ 02.07.2008 se deja el indicador de impresio de cupon por pedido en N
+      //  02.07.2008 se deja el indicador de impresio de cupon por pedido en N
       if(!VariablesCaja.vNumPedVta.equalsIgnoreCase("")){
       VariablesCaja.vPermiteCampaña=verificaPedidoCamp(VariablesCaja.vNumPedVta);
         if(VariablesCaja.vPermiteCampaña.trim().equalsIgnoreCase("S")){
@@ -3434,7 +2704,7 @@ public class DlgFormaPago extends JDialog  {
         }
       }
       
-      indBorra=false;//jcortez
+      indBorra=false;// 
       
       if ( FarmaVariables.vTipCaja.equalsIgnoreCase(ConstantsPtoVenta.TIP_CAJA_MULTIFUNCIONAL) )
       {
@@ -3444,8 +2714,8 @@ public class DlgFormaPago extends JDialog  {
             if(VariablesCaja.vIndDeliveryAutomatico.trim().equalsIgnoreCase(FarmaConstants.INDICADOR_S)){
                 if(FarmaUtility.rptaConfirmDialog(this, "El Pedido sera Anulado. Desea Continuar?")){
                             try{
-                              //DBCaja.anularPedidoPendiente(VariablesCaja.vNumPedVta); //antes ASOSA, 13.07.2010
-                              DBCaja.anularPedidoPendiente_02(VariablesCaja.vNumPedVta); //ASOSA, 13.07.2010
+                              //DBCaja.anularPedidoPendiente(VariablesCaja.vNumPedVta); //antes  , 13.07.2010
+                              DBCaja.anularPedidoPendiente_02(VariablesCaja.vNumPedVta); // , 13.07.2010
                               FarmaUtility.aceptarTransaccion();
                               log.info("Pedido anulado.");
                               FarmaUtility.showMessage(this, "Pedido Anulado Correctamente", null);
@@ -3469,16 +2739,16 @@ public class DlgFormaPago extends JDialog  {
            //if(FarmaUtility.rptaConfirmDialog(this, "El Pedido sera Anulado. Desea Continuar?")){
             try{
             
-                //JCORTEZ 13.08.09  
+                //  13.08.09  
               UtilityCaja.liberaProdRegalo(VariablesCaja.vNumPedVta,
                                                     ConstantsCaja.ACCION_ANULA_PENDIENTE,
                                                         FarmaConstants.INDICADOR_S);
                 
               //DBCaja.anularPedidoPendienteSinRespaldo(VariablesCaja.vNumPedVta); antes
-              DBCaja.anularPedidoPendienteSinRespaldo_02(VariablesCaja.vNumPedVta); //ASOSA, 13.07.2010
+              DBCaja.anularPedidoPendienteSinRespaldo_02(VariablesCaja.vNumPedVta); // , 13.07.2010
                 
                 ///-- inicio de validacion de Campaña 
-                // DUBILLUZ 19.12.2008
+                //   19.12.2008
                 String pIndLineaMatriz = FarmaConstants.INDICADOR_N;
                             //FarmaUtility.getIndLineaOnLine(FarmaConstants.CONECTION_MATRIZ,FarmaConstants.INDICADOR_N);
                 boolean pRspCampanaAcumulad = UtilityCaja.realizaAccionCampanaAcumulada
@@ -3530,7 +2800,7 @@ public class DlgFormaPago extends JDialog  {
   
   /**
    * Se da la opcion de ingresar sobre 
-   * @AUTHOR JCORTEZ
+   * @AUTHOR  
    * @SINCE 03.11.09
    * */
   private void mostrarIngresoSobres(){
@@ -3557,7 +2827,7 @@ public class DlgFormaPago extends JDialog  {
   /**
    * 
    * Se valida el ingreso de sobre en local
-   * @AUTHOR JCORTEZ
+   * @AUTHOR  
    * @SINCE 03.11.09
    * */
   private boolean validaIngresoSobre() {
@@ -3581,7 +2851,7 @@ public class DlgFormaPago extends JDialog  {
   }
   
     /**
-     * Dubilluz 22.06.2011
+     *   22.06.2011
      * @param pNumPedido
      * @return
      */
@@ -3605,19 +2875,4 @@ public class DlgFormaPago extends JDialog  {
         return pRes;
     }
 
-    public String getMensajeComprobanteConvenio(String pCodConvenio){
-        String pCadena = "";
-        try {
-
-        	double montoPedido = FarmaUtility.getDecimalNumber(lblSoles.getText().trim());
-
-            pCadena = DBConvenioBTLMF.getMsgComprobante(pCodConvenio,montoPedido);
-            System.out.println(pCadena);
-        } catch (SQLException e) {
-            pCadena = "N";
-            System.out.println("yyy");
-            e.printStackTrace();
-        }
-        return pCadena;
-    }
 }

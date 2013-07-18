@@ -221,7 +221,7 @@ public class DlgTransferenciasNueva extends JDialog
   {
     tableModel = new FarmaTableModel(ConstantsInventario.columnsListaProductosTransferenciasNueva,ConstantsInventario.defaultValuesListaProductosTransferenciasNueva,0);
     FarmaUtility.initSimpleList(tblListaProductos,tableModel,ConstantsInventario.columnsListaProductosTransferenciasNueva);
-    //JMIRANDA 25.03.2010 BLOQUEA COLUMNAS Y REDIMENSIONAR
+    //  25.03.2010 BLOQUEA COLUMNAS Y REDIMENSIONAR
     tblListaProductos.getTableHeader().setReorderingAllowed(false);
     tblListaProductos.getTableHeader().setResizingAllowed(false);
   }
@@ -359,7 +359,7 @@ public class DlgTransferenciasNueva extends JDialog
       if(tblListaProductos.getSelectedRow()>-1)
       {
         cargarCabecera();
-        //JMIRANDA 25.03.2010 INDICADOR PARA CONFIRMAR
+        //  25.03.2010 INDICADOR PARA CONFIRMAR
         VariablesInventario.vIndModProdTransf = true;
         DlgTransferenciasIngresoCantidad dlgTransferenciasIngresoCantidad = new DlgTransferenciasIngresoCantidad(myParentFrame,"",true);
         dlgTransferenciasIngresoCantidad.setVisible(true);
@@ -442,17 +442,17 @@ public class DlgTransferenciasNueva extends JDialog
     String cod = tblListaProductos.getValueAt(tblListaProductos.getSelectedRow(),0).toString();
     String cantidad = tblListaProductos.getValueAt(tblListaProductos.getSelectedRow(),4).toString();
     System.out.println("AAAAAAALLLL"+VariablesInventario.vArrayTransferenciaProductos);
-    //JMIRANDA 20.08.2010
+    //  20.08.2010
     //String secRespaldo=((ArrayList)VariablesInventario.vArrayTransferenciaProductos.get(tblListaProductos.getSelectedRow())).get(12).toString().trim();
-      //JMIRANDA 20.08.2010 obtener el Sec con el tableModel          
+      //  20.08.2010 obtener el Sec con el tableModel          
       String secRespaldo = ((ArrayList)tableModel.data.get(tblListaProductos.getSelectedRow())).get(12).toString().trim(); 
-      System.out.println("JMIRANDA AAAAAAAAAAA: "+secRespaldo);
+      System.out.println("  AAAAAAAAAAA: "+secRespaldo);
     if(/*actualizaStkComprometidoProd(cod,
                                     Integer.parseInt(cantidad),
                                     ConstantsInventario.INDICADOR_D, 
                                     ConstantsInventario.TIP_OPERACION_RESPALDO_BORRAR, 
                                     Integer.parseInt(cantidad)))*/
-      actualizaStkComprometidoProd_02(cod,      //-ASOSA, 14.07.2010
+      actualizaStkComprometidoProd_02(cod,      //- , 14.07.2010
                                     0,
                                     ConstantsInventario.INDICADOR_D, 
                                     ConstantsInventario.TIP_OPERACION_RESPALDO_BORRAR, 
@@ -543,7 +543,7 @@ public class DlgTransferenciasNueva extends JDialog
   private boolean grabar()
   {
     boolean retorno;
-    int valFracProd; //JCHAVEZ 25082009.n
+    int valFracProd; //  25082009.n
     String indFraccionamiento="";
     try
     {  
@@ -563,7 +563,7 @@ public class DlgTransferenciasNueva extends JDialog
       //System.out.println(numera);
       for(int i=0;i<tblListaProductos.getRowCount();i++)
       {
-        //JCHAVEZG 25082009.sn          
+        // G 25082009.sn          
           if (VariablesInventario.vTipoDestino_Transf.equals("01")) { //si la transferencia es local
             
             valFracProd= DBInventario.getValFracProducto(tblListaProductos.getValueAt(i,0).toString()); 
@@ -579,25 +579,25 @@ public class DlgTransferenciasNueva extends JDialog
                 return retorno;
             }
           }
-        //JCHAVEZG 25082009.en  
+        // G 25082009.en  
         
-        //String secRespaldo = ((ArrayList)VariablesInventario.vArrayTransferenciaProductos.get(i)).get(12).toString(); //ASOSA, 15.07.2010
-        //JMIRANDA 20.08.2010 obtener el Sec con el tableModel          
+        //String secRespaldo = ((ArrayList)VariablesInventario.vArrayTransferenciaProductos.get(i)).get(12).toString(); // , 15.07.2010
+        //  20.08.2010 obtener el Sec con el tableModel          
         String secRespaldo = ((ArrayList)tableModel.data.get(i)).get(12).toString().trim();           
-        //DBInventario.agregarDetalleTransferencia(numera,tblListaProductos.getValueAt(i,0).toString(), // antes- ASOSA, 15.07.2010          
+        //DBInventario.agregarDetalleTransferencia(numera,tblListaProductos.getValueAt(i,0).toString(), // antes-  , 15.07.2010          
         DBInventario.agregarDetalleTransferencia_02(numera,tblListaProductos.getValueAt(i,0).toString(),
         tblListaProductos.getValueAt(i,5).toString(), tblListaProductos.getValueAt(i,10).toString(), 
         tblListaProductos.getValueAt(i,4).toString(), tblListaProductos.getValueAt(i,6).toString(),
         tblListaProductos.getValueAt(i,7).toString(),VariablesInventario.vTipoDestino_Transf,
-        VariablesInventario.vCodDestino_Transf,tblListaProductos.getValueAt(i,9).toString(),indFraccionamiento,VariablesInventario.vMotivo_Transf,secRespaldo); //ASOSA, 15.07.2010, secRespaldo
+        VariablesInventario.vCodDestino_Transf,tblListaProductos.getValueAt(i,9).toString(),indFraccionamiento,VariablesInventario.vMotivo_Transf,secRespaldo); // , 15.07.2010, secRespaldo
         //actualizaStkComprometidoProd_sinCommit(tblListaProductos.getValueAt(i,0).toString(),Integer.parseInt(tblListaProductos.getValueAt(i,4).toString()),ConstantsInventario.INDICADOR_D, ConstantsInventario.TIP_OPERACION_RESPALDO_BORRAR, Integer.parseInt(tblListaProductos.getValueAt(i,4).toString()));
       }
       
-      DBInventario.grabaInicioFinCreaTransferencia(numera,"F");//JCHAVEZ 10122009 registra fecha fin de creacion de transferencia  
+      DBInventario.grabaInicioFinCreaTransferencia(numera,"F");//  10122009 registra fecha fin de creacion de transferencia  
       
       System.out.println("VariablesInventario.vTipoFormatoImpresion : " +  VariablesInventario.vTipoFormatoImpresion );
       
-      DBInventario.grabaInicioFinGuiasTransferencia(numera,"I");//JCHAVEZ 10122009 registra fecha inicio de generar guias e imprimirlas
+      DBInventario.grabaInicioFinGuiasTransferencia(numera,"I");//  10122009 registra fecha inicio de generar guias e imprimirlas
       DBInventario.generarGuiasTransferencia(numera,VariablesInventario.vTipoFormatoImpresion,tblListaProductos.getRowCount()+"");
       FarmaUtility.aceptarTransaccion();
       //FarmaUtility.liberarTransaccion();
@@ -609,8 +609,8 @@ public class DlgTransferenciasNueva extends JDialog
         // JQUISPE 11.05.2010
       UtilityInventario.procesoImpresionGuias(this ,tblListaProductos , VariablesInventario.vTipoFormatoImpresion);  
         System.out.println("ERRRRRRRRRRRRR f");
-      DBInventario.grabaInicioFinGuiasTransferencia(numera,"F");//JCHAVEZ 10122009 registra fecha fin de generar guias e imprimirlas
-      FarmaUtility.aceptarTransaccion();//JCHAVEZ 10122009
+      DBInventario.grabaInicioFinGuiasTransferencia(numera,"F");//  10122009 registra fecha fin de generar guias e imprimirlas
+      FarmaUtility.aceptarTransaccion();//  10122009
       
       retorno = true;
     }catch(SQLException sql)
@@ -638,15 +638,15 @@ public class DlgTransferenciasNueva extends JDialog
     int cantIngresada_old = FarmaUtility.trunc(FarmaUtility.getDecimalNumber(VariablesInventario.vCant_Ingresada_Temp));
       String secRespaldo = "";
     if(UtilityInventario.indNuevaTransf()){
-      secRespaldo=((ArrayList)(tableModel.data.get(tblListaProductos.getSelectedRow()))).get(12).toString(); //JMIRANDA 16.09.2010
+      secRespaldo=((ArrayList)(tableModel.data.get(tblListaProductos.getSelectedRow()))).get(12).toString(); //  16.09.2010
       }else{
-      secRespaldo=((ArrayList)VariablesInventario.vArrayTransferenciaProductos.get(pFila)).get(12).toString(); //ASOSA, 14.07.2010
+      secRespaldo=((ArrayList)VariablesInventario.vArrayTransferenciaProductos.get(pFila)).get(12).toString(); // , 14.07.2010
       }
     System.out.println("NOOOOOOOOO, secRespaldo: "+secRespaldo);
     boolean valor = false;
     if ( cantIngresada_old > cantIngresada ) {
       //valor = actualizaStkComprometidoProd(VariablesInventario.vCodProd_Transf,(cantIngresada_old-cantIngresada),ConstantsInventario.INDICADOR_D, ConstantsInventario.TIP_OPERACION_RESPALDO_ACTUALIZAR, cantIngresada);  antes
-      valor = actualizaStkComprometidoProd_02(VariablesInventario.vCodProd_Transf,      //-ASOSA, 14.07.2010
+      valor = actualizaStkComprometidoProd_02(VariablesInventario.vCodProd_Transf,      //- , 14.07.2010
                                     cantIngresada,
                                     ConstantsInventario.INDICADOR_D, 
                                     ConstantsInventario.TIP_OPERACION_RESPALDO_ACTUALIZAR, 
@@ -659,7 +659,7 @@ public class DlgTransferenciasNueva extends JDialog
         FarmaUtility.showMessage(this, "No existe Stock disponible. Verifique!!!", btnRelacionProductos);
       else {
         //valor = actualizaStkComprometidoProd(VariablesInventario.vCodProd_Transf,(cantIngresada-cantIngresada_old),ConstantsInventario.INDICADOR_A, ConstantsInventario.TIP_OPERACION_RESPALDO_ACTUALIZAR, cantIngresada);
-        valor = actualizaStkComprometidoProd_02(VariablesInventario.vCodProd_Transf,      //-ASOSA, 14.07.2010
+        valor = actualizaStkComprometidoProd_02(VariablesInventario.vCodProd_Transf,      //- , 14.07.2010
                                       cantIngresada,
                                       ConstantsInventario.INDICADOR_A, 
                                       ConstantsInventario.TIP_OPERACION_RESPALDO_ACTUALIZAR,
@@ -704,11 +704,11 @@ public class DlgTransferenciasNueva extends JDialog
             for(int i=0; i<tableModel.data.size(); i++){
               codProd = FarmaUtility.getValueFieldArrayList(tableModel.data,i,0).trim();
               cantidad = FarmaUtility.getValueFieldArrayList(tableModel.data,i,4).trim();
-                //String secRespaldo=((ArrayList)VariablesInventario.vArrayTransferenciaProductos.get(i)).get(12).toString(); //ASOSA, 14.07.2010
-                //JMIRANDA 20.08.2010 obtener el Sec con el tableModel          
+                //String secRespaldo=((ArrayList)VariablesInventario.vArrayTransferenciaProductos.get(i)).get(12).toString(); // , 14.07.2010
+                //  20.08.2010 obtener el Sec con el tableModel          
                 String secRespaldo = ((ArrayList)tableModel.data.get(i)).get(12).toString().trim(); 
               //actualizaStkComprometidoProd(codProd,Integer.parseInt(cantidad),ConstantsInventario.INDICADOR_D, ConstantsInventario.TIP_OPERACION_RESPALDO_BORRAR, Integer.parseInt(cantidad));
-              actualizaStkComprometidoProd_02(codProd,      //-ASOSA, 14.07.2010
+              actualizaStkComprometidoProd_02(codProd,      //- , 14.07.2010
                                             0,
                                             ConstantsInventario.INDICADOR_D, 
                                             ConstantsInventario.TIP_OPERACION_RESPALDO_BORRAR, 
@@ -722,11 +722,11 @@ public class DlgTransferenciasNueva extends JDialog
             for(int i=0; i<tblListaProductos.getRowCount(); i++){
               codProd = ((String)(tblListaProductos.getValueAt(i,0))).trim();
               cantidad = ((String)(tblListaProductos.getValueAt(i,4))).trim();
-                //String secRespaldo=((ArrayList)VariablesInventario.vArrayTransferenciaProductos.get(i)).get(12).toString(); //ASOSA, 14.07.2010
-                //JMIRANDA 20.08.2010 obtener el Sec con el tableModel          
+                //String secRespaldo=((ArrayList)VariablesInventario.vArrayTransferenciaProductos.get(i)).get(12).toString(); // , 14.07.2010
+                //  20.08.2010 obtener el Sec con el tableModel          
                 String secRespaldo = ((ArrayList)tableModel.data.get(i)).get(12).toString().trim(); 
               //actualizaStkComprometidoProd(codProd,Integer.parseInt(cantidad),ConstantsInventario.INDICADOR_D, ConstantsInventario.TIP_OPERACION_RESPALDO_BORRAR, Integer.parseInt(cantidad));
-                actualizaStkComprometidoProd_02(codProd,      //-ASOSA, 14.07.2010
+                actualizaStkComprometidoProd_02(codProd,      //- , 14.07.2010
                                               0,
                                               ConstantsInventario.INDICADOR_D, 
                                               ConstantsInventario.TIP_OPERACION_RESPALDO_BORRAR, 
@@ -772,7 +772,7 @@ public class DlgTransferenciasNueva extends JDialog
         
         else{
           if (e.getKeyCode() == KeyEvent.VK_ENTER){
-           //JCORTEZ 25/04/08
+           //  25/04/08
              String codProd=txtBusqueda.getText().trim();
              if(UtilityVentas.isNumerico(codProd)){
                  
@@ -882,7 +882,7 @@ public class DlgTransferenciasNueva extends JDialog
      }
     }
     
-    //-------------------------------------------=ASOSA=------------------------------------------->>>>><<<<
+    //-------------------------------------------= =------------------------------------------->>>>><<<<
     
     private boolean actualizaStkComprometidoProd_02(String pCodigoProducto, int pCantidadStk, String pTipoStkComprometido, String pTipoRespaldoStock, int pCantidadRespaldo, String secRespaldo) {
         VariablesInventario.secRespStk="0";
@@ -891,7 +891,7 @@ public class DlgTransferenciasNueva extends JDialog
       /*try 
       {
       
-        VariablesInventario.secRespStk=""; //ASOSA, 26.08.2010
+        VariablesInventario.secRespStk=""; // , 26.08.2010
           VariablesInventario.secRespStk=DBVentas.operarResStkAntesDeCobrar(pCodigoProducto,
                                                                             String.valueOf(pCantidadStk),
                                                                             VariablesInventario.vValFrac_Transf,

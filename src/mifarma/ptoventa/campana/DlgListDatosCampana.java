@@ -45,11 +45,11 @@ import mifarma.ptoventa.campana.reference.ConstantsCampana;
 import mifarma.ptoventa.campana.reference.DBCampana;
 import mifarma.ptoventa.campana.reference.VariablesCampana;
 import mifarma.ptoventa.ce.reference.ConstantsCajaElectronica;
-import mifarma.ptoventa.convenio.DlgDatosConvenio;
+ 
 
 import mifarma.ptoventa.reference.ConstantsPtoVenta;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Copyright (c) 2008 MIFARMA S.A.C.<br>
@@ -58,7 +58,7 @@ import org.apache.commons.logging.LogFactory;
  * Nombre de la Aplicación : DlgListDatosCampana.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * DVELIZ      14.08.2008   Creación<br>
+ *        14.08.2008   Creación<br>
  * <br>
  * @author Daniel Fernando Veliz La Rosa<br>
  * @version 1.0<br>
@@ -66,7 +66,7 @@ import org.apache.commons.logging.LogFactory;
  */
  
 public class DlgListDatosCampana extends JDialog {
-    private static final Log log = LogFactory.getLog(DlgDatosConvenio.class);
+    private static final Logger log = LoggerFactory.getLogger(DlgListDatosCampana.class);
     
     /* ********************************************************************** */
     /*                        DECLARACION PROPIEDADES                         */
@@ -113,7 +113,7 @@ public class DlgListDatosCampana extends JDialog {
     private JButtonLabel        btnLista             = new JButtonLabel();
     private JLabelFunction      lblF1                = new JLabelFunction();
     
-    //dveliz 26.08.08
+    //  26.08.08
     private String              mensajeESC = "";
     
     /* ********************************************************************** */
@@ -345,21 +345,21 @@ public class DlgListDatosCampana extends JDialog {
       String codigoCampo = "";
       String vTipoDato;
       String vIndSoloLec;
-      //Dveliz 26.08.08
+      //  26.08.08
       String vIndOblig;
       for (int i=0; i<tblLista.getRowCount(); i++) {
         codigoCampo = tblLista.getValueAt(i,COL_COD).toString().trim();
         vTipoDato = FarmaUtility.getValueFieldJTable(tblLista,i,COL_TIPO_DATO);
         vIndSoloLec = FarmaUtility.getValueFieldJTable(tblLista,i,COL_SOLO_LECTURA);
         
-        //dveliz 26.08.08
+        //  26.08.08
         vIndOblig = FarmaUtility.getValueFieldJTable(tblLista,i,COL_IND_OBLI);
         if(vIndOblig.equals("S")){
             VariablesCampana.vFlagMandatory = true;
         }
-        //fin dveliz
+        //fin  
         
-        //dveliz 27.08.08
+        //  27.08.08
         if(i==0){
             if(codigoCampo.equals(ConstantsCampana.DNI_CLIENTE)) 
             {
@@ -543,9 +543,9 @@ public class DlgListDatosCampana extends JDialog {
             int vFila = tblLista.getSelectedRow();
             
             if ( (vFila+1)==tblLista.getRowCount() )
-              //dveliz 27.08.08
+              //  27.08.08
               moveFocusTo(0);
-              // fin dveliz
+              // fin  
             else  FarmaUtility.setearRegistro(tblLista,vFila+1,null,0);
             
             pJTextField.setText(pJTextField.getText().toUpperCase());
@@ -753,7 +753,7 @@ public class DlgListDatosCampana extends JDialog {
       }
       else if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
       { 
-	// DVELIZ 26.08.08
+	//   26.08.08
         if(VariablesCampana.vFlagMandatory==true){
             mensajeESC = "Si sale de la interfaz no se usara el cupon "
                                                 +VariablesCampana.vCodCupon;
@@ -774,7 +774,7 @@ public class DlgListDatosCampana extends JDialog {
                 cerrarVentana(false);
             }       
         }
-        //Fin DVELIZ
+        //Fin  
       }
     }
 

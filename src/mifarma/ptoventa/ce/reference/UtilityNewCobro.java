@@ -12,12 +12,12 @@ import mifarma.common.FarmaVariables;
 
 import mifarma.ptoventa.caja.reference.BeanDetaPago;
 import mifarma.ptoventa.caja.reference.DBCaja;
-import mifarma.ptoventa.convenio.reference.VariablesConvenio;
+ 
 import mifarma.ptoventa.fidelizacion.reference.VariablesFidelizacion;
 import mifarma.ptoventa.ventas.reference.VariablesVentas;
 import mifarma.ptoventa.ce.reference.*;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Copyright (c) 2010 MIFARMA S.A.C.<br>
@@ -26,7 +26,7 @@ import org.apache.commons.logging.LogFactory;
  * Nombre de la Aplicación : UtilityNewCobro.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * ASOSA      01.03.2010   Creación<br>
+ *        01.03.2010   Creación<br>
  * <br>
  * @author Alfredo Sosa Dordán<br>
  * @version 1.0<br>
@@ -34,7 +34,7 @@ import org.apache.commons.logging.LogFactory;
  */
 public class UtilityNewCobro {
     
-    private static final Log log = LogFactory.getLog(UtilityNewCobro.class);
+    private static final Logger log = LoggerFactory.getLogger(UtilityNewCobro.class);
     
     public UtilityNewCobro() {
     }
@@ -153,8 +153,7 @@ public class UtilityNewCobro {
         
         VariablesVentas.vCant_Items_Ped = VariablesNewCobro.cantItemsPed;
         VariablesCajaElectronica.vIndPedidoConvenio = VariablesNewCobro.indPedConv;
-        VariablesConvenio.vCodConvenio = VariablesNewCobro.codconv;
-        VariablesConvenio.vCodCliente = VariablesNewCobro.codcli;
+
         VariablesCajaElectronica.vSaldoPedido=String.valueOf(VariablesNewCobro.saldo);
         VariablesCajaElectronica.vValVueltoPedido=VariablesNewCobro.vuelto;
         VariablesCajaElectronica.vPermiteCampaña=VariablesNewCobro.indPermitCampana;

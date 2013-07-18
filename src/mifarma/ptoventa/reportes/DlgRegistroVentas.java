@@ -335,7 +335,7 @@ public class DlgRegistroVentas extends JDialog
     }
     } 
     /**NUEVO!
-     * @Autor:  Luis Reque Orellana
+     * @Autor:   
      * @Fecha:  23/04/2007
      * */
     else if(e.getKeyCode() == KeyEvent.VK_F6)
@@ -606,7 +606,7 @@ public class DlgRegistroVentas extends JDialog
   }
 
   /**NUEVO!
-   * @Autor:  Luis Reque Orellana
+   * @Autor:   
    * @Fecha:  23/04/2007
    * */
   private void cargaListaPedAnulNoCob()

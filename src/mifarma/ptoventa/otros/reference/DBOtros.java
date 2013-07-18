@@ -11,8 +11,8 @@ import mifarma.common.FarmaVariables;
 
 import mifarma.ptoventa.fidelizacion.reference.VariablesFidelizacion;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
 * Copyright (c) 2008 MIFARMA S.A.C.<br>
@@ -21,7 +21,7 @@ import org.apache.commons.logging.LogFactory;
 * Nombre de la Aplicación : DBOtros.java<br>
 * <br>
 * Histórico de Creación/Modificación<br>
-* JCALLO      23.10.2008   Creación<br>
+*        23.10.2008   Creación<br>
 * <br>
 * @author Javier Callo Quispe<br>
 * @version 1.0<br>
@@ -29,7 +29,7 @@ import org.apache.commons.logging.LogFactory;
 */
 public class DBOtros 
 {
-  private static final Log log = LogFactory.getLog(DBOtros.class);
+  private static final Logger log = LoggerFactory.getLogger(DBOtros.class);
 	
   private static ArrayList parametros = new ArrayList();
   
@@ -39,7 +39,7 @@ public class DBOtros
   
   //DlgListaMedidaPresion
   /**
-   * @author jcallo
+   * @author  
    * @since 23.10.2008
    * */
   public static void cargaListaMedPresionRegistradas(FarmaTableModel pTableModel,String fechaIni, String fechaFin) throws SQLException {
@@ -55,7 +55,7 @@ public class DBOtros
   
   /**
    * Obtiene parametro de validacion de longitud de doc de identificacion
-   * @Author JCALLO
+   * @Author  
    * @since 23.10.2008
    * @throws SQLException
    */
@@ -80,7 +80,7 @@ public class DBOtros
           System.out.println("parametros:"+parametros);
           System.out.println("PTOVENTA_CLI_MED_PRESION.MP_F_CUR_DATOS_EXISTE_DNI(?):"+parametros);
 	  FarmaDBUtility.executeSQLStoredProcedureArrayList(array,
-			  "PTOVENTA_CLI_MED_PRESION.MP_F_CUR_DATOS_EXISTE_DNI(?)",//JCHAVEZ 06102009
+			  "PTOVENTA_CLI_MED_PRESION.MP_F_CUR_DATOS_EXISTE_DNI(?)",//  06102009
 			  parametros);
   }
   
@@ -276,7 +276,7 @@ public class DBOtros
   
   /***
    * metodo encargado de traer datos de matriz
-   * @author jcallo
+   * @author  
    * @fecha 28.10.2008
    * **/
   public static void getDatosMedPresMatriz(FarmaTableModel pTableModel,String pDNI,String pIndCloseConecction) 
@@ -355,7 +355,7 @@ public class DBOtros
     }
     
     /**
-     * @author DUBILLUZ 03.10.2009
+     * @author   03.10.2009
      * @param pNumPed
      * @param pRuc
      * @return
@@ -378,7 +378,7 @@ public class DBOtros
     }
     /***
      * metodo encargado de traer mensaje en html de cliente
-     * @author JCHAVEZ
+     * @author  
      * @fecha 05.10.2009
      * **/
     public static String getMsg() throws SQLException {
@@ -390,7 +390,7 @@ public class DBOtros
     
     /**
      * Se envia correo de confirmaciony se crea o actualiza cliente
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE 06.10.09
      * */   
     public static void enviaCorreoConfirmacion(String DescDoc,String NumDoc,String Nomcli,String FecNac ) throws SQLException {
@@ -410,7 +410,7 @@ public class DBOtros
     
     /**
      * Se obtiene rol confirmacion
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE 06.10.09
      * */   
     public static String obtieneRolConfirmacin() throws SQLException {

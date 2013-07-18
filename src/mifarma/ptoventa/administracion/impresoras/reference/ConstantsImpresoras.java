@@ -11,7 +11,7 @@ import mifarma.common.FarmaColumnData;
  * Nombre de la Aplicación : DlgListaIPSImpresora.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JCHAVEZ 26.06.2009 Modificación<br>
+ *   26.06.2009 Modificación<br>
  * <br>
  * @version 1.0<br>
  * 
@@ -35,7 +35,7 @@ public class ConstantsImpresoras {
 
 	public static final Object[] defaultValuesListaImpresoras = { " ", " ",
 			" ", " ", " ", " ", " ", " " };
-    //JMIRANDA 26/06/2009    
+    //  26/06/2009    
     public static final FarmaColumnData[] columnsListaImpresorasTermicas = {
                     new FarmaColumnData("Sec. Imp.", 70, JLabel.CENTER),
                     new FarmaColumnData("Desc. Imp", 140, JLabel.LEFT),
@@ -61,7 +61,7 @@ public class ConstantsImpresoras {
                         
     /**
      * Listado de IPs por impresora
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE  05.06.09*/ 
      
      public static final FarmaColumnData[] columnsListaIPS = {
@@ -70,8 +70,8 @@ public class ConstantsImpresoras {
                             new FarmaColumnData("Impresora", 120, JLabel.LEFT),
                             new FarmaColumnData("Ruta", 170, JLabel.LEFT),
                             new FarmaColumnData("Tipo", 120, JLabel.LEFT),                            
-                            new FarmaColumnData("Modelo",90, JLabel.LEFT),//JCHAVEZ 25.06.09.n                            
-                            new FarmaColumnData("Imp.Termica", 120, JLabel.LEFT)//JCHAVEZ 25.06.09.n 
+                            new FarmaColumnData("Modelo",90, JLabel.LEFT),//  25.06.09.n                            
+                            new FarmaColumnData("Imp.Termica", 120, JLabel.LEFT)//  25.06.09.n 
                             };
     
 
@@ -79,7 +79,7 @@ public class ConstantsImpresoras {
          
     /**
      * Listado de Impresoras disponibles
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE  05.06.09*/ 
      
      public static final FarmaColumnData[] columnsListaImpr = {
@@ -93,7 +93,7 @@ public class ConstantsImpresoras {
      
     /**
      * Listado de Impresoras térmicas disponibles
-     * @AUTHOR JCHAVEZ
+     * @AUTHOR  
      * @SINCE  25.06.09*/      
      public static final FarmaColumnData[] columnsListaImpresoraTermica = {
                      new FarmaColumnData("Sec", 30, JLabel.CENTER),

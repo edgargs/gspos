@@ -40,7 +40,7 @@ import com.gs.mifarma.componentes.JLabelFunction;
 * Nombre de la Aplicación : DlgListaCompetencias.java<br>
 * <br>
 * Histórico de Creación/Modificación<br>
-* DUBILLUZ     12.11.2007   Creación<br>
+*       12.11.2007   Creación<br>
 * <br>
 * @author Diego Armando Ubilluz Carrillo<br>
 * @version 1.0<br>

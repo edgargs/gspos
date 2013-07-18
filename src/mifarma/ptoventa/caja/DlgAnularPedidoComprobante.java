@@ -49,8 +49,8 @@ import mifarma.ptoventa.reference.ConstantsPtoVenta;
 import mifarma.ptoventa.ventas.reference.ConstantsVentas;
 import mifarma.ptoventa.ventas.reference.VariablesVentas;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.gs.mifarma.componentes.JLabelFunction;
 import com.gs.mifarma.componentes.JPanelHeader;
@@ -61,7 +61,7 @@ public class DlgAnularPedidoComprobante extends JDialog
 	/*                        DECLARACION PROPIEDADES                         */
 	/* ********************************************************************** */
 
-  private static final Log log = LogFactory.getLog(DlgAnularPedidoComprobante.class);
+  private static final Logger log = LoggerFactory.getLogger(DlgAnularPedidoComprobante.class);
          
   FarmaTableModel tableModelCabeceraPedido;
   FarmaTableModel tableModelDetallePedido;
@@ -578,7 +578,7 @@ public class DlgAnularPedidoComprobante extends JDialog
           //String indiCadorDelivery = tblCabeceraPedido.getValueAt(0,9).toString();
           String indiCadorDelivery = //tblCabeceraPedido.getValueAt(0,9).toString();
                                     FarmaUtility.getValueFieldArrayList(tableModelCabeceraPedido.data,0,9).trim();    
-            //JCORTEZ 18.12.08
+            //  18.12.08
             //VariablesCaja.vIndPedFidelizado= FarmaUtility.getValueFieldJTable(tblCabeceraPedido,0,10);
             VariablesCaja.vIndPedFidelizado= FarmaUtility.getValueFieldArrayList(vLista,0,10);
             
@@ -588,7 +588,7 @@ public class DlgAnularPedidoComprobante extends JDialog
             System.out.println("Dni Cliente: "+VariablesCaja.vDniCli);
             System.out.println("entro a anularComprobante");
           System.out.println("Es de delivery "+indiCadorDelivery);
-          if (VariablesCaja.vIndPedFidelizado.equalsIgnoreCase("S"))//JCORTEZ Valida pedido Fidelizado 18.12.2008 
+          if (VariablesCaja.vIndPedFidelizado.equalsIgnoreCase("S"))//  Valida pedido Fidelizado 18.12.2008 
             FarmaUtility.showMessage(this,"No puede Anular un Pedido Fidelizado por comprobante, solo por pedido completo.",txtNroComprobante);
           else {
           if(indiCadorDelivery.equalsIgnoreCase("N"))
@@ -674,7 +674,7 @@ public class DlgAnularPedidoComprobante extends JDialog
     {
       tipo = (rbtBoleta.isSelected()) ? ConstantsVentas.TIPO_COMP_BOLETA: ConstantsVentas.TIPO_COMP_FACTURA;
       numeroPedido = DBCaja.verificaComprobante(tipo,numeroComp,txtMonto.getText().trim());//si es pedido por convenio o pedido de prod virtual lanzara errorsql
-      log.debug("jcallo:numero de pedido del comprobante:"+numeroPedido);
+      log.debug(" :numero de pedido del comprobante:"+numeroPedido);
       
       retorno = true;
       vAceptar = true; 
@@ -718,7 +718,7 @@ public class DlgAnularPedidoComprobante extends JDialog
       {
         /**
          * SE OBTIENE EL VALOR DE TIEMPO MAXIMO QUE PASO PARA ANULAR UNA RECARGA VIRTUAL
-         * @AUTHOR DUBILLUZ
+         * @AUTHOR  
          * @SINCE  09.11.2007
          */
         VariablesCaja.vIndPedidoRecargaVirtual = FarmaConstants.INDICADOR_S;
@@ -727,7 +727,7 @@ public class DlgAnularPedidoComprobante extends JDialog
         String tiempo_maximo  = time_max(num_ped).trim();
         String indExitoRecarga = obtieneRespuestaRecarga().trim();
          if(indExitoRecarga.trim().equals("00")){
-             if(FarmaUtility.rptaConfirmDialog(this,"El pedido cuenta con un producto del tipo Recarga Virtual\ny fue cobrado hace mas de "+tiempo_maximo+" minutos. Esta seguro de anular de todas formas?."))     //AGREGADO POR DVELIZ 15.12.2008
+             if(FarmaUtility.rptaConfirmDialog(this,"El pedido cuenta con un producto del tipo Recarga Virtual\ny fue cobrado hace mas de "+tiempo_maximo+" minutos. Esta seguro de anular de todas formas?."))     //AGREGADO POR   15.12.2008
              {
                if( cargaLoginAdmLocal() )
                {
@@ -1015,7 +1015,7 @@ public class DlgAnularPedidoComprobante extends JDialog
     try{
       DlgLogin dlgLogin = new DlgLogin(myParentFrame,ConstantsPtoVenta.MENSAJE_LOGIN,true);
       //Se validara por el rol dependiendo del tipo de pedido
-      //14.11.2007  dubilluz modificacion
+      //14.11.2007    modificacion
       if(VariablesCaja.vIndPedidoRecargaVirtual.equalsIgnoreCase(FarmaConstants.INDICADOR_S)){
          dlgLogin.setRolUsuario(FarmaConstants.ROL_OPERADOR_SISTEMAS);
          System.out.println("Pedido Recarga Virtual..Solo el operador podra anular");
@@ -1047,7 +1047,7 @@ public class DlgAnularPedidoComprobante extends JDialog
   
  /**
   * Obtiene el tiempo maximo para la anulacion de un pedido recarga virtual
-  * @author dubilluz
+  * @author  
   * @since  09.11.2007
   */
   private String time_max(String pnum_ped)
@@ -1067,7 +1067,7 @@ public class DlgAnularPedidoComprobante extends JDialog
 
  /**
   * Obtiene el tiempo maximo para la anulacion de un pedido recarga virtual
-  * @author dubilluz
+  * @author  
   * @since  09.11.2007
   */
   private String getNumeroPedido(String pnumeroComp,String pmonto)
@@ -1087,7 +1087,7 @@ public class DlgAnularPedidoComprobante extends JDialog
   
     /**
      * Metodo que sirve para validar que existe conexion en admCentral
-     * @Author DVELIZ
+     * @Author  
      * @Since 15.12.2008
      * @param pCadena
      * @param pParent
@@ -1109,7 +1109,7 @@ public class DlgAnularPedidoComprobante extends JDialog
     
     /**
     * Metodo que sirve para validar que la recarga se realizo con exito.
-    * @Author DVELIZ
+    * @Author  
     * @Since 15.12.2008
     * @param pCadena
     * @param pParent
@@ -1131,7 +1131,7 @@ public class DlgAnularPedidoComprobante extends JDialog
         DBCaja.obtieneInfoPedidoVirtual(VariablesVirtual.vArrayList_InfoProdVirtual,
                                         numeroPedido);
         System.out.println("vArrayList_InfoProdVirtual : " + VariablesVirtual.vArrayList_InfoProdVirtual);
-        //Agregado por DVELIZ 15.12.2008
+        //Agregado por   15.12.2008
         if(VariablesVirtual.vArrayList_InfoProdVirtual.size() > 0){
             colocaInfoPedidoVirtual();
         }

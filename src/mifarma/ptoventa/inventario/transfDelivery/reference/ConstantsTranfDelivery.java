@@ -11,9 +11,9 @@ import mifarma.common.FarmaColumnData;
  * Nombre de la Aplicación : ConstantsTranfDelivery.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JCALLO      20.10.2008   Creación<br>
+ *        20.10.2008   Creación<br>
  * <br>
- * @author JCALLO<br>
+ * @author  <br>
  * @version 1.0<br>
  *
  */

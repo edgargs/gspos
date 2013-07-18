@@ -11,11 +11,11 @@ import mifarma.common.FarmaVariables;
 
 import mifarma.ptoventa.recepcionCiega.reference.VariablesRecepCiega;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DBFondoSencillo {
-    private static final Log log = LogFactory.getLog(DBFondoSencillo.class);
+    private static final Logger log = LoggerFactory.getLogger(DBFondoSencillo.class);
     
     private static ArrayList parametros;
     
@@ -362,7 +362,7 @@ public class DBFondoSencillo {
     }
     
     
-    //JMIRANDA 03.06.2010 OBTIENE LISTADO DE CAJEROS 
+    //  03.06.2010 OBTIENE LISTADO DE CAJEROS 
     public static void getListaHistoricoXCajero(FarmaTableModel pTableModel, 
                                                 String pTipo,
                                                 String pSecUsuLocal) throws SQLException {
@@ -406,7 +406,7 @@ public class DBFondoSencillo {
     
     /**
      * Obtiene el monto asignado para que sea devuelto por completo
-     * @author ASOSA
+     * @author  
      * @since 18.06.2010
      * @param secMovCierre
      * @return
@@ -422,7 +422,7 @@ public class DBFondoSencillo {
     
     /**
      * Determine si abre o no abre caja en caso este activo el fondo de sencillo y si le asignaron o no sencillo
-     * @author ASOSA
+     * @author  
      * @since 20.06.2010
      * @return
      * @throws SQLException
@@ -438,7 +438,7 @@ public class DBFondoSencillo {
     
     /**
      * Determine si se debe dejar dar VB de cajero, en el caso este activo deberia entonces haberlo declarado como forma de pago entrega
-     * @author ASOSA
+     * @author  
      * @since 21.06.2010
      * @param secmovcajacierre
      * @return

@@ -32,8 +32,8 @@ import mifarma.common.FarmaVariables;
 import mifarma.ptoventa.ventas.reference.DBVentas;
 import mifarma.ptoventa.ventas.reference.VariablesVentas;
 
-import oracle.jdeveloper.layout.XYConstraints;
-import oracle.jdeveloper.layout.XYLayout;
+ 
+ 
 
 
 /**
@@ -59,7 +59,7 @@ public class DlgIngresoRecargaVirtual extends JDialog {
   private BorderLayout borderLayout1 = new BorderLayout();
   private JPanel jContentPane = new JPanel();
   JPanel pnlDetalleProducto = new JPanel();
-  XYLayout xYLayout1 = new XYLayout();
+   
   JTextField txtMonto = new JTextField();
   JLabel lblDescripcionT = new JLabel();
   JLabel lblCodigoT = new JLabel();
@@ -86,12 +86,6 @@ public class DlgIngresoRecargaVirtual extends JDialog {
     this(null, "", false);
   }
 
-  /**
-  *Constructor
-  *@param <b>parent</b> Objeto Frame de la Aplicación.
-  *@param <b>title</b> Título de la Ventana.
-  *@param <b>modal</b> Tipo de Ventana.
-  */
   public DlgIngresoRecargaVirtual(Frame parent, String title, boolean modal) {
     super(parent, title, modal);
     myParentFrame = parent;
@@ -131,7 +125,7 @@ public class DlgIngresoRecargaVirtual extends JDialog {
     jContentPane.setSize(new Dimension(360, 331));
     jContentPane.setBackground(Color.white);
     pnlDetalleProducto.setBounds(new Rectangle(15, 10, 325, 230));
-    pnlDetalleProducto.setLayout(xYLayout1);
+    pnlDetalleProducto.setLayout(null);
     pnlDetalleProducto.setBorder(BorderFactory.createLineBorder(Color.black, 1));
     pnlDetalleProducto.setFont(new Font("SansSerif", 0, 11));
     pnlDetalleProducto.setBackground(Color.white);
@@ -195,16 +189,16 @@ public class DlgIngresoRecargaVirtual extends JDialog {
           btnMonto_actionPerformed(e);
         }
       });
-    pnlDetalleProducto.add(btnMonto, new XYConstraints(10, 190, 130, 20));
-    pnlDetalleProducto.add(btnNumero, new XYConstraints(10, 155, 120, 20));
-    pnlDetalleProducto.add(txtMonto, new XYConstraints(150, 190, 65, 20));
-    pnlDetalleProducto.add(lblDescripcionT, new XYConstraints(10, 55, 95, 20));
-    pnlDetalleProducto.add(lblCodigoT, new XYConstraints(10, 10, 55, 20));
-    pnlDetalleProducto.add(lblLaboratorio, new XYConstraints(10, 120, 280, 20));
-    pnlDetalleProducto.add(lblLaboratorioT, new XYConstraints(10, 100, 80, 20));
-    pnlDetalleProducto.add(txtNumero, new XYConstraints(150, 155, 125, 20));
-    pnlDetalleProducto.add(lblDescripcion, new XYConstraints(10, 75, 270, 20));
-    pnlDetalleProducto.add(lblCodigo, new XYConstraints(10, 30, 55, 20));
+    pnlDetalleProducto.add(btnMonto);
+    pnlDetalleProducto.add(btnNumero);
+    pnlDetalleProducto.add(txtMonto);
+    pnlDetalleProducto.add(lblDescripcionT);
+    pnlDetalleProducto.add(lblCodigoT);
+    pnlDetalleProducto.add(lblLaboratorio);
+    pnlDetalleProducto.add(lblLaboratorioT);
+    pnlDetalleProducto.add(txtNumero);
+    pnlDetalleProducto.add(lblDescripcion);
+    pnlDetalleProducto.add(lblCodigo);
     this.getContentPane().add(jContentPane, BorderLayout.CENTER);
     jContentPane.add(lblEsc, null);
     jContentPane.add(lblF11, null);
@@ -401,7 +395,7 @@ public class DlgIngresoRecargaVirtual extends JDialog {
   private void aceptaCantidadIngresada()
   { 
     //SE DESCOMENTO PARA QUE VALIDE EL NUMERO
-    //30.10.2007 DUBILLUZ 
+    //30.10.2007   
     if(!validaNumeroRecargar())
     {
       FarmaUtility.showMessage(this, "Ingrese un número a recargar correcto.",txtNumero);
@@ -413,7 +407,7 @@ public class DlgIngresoRecargaVirtual extends JDialog {
       return;
     }
     // Se cambio la cantidad ingresada sera el monto q coloque
-    // 31.10.2007  dubilluz  modificacion
+    // 31.10.2007     modificacion
     VariablesVentas.vCant_Ingresada  = txtMonto.getText().trim();//"1";    
     VariablesVentas.vNumeroARecargar = txtNumero.getText().trim();
     VariablesVentas.vMontoARecargar  = txtMonto.getText().trim();
@@ -423,7 +417,7 @@ public class DlgIngresoRecargaVirtual extends JDialog {
 
   /**
    *  Se formatea la longitud maxima  del numero de recarga virtual
-   *  @author dubilluz
+   *  @author  
    *  @since  26.03.2008
    */
   private void formateaLogitudTxtNumero()
@@ -484,7 +478,7 @@ public class DlgIngresoRecargaVirtual extends JDialog {
   
   /**
    * Verifica si el numero es de provincia
-   * @author dubilluz
+   * @author  
    * @since  01.04.2008
    */
   private boolean isNumeroLima(String cadena)

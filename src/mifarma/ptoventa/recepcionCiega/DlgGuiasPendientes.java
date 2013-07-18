@@ -61,7 +61,7 @@ import mifarma.ptoventa.reportes.reference.*;
  * Nombre de la Aplicación : DlgGuiasPendientes.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JCORTEZ    16.11.2009   Creación<br>
+ *      16.11.2009   Creación<br>
  * <br>
  * @author  JORGE LUIS CORTEZ ALVAREZ <br>
  * @version 1.0<br>
@@ -103,7 +103,7 @@ public class DlgGuiasPendientes extends JDialog {
     private JLabelWhite lblCant = new JLabelWhite();
 
     //**
-    //JMIRANDA 19.03.2010
+    //  19.03.2010
     private static final int COL_CHECK = 0;
     private static final int COL_GUIA = 1;
     private static final int COL_ENTREGA = 2;
@@ -347,7 +347,7 @@ public class DlgGuiasPendientes extends JDialog {
 
             seleccionarTodosLocales(todos);
 
-            //dubilluz  - 12.01.2010
+            //   - 12.01.2010
             /*VariablesRecepCiega.vArrayListaGuias = new ArrayList();
         for (int i = 0; i < tableModelGuias.getRowCount(); i++)
         {
@@ -656,7 +656,7 @@ public class DlgGuiasPendientes extends JDialog {
                 System.out.println(" VariablesRecepCiega.vNumIngreso : "+ VariablesRecepCiega.vNumIngreso);
                 DBRecepCiega.asignarGuias(VariablesRecepCiega.vArrayListaGuias, 
                                           VariablesRecepCiega.vNumIngreso);
-                //JMIRANDA 19.03.2010
+                //  19.03.2010
                 //Actualizar la cant guias
                 int vCantGuias = DBRecepCiega.getCantGuias(VariablesRecepCiega.vNumIngreso);
                 DBInventario.actualizaCantGuias(vCantGuias+pCantGuias,VariablesRecepCiega.vNumIngreso.trim());
@@ -677,7 +677,7 @@ public class DlgGuiasPendientes extends JDialog {
                                      txtLocal);
             cerrarVentana(true);
         } catch (SQLException sql) {
-            //DUBILLUZ  - 14.01.2010
+            //   - 14.01.2010
             FarmaUtility.liberarTransaccion();
             if (sql.getErrorCode() == 20003) {
                 FarmaUtility.showMessage(this, 
@@ -709,7 +709,7 @@ public class DlgGuiasPendientes extends JDialog {
                 System.out.println(" VariablesRecepCiega.vNumIngreso : "+ VariablesRecepCiega.vNumIngreso);
                 DBRecepCiega.asignarGuias(VariablesRecepCiega.vArrayListaGuias, 
                                           VariablesRecepCiega.vNumIngreso);
-                //JMIRANDA 19.03.2010
+                //  19.03.2010
                 //Actualizar la cant guias
                 int vCantGuias = DBRecepCiega.getCantGuias(VariablesRecepCiega.vNumIngreso);
                 DBInventario.actualizaCantGuias(vCantGuias+pCantGuias,VariablesRecepCiega.vNumIngreso.trim());
@@ -730,7 +730,7 @@ public class DlgGuiasPendientes extends JDialog {
                                      txtLocal);
             cerrarVentana(true);
         } catch (SQLException sql) {
-            //DUBILLUZ  - 14.01.2010
+            //   - 14.01.2010
             FarmaUtility.liberarTransaccion();
             if (sql.getErrorCode() == 20003) {
                 FarmaUtility.showMessage(this, 
@@ -779,7 +779,7 @@ public class DlgGuiasPendientes extends JDialog {
      * Asociamos todas la guias a la recepcion
      * */
     private void cargarGuias() {
-        //JCORTEZ 25.01.10
+        //  25.01.10
         VariablesRecepCiega.vArrayListaGuias = new ArrayList();
         boolean valor;
         for (int i = 0; i < tblListaGuias.getRowCount(); i++) {

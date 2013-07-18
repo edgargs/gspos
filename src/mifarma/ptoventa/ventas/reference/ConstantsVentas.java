@@ -214,7 +214,7 @@ public class ConstantsVentas {
     
   /**
    * Constantes de idicador si es Prod_SImple o de una Promocion
-   * @author : dubilluz
+   * @author :  
    * @since  : 03.07.2007
    */
   public static final int IND_PROD_SIMPLE = 1;
@@ -222,7 +222,7 @@ public class ConstantsVentas {
   
  /**
   * Cantidad maxima de tarjetas virtual que pueden comprar
-  * @author dubilluz
+  * @author  
   * @since  28.09.2007
   */
   public static final int CANT_PROD_TARJ_VIRTUAL_MAXIMO = 1;  
@@ -234,7 +234,7 @@ public class ConstantsVentas {
    */   
   public static final FarmaColumnData columnsListaPromociones[] =
   { 
-    // Se modifico 28.02.2007 Dubilluz
+    // Se modifico 28.02.2007  
     new FarmaColumnData("Cod Prom",60, JLabel.CENTER), 
     new FarmaColumnData("Descripción", 271, JLabel.LEFT), 
     new FarmaColumnData("Precio", 80, JLabel.RIGHT), 
@@ -296,7 +296,7 @@ public class ConstantsVentas {
  
   /**
    * Constante para el Precio de Venta 
-   * @autho dubilluz
+   * @autho  
    * @since 31.10.2007
    */
   public static String PrecioVtaRecargaTarjeta  = "1";
@@ -304,7 +304,7 @@ public class ConstantsVentas {
   
   /**
    * Constantes que indican el listado de origen del producto
-   * @author JCORTEZ
+   * @author  
    * @since  15.04.2008
    */
   public static final String IND_ORIGEN_COMP = "4";
@@ -314,7 +314,7 @@ public class ConstantsVentas {
   
   /**
    * Variables para el Filtro desde resumen (Encarte, Cupon)
-   * @author  JCORTEZ
+   * @author   
    * @since   17.04.2008
    * */
     public static String NOM_HASTABLE_CMBFILTROTIPO = "CMB_FILTRO_TIPO";
@@ -323,7 +323,7 @@ public class ConstantsVentas {
     
   /**
    * Variables para el Filtro desde resumen (Encarte, Cupon)
-   * @author  JCORTEZ
+   * @author   
    * @since   17.04.2008
    * */
     public static final FarmaColumnData columnsListaTipoFiltro[] = {
@@ -348,7 +348,7 @@ public class ConstantsVentas {
   
   /**
    * Constantes para definir los tipos de campañas
-   * @author dubilluz
+   * @author  
    * @since  10.07.2008
    */
   public static final String TIPO_MULTIMARCA = "M";
@@ -358,7 +358,7 @@ public class ConstantsVentas {
   public static final String TIPO_MONTO = "M";
   
   /**
-   * @autor JCALLO
+   * @autor  
    * @since 01.10.2008
    * */
   public static final String ACTIVO = "ACTIVO";
@@ -372,7 +372,7 @@ public class ConstantsVentas {
   public static final String LINEAS_TICKET = "269";
   
   /**
-   *@AUTHOR  JCORTEZ
+   *@AUTHOR   
    *@SINCE  04.08.09
    * */
    
@@ -387,7 +387,7 @@ public class ConstantsVentas {
    
    public static final Object[] defaultValuesListaCuponesUsados = {" "," "," "," "," "," "};
    
-   //INI ASOSA
+   //INI  
    
     //Lista de Productos Cliente Perú
     public static final FarmaColumnData columnsListProds[] = {      
@@ -404,7 +404,7 @@ public class ConstantsVentas {
     public static final Object[] defaultValuesListProds =
     { " ", " ", " ", " ", " ", " ", " "};
     
-    //INI ASOSA, 27.09.2010
+    //INI  , 27.09.2010
     
     //Lista de Productos Cliente Bolivia
     public static final FarmaColumnData columnsListProdsBol[] = {      
@@ -424,11 +424,11 @@ public class ConstantsVentas {
     public static final String COD_CIA_PERU = "001";
     public static final String COD_CIA_BOL = "002";
     
-    //FIN ASOSA, 27.09.2010
+    //FIN  , 27.09.2010
     
-    //FIN ASOSA
+    //FIN  
 
-    //INI - ASOSA, 28.09.2010
+    //INI -  , 28.09.2010
     public static final String HASHTABLE_TIP_DIGEMID = "TIP_DIGEMID";
     public static final String[] TIP_DIGEMID_COD = { "1", "2"};
     public static final String[] TIP_DIGEMID_DESC = { "PRODUCTO", "DCI"};
@@ -441,7 +441,7 @@ public class ConstantsVentas {
     public static final Object[] defaultValuesListPrincAct =
     { " ", " "};
     
-    //FIN - ASOSA, 28.09.2010
+    //FIN -  , 28.09.2010
 
     //Lista de Productos Cliente Perú
     public static final FarmaColumnData columnsListProdsCDI[] = {            

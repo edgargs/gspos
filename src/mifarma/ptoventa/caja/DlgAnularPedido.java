@@ -46,7 +46,7 @@ import mifarma.ptoventa.caja.reference.UtilityCaja;
 import mifarma.ptoventa.caja.reference.VariablesCaja;
 import mifarma.ptoventa.caja.reference.VariablesVirtual;
 import mifarma.ptoventa.ce.reference.VariablesCajaElectronica;
-import mifarma.ptoventa.convenioBTLMF.reference.UtilityConvenioBTLMF;
+ 
 import mifarma.ptoventa.reference.ConstantsPtoVenta;
 import mifarma.ptoventa.ventas.DlgConsultaXCorrelativo;
 import mifarma.ptoventa.ventas.reference.ConstantsVentas;
@@ -55,8 +55,8 @@ import mifarma.ptoventa.ventas.reference.VariablesVentas;
 
 import mifarma.common.*;
 import javax.swing.JTextField;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.gs.mifarma.componentes.JLabelFunction;
 import com.gs.mifarma.componentes.JLabelOrange;
@@ -71,7 +71,7 @@ public class DlgAnularPedido extends JDialog
 	/*                        DECLARACION PROPIEDADES                         */
 	/* ********************************************************************** */
 
-  private static final Log log = LogFactory.getLog(DlgAnularPedido.class);
+  private static final Logger log = LoggerFactory.getLogger(DlgAnularPedido.class);
          
   FarmaTableModel tableModelCabeceraPedido;
   FarmaTableModel tableModelDetallePedido;
@@ -97,7 +97,7 @@ public class DlgAnularPedido extends JDialog
   private JLabelFunction lblEsc = new JLabelFunction();
   private JLabelFunction lblF11 = new JLabelFunction();
     private JLabelOrange lblMensaje = new JLabelOrange();
-    //JMIRANDA 25.08.2011 Fijar Objeto para Focus
+    //  25.08.2011 Fijar Objeto para Focus
     private Object pObj = txtCorrelativo;
     /* ********************************************************************** */
 	/*                        CONSTRUCTORES                                   */
@@ -390,7 +390,7 @@ public class DlgAnularPedido extends JDialog
 
   private void btnCorrelativo_actionPerformed(ActionEvent e)
   {
-      //JMIRANDA 22.08.2011
+      //  22.08.2011
       if(UtilityVentas.getIndImprimeCorrelativo()){
         txtCorrelativo.enable(true);
         txtMonto.enable(true);
@@ -439,13 +439,13 @@ public class DlgAnularPedido extends JDialog
       lblMensaje.setText("");
         if(validarCampos())
         {
-          //Agregado por DVELIZ 05.01.2009
+          //Agregado por   05.01.2009
           VariablesCaja.vIndLineaADMCentral = "N";//indicador de linea en N
           evaluaPedidoProdVirtual(txtCorrelativo.getText().trim());//verifica si es un pedido virtual
           if(VariablesVirtual.vConProductoVirtual){
               validarConexionADMCentral();//VariablesCaja.vIndLineaADMCentral
           }
-          log.debug("JCALLO: antes de buscar pedido VariablesCaja.vIndLineaADMCentral:"+VariablesCaja.vIndLineaADMCentral);
+          log.debug(" : antes de buscar pedido VariablesCaja.vIndLineaADMCentral:"+VariablesCaja.vIndLineaADMCentral);
           if(buscarPedido())
           {
             cargaListaPedidos();
@@ -464,7 +464,7 @@ public class DlgAnularPedido extends JDialog
   }
   
   /**
-   * @AUTHOR JCORTEZ
+   * @AUTHOR  
    * @SINCE 10.06.09
    * * */
   private boolean  validaImprIP(){
@@ -472,7 +472,7 @@ public class DlgAnularPedido extends JDialog
         boolean valor=true;
         String tipComp="";
     try{
-       //JCORTEZ 09.06.09  Se obtiene tipo de comrpobante de la relacion maquina - impresora
+       //  09.06.09  Se obtiene tipo de comrpobante de la relacion maquina - impresora
         tipComp=VariablesCaja.vTipComp.trim();
          if(tipComp.equalsIgnoreCase(ConstantsVentas.TIPO_COMP_TICKET)){
            //VariablesCaja.vSecImprLocalTicket= DBCaja.getObtieneSecImpPorIP(FarmaVariables.vIpPc);
@@ -480,8 +480,8 @@ public class DlgAnularPedido extends JDialog
                                                 VariablesCaja.vNumPedVta_Anul);
             
               log.debug("ANULANDO PEDIDO");
-              log.debug("JCORTEZ: VariablesCaja.vTipComp--> "+VariablesCaja.vTipComp);
-            log.debug("JCORTEZ: VariablesCaja.vSecImprLocalTicket--> "+VariablesCaja.vSecImprLocalTicket);
+              log.debug(" : VariablesCaja.vTipComp--> "+VariablesCaja.vTipComp);
+            log.debug(" : VariablesCaja.vSecImprLocalTicket--> "+VariablesCaja.vSecImprLocalTicket);
            if(VariablesCaja.vSecImprLocalTicket.trim().equalsIgnoreCase("N")){
                FarmaUtility.showMessage(this,"No se cuenta con una impresora asignada de ticket. Verifique!!!",pObj);
                valor=false;
@@ -499,7 +499,7 @@ public class DlgAnularPedido extends JDialog
   {
     if(e.getKeyCode() == KeyEvent.VK_ENTER)
     {
-        //JMIRANDA 22.08.2011
+        //  22.08.2011
         if(UtilityVentas.getIndImprimeCorrelativo()){
             FarmaUtility.moveFocus(tblCabeceraPedido);}
         else{        
@@ -512,7 +512,7 @@ public class DlgAnularPedido extends JDialog
   
   private void btnCabecera_actionPerformed(ActionEvent e)
   {
-    //JMIRANDA 22.08.2011
+    //  22.08.2011
     if(UtilityVentas.getIndImprimeCorrelativo()){
         FarmaUtility.moveFocus(tblCabeceraPedido);}
     else{        
@@ -575,15 +575,9 @@ public class DlgAnularPedido extends JDialog
        if(tblCabeceraPedido.getRowCount()>0)
        {
     	  VariablesCaja.vNumPedVta_Anul = txtCorrelativo.getText().trim();
-          String indConvBTLMF = UtilityConvenioBTLMF.indConvenioBTLMF(this);
-    	  if(UtilityConvenioBTLMF.esActivoConvenioBTLMF(this, null) && indConvBTLMF != null && indConvBTLMF.equals("S"))
-    	  {
-    		  anularPedidoBTLMF();
-    	  }
-    	  else
-    	  {
+          
              anularPedido();
-          }
+          
       }
       }
     } else if(e.getKeyCode() == KeyEvent.VK_ESCAPE)
@@ -641,15 +635,15 @@ public class DlgAnularPedido extends JDialog
     vAceptar = false;
     try
     {
-    	log.debug("jcallo: antes de verificarPedido");
+    	log.debug(" : antes de verificarPedido");
       DBCaja.verificaPedido(txtCorrelativo.getText().trim(),txtMonto.getText().trim());
-      	log.debug("jcallo: despues de verificarpedido");
-      //AGREGADO POR DVELIZ 30.12.2008
+      	log.debug(" : despues de verificarpedido");
+      //AGREGADO POR   30.12.2008
       //validarConexionADMCentral();
       //obtieneInfoPedidoVirtual();
-      log.debug("JCALLO: VariablesVirtual.vConProductoVirtual:"+VariablesVirtual.vConProductoVirtual);
+      log.debug(" : VariablesVirtual.vConProductoVirtual:"+VariablesVirtual.vConProductoVirtual);
       if(VariablesVirtual.vConProductoVirtual){
-    	  log.debug("JCALLO: ... VariablesCaja.vIndLineaADMCentral : "+VariablesCaja.vIndLineaADMCentral);
+    	  log.debug(" : ... VariablesCaja.vIndLineaADMCentral : "+VariablesCaja.vIndLineaADMCentral);
           if(VariablesCaja.vIndLineaADMCentral.equals(FarmaConstants.INDICADOR_N)){
               if(FarmaUtility.rptaConfirmDialog(this, "Para anular un pedido sin conexion a MATRIZ logearse como OPERADOR DEL SISTEMA, desea continuar?")){
                   if( cargaLoginAdmLocal() )
@@ -679,7 +673,7 @@ public class DlgAnularPedido extends JDialog
                return retorno;
           }
 
-           //FIN DVELIZ 
+           //FIN   
       }else{
           retorno = true;
           vAceptar = true;
@@ -690,7 +684,7 @@ public class DlgAnularPedido extends JDialog
     }catch(SQLException e)
     {
     
-       /* //Agregado por DVELIZ 15.12.2008
+       /* //Agregado por   15.12.2008
         validarConexionADMCentral();
         obtieneInfoPedidoVirtual();
         if(VariablesCaja.vIndLineaADMCentral.equals(FarmaConstants.INDICADOR_N)){
@@ -699,7 +693,7 @@ public class DlgAnularPedido extends JDialog
             vAceptar = false;
             return retorno;
         }
-        //Fin DVELIZ*/
+        //Fin  */
         
         retorno = false;
         vAceptar = false;
@@ -730,16 +724,16 @@ public class DlgAnularPedido extends JDialog
       {        
         /**
          * SE OBTIENE EL VALOR DE TIEMPO MAXIMO QUE PASO PARA ANULAR UNA RECARGA VIRTUAL
-         * @AUTHOR DUBILLUZ
+         * @AUTHOR  
          * @SINCE  09.11.2007
-         * @modificado dveliz 05.01.2009
+         * @modificado   05.01.2009
          */
         VariablesCaja.vIndPedidoRecargaVirtual = FarmaConstants.INDICADOR_S; 
         VariablesCaja.vNumPedVta_Anul = txtCorrelativo.getText().trim();
         String tiempo_maximo  = time_max(txtCorrelativo.getText().trim()).trim();        
         String indExitoRecarga = obtieneRespuestaRecarga().trim();
         //  String indExitoRecarga = "00";
-        log.debug("JCALLO : indExitoRecarga : "+indExitoRecarga);
+        log.debug("  : indExitoRecarga : "+indExitoRecarga);
         if(indExitoRecarga.trim().equalsIgnoreCase(FarmaConstants.INDICADOR_N)){
             retorno = false;
             vAceptar = false;    
@@ -750,7 +744,7 @@ public class DlgAnularPedido extends JDialog
             if(indExitoRecarga.trim().equals("00")||indExitoRecarga.trim().equals("-2")){
                        //Se anulara el pedido si es Exito o Si no hay respuesta
                         //FarmaUtility.showMessage(this,"No se puede anular este pedido el tiempo es mayor a "+tiempo_maximo+" minutos, y la recarga se realizo con exito" ,txtCorrelativo);
-                           if(FarmaUtility.rptaConfirmDialog(this,"El pedido cuenta con un producto del tipo Recarga Virtual\ny fue cobrado hace más de "+tiempo_maximo+" minutos.\nEsta seguro de anular de todas formas?."))     //AGREGADO POR DVELIZ 15.12.2008
+                           if(FarmaUtility.rptaConfirmDialog(this,"El pedido cuenta con un producto del tipo Recarga Virtual\ny fue cobrado hace más de "+tiempo_maximo+" minutos.\nEsta seguro de anular de todas formas?."))     //AGREGADO POR   15.12.2008
                            {
                              if( cargaLoginAdmLocal() )
                              {
@@ -771,7 +765,7 @@ public class DlgAnularPedido extends JDialog
                        VariablesCaja.vRespuestaExito = indExitoRecarga;
                    }            
         }
-        log.debug("JCALLO : indExitoRecarga : "+indExitoRecarga);
+        log.debug("  : indExitoRecarga : "+indExitoRecarga);
         VariablesCaja.vIndPedidoRecargaVirtual = "";        
         return retorno;
       }else if(e.getErrorCode()==20015)
@@ -811,7 +805,7 @@ public class DlgAnularPedido extends JDialog
 		      {
 
 		        /**
-		        * @AUTHOR JCORTEZ
+		        * @AUTHOR  
 		        * @SINCE 10.06.09
 		        * Se evitara anulara si es que la ip no cuenta con impresora
 		        * */
@@ -819,7 +813,7 @@ public class DlgAnularPedido extends JDialog
 
 		          /**
 		           * Valida pedido Fidelizado
-		           * @author: JCORTEZ
+		           * @author:  
 		           * @since: 18/12/2008
 		           * */
 		           System.out.println("VariablesCaja.vIndPedFidelizado : " +VariablesCaja.vIndPedFidelizado);
@@ -841,9 +835,9 @@ public class DlgAnularPedido extends JDialog
 		               }
 		              */
 		              //////////
-		              System.err.println("DUBILLUZ - 30.11.2009 - ANULA PRUEBA anularPedidofidelizado");
+		              System.err.println("  - 30.11.2009 - ANULA PRUEBA anularPedidofidelizado");
 		              //if(anularPedidofidelizado(FarmaConstants.INDICADOR_S))
-		              //JCORTEZ 18.03.10 se valida pedido antes de procesarlo
+		              //  18.03.10 se valida pedido antes de procesarlo
 		               if(validaPedido(FarmaConstants.INDICADOR_S))
 		                 anular();
 
@@ -860,7 +854,7 @@ public class DlgAnularPedido extends JDialog
 		    {
 		      if(comprobarProductosRestantes())
 		      {
-		          if (validaImprIP()){   //JCHAVEZ 10.07.2009.n
+		          if (validaImprIP()){   //  10.07.2009.n
 		              FarmaUtility.showMessage(this,"Este Pedido correponde a un periodo anterior. \nNo se anulará dicho pedido, pero se generará una solicitud de Nota de Crédito.",pObj);
 		              DlgNotaCreditoNueva dlgNotaCreditoNueva = new DlgNotaCreditoNueva(myParentFrame,"",true);
 		              dlgNotaCreditoNueva.setVisible(true);
@@ -868,7 +862,7 @@ public class DlgAnularPedido extends JDialog
 		              {
 		                cerrarVentana(true);
 		              }
-		          }  //JCHAVEZ 10.07.2009.n
+		          }  //  10.07.2009.n
 		      }
 		    }
 
@@ -917,7 +911,7 @@ public class DlgAnularPedido extends JDialog
       {
       
         /**
-        * @AUTHOR JCORTEZ
+        * @AUTHOR  
         * @SINCE 10.06.09
         * Se evitara anulara si es que la ip no cuenta con impresora
         * */
@@ -925,7 +919,7 @@ public class DlgAnularPedido extends JDialog
         
           /**
            * Valida pedido Fidelizado
-           * @author: JCORTEZ
+           * @author:  
            * @since: 18/12/2008
            * */
            System.out.println("VariablesCaja.vIndPedFidelizado : " +VariablesCaja.vIndPedFidelizado);
@@ -947,9 +941,9 @@ public class DlgAnularPedido extends JDialog
                }
               */
               //////////
-              System.err.println("DUBILLUZ - 30.11.2009 - ANULA PRUEBA anularPedidofidelizado");
+              System.err.println("  - 30.11.2009 - ANULA PRUEBA anularPedidofidelizado");
               //if(anularPedidofidelizado(FarmaConstants.INDICADOR_S))
-              //JCORTEZ 18.03.10 se valida pedido antes de procesarlo
+              //  18.03.10 se valida pedido antes de procesarlo
                if(validaPedido(FarmaConstants.INDICADOR_S))
                  anular();
               
@@ -966,7 +960,7 @@ public class DlgAnularPedido extends JDialog
     {
       if(comprobarProductosRestantes())
       {
-          if (validaImprIP()){   //JCHAVEZ 10.07.2009.n
+          if (validaImprIP()){   //  10.07.2009.n
               FarmaUtility.showMessage(this,"Este Pedido correponde a un periodo anterior. \nNo se anulará dicho pedido, pero se generará una solicitud de Nota de Crédito.",pObj);
               DlgNotaCreditoNueva dlgNotaCreditoNueva = new DlgNotaCreditoNueva(myParentFrame,"",true);
               dlgNotaCreditoNueva.setVisible(true);
@@ -974,7 +968,7 @@ public class DlgAnularPedido extends JDialog
               {
                 cerrarVentana(true);
               }
-          }  //JCHAVEZ 10.07.2009.n              
+          }  //  10.07.2009.n              
       }
     }
   }
@@ -994,7 +988,7 @@ public class DlgAnularPedido extends JDialog
       VariablesVentas.vTip_Ped_Vta=FarmaUtility.getValueFieldArrayList(tableModelCabeceraPedido.data,0,8);
       VariablesCaja.vIndDeliveryAutomatico=FarmaUtility.getValueFieldArrayList(tableModelCabeceraPedido.data,0,9);
     
-    //JCORTEZ 18.12.08
+    //  18.12.08
     /*
     VariablesCaja.vIndPedFidelizado= FarmaUtility.getValueFieldJTable(tblCabeceraPedido,0,10);
     VariablesCaja.vDniCli=FarmaUtility.getValueFieldJTable(tblCabeceraPedido,0,11);
@@ -1004,7 +998,7 @@ public class DlgAnularPedido extends JDialog
     VariablesCaja.vDniCli=FarmaUtility.getValueFieldArrayList(tableModelCabeceraPedido.data,0,11);
     //
     System.out.println("tipo de pedido : " + VariablesVentas.vTip_Ped_Vta);
-    System.out.println("DUBILLUZ - 30.11.2009:VariablesCaja.vIndPedFidelizado : " + VariablesCaja.vIndPedFidelizado);
+    System.out.println("  - 30.11.2009:VariablesCaja.vIndPedFidelizado : " + VariablesCaja.vIndPedFidelizado);
   }
 
   private boolean comprobarFecha()
@@ -1094,7 +1088,7 @@ public class DlgAnularPedido extends JDialog
     try{
       DlgLogin dlgLogin = new DlgLogin(myParentFrame,ConstantsPtoVenta.MENSAJE_LOGIN,true);
       //Se validara por el rol dependiendo del tipo de pedido
-      //14.11.2007  dubilluz modificacion
+      //14.11.2007    modificacion
       if(VariablesCaja.vIndPedidoRecargaVirtual.equalsIgnoreCase(FarmaConstants.INDICADOR_S)){
          dlgLogin.setRolUsuario(FarmaConstants.ROL_OPERADOR_SISTEMAS);
          System.out.println("Pedido Recarga Virtual..Solo el operador podra anular");
@@ -1125,7 +1119,7 @@ public class DlgAnularPedido extends JDialog
 
 /**
   * Obtiene el tiempo maximo para la anulacion de un pedido recarga virtual
-  * @author dubilluz
+  * @author  
   * @since  09.11.2007
   */
   private String time_max(String pNum_ped)
@@ -1146,7 +1140,7 @@ public class DlgAnularPedido extends JDialog
   
     /**
      * Metodo que sirve para validar que existe conexion en admCentral
-     * @Author DVELIZ
+     * @Author  
      * @Since 15.12.2008
      * @param pCadena
      * @param pParent
@@ -1167,7 +1161,7 @@ public class DlgAnularPedido extends JDialog
     
    /**
     * Metodo que sirve para validar que la recarga se realizo con exito.
-    * @Author DVELIZ
+    * @Author  
     * @Since 15.12.2008
     * @param pCadena
     * @param pParent
@@ -1189,7 +1183,7 @@ public class DlgAnularPedido extends JDialog
         DBCaja.obtieneInfoPedidoVirtual(VariablesVirtual.vArrayList_InfoProdVirtual,
                                         txtCorrelativo.getText().trim());
         System.out.println("vArrayList_InfoProdVirtual : " + VariablesVirtual.vArrayList_InfoProdVirtual);
-        //Agregado por DVELIZ 15.12.2008
+        //Agregado por   15.12.2008
         if(VariablesVirtual.vArrayList_InfoProdVirtual.size() > 0){
             colocaInfoPedidoVirtual();
         }
@@ -1238,7 +1232,7 @@ public class DlgAnularPedido extends JDialog
           txtMonto.setText("");
           System.out.println("ok");
           
-          //JCORTEZ 16.06.09 imprime mensaje para recoger comprobante de anulacion
+          //  16.06.09 imprime mensaje para recoger comprobante de anulacion
           /* if(VariablesCaja.vTipComp.equalsIgnoreCase(ConstantsVentas.TIPO_COMP_TICKET)){
               if(!VariablesCaja.vDescripImpr.equalsIgnoreCase("X")||VariablesCaja.vDescripImpr.equalsIgnoreCase(""))
               lblMensaje.setText("Recoger comprobante en : "+VariablesCaja.vDescripImpr);
@@ -1249,7 +1243,7 @@ public class DlgAnularPedido extends JDialog
 
        /**
         * Valida que exista productos canje y regalos en pedido
-        * @author: JCORTEZ
+        * @author:  
         * @since: 18.12.08
         * */
     private boolean validaExistProd(){
@@ -1271,7 +1265,7 @@ public class DlgAnularPedido extends JDialog
     
     /**
     * Verifica si existe linea con PtoventaMatriz
-    * @author: JCORTEZ
+    * @author:  
     * @since: 18.12.08
     * */
     private boolean ExistLineaMatriz(){
@@ -1289,7 +1283,7 @@ public class DlgAnularPedido extends JDialog
     
     /**
     * Verifica existe productos canje
-    * @author: JCORTEZ
+    * @author:  
     * @since: 18.12.08
     * */
     private boolean existProdCanje(){
@@ -1309,7 +1303,7 @@ public class DlgAnularPedido extends JDialog
     
     /**
      * Se valida pedido antes de procesar anulacion
-     * @SUTHOR JCORTEZ
+     * @SUTHOR  
      * @SINCE 18.03.10
      * */
     private boolean validaPedido(String IndLocal){
@@ -1337,7 +1331,7 @@ public class DlgAnularPedido extends JDialog
     
     /**
      * se anula el pedido en Local
-     * @author: JCORTEZ
+     * @author:  
      * @since: 18.12.08
      * */
     private boolean anularPedidofidelizado(String IndLocal){
@@ -1368,7 +1362,7 @@ public class DlgAnularPedido extends JDialog
     
     /**
      * Se anula el pedido en Matriz
-     * @author: JCORTEZ
+     * @author:  
      * @since: 18.12.08
      * */
     private boolean anularPedidofidelizadoMatriz(String IndLocal){
@@ -1399,7 +1393,7 @@ public class DlgAnularPedido extends JDialog
     }
 
 /**
- * @author: DVELIZ
+ * @author:  
  * @since:  29/12/2008
  */
    /* private void mostrarMensajeRecargaExito() {
@@ -1432,7 +1426,7 @@ public class DlgAnularPedido extends JDialog
         VariablesVirtual.vConProductoVirtual = true;
         
       }
-      System.err.println("jcallo: VariablesVirtual.vConProductoVirtual :"+VariablesVirtual.vConProductoVirtual);
+      System.err.println(" : VariablesVirtual.vConProductoVirtual :"+VariablesVirtual.vConProductoVirtual);
     }
     
     private int cantidadProductosVirtualesPedido(String pNumPedido)
@@ -1453,7 +1447,7 @@ public class DlgAnularPedido extends JDialog
     /**
      * Valida si se muestra la nueva versión para Imprimir o 
      * no Imprimir Correlativo, así como usar pantalla para Ingresar Numero Comprobante y Monto Neto si es Negativo
-     * @author JMIRANDA
+     * @author  
      * @since 22.08.2011
      * @return true si imprime correlativo
      */
@@ -1481,9 +1475,9 @@ public class DlgAnularPedido extends JDialog
             FarmaUtility.moveFocusJTable(tblCabeceraPedido);
     }
     
-    //JMIRANDA 25.08.2011 Setear el Objeto para enfocar después de los mensajes.
+    //  25.08.2011 Setear el Objeto para enfocar después de los mensajes.
     private void setearObjetoFocus(){
-        //JMIRANDA 25.08.2011 verificar si se utiliza funcionalidad nueva
+        //  25.08.2011 verificar si se utiliza funcionalidad nueva
                if(validarMostrarCorrelativo())
                    pObj = txtCorrelativo;
                else 

@@ -379,7 +379,7 @@ public class DlgDetalleRegistroVentas extends JDialog
     }
   }
   /**  Lista las formas de pago del Pedido
-   * @author: JCORTEZ
+   * @author:  
    * @since:  04/08/2007
    */
    private void listadoFormasPago()

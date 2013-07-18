@@ -45,11 +45,11 @@ import mifarma.ptoventa.caja.reference.VariablesSobre;
 import mifarma.ptoventa.caja.reference.DBCaja;
 import mifarma.ptoventa.caja.reference.UtilitySobres;
 
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.DefaultCategoryDataset;
+ 
+ 
+ 
+ 
+ 
 import javax.swing.JFrame;
 
 import mifarma.ptoventa.caja.reference.VariablesSobre;
@@ -68,7 +68,7 @@ import mifarma.ptoventa.ventas.reference.DBVentas;
  * Nombre de la Aplicación : DlgIngresoSobreParcial.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * DUBILLUZ    07.06.2010   Creación<br>
+ *      07.06.2010   Creación<br>
  * <br>
  * @AUTHOR Diego Armando Ubilluz Carrillo<br>
  * @VERSION 2.0<br>
@@ -317,8 +317,8 @@ public class DlgIngresoSobreParcial extends JDialog
   private void initialize()
   {
     initTableListaVentasVendedor();
-    lblTotalVenta.setVisible(false); //INI ASOSA, 03.06.2010
-    T_lblTotalVenta.setVisible(false); //FIN ASOSA, 03.06.2010
+    lblTotalVenta.setVisible(false); //INI  , 03.06.2010
+    T_lblTotalVenta.setVisible(false); //FIN  , 03.06.2010
   }
 
   /* ********************************************************************** */
@@ -520,12 +520,12 @@ public class DlgIngresoSobreParcial extends JDialog
         VariablesSobre.vDescMonedaPagoTmp = 
                 FarmaLoadCVL.getCVLDescription(ConstantsSobres.HASHTABLE_MONEDASOBRES, 
                                                codMoneda);
-        System.out.println(" DUBILLUZ ::::txtMonto.getText()" + 
+        System.out.println("   ::::txtMonto.getText()" + 
                            FarmaUtility.getDecimalNumber(txtMonto.getText().trim()));
         //VariablesCaja.vValMontoPagadoTmp = FarmaUtility.formatNumber(FarmaUtility.getDecimalNumber(txtMonto.getText().trim()));
         VariablesSobre.vValMontoPagadoTmp = 
                 FarmaUtility.getDecimalNumber(txtMonto.getText().trim()) + "";
-        System.out.println("JCORTEZ :::: VariablesSobre.vValMontoPagadoTmp" + 
+        System.out.println("  :::: VariablesSobre.vValMontoPagadoTmp" + 
                            VariablesSobre.vValMontoPagadoTmp);
 
         if (codMoneda.equalsIgnoreCase(FarmaConstants.CODIGO_MONEDA_SOLES)){
@@ -568,7 +568,7 @@ public class DlgIngresoSobreParcial extends JDialog
 
             double dTotal = Double.parseDouble(sTotal);
             //double dIngreso = Double.parseDouble(VariablesSobre.vValTotalPagadoTmp);
-            double dIngreso = FarmaUtility.getDecimalNumber(VariablesSobre.vValTotalPagadoTmp); //ASOSA, 16.06.2010
+            double dIngreso = FarmaUtility.getDecimalNumber(VariablesSobre.vValTotalPagadoTmp); // , 16.06.2010
             System.out.println("TotalVentas: " + TotalVentas);
             double dVentas = FarmaUtility.getDecimalNumber(TotalVentas.trim());
             System.out.println("Ventas turno: " + dVentas);
@@ -576,7 +576,7 @@ public class DlgIngresoSobreParcial extends JDialog
             System.out.println("Total Ingreso: " + dIngreso);
             if ((dTotal + dIngreso) > (dVentas)) {
                 // NO DEBE DE VALIDAR NADA
-                // dubilluz
+                //  
                 /*
                 valor = false;
                 FarmaUtility.showMessage(this, 

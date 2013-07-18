@@ -43,15 +43,18 @@ import mifarma.ptoventa.ventas.reference.DBVentas;
 import mifarma.ptoventa.caja.reference.VariablesVirtual;
 import mifarma.ptoventa.ventas.reference.*;
 import mifarma.ptoventa.reference.*;
-import  org.apache.commons.logging.Log;
-import  org.apache.commons.logging.LogFactory;
+ import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import mifarma.ptoventa.caja.reference.UtilityCaja;
+
+import org.slf4j.LoggerFactory;
+
 
 public class DlgConsultarRecargaCorrelativo extends JDialog {
     /* ********************************************************************** */
     /*                        DECLARACION PROPIEDADES                         */
     /* ********************************************************************** */
-    private static final Log log = LogFactory.getLog(DlgConsultarRecargaCorrelativo.class);
+    private static final Logger log = LoggerFactory.getLogger(DlgConsultarRecargaCorrelativo.class);
    
 
     
@@ -374,20 +377,20 @@ public class DlgConsultarRecargaCorrelativo extends JDialog {
 
     private void btnBuscar_actionPerformed(ActionEvent e)  {
 
-        FarmaConnectionRemoto.closeConnection(); //JCHAVEZ 28092009 para asegurar el cierre de conexion a adm_central
+        FarmaConnectionRemoto.closeConnection(); //  28092009 para asegurar el cierre de conexion a adm_central
        
         if(validarCampos())
         {
-            //Agregado por DVELIZ 05.01.2009
+            //Agregado por   05.01.2009
             VariablesCaja.vIndLineaADMCentral = "N";//indicador de linea en N
             evaluaPedidoProdVirtual(txtCorrelativo.getText().trim());//verifica si es un pedido virtual
             if(VariablesVirtual.vConProductoVirtual){
                 validarConexionADMCentral();//VariablesCaja.vIndLineaADMCentral
             }
             else
-            {    FarmaUtility.showMessage(this,"Este pedido no corresponde a un producto virtual",txtCorrelativo); //JCHAVEZ 28092009
+            {    FarmaUtility.showMessage(this,"Este pedido no corresponde a un producto virtual",txtCorrelativo); //  28092009
             }
-            log.debug("asolis: antes de buscar pedido VariablesCaja.vIndLineaADMCentral:"+VariablesCaja.vIndLineaADMCentral);
+            log.debug(" : antes de buscar pedido VariablesCaja.vIndLineaADMCentral:"+VariablesCaja.vIndLineaADMCentral);
             try 
             {
                 buscarRecarga();
@@ -642,7 +645,7 @@ public class DlgConsultarRecargaCorrelativo extends JDialog {
             VariablesVirtual.vConProductoVirtual = true;
         
       }
-      System.err.println("asolis: VariablesVirtual.vConProductoVirtual :" + VariablesVirtual.vConProductoVirtual);
+      System.err.println(" : VariablesVirtual.vConProductoVirtual :" + VariablesVirtual.vConProductoVirtual);
     }
     
     private int cantidadProductosVirtualesPedido(String pNumPedido)

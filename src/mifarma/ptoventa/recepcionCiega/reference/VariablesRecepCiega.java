@@ -10,7 +10,7 @@ public class VariablesRecepCiega {
     
     /**
      * Variables Recepcion Mercaderia
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE 16.11.09
      * */
     public static ArrayList vArrayListaGuias = new ArrayList();
@@ -50,7 +50,7 @@ public class VariablesRecepCiega {
          
 
     
-    //JCHAVEZ
+    // 
     
     public static String vNro_Recepcion =  ""; //vNumIngreso
     public static String vCod_Barra = "";
@@ -69,7 +69,7 @@ public class VariablesRecepCiega {
     public static String vTipoDestino_Transf = "";
     public static String vMotivo_Transf_Interno = "";
     public static String vDescMotivo_Transf = "";
-    public static String vDescMotivo_Transf_Larga = ""; //JMIRANDA 16.02.10
+    public static String vDescMotivo_Transf_Larga = ""; //  16.02.10
     public static String vMotivo_Transf = "";                
     public static String vCodDestino_Transf = "";
     public static String vDestino_Transf = "";
@@ -91,14 +91,14 @@ public class VariablesRecepCiega {
     public static String vIndTextFraccion = "" ;
     
     
-    //JMIRANDA
+    // 
     public static String vUsuarioConteo = "";
     
     public static ArrayList vArrayListCodBarraNoEncontrados = new ArrayList();
     public static ArrayList vOrdenarLista = new ArrayList();
     
     public static int contadorFila = 0;
-    //JMIRANDA 16.11.2009
+    //  16.11.2009
     //Variables para almacenar el último producto ingresado.
     public static String vLastCodBarra = "";  //Producto Ingresado
     public static String vLastDesProd = "";
@@ -139,14 +139,14 @@ public class VariablesRecepCiega {
     public static String vAuxCodBarra = "";
     public static String vAuxSecProd = "";
     
-    //JMIRANDA 03.12.09
+    //  03.12.09
     public static boolean vIndModificoCantActivo = false; //verifica que solo modifique una vez
     public static String vTipoPedRep = "";
     
-    //JMIRANDA 05.03.2010
+    //  05.03.2010
     public static String vGlosa = "";
     
-    //JMIRANDA 17.03.2010
+    //  17.03.2010
     public static String vTran_NroRecepcion = "";
     public static String vTran_Fecha = "";
     public static String vTran_UsuCrea = "";
@@ -165,10 +165,10 @@ public class VariablesRecepCiega {
     //JQUISPE 05.05.2010 Variable de numero de impresiones
     public static int vNumImpresiones = 0;
     
-    //ASOSA, 21.07.2010 
+    // , 21.07.2010 
     public static String secRepStk="";
     
-    //JMIRANDA 09.08.2011
+    //  09.08.2011
     public static String vAfectaSobranteNuevo = "S";
     
 }

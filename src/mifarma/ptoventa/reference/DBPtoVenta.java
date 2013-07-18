@@ -1,18 +1,21 @@
 package mifarma.ptoventa.reference;
 
-import java.sql.*;
-import java.util.ArrayList;
-import mifarma.common.*;
-import mifarma.ptoventa.administracion.reference.*;
-import mifarma.ptoventa.caja.reference.*;
-import mifarma.ptoventa.convenio.reference.*;
-import mifarma.ptoventa.ce.reference.VariablesCajaElectronica;
-import mifarma.ptoventa.inventario.reference.*;
-import mifarma.ptoventa.recepcionCiega.reference.VariablesRecepCiega;
-import mifarma.ptoventa.ventas.reference.UtilityVentas;
+import java.sql.SQLException;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import java.util.ArrayList;
+
+import mifarma.common.FarmaDBUtility;
+import mifarma.common.FarmaTableModel;
+import mifarma.common.FarmaUtility;
+import mifarma.common.FarmaVariables;
+
+import mifarma.ptoventa.administracion.reference.VariablesAdministracion;
+import mifarma.ptoventa.ce.reference.VariablesCajaElectronica;
+import mifarma.ptoventa.inventario.reference.VariablesInventario;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 //import mifarma.ptoventa.caja.reference.*;
 
 /**
@@ -23,8 +26,8 @@ import org.apache.commons.logging.LogFactory;
 * <br>
 * Histórico de Creación/Modificación<br>
 * LMESIA      22.02.2006   Creación<br>
-* ASOSA       13.01.2010   Modificación<br>
-* ASOSA       05.04.2010   Modificación<br>
+*         13.01.2010   Modificación<br>
+*         05.04.2010   Modificación<br>
 * <br>
 * @author Luis Mesia Rivera<br>
 * @version 1.0<br>
@@ -34,7 +37,7 @@ import org.apache.commons.logging.LogFactory;
 public class DBPtoVenta 
 {
   
-  private static final Log log = LogFactory.getLog(DBPtoVenta.class);
+  private static final Logger log = LoggerFactory.getLogger(DBPtoVenta.class);
   
   private static ArrayList parametros = new ArrayList();
 
@@ -122,10 +125,10 @@ public class DBPtoVenta
     } else if(pTipoMaestro.equals(ConstantsPtoVenta.LISTA_CLIENTES_CONVENIO))
     {
       parametros = new ArrayList();
-      parametros.add(VariablesConvenio.vCodConvenio);
+      
       FarmaDBUtility.executeSQLStoredProcedure(pTableModel,"PTOVENTA_CONV.CONV_LISTA_CLI_CONVENIO(?)",parametros,false);
       
-    }else if(pTipoMaestro.equals(ConstantsPtoVenta.LISTA_TRANSP_CIEGA)) //ASOSA 05.03.2010
+    }else if(pTipoMaestro.equals(ConstantsPtoVenta.LISTA_TRANSP_CIEGA)) //  05.03.2010
     {
        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
         parametros = new ArrayList();
@@ -378,7 +381,7 @@ public static String ProcesaDatosArqueo(String pTipMov)throws SQLException {
   
    /**
     * Se valida cambio de clave por usuario
-    * @AUTHOR JCORTEZ
+    * @AUTHOR  
     * @SINCE 04.09.09
     * */
   public static String validaCambioClave() throws SQLException {
@@ -392,7 +395,7 @@ public static String ProcesaDatosArqueo(String pTipMov)throws SQLException {
   
     /**
      * Obtiene indicador para activar la funcionalidad recepción de almacen o recepcion ciega
-     * @AUTHOR JCHAVEZ
+     * @AUTHOR  
      * @SINCE 17.12.09
      * */
     public static String obtieneIndicadorTipoRecepcionAlmacen() throws SQLException {
@@ -405,7 +408,7 @@ public static String ProcesaDatosArqueo(String pTipMov)throws SQLException {
     
     /**
      * Revierte pruebas en local nuevo
-     * @AUTHOR JCHAVEZ
+     * @AUTHOR  
      * @SINCE 18.12.09
      * */
      public static void reviertePruebasEnLocalNuevo(String indCN) throws SQLException
@@ -419,7 +422,7 @@ public static String ProcesaDatosArqueo(String pTipMov)throws SQLException {
     
     /**
      * Actualiza el indicador de revertir en 'S' en el local
-     * @AUTHOR JCHAVEZ
+     * @AUTHOR  
      * @SINCE 18.12.09
      * */
      public static void actualizaIndicadorRevertir() throws SQLException
@@ -433,7 +436,7 @@ public static String ProcesaDatosArqueo(String pTipMov)throws SQLException {
       }
     /**
      * Actualiza el indicador de revertir en 'S' en el local
-     * @AUTHOR JCHAVEZ
+     * @AUTHOR  
      * @SINCE 18.12.09
      * */
      public static boolean obtieneIndicadorRevertirLocal() throws SQLException
@@ -452,7 +455,7 @@ public static String ProcesaDatosArqueo(String pTipMov)throws SQLException {
     
     /**
      * Graba fecha inicio y fin de pruebas
-     * @AUTHOR JCHAVEZ
+     * @AUTHOR  
      * @SINCE 07.01.10
      * */
     public static void grabaInicioFinPrueba(String tipo) throws SQLException {        
@@ -467,7 +470,7 @@ public static String ProcesaDatosArqueo(String pTipMov)throws SQLException {
     
     /**
      * Obtiene cantidad de pruebas iniciada
-     * @AUTHOR JCHAVEZ
+     * @AUTHOR  
      * @SINCE 07.01.10
      * */
     public static int obtieneCantidadPruebas() throws SQLException {
@@ -480,7 +483,7 @@ public static String ProcesaDatosArqueo(String pTipMov)throws SQLException {
     
     /**
      * Obtiene cantidad de pruebas finalizadas, es decir con inicio y fin
-     * @AUTHOR JCHAVEZ
+     * @AUTHOR  
      * @SINCE 07.01.10
      * */
     public static int obtieneCantidadPruebasCompletas() throws SQLException {
@@ -493,7 +496,7 @@ public static String ProcesaDatosArqueo(String pTipMov)throws SQLException {
     
     /**
      * Obtiene fecha inicio de pruebas
-     * @AUTHOR JCHAVEZ
+     * @AUTHOR  
      * @SINCE 07.01.10
      * */
     public static String obtieneFechaInicioDePruebas() throws SQLException {
@@ -506,7 +509,7 @@ public static String ProcesaDatosArqueo(String pTipMov)throws SQLException {
     
     /**
      * Obtiene el indicador si se debe o no revertir los cambios en local
-     * @author  ASOSA
+     * @author   
      * @since   13.01.2010
      */
     public static String obtenerIndReverPermitido()throws SQLException{
@@ -519,7 +522,7 @@ public static String ProcesaDatosArqueo(String pTipMov)throws SQLException {
     
     /**
      * Indicador de proceso de reversion
-     * @AUTHOR  JCORTEZ
+     * @AUTHOR   
      * @SINCE  19.01.10
      */
     public static String obtenerIndReverLocal()throws SQLException{
@@ -550,7 +553,7 @@ public static String ProcesaDatosArqueo(String pTipMov)throws SQLException {
     
     /**
      * Obtiene indicador para dirección Fiscal De Matriz.
-     * @author  JMIRANDA
+     * @author   
      * @since   19.01.2010
      */    
     public static boolean obtieneIndDirMatriz()throws SQLException{

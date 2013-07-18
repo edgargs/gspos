@@ -47,8 +47,8 @@ import mifarma.ptoventa.ventas.reference.DBVentas;
 import mifarma.ptoventa.ventas.reference.UtilityVentas;
 import mifarma.ptoventa.ventas.reference.VariablesVentas;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public class DlgProcesar extends JDialog 
@@ -59,7 +59,7 @@ public class DlgProcesar extends JDialog
   private static JPanelWhite jContentPane = new JPanelWhite();
   
   //MARCO FAJARDO cambio: lentitud impresora termica 08/04/09
-  private static final Log log = LogFactory.getLog(UtilityCaja.class);
+  private static final Logger log = LoggerFactory.getLogger(UtilityCaja.class);
   
     private static Frame myParentFrame;
     private static JLabel lbloculto = new JLabel();
@@ -110,23 +110,23 @@ public class DlgProcesar extends JDialog
   void this_windowOpened(WindowEvent e)
   {
     FarmaUtility.centrarVentana(this);
-    //lapaz dubilluz 17.09.2010
+    //lapaz   17.09.2010
     //VariablesVentas.tableModelListaGlobalProductos = new FarmaTableModel(ConstantsVentas.columnsListaProductos,ConstantsVentas.defaultValuesListaProductos,0);
      try{
       /**
        * Cargara Variables de Titulos Dinamicos
-       * @author : dubilluz
+       * @author :  
        * @since  : 21.08.2007
        */
       VariablesPtoVenta.vNumeroDiasSinVentas = DBVentas.obtieneNumeroDiasSinVentas();
       System.out.println("VariablesPtoVenta.vNumeroDiasSinVentas : " + VariablesPtoVenta.vNumeroDiasSinVentas);
-      /*lapaz dubilluz 17.09.2010       
+      /*lapaz   17.09.2010       
       DBVentas.cargaListaProductosVenta(VariablesVentas.tableModelListaGlobalProductos);    
       Collections.sort(VariablesVentas.tableModelListaGlobalProductos.data,new FarmaTableComparator(2,true));
       
       /**
        * Carga los productos para Pedido Especial
-       * @author : dveliz
+       * @author :  
        * @since  : 18.10.08
        * /
       DBInventario.cargaListaProductosEspeciales(VariablesInventario.tableModelEspecial);
@@ -135,7 +135,7 @@ public class DlgProcesar extends JDialog
       /*
       //MARCO FAJARDO cambio: lentitud impresora termica 08/04/09
       //carga_impresoras();
-        //dubilluz 19.08.2010
+        //  19.08.2010
         if(!FarmaVariables.vEconoFar_Matriz)  {
         UtilityVentas.carga_impresoras(myParentFrame);
         cargaIndImpresionRojoTicket();
@@ -143,7 +143,7 @@ public class DlgProcesar extends JDialog
 	   */
       cerrarVentana(true);
       
-      //JMIRANDA 04/08/09
+      //  04/08/09
       cargaDestinatarioEmailErrorCobro();
       cargaDestinatarioEmailErrorAnulacion();
       cargaDestinatarioEmailErrorImpresion();
@@ -168,7 +168,7 @@ public class DlgProcesar extends JDialog
                      String pNombreImpresora = "";
                      //String vIndExisteImpresora = DBCaja.obtieneNameImpConsejos();
                      VariablesPtoVenta.vIndExisteImpresoraConsejo = DBCaja.obtieneNameImpConsejos();
-                     VariablesPtoVenta.vTipoImpTermicaxIp=DBCaja.obtieneTipoImprConsejoXIp();//JCHAVEZ 03.07.2009 obtiene tipo de imopresora por IP
+                     VariablesPtoVenta.vTipoImpTermicaxIp=DBCaja.obtieneTipoImprConsejoXIp();//  03.07.2009 obtiene tipo de imopresora por IP
                        System.out.println("Tipo Impresora :" + VariablesPtoVenta.vTipoImpTermicaxIp);  
                      System.out.println("Buscando impresora :"+VariablesPtoVenta.vIndExisteImpresoraConsejo);
                      System.out.println("impresoras..encontradas...");
@@ -193,7 +193,7 @@ public class DlgProcesar extends JDialog
                      
                      /**0
                       * 03/07/2009 
-                      * dubilluz 
+                      *   
                       * se genero error en produccion
                       * String vIndExisteImpresora = DBCaja.obtieneNameImpConsejos();
                      
@@ -264,7 +264,7 @@ public class DlgProcesar extends JDialog
      System.err.println("VariablesPtoVenta.vIndImprimeRojo:"+VariablesPtoVenta.vIndImprimeRojo);
     }
     
-    //JMIRANDA 04/08/09 
+    //  04/08/09 
     //OBTIENE EL DESTINATARIO PARA ENVIAR EMAIL ERROR COBRO
     private void cargaDestinatarioEmailErrorCobro(){
         String pResultado = "";
@@ -279,7 +279,7 @@ public class DlgProcesar extends JDialog
         }             
     }
     
-    //JMIRANDA 04/08/09 
+    //  04/08/09 
     //OBTIENE EL DESTINATARIO PARA ENVIAR EMAIL ERROR ANULACION
     private void cargaDestinatarioEmailErrorAnulacion(){
         String pResultado = "";
@@ -294,7 +294,7 @@ public class DlgProcesar extends JDialog
         }                
     }
     
-    //JMIRANDA 04/08/09 
+    //  04/08/09 
     //OBTIENE EL DESTINATARIO PARA ENVIAR EMAIL ERROR IMPRESION
     private void cargaDestinatarioEmailErrorImpresion(){
         String pResultado = "";

@@ -43,7 +43,7 @@ import mifarma.ptoventa.reference.VariablesPtoVenta;
  * Nombre de la Aplicación : DlgIngresarLote.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * ASOSA 13.04.2010 Creación<br>
+ *   13.04.2010 Creación<br>
  * <br>
  * 
  * @author Alfredo Sosa Dordán<br>
@@ -263,7 +263,7 @@ public class DlgIngresarLote extends JDialog {
     
     /**
        * Verifica si existe o no el lote ingresado
-       * @author ASOSA
+       * @author  
        * @since 14.04.2010
        * @return
        */
@@ -281,7 +281,7 @@ public class DlgIngresarLote extends JDialog {
     
     /**
        * Valida si el campo del lote no esta vacio
-       * @author ASOSA
+       * @author  
        * @since 14.04.2010
        * @return
        */

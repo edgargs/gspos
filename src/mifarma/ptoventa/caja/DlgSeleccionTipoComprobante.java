@@ -318,7 +318,7 @@ public class DlgSeleccionTipoComprobante extends JDialog
     bloqueaDatosCliente();
     //Se colocará el texto correspondiente al IP de la pc 
     //si emite boleta o ticket
-    //dubilluz 21.07.2009
+    //  21.07.2009
     //inicio
     System.err.println("Err-"+VariablesVentas.vTip_Comp_Ped);
     String pTipoBoletaTicketPC = setTipoComprobante(ConstantsVentas.TIPO_COMP_BOLETA);
@@ -334,12 +334,12 @@ public class DlgSeleccionTipoComprobante extends JDialog
           
     /**
      * Si es tipo funcional
-     * @author dubilluz
+     * @author  
      * @since  30.04.2008
      */
     if( FarmaVariables.vTipCaja.equalsIgnoreCase(ConstantsPtoVenta.TIP_CAJA_MULTIFUNCIONAL))
     {
-        System.out.println("JCORTEZ: VariablesVentas.vTip_Comp_Ped--> "+VariablesVentas.vTip_Comp_Ped);
+        System.out.println(" : VariablesVentas.vTip_Comp_Ped--> "+VariablesVentas.vTip_Comp_Ped);
         if(VariablesCaja.vNumPedVta.trim().length()==0){
             if(!VariablesVentas.vIndObligaDatosCliente)
             {
@@ -451,7 +451,7 @@ public class DlgSeleccionTipoComprobante extends JDialog
     {
       guardaValoresCliente();
       if(!validaDatosCliente()) return;
-      //JMIRANDA 11/08/09
+      //  11/08/09
       try {
               DBVentas.actualizarCabeceraPedido();
           }catch(SQLException sqlEx){
@@ -513,7 +513,7 @@ public class DlgSeleccionTipoComprobante extends JDialog
     bloqueaDatosCliente();
     
     /**
-     * @dubilluz
+     * @ 
      * @since  15.05.2009
      */
     if(rbtBoleta.isSelected())
@@ -629,14 +629,14 @@ public class DlgSeleccionTipoComprobante extends JDialog
   
   /**
    * Coloca los datos del cliente Fidelizado
-   * @author Dubilluz
+   * @author  
    * @since  15.05.2009
    */
   private void colocaDatosFidelizado(){
       if(rbtBoleta.isSelected())
       {
       //Coloca los datos del cliente.
-      //dubilluz 15.05.2009
+      //  15.05.2009
       String cliente ="",dni= "",direccion="";
         cliente = cliente + " "+((VariablesFidelizacion.vNomCliente.trim().length()==0||VariablesFidelizacion.vNomCliente.trim().equalsIgnoreCase("N"))?"":VariablesFidelizacion.vNomCliente.trim());
         cliente = cliente + " "+((VariablesFidelizacion.vApeMatCliente.trim().length()==0||VariablesFidelizacion.vApeMatCliente.trim().equalsIgnoreCase("N"))?"":VariablesFidelizacion.vApeMatCliente.trim());

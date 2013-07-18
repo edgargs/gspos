@@ -390,7 +390,7 @@ public class DlgDetallePedidoEspecial extends JDialog {
     private void getTxtCantidad(int pRow, String pTipoCampo) {
         txtCantidad = new JTextFieldSanSerif();
         txtCantidad.setLengthText(6);
-        //Agregado por DVELIZ 10.10.08
+        //Agregado por   10.10.08
         /*txtCantidad.setInputVerifier(new InputVerifier(){
             public boolean verify(JComponent input) {
                 JTextField txtInput = (JTextField)input;

@@ -57,10 +57,10 @@ public class DlgListaMotivoRevertir extends JDialog {
 
     private JComboBox cmbMotivo = new JComboBox();
 
-    //JCORTEZ 15.04.09
+    //  15.04.09
     private boolean bValidaCompr = false;
 
-    //JCORTEZ 18.05.09
+    //  18.05.09
     private static String vTipMovCajaAux = "";
 
     // **************************************************************************

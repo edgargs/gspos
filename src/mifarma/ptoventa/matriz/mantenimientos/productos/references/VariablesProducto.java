@@ -71,7 +71,7 @@ public class VariablesProducto
   
    /**
    * Columnas de los locales donde esta el producto
-   * @author JCORTEZ
+   * @author  
    * @since  12.11.2007
    */
   public static FarmaColumnData columnsListaProdLocal[] =
@@ -84,7 +84,7 @@ public class VariablesProducto
     new FarmaColumnData(VariablesProducto.mesesUnidVend[1], 60, JLabel.RIGHT),
     new FarmaColumnData(VariablesProducto.mesesUnidVend[2], 60, JLabel.RIGHT),*/
     
-    //Modificado por DVELIZ 19.09.08
+    //Modificado por   19.09.08
     new FarmaColumnData("Ind.Rep.", 83, JLabel.RIGHT),
     new FarmaColumnData(VariablesProducto.mesesUnidVend[3], 60, JLabel.RIGHT),
     new FarmaColumnData(VariablesProducto.mesesUnidVend[2], 60, JLabel.RIGHT),
@@ -92,9 +92,9 @@ public class VariablesProducto
     new FarmaColumnData(VariablesProducto.mesesUnidVend[0], 60, JLabel.RIGHT),
     new FarmaColumnData("Reponer", 70, JLabel.RIGHT)};
   
-    //Modificado por DVELIZ 19.09.08
+    //Modificado por   19.09.08
   public static Object[] defaultValuesListaProdLocal ={" "," "," "," "," "," "," "," "," "};
-    //Modificado por DVELIZ 19.09.08
+    //Modificado por   19.09.08
   public static final Boolean[] editableListaLocales_Prod = { new Boolean(false),
                                                              new Boolean(false),
                                                              new Boolean(false),
@@ -123,7 +123,7 @@ public class VariablesProducto
  
   /**
    * Variable para la opcion ordenar de listad de productos y locales
-   * @author JCORTEZ
+   * @author  
    * @since  13.12.2007
    */
   public static String vColumna="";
@@ -132,7 +132,7 @@ public class VariablesProducto
   
   /**
    * Variable para el tipo de listado
-   * @author JCORTEZ
+   * @author  
    * @since  16.01.2008
    */
     public static String vTipoListado="";
@@ -141,7 +141,7 @@ public class VariablesProducto
     
   /**
    * Variable para el tipo de listado
-   * @author JCORTEZ
+   * @author  
    * @since  11.09.2008
    */
     public static boolean vTipoParametros=false;
@@ -149,14 +149,14 @@ public class VariablesProducto
     
     /**
      * Variable para el tipo de listado de locales(Lima/Provincia)
-     * @author JCORTEZ
+     * @author  
      * @since  19.09.2008
      */
     public static String Tipo_Local="";
     
     /**
      * Variables creadas para Pedido Adicional (Matriz)
-     * @author DVELIZ
+     * @author  
      * @since  22.09.08
      */
     public static String filtroListaLocalesPVM = "";
@@ -181,7 +181,7 @@ public class VariablesProducto
     /************************PEDIDO ESPECIAL MATRIZ****************************************/
     /**
      * Variables 
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE 04.01.2010
      * */
     

@@ -166,7 +166,7 @@ public class DlgListaProductos extends JDialog{
       {
         tableModelListaProductos = new FarmaTableModel(ConstantsRecepCiega.columnsListaProductos,ConstantsRecepCiega.defaultcolumnsListaProductos,0);
           /**
-           * JMIRANDA 07.01.10
+           *   07.01.10
            * Filtrar Búsqueda de producto solo los que esten en la entrega y hayan sido contados.
            * */          
           cargarListaProductos(VariablesRecepCiega.vNumIngreso.trim());

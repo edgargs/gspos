@@ -47,8 +47,8 @@ import mifarma.ptoventa.ventas.reference.DBVentas;
 import mifarma.ptoventa.ventas.reference.UtilityVentas;
 import mifarma.ptoventa.ventas.reference.VariablesVentas;
 
-import oracle.jdeveloper.layout.XYConstraints;
-import oracle.jdeveloper.layout.XYLayout;
+ 
+ 
 
 
 /**
@@ -78,7 +78,7 @@ public class DlgResumenPedidoGratuito extends JDialog {
   private BorderLayout borderLayout1 = new BorderLayout();
   private JPanel jContentPane = new JPanel();
   private JPanel pnlTotalesD = new JPanel();
-  private XYLayout xYLayout6 = new XYLayout();
+   
   private JLabel lblTotalD = new JLabel();
   private JLabel lblTotalS = new JLabel();
   private JLabel lblTotalDT = new JLabel();
@@ -87,7 +87,7 @@ public class DlgResumenPedidoGratuito extends JDialog {
   private JLabel lblRedondeo = new JLabel();
   private JLabel lblOpciones = new JLabel();
   private JPanel pnlTotalesT = new JPanel();
-  private XYLayout xYLayout5 = new XYLayout();
+   
   private JLabel lblDsctoPorc = new JLabel();
   private JLabel lblTotalesT = new JLabel();
   private JLabel lblBrutoT = new JLabel();
@@ -98,13 +98,13 @@ public class DlgResumenPedidoGratuito extends JDialog {
   private JLabel lblIGV = new JLabel();
   private JScrollPane scrProductos = new JScrollPane();
   private JPanel pnlProductos = new JPanel();
-  private XYLayout xYLayout2 = new XYLayout();
+   
   private JLabel lblTipoPedido = new FarmaBlinkJLabel();
   private JButton btnRelacionProductos = new JButton();
   private JLabel lblItemsT = new JLabel();
   private JLabel lblItems = new JLabel();
   private JPanel pnlAtencion = new JPanel();
-  private XYLayout xYLayout4 = new XYLayout();
+   
   private JLabel lblUltimoPedido = new JLabel();
   private JLabel lblUltimoPedidoT = new JLabel();
   private JLabel lblVendedor = new JLabel();
@@ -136,12 +136,7 @@ public class DlgResumenPedidoGratuito extends JDialog {
     this(null, "", false);
   }
 
-  /**
-  *Constructor
-  *@param <b>parent</b> Objeto Frame de la Aplicación.
-  *@param <b>title</b> Título de la Ventana.
-  *@param <b>modal</b> Tipo de Ventana.
-  */
+
   public DlgResumenPedidoGratuito(Frame parent, String title, boolean modal) {
     super(parent, title, modal);
     myParentFrame = parent;
@@ -188,7 +183,7 @@ public class DlgResumenPedidoGratuito extends JDialog {
     jContentPane.setSize(new Dimension(742, 423));
     pnlTotalesD.setFont(new Font("SansSerif", 0, 12));
     pnlTotalesD.setBorder(BorderFactory.createLineBorder(Color.black, 1));
-    pnlTotalesD.setLayout(xYLayout6);
+    pnlTotalesD. setLayout(null);
     pnlTotalesD.setBounds(new Rectangle(10, 355, 715, 35));
     pnlTotalesD.setBackground(new Color(43, 141, 39));
     lblTotalD.setText("9,990.00");
@@ -216,7 +211,7 @@ public class DlgResumenPedidoGratuito extends JDialog {
     lblOpciones.setBounds(new Rectangle(10, 395, 65, 15));
     pnlTotalesT.setFont(new Font("SansSerif", 0, 12));
     pnlTotalesT.setBackground(new Color(255, 130, 14));
-    pnlTotalesT.setLayout(xYLayout5);
+    pnlTotalesT. setLayout(null);
     pnlTotalesT.setBounds(new Rectangle(10, 330, 715, 25));
     lblDsctoPorc.setText("(00.00%)");
     lblDsctoPorc.setFont(new Font("SansSerif", 1, 12));
@@ -250,7 +245,7 @@ public class DlgResumenPedidoGratuito extends JDialog {
     scrProductos.setBounds(new Rectangle(10, 110, 715, 220));
     scrProductos.setBackground(new Color(255, 130, 14));
     pnlProductos.setFont(new Font("SansSerif", 0, 12));
-    pnlProductos.setLayout(xYLayout2);
+    pnlProductos. setLayout(null);
     pnlProductos.setBackground(new Color(255, 130, 14));
     pnlProductos.setBounds(new Rectangle(10, 85, 715, 25));
     lblTipoPedido.setFont(new Font("SansSerif", 1, 11));
@@ -282,7 +277,7 @@ public class DlgResumenPedidoGratuito extends JDialog {
     lblItems.setForeground(Color.white);
     lblItems.setHorizontalAlignment(SwingConstants.RIGHT);
     pnlAtencion.setFont(new Font("SansSerif", 0, 11));
-    pnlAtencion.setLayout(xYLayout4);
+    pnlAtencion .setLayout(null);
     pnlAtencion.setBorder(BorderFactory.createLineBorder(Color.black, 1));
     pnlAtencion.setBackground(new Color(43, 141, 39));
     pnlAtencion.setBounds(new Rectangle(10, 45, 715, 35));
@@ -332,33 +327,33 @@ public class DlgResumenPedidoGratuito extends JDialog {
     lblCliente_T.setText("Cliente:");
     lblCliente_T.setBounds(new Rectangle(10, 5, 55, 20));
     lblCliente.setBounds(new Rectangle(60, 5, 340, 20));
-    pnlTotalesD.add(lblTotalD, new XYConstraints(615, 5, 80, 20));
-    pnlTotalesD.add(lblTotalS, new XYConstraints(460, 5, 95, 20));
-    pnlTotalesD.add(lblTotalDT, new XYConstraints(575, 5, 35, 20));
-    pnlTotalesD.add(lblTotalST, new XYConstraints(375, 5, 80, 20));
-    pnlTotalesD.add(lblRedondeoT, new XYConstraints(10, 5, 110, 20));
-    pnlTotalesD.add(lblRedondeo, new XYConstraints(125, 5, 65, 20));
-    pnlTotalesT.add(lblDsctoPorc, new XYConstraints(380, 5, 65, 15));
-    pnlTotalesT.add(lblTotalesT, new XYConstraints(10, 5, 65, 15));
-    pnlTotalesT.add(lblBrutoT, new XYConstraints(85, 5, 50, 15));
-    pnlTotalesT.add(lblBruto, new XYConstraints(145, 5, 75, 15));
-    pnlTotalesT.add(lblDsctoT, new XYConstraints(240, 5, 50, 15));
-    pnlTotalesT.add(lblDscto, new XYConstraints(295, 5, 70, 15));
-    pnlTotalesT.add(lblIGVT, new XYConstraints(485, 5, 45, 15));
-    pnlTotalesT.add(lblIGV, new XYConstraints(540, 5, 95, 15));
+    pnlTotalesD.add(lblTotalD);
+    pnlTotalesD.add(lblTotalS);
+    pnlTotalesD.add(lblTotalDT);
+    pnlTotalesD.add(lblTotalST);
+    pnlTotalesD.add(lblRedondeoT);
+    pnlTotalesD.add(lblRedondeo);
+    pnlTotalesT.add(lblDsctoPorc);
+    pnlTotalesT.add(lblTotalesT);
+    pnlTotalesT.add(lblBrutoT);
+    pnlTotalesT.add(lblBruto);
+    pnlTotalesT.add(lblDsctoT);
+    pnlTotalesT.add(lblDscto);
+    pnlTotalesT.add(lblIGVT);
+    pnlTotalesT.add(lblIGV);
     scrProductos.getViewport();
-    pnlProductos.add(lblTipoPedido, new XYConstraints(325, 5, 320, 15));
-    pnlProductos.add(btnRelacionProductos, new XYConstraints(10, 5, 145, 15));
-    pnlProductos.add(lblItemsT, new XYConstraints(185, 5, 40, 15));
-    pnlProductos.add(lblItems, new XYConstraints(150, 5, 30, 15));
-    pnlAtencion.add(lblUltimoPedido, new XYConstraints(655, 10, 40, 15));
-    pnlAtencion.add(lblUltimoPedidoT, new XYConstraints(585, 10, 70, 15));
-    pnlAtencion.add(lblVendedor, new XYConstraints(245, 10, 70, 15));
-    pnlAtencion.add(lblNombreVendedor, new XYConstraints(315, 10, 245, 15));
-    pnlAtencion.add(lblTipoCambio, new XYConstraints(205, 10, 40, 15));
-    pnlAtencion.add(lblFecha, new XYConstraints(60, 10, 70, 15));
-    pnlAtencion.add(lblTipoCambioT, new XYConstraints(130, 10, 80, 15));
-    pnlAtencion.add(lblFechaT, new XYConstraints(10, 10, 50, 15));
+    pnlProductos.add(lblTipoPedido);
+    pnlProductos.add(btnRelacionProductos);
+    pnlProductos.add(lblItemsT);
+    pnlProductos.add(lblItems);
+    pnlAtencion.add(lblUltimoPedido);
+    pnlAtencion.add(lblUltimoPedidoT);
+    pnlAtencion.add(lblVendedor);
+    pnlAtencion.add(lblNombreVendedor);
+    pnlAtencion.add(lblTipoCambio);
+    pnlAtencion.add(lblFecha);
+    pnlAtencion.add(lblTipoCambioT);
+    pnlAtencion.add(lblFechaT);
     this.getContentPane().add(jContentPane, BorderLayout.CENTER);
     pnlTitle1.add(lblCliente, null);
     pnlTitle1.add(lblCliente_T, null);

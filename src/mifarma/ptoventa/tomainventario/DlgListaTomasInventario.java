@@ -400,7 +400,7 @@ public class DlgListaTomasInventario extends JDialog {
       dlgLogin.setVisible(true);
       FarmaVariables.vNuSecUsu  = numsec ;
       /**
-       * @author : dubilluz
+       * @author :  
        * @since  : 19.07.2007
        */
       VariablesTomaInv.vIdUsu_Toma = FarmaVariables.vIdUsu;

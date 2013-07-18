@@ -42,7 +42,7 @@ import mifarma.ptoventa.caja.reference.*;
  * Histórico de Creación/Modificación<br>
  * ERIOS      23.08.2006   Creación<br>
  * <br>
- * @author Paulo Cesar Ameghino Rojas<br>
+ * @author   Cesar Ameghino Rojas<br>
  * @version 1.0<br>
  *
  */
@@ -201,7 +201,7 @@ public class DlgCotizacionCompetencia extends JDialog
   {
     FarmaUtility.moveFocusJTable(tblLista);
     FarmaUtility.centrarVentana(this);
-        if(VariablesCajaElectronica.vTipCuadratura.equals("05")){ //ASOSA, 12.08.2010
+        if(VariablesCajaElectronica.vTipCuadratura.equals("05")){ // , 12.08.2010
             cargaLista_TURNO();
         }else{
             cargaLista();
@@ -230,7 +230,7 @@ public class DlgCotizacionCompetencia extends JDialog
         verificaCheckJTable();
       else
         FarmaUtility.showMessage(this, "No es posible realizar esta operación.", tblLista);*/
-      if(VariablesCajaElectronica.vIndVBCierreDia.equals(FarmaConstants.INDICADOR_S)) //ASOSA, 09.08.2010
+      if(VariablesCajaElectronica.vIndVBCierreDia.equals(FarmaConstants.INDICADOR_S)) // , 09.08.2010
           FarmaUtility.showMessage(this, "No es posible realizar esta operación.", tblLista);
       else
           verificaCheckJTable();
@@ -257,7 +257,7 @@ public class DlgCotizacionCompetencia extends JDialog
         } else FarmaUtility.showMessage(this,"Seleccione al menos un registro para agregar",tblLista);
       }  else
         FarmaUtility.showMessage(this, "No es posible realizar esta operación.", tblLista);*/
-          if(VariablesCajaElectronica.vIndVBCierreDia.equals(FarmaConstants.INDICADOR_S)){ //ASOSA, 11.08.2010
+          if(VariablesCajaElectronica.vIndVBCierreDia.equals(FarmaConstants.INDICADOR_S)){ // , 11.08.2010
               FarmaUtility.showMessage(this, "No es posible realizar esta operación.", tblLista);
           }  else{
               if(VariablesCajaElectronica.vArrayListInsertarCotizacion.size()>0){
@@ -346,7 +346,7 @@ public class DlgCotizacionCompetencia extends JDialog
           VariablesCajaElectronica.vMontTotal = (String)(((ArrayList)VariablesCajaElectronica.vArrayListInsertarCotizacion.get(i)).get(0));
           VariablesCajaElectronica.vNumerodeNota = (String)(((ArrayList)VariablesCajaElectronica.vArrayListInsertarCotizacion.get(i)).get(1)); 
           VariablesCajaElectronica.vGlosa = (String)(((ArrayList)VariablesCajaElectronica.vArrayListInsertarCotizacion.get(i)).get(2));
-            if(VariablesCajaElectronica.vTipCuadratura.equals("05")){   //ASOSA, 12.08.2010
+            if(VariablesCajaElectronica.vTipCuadratura.equals("05")){   // , 12.08.2010
                 insertaCuadraturaListaCTURNO(); 
             }else{
                 insertaCuadraturaLista();
@@ -358,7 +358,7 @@ public class DlgCotizacionCompetencia extends JDialog
         if (funcionAgrega)
         {
           FarmaUtility.aceptarTransaccion();
-            if(VariablesCajaElectronica.vTipCuadratura.equals("05")){ //ASOSA, 12.08.2010
+            if(VariablesCajaElectronica.vTipCuadratura.equals("05")){ // , 12.08.2010
                 cargaLista_TURNO();
             }else{
                 cargaLista();
@@ -375,7 +375,7 @@ public class DlgCotizacionCompetencia extends JDialog
   
     /**
      * Registrar la cotizacion de competencia en el cierre de turno
-     * @author ASOSA
+     * @author  
      * @since 12.08.2010
      * @throws SQLException
      */
@@ -390,7 +390,7 @@ public class DlgCotizacionCompetencia extends JDialog
     
     /**
      * Lista pero para cotizacion de competencias de turno
-     * @author ASOSA
+     * @author  
      * @since 12.08.2010
      */
     private void cargaLista_TURNO()

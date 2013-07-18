@@ -631,7 +631,7 @@ public class DlgPedidoReposicionVer extends JDialog
     {
       cargaListaProductos();
       //Se agrego para que se actualize los items actuales      
-      //23.10.2007   DUBILLUZ  MODIFICACION
+      //23.10.2007      MODIFICACION
       initPedidoActual();
       if(tableModel.data.size() > 0)
         if(FarmaUtility.rptaConfirmDialog(this,"¿Está Seguro de enviar el Pedido de Reposicion?"))
@@ -788,7 +788,7 @@ public class DlgPedidoReposicionVer extends JDialog
     VariablesInventario.vStkFisico_PedRep=tblListaProductos.getValueAt(pos,5).toString();
     VariablesInventario.vCantSug_PedRep=tblListaProductos.getValueAt(pos,7).toString();
     VariablesInventario.vCantMax_PedRep=tblListaProductos.getValueAt(pos,23).toString();
-    //Agregado DUBILLUZ
+    //Agregado  
     VariablesInventario.vCantAdicional = tblListaProductos.getValueAt(pos,9).toString();
   }
   
@@ -884,7 +884,7 @@ public class DlgPedidoReposicionVer extends JDialog
   }
   
   /**NUEVO
-   * @Autor: Luis Reque Orellana
+   * @Autor:  
    * @Fecha: 30-03-2007
    * */
   private void mostrarUltimoCalculo()
@@ -922,7 +922,7 @@ public class DlgPedidoReposicionVer extends JDialog
   }
   
   /**NUEVO!
-   * @Autor:  Luis Reque Orellana
+   * @Autor:   
    * @Fecha:  25/04/2007
    * */
   private boolean funcionF1()
@@ -958,7 +958,7 @@ public class DlgPedidoReposicionVer extends JDialog
   
 
   /**NUEVO!
-   * @Autor:  Luis Reque Orellana
+   * @Autor:   
    * @Fecha:  25/04/2007
    * */
   private void initPedidoAdic()
@@ -986,19 +986,19 @@ public class DlgPedidoReposicionVer extends JDialog
   }
   
   /**NUEVO
-   * @Autor: Paulo Cesar Ameghino Rojas
+   * @Autor:   Cesar Ameghino Rojas
    * @Fecha: 11-06-2007
    * */  
   private void funcionF8()
   {
     cargarCabecera();
-    //26.09.2007 dubilluz Modificado
+    //26.09.2007   Modificado
     System.out.println("VariablesInventario.vCantMax_PedRep "+FarmaUtility.getDecimalNumber( VariablesInventario.vCantMax_PedRep));
     System.out.println("VariablesInventario.vCant_PedRep    "+FarmaUtility.getDecimalNumber(VariablesInventario.vCant_PedRep.trim()));
     //El sistema validara que el pedido adicional sera posible si 
     //la cantidad solicitada por el sistema sea mayor que el sistema
     //caso contrario mostraria un mensaje.
-    //13.11.2007 dubilluz modificado
+    //13.11.2007   modificado
     if(FarmaUtility.getDecimalNumber(VariablesInventario.vCant_PedRep.trim())>0){
         if(FarmaUtility.getDecimalNumber( VariablesInventario.vCantMax_PedRep.trim()) == FarmaUtility.getDecimalNumber(VariablesInventario.vCant_PedRep.trim()))  
          {

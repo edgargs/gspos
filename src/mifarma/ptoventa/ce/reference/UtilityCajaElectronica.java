@@ -10,8 +10,8 @@ import javax.swing.JDialog;
 
 import javax.swing.JTable;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import mifarma.common.*;
 
@@ -32,7 +32,7 @@ import mifarma.ptoventa.reference.VariablesPtoVenta;
  * 
  */
 public class UtilityCajaElectronica {
-	private static final Log log = LogFactory.getLog(UtilityCajaElectronica.class);
+	private static final Logger log = LoggerFactory.getLogger(UtilityCajaElectronica.class);
   /**
    * Constructor
    */
@@ -407,7 +407,7 @@ public class UtilityCajaElectronica {
           if(pIndProsegur.trim().equalsIgnoreCase(FarmaConstants.INDICADOR_S))
           {
               String vIndExisteImpresora = DBCaja.obtieneNameImpConsejos();
-              //String pTipoImp = DBCaja.obtieneTipoImprConsejo();JCHAVEZ 03.07.2009 se comentó para obtener el tipo de impresora por IP
+              //String pTipoImp = DBCaja.obtieneTipoImprConsejo();  03.07.2009 se comentó para obtener el tipo de impresora por IP
               String pCodSobre = "";      
               //for (int i = 0; i < servicio.length; i++)
               //{
@@ -421,14 +421,14 @@ public class UtilityCajaElectronica {
                     if (!vIndImpre.equals("N")) {
                        ArrayList pLista =  new ArrayList();
                        DBCajaElectronica.getSobreDeclarados(pSecMovCaja,pLista); //antes
-                       //DBCajaElectronica.getSobreDeclarados_03(pSecMovCaja,pLista); //ASOSA, 26.07.2010
+                       //DBCajaElectronica.getSobreDeclarados_03(pSecMovCaja,pLista); // , 26.07.2010
                        
                        for(int f=0;f<pLista.size();f++){
                            pCodSobre = FarmaUtility.getValueFieldArrayList(pLista,f,0);
                            String html = DBCajaElectronica.getHtmlSobreDeclarados(pSecMovCaja,pCodSobre); //antes
-                           //String html = DBCajaElectronica.getHtmlSobreDeclarados_02(pSecMovCaja,pCodSobre); //ASOSA, 26.07.2010
+                           //String html = DBCajaElectronica.getHtmlSobreDeclarados_02(pSecMovCaja,pCodSobre); // , 26.07.2010
                            log.debug("html:"+html);
-                           PrintConsejo.imprimirHtml(html.trim(),VariablesPtoVenta.vImpresoraActual,VariablesPtoVenta.vTipoImpTermicaxIp);//JCHAVEZ 03.07.2009 se reemplaza la variable pTipoImp por la constante VariablesPtoVenta.vTipoImpTermicaxIp
+                           PrintConsejo.imprimirHtml(html.trim(),VariablesPtoVenta.vImpresoraActual,VariablesPtoVenta.vTipoImpTermicaxIp);//  03.07.2009 se reemplaza la variable pTipoImp por la constante VariablesPtoVenta.vTipoImpTermicaxIp
                            indImp = true;
                        }
                        if(indImp)

@@ -315,7 +315,7 @@ public class DlgProductosPorTomaDiario extends JDialog {
         
       else if (e.getKeyCode() == KeyEvent.VK_F3) 
       {
-          //mfajardo 05.06.09 :Control de tiempo para realizar conteo  
+          //  05.06.09 :Control de tiempo para realizar conteo  
           if (esTomaValida())
           {                
             java.util.Date fecha = new java.util.Date(); 
@@ -323,7 +323,7 @@ public class DlgProductosPorTomaDiario extends JDialog {
             
             this.dispose(); 
             /*
-            //JMIRANDA 03/08/09
+            //  03/08/09
             try{
              DBInvDiario.modificaSegConteo();
              FarmaUtility.aceptarTransaccion();   
@@ -338,7 +338,7 @@ public class DlgProductosPorTomaDiario extends JDialog {
             dlgProductosPorTomaDiarioReConteo.setVisible(true);
             
             
-            //MFAJARDO :  TIMER TOMA INVENTARIO DIARIO
+            //  :  TIMER TOMA INVENTARIO DIARIO
             int tiempo=0;
             try
             {                        
@@ -362,7 +362,7 @@ public class DlgProductosPorTomaDiario extends JDialog {
           {              
           FarmaUtility.showMessage(this,"Por favor complete los datos de la toma ",      txtProductos);
           }
-          //mfajardo 05.06.09 :Control de tiempo para realizar conteo          
+          //  05.06.09 :Control de tiempo para realizar conteo          
           
       }
       //  

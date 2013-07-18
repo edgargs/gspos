@@ -27,9 +27,9 @@ import java.awt.event.ActionEvent;
 * Nombre de la Aplicación : DlgConsolidadoVentasProducto.java<br>
 * <br>
 * Histórico de Creación/Modificación<br>
-* PAULO      07.09.2006   Creación<br>
+*        07.09.2006   Creación<br>
 * <br>
-* @author PAULO CESAR AMEGHINO ROJAS<br>
+* @author   CESAR AMEGHINO ROJAS<br>
 * @version 1.0<br>
 *
 */

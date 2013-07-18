@@ -54,7 +54,7 @@ public class VariablesInvDiario
   public static String vNomLab = "";
 
   /**Alamacena el valos del laboratorio si es farma o no
-   * 22/03/2006   Paulo   Variable para guardra el valor del tipo de laboratorio
+   * 22/03/2006       Variable para guardra el valor del tipo de laboratorio
    */
   public static String vLaboratorio = "";
 
@@ -137,7 +137,7 @@ public class VariablesInvDiario
     
     public static double vStockProdCruceD = 0;
     
-  //Variables Paulo
+  //Variables  
   
   //Listado de Productos en Diferencias
   //Este listado se usara para revertir y/o boletear.
@@ -158,7 +158,7 @@ public class VariablesInvDiario
 
     public static String vSecPedidoTemporal = "";
     
-  //JCORTEZ 15.06.2009
+  //  15.06.2009
   public static String vCodMotivoAjuste = "";
     public static String vDescMotivoAjuste = "";
     public static String vAccion = "";
@@ -170,10 +170,10 @@ public class VariablesInvDiario
   public static String vNumPedido = "";
   public static String vTotalPedido = "";
   
-  //JMIRANDA 03/08/09
+  //  03/08/09
   public static String vIndSegConteo = "";
   
-  //JMIRANDA 25.09.09
+  //  25.09.09
   public static boolean vIndSeleccionado = true;
 
 }

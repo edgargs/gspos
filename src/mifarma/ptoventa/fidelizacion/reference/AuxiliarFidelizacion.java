@@ -28,16 +28,16 @@ import mifarma.ptoventa.ventas.DlgMedicoCampana;
 import mifarma.ptoventa.ventas.reference.DBVentas;
 import mifarma.ptoventa.ventas.reference.VariablesVentas;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class AuxiliarFidelizacion {
     
     private static String DLG_RESUMEN_PEDIDO  = "R";
     private static String DLG_LISTA_PRODUCTOS = "L";
     
-    private static final Log log = 
-        LogFactory.getLog(AuxiliarFidelizacion.class);
+    private static final Logger log = 
+        LoggerFactory.getLogger(AuxiliarFidelizacion.class);
 
     public AuxiliarFidelizacion() {
     }
@@ -60,10 +60,10 @@ public class AuxiliarFidelizacion {
         
         /// LEVANTA EL HILO DE FIDELIZACION
         /////////////////////////////////////////////////////////////////
-        // INICIO dubilluz 18.05.2012
+        // INICIO   18.05.2012
         Fidelizacion subFidelacion = new Fidelizacion(VariablesFidelizacion.vDniCliente,dlgObj,txtObj,lblDniSinComision);
         subFidelacion.start();
-        // FIN    dubilluz 18.05.2012
+        // FIN      18.05.2012
         /////////////////////////////////////////////////////////////////
         }
     }
@@ -87,7 +87,7 @@ public class AuxiliarFidelizacion {
             ArrayList array = 
                 (ArrayList)VariablesFidelizacion.vDataCliente.get(0);
             System.out.println("des 1");
-            //JCALLO 02.10.2008
+            //  02.10.2008
             //VariablesFidelizacion.vDniCliente = String.valueOf(array.get(0));
             //seteando los datos del cliente en las variables con los datos del array
             UtilityFidelizacion.setVariablesDatos(array);
@@ -104,18 +104,18 @@ public class AuxiliarFidelizacion {
                     VariablesFidelizacion.vApePatCliente + " " + 
                     VariablesFidelizacion.vApeMatCliente + "\n" +
                     "DNI: " + VariablesFidelizacion.vDniCliente, null);
-            //dubilluz 19.07.2011 - inicio
+            //  19.07.2011 - inicio
             if (VariablesFidelizacion.tmp_NumTarjeta_unica_Campana.trim().length() > 
                 0) {
                 UtilityFidelizacion.grabaTarjetaUnica(VariablesFidelizacion.tmp_NumTarjeta_unica_Campana.trim(), 
                                                       VariablesFidelizacion.vDniCliente);
             }
-            //dubilluz 19.07.2011 - fin 
-            //jcallo 02.10.2008
+            //  19.07.2011 - fin 
+            //  02.10.2008
             lblCli.setText(VariablesFidelizacion.vNomCliente + " " + 
                                VariablesFidelizacion.vApePatCliente + " " + 
                                VariablesFidelizacion.vApeMatCliente);
-            //fin jcallo 02.10.2008
+            //fin   02.10.2008
             //DAUBILLUZ -- Filtra los DNI anulados
             //25.05.2009
             VariablesFidelizacion.vDNI_Anulado = 
@@ -141,7 +141,7 @@ public class AuxiliarFidelizacion {
                 VariablesFidelizacion.vIndConexion = 
                         FarmaConstants.INDICADOR_N;
                 log.debug("**************************************");
-                //if(VariablesFidelizacion.vIndConexion.equals(FarmaConstants.INDICADOR_S)){//VER SI HAY LINEA CON MATRIZ   //VER SI HAY LINEA CON MATRIZ  JCHAVEZ 27092009. se comentó pues no es necesario que valide ya que se consultará al local
+                //if(VariablesFidelizacion.vIndConexion.equals(FarmaConstants.INDICADOR_S)){//VER SI HAY LINEA CON MATRIZ   //VER SI HAY LINEA CON MATRIZ    27092009. se comentó pues no es necesario que valide ya que se consultará al local
                 log.debug("jjccaalloo:VariablesFidelizacion.vDniCliente" + 
                           VariablesFidelizacion.vDniCliente);
                 VariablesVentas.vArrayList_CampLimitUsadosMatriz = 
@@ -149,7 +149,7 @@ public class AuxiliarFidelizacion {
 
                 log.debug("******VariablesVentas.vArrayList_CampLimitUsadosMatriz" + 
                           VariablesVentas.vArrayList_CampLimitUsadosMatriz);
-                // } // JCHAVEZ 27092009. se comentó pues no es necesario que valide ya que se consultará al local
+                // } //   27092009. se comentó pues no es necesario que valide ya que se consultará al local
                 //cargando las campañas automaticas limitadas en cantidad de usos desde matriz
             } else {
                 log.info("Cliente esta invalidado para descuento...");
@@ -171,7 +171,7 @@ public class AuxiliarFidelizacion {
                 if(pTipo.trim().equalsIgnoreCase(DLG_RESUMEN_PEDIDO))
                 {
                     //Se evalua si ya esta en el limite de ahorro diario
-                    //DUBILLUZ 28.05.2009
+                    //  28.05.2009
                     System.err.println("VariablesFidelizacion.vAhorroDNI_Pedido:" + 
                                        VariablesFidelizacion.vAhorroDNI_Pedido);
                     System.err.println("VariablesFidelizacion.vAhorroDNI_x_Periodo:" + 

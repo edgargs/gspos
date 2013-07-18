@@ -18,7 +18,7 @@ import mifarma.ptoventa.reference.ConstantsPtoVenta;
 * Nombre de la Aplicación : DBTranfDelivery.java<br>
 * <br>
 * Histórico de Creación/Modificación<br>
-* JCALLO    11.10.2008   Creación<br>
+*      11.10.2008   Creación<br>
 * <br>
 * @author Javier Callo Quispe<br>
 * @version 1.0<br>
@@ -34,7 +34,7 @@ public class DBTranfDelivery
   
     
     /**
-     * @autor JCALLO
+     * @autor  
      * @since 06.11.2008
      * */
      public static void cargaListaTransfDeliveryPendientes(FarmaTableModel pTableModel, String filtro) throws SQLException {
@@ -48,7 +48,7 @@ public class DBTranfDelivery
     } 
     
     /**
-     * @autor JCALLO
+     * @autor  
      * @since 06.11.2008
      * */
     public static void cargaDetalleTransfDelivery(FarmaTableModel pTableModel,String pCodLocalDel,String pNumPedido,
@@ -67,7 +67,7 @@ public class DBTranfDelivery
     }
     
     /**
-     * @autor JCALLO
+     * @autor  
      * @since 06.11.2008
      * */
     public static void actualizarPedidoTransfDelivery(String pCodLocalDel,String pNumPedido,
@@ -204,7 +204,7 @@ public class DBTranfDelivery
     /**
      * Se otiene indicador del tipo fraccionamiento del producto en el local destino,conexion a matriz
      * @throws SQLException
-     * @author JCHAVEZ
+     * @author  
      * @since 25.08.2009
      */
     public static String obtieneIndFraccLocalDestino(String pCodDestino,String pCodProd, 
@@ -229,7 +229,7 @@ public class DBTranfDelivery
     /**
      * Se otiene el fraccionamiento del producto en el local origen
      * @throws SQLException
-     * @author JCHAVEZ
+     * @author  
      * @since 25.08.2009
      */
     public static int getValFracProducto(String pCodProd)throws SQLException{
@@ -243,7 +243,7 @@ public class DBTranfDelivery
     
     /**
      * Agregar detalle de la transferencia delivery
-     * @author ASOSA
+     * @author  
      * @since 31.08.2010
      * @param numGuia
      * @param codProd

@@ -24,10 +24,10 @@ import mifarma.ptoventa.recepcionCiega.reference.VariablesRecepCiega;
 public class VariablesInventario
 {
     
-    //ASOSA  08.02.2010, Variable para las guias con transportista
+    //   08.02.2010, Variable para las guias con transportista
     public static ArrayList lista=new ArrayList();
     
-    //ASOSA 08.02.2010, Variables para agregar en la recepcion entrega
+    //  08.02.2010, Variables para agregar en la recepcion entrega
     public static String vNumGuia02="";
     public static String vNumEntrega="";
     public static String vNumNotaEst="";
@@ -104,7 +104,7 @@ public class VariablesInventario
   public static String vMotivo_Transf_Interno = "";
   public static String vMotivo_Transf = "";
   public static String vDescMotivo_Transf = "";
-  //JMIRANDA 10.12.09 descripción larga para impresión
+  //  10.12.09 descripción larga para impresión
   public static String vDescMotivo_Transf_Larga = "";
   public static String vCodDestino_Transf = "";
   public static String vDestino_Transf = "";
@@ -134,7 +134,7 @@ public class VariablesInventario
 	public static String vNumPag = "";
   public static String vNumGuia = "";
   
-  //JMIRANDA 14.12.09
+  //  14.12.09
   public static String vTipoPedRep = "";
 
   //DlgMovKardex
@@ -207,19 +207,19 @@ public class VariablesInventario
   public static boolean vMostrarAdic = true;
   
   /**
-   * @Autor: PAULO CESAR AMEGHINO ROJAS
+   * @Autor:   CESAR AMEGHINO ROJAS
    * @Fecha: 12/07/2007
    * */
   public static String vIndProdVirtual = "";
   
   /**
-   * @Autor: PAULO CESAR AMEGHINO ROJAS
+   * @Autor:   CESAR AMEGHINO ROJAS
    * @Fecha: 12/07/2007
    * */
   public static String vCantAtendida = "" ;
   public static String vNumPedido = "" ;
   /**
-   * @Autor: PAULO CESAR AMEGHINO ROJAS
+   * @Autor:   CESAR AMEGHINO ROJAS
    * @Fecha: 29/08/2007
    * */
   public static String vCodMotKardex = "" ;  
@@ -228,14 +228,14 @@ public class VariablesInventario
   /**
    * Variable para saber si se habilitara 
    * el texto de fraccion
-   * @author dubilluz
+   * @author  
    * @since  15.10.2007
    */
   public static String vIndTextFraccion = "" ;
   
   /**
    * Variables Competencia
-   * @author dubilluz
+   * @author  
    * @since  12.11.2007
    */
   public static String vRucCompetencia = "" ;
@@ -243,7 +243,7 @@ public class VariablesInventario
   
   /**
    * Variables para la cotizacion 
-   * @author dubilluz
+   * @author  
    * @since  26.11.2007
    */
   public static ArrayList vArrayDatosCotizacion = new ArrayList();
@@ -258,7 +258,7 @@ public class VariablesInventario
    
  /**
  * Variable permite fraccionar
- * @author JCORTEZ
+ * @author  
  * @since  17.04.2008
  */
  public static String vCFraccion = "";
@@ -274,7 +274,7 @@ public class VariablesInventario
  /**
    * Variables modulo Pedidos Especiales
    * Flag de que ya se abrio el dialogo de pedido especial nuevo
-   * @author JCALLO
+   * @author  
    * @since  29.09.2008
    */
   public static boolean vFlagF2Nuevo = false;
@@ -282,7 +282,7 @@ public class VariablesInventario
   
  /**
  * Variables modulo Pedidos Especiales
- * @author JCORTEZ
+ * @author  
  * @since  09.09.2008
  */
     public static int vPosi = 0;
@@ -298,7 +298,7 @@ public class VariablesInventario
     
     public static boolean ingresoDetalle =false;
     
-    //jcallo indicador de si es en INGRESAR CANTIDAD NUEVA o modificar cantidad
+    //  indicador de si es en INGRESAR CANTIDAD NUEVA o modificar cantidad
     public static boolean flag_modificarCantidad = false;
     
     public static boolean flag_F3 = false;
@@ -316,7 +316,7 @@ public class VariablesInventario
   
   /**
    * Table model global para solo listar una vez los productos y trabajar sobre estos.
-   * @author    DVELIZ
+   * @author     
    * @since     18.10.08
    * 
    */
@@ -334,23 +334,23 @@ public class VariablesInventario
   
   public static int vTipoFormatoImpresion = 0;
   
-  //JMIRANDA 09.02.10
+  //  09.02.10
   public static String vNumEntAfectar = ""; //Entrega a Afectar
   
-  //JMIRANDA 16.02.10
+  //  16.02.10
   public static boolean vIndTransfRecepCiega = false; 
   
-  //JMIRANDA 25.03.2010
+  //  25.03.2010
   public static boolean vIndModProdTransf = false; 
   
   public static String vBusquedaProdTransf = "";
   
   public static KeyEvent vKeyPress = null;
   
-  public static String fechaVencLoteX=""; //ASOSA, 14.04.2010
-  public static String nroLoteX=""; //ASOSA, 14.04.2010
+  public static String fechaVencLoteX=""; // , 14.04.2010
+  public static String nroLoteX=""; // , 14.04.2010
 
-  //ASOSA, 14.07.2010
+  // , 14.07.2010
   public static String secRespStk="";        
   
   public VariablesInventario()

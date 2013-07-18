@@ -156,7 +156,7 @@ public class DBInvCiclico
                                              parametros, false);
   }
 
-  //Metodos Paulo
+  //Metodos  
 
   public static void getListaTomasInv(FarmaTableModel pTableModel)throws SQLException
   {
@@ -360,6 +360,6 @@ public class DBInvCiclico
     FarmaDBUtility.executeSQLStoredProcedure(null, "PTOVENTA_TOMA_CIC.TI_ENVIA_TOMA_LOCAL(?,?,?)",parametros, false);    
   }
   
-//Metodos Paulo 
+//Metodos   
 
 }

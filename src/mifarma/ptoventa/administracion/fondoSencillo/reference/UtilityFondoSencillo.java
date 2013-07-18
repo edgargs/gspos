@@ -24,8 +24,8 @@ import mifarma.ptoventa.recepcionCiega.reference.UtilityRecepCiega;
 
 import mifarma.ptoventa.reference.VariablesPtoVenta;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Copyright (c) 2010 MIFARMA S.A.C.<br>
@@ -34,14 +34,14 @@ import org.apache.commons.logging.LogFactory;
  * Nombre de la Aplicación : UtilityFondoSencillo.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JMIRANDA      25.02.2010   Creación<br>
+ *        25.02.2010   Creación<br>
  * <br>
  * @author John Miranda Bonifaz<br>
  * @version 1.0<br>
  *
  */
 public class UtilityFondoSencillo {
-    private static final Log log = LogFactory.getLog(UtilityFondoSencillo.class);
+    private static final Logger log = LoggerFactory.getLogger(UtilityFondoSencillo.class);
     
     /** constructor */
     public UtilityFondoSencillo() {
@@ -194,7 +194,7 @@ public class UtilityFondoSencillo {
     
     /**
     * Se imprime VOUCHER de Asignaciones y devolucions
-    * @author JMIRANDA
+    * @author  
     * @since 04.03.10
     */     
      public static void imprimeVoucherDiferencias(JDialog pDialogo,
@@ -267,7 +267,7 @@ public class UtilityFondoSencillo {
                                                  String pSecMovCajaCierre,
                                                  Object obj) throws SQLException
     {  
-       //try dubilluz 20.07.2010
+       //try   20.07.2010
        //{                  
             String vIndImpre = DBCaja.obtieneIndImpresion();
             System.out.println("vIndImpreVoucher :"+vIndImpre);
@@ -297,7 +297,7 @@ public class UtilityFondoSencillo {
                                                  boolean pDoble) throws SQLException
     {  
         VariablesFondoSencillo.vImprimeVoucherFondoSencillo = false;
-       //try dubilluz 20.07.2010
+       //try   20.07.2010
        //{                  
            String vIndImpre = DBCaja.obtieneIndImpresion();
            System.out.println("vIndImpreVoucher :"+vIndImpre);
@@ -332,7 +332,7 @@ public class UtilityFondoSencillo {
                                                  boolean pDoble) throws SQLException
     {  
         VariablesFondoSencillo.vImprimeVoucherFondoSencillo = false;
-       //try dubilluz 20.07.2010
+       //try   20.07.2010
        //{                  
            String vIndImpre = DBCaja.obtieneIndImpresion();
            System.out.println("vIndImpreVoucher :"+vIndImpre);

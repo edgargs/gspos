@@ -42,7 +42,7 @@ import java.awt.event.KeyListener;
 * Nombre de la Aplicación : DlgOrdenar.java<br>
 * <br>
 * Histórico de Creación/Modificación<br>
-* JCORTEZ      14.01.2009   Creación<br>
+*        14.01.2009   Creación<br>
 * <br>
 * @author Jorge Cortez Alvarez<br>
 * @version 1.0<br>

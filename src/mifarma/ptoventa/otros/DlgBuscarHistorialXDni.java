@@ -13,8 +13,8 @@ import java.sql.SQLException;
 
 import javax.swing.JDialog;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import mifarma.common.FarmaConnectionRemoto;
 import mifarma.common.FarmaConstants;
@@ -39,7 +39,7 @@ import com.gs.mifarma.componentes.JTextFieldSanSerif;
  * Nombre de la Aplicación : DlgListaLocalesMot.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JCALLO      21.10.2008   Creación<br>
+ *        21.10.2008   Creación<br>
  * <br>
  * @author Javier Callo Quispe<br>
  * @version 1.0<br>
@@ -51,7 +51,7 @@ public class DlgBuscarHistorialXDni extends JDialog
 	/*                        DECLARACION PROPIEDADES                         */
 	/* ********************************************************************** */
 	
-	private static final Log log = LogFactory.getLog(DlgBuscarHistorialXDni.class);
+	private static final Logger log = LoggerFactory.getLogger(DlgBuscarHistorialXDni.class);
   
 	private Frame myParentFrame;
 	FarmaTableModel tableModel;
@@ -296,7 +296,7 @@ public class DlgBuscarHistorialXDni extends JDialog
 		} catch (SQLException e) {
 			FarmaUtility.liberarTransaccion();
 			//FarmaUtility.showMessage(this, "error al registrar la medida de Presion :"+e, txtDNI);
-			log.debug(e);			
+			 log.debug("",e);			
 		} finally {
 			FarmaConnectionRemoto.closeConnection();
 		} 

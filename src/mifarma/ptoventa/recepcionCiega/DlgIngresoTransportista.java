@@ -47,8 +47,8 @@ import mifarma.common.FarmaVariables;
 import mifarma.ptoventa.recepcionCiega.reference.*;
 import mifarma.ptoventa.reference.ConstantsPtoVenta;
 
-import oracle.jdeveloper.layout.XYConstraints;
-import oracle.jdeveloper.layout.XYLayout;
+ 
+ 
 
 /**
  * Copyright (c) 2009 MIFARMA S.A.C.<br>
@@ -57,8 +57,8 @@ import oracle.jdeveloper.layout.XYLayout;
  * Nombre de la Aplicación : DlgDatosTransportista.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JCORTEZ 16.11.2009 Creación<br>
- * JMIRANDA 16.03.2010 Modificación<br>
+ *   16.11.2009 Creación<br>
+ *   16.03.2010 Modificación<br>
  * <br>
  * 
  * @author JORGE CORTEZ ALVAREZ<br>
@@ -213,7 +213,7 @@ public class DlgIngresoTransportista extends JDialog {
         lblCodPromocion.setVisible(false);
         lblCodPromocion.setBounds(new Rectangle(0, 10, 105, 15));
         //--Se cambio el tamaño de digitos
-        //  12.09.2008 Dubilluz
+        //  12.09.2008  
         jLabelOrange2.setText("Placa Unidad :");
         jLabelOrange2.setBounds(new Rectangle(10, 40, 125, 20));
         txtPlaca.setBounds(new Rectangle(145, 40, 175, 20));
@@ -237,13 +237,13 @@ public class DlgIngresoTransportista extends JDialog {
         pnlTitle1.add(lblGlosa, null);
         pnlTitle1.add(txtPlaca, null);
         pnlTitle1.add(jLabelOrange2, null);
-        pnlTitle1.add(lblCodPromocion, new XYConstraints(0, 10, 105, 15));
-        pnlTitle1.add(txtPrecintos, new XYConstraints(115, 70, 195, 20));
-        pnlTitle1.add(txtBultos, new XYConstraints(115, 45, 195, 20));
-        pnlTitle1.add(lblValor_T, new XYConstraints(15, 70, 90, 15));
-        pnlTitle1.add(btnFechaInicial, new XYConstraints(15, 20, 90, 15));
-        pnlTitle1.add(txtNombre, new XYConstraints(115, 15, 195, 20));
-        pnlTitle1.add(lblFechaFinal_T, new XYConstraints(15, 50, 90, 15));
+        pnlTitle1.add(lblCodPromocion);
+        pnlTitle1.add(txtPrecintos);
+        pnlTitle1.add(txtBultos);
+        pnlTitle1.add(lblValor_T);
+        pnlTitle1.add(btnFechaInicial);
+        pnlTitle1.add(txtNombre);
+        pnlTitle1.add(lblFechaFinal_T);
         jContentPane.add(pnlTitle1, null);
         jContentPane.add(lblEsc, null);
         jContentPane.add(lblF11, null);
@@ -391,7 +391,7 @@ public class DlgIngresoTransportista extends JDialog {
         VariablesRecepCiega.vCantBultos = txtBultos.getText().trim();
         VariablesRecepCiega.vCantPrecintos = txtPrecintos.getText().trim();
 
-        //JMIRANDA 05.03.10
+        //  05.03.10
         VariablesRecepCiega.vGlosa = txtGlosa.getText().trim();
 
         System.out.println("VariablesRecepCiega.vNombreTrans " + 

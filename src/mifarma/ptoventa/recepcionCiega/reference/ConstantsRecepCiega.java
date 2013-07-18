@@ -12,7 +12,7 @@ public class ConstantsRecepCiega {
     
     /**
      * Se lista las entregas de mercaderia
-     *@AUTHOR  JCORTEZ
+     *@AUTHOR   
      *@SINCE  16.11.09
      * */
      public static final FarmaColumnData columnsListaRecepcion[] = {
@@ -95,7 +95,7 @@ public class ConstantsRecepCiega {
     
     public static final Object[] defaultValuesListaGuiasEntre= {" "," "," "," "," "," "," "," "};
     
-    //JCHAVEZ
+    // 
     
     public static final FarmaColumnData[] columnsListaProductosSegundoConteo =
     {     
@@ -194,7 +194,7 @@ public class ConstantsRecepCiega {
     
     
     
-    //JMIRANDA
+    // 
 
     public static final FarmaColumnData columnsListaProductosConteo[] = {
       new FarmaColumnData( "Descripción", 170, JLabel.LEFT ),
@@ -220,7 +220,7 @@ public class ConstantsRecepCiega {
     public static final String EstadoAfectadoTotal = "T";
     public static final String EstadoAfectadoParcial = "L"; // AUN NO SE UTILIZA ESTE ESTADO
  
- //JMIRANDA 17.03.2010 COLUMNAS LISTA TRANSPORTISTA
+ //  17.03.2010 COLUMNAS LISTA TRANSPORTISTA
     public static final FarmaColumnData columnsListaTransp[] = {
      new FarmaColumnData( "N° Ingreso", 90, JLabel.CENTER ), //0
      new FarmaColumnData( "Fecha Ingreso", 130, JLabel.CENTER ), //1

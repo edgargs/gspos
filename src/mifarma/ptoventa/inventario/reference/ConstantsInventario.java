@@ -182,7 +182,7 @@ public class ConstantsInventario
  public static final Object[] defaultValuesListaProductosPedidoReposicionDetalle = 
                 {" "," ", " ", " ", " ", " ", " ", " ", " "," ", " "," "};*/
 
-   //Modificado por DVELIZ 16.09.08
+   //Modificado por   16.09.08
     public static final FarmaColumnData columnsListaProductosPedidoReposicionDetalle[] =
       { new FarmaColumnData("Codigo", 50, JLabel.LEFT), //0
         new FarmaColumnData( "Descripcion", 400, JLabel.LEFT ),//1
@@ -206,7 +206,7 @@ public class ConstantsInventario
         new FarmaColumnData("", 0, JLabel.RIGHT) , // 120 dias //12
         new FarmaColumnData("", 0, JLabel.RIGHT) ,// tipo //13
         new FarmaColumnData("", 0, JLabel.RIGHT),// cantidad Adicional //14
-        //JCORTEZ 16/10/2008
+        //  16/10/2008
         new FarmaColumnData("", 0, JLabel.RIGHT) , //MM 30 dias
         new FarmaColumnData("", 0, JLabel.RIGHT) , //MM 60 dias
         new FarmaColumnData("", 0, JLabel.RIGHT) ,//MM 90 dias
@@ -218,14 +218,14 @@ public class ConstantsInventario
   //DlgPedidoReposicionNuevo
   /**
    * Cambio!
-   * @Autor:  Luis Reque Orellana
+   * @Autor:   
    * @Fecha:  20/04/2007
    **/
   public static final FarmaColumnData columnsListaProductosPedidoReposicionNuevo[] = {
 	    new FarmaColumnData( "Codigo", 50, JLabel.LEFT ),//0
      /**
        * Tipo "ABC"
-       * @author : dubilluz
+       * @author :  
        * @since  : 09.07.2007
        */
       new FarmaColumnData( " Tipo", 50, JLabel.CENTER),//01
@@ -266,7 +266,7 @@ public class ConstantsInventario
 	public static final Object[] defaultValuesListaProductosPedidoReposicionNuevo = {" "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "};
 
   //DlgPedidoReposicionRealizados
-  // MODIFICADO dubilluz 16/10/2008
+  // MODIFICADO   16/10/2008
   public static final FarmaColumnData columnsListaPedidosPedidoReposicionRealizados[] = {
 	    new FarmaColumnData( "No Pedido", 120, JLabel.LEFT ),
 	    new FarmaColumnData( "Fecha", 150, JLabel.LEFT ),
@@ -281,7 +281,7 @@ public class ConstantsInventario
 
   //DlgPedidoReposicionVer
   /**Modificado
-   * @Autor:  Luis Reque Orellana
+   * @Autor:   
    * @Fecha:  25/04/2007
    * */
   public static final FarmaColumnData columnsListaProductosPedidoReposicionVer[] = {
@@ -609,7 +609,7 @@ public class ConstantsInventario
   public static final String NOM_HASHTABLE_CMBTIPO_TRANSF = "cmbTipoTransf";
   public static final String NOM_HASHTABLE_CMBMOTIVO_TRANSF = "cmbMotivoTransf";
   
-  //Agregado por Paulo
+  //Agregado por  
   public static final String NOM_HASHTABLE_CMBTIPO_TRANSF_INTERNO = "cmbTipoTransfInterno";
 
   
@@ -671,7 +671,7 @@ public class ConstantsInventario
   
   /**
    * Variables para el listado de Competencias
-   * @author dubilluz
+   * @author  
    * @since  12.11.2007
    */
   //Lista Competencia
@@ -689,7 +689,7 @@ public class ConstantsInventario
   public static final String TIP_NOTA_ORIGEN_TRANS = "02";
   
   /**
-   * Autor: Luis Reque Orellana
+   * Autor:  
    * Fecha: 25/01/2007
    * */
   /*Arreglos para Ordenamiento*/
@@ -709,7 +709,7 @@ public class ConstantsInventario
   
   /**
    * Se declaran las variables para las tablas Pedido Adicional
-   * @author Dubilluz
+   * @author  
    * @since  09.09.2008
    */
   
@@ -771,7 +771,7 @@ public class ConstantsInventario
    
    /**
     * Variables de cabceras de historico de PVM Local.
-    * @author DVELIZ
+    * @author  
    *  @since  16.09.2008
     */
     public static final FarmaColumnData columnsHistorialPedidoAdicional[] = {
@@ -788,7 +788,7 @@ public class ConstantsInventario
   
   /**
    * Se declaran las variables para el listado de pedidos especiales
-   * @author JCORTEZ
+   * @author  
    * @since  09.09.2008
    */
   public static final FarmaColumnData columnsListaPedidosEspeciales[] = {
@@ -845,7 +845,7 @@ public class ConstantsInventario
   public static final int CONS_ING_PED_ESPC = 1;
   
   
-  //jcallo 16.10.2008 DlgResumenPedidoEsp
+  //  16.10.2008 DlgResumenPedidoEsp
   public static final FarmaColumnData columnsListaResumenPedidoEsp[] = {      
       new FarmaColumnData( "Codigo", 50, JLabel.LEFT ),
       new FarmaColumnData( "Descripcion", 230, JLabel.LEFT ),
@@ -868,6 +868,6 @@ public class ConstantsInventario
     public static final String TIPO_PED_REG_ZTNL = "ZTNL";
     public static final String TIPO_PED_REG_UB_L = "UB-L";
     
-    //DUBILLUZ
+    // 
     public static final boolean IND_CAMBIO_DU = true;
 }

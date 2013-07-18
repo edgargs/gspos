@@ -30,9 +30,9 @@ import javax.swing.*;
 * Nombre de la Aplicación : DlgInformacionTarjeta.java<br>
 * <br>
 * Histórico de Creación/Modificación<br>
-* Paulo      06.04.2006   Creación<br>
+*        06.04.2006   Creación<br>
 * <br>
-* @author Paulo Cesar Ameghino Rojas<br>
+* @author   Cesar Ameghino Rojas<br>
 * @version 1.0<br>
 *
 */
@@ -61,9 +61,9 @@ public class DlgInformacionTarjeta extends JDialog
 
   /**
   *Constructor
-  *@param <b>parent</b> Objeto Frame de la Aplicación.
-  *@param <b>title</b> Título de la Ventana.
-  *@param <b>modal</b> Tipo de Ventana.
+  *@param   Objeto Frame de la Aplicación.
+  *@param   Título de la Ventana.
+  *@param   Tipo de Ventana.
   */
   public DlgInformacionTarjeta(Frame parent, String title, boolean modal)
   {

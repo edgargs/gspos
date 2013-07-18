@@ -17,8 +17,8 @@ import javax.swing.JDialog;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import mifarma.common.FarmaConnectionRemoto;
 import mifarma.common.FarmaConstants;
@@ -49,7 +49,7 @@ import mifarma.ptoventa.reference.VariablesPtoVenta;
  * Nombre de la Aplicación : DlgListaLocalesMot.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JCALLO      21.10.2008   Creación<br>
+ *        21.10.2008   Creación<br>
  * <br>
  * @author Javier Callo Quispe<br>
  * @version 1.0<br>
@@ -61,7 +61,7 @@ public class DlgRegMedidaPresion extends JDialog
 	/*                        DECLARACION PROPIEDADES                         */
 	/* ********************************************************************** */
 	
-	private static final Log log = LogFactory.getLog(DlgRegMedidaPresion.class);
+	private static final Logger log = LoggerFactory.getLogger(DlgRegMedidaPresion.class);
   
 	FarmaTableModel tableModel;
 	private Frame myParentFrame;
@@ -578,7 +578,7 @@ public class DlgRegMedidaPresion extends JDialog
 	  //if(servicio != null) {
 		  try {
 			  String vIndExisteImpresora = DBCaja.obtieneNameImpConsejos();
-			 // String pTipoImp = DBCaja.obtieneTipoImprConsejo();JCHAVEZ 03.07.2009 se comentó para obtener el tipo de impresora por IP
+			 // String pTipoImp = DBCaja.obtieneTipoImprConsejo();  03.07.2009 se comentó para obtener el tipo de impresora por IP
 			  
 			  //for (int i = 0; i < servicio.length; i++) {
 				  //PrintService impresora = servicio[i];
@@ -588,7 +588,7 @@ public class DlgRegMedidaPresion extends JDialog
 					 
 					  PrintMedPresion.imprimir( generarHtmlImprimir(),
 							  					VariablesPtoVenta.vImpresoraActual , 
-                                                                                                VariablesPtoVenta.vTipoImpTermicaxIp);//JCHAVEZ 03.07.2009 se reemplaza la variable pTipoImp por la constante VariablesPtoVenta.vTipoImpTermicaxIp
+                                                                                                VariablesPtoVenta.vTipoImpTermicaxIp);//  03.07.2009 se reemplaza la variable pTipoImp por la constante VariablesPtoVenta.vTipoImpTermicaxIp
 					  //break;	
 				  //}
 			  //}	

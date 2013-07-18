@@ -14,7 +14,7 @@ import mifarma.common.FarmaColumnData;
 * Histórico de Creación/Modificación<br>
 * PAMEGHINO      10.10.2007   Creación<br>
 * <br>
-* @author PAULO CESAR AMEGHINO ROJAS<br>
+* @author   CESAR AMEGHINO ROJAS<br>
 * @version 1.0<br>
 *
 */
@@ -67,7 +67,7 @@ public class ConstantsControlIngreso
   public static final String LISTA_CARGOS = "10";
   /**
    * NUEVAS VARIABLES PARA MANTENIMIENTO DE PROVEEDORES
-   * @author Luis Reque Orellana
+   * @author  
    * @since 03.04.2007
    * */
   public static final String LISTA_CTA_ASOC  = "11";
@@ -77,7 +77,7 @@ public class ConstantsControlIngreso
   public static final String LISTA_MONEDA    = "15";
   /**
     * NUEVAS VARIABLES PARA MANTENIMIENTO DE CONVENIOS
-    * @author Luis Reque Orellana
+    * @author  
     * @since 04.04.2007
     * */
   public static final String LISTA_EMPRESAS = "16";
@@ -126,7 +126,7 @@ public class ConstantsControlIngreso
 
  /**
   * Se añadieron columnas de entrada y fecha  2
-  * @author  dubilluz
+  * @author   
   * @since   23.11.2007
   */
   //Lista Filtro
@@ -149,7 +149,7 @@ public class ConstantsControlIngreso
   
   /**
    * Ingreso Temperatura
-   * @AUTHOR :JCORTEZ
+   * @AUTHOR : 
    * @SINCE : 11.02.09
    * */
 

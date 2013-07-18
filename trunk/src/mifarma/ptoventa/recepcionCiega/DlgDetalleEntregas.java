@@ -52,7 +52,7 @@ import mifarma.ptoventa.reference.ConstantsPtoVenta;
  * Nombre de la Aplicación : dlgdetalle.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JCORTEZ 16.11.2009 Creación<br>
+ *   16.11.2009 Creación<br>
  * <br>
  *
  * @author JORGE CORTEZ ALVAREZ<br>
@@ -127,7 +127,7 @@ public class DlgDetalleEntregas extends JDialog {
     private JLabelFunction lblF2 = new JLabelFunction();
 
     //**
-    //JMIRANDA 20.03.2010
+    //  20.03.2010
     private static final int COL_GUIA = 0;
     private static final int COL_ENTREGA = 1;
     private static final int COL_FECHA = 2;
@@ -454,7 +454,7 @@ public class DlgDetalleEntregas extends JDialog {
             lblEstado.setText(tblGuias.getValueAt(tblGuias.getSelectedRow(),7).toString());
             cargaListaProductos(tblGuias.getValueAt(tblGuias.getSelectedRow(),3).toString(),lblGuia.getText().trim());
             lblProductos.setText(FarmaUtility.formatNumber(FarmaUtility.sumColumTable(tblListaProductos,4), 0));
-            //JMIRANDA 20.03.2010
+            //  20.03.2010
             lblEntrega.setText(tblGuias.getValueAt(tblGuias.getSelectedRow(),1).toString());
         }*/
     }
@@ -515,7 +515,7 @@ public class DlgDetalleEntregas extends JDialog {
             lblEstado.setText(tblGuias.getValueAt(tblGuias.getSelectedRow(),7).toString());            
             cargaListaProductos(tblGuias.getValueAt(tblGuias.getSelectedRow(),3).toString(),lblGuia.getText().trim());
             lblProductos.setText(FarmaUtility.formatNumber(FarmaUtility.sumColumTable(tblListaProductos,4), 0));
-            //JMIRANDA 20.03.2010
+            //  20.03.2010
             lblEntrega.setText(tblGuias.getValueAt(tblGuias.getSelectedRow(),1).toString());
         }*/
     }
@@ -592,7 +592,7 @@ public class DlgDetalleEntregas extends JDialog {
             lblEstado.setText(tblGuias.getValueAt(tblGuias.getSelectedRow(),7).toString());            
             cargaListaProductos(tblGuias.getValueAt(tblGuias.getSelectedRow(),3).toString(),lblGuia.getText().trim());
             lblProductos.setText(FarmaUtility.formatNumber(FarmaUtility.sumColumTable(tblListaProductos,4), 0));
-            //JMIRANDA 20.03.2010
+            //  20.03.2010
             lblEntrega.setText(tblGuias.getValueAt(tblGuias.getSelectedRow(),COL_ENTREGA).toString());
         }
     }

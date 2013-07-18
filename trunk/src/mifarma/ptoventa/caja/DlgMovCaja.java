@@ -52,7 +52,7 @@ import mifarma.ptoventa.administracion.fondoSencillo.reference.VariablesFondoSen
 import mifarma.ptoventa.caja.reference.UtilityCaja;
 import mifarma.ptoventa.ventas.reference.DBVentas;
 
-import oracle.jdeveloper.layout.XYConstraints;
+ 
 
 public class DlgMovCaja extends JDialog {
 
@@ -102,11 +102,11 @@ public class DlgMovCaja extends JDialog {
     private JComboBox cmbSerieBoleta = new JComboBox();
     private JComboBox cmbSerieFactura = new JComboBox();
     
-    //JCORTEZ 15.04.09
+    //  15.04.09
     private boolean bValidaCompr=false;
     private JButtonLabel lblCaja_TT = new JButtonLabel();
     
-    //JCORTEZ 18.05.09
+    //  18.05.09
     private  static String vTipMovCajaAux = "";
     private JLabel lblMensajeCajero = new JLabel();
 
@@ -286,8 +286,8 @@ public class DlgMovCaja extends JDialog {
                     }
                 });
         //lblMensajeCajero.setBounds(new Rectangle(20, 25, 340, 20)); antes
-        lblMensajeCajero.setBounds(new Rectangle(3, 25, 380, 20));//ASOSA, 18.06.2010
-        lblMensajeCajero.setText("Ud. tiene asignado un fondo de sencillo de S/.XXX.XX"); //ASOSA, 20.06.2010
+        lblMensajeCajero.setBounds(new Rectangle(3, 25, 380, 20));// , 18.06.2010
+        lblMensajeCajero.setText("Ud. tiene asignado un fondo de sencillo de S/.XXX.XX"); // , 20.06.2010
         lblMensajeCajero.setBackground(Color.white);
         lblMensajeCajero.setForeground(Color.red);
         lblMensajeCajero.setFont(new Font("Dialog", 1, 14));
@@ -393,7 +393,7 @@ public class DlgMovCaja extends JDialog {
 		lblNumCaja.setText("" + VariablesCaja.vNumCaja);
          
         //Coloca el mensaje de asignacion de fondo de sencillo
-        //dubilluz - 15.06.2010
+        //  - 15.06.2010
         lblMensajeCajero.setText("");
         if (VariablesCaja.vTipMovCaja.equals(ConstantsCaja.MOVIMIENTO_APERTURA)) {            
             lblMensajeCajero.setText(getSencilloAsignado());
@@ -438,12 +438,12 @@ public class DlgMovCaja extends JDialog {
         
 	    FarmaUtility.centrarVentana(this);
              /**
-               * @AUTHOR JCORTEZ
+               * @AUTHOR  
                * @SINCE  10.06.09
                * Se valida que la ip tenga relacionada un tipo de impresora ticket o boleta
                * */
              if(validaIP()){
-                    //JCORTEZ 14/03/2009 valida si es necesario ingresar rango de comprobantes y facturas
+                    //  14/03/2009 valida si es necesario ingresar rango de comprobantes y facturas
                     //if(validaCompGeneral()){
                   if(VariablesCaja.vTipComp.equalsIgnoreCase(ConstantsPtoVenta.TIP_COMP_TICKET)){
                     System.out.println("ES TICKET");
@@ -572,7 +572,7 @@ public class DlgMovCaja extends JDialog {
 	}
 
 
-//asolis
+// 
   
     private void LimpiarTextBox() {
 		txtBoleta.setText("");
@@ -580,19 +580,19 @@ public class DlgMovCaja extends JDialog {
 	        FarmaUtility.moveFocus(txtBoleta);
 	}
         
-//asolis
+// 
   private boolean ValidarIngresoTextBox() {
   
       //if (txtBoleta.getText().trim().length() > 0 && txtFactura.getText().trim().length() > 0)  
    if (txtBoleta.getText().trim().length() > 0 || txtFactura.getText().trim().length() > 0) 
              return true;
    else {  
-       FarmaUtility.showMessage(this,"Es obligatorio el ingreso de Comprobantes.", null);//--add asolis   
+       FarmaUtility.showMessage(this,"Es obligatorio el ingreso de Comprobantes.", null);//--add     
        return false; 
    }
   }
 
-  //asolis 01/02/2009
+  //  01/02/2009
   // Descripcion :Obtiene el número de Boleta y Factura del Sistema para ser comparados al aperturar
   // y Cerrar Caja.
    private void buscarComprobantes() throws SQLException {
@@ -673,7 +673,7 @@ public class DlgMovCaja extends JDialog {
       }
    }
    
-//creado por asolis
+//creado por  
    // Descripcion :Valida comparación para  el número de Boleta y Factura  al aperturar y Cerrar Caja.
    
   private boolean ValidarIngreso_Boleta_Factura()  {
@@ -729,7 +729,7 @@ public class DlgMovCaja extends JDialog {
  
    }
 
-//modificado por asolis 
+//modificado por   
   
     private void efectuarMovimiento() throws SQLException {
     if( VariablesCaja.vTipMovCaja.equals(ConstantsCaja.MOVIMIENTO_APERTURA) ){
@@ -929,7 +929,7 @@ public class DlgMovCaja extends JDialog {
         
     /**
      * Se valida el ingreso de boletas y facturas para el ingreso en el cierre por caja
-     * @author : JCORTEZ
+     * @author :  
      * @since : 14.04.09
      * */          
     private boolean validaCompGeneral(){
@@ -948,7 +948,7 @@ public class DlgMovCaja extends JDialog {
     
     /**
      * Se valida el ingreso de boletas y facturas para el ingreso en el cierre por IP
-     * @author : JCORTEZ
+     * @author :  
      * @since : 10.06.09
      * */          
     private boolean validaIP(){
@@ -979,7 +979,7 @@ public class DlgMovCaja extends JDialog {
     
         String v_secuencialBoleta ,v_secuencialFactura;
         int CantFact=0;
-        System.out.println("Error jcortez");
+        System.out.println("Error  ");
         VariablesCaja.vNumSerieLocalBoleta = cmbSerieBoleta.getSelectedItem().toString().trim();
         CantFact=cmbSerieFactura.getItemCount();
         System.out.println("Cant Item Fact-->" +CantFact);
@@ -1064,11 +1064,11 @@ public class DlgMovCaja extends JDialog {
         }
         
         
-        if (ValidarIngresoTextBox()) { //asolis
+        if (ValidarIngresoTextBox()) { // 
             //FarmaUtility.showMessage(this,"VariablesCaja.vNumCaja: "+FarmaVariables.vNuSecUsu,null); 
             if((getIndOPEN_OR_NOT_OPEN() && 
                VariablesCaja.vTipMovCaja.equals(ConstantsCaja.MOVIMIENTO_APERTURA)) || 
-               VariablesCaja.vTipMovCaja.equals(ConstantsCaja.MOVIMIENTO_CIERRE)){ //ASOSA, 20.06.2010
+               VariablesCaja.vTipMovCaja.equals(ConstantsCaja.MOVIMIENTO_CIERRE)){ // , 20.06.2010
                 if (FarmaUtility.rptaConfirmDialog(this, 
                                                    pMensaje+"¿Está seguro que desea efectuar la operación?")) {
                     try {
@@ -1076,20 +1076,20 @@ public class DlgMovCaja extends JDialog {
                          * is tiene sencillo asignado
                          * */
                         /*
-                         * dubilluz - 15.06.2010
+                         *   - 15.06.2010
                          * */
                         flag = true;
                         vAsignaMovCajaSencillo = true;
                         /**/
                         if (flag) {
                             boolean flagFinal = true;
-                            buscarComprobantes(); //01/02/09 asolis
+                            buscarComprobantes(); //01/02/09  
                             if (ValidarIngreso_Boleta_Factura()) {
     
                                 efectuarMovimiento();
                                 ///
                                 if( UtilityFondoSencillo.indActivoFondo()){
-                                    //JMIRANDA 03.03.2010
+                                    //  03.03.2010
                                     if (vAsignaMovCajaSencillo) {
                                         VariablesFondoSencillo.vSecFondoSen = 
                                                 DBFondoSencillo.aceptaMontoAsignado(FarmaVariables.vNuSecUsu);
@@ -1097,7 +1097,7 @@ public class DlgMovCaja extends JDialog {
                                     ///
                                     if (VariablesFondoSencillo.vIndTieneFondoSencillo.equalsIgnoreCase("S") && 
                                         VariablesCaja.vTipMovCaja.equals(ConstantsCaja.MOVIMIENTO_APERTURA)) {
-                                        //JMIRANDA 02.03.10 RELACIONA MOVIENTO CAJA EN CE_FONDO_SENCILLO 
+                                        //  02.03.10 RELACIONA MOVIENTO CAJA EN CE_FONDO_SENCILLO 
                                         if(VariablesFondoSencillo.vSecFondoSen.trim().equalsIgnoreCase("N")){
                                             flagFinal = false;
                                             FarmaUtility.liberarTransaccion(); //libera bloqueo
@@ -1124,7 +1124,7 @@ public class DlgMovCaja extends JDialog {
                                     
                                     FarmaUtility.aceptarTransaccion();
         
-                                    //JCORTEZ Se muestra mensaje luego del cierre
+                                    //  Se muestra mensaje luego del cierre
                                     if (vTipMovCajaAux.trim().equals(ConstantsPtoVenta.TIP_MOV_CAJA_CIERRE)) {
                                         FarmaUtility.showMessage(this, 
                                                                  "Se guardó el cierre de caja correctamente", 
@@ -1133,7 +1133,7 @@ public class DlgMovCaja extends JDialog {
                                     }
         
                                     if (VariablesCaja.vTipMovCaja.equals(ConstantsCaja.MOVIMIENTO_APERTURA)) {
-                                        //dubilluz 20.07.2010
+                                        //  20.07.2010
                                         String mensaje = "Ticket de confirmación de fondo de sencillo se ha impreso con éxito.\nLa operación se realizó correctamente";
                                         if(VariablesFondoSencillo.vImprimeVoucherFondoSencillo){
                                             FarmaUtility.showMessage(this, 
@@ -1185,15 +1185,15 @@ public class DlgMovCaja extends JDialog {
                         cerrarVentana(false);
                     }
                 }
-            }else{ //ASOSA 20.06.2010
+            }else{ //  20.06.2010
                 //FarmaUtility.showMessage(this,"Ud. probablemente no cuente con fondo de sencillo asignado.\nVerifique con el QF del local",cmbSerieFactura); 
                 FarmaUtility.showMessage(this,"Ud. no cuenta con fondo de sencillo asignado.\n"+
                                               "Por favor coordine con su Jefe de Local.\n",cmbSerieFactura);
             }
-        } //--add asolis
+        } //--add  
         /*
         else {
-        FarmaUtility.showMessage(this,"Es obligatorio el ingreso de Comprobantes.", null);//--add asolis
+        FarmaUtility.showMessage(this,"Es obligatorio el ingreso de Comprobantes.", null);//--add  
         }
         */
         
@@ -1202,7 +1202,7 @@ public class DlgMovCaja extends JDialog {
     public String getSencilloAsignado(){
         String pMensaje = "";
         try {
-            //JMIRANDA 01.03.10 validar si tiene Fondo sencillo asignado   
+            //  01.03.10 validar si tiene Fondo sencillo asignado   
             // if( VariablesCaja.vTipMovCaja.equals(ConstantsCaja.MOVIMIENTO_APERTURA) ){
             if (VariablesCaja.vTipMovCaja.equals(ConstantsCaja.MOVIMIENTO_APERTURA) && 
                 UtilityFondoSencillo.indActivoFondo()) {
@@ -1236,7 +1236,7 @@ public class DlgMovCaja extends JDialog {
                         vAsignaMovCajaSencillo = true;
                     }
                      * */
-                    pMensaje = "Ud. tiene asignado un fondo de sencillo de S/."+VariablesFondoSencillo.vMontoAsignado;//ASOSA, 18.06.2010
+                    pMensaje = "Ud. tiene asignado un fondo de sencillo de S/."+VariablesFondoSencillo.vMontoAsignado;// , 18.06.2010
                 } 
     
             }
@@ -1253,7 +1253,7 @@ public class DlgMovCaja extends JDialog {
     
     /**
      * Determine si abre o no abre caja en caso este activo el fondo de sencillo y si le asignaron o no sencillo
-     * @author ASOSA
+     * @author  
      * @since 20.06.2010
      * @return
      */

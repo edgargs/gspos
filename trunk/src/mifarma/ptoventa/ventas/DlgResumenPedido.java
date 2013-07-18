@@ -49,26 +49,26 @@ import mifarma.common.FarmaVariables;
 import mifarma.ptoventa.administracion.usuarios.reference.DBUsuarios;
 import mifarma.ptoventa.caja.DlgFormaPago;
 import mifarma.ptoventa.caja.DlgIngresoSobre;
-import mifarma.ptoventa.caja.DlgNewCobro;
-import mifarma.ptoventa.caja.DlgProcesarCobroNew;
+
+
 import mifarma.ptoventa.caja.DlgSeleccionTipoComprobante;
 import mifarma.ptoventa.caja.reference.BeanDetaPago;
 import mifarma.ptoventa.caja.reference.ConstantsCaja;
 import mifarma.ptoventa.caja.reference.DBCaja;
 import mifarma.ptoventa.caja.reference.UtilityCaja;
-import mifarma.ptoventa.caja.reference.UtilityNewCobro;
+ 
 import mifarma.ptoventa.caja.reference.VariablesCaja;
-import mifarma.ptoventa.caja.reference.VariablesNewCobro;
+ 
 import mifarma.ptoventa.campAcumulada.DlgListaCampAcumulada;
 import mifarma.ptoventa.campAcumulada.reference.VariablesCampAcumulada;
 import mifarma.ptoventa.campana.DlgListDatosCampana;
 import mifarma.ptoventa.campana.reference.DBCampana;
 import mifarma.ptoventa.campana.reference.VariablesCampana;
-import mifarma.ptoventa.convenio.reference.DBConvenio;
-import mifarma.ptoventa.convenio.reference.UtilityConvenio;
-import mifarma.ptoventa.convenio.reference.VariablesConvenio;
-import mifarma.ptoventa.delivery.DlgListaClientes;
-import mifarma.ptoventa.delivery.reference.VariablesDelivery;
+ 
+ 
+ 
+ 
+ 
 import mifarma.ptoventa.fidelizacion.reference.AuxiliarFidelizacion;
 import mifarma.ptoventa.fidelizacion.reference.DBFidelizacion;
 import mifarma.ptoventa.fidelizacion.reference.UtilityFidelizacion;
@@ -84,11 +84,11 @@ import mifarma.ptoventa.ventas.reference.VariablesVentas;
 import mifarma.ptoventa.reference.VariablesPtoVenta;
 //VariablesPtoVenta
 
-import oracle.jdeveloper.layout.XYConstraints;
-import oracle.jdeveloper.layout.XYLayout;
+ 
+ 
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.gs.mifarma.componentes.JLabelFunction;
 import com.gs.mifarma.componentes.JLabelWhite;
@@ -104,19 +104,14 @@ import javax.swing.border.LineBorder;
 import mifarma.common.FarmaDBUtilityRemoto;
 
 import mifarma.ptoventa.caja.DlgIngresoSobre;
-import mifarma.ptoventa.caja.DlgNewCobro;
-import mifarma.ptoventa.caja.DlgProcesarCobroNew;
-import mifarma.ptoventa.caja.DlgTarjeCred;
+ 
+ 
+ 
 import mifarma.ptoventa.caja.reference.BeanDetaPago;
 import mifarma.ptoventa.caja.reference.ConstantsCaja;
-import mifarma.ptoventa.caja.reference.UtilityNewCobro;
-import mifarma.ptoventa.caja.reference.VariablesNewCobro;
-import mifarma.ptoventa.convenio.reference.UtilityConvenio;
-import mifarma.ptoventa.convenioBTLMF.DlgMensajeRetencion;
-import mifarma.ptoventa.convenioBTLMF.reference.ConstantsConvenioBTLMF;
-import mifarma.ptoventa.convenioBTLMF.reference.DBConvenioBTLMF;
-import mifarma.ptoventa.convenioBTLMF.reference.UtilityConvenioBTLMF;
-import mifarma.ptoventa.convenioBTLMF.reference.VariablesConvenioBTLMF;
+
+
+import mifarma.ptoventa.ce.reference.VariablesNewCobro;
 import mifarma.ptoventa.fidelizacion.reference.ConstantsFidelizacion;
 import mifarma.ptoventa.hilos.Fidelizacion;
 import  mifarma.ptoventa.fidelizacion.reference.AuxiliarFidelizacion;
@@ -129,11 +124,11 @@ import  mifarma.ptoventa.fidelizacion.reference.AuxiliarFidelizacion;
  * <br>
  * Histórico de Creación/Modificación<br>
  * LMESIA      29.12.2005   Creación
- * PAULO       28.04.2006   Modificacion<br>
- * JCALLO	   03/03/2009   Modificacion
- * ASOSA        18.12.2009  Modificacion <br>
- * ASOSA        03.02.2010 Modificacion <br>
- * ASOSA        17.02.2010 Modificacion <br>
+ *         28.04.2006   Modificacion<br>
+ *  	   03/03/2009   Modificacion
+ *          18.12.2009  Modificacion <br>
+ *          03.02.2010 Modificacion <br>
+ *          17.02.2010 Modificacion <br>
  * <br>
  * @author Luis Mesia Rivera<br>
  * @version 1.0<br>
@@ -149,7 +144,7 @@ public class DlgResumenPedido extends JDialog {
     JLabel lblvuelto = new JLabel();
 
 
-    private static final Log log = LogFactory.getLog(DlgResumenPedido.class);
+    private static final Logger log = LoggerFactory.getLogger(DlgResumenPedido.class);
 
     private String fechaPedido = "";
 
@@ -169,7 +164,7 @@ public class DlgResumenPedido extends JDialog {
      */
     private final
     /* Resumen Pedido */
-    //JCORTEZ 17.04.08
+    //  17.04.08
     int COL_RES_DSCTO = 5;
     private final int COL_RES_VAL_FRAC = 10;
     private final int COL_RES_ORIG_PROD = 19;
@@ -180,7 +175,7 @@ public class DlgResumenPedido extends JDialog {
     private final int COL_RES_CANT_DIAS = 24;
     private final int COL_RES_CUPON = 25;
 
-    // DUBILLUZ 09.07.2008
+    //   09.07.2008
     private final int COL_COD_CAMPANA = 0;
     private final int COL_TIPO_CAMPANA = 1;
     private final int COL_IND_MENSAJE_CAMPANA = 2;
@@ -203,7 +198,7 @@ public class DlgResumenPedido extends JDialog {
     private BorderLayout borderLayout1 = new BorderLayout();
     private JPanel jContentPane = new JPanel();
     private JPanel pnlTotalesD = new JPanel();
-    private XYLayout xYLayout6 = new XYLayout();
+     
     private JLabel lblTotalD = new JLabel();
     private JLabel lblTotalS = new JLabel();
     private JLabel lblTotalDT = new JLabel();
@@ -215,7 +210,7 @@ public class DlgResumenPedido extends JDialog {
     private JLabel lblPorPagarT = new JLabel();
     private JLabel lblPorPagar = new JLabel();
     private JPanel pnlTotalesT = new JPanel();
-    private XYLayout xYLayout5 = new XYLayout();
+     
     private JLabel lblDsctoPorc = new JLabel();
     private JLabel lblTotalesT = new JLabel();
     private JLabel lblBrutoT = new JLabel();
@@ -226,12 +221,12 @@ public class DlgResumenPedido extends JDialog {
     private JLabel lblIGV = new JLabel();
     private JScrollPane scrProductos = new JScrollPane();
     private JPanel pnlProductos = new JPanel();
-    private XYLayout xYLayout2 = new XYLayout();
+     
     private JButton btnRelacionProductos = new JButton();
     private JLabel lblItemsT = new JLabel();
     private JLabel lblItems = new JLabel();
     private JPanel pnlAtencion = new JPanel();
-    private XYLayout xYLayout4 = new XYLayout();
+     
     private JLabel lblUltimoPedido = new JLabel();
     private JLabel lblUltimoPedidoT = new JLabel();
     private JLabel lblVendedor = new JLabel();
@@ -277,7 +272,7 @@ public class DlgResumenPedido extends JDialog {
 
     private JLabel lblMensajeCupon = new JLabel();
     private JPanel pnlAtencion1 = new JPanel();
-    private XYLayout xYLayout7 = new XYLayout();
+     
     private JLabel lblUltimoPedido1 = new JLabel();
     private JLabel lblUltimoPedidoT1 = new JLabel();
     private JLabel lblVendedor1 = new JLabel();
@@ -297,7 +292,7 @@ public class DlgResumenPedido extends JDialog {
     private JLabel jLabel1 = new JLabel();
     private JLabel lblCuponIngr = new JLabel();
     private JPanel pnlTotalesT1 = new JPanel();
-    private XYLayout xYLayout8 = new XYLayout();
+     
     private JPanelHeader jPanelHeader1 = new JPanelHeader();
 
     private boolean vEjecutaAccionTeclaResumen = false;
@@ -376,7 +371,7 @@ public class DlgResumenPedido extends JDialog {
         jContentPane.setSize(new Dimension(742, 423));
         pnlTotalesD.setFont(new Font("SansSerif", 0, 12));
         pnlTotalesD.setBorder(BorderFactory.createLineBorder(Color.black, 1));
-        pnlTotalesD.setLayout(xYLayout6);
+        pnlTotalesD. setLayout(null);
         pnlTotalesD.setBounds(new Rectangle(10, 340, 715, 35));
         pnlTotalesD.setBackground(new Color(43, 141, 39));
         lblTotalD.setText("9,990.00");
@@ -421,7 +416,7 @@ public class DlgResumenPedido extends JDialog {
         lblPorPagar.setBounds(new Rectangle(525, 110, 715, 210));
         pnlTotalesT.setFont(new Font("SansSerif", 0, 12));
         pnlTotalesT.setBackground(new Color(255, 130, 14));
-        pnlTotalesT.setLayout(xYLayout5);
+        pnlTotalesT. setLayout(null);
         pnlTotalesT.setBounds(new Rectangle(495, 315, 230, 25));
         lblDsctoPorc.setText("(00.00%)");
         lblDsctoPorc.setFont(new Font("SansSerif", 1, 12));
@@ -457,7 +452,7 @@ public class DlgResumenPedido extends JDialog {
         scrProductos.setBounds(new Rectangle(10, 105, 715, 210));
         scrProductos.setBackground(new Color(255, 130, 14));
         pnlProductos.setFont(new Font("SansSerif", 0, 12));
-        pnlProductos.setLayout(xYLayout2);
+        pnlProductos. setLayout(null);
         pnlProductos.setBackground(new Color(255, 130, 14));
         pnlProductos.setBounds(new Rectangle(10, 80, 715, 25));
         btnRelacionProductos.setText("Relacion de Productos :");
@@ -486,7 +481,7 @@ public class DlgResumenPedido extends JDialog {
         lblItems.setForeground(Color.white);
         lblItems.setHorizontalAlignment(SwingConstants.RIGHT);
         pnlAtencion.setFont(new Font("SansSerif", 0, 11));
-        pnlAtencion.setLayout(xYLayout4);
+        pnlAtencion .setLayout(null);
         pnlAtencion.setBorder(BorderFactory.createLineBorder(Color.black, 1));
         pnlAtencion.setBackground(new Color(43, 141, 39));
         pnlAtencion.setBounds(new Rectangle(10, 45, 715, 30));
@@ -549,7 +544,7 @@ public class DlgResumenPedido extends JDialog {
         lblMensajeCupon.setBackground(new Color(232, 236, 230));
         lblMensajeCupon.setForeground(new Color(230, 23, 39));
         pnlAtencion1.setFont(new Font("SansSerif", 0, 11));
-        pnlAtencion1.setLayout(xYLayout7);
+        pnlAtencion1. setLayout(null);
         pnlAtencion1.setBorder(BorderFactory.createLineBorder(Color.black, 1));
         pnlAtencion1.setBackground(new Color(43, 141, 39));
         lblUltimoPedido1.setFont(new Font("SansSerif", 0, 11));
@@ -610,7 +605,7 @@ public class DlgResumenPedido extends JDialog {
         lblCuponIngr.setToolTipText("null");
         pnlTotalesT1.setFont(new Font("SansSerif", 0, 12));
         pnlTotalesT1.setBackground(Color.white);
-        pnlTotalesT1.setLayout(xYLayout8);
+        pnlTotalesT1. setLayout(null);
         pnlTotalesT1.setBounds(new Rectangle(10, 315, 185, 25));
 
 
@@ -640,63 +635,59 @@ public class DlgResumenPedido extends JDialog {
         lblMedico.setFont(new Font("Dialog", 3, 11));
         lblMedico.setBorder(BorderFactory.createLineBorder(Color.black, 2));
         lblMedico.setVisible(false);
-        pnlAtencion1.add(lblUltimoPedido1, new XYConstraints(655, 10, 40, 15));
-        pnlAtencion1.add(lblUltimoPedidoT1,
-                         new XYConstraints(585, 10, 70, 15));
-        pnlAtencion1.add(lblVendedor1, new XYConstraints(245, 10, 70, 15));
-        pnlAtencion1.add(lblNombreVendedor1,
-                         new XYConstraints(315, 10, 245, 15));
-        pnlAtencion1.add(lblTipoCambio1, new XYConstraints(205, 10, 40, 15));
-        pnlAtencion1.add(lblFecha1, new XYConstraints(60, 10, 70, 15));
-        pnlAtencion1.add(lblTipoCambioT1, new XYConstraints(130, 10, 80, 15));
-        pnlAtencion1.add(lblFechaT1, new XYConstraints(10, 10, 50, 15));
-        pnlTotalesD.add(lblTotalD, new XYConstraints(615, 5, 80, 20));
+        pnlAtencion1.add(lblUltimoPedido1);
+        pnlAtencion1.add(lblUltimoPedidoT1);
+        pnlAtencion1.add(lblVendedor1);
+        pnlAtencion1.add(lblNombreVendedor1);
+        pnlAtencion1.add(lblTipoCambio1);
+        pnlAtencion1.add(lblFecha1);
+        pnlAtencion1.add(lblTipoCambioT1);
+        pnlAtencion1.add(lblFechaT1);
+        pnlTotalesD.add(lblTotalD);
         //pnlTotalesT.add(lblDsctoPorc, new XYConstraints(90, 5, 15, 15));
         //pnlTotalesT.add(lblDsctoPorc, new XYConstraints(90, 5, 15, 15));
 
-        pnlTotalesD.add(lblTotalD, new XYConstraints(619, 9, 80, 20));
-        pnlTotalesD.add(lblTotalS, new XYConstraints(464, 9, 95, 20));
-        pnlTotalesD.add(lblTotalDT, new XYConstraints(579, 9, 35, 20));
-        pnlTotalesD.add(lblTotalST, new XYConstraints(379, 9, 80, 20));
-        pnlTotalesD.add(lblRedondeoT, new XYConstraints(4, 9, 70, 20));
-        pnlTotalesD.add(lblRedondeo, new XYConstraints(79, 9, 65, 20));
-        pnlTotalesD.add(lblPorPagarT, new XYConstraints(194, 9, 100, 20));
-        pnlTotalesD.add(lblPorPagar, new XYConstraints(300, 9, 100, 20));
+        pnlTotalesD.add(lblTotalD);
+        pnlTotalesD.add(lblTotalS);
+        pnlTotalesD.add(lblTotalDT);
+        pnlTotalesD.add(lblTotalST);
+        pnlTotalesD.add(lblRedondeoT);
+        pnlTotalesD.add(lblRedondeo);
+        pnlTotalesD.add(lblPorPagarT);
+        pnlTotalesD.add(lblPorPagar);
 
-        pnlTotalesT.add(lblDsctoPorc, new XYConstraints(545, 5, 15, 15));
-        pnlTotalesT.add(lblTotalesT, new XYConstraints(495, 5, 15, 15));
-        pnlTotalesT.add(lblBrutoT, new XYConstraints(510, 5, 15, 15));
-        pnlTotalesT.add(lblBruto, new XYConstraints(525, 5, 15, 15));
-        pnlTotalesT.add(lblIGVT, new XYConstraints(65, 5, 45, 15));
-        pnlTotalesT.add(lblIGV, new XYConstraints(120, 5, 95, 15));
+        pnlTotalesT.add(lblDsctoPorc);
+        pnlTotalesT.add(lblTotalesT);
+        pnlTotalesT.add(lblBrutoT);
+        pnlTotalesT.add(lblBruto);
+        pnlTotalesT.add(lblIGVT);
+        pnlTotalesT.add(lblIGV);
         scrProductos.getViewport();
-        pnlProductos.add(lblMedico, new XYConstraints(230, 0, 485, 25));
-        pnlProductos.add(pnlAtencion1, new XYConstraints(10, 45, 715, 35));
-        pnlProductos.add(btnRelacionProductos,
-                         new XYConstraints(10, 5, 145, 15));
-        pnlProductos.add(lblItemsT, new XYConstraints(185, 5, 40, 15));
-        pnlProductos.add(lblItems, new XYConstraints(150, 5, 30, 15));
-        pnlAtencion.add(lblDNI_SIN_COMISION,
-                        new XYConstraints(384, -1, 330, 30));
-        pnlAtencion.add(lblFormaPago, new XYConstraints(454, -1, 260, 30));
-        pnlAtencion.add(lblUltimoPedido, new XYConstraints(655, 5, 40, 15));
-        pnlAtencion.add(lblUltimoPedidoT, new XYConstraints(585, 5, 70, 15));
-        pnlAtencion.add(lblVendedor, new XYConstraints(244, 4, 60, 15));
-        pnlAtencion.add(lblNombreVendedor, new XYConstraints(304, 4, 140, 15));
-        pnlAtencion.add(lblTipoCambio, new XYConstraints(205, 5, 40, 15));
-        pnlAtencion.add(lblFecha, new XYConstraints(60, 5, 70, 15));
-        pnlAtencion.add(lblTipoCambioT, new XYConstraints(130, 5, 80, 15));
-        pnlAtencion.add(lblFechaT, new XYConstraints(10, 5, 50, 15));
+        pnlProductos.add(lblMedico);
+        pnlProductos.add(pnlAtencion1);
+        pnlProductos.add(btnRelacionProductos);
+        pnlProductos.add(lblItemsT);
+        pnlProductos.add(lblItems);
+        pnlAtencion.add(lblDNI_SIN_COMISION);
+        pnlAtencion.add(lblFormaPago);
+        pnlAtencion.add(lblUltimoPedido);
+        pnlAtencion.add(lblUltimoPedidoT);
+        pnlAtencion.add(lblVendedor);
+        pnlAtencion.add(lblNombreVendedor);
+        pnlAtencion.add(lblTipoCambio);
+        pnlAtencion.add(lblFecha);
+        pnlAtencion.add(lblTipoCambioT);
+        pnlAtencion.add(lblFechaT);
         jPanelHeader1.add(lblCliente_T, null);
         jPanelHeader1.add(lblCliente, null);
         pnlTitle1.add(jPanelHeader1, null);
         pnlTitle1.add(lblProdOculto_T, null);
 
         pnlTitle1.add(txtDescProdOculto, null);
-        pnlTotalesT1.add(lblDNI_Anul, new XYConstraints(0, 0, 290, 25));
-        pnlTotalesT1.add(lblDscto, new XYConstraints(120, 0, 85, 25));
-        pnlTotalesT1.add(lblDsctoT, new XYConstraints(5, 5, 115, 15));
-        pnlTotalesT1.add(lblTopeAhoro, new XYConstraints(195, 0, 290, 25));
+        pnlTotalesT1.add(lblDNI_Anul);
+        pnlTotalesT1.add(lblDscto);
+        pnlTotalesT1.add(lblDsctoT);
+        pnlTotalesT1.add(lblTopeAhoro);
         jContentPane.add(lblF7, null);
         jContentPane.add(pnlTotalesT1, null);
         jContentPane.add(jLabel1, null);
@@ -767,7 +758,7 @@ public class DlgResumenPedido extends JDialog {
         jContentPane.setSize(new Dimension(742, 423));
         pnlTotalesD.setFont(new Font("SansSerif", 0, 12));
         pnlTotalesD.setBorder(BorderFactory.createLineBorder(Color.black, 1));
-        pnlTotalesD.setLayout(xYLayout6);
+        pnlTotalesD. setLayout(null);
         pnlTotalesD.setBounds(new Rectangle(10, 390, 740, 35));
         pnlTotalesD.setBackground(new Color(43, 141, 39));
         lblTotalD.setText("9,990.00");
@@ -812,7 +803,7 @@ public class DlgResumenPedido extends JDialog {
         lblPorPagar.setBounds(new Rectangle(525, 110, 715, 210));
         pnlTotalesT.setFont(new Font("SansSerif", 0, 12));
         pnlTotalesT.setBackground(new Color(255, 130, 14));
-        pnlTotalesT.setLayout(xYLayout5);
+        pnlTotalesT. setLayout(null);
         pnlTotalesT.setBounds(new Rectangle(520, 360, 230, 25));
         lblDsctoPorc.setText("(00.00%)");
         lblDsctoPorc.setFont(new Font("SansSerif", 1, 12));
@@ -850,7 +841,7 @@ public class DlgResumenPedido extends JDialog {
         scrProductos.setBounds(new Rectangle(10, 145, 740, 210));
         scrProductos.setBackground(new Color(255, 130, 14));
         pnlProductos.setFont(new Font("SansSerif", 0, 12));
-        pnlProductos.setLayout(xYLayout2);
+        pnlProductos. setLayout(null);
         pnlProductos.setBackground(new Color(255, 130, 14));
         pnlProductos.setBounds(new Rectangle(10, 115, 740, 25));
         btnRelacionProductos.setText("Relacion de Productos :");
@@ -879,7 +870,7 @@ public class DlgResumenPedido extends JDialog {
         lblItems.setForeground(Color.white);
         lblItems.setHorizontalAlignment(SwingConstants.RIGHT);
         pnlAtencion.setFont(new Font("SansSerif", 0, 11));
-        pnlAtencion.setLayout(xYLayout4);
+        pnlAtencion .setLayout(null);
         pnlAtencion.setBorder(BorderFactory.createLineBorder(Color.black, 1));
         pnlAtencion.setBackground(new Color(43, 141, 39));
         pnlAtencion.setBounds(new Rectangle(10, 80, 740, 30));
@@ -956,7 +947,7 @@ public class DlgResumenPedido extends JDialog {
         lblMensajeCupon.setBackground(new Color(232, 236, 230));
         lblMensajeCupon.setForeground(new Color(230, 23, 39));
         pnlAtencion1.setFont(new Font("SansSerif", 0, 11));
-        pnlAtencion1.setLayout(xYLayout7);
+        pnlAtencion1.setLayout(null);
         pnlAtencion1.setBorder(BorderFactory.createLineBorder(Color.black, 1));
         pnlAtencion1.setBackground(new Color(43, 141, 39));
         lblUltimoPedido1.setFont(new Font("SansSerif", 0, 11));
@@ -1012,7 +1003,7 @@ public class DlgResumenPedido extends JDialog {
         lblCuponIngr.setToolTipText("null");
         pnlTotalesT1.setFont(new Font("SansSerif", 0, 12));
         pnlTotalesT1.setBackground(Color.white);
-        pnlTotalesT1.setLayout(xYLayout8);
+        pnlTotalesT1. setLayout(null);
 
 
         pnlTotalesT1.setBounds(new Rectangle(35, 155, 715, 210));
@@ -1030,51 +1021,48 @@ public class DlgResumenPedido extends JDialog {
         lblFormaPago.setFont(new Font("SansSerif", 1, 12));
         lblFormaPago.setForeground(Color.red);
         lblFormaPago.setVisible(false);
-        pnlAtencion1.add(lblUltimoPedido1, new XYConstraints(655, 10, 40, 15));
-        pnlAtencion1.add(lblUltimoPedidoT1,
-                         new XYConstraints(585, 10, 70, 15));
-        pnlAtencion1.add(lblVendedor1, new XYConstraints(245, 10, 70, 15));
-        pnlAtencion1.add(lblNombreVendedor1,
-                         new XYConstraints(315, 10, 245, 15));
-        pnlAtencion1.add(lblTipoCambio1, new XYConstraints(205, 10, 40, 15));
+        pnlAtencion1.add(lblUltimoPedido1);
+        pnlAtencion1.add(lblUltimoPedidoT1);
+        pnlAtencion1.add(lblVendedor1);
+        pnlAtencion1.add(lblNombreVendedor1);
+        pnlAtencion1.add(lblTipoCambio1);
         //pnlTotalesT.add(lblDsctoPorc, new XYConstraints(90, 5, 15, 15));
         //pnlTotalesT.add(lblDsctoPorc, new XYConstraints(90, 5, 15, 15));
 
-        pnlAtencion1.add(lblFecha1, new XYConstraints(60, 10, 70, 15));
-        pnlAtencion1.add(lblTipoCambioT1, new XYConstraints(130, 10, 80, 15));
-        pnlAtencion1.add(lblFechaT1, new XYConstraints(10, 10, 50, 15));
-        pnlTotalesD.add(lblTotalD, new XYConstraints(615, 5, 80, 20));
-        pnlTotalesD.add(lblTotalD, new XYConstraints(619, 9, 80, 20));
-        pnlTotalesD.add(lblTotalS, new XYConstraints(464, 9, 95, 20));
-        pnlTotalesD.add(lblTotalDT, new XYConstraints(579, 9, 35, 20));
-        pnlTotalesD.add(lblTotalST, new XYConstraints(379, 9, 80, 20));
-        pnlTotalesD.add(lblRedondeoT, new XYConstraints(4, 9, 70, 20));
+        pnlAtencion1.add(lblFecha1);
+        pnlAtencion1.add(lblTipoCambioT1);
+        pnlAtencion1.add(lblFechaT1);
+        pnlTotalesD.add(lblTotalD);
+        pnlTotalesD.add(lblTotalD);
+        pnlTotalesD.add(lblTotalS);
+        pnlTotalesD.add(lblTotalDT);
+        pnlTotalesD.add(lblTotalST);
+        pnlTotalesD.add(lblRedondeoT);
 
-        pnlTotalesD.add(lblRedondeo, new XYConstraints(79, 9, 65, 20));
-        pnlTotalesD.add(lblPorPagarT, new XYConstraints(194, 9, 100, 20));
-        pnlTotalesD.add(lblPorPagar, new XYConstraints(300, 9, 100, 20));
-        pnlTotalesT.add(lblDsctoPorc, new XYConstraints(545, 5, 15, 15));
-        pnlTotalesT.add(lblTotalesT, new XYConstraints(495, 5, 15, 15));
-        pnlTotalesT.add(lblBrutoT, new XYConstraints(510, 5, 15, 15));
-        pnlTotalesT.add(lblBruto, new XYConstraints(525, 5, 15, 15));
-        pnlTotalesT.add(lblIGVT, new XYConstraints(65, 5, 45, 15));
-        pnlTotalesT.add(lblIGV, new XYConstraints(120, 5, 95, 15));
+        pnlTotalesD.add(lblRedondeo);
+        pnlTotalesD.add(lblPorPagarT);
+        pnlTotalesD.add(lblPorPagar);
+        pnlTotalesT.add(lblDsctoPorc);
+        pnlTotalesT.add(lblTotalesT);
+        pnlTotalesT.add(lblBrutoT);
+        pnlTotalesT.add(lblBruto);
+        pnlTotalesT.add(lblIGVT);
+        pnlTotalesT.add(lblIGV);
         scrProductos.getViewport();
-        pnlProductos.add(pnlAtencion1, new XYConstraints(10, 45, 715, 35));
-        pnlProductos.add(btnRelacionProductos,
-                         new XYConstraints(10, 5, 145, 15));
-        pnlProductos.add(lblItemsT, new XYConstraints(185, 5, 40, 15));
-        pnlProductos.add(lblItems, new XYConstraints(150, 5, 30, 15));
-        pnlAtencion.add(lblFormaPago, new XYConstraints(454, -1, 260, 30));
-        pnlAtencion.add(lblUltimoPedido, new XYConstraints(655, 5, 40, 15));
-        pnlAtencion.add(lblUltimoPedidoT, new XYConstraints(585, 5, 70, 15));
-        pnlAtencion.add(lblVendedor, new XYConstraints(244, 4, 60, 15));
-        pnlAtencion.add(lblNombreVendedor, new XYConstraints(304, 9, 140, 15));
-        pnlAtencion.add(lblTipoCambio, new XYConstraints(205, 5, 40, 15));
+        pnlProductos.add(pnlAtencion1);
+        pnlProductos.add(btnRelacionProductos);
+        pnlProductos.add(lblItemsT);
+        pnlProductos.add(lblItems);
+        pnlAtencion.add(lblFormaPago);
+        pnlAtencion.add(lblUltimoPedido);
+        pnlAtencion.add(lblUltimoPedidoT);
+        pnlAtencion.add(lblVendedor);
+        pnlAtencion.add(lblNombreVendedor);
+        pnlAtencion.add(lblTipoCambio);
 
-        pnlAtencion.add(lblFecha, new XYConstraints(60, 5, 70, 15));
-        pnlAtencion.add(lblTipoCambioT, new XYConstraints(130, 5, 80, 15));
-        pnlAtencion.add(lblFechaT, new XYConstraints(10, 5, 50, 15));
+        pnlAtencion.add(lblFecha);
+        pnlAtencion.add(lblTipoCambioT);
+        pnlAtencion.add(lblFechaT);
 
         jPanelHeader1.add(lblCliente_T, null);
         jPanelHeader1.add(lblLCredito_T, null);
@@ -1083,8 +1071,8 @@ public class DlgResumenPedido extends JDialog {
         pnlTitle1.add(jPanelHeader1, null);
         pnlTitle1.add(lblProdOculto_T, null);
         pnlTitle1.add(txtDescProdOculto, BorderLayout.CENTER);
-        pnlTotalesT1.add(lblDNI_Anul, new XYConstraints(0, 0, 290, 25));
-        pnlTotalesT1.add(lblTopeAhoro, new XYConstraints(195, 0, 290, 25));
+        pnlTotalesT1.add(lblDNI_Anul);
+        pnlTotalesT1.add(lblTopeAhoro);
         jContentPane.add(lblF7, null);
         jContentPane.add(jLabel1, null);
         jContentPane.add(jScrollPane1, null);
@@ -1125,18 +1113,18 @@ public class DlgResumenPedido extends JDialog {
     // **************************************************************************
 
     private void initialize() {
-        //jcallo 02.10.2008
+        //  02.10.2008
         lblDscto.setVisible(false);
         lblDsctoT.setVisible(false);
-        //fin jcallo 02.10.2008
+        //fin   02.10.2008
         initTableResumenPedido();
         limpiaValoresPedido();
-        //dubilluz - 28.03.2012 inicio
-        VariablesConvenioBTLMF.limpiaVariablesBTLMF();
-        //dubilluz - 28.03.2012 fin
-        // Inicio Adicion Delivery 28/04/2006 Paulo
+        //  - 28.03.2012 inicio
+        
+        //  - 28.03.2012 fin
+        // Inicio Adicion Delivery 28/04/2006  
         limpiaVariables();
-        // Fin Adicion Delivery 28/04/2006 Paulo
+        // Fin Adicion Delivery 28/04/2006  
         FarmaVariables.vAceptar = false;
 
         //jquispe 25.07.2011 se agrego la funcionalidad de listar las campañas sin fidelizar
@@ -1164,7 +1152,7 @@ public class DlgResumenPedido extends JDialog {
         //limpiando variables de fidelizacion
         UtilityFidelizacion.setVariables();
 
-        //JCORTEZ 04.08.09 Se limpiar cupones.
+        //  04.08.09 Se limpiar cupones.
         VariablesVentas.vArrayListCuponesCliente.clear();
         VariablesVentas.dniListCupon = "";
 
@@ -1176,7 +1164,7 @@ public class DlgResumenPedido extends JDialog {
         FarmaVariables.vAceptar = true;
 
         if (FarmaVariables.vAceptar) {
-            log.info("******* JCORTEZ *********");
+            log.info("*******   *********");
             if (UtilityCaja.existeIpImpresora(this, null)) {
                 if (FarmaVariables.vTipCaja.equalsIgnoreCase(ConstantsPtoVenta.TIP_CAJA_MULTIFUNCIONAL) &&
                     !UtilityCaja.existeCajaUsuarioImpresora(this, null)) {
@@ -1210,7 +1198,7 @@ public class DlgResumenPedido extends JDialog {
     // **************************************************************************
 
     private void this_windowOpened(WindowEvent e) {
-        //JCHAVEZ 08102009.sn
+        //  08102009.sn
         try {
             lblF7.setVisible(DBVentas.getIndVerCupones());
 
@@ -1219,16 +1207,16 @@ public class DlgResumenPedido extends JDialog {
             lblF7.setVisible(false);
             ex.printStackTrace();
         }
-        //JCHAVEZ 08102009.en
+        //  08102009.en
 
-        // Inicio Adicion Delivery 28/04/2006 Paulo
+        // Inicio Adicion Delivery 28/04/2006  
         //if(FarmaVariables.vAceptar)
         //{
         // String nombreCliente = VariablesDelivery.vNombreCliente + " " +VariablesDelivery.vApellidoPaterno + " " + VariablesDelivery.vApellidoMaterno;
         // lblCliente.setText(nombreCliente);
         // FarmaVariables.vAceptar = false ;
         // }
-        // Fin Adicion Delivery 28/04/2006 Paulo
+        // Fin Adicion Delivery 28/04/2006  
         FarmaUtility.centrarVentana(this);
         obtieneInfoPedido();
         lblFecha.setText(fechaPedido);
@@ -1241,16 +1229,16 @@ public class DlgResumenPedido extends JDialog {
         lblNombreVendedor.setText(FarmaVariables.vNomUsu.trim() + " " +
                                   FarmaVariables.vPatUsu.trim() + " " +
                                   FarmaVariables.vMatUsu.trim());
-        // Inicio Adicion Delivery 28/04/2006 Paulo
+        // Inicio Adicion Delivery 28/04/2006  
         //String nombreCliente = VariablesDelivery.vNombreCliente + " " +VariablesDelivery.vApellidoPaterno + " " + VariablesDelivery.vApellidoMaterno;
         //lblCliente.setText(nombreCliente);
-        // Fin Adicion Delivery 28/04/2006 Paulo
+        // Fin Adicion Delivery 28/04/2006  
         colocaUltimoPedidoDiarioVendedor();
         //FarmaUtility.moveFocus(tblProductos);
         FarmaUtility.moveFocus(txtDescProdOculto);
 
 
-        //JCORTEZ 17.04.08
+        //  17.04.08
         lblTotalesT.setVisible(false);
         lblBrutoT.setVisible(false);
         lblBruto.setVisible(false);
@@ -1258,7 +1246,7 @@ public class DlgResumenPedido extends JDialog {
         //lblDscto.setVisible(false);
         lblDsctoPorc.setVisible(false);
 
-        //JCORTEZ 23.07.2008
+        //  23.07.2008
         lblCuponIngr.setText(VariablesVentas.vMensCuponIngre);
 
 
@@ -1313,9 +1301,9 @@ public class DlgResumenPedido extends JDialog {
                 } else if (e.getKeyCode() == KeyEvent.VK_F8) {
                     //Se ha comentado este metodo solo de manera temporal
                     //debe de colocarte una funcion para habilitar esto en tab gral
-                    //dubilluz 16.09.2009
+                    //  16.09.2009
                     /*if (lblF7.isVisible()) {
-                        //JCORTEZ 04.08.09
+                        //  04.08.09
                         log.info("VariablesVentas.dniListCupon  " +
                                  VariablesVentas.dniListCupon);
                         if (VariablesVentas.dniListCupon.trim().length() < 1)
@@ -1326,13 +1314,9 @@ public class DlgResumenPedido extends JDialog {
                             cargarCupones();
                     }*/
                     //SE QUITO LO ANTERIOR para que pueda ingresar el MEDICO
-                    //dubilluz 07.12.2011
+                    //  07.12.2011
 
-                	//Agregado por FRAMIREZ 04.05.2012 descativa para el convenio BTLMF
-                     if (!UtilityConvenioBTLMF.esActivoConvenioBTLMF(this, null))
-	               	 {
-	                   ingresaMedicoFidelizado();
-	               	 }
+                
 
                 } else if (e.getKeyCode() == KeyEvent.VK_F7) {
                     //vEjecutaAccionTeclaResumen = false;
@@ -1341,7 +1325,7 @@ public class DlgResumenPedido extends JDialog {
                     //vEjecutaAccionTeclaResumen = false;
                     eliminaItemResumenPedido();
                     FarmaUtility.moveFocus(txtDescProdOculto);
-                    //mfajardo 29/04/09 validar ingreso de productos virtuales
+                    //  29/04/09 validar ingreso de productos virtuales
                     VariablesVentas.vProductoVirtual = false;
 
                 } else if (e.getKeyCode() == KeyEvent.VK_F3) {
@@ -1360,7 +1344,7 @@ public class DlgResumenPedido extends JDialog {
                 } else if (e.getKeyCode() == KeyEvent.VK_F4) {
                     //vEjecutaAccionTeclaResumen = false;
                     //validaConvenio(e, VariablesConvenio.vPorcCoPago);
-                    //JMIRANDA 23.06.2010
+                    //  23.06.2010
                     //NUEVO VALIDA CONVENIO
                     /*if(cargaLogin_verifica())
                     {*/
@@ -1369,15 +1353,15 @@ public class DlgResumenPedido extends JDialog {
                                               FarmaVariables.vPatUsu.trim() +
                                               " " +
                                                   FarmaVariables.vMatUsu.trim());
-                        // Inicio Adicion Delivery 28/04/2006 Paulo
+                        // Inicio Adicion Delivery 28/04/2006  
                         //String nombreCliente = VariablesDelivery.vNombreCliente + " " +VariablesDelivery.vApellidoPaterno + " " + VariablesDelivery.vApellidoMaterno;
                         //lblCliente.setText(nombreCliente);
-                        // Fin Adicion Delivery 28/04/2006 Paulo
+                        // Fin Adicion Delivery 28/04/2006  
                         colocaUltimoPedidoDiarioVendedor();
                         //FarmaUtility.moveFocus(tblProductos);
                         FarmaUtility.moveFocus(txtDescProdOculto);
 
-                    validaConvenio_v2(e, VariablesConvenio.vPorcCoPago);
+                    
                     FarmaUtility.moveFocus(txtDescProdOculto);
                     //}
                 } else if (e.getKeyCode() == KeyEvent.VK_F1) {
@@ -1385,109 +1369,29 @@ public class DlgResumenPedido extends JDialog {
                    /* if(cargaLogin_verifica())
 
                     {*/
-                    //mfajardo 29/04/09 validar ingreso de productos virtuales
+                    //  29/04/09 validar ingreso de productos virtuales
                     VariablesVentas.vProductoVirtual = false;
 
-                    //validaConvenio(e, VariablesConvenio.vPorcCoPago);
-                   if (UtilityConvenioBTLMF.esActivoConvenioBTLMF(this, null) && VariablesConvenioBTLMF.vCodConvenio != null && VariablesConvenioBTLMF.vCodConvenio.length() > 0)
-                   {
-                	  boolean result = true;
-                	  if (VariablesConvenioBTLMF.vFlgValidaLincreBenef != null && VariablesConvenioBTLMF.vFlgValidaLincreBenef.equals("1"))
-                	  result = existeSaldoCredDispBenif(this);
-
-                           if(result)  validaConvenio_v2(e, VariablesConvenio.vPorcCoPago);
-                   }
-                   else
-                   {
-                    validaConvenio_v2(e, VariablesConvenio.vPorcCoPago);
-                   }
+              
 
 
 
                     FarmaUtility.moveFocus(txtDescProdOculto);//}
-                } //JCORTEZ 17.04.08
+                } //  17.04.08
                 else if (e.getKeyCode() == KeyEvent.VK_F6) {
-                    //vEjecutaAccionTeclaResumen = false;
-                	if (UtilityConvenioBTLMF.esActivoConvenioBTLMF(this, null) &&
-                		VariablesConvenioBTLMF.vCodConvenio != null &&
-                		VariablesConvenioBTLMF.vCodConvenio.length() > 0)
-                	{
-                	  //No se hace nada.
-                	}
-                	else
-                	{
+                   
                     mostrarFiltro();
-                	}
+                	
                 } else if (e.getKeyCode() ==
                            KeyEvent.VK_F9) {
 
 
 
-                	//Agregado por FRAMIREZ 04.05.2012 descativa para el convenio BTLMF
-                	 if (!UtilityConvenioBTLMF.esActivoConvenioBTLMF(this, null))
-                	 {
-			                	//add jcallo 15/12/2008 campanias acumuladas.
-                    //veririficar que el producto seleccionado tiene el flag de campanias acumuladas.
-                    //validar que no sea un pedido por convenio
-                    //log.debug("tecleo f9");
-                    //vEjecutaAccionTeclaResumen = false;
-                    if (VariablesVentas.vEsPedidoConvenio) {
-                        FarmaUtility.showMessage(this,
-                                                 "No puede asociar clientes a campañas de ventas acumuladas en un " +
-                                                 "pedido por convenio.",
-                                                 txtDescProdOculto);
-                    } else { //toda la logica para asociar un cliente hacia campañas nuevas
-                        //DUBILLUZ - 29.04.2010
-                        if (VariablesFidelizacion.vDniCliente.trim().length() >
-                            0) {
-                            int rowSelec = tblProductos.getSelectedRow();
-                            String auxCodProd = "";
-                            if (rowSelec >=
-                                0) { //validar si el producto seleccionado tiene alguna campaña asociada
-                                auxCodProd =
-                                        tblProductos.getValueAt(rowSelec, 0).toString().trim();
-                            }
-                            asociarCampAcumulada(auxCodProd);
-                            //se agrego el metodo opera resumen pedido para aplicar las campanas de fidelizacion
-
-                            //operaResumenPedido(); REEMPLAZADO POR EL DE ABAJO
-                            neoOperaResumenPedido(); //nuevo metodo jcallo 10.03.2009
-                            //FarmaUtility.setearPrimerRegistro(tblProductos,null,0);
-                        } else {
-                            FarmaUtility.showMessage(this,
-                                                     "No puede ver las campañas:\n" +
-                                    "Porque primero debe de fidelizar al cliente con la función F12.",
-                                    txtDescProdOculto);
-                        }
-                    }
-
-
-
-
-                    //JCALLO 19.12.2008 comentado sobre la opcion de ver pedidos delivery..y usarlo para el tema inscribir cliente a campañas acumuladas
-                    /** JCALLO INHABILITAR F9 02.10.2008* **/
-                    /*log.debug("HABILITAR F9 : " + VariablesVentas.HabilitarF9);
-                 if (VariablesVentas.HabilitarF9.equalsIgnoreCase(ConstantsVentas.ACTIVO)) {
-                     if (UtilityVentas.evaluaPedidoDelivery(this, tblProductos,
-                                                            VariablesVentas.vArrayList_ResumenPedido)) {
-                         evaluaTitulo();
-                         // Inicio Adicion Delivery 28/04/2006 Paulo
-                         if (VariablesVentas.vEsPedidoDelivery)
-                             generarPedidoDelivery();
-                         // Fin Adicion Delivery 28/04/2006 Paulo
-                     }
-                     FarmaUtility.moveFocus(txtDescProdOculto);
-                 }*/
-                	 }
 
                 } else if (e.getKeyCode() == KeyEvent.VK_F10) {
-                    //vEjecutaAccionTeclaResumen = false;
-                	//Agregado por FRAMIREZ 04.05.2012 descativa para el convenio BTLMF
-	               	 if (!UtilityConvenioBTLMF.esActivoConvenioBTLMF(this, null))
-	               	 {
+                    
                     verReceta();
-	               	 }
-
+	            
                     FarmaUtility.moveFocus(txtDescProdOculto);
                 } else if (e.getKeyCode() == KeyEvent.VK_F12) {
                     //vEjecutaAccionTeclaResumen = false;
@@ -1521,14 +1425,12 @@ public class DlgResumenPedido extends JDialog {
                     //vEjecutaAccionTeclaResumen = false;
                     if (FarmaUtility.rptaConfirmDialog(this,"Está seguro que Desea salir del pedido?"))
                     {
-	                    //Agregado por FRAMIREZ 27.03.2012
-	                    VariablesConvenioBTLMF.limpiaVariablesBTLMF();
-
+	                  
                         cancelaOperacion_02();
                 VariablesVentas.vCodProdBusq="";
                 VariablesVentas.vCodBarra="";
 
-                    //mfajardo 29/04/09 validar ingreso de productos virtuales
+                    //  29/04/09 validar ingreso de productos virtuales
                     VariablesVentas.vProductoVirtual = false;
                     //jquispe 13.01.2011
                     FarmaVariables.vAceptar = false;
@@ -1536,17 +1438,17 @@ public class DlgResumenPedido extends JDialog {
                     }
 
                 } else if (e.getKeyCode() ==
-                           KeyEvent.VK_INSERT) { //Inicio ASOSA 03.02.2010
+                           KeyEvent.VK_INSERT) { //Inicio   03.02.2010
                     VariablesVentas.vIndPrecioCabeCliente = "S";
                     DlgListaProdDIGEMID objDIGEMID =
                         new DlgListaProdDIGEMID(myParentFrame, "", true);
                     objDIGEMID.setVisible(true);
                     cancelaOperacion_02();
 
-                    //mfajardo 29/04/09 validar ingreso de productos virtuales
+                    //  29/04/09 validar ingreso de productos virtuales
                     VariablesVentas.vProductoVirtual = false;
                     cerrarVentana(true);
-                } //Fin ASOSA 03.02.2010
+                } //Fin   03.02.2010
                 //vEjecutaAccionTeclaResumen = false;
 
                 //pruebas de validacion
@@ -1566,26 +1468,26 @@ public class DlgResumenPedido extends JDialog {
 
     /**
      * Se verifica si se hizo un cierre de DIGEMID para cerrarlo o no
-     * @author ASOSA
+     * @author  
      * @since 03.02.2010
      */
     private void verificarDIGEMID() {
-        if (VariablesVentas.vIndPrecioCabeCliente.equalsIgnoreCase("S")) { //Inicio ASOSA 03.02.2010
+        if (VariablesVentas.vIndPrecioCabeCliente.equalsIgnoreCase("S")) { //Inicio   03.02.2010
             VariablesVentas.vIndPrecioCabeCliente = "N";
             cancelaOperacion_02();
 
-            //mfajardo 29/04/09 validar ingreso de productos virtuales
+            //  29/04/09 validar ingreso de productos virtuales
             VariablesVentas.vProductoVirtual = false;
             cerrarVentana(true);
-        } //Fin ASOSA 03.02.2010
+        } //Fin   03.02.2010
     }
 
     private void cerrarVentana(boolean pAceptar) {
         VariablesVentas.vListaProdFaltaCero = new ArrayList();
         VariablesVentas.vListaProdFaltaCero.clear();
         FarmaVariables.vAceptar = pAceptar;
-        //JMIRANDA 19.08.2010 OBS
-        UtilityNewCobro.inicializarVariables();
+        //  19.08.2010 OBS
+        
         this.setVisible(false);
         this.dispose();
     }
@@ -1605,17 +1507,15 @@ public class DlgResumenPedido extends JDialog {
             DlgListaProductos dlgListaProductos =
                 new DlgListaProductos(myParentFrame, "", true);
             dlgListaProductos.setVisible(true);
-            verificarDIGEMID(); //ASOSA 03.02.2010
+            verificarDIGEMID(); //  03.02.2010
 
             //operaResumenPedido(); REEMPLAZADO POR EL DE ABAJO
-            neoOperaResumenPedido(); //nuevo metodo jcallo 10.03.2009
+            neoOperaResumenPedido(); //nuevo metodo   10.03.2009
 
-            if (VariablesConvenio.vCodConvenio.equalsIgnoreCase("")) {
-                lblCuponIngr.setText(VariablesVentas.vMensCuponIngre);
-            } else {
+            
                 VariablesVentas.vMensCuponIngre = "";
                 lblCuponIngr.setText(VariablesVentas.vMensCuponIngre);
-            }
+            
 
             FarmaVariables.vAceptar = false;
 
@@ -1687,7 +1587,7 @@ public class DlgResumenPedido extends JDialog {
      * O POR LA OPCION DE INGRESAR EL NUMERO DE TARJETA
      * **/
 
-        //jcallo quitar las campañas que ya han terminado de ser usados por el cliente
+        //  quitar las campañas que ya han terminado de ser usados por el cliente
         log.debug("quitando las campañas limitadas en numeros de usos del cliente");
         log.debug("VariablesVentas.vArrayList_Cupones:" +
                   VariablesVentas.vArrayList_Cupones);
@@ -1717,30 +1617,9 @@ public class DlgResumenPedido extends JDialog {
 
 
 
-        System.out.println(">>>>>>>>VariablesConvenioBTLMF.vHayDatosIngresadosConvenioBTLMF: " + VariablesConvenioBTLMF.vHayDatosIngresadosConvenioBTLMF);
 
-        if (UtilityConvenioBTLMF.esActivoConvenioBTLMF(this,null) && VariablesConvenioBTLMF.vHayDatosIngresadosConvenioBTLMF)
-        {
-        	lblCliente.setText(VariablesConvenioBTLMF.vNomCliente);
-            this.setTitle("Resumen de Pedido - Pedido por Convenio: " +
-                          VariablesConvenioBTLMF.vNomConvenio + " /  IP : " +
-                          FarmaVariables.vIpPc);
-            System.out.println("------------------------" + this.getTitle());
-            System.out.println(VariablesConvenioBTLMF.vCodConvenio+"VariablesConvenio.vTextoCliente : *****" +
-                               VariablesConvenioBTLMF.vNomCliente);
-
-
-            System.out.println("VariablesConvenioBTLMF.vCodConvenio:"+VariablesConvenioBTLMF.vCodConvenio);
-            System.out.println("VariablesConvenioBTLMF.vDatoLCredSaldConsumo:"+VariablesConvenioBTLMF.vDatoLCredSaldConsumo);
-
-            lblLCredito_T.setText(VariablesConvenioBTLMF.vDatoLCredSaldConsumo);
-            lblBeneficiario_T.setText(getMensajeComprobanteConvenio(VariablesConvenioBTLMF.vCodConvenio));
-
-        }
-        else
-        {
          evaluaTitulo(); //titulo y datos dependiendo del tipo de pedido que se este haciendo
-        }
+
         FarmaUtility.setearPrimerRegistro(tblProductos, null, 0);
     }
 
@@ -1765,7 +1644,7 @@ public class DlgResumenPedido extends JDialog {
         String codProd = "";
         String cantidad = "";
         String indControlStk = "";
-        String secRespaldo = ""; //ASOSA, 02.07.2010
+        String secRespaldo = ""; // , 02.07.2010
         for (int i = 0; i < tblProductos.getRowCount(); i++) {
             codProd = ((String)(tblProductos.getValueAt(i, 0))).trim();
             VariablesVentas.vVal_Frac =
@@ -1773,10 +1652,10 @@ public class DlgResumenPedido extends JDialog {
             cantidad = ((String)(tblProductos.getValueAt(i, 4))).trim();
             indControlStk = ((String)(tblProductos.getValueAt(i, 16))).trim();
             secRespaldo =
-                    (String)((ArrayList)VariablesVentas.vArrayList_PedidoVenta.get(i)).get(26); //ASOSA, 02.07.2010
-            VariablesVentas.secRespStk=""; //ASOSA, 26.08.2010
+                    (String)((ArrayList)VariablesVentas.vArrayList_PedidoVenta.get(i)).get(26); // , 02.07.2010
+            VariablesVentas.secRespStk=""; // , 26.08.2010
             if (indControlStk.equalsIgnoreCase(FarmaConstants.INDICADOR_S) &&
-                /*!UtilityVentas.actualizaStkComprometidoProd(codProd, //ANTES-ASOSA, 02.07.2010
+                /*!UtilityVentas.actualizaStkComprometidoProd(codProd, //ANTES- , 02.07.2010
                                                      Integer.parseInt(cantidad),
                                                      ConstantsVentas.INDICADOR_D,
                                                      ConstantsPtoVenta.TIP_OPERACION_RESPALDO_BORRAR,
@@ -1785,7 +1664,7 @@ public class DlgResumenPedido extends JDialog {
                                                      this,
                                                      tblProductos))*/
                 !UtilityVentas.operaStkCompProdResp(codProd,
-                                                    //ASOSA, 02.07.2010
+                                                    // , 02.07.2010
                     0, ConstantsVentas.INDICADOR_D,
                     ConstantsPtoVenta.TIP_OPERACION_RESPALDO_BORRAR, 0, true,
                     this, tblProductos, secRespaldo))
@@ -1793,7 +1672,7 @@ public class DlgResumenPedido extends JDialog {
         }
         /**
      * Actualiza comprometido a Arra Promociones
-     * @author : dubilluz
+     * @author :  
      * @since  : 25.06.2007
      */
         ArrayList aux = new ArrayList();
@@ -1825,15 +1704,15 @@ public class DlgResumenPedido extends JDialog {
                 VariablesVentas.vVal_Frac = ((String)(aux.get(10))).trim();
                 indControlStk = ((String)(aux.get(16))).trim();
                 secRespaldo =
-                        ((String)(aux.get(24))).trim(); //ASOSA, 08.07.2010
-                VariablesVentas.secRespStk=""; //ASOSA, 26.08.2010
+                        ((String)(aux.get(24))).trim(); // , 08.07.2010
+                VariablesVentas.secRespStk=""; // , 26.08.2010
                 if (indControlStk.equalsIgnoreCase(FarmaConstants.INDICADOR_S) &&
-                    /*!UtilityVentas.actualizaStkComprometidoProd(codProd,Integer.parseInt(cantidad),ConstantsVentas.INDICADOR_D, ConstantsPtoVenta.TIP_OPERACION_RESPALDO_BORRAR, Integer.parseInt(cantidad), //Antes, ASOSA, 08.07.2010
+                    /*!UtilityVentas.actualizaStkComprometidoProd(codProd,Integer.parseInt(cantidad),ConstantsVentas.INDICADOR_D, ConstantsPtoVenta.TIP_OPERACION_RESPALDO_BORRAR, Integer.parseInt(cantidad), //Antes,  , 08.07.2010
                                                        false,
                                                        this,
                                                        tblProductos))*/
                     !UtilityVentas.operaStkCompProdResp(codProd,
-                                                        //ASOSA, 08.07.2010
+                                                        // , 08.07.2010
                         0, ConstantsVentas.INDICADOR_D,
                         ConstantsPtoVenta.TIP_OPERACION_RESPALDO_BORRAR, 0,
                         false, this, tblProductos, secRespaldo))
@@ -1844,7 +1723,7 @@ public class DlgResumenPedido extends JDialog {
         }
         FarmaUtility.aceptarTransaccion();
         inicializaArrayList();
-        //jcallo: el parametro estaba en false--> se cambio a true
+        // : el parametro estaba en false--> se cambio a true
         cerrarVentana(true);
     }
 
@@ -1853,7 +1732,7 @@ public class DlgResumenPedido extends JDialog {
         VariablesVentas.vArrayList_ResumenPedido = new ArrayList();
         /**
      * Reinicia Array
-     * @author : dubilluz
+     * @author :  
      * @since  : 19.06.2007
      */
         VariablesVentas.vArrayList_Promociones = new ArrayList();
@@ -1866,11 +1745,7 @@ public class DlgResumenPedido extends JDialog {
     private void calculaTotalesPedido() {
 
 
-    	if(UtilityConvenioBTLMF.esActivoConvenioBTLMF(this,null) && VariablesConvenioBTLMF.vCodConvenio != null && VariablesConvenioBTLMF.vCodConvenio.trim().length() > 0)
-    	{
-
-    		 jbInitBTLMF();
-    	}
+    	
 
         log.debug("calculando montos totales");
         //lero lero reemplazando el anterior por el nuevo
@@ -2064,7 +1939,7 @@ public class DlgResumenPedido extends JDialog {
         System.err.println("totalNetoRedondeado_excluye:" + totalNetoRedondeado_excluye);        
         
         /////////////////////////////////////////////////////////////////////////////////////
-        //mfajardo 18.05.09 : si es convenio no debe mostrar ahorro
+        //  18.05.09 : si es convenio no debe mostrar ahorro
         if (!VariablesVentas.vEsPedidoConvenio) {
             //totalAhorro = (totalBrutoRedondeado - totalNetoRedondeado);
             totalAhorro = (totalBrutoRedondeado - totalNetoRedNUEVO);
@@ -2106,7 +1981,7 @@ public class DlgResumenPedido extends JDialog {
         log.debug("========       ==========");        
 
         //Se verifica el ahorro que se obtiene este ahorro no debe de exceder al Maximo
-        //DUBILLUZ 28.05.2009
+        //  28.05.2009
         System.err.println("totalAhorro old:" + totalAhorro);
         System.err.println("totalAhorro_excluye old:" + totalAhorro_excluye);
         boolean pLlegoTopeDscuento = false;
@@ -2123,7 +1998,7 @@ public class DlgResumenPedido extends JDialog {
                     /*
                     SE COMENTO ESTA PARTE PARA QUE EL MENSAJE QUE SE MUESTRE SEA SIEMPRE EL AHORRO EXITENTE
                     YA QUE DEBIDO A LA CAMPAÑA CMR A BELACTA 1 DEBE DE EXCEDER LOS 50SOLES DIARIO PERO NO DEBE DE 
-                    USARSE PARA ACUMULAR EL AHORRO. PERO SE PIDIO MOSTRAR TODO EL AHORRO.
+                    USARSE PARA ACUMULAR EL AHORRO. PERO SE PIDIO MOSTRAR TO DO EL AHORRO.
                     totalAhorro = 
                             VariablesFidelizacion.vMaximoAhorroDNIxPeriodo - 
                             VariablesFidelizacion.vAhorroDNI_x_Periodo;
@@ -2134,7 +2009,7 @@ public class DlgResumenPedido extends JDialog {
                 //ya no se muestra el total bruto
                 //por si algun dia quiera volver mostrar
                 lblBruto.setText(FarmaUtility.formatNumber(totalBrutoRedondeado));
-                //jcallo 02.10.2008 se modifico por el tema del texto de ahorro
+                //  02.10.2008 se modifico por el tema del texto de ahorro
                 System.err.println("pLlegoTopeDscuento:" + pLlegoTopeDscuento);
                 if (pLlegoTopeDscuento) {
                     lblDscto.setText(FarmaUtility.formatNumber(totalAhorro));
@@ -2152,7 +2027,7 @@ public class DlgResumenPedido extends JDialog {
             //ya no se muestra el total bruto
             //por si algun dia quiera volver mostrar
             lblBruto.setText(FarmaUtility.formatNumber(totalBrutoRedondeado));
-            //jcallo 02.10.2008 se modifico por el tema del texto de ahorro
+            //  02.10.2008 se modifico por el tema del texto de ahorro
             lblDscto.setText(FarmaUtility.formatNumber(totalAhorro));
         }
 
@@ -2164,7 +2039,7 @@ public class DlgResumenPedido extends JDialog {
             lblDsctoT.setVisible(false);
             lblDscto.setVisible(false);
         }
-        //fin jcallo 02.10.2008
+        //fin   02.10.2008
         lblDsctoPorc.setText(FarmaUtility.formatNumber(totalDscto));
         if (FarmaUtility.getDecimalNumber(lblDsctoPorc.getText().trim()) > 0) {
             log.debug("procentaje de dcto total" +
@@ -2179,59 +2054,12 @@ public class DlgResumenPedido extends JDialog {
         lblCredito.setVisible(false);
         lblCreditoT.setVisible(false);
 
-        VariablesConvenioBTLMF.vImpSubTotal = totalNetoRedondeado;
+        
 
-        //Agregado por FRAMIREZ 26.03.2012 Calcula El monto de credito de tipo convenio COPAGO.
-        if (UtilityConvenioBTLMF.esActivoConvenioBTLMF(this, null) && VariablesConvenioBTLMF.vCodConvenio != null && VariablesConvenioBTLMF.vCodConvenio.trim().length() > 0)
-        {
-
-
-
-          double montoCredito = UtilityConvenioBTLMF.obtieneMontoCredito(this, null, new Double(totalNetoRedondeado),"",VariablesConvenioBTLMF.vCodConvenio);
-          double porcentajeCredito = (montoCredito/totalNetoRedondeado)*100;
-
-          System.out.println("porcentajeCredito:::"+porcentajeCredito);
-
-          if(porcentajeCredito>0)
-           {
-        	  double montoaPagar = (totalNetoRedondeado-montoCredito);
-
-              lblPorPagarT.setVisible(true);
-              lblPorPagar.setVisible(true);
-              lblCredito.setVisible(true);
-              lblCreditoT.setVisible(true);
-
-		      lblCredito.setText(FarmaUtility.formatNumber(montoCredito));
-		      String porcCoPago = FarmaUtility.formatNumber((montoCredito/totalNetoRedondeado)*100,0);
-
-		      if (montoaPagar == 0)
-		      {
-		        lblCreditoT.setText("Crédito("+porcCoPago+"%): S/.");
-		        lblPorPagarT.setText("");
-		        lblPorPagar.setText("");
-		      }
-		      else
-		      {
-		    	lblCreditoT.setText("Crédito("+porcCoPago+"%): S/.");
-			    lblPorPagarT.setText("CoPago: S/.");
-			    lblPorPagar.setText(FarmaUtility.formatNumber(montoaPagar));
-		      }
-           }
-          else
-           {
-              lblPorPagarT.setVisible(false);
-              lblPorPagar.setVisible(false);
-              lblCredito.setVisible(false);
-              lblCreditoT.setVisible(false);
-          }
-        }
-        else
-        {
           lblCreditoT.setText(" ");
           lblCredito.setText(" ");
           lblPorPagar.setText(" ");
           lblPorPagarT.setText(" ");
-        }
 
         lblTotalS.setText(FarmaUtility.formatNumber(totalNetoRedondeado));
 
@@ -2247,7 +2075,7 @@ public class DlgResumenPedido extends JDialog {
 
         /*
     //Se evalua si ya esta en el limite de ahorro diario
-    //DUBILLUZ 28.05.2009
+    //  28.05.2009
     if(VariablesFidelizacion.vAhorroDNI_Pedido + VariablesFidelizacion.vAhorroDNI_x_Periodo>=VariablesFidelizacion.vMaximoAhorroDNIxPeriodo)
     {
         FarmaUtility.showMessage(this,"El tope de descuento diario por persona es de S/."+VariablesFidelizacion.vMaximoAhorroDNIxPeriodo+". \n"+
@@ -2303,18 +2131,6 @@ public class DlgResumenPedido extends JDialog {
         System.out.println("VariablesVentas.vVal_Prec_Vta:"+VariablesVentas.vVal_Prec_Vta);
 
 
-        //if (VariablesVentas.vEsPedidoConvenio) {
-///////////////////////////////////////////////////////////////////////////////////////
-
-            VariablesConvenio.vVal_Prec_Vta_Local =
-                    ((String)(tblProductos.getValueAt(vFila, 6))).trim();
-            VariablesConvenio.vVal_Prec_Vta_Conv =
-                    VariablesVentas.vVal_Prec_Vta;
-////////////////////////////////////////////////////////////////////////////////////////
-            System.out.println("VariablesConvenio.vVal_Prec_Vta_Local:"+VariablesConvenio.vVal_Prec_Vta_Local);
-            System.out.println("VariablesConvenio.vVal_Prec_Vta_Conv:"+VariablesConvenio.vVal_Prec_Vta_Conv);
-
-        //}
         DlgIngresoCantidad dlgIngresoCantidad =
             new DlgIngresoCantidad(myParentFrame, "", true);
         VariablesVentas.vIngresaCant_ResumenPed = true;
@@ -2330,7 +2146,7 @@ public class DlgResumenPedido extends JDialog {
 
     /**
      * Muestra el Detalle de Promocion para su modificacion
-     * @author : dubilluz
+     * @author :  
      * @since  : 25.06.2007
      */
     private void muestraDetallePromocion(int row) {
@@ -2360,7 +2176,7 @@ public class DlgResumenPedido extends JDialog {
                            VariablesVentas.vCantidad);
 
         //operaResumenPedido(); REEMPLAZADO POR EL DE ABAJO
-        neoOperaResumenPedido(); //nuevo metodo jcallo 10.03.2009
+        neoOperaResumenPedido(); //nuevo metodo   10.03.2009
 
     }
 
@@ -2371,9 +2187,9 @@ public class DlgResumenPedido extends JDialog {
                  FarmaUtility.getDecimalNumber(VariablesVentas.vVal_Prec_Vta));
         String indicadorControlStock =
             FarmaUtility.getValueFieldJTable(tblProductos, pFila, 16);
-        String secRespaldo = ""; //ASOSA, 02.07.2010
+        String secRespaldo = ""; // , 02.07.2010
         secRespaldo =
-                (String)((ArrayList)VariablesVentas.vArrayList_PedidoVenta.get(pFila)).get(26); //ASOSA, 02.07.2010
+                (String)((ArrayList)VariablesVentas.vArrayList_PedidoVenta.get(pFila)).get(26); // , 02.07.2010
         int cantIngresada =
             FarmaUtility.trunc(FarmaUtility.getDecimalNumber(VariablesVentas.vCant_Ingresada));
         int cantIngresada_old =
@@ -2384,8 +2200,8 @@ public class DlgResumenPedido extends JDialog {
         System.err.println("ANTES_RES_VariablesVentas.secRespStk:_"+VariablesVentas.secRespStk);
         if (indicadorControlStock.equalsIgnoreCase(FarmaConstants.INDICADOR_S)) {
             if (cantIngresada_old > cantIngresada) {
-                VariablesVentas.secRespStk=""; //ASOSA, 26.08.2010
-                if ( /*!UtilityVentas.actualizaStkComprometidoProd(VariablesVentas.vCod_Prod,   //antes - ASOSA, 02.07.2010
+                VariablesVentas.secRespStk=""; // , 26.08.2010
+                if ( /*!UtilityVentas.actualizaStkComprometidoProd(VariablesVentas.vCod_Prod,   //antes -  , 02.07.2010
                                                      (cantIngresada_old-cantIngresada),
                                                      ConstantsVentas.INDICADOR_D,
                                                      ConstantsPtoVenta.TIP_OPERACION_RESPALDO_ACTUALIZAR,
@@ -2394,7 +2210,7 @@ public class DlgResumenPedido extends JDialog {
                                                      this,
                                                      tblProductos))*/
                     !UtilityVentas.operaStkCompProdResp(VariablesVentas.vCod_Prod,
-                                                        //ASOSA, 02.07.2010
+                                                        // , 02.07.2010
                         cantIngresada, ConstantsVentas.INDICADOR_D,
                         ConstantsPtoVenta.TIP_OPERACION_RESPALDO_ACTUALIZAR, 0,
                         true, this, tblProductos, secRespaldo))
@@ -2406,8 +2222,8 @@ public class DlgResumenPedido extends JDialog {
                                              "No existe Stock disponible. Verifique!!!",
                                              tblProductos);
                 else {
-                    VariablesVentas.secRespStk=""; //ASOSA, 26.08.2010
-                    if ( /*!UtilityVentas.actualizaStkComprometidoProd(VariablesVentas.vCod_Prod,  //antes - ASOSA, 02.07.2010
+                    VariablesVentas.secRespStk=""; // , 26.08.2010
+                    if ( /*!UtilityVentas.actualizaStkComprometidoProd(VariablesVentas.vCod_Prod,  //antes -  , 02.07.2010
                                                        (cantIngresada-cantIngresada_old),
                                                        ConstantsVentas.INDICADOR_A,
                                                        ConstantsPtoVenta.TIP_OPERACION_RESPALDO_ACTUALIZAR,
@@ -2416,7 +2232,7 @@ public class DlgResumenPedido extends JDialog {
                                                        this,
                                                        tblProductos))*/
                         !UtilityVentas.operaStkCompProdResp(VariablesVentas.vCod_Prod,
-                                                            //ASOSA, 02.07.2010
+                                                            // , 02.07.2010
                             cantIngresada, ConstantsVentas.INDICADOR_A,
                             ConstantsPtoVenta.TIP_OPERACION_RESPALDO_ACTUALIZAR,
                             0, true, this, tblProductos, secRespaldo))
@@ -2443,7 +2259,7 @@ public class DlgResumenPedido extends JDialog {
         } else if (!VariablesVentas.vEsPedidoConvenio &&
                    !VariablesVentas.vIndOrigenProdVta.equals(ConstantsVentas.IND_ORIGEN_OFER)) //ERIOS 18.06.2008 Se redondea el total de venta por producto
         {
-            //JCHAVEZ 29102009 redondeo inicio
+            //  29102009 redondeo inicio
             if (VariablesVentas.vIndAplicaRedondeo.equalsIgnoreCase("")) {
                 try {
                     VariablesVentas.vIndAplicaRedondeo =
@@ -2466,7 +2282,7 @@ public class DlgResumenPedido extends JDialog {
                 System.out.println("VariablesVentas.vVal_Prec_Vta : " +
                                    VariablesVentas.vVal_Prec_Vta);
             }
-            //JCHAVEZ 29102009 redondeo fin
+            //  29102009 redondeo fin
             else {
                 VariablesVentas.vTotalPrecVtaProd = (auxCantIngr * auxPrecVta);
                 //El redondeo se ha dos digitos hacia arriba ha 0.05.
@@ -2491,7 +2307,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
                 int aux4 = 0;
                 double aux5;
 
-                //JCORTEZ 01/10/2008
+                //  01/10/2008
                 if (aux3 < 1)
                     aux4 = 0;
                 else
@@ -2539,7 +2355,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
         //tblProductos.setValueAt(VariablesVentas.vVal_Prec_Lista, pFila, 3);//precio de lista
         tblProductos.setValueAt(VariablesVentas.vCant_Ingresada, pFila,
                                 4); //cantidad ingresada
-        //JCORTEZ 17.04.08
+        //  17.04.08
         //tblProductos.setValueAt(FarmaUtility.formatNumber(FarmaUtility.getDecimalNumber(VariablesVentas.vPorc_Dcto_1),2), pFila, 5);//PORC DCTO 1
 
         //tblProductos.setValueAt(FarmaUtility.formatNumber(FarmaUtility.getDecimalNumber(VariablesVentas.vVal_Prec_Vta),3), pFila, 6);//PRECIO DE VENTA
@@ -2583,7 +2399,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
         ((ArrayList)VariablesVentas.vArrayList_ResumenPedido.get(pFila)).set(COL_RES_CANT_DIAS,
                                                                              VariablesVentas.vCantxDias);
 
-        //JCHAVEZ 29102009 inicio
+        //  29102009 inicio
         try {
             if (VariablesVentas.vIndAplicaRedondeo.equalsIgnoreCase("")) {
                 VariablesVentas.vIndAplicaRedondeo =
@@ -2600,7 +2416,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
                                                                                  FarmaUtility.formatNumber(VariablesVentas.vTotalPrecVtaProd,
                                                                                                            3));
         }
-        //JCHAVEZ 29102009 fin
+        //  29102009 fin
         ArrayList vAux =
             (ArrayList)VariablesVentas.vArrayList_ResumenPedido.get(pFila);
         log.info("Registro modificado: " + vAux);
@@ -2608,7 +2424,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
 
     /**
      * elimina elemento seleccionado
-     * @author : dubilluz
+     * @author :  
      * @since  : 19.06.2007
      */
     private void eliminaItemResumenPedido() {
@@ -2644,7 +2460,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
 
     /**
      * Elimina  producto seleccionado
-     * @author :dubilluz
+     * @author : 
      * @since  :19.06.2007
      */
     void eliminaProducto(int filaActual) {
@@ -2660,10 +2476,10 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
                 ((String)(tblProductos.getValueAt(filaActual, 4))).trim();
             String indControlStk =
                 ((String)(tblProductos.getValueAt(filaActual, 16))).trim();
-            String secRespaldo = ""; //ASOSA, 02.07.2010
+            String secRespaldo = ""; // , 02.07.2010
             secRespaldo =
-                    (String)((ArrayList)VariablesVentas.vArrayList_PedidoVenta.get(filaActual)).get(26); //ASOSA, 02.07.2010
-            VariablesVentas.secRespStk=""; //ASOSA, 26.08.2010
+                    (String)((ArrayList)VariablesVentas.vArrayList_PedidoVenta.get(filaActual)).get(26); // , 02.07.2010
+            VariablesVentas.secRespStk=""; // , 26.08.2010
             System.err.println("filaActual:_"+filaActual);
             System.err.println("VariablesVentas.vArrayList_PedidoVenta:_"+VariablesVentas.vArrayList_PedidoVenta);
             System.err.println("ANTES_BORRA_VariablesVentas.secRespStk:_"+VariablesVentas.secRespStk);
@@ -2678,7 +2494,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
                                                       this,
                                                       tblProductos))*/
                 !UtilityVentas.operaStkCompProdResp(codProd,
-                                                    //ASOSA, 02.07.2010
+                                                    // , 02.07.2010
                     0, ConstantsVentas.INDICADOR_D,
                     ConstantsPtoVenta.TIP_OPERACION_RESPALDO_BORRAR, 0, true,
                     this, tblProductos, secRespaldo))
@@ -2689,10 +2505,10 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
                 (ArrayList)VariablesVentas.vArrayList_ResumenPedido.get(filaActual);
             log.info("Registro eliminado: " + vAux);
 
-            //dubilluz - 26.08.2010
+            //  - 26.08.2010
             VariablesVentas.vArrayList_PedidoVenta.remove(filaActual);
             vAux = null;
-            //dubilluz - 26.08.2010
+            //  - 26.08.2010
             VariablesVentas.vArrayList_ResumenPedido.remove(filaActual);
             tableModelResumenPedido.deleteRow(filaActual);
             tblProductos.repaint();
@@ -2715,7 +2531,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
 
     /**
      * Elimina la promocion y su detalle del Pedido
-     * @author : dubilluz
+     * @author :  
      * @since  : 19.06.2007
      */
     void eliminaPromocion(int filaActual) {
@@ -2755,7 +2571,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
             System.out.println("AAA: -> " + agrupado);
             //agrupado=agrupar(agrupado);
             System.out.println(">>>>**Agrupado " + agrupado.size());
-            String secRespaldo = ""; //ASOSA, 08.07.2010
+            String secRespaldo = ""; // , 08.07.2010
             for (int i = 0; i < agrupado.size();
                  i++) //VariablesVentas.vArrayList_Prod_Promociones.size(); i++)
             {
@@ -2769,9 +2585,9 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
                 cantidad = ((String)(aux.get(4))).trim();
                 indControlStk = ((String)(aux.get(16))).trim();
                 secRespaldo =
-                        ((String)(aux.get(24))).trim(); //ASOSA, 08.07.2010
+                        ((String)(aux.get(24))).trim(); // , 08.07.2010
                 System.out.println(indControlStk);
-                VariablesVentas.secRespStk=""; //ASOSA, 26.08.2010
+                VariablesVentas.secRespStk=""; // , 26.08.2010
                 if (indControlStk.equalsIgnoreCase(FarmaConstants.INDICADOR_S) &&
                     /*!UtilityVentas.actualizaStkComprometidoProd(codProd,
                                                        Integer.parseInt(cantidad),
@@ -2782,7 +2598,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
                                                        this,
                                                        tblProductos))*/
                     !UtilityVentas.operaStkCompProdResp(codProd,
-                                                        //ASOSA, 08.07.2010
+                                                        // , 08.07.2010
                         0, ConstantsVentas.INDICADOR_D,
                         ConstantsPtoVenta.TIP_OPERACION_RESPALDO_BORRAR, 0,
                         false, this, tblProductos, secRespaldo))
@@ -2835,7 +2651,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
     private synchronized void grabarPedidoVenta(String pTipComp) {
 
         if (pedidoGenerado) {
-            log.debug("jcallo: el pedido ya fue generado");
+            log.debug(" : el pedido ya fue generado");
             return;
         }
         if (VariablesVentas.vArrayList_ResumenPedido.size() <= 0 &&
@@ -2846,7 +2662,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
             return;
         }
 
-        //se comento por que esto se supone que ya esta calculado JCALLO
+        //se comento por que esto se supone que ya esta calculado  
         //calculaTotalesPedido();///no entender para que se hace de nuevo algo QUE YA estuvo
 
         boolean aceptaCupones;
@@ -2858,17 +2674,8 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
         aceptaCupones = validaCampsMontoNetoPedido(lblTotalS.getText().trim());
 
 
-
-
-        //Agregado por FRAMRIEZ 16.12.2011
-        System.out.println("------------------------------------");
-        System.out.println("----Asignando el Importe total------");
-        //System.out.println("------------------------------------" + totalS);
-        VariablesConvenioBTLMF.vImpSubTotal = FarmaUtility.getDecimalNumber(lblTotalS.getText());
-
-
-        //JCORTEZ 24.07.08 se muestra los cupones no utilizados
-        //jcallo 11.03.2009
+        //  24.07.08 se muestra los cupones no utilizados
+        //  11.03.2009
         int cantCuponesNoUsado = 0;
         String estado;
         int pExist = -1;
@@ -2940,18 +2747,18 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
             //if(validaUsoCampanaMonto(lblTotalS.getText().trim()))
             {
                 try {
-                    //JCORTEZ 25.03.09
+                    //  25.03.09
                     //VariablesVentas.vTip_Comp_Ped = pTipComp;
-                    log.debug("JCORTEZ: tipo --> " + pTipComp);
+                    log.debug(" : tipo --> " + pTipComp);
                     //VariablesVentas.vTip_Comp_Ped = DBCaja.getObtieneTipoComp(VariablesCaja.vNumCaja,pTipComp);
 
-                    //JCORTEZ 09.06.09  Se obtiene tipo de comrpobante de la relacion maquina - impresora
+                    //  09.06.09  Se obtiene tipo de comrpobante de la relacion maquina - impresora
                     if (pTipComp.equalsIgnoreCase(ConstantsVentas.TIPO_COMP_TICKET) ||
                         pTipComp.equalsIgnoreCase(ConstantsVentas.TIPO_COMP_BOLETA)) {
                         VariablesVentas.vTip_Comp_Ped =
                                 DBCaja.getObtieneTipoCompPorIP(FarmaVariables.vIpPc,
                                                                pTipComp);
-                        log.debug("JCORTEZ: VariablesVentas.vTip_Comp_Ped--> " +
+                        log.debug(" : VariablesVentas.vTip_Comp_Ped--> " +
                                   VariablesVentas.vTip_Comp_Ped);
                         if (VariablesVentas.vTip_Comp_Ped.trim().equalsIgnoreCase("N")) {
                             FarmaUtility.showMessage(this,
@@ -2962,7 +2769,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
                     } else if (pTipComp.equalsIgnoreCase(ConstantsVentas.TIPO_COMP_FACTURA))
                         VariablesVentas.vTip_Comp_Ped = pTipComp.trim();
 
-                    log.debug("JCORTEZ: tipo de comprobante por caja--> " +
+                    log.debug(" : tipo de comprobante por caja--> " +
                               VariablesVentas.vTip_Comp_Ped);
 
 
@@ -2978,19 +2785,15 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
                         log.debug("Debe de ingresar datos obligatorios");
                     }
 
-                    if(UtilityConvenioBTLMF.esActivoConvenioBTLMF(this, null) && VariablesConvenioBTLMF.vCodConvenio != null &&  VariablesConvenioBTLMF.vCodConvenio.length() > 0)
-       	         {
-                      esConvenioBTLMF = true;
-                      VariablesVentas.vIndObligaDatosCliente = false;
-       	         }
+                    
 
 
                     ////
-                    log.debug("JCORTEZ: FarmaVariables.vTipCaja--> " +
+                    log.debug(" : FarmaVariables.vTipCaja--> " +
                               FarmaVariables.vTipCaja);
-                    log.debug("JCORTEZ: VariablesVentas.vTip_Comp_Ped--> " +
+                    log.debug(" : VariablesVentas.vTip_Comp_Ped--> " +
                               VariablesVentas.vTip_Comp_Ped);
-                    log.debug("JCORTEZ: VariablesVentas.vIndObligaDatosCliente--> " +
+                    log.debug(" : VariablesVentas.vIndObligaDatosCliente--> " +
                               VariablesVentas.vIndObligaDatosCliente);
 
                     if (FarmaVariables.vTipCaja.equalsIgnoreCase(ConstantsPtoVenta.TIP_CAJA_MULTIFUNCIONAL) ||
@@ -3049,7 +2852,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
                             }
                             /**
 	           * Solo si no es multifuncional
-	           * @author dubilluz
+	           * @author  
 	           * @since  30.04.2008
 	           */
                             if (!FarmaVariables.vTipCaja.equalsIgnoreCase(ConstantsPtoVenta.TIP_CAJA_MULTIFUNCIONAL))
@@ -3069,7 +2872,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
 
 
 
-                    //fin Agregado por FRAMIREZ por BTLMF 19.12.2011
+                    //fin Agregado por   por BTLMF 19.12.2011
 
                     VariablesVentas.vNum_Ped_Vta =
                             FarmaSearch.getNuSecNumeracion(FarmaConstants.COD_NUMERA_PEDIDO,
@@ -3102,14 +2905,14 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
                                 ((ArrayList)VariablesVentas.vArrayList_ResumenPedido.get(i));
                         log.debug("ConstantsVentas.IND_PROD_SIMPLE " +
                                   ConstantsVentas.IND_PROD_SIMPLE);
-                        //grabarDetalle(pTipComp,array,cont,ConstantsVentas.IND_PROD_SIMPLE); //antes, ASOSA, 06.07.2010
+                        //grabarDetalle(pTipComp,array,cont,ConstantsVentas.IND_PROD_SIMPLE); //antes,  , 06.07.2010
                         grabarDetalle_02(pTipComp, array, cont,
-                                         ConstantsVentas.IND_PROD_SIMPLE); //ASOSA, 06.07.2010
+                                         ConstantsVentas.IND_PROD_SIMPLE); // , 06.07.2010
                     }
 
                     /**
 	       * Grabando detalle de Productos de las Promociones
-	       * @author : dubilluz
+	       * @author :  
 	       * @since  : 23.06.2007
 	       */
                     System.out.println("antes del for de promociones");
@@ -3124,11 +2927,11 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
                                   ConstantsVentas.IND_PROD_PROM);
                         //grabarDetalle(pTipComp,array,cont,ConstantsVentas.IND_PROD_PROM);
                         grabarDetalle_02(pTipComp, array, cont,
-                                         ConstantsVentas.IND_PROD_PROM); //ASOSA, 07.07.2010
+                                         ConstantsVentas.IND_PROD_PROM); // , 07.07.2010
                     }
                     System.out.println("fin del detalle productos");
 
-                    //JCHAVEZ 19102009
+                    //  19102009
                     for (int i = 0;
                          i < VariablesVentas.vArrayList_Promociones.size();
                          i++) {
@@ -3150,7 +2953,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
 
                     }
 
-                    //dubilluz 09.04.2008 Se procedera a ver si se puede o no acceder a un producto de regalo por el encarte.
+                    //  09.04.2008 Se procedera a ver si se puede o no acceder a un producto de regalo por el encarte.
                     cont++;
                     VariablesVentas.vIndVolverListaProductos = false;
                     if (!procesoProductoRegalo(VariablesVentas.vNum_Ped_Vta,
@@ -3183,17 +2986,17 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
                         String codProd =
                             ((String)((ArrayList)VariablesVentas.vArrayList_ResumenPedido.get(i)).get(0)).trim();
                         String secRespaldo =
-                            ((String)((ArrayList)VariablesVentas.vArrayList_ResumenPedido.get(i)).get(26)).trim(); //ASOSA, 06.07.2010
-                        //DBPtoVenta.ejecutaRespaldoStock(codProd, VariablesVentas.vNum_Ped_Vta, ConstantsPtoVenta.TIP_OPERACION_RESPALDO_ACTUALIZAR_PEDIDO, 0, 0,ConstantsPtoVenta.MODULO_VENTAS); antes,//ASOSA, 06.07.2010
+                            ((String)((ArrayList)VariablesVentas.vArrayList_ResumenPedido.get(i)).get(26)).trim(); // , 06.07.2010
+                        //DBPtoVenta.ejecutaRespaldoStock(codProd, VariablesVentas.vNum_Ped_Vta, ConstantsPtoVenta.TIP_OPERACION_RESPALDO_ACTUALIZAR_PEDIDO, 0, 0,ConstantsPtoVenta.MODULO_VENTAS); antes,// , 06.07.2010
                         /*DBVentas.actualizarRespaldoNumPedido(codProd,
                                                              ConstantsPtoVenta.MODULO_VENTAS,
                                                              VariablesVentas.vNum_Ped_Vta,
-                                                             secRespaldo); //ASOSA, 06.07.2010
+                                                             secRespaldo); // , 06.07.2010
                          */
                     }
                     /**
 	       * Actualiza estock
-	       * @author : dubilluz
+	       * @author :  
 	       * @since  : 23.06.2007
 	       */
                     for (int i = 0;
@@ -3202,8 +3005,8 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
                         String codProd =
                             ((String)((ArrayList)VariablesVentas.vArrayList_Prod_Promociones.get(i)).get(0)).trim();
                         String secRespaldo =
-                            ((String)((ArrayList)VariablesVentas.vArrayList_Prod_Promociones.get(i)).get(24)).trim(); //ASOSA, 08.07.2010
-                        /*DBPtoVenta.ejecutaRespaldoStock( //Antes, ASOSA, 09.07.2010
+                            ((String)((ArrayList)VariablesVentas.vArrayList_Prod_Promociones.get(i)).get(24)).trim(); // , 08.07.2010
+                        /*DBPtoVenta.ejecutaRespaldoStock( //Antes,  , 09.07.2010
                                                 codProd, VariablesVentas.vNum_Ped_Vta,
                                                 ConstantsPtoVenta.TIP_OPERACION_RESPALDO_ACTUALIZAR_PEDIDO,
                                                 0,
@@ -3214,7 +3017,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
                         *                         DBVentas.actualizarRespaldoNumPedido(codProd,
                                                              ConstantsPtoVenta.MODULO_VENTAS,
                                                              VariablesVentas.vNum_Ped_Vta,
-                                                             secRespaldo); //ASOSA, 09.07.2010
+                                                             secRespaldo); // , 09.07.2010
                         * */
                     }
 
@@ -3227,134 +3030,16 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
 
                     /**NUEVO
           			  * @Fecha: 14-12-2011
-          			  * @Autor: FRAMIREZ
+          			  * @Autor:  
           			 **/
-          	         if(esConvenioBTLMF)
-          	         {
-          	                 if(VariablesConvenioBTLMF.vDatosConvenio != null)
-          	                 {
-          	                	System.out.println("grabando los datos del convenio BTLMF y el Pedido");
-
-          	                    for (int j = 0; j < VariablesConvenioBTLMF.vDatosConvenio.size(); j++)
-          	                    {
-          	                    	Map convenio = (Map)VariablesConvenioBTLMF.vDatosConvenio.get(j);
-
-          	                    	String pCodCampo      = (String)convenio.get(ConstantsConvenioBTLMF.COL_CODIGO_CAMPO);
-          	                    	String pDesCampo      = (String)convenio.get(ConstantsConvenioBTLMF.COL_VALOR_IN);
-          	                    	String pNombCampo 	  = (String)convenio.get(ConstantsConvenioBTLMF.COL_NOMBRE_CAMPO);
-          	                    	String pCodValorCampo = (String)convenio.get(ConstantsConvenioBTLMF.COL_COD_VALOR_IN);
-
-
-          	                     	grabarPedidoConvenioBTLMF(pCodCampo, pDesCampo, pNombCampo,pCodValorCampo);
-
-          	                    }
-          	                 }
-          	         }
-          	         else
-          	         {
-
-                    //***********************************CONVENIO*****************************************/
-                    //***********************************INICIO*******************************************/
-                    /**NUEVO
-	       * @Fecha: 20-03-2007
-	       * @Autor: Luis
-	       * */
-                    if (!VariablesConvenio.vCodConvenio.equalsIgnoreCase("")) //Se ha elegido un convenio
-                    {
-                        System.out.println("Datos Convenio: " +
-                                           VariablesConvenio.vArrayList_DatosConvenio);
-                        String vCodCli =
-                            "" + VariablesConvenio.vArrayList_DatosConvenio.get(1);
-                        String vApePat =
-                            "" + VariablesConvenio.vArrayList_DatosConvenio.get(3);
-                        String vApeMat =
-                            "" + VariablesConvenio.vArrayList_DatosConvenio.get(4);
-                        String vNumDoc =
-                            "" + VariablesConvenio.vArrayList_DatosConvenio.get(5);
-                        String vTelefono =
-                            "" + VariablesConvenio.vArrayList_DatosConvenio.get(6);
-                        String vCodInterno =
-                            "" + VariablesConvenio.vArrayList_DatosConvenio.get(7);
-                        String vTrabajador =
-                            "" + VariablesConvenio.vArrayList_DatosConvenio.get(8);
-                        System.out.println("****Nombre Completo " +
-                                           vTrabajador);
-                        /**
-	         * Para grabar el COD_TRABJADOR_EMPRESA
-	         * @author : dubilluz
-	         * @since  : 21.08.2007
-	         */
-                        String vCodTrabEmpresa =
-                            "" + VariablesConvenio.vArrayList_DatosConvenio.get(9);
-                        System.out.println("****COD trabajadot de Conv >>>" +
-                                           vCodTrabEmpresa);
-
-                        /**
-	         * Grabando los codigos de trabajador y cliente dependiente
-	         * @author dubilluz
-	         * @since  05.02.2008
-	         */
-                        String vCodCliDep =
-                            VariablesConvenio.vCodClienteDependiente;
-                        String vCodTrabEmpDep =
-                            VariablesConvenio.vCodTrabDependiente;
-
-                        //grabarPedidoConvenio(vCodCli,vNumDoc,"",vApePat,vApeMat,"","",vTelefono,"","",vCodInterno,vTrabajador);
-                        grabarPedidoConvenio(vCodCli, vNumDoc, vCodTrabEmpresa,
-                                             vApePat, vApeMat, "", "",
-                                             vTelefono, "", "", vCodInterno,
-                                             vTrabajador, vCodCliDep,
-                                             vCodTrabEmpDep);
-
-
-                        double totalS =
-                            FarmaUtility.getDecimalNumber(lblTotalS.getText());
-                        System.out.println("totalS " + totalS);
-                        //VariablesConvenio.vValCoPago = DBConvenio.obtieneCoPagoConvenio(VariablesConvenio.vCodConvenio,vCodCli,FarmaUtility.formatNumber(totalS));
-                        System.err.println("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ" );
-                        System.err.println("VariablesConvenio.vValCoPago: " + VariablesConvenio.vValCoPago);
-                        if (FarmaUtility.getDecimalNumber(VariablesConvenio.vValCoPago) !=
-                            0) {
-                            VariablesConvenio.vCredito =
-                                    DBConvenio.obtieneCredito(VariablesConvenio.vCodConvenio,
-                                                              vCodCli,
-                                                              FarmaConstants.INDICADOR_S);
-                            VariablesConvenio.vCreditoUtil =
-                                    DBConvenio.obtieneCreditoUtil(VariablesConvenio.vCodConvenio,
-                                                                  vCodCli,
-                                                                  FarmaConstants.INDICADOR_S);
-                            System.out.println("VariablesConvenio.vCredito: " +
-                                               VariablesConvenio.vCredito);
-                            System.out.println("VariablesConvenio.vCreditoUtil: " +
-                                               VariablesConvenio.vCreditoUtil);
-                            System.out.println("vCoPago: " +
-                                               VariablesConvenio.vValCoPago);
-                        }
-                        if (FarmaUtility.getDecimalNumber(VariablesConvenio.vValCoPago) !=
-                            0 &&
-                            !VariablesConvenio.vCredito.equalsIgnoreCase(VariablesConvenio.vCreditoUtil)) {
-                            //VariablesCaja.vNumPedVta = VariablesVentas.vNum_Ped_Vta;
-                            String vFormaPago =
-                                DBConvenio.obtieneFormaPagoXConvenio(VariablesConvenio.vCodConvenio);
-                            grabarFormaPagoPedido(vFormaPago,
-                                                  VariablesVentas.vNum_Ped_Vta,
-                                                  VariablesConvenio.vValCoPago,
-                                                  FarmaVariables.vCodMoneda,
-                                                  FarmaUtility.formatNumber(FarmaVariables.vTipCambio),
-                                                  "0",
-                                                  VariablesConvenio.vValCoPago,
-                                                  "", "", "", "0");
-                            System.out.println("graba forma de pago");
-                        }
-                    }
-          	       }
+          	        
                     System.out.println("CONTINUA!");
                     //*************************************FIN********************************************/
                     //***********************************CONVENIO*****************************************/
                     System.out.println(VariablesVentas.vList_CuponesUsados +
                                        "");
                     //ERIOS 04.07.2008 Se graban los cupones validos.
-                    //JCALLO 11.03.2009 modificado por temala nueva estructura de manejode cupones
+                    //  11.03.2009 modificado por temala nueva estructura de manejode cupones
                     String cadena, vCodCamp, vIndUso, vIndFid;
                     boolean vCampAuto;
                     Map mapaCuponAux = new HashMap();
@@ -3370,7 +3055,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
                         vIndUso = FarmaConstants.INDICADOR_S;
                         vCampAuto =
                                 (vCodCamp.indexOf("A") != -1) ? true : false;
-                        log.debug("JCALLO: datos del cupon cadena:" + cadena +
+                        log.debug(" : datos del cupon cadena:" + cadena +
                                   " vCodCamp:" + vCodCamp + " vIndUso : " +
                                   vIndUso);
                         if (!vCampAuto) { //si no es campania automatica graba cupon
@@ -3382,12 +3067,12 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
 
 
                     //Proceso de campañas Acumuladas
-                    //dubilluz 17.12.2008
-                    //JCORTEZ 07.01.2009
+                    //  17.12.2008
+                    //  07.01.2009
                     //Solo se generara el historico y canje si no hay producto recarga
-                    System.err.println("DUBILLUZ-30.11.2009:" +
+                    System.err.println(" -30.11.2009:" +
                                        VariablesVentas.vIndProdVirtual);
-                    System.err.println("DUBILLUZ-30.11.2009:" +
+                    System.err.println(" -30.11.2009:" +
                                        VariablesVentas.vIndPedConProdVirtual);
                     if (!VariablesVentas.vIndProdVirtual.equalsIgnoreCase(FarmaConstants.INDICADOR_S) ||
                         !VariablesVentas.vIndPedConProdVirtual) {
@@ -3404,12 +3089,12 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
                         System.err.println("FIN - procesoCampañasAcumuladas");
                         /* Antes de aceptar toda la transaccion se verificara si existen campañas de cupones
 	          * y si puede recibir cupones de regalo para sorteo
-	          * 10.04.2008 dubilluz  creacion
+	          * 10.04.2008    creacion
 	          */
                         procesoCampañas(VariablesVentas.vNum_Ped_Vta);
 
                         //ERIOS 04.07.2008 Aplica Cupones
-                        //DUBILLUZ 23.07.2008 MODIFICACION
+                        //  23.07.2008 MODIFICACION
                         DBVentas.procesaPedidoCupon(VariablesVentas.vNum_Ped_Vta);
                     }
                     }
@@ -3420,7 +3105,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
                     }
 
                     //actualizando los descto aplicados por cada productos en el detalle del pedido
-                    //JCALLO 11.03.2009
+                    //  11.03.2009
                     //el metodo actualizarAhorroProdVentaDet, en base de datos ESTABA haciendo commit
                     Map mapaDctoProd = new HashMap();
                     for (int mm = 0;
@@ -3434,7 +3119,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
                                                       mapaDctoProd.get("VALOR_CUPON").toString(),
                                                       mapaDctoProd.get("AHORRO").toString(),
                                                       mapaDctoProd.get("DCTO_AHORRO").toString(),
-                                                      mapaDctoProd.get("SEC_PED_VTA_DET").toString()); //JMIRANDA 30.10.09 ENVIA SEC_DET_
+                                                      mapaDctoProd.get("SEC_PED_VTA_DET").toString()); //  30.10.09 ENVIA SEC_DET_
 
                         //actualizarAhorroProdVentaDet(mapaDctoProd);
                     }
@@ -3471,7 +3156,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
                         VariablesCaja.vNumPedPendiente =
                                 VariablesVentas.vNum_Ped_Diario;
                         System.out.println("HOLA HOLA HOLA HOLA HOLA HOLA HOLA");
-                        if (DBCaja.elegirVentanaCobro()) { //ASOSA 17.02.2010
+                        if (DBCaja.elegirVentanaCobro()) { //  17.02.2010
                             determinarCobro();
                         } else {
                             muestraCobroPedido();
@@ -3491,7 +3176,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
                     }
 
 
-                    //JCORTEZ 04.08.09 Se limpiar cupones usados luego de generar pedido.
+                    //  04.08.09 Se limpiar cupones usados luego de generar pedido.
                     VariablesVentas.vArrayListCuponesCliente.clear();
                     VariablesVentas.dniListCupon = "";
                 } catch (SQLException sql) {
@@ -3666,13 +3351,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
         VariablesVentas.vTipoProductoVirtual = "";
         VariablesVentas.vVal_Prec_Lista_Tmp = "";
 
-        VariablesConvenio.vCodConvenio = "";
-        VariablesConvenio.vCodCliente = "";
-        VariablesConvenio.vPorcCoPago = "";
-        VariablesConvenio.vPorcDctoConv = "";
-        VariablesConvenio.vNomConvenio = "";
-        VariablesConvenio.vValCoPago = "";
-        VariablesConvenio.vCreditoUtil = "";
+        
         //VariablesConvenio.vTextoCliente = "" ;
 
         VariablesVentas.vCodProd_Regalo = "";
@@ -3694,7 +3373,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
 
         VariablesVentas.vArrayList_Cupones = new ArrayList();
         //SE LIMPIAN LAS VARABLES DE FIDELIZACION
-        //29.09.2008 DUBILLUZ
+        //29.09.2008  
         VariablesFidelizacion.vNumTarjeta = "";
         VariablesFidelizacion.vNomCliente = "";
         VariablesFidelizacion.vApeMatCliente = "";
@@ -3716,7 +3395,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
         VariablesVentas.vMensCuponIngre = "";
 
         //Limpia Variables de Fidelizacion de FORMA DE PAGO
-        //dubilluz 09.06.2011
+        //  09.06.2011
         VariablesFidelizacion.vIndUsoEfectivo  = "NULL";
         VariablesFidelizacion.vIndUsoTarjeta   = "NULL";
         VariablesFidelizacion.vCodFPagoTarjeta = "NULL";
@@ -3725,7 +3404,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
         lblFormaPago.setVisible(false);
 
         /**
-     * jcallo inhabilitar delivery cuando el parametro sea NO
+     *   inhabilitar delivery cuando el parametro sea NO
      * ***/
         try {
             ArrayList lprms = new ArrayList();
@@ -3736,7 +3415,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
             log.debug("**** prm 2:" + prms.get(2));
 
 
-            // JCORTEZ 06.08.09
+            //   06.08.09
             if (prms.get(2).toString().equals("NO")) {
                 VariablesVentas.HabilitarF9 = ConstantsVentas.INACTIVO;
                 //lblF9.setVisible(false);
@@ -3744,13 +3423,6 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
                 VariablesVentas.HabilitarF9 = ConstantsVentas.ACTIVO;
                 //lblF9.setVisible(true);
             }
-
-            //JCORTEZ 07.08.09 Se limpia variables tipo pedido Delivery
-            VariablesDelivery.vCodCli = "";
-            VariablesDelivery.vNombreCliente = "";
-            VariablesDelivery.vNumeroTelefonoCabecera = "";
-            VariablesDelivery.vDireccion = "";
-            VariablesDelivery.vNumeroDocumento = "";
 
 
             lblF9.setVisible(true);
@@ -3807,100 +3479,31 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
             this.setTitle("Resumen de Pedido - Pedido Delivery" + " /  IP : " +
                           FarmaVariables.vIpPc);
             String nombreCliente =
-                VariablesDelivery.vNombreCliente + " " + VariablesDelivery.vApellidoPaterno +
-                " " + VariablesDelivery.vApellidoMaterno;
+                "";
             lblCliente.setText(nombreCliente);
         } else if (VariablesVentas.vEsPedidoInstitucional) {
             lblCliente.setText("");
             this.setTitle("Resumen de Pedido - Pedido Institucional" +
                           " /  IP : " + FarmaVariables.vIpPc);
-        } else if (VariablesVentas.vEsPedidoConvenio) {
-            lblCliente.setText(VariablesConvenio.vTextoCliente);
-            this.setTitle("Resumen de Pedido - Pedido por Convenio: " +
-                          VariablesConvenio.vNomConvenio + " /  IP : " +
-                          FarmaVariables.vIpPc);
-            System.out.println("------------------------" + this.getTitle());
-            System.out.println("VariablesConvenio.vTextoCliente : *****" +
-                               VariablesConvenio.vTextoCliente);
-
-
-            lblLCredito_T.setText(VariablesConvenioBTLMF.vDatoLCredSaldConsumo);
-            lblBeneficiario_T.setText(getMensajeComprobanteConvenio(VariablesConvenioBTLMF.vCodConvenio));
-
         } else {
             this.setTitle("Resumen de Pedido" + " /  IP : " +
                           FarmaVariables.vIpPc);
             log.debug("VariablesConvenio.vTextoCliente vacio");
             if (VariablesFidelizacion.vNumTarjeta.trim().length() > 0) {
-                //jcallo 02.10.2008
+                //  02.10.2008
                 lblCliente.setText(VariablesFidelizacion.vNomCliente); /*+" "
                              +VariablesFidelizacion.vApePatCliente+" "
                              +VariablesFidelizacion.vApeMatCliente);*/
-                //fin jcallo 02.10.2008
+                //fin   02.10.2008
             } else {
                 lblCliente.setText("");
             }
         }
     }
 
-    // Inicio Adicion Delivery 28/04/2006 Paulo
-
-    private void generarPedidoDelivery() {
-        DlgListaClientes dlgListaClientes =
-            new DlgListaClientes(myParentFrame, "", true);
-        dlgListaClientes.setVisible(true);
-        if (FarmaVariables.vAceptar) {
-            String nombreCliente =
-                VariablesDelivery.vNombreCliente + " " + VariablesDelivery.vApellidoPaterno +
-                " " + VariablesDelivery.vApellidoMaterno;
-            lblCliente.setText(nombreCliente);
-            System.out.println("Antes de Evaluar titulo");
-            FarmaVariables.vAceptar = false;
-            VariablesVentas.vEsPedidoDelivery = true;
-        } else {
-            if (FarmaVariables.vImprTestigo.equalsIgnoreCase(FarmaConstants.INDICADOR_N)) {
-                System.out.println("Evaluando titulo");
-                evaluaTitulo();
-                VariablesVentas.vEsPedidoDelivery = false;
-            }
-        }
-    }
-
     private void limpiaVariables() {
 
-        VariablesDelivery.vNumeroTelefono = "";
-        VariablesDelivery.vNombreInHashtable = "";
-        VariablesDelivery.vNombreInHashtableVal = "";
-        VariablesDelivery.vCampo = "";
-        VariablesDelivery.vCantidadLista = "";
-        VariablesDelivery.vDni_Apellido_Busqueda = "";
-        VariablesDelivery.vTipoBusqueda = "";
-        VariablesDelivery.vNumeroTelefonoCabecera = "";
-        VariablesDelivery.vDireccion = "";
-        VariablesDelivery.vDistrito = "";
-        VariablesDelivery.vCodigoDireccion = "";
-        VariablesDelivery.vInfoClienteBusqueda = new ArrayList();
-        VariablesDelivery.vInfoClienteBusquedaApellidos = new ArrayList();
-        VariablesDelivery.vCodCli = "";
-        VariablesDelivery.vCodDirTable = "";
-        VariablesDelivery.vCodDirTmpTable = "";
-        VariablesDelivery.vNombreCliente = "";
-        VariablesDelivery.vApellidoPaterno = "";
-        VariablesDelivery.vApellidoMaterno = "";
-        VariablesDelivery.vTipoDocumento = "";
-        VariablesDelivery.vTipoCliente = "";
-        VariablesDelivery.vNumeroDocumento = "";
-        VariablesDelivery.vTipoCalle = "";
-        VariablesDelivery.vNombreCalle = "";
-        VariablesDelivery.vNumeroCalle = "";
-        VariablesDelivery.vNombreUrbanizacion = "";
-        VariablesDelivery.vNombreDistrito = "";
-        VariablesDelivery.vReferencia = "";
-        VariablesDelivery.vNombreInterior = "";
-        VariablesDelivery.vModificacionDireccion = "";
-        VariablesDelivery.vTipoAccion = "";
-        VariablesDelivery.vTipoAccionDireccion = "";
-        VariablesDelivery.vCodTelefono = "";
+        
         VariablesVentas.vArrayList_Medicos = new ArrayList();
         VariablesVentas.vCodMed = "";
         VariablesVentas.vMatriculaApe = "";
@@ -3913,14 +3516,9 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
         VariablesVentas.vEsPedidoConvenio = false;
         VariablesVentas.venta_producto_virtual = false;
         //limpia Variables de Cliente Dependiente
-        VariablesConvenio.vCodClienteDependiente = "";
-        VariablesConvenio.vCodTrabDependiente = "";
-        // VariablesConvenio
-        VariablesConvenio.vTextoCliente = "";
-        VariablesConvenio.vCodTrab = "";
-        VariablesConvenio.vNomCliente = "";
+        
         //Limipia Variables De DNI para control de maximo ahorro
-        //DUBILLUZ 28.05.2009
+        //  28.05.2009
         VariablesFidelizacion.vDNI_Anulado = false;
         VariablesFidelizacion.vAhorroDNI_x_Periodo = 0;
         VariablesFidelizacion.vMaximoAhorroDNIxPeriodo = 0;
@@ -3951,7 +3549,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
         VariablesVentas.vMensCuponIngre = "";
 
         //Limpia Variables de Fidelizacion de FORMA DE PAGO
-        //dubilluz 09.06.2011
+        //  09.06.2011
         VariablesFidelizacion.vIndUsoEfectivo  = "NULL";
         VariablesFidelizacion.vIndUsoTarjeta   = "NULL";
         VariablesFidelizacion.vCodFPagoTarjeta = "NULL";
@@ -3971,9 +3569,9 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
         ///////////////////////////////////////////////
 
     }
-    // Fin Adicion Delivery 28/04/2006 Paulo
+    // Fin Adicion Delivery 28/04/2006  
 
-    //Inicio Adicion Lista Medicos 26/06/2006 Paulo
+    //Inicio Adicion Lista Medicos 26/06/2006  
 
     private void agregaMedicoVta() {
         try {
@@ -3987,7 +3585,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
                                      sql.getMessage(), tblProductos);
         }
     }
-    //Fin Adicion Lista Medicos 26/06/2006 Paulo
+    //Fin Adicion Lista Medicos 26/06/2006  
 
     /**
      * Se muestra el resumen de la receta generada.
@@ -4028,7 +3626,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
                 ((String)(tblProductos.getValueAt(filaActual, 6))).trim();
 
         //Obtenemos la cantidad que recargo
-        //31.10.2007  dubilluz  modificacion
+        //31.10.2007     modificacion
         //VariablesVentas.vMontoARecargar_Temp = ((String)(tblProductos.getValueAt(filaActual,6))).trim();
         VariablesVentas.vMontoARecargar_Temp =
                 ((String)(tblProductos.getValueAt(filaActual, 4))).trim();
@@ -4047,7 +3645,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
             VariablesVentas.vVal_Prec_Lista_Tmp =
                     ((String)(tblProductos.getValueAt(filaActual, 17))).trim();
             //Ahora se grabara S/1.00
-            //31.10.2007 dubilluz modificacion
+            //31.10.2007   modificacion
             //VariablesVentas.vVal_Prec_Vta = FarmaUtility.formatNumber(FarmaUtility.getDecimalNumber(VariablesVentas.vMontoARecargar));
             VariablesVentas.vVal_Prec_Vta =
                     FarmaUtility.formatNumber(FarmaUtility.getDecimalNumber(ConstantsVentas.PrecioVtaRecargaTarjeta));
@@ -4130,446 +3728,6 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
         txtDescProdOculto.setText("");
     }
 
-    /**NUEVO
-     * @Autor:  Luis Reque
-     * @Fecha:  16-03-2007
-     * */
-    private boolean validaCreditoCliente(String pCodCli) {
-        if (!pCodCli.equalsIgnoreCase("")) //Existe un codigo de trabajador
-        {
-            double diferencia;
-            try {
-                double valTotal =
-                    FarmaUtility.getDecimalNumber(lblTotalS.getText());
-                System.out.println("TotalS: " + lblTotalS.getText());
-                String valor =
-                    DBConvenio.validaCreditoCli(VariablesConvenio.vCodConvenio,
-                                                pCodCli,
-                                                FarmaUtility.formatNumber(valTotal),
-                                                FarmaConstants.INDICADOR_S);
-                System.out.println("Diferencia: " + valor);
-                diferencia = FarmaUtility.getDecimalNumber(valor);
-                if (diferencia >= 0) {
-                    System.out.println("OK");
-                    return true;
-                } else {
-                    FarmaUtility.showMessage(this,
-                                             "No se puede generar el pedido. \nEl cliente excede en S/. " +
-                                             FarmaUtility.formatNumber((diferencia *
-                                                                        -1)) +
-                                             " el limite de su crédito.",
-                                             null);
-                    //FarmaUtility.moveFocusJTable(tblProductos);
-                    FarmaUtility.moveFocus(txtDescProdOculto);
-                    return false;
-                }
-            } catch (SQLException sql) {
-                sql.printStackTrace();
-                FarmaUtility.showMessage(this, "Error al grabar información.",
-                                         null);
-                //FarmaUtility.moveFocusJTable(tblProductos);
-                FarmaUtility.moveFocus(txtDescProdOculto);
-                return false;
-            }
-        } else { //El convenio no tiene BD
-            System.out.println("Arreglo: " +
-                               VariablesConvenio.vArrayList_DatosConvenio);
-            return true;
-        }
-    }
-
-    private void grabarPedidoConvenio(String pCodCli, String pNumDocIden,
-                                      String pCodTrabEmp, String pApePat,
-                                      String pApeMat, String pFecNac,
-                                      String pCodSol, String pNumTel,
-                                      String pDirecCli, String pNomDist,
-                                      String pCodInterno,
-                                      String pNomTrabajador, String pCodCliDep,
-                                      String pCodTrabEmpDep) {
-        try {
-            DBConvenio.grabarPedidoConvenio(VariablesVentas.vNum_Ped_Vta,
-                                            VariablesConvenio.vCodConvenio,
-                                            pCodCli, pNumDocIden, pCodTrabEmp,
-                                            pApePat, pApeMat, pFecNac, pCodSol,
-                                            VariablesConvenio.vPorcDctoConv,
-                                            VariablesConvenio.vPorcCoPago,
-                                            pNumTel, pDirecCli, pNomDist,
-                                            VariablesConvenio.vValCoPago,
-                                            pCodInterno, pNomTrabajador,
-                                            pCodCliDep, pCodTrabEmpDep);
-            System.out.println("Grabar Pedido Convenio");
-        } catch (SQLException sql) {
-            FarmaUtility.liberarTransaccion();
-            FarmaUtility.showMessage(this,
-                                     "Ocurrió un error al grabar el la informacion del pedido y el convenio: \n" +
-                    sql, null);
-            //FarmaUtility.moveFocusJTable(tblProductos);
-            FarmaUtility.moveFocus(txtDescProdOculto);
-        }
-    }
-
-
-    private void grabarPedidoConvenioBTLMF(String pCodCampo, String pDesCampo,
-                                           String pNombCampo, String pCodValorCampo) {
-        try {
-
-            DBConvenioBTLMF.grabarPedidoVenta(pCodCampo, pDesCampo, pNombCampo, pCodValorCampo);
-
-            System.out.println("Grabar Pedido Convenio BTL MF");
-        } catch (SQLException sql) {
-            FarmaUtility.liberarTransaccion();
-            FarmaUtility.showMessage(this,
-                                     "Ocurrió un error al grabar el la informacion del pedido y el convenio BTL MF: \n" +
-                    sql, null);
-        }
-    }
-
-
-    private void grabarFormaPagoPedido(String pCodFormaPago, String pNumPedVta,
-                                       String pImPago, String pTipMoneda,
-                                       String pTipoCambio, String pVuelto,
-                                       String pImTotalPago, String pNumTarj,
-                                       String pFecVencTarj, String pNomCliTarj,
-                                       String pCantCupon) {
-        try {
-            //DBCaja.grabaFormaPagoPedido(pCodFormaPago,pImPago,pTipMoneda,pTipoCambio,pVuelto,pImTotalPago,pNumTarj,pFecVencTarj,pNomCliTarj,pCantCupon);
-            DBConvenio.grabaFormaPagoPedido(pCodFormaPago, pNumPedVta, pImPago,
-                                            pTipMoneda, pTipoCambio, pVuelto,
-                                            pImTotalPago, pNumTarj,
-                                            pFecVencTarj, pNomCliTarj,
-                                            pCantCupon);
-        } catch (SQLException sql) {
-            FarmaUtility.liberarTransaccion();
-            sql.printStackTrace();
-            FarmaUtility.showMessage(this,
-                                     "Error al grabar la forma de pago del pedido." +
-                                     sql.getMessage(), null);
-            //FarmaUtility.moveFocusJTable(tblProductos);
-            FarmaUtility.moveFocus(txtDescProdOculto);
-        }
-    }
-
-    /**
-     * Determina el credito disponible.
-     * @param pCodCli
-     * @return <b>double</b> credito disponible
-     * @author Edgar Rios Navarro
-     * @since 23.05.2007
-     */
-    private double validaCreditoCliente(String pCodCli, String pCodPago,
-                                        KeyEvent e) throws SQLException {
-        double diferencia = 0;
-        double valTotal = FarmaUtility.getDecimalNumber(pCodPago);
-        String vkF = "";
-        System.out.println("Monto Copago: " + pCodPago);
-
-        String vIndLinea =
-            FarmaUtility.getIndLineaOnLine(FarmaConstants.CONECTION_MATRIZ,
-                                           FarmaConstants.INDICADOR_N);
-
-
-        if (vIndLinea.trim().equalsIgnoreCase(FarmaConstants.INDICADOR_S)) {
-            String valor =
-                DBConvenio.validaCreditoCli(VariablesConvenio.vCodConvenio,
-                                            pCodCli,
-                                            FarmaUtility.formatNumber(valTotal),
-                                            FarmaConstants.INDICADOR_S);
-            System.out.println("Diferencia: " + valor);
-            diferencia = FarmaUtility.getDecimalNumber(valor);
-
-            if (diferencia < 0) {
-                if (VariablesConvenio.vIndSoloCredito.equals(FarmaConstants.INDICADOR_N)) {
-                    valTotal = valTotal + diferencia;
-                    VariablesConvenio.vValCoPago =
-                            FarmaUtility.formatNumber(valTotal);
-                    if (FarmaUtility.rptaConfirmDialog(this,
-                                                       "El cliente excede en S/. " +
-                                                       FarmaUtility.formatNumber((diferencia *
-                                                                                  -1)) +
-                                                       " el limite de su crédito. \n Está seguro de continuar?")) {
-                        if (e.getKeyCode() == KeyEvent.VK_F4) {
-
-                            //VariablesVentas.venta_producto_virtual = false;
-                            //grabarPedidoVenta(ConstantsVentas.TIPO_COMP_FACTURA);
-                            /*if(cargaLogin_verifica())
-                            {*/
-                                lblNombreVendedor.setText(FarmaVariables.vNomUsu.trim() + " " +
-                                                          FarmaVariables.vPatUsu.trim() + " " +
-                                                          FarmaVariables.vMatUsu.trim());
-                                // Inicio Adicion Delivery 28/04/2006 Paulo
-                                //String nombreCliente = VariablesDelivery.vNombreCliente + " " +VariablesDelivery.vApellidoPaterno + " " + VariablesDelivery.vApellidoMaterno;
-                                //lblCliente.setText(nombreCliente);
-                                // Fin Adicion Delivery 28/04/2006 Paulo
-                                colocaUltimoPedidoDiarioVendedor();
-                                //FarmaUtility.moveFocus(tblProductos);
-                                FarmaUtility.moveFocus(txtDescProdOculto);
-
-                            vkF = "F4";
-                            agregarComplementarios(vkF);
-                            //}
-                        } else if (e.getKeyCode() == KeyEvent.VK_F1) {
-                            //VariablesVentas.venta_producto_virtual = false;
-                            //grabarPedidoVenta(ConstantsVentas.TIPO_COMP_BOLETA);
-                            /*if(cargaLogin_verifica())
-
-                            {*/
-                                lblNombreVendedor.setText(FarmaVariables.vNomUsu.trim() + " " +
-                                                          FarmaVariables.vPatUsu.trim() + " " +
-                                                          FarmaVariables.vMatUsu.trim());
-                                // Inicio Adicion Delivery 28/04/2006 Paulo
-                                //String nombreCliente = VariablesDelivery.vNombreCliente + " " +VariablesDelivery.vApellidoPaterno + " " + VariablesDelivery.vApellidoMaterno;
-                                //lblCliente.setText(nombreCliente);
-                                // Fin Adicion Delivery 28/04/2006 Paulo
-                                colocaUltimoPedidoDiarioVendedor();
-                                //FarmaUtility.moveFocus(tblProductos);
-                                FarmaUtility.moveFocus(txtDescProdOculto);
-
-                            vkF = "F1";
-                            agregarComplementarios(vkF);
-                            ///}
-                        }
-                    }
-                } else if (VariablesConvenio.vIndSoloCredito.equals(FarmaConstants.INDICADOR_S)) {
-                    FarmaUtility.showMessage(this,
-                                             "El cliente excede en S/. " +
-                                             FarmaUtility.formatNumber((diferencia *
-                                                                        -1)) +
-                                             " el limite de su crédito. \n ¡No puede realizar la venta!",
-                                             tblProductos);
-                } else {
-                    FarmaUtility.showMessage(this,
-                                             "No se pudo determinar el indicador del convenio.",
-                                             tblProductos);
-                }
-            } else {
-                //valTotal = valTotal + diferencia;
-                VariablesConvenio.vValCoPago =
-                        FarmaUtility.formatNumber(valTotal);
-                if (e.getKeyCode() == KeyEvent.VK_F4) {
-                    //grabarPedidoVenta(ConstantsVentas.TIPO_COMP_FACTURA);
-
-                    /*if(cargaLogin_verifica())
-                    {*/
-                        lblNombreVendedor.setText(FarmaVariables.vNomUsu.trim() + " " +
-                                                  FarmaVariables.vPatUsu.trim() + " " +
-                                                  FarmaVariables.vMatUsu.trim());
-                        // Inicio Adicion Delivery 28/04/2006 Paulo
-                        //String nombreCliente = VariablesDelivery.vNombreCliente + " " +VariablesDelivery.vApellidoPaterno + " " + VariablesDelivery.vApellidoMaterno;
-                        //lblCliente.setText(nombreCliente);
-                        // Fin Adicion Delivery 28/04/2006 Paulo
-                        colocaUltimoPedidoDiarioVendedor();
-                        //FarmaUtility.moveFocus(tblProductos);
-                        FarmaUtility.moveFocus(txtDescProdOculto);
-
-                    vkF = "F4";
-                    agregarComplementarios(vkF);
-                    /*}*/
-                } else if (e.getKeyCode() == KeyEvent.VK_F1 ||
-                           e.getKeyChar() == '+') {
-                    // grabarPedidoVenta(ConstantsVentas.TIPO_COMP_BOLETA);
-                    /*if(cargaLogin_verifica())
-                    {*/
-                        lblNombreVendedor.setText(FarmaVariables.vNomUsu.trim() + " " +
-                                                  FarmaVariables.vPatUsu.trim() + " " +
-                                                  FarmaVariables.vMatUsu.trim());
-                        // Inicio Adicion Delivery 28/04/2006 Paulo
-                        //String nombreCliente = VariablesDelivery.vNombreCliente + " " +VariablesDelivery.vApellidoPaterno + " " + VariablesDelivery.vApellidoMaterno;
-                        //lblCliente.setText(nombreCliente);
-                        // Fin Adicion Delivery 28/04/2006 Paulo
-                        colocaUltimoPedidoDiarioVendedor();
-                        //FarmaUtility.moveFocus(tblProductos);
-                        FarmaUtility.moveFocus(txtDescProdOculto);
-
-                    vkF = "F1";
-                    agregarComplementarios(vkF);
-                    /*}*/
-                }
-            }
-            FarmaUtility.moveFocus(txtDescProdOculto);
-        } else
-            FarmaUtility.showMessage(this,
-                                     "No hay linea con matriz.\n Inténtelo nuevamente si el problema persiste comuníquese con el Operador de Sistemas.",
-                                     txtDescProdOculto);
-
-        return valTotal;
-    }
-
-    private void validaConvenio(KeyEvent e, String vCoPagoConvenio) {
-
-        String vkF = "";
-        if (pedidoEnProceso) {
-            //FarmaUtility.showMessage(this,"Pedido en proceso.",tblProductos);
-            return;
-        }
-        pedidoEnProceso = true;
-        if (VariablesVentas.vEsPedidoConvenio) //Ha elegido un convenio y un cliente
-        {
-            System.out.println("VariablesConvenio.vArrayList_DatosConvenio : " +
-                               VariablesConvenio.vArrayList_DatosConvenio);
-            String vCodCli =
-                "" + VariablesConvenio.vArrayList_DatosConvenio.get(1);
-            if (!vCodCli.equalsIgnoreCase("")) {
-                String mensaje = "";
-                double vCredDisp;
-                //1° Obtiene valor de copago
-                try {
-                    double totalS =
-                        FarmaUtility.getDecimalNumber(lblTotalS.getText());
-                    mensaje = "Error al obtener el copago del convenio.\n";
-
-                    if (FarmaUtility.getDecimalNumber(vCoPagoConvenio) != 0) {
-                        //verificar la conexión con MATRIZ
-                        String vIndLinea =
-                            FarmaUtility.getIndLineaOnLine(FarmaConstants.CONECTION_MATRIZ,
-                                                           FarmaConstants.INDICADOR_N);
-
-                        String vCoPago =
-                            DBConvenio.obtieneCoPagoConvenio(VariablesConvenio.vCodConvenio,
-                                                             vCodCli,
-                                                             FarmaUtility.formatNumber(totalS));
-
-                        if (FarmaUtility.getDecimalNumber(vCoPago) != 0) {
-                            //2° Evalua credito disponible
-                            vCredDisp =
-                                    validaCreditoCliente(vCodCli, vCoPago, e);
-                        }
-                    } else {
-                        if (e.getKeyCode() == KeyEvent.VK_F4) {
-                            //grabarPedidoVenta(ConstantsVentas.TIPO_COMP_FACTURA);
-
-                            /*if(cargaLogin_verifica())
-                            {*/
-                                lblNombreVendedor.setText(FarmaVariables.vNomUsu.trim() + " " +
-                                                          FarmaVariables.vPatUsu.trim() + " " +
-                                                          FarmaVariables.vMatUsu.trim());
-                                // Inicio Adicion Delivery 28/04/2006 Paulo
-                                //String nombreCliente = VariablesDelivery.vNombreCliente + " " +VariablesDelivery.vApellidoPaterno + " " + VariablesDelivery.vApellidoMaterno;
-                                //lblCliente.setText(nombreCliente);
-                                // Fin Adicion Delivery 28/04/2006 Paulo
-                                colocaUltimoPedidoDiarioVendedor();
-                                //FarmaUtility.moveFocus(tblProductos);
-                                FarmaUtility.moveFocus(txtDescProdOculto);
-
-                            vkF = "F4";
-                            agregarComplementarios(vkF);
-                            /*}*/
-                        } else if (e.getKeyCode() == KeyEvent.VK_F1 ||
-                                   e.getKeyChar() == '+') {
-                            //grabarPedidoVenta(ConstantsVentas.TIPO_COMP_BOLETA);
-                            /*if(cargaLogin_verifica())
-                            {*/
-                                lblNombreVendedor.setText(FarmaVariables.vNomUsu.trim() + " " +
-                                                          FarmaVariables.vPatUsu.trim() + " " +
-                                                          FarmaVariables.vMatUsu.trim());
-                                // Inicio Adicion Delivery 28/04/2006 Paulo
-                                //String nombreCliente = VariablesDelivery.vNombreCliente + " " +VariablesDelivery.vApellidoPaterno + " " + VariablesDelivery.vApellidoMaterno;
-                                //lblCliente.setText(nombreCliente);
-                                // Fin Adicion Delivery 28/04/2006 Paulo
-                                colocaUltimoPedidoDiarioVendedor();
-                                //FarmaUtility.moveFocus(tblProductos);
-                                FarmaUtility.moveFocus(txtDescProdOculto);
-
-                                vkF = "F1";
-                            agregarComplementarios(vkF);
-                            //}
-                        }
-                    }
-                } catch (SQLException sql) {
-                    sql.printStackTrace();
-                    FarmaUtility.showMessage(this, mensaje + sql.getMessage(),
-                                             tblProductos);
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                    FarmaUtility.showMessage(this, mensaje + ex.getMessage(),
-                                             tblProductos);
-                }
-            } else {
-                if (e.getKeyCode() == KeyEvent.VK_F4) {
-                    //grabarPedidoVenta(ConstantsVentas.TIPO_COMP_FACTURA);
-                    /*if(cargaLogin_verifica())
-                    {*/
-                        lblNombreVendedor.setText(FarmaVariables.vNomUsu.trim() + " " +
-                                                  FarmaVariables.vPatUsu.trim() + " " +
-                                                  FarmaVariables.vMatUsu.trim());
-                        // Inicio Adicion Delivery 28/04/2006 Paulo
-                        //String nombreCliente = VariablesDelivery.vNombreCliente + " " +VariablesDelivery.vApellidoPaterno + " " + VariablesDelivery.vApellidoMaterno;
-                        //lblCliente.setText(nombreCliente);
-                        // Fin Adicion Delivery 28/04/2006 Paulo
-                        colocaUltimoPedidoDiarioVendedor();
-                        //FarmaUtility.moveFocus(tblProductos);
-                        FarmaUtility.moveFocus(txtDescProdOculto);
-
-                    vkF = "F4";
-                    agregarComplementarios(vkF);
-                    //}
-                } else if (e.getKeyCode() == KeyEvent.VK_F1 ||
-                           e.getKeyChar() == '+') {
-                    //grabarPedidoVenta(ConstantsVentas.TIPO_COMP_BOLETA);
-                    /*if(cargaLogin_verifica())
-                    {*/
-                        lblNombreVendedor.setText(FarmaVariables.vNomUsu.trim() + " " +
-                                                  FarmaVariables.vPatUsu.trim() + " " +
-                                                  FarmaVariables.vMatUsu.trim());
-                        // Inicio Adicion Delivery 28/04/2006 Paulo
-                        //String nombreCliente = VariablesDelivery.vNombreCliente + " " +VariablesDelivery.vApellidoPaterno + " " + VariablesDelivery.vApellidoMaterno;
-                        //lblCliente.setText(nombreCliente);
-                        // Fin Adicion Delivery 28/04/2006 Paulo
-                        colocaUltimoPedidoDiarioVendedor();
-                        //FarmaUtility.moveFocus(tblProductos);
-                        FarmaUtility.moveFocus(txtDescProdOculto);
-
-                    vkF = "F1";
-                    agregarComplementarios(vkF);
-                    /*}*/
-                }
-            }
-        } else {
-            if (e.getKeyCode() == KeyEvent.VK_F4) {
-                //grabarPedidoVenta(ConstantsVentas.TIPO_COMP_FACTURA);
-                /*if(cargaLogin_verifica())
-                {*/
-                    lblNombreVendedor.setText(FarmaVariables.vNomUsu.trim() + " " +
-                                              FarmaVariables.vPatUsu.trim() + " " +
-                                              FarmaVariables.vMatUsu.trim());
-                    // Inicio Adicion Delivery 28/04/2006 Paulo
-                    //String nombreCliente = VariablesDelivery.vNombreCliente + " " +VariablesDelivery.vApellidoPaterno + " " + VariablesDelivery.vApellidoMaterno;
-                    //lblCliente.setText(nombreCliente);
-                    // Fin Adicion Delivery 28/04/2006 Paulo
-                    colocaUltimoPedidoDiarioVendedor();
-                    //FarmaUtility.moveFocus(tblProductos);
-                    FarmaUtility.moveFocus(txtDescProdOculto);
-
-                vkF = "F4";
-                agregarComplementarios(vkF);
-                //}
-            } else if (e.getKeyCode() == KeyEvent.VK_F1 ||
-                       e.getKeyChar() == '+') {
-
-                if(cargaLogin_verifica())
-                {
-                    lblNombreVendedor.setText(FarmaVariables.vNomUsu.trim() + " " +
-                                              FarmaVariables.vPatUsu.trim() + " " +
-                                              FarmaVariables.vMatUsu.trim());
-                    // Inicio Adicion Delivery 28/04/2006 Paulo
-                    //String nombreCliente = VariablesDelivery.vNombreCliente + " " +VariablesDelivery.vApellidoPaterno + " " + VariablesDelivery.vApellidoMaterno;
-                    //lblCliente.setText(nombreCliente);
-                    // Fin Adicion Delivery 28/04/2006 Paulo
-                    colocaUltimoPedidoDiarioVendedor();
-                    //FarmaUtility.moveFocus(tblProductos);
-                    FarmaUtility.moveFocus(txtDescProdOculto);
-
-                vkF = "F1";
-                agregarComplementarios(vkF);
-                }
-            }
-        }
-
-        pedidoEnProceso = false;
-        if (VariablesVentas.vIndVolverListaProductos){
-
-            agregarProducto();
-        }
-    }
 
     /**
      * Graba el detalle de Producto por promocion
@@ -4578,7 +3736,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
      * @param pFila
      * @param tipo indica si es Producto simple o de una promocion
      * @throws Exception
-     * @author dubilluz
+     * @author  
      * @since  19.06.2007
      */
     private void grabarDetalle(String pTiComprobante, ArrayList array,
@@ -4629,7 +3787,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
         if (tipo == ConstantsVentas.IND_PROD_PROM)
             VariablesVentas.vVal_Prec_Pub = ((String)(array.get(21))).trim();
         /*
-     Para grabar la promocion  en el detalle dubilluz 28.02.2008
+     Para grabar la promocion  en el detalle   28.02.2008
      */
 
         if (tipo == ConstantsVentas.IND_PROD_PROM)
@@ -4650,23 +3808,23 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
         } else {
 
             VariablesVentas.vIndOrigenProdVta =
-                    array.get(23).toString().trim(); //JCHAVEZ 20102009 se asignaba cadena nula ""
+                    array.get(23).toString().trim(); //  20102009 se asignaba cadena nula ""
             VariablesVentas.vCantxDia = "";
             VariablesVentas.vCantxDias = "";
         }
 
-        //JCHAVEZ 20102009
+        //  20102009
         if (tipo == ConstantsVentas.IND_PROD_PROM) {
             VariablesVentas.vAhorroPack = ((String)(array.get(22))).trim();
 
 
         }
-        //JCHAVEZ 20102009
+        //  20102009
         DBVentas.grabarDetallePedido();
         VariablesVentas.vCodPromoDet = "";
 
-        //dveliz 15.08.08
-        //DUBILLUZ 22.08.2008
+        //  15.08.08
+        //  22.08.2008
         /* if(VariablesCampana.vFlag){
         for(int i =0; i<VariablesCampana.vListaCupones.size();i++){
             ArrayList myList = (ArrayList)VariablesCampana.vListaCupones.get(i);
@@ -4711,7 +3869,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
 
     /**
   * Elimina la promocion y su detalle
-  * @author : dubilluz
+  * @author :  
   * @since  : 20.06.2007
   */
     /* private void eliminaPromocion(String codProm){
@@ -4735,7 +3893,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
     /**
      * Metodo que elimina items del array ,que sean iguales al paramtro
      * q se le envia , comaprando por campo
-     * @author :dubilluz
+     * @author : 
      * @since  :20.06.2007
      */
     private void removeItemArray(ArrayList array, String codProm, int pos) {
@@ -4754,7 +3912,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
     /**
      * busca si el parametro se encuentra en algun
      * item del Array
-     * @author : dubilluz
+     * @author :  
      * @since  : 21.06.2007
      */
     private
@@ -4772,7 +3930,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
 
     /**
      * Retorna el detalle de una promocion
-     * @author : dubilluz
+     * @author :  
      * @since  : 03.07.2007
      */
     private ArrayList detalle_Prom(ArrayList array, String codProm) {
@@ -4794,9 +3952,9 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
     /**
      * Agrupa productos que esten en ambos paquetes
      * retorna el nuevoa arreglo
-     * @author : dubilluz
+     * @author :  
      * @since : 27.06.2007
-     * @modificacion: ASOSA, 18.12.2009
+     * @modificacion:  , 18.12.2009
      */
     private ArrayList agrupar(ArrayList array) {
         int cantCampos = ((ArrayList)array.get(0)).size();
@@ -4811,11 +3969,11 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
             System.out.println("AUXXXXXXXXXXXXXXXXXXXXXXXX 1: " + aux1);
             System.out.println("SIZE: SIZE: " + aux1.size());
             if (aux1.size() <=
-                cantCampos) { //cantidad de campos ASOSA, 18.12.2009
+                cantCampos) { //cantidad de campos  , 18.12.2009
                 for (int j = i + 1; j < array.size(); j++) {
                     aux2 = (ArrayList)(array.get(j));
                     if (aux2.size() <=
-                        cantCampos) { //cantidad de campos ASOSA, 18.12.2009
+                        cantCampos) { //cantidad de campos  , 18.12.2009
                         if ((((String)(aux1.get(0))).trim()).equalsIgnoreCase((((String)(aux2.get(0))).trim()))) {
                             cantidad1 =
                                     Integer.parseInt(((String)(aux1.get(4))).trim());
@@ -4838,7 +3996,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
 
     /**
      * Acepta Modificacion de promocion
-     * @author : dubilluz
+     * @author :  
      * @since  : 04.07.2007
      */
     private void aceptaPromocion() {
@@ -4860,7 +4018,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
 
     /**
      * Muestra el dialogo de Ingreso de Cantidad para Producto Tarjeta Virtual
-     * @author : dubilluz
+     * @author :  
      * @since  : 29.08.2007
      */
     private void muestraIngresoCantidad_Tarjeta_Virtual() {
@@ -4897,7 +4055,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
 
     /**
      * Seleccionando el Producto de tajeta Virtual
-     * @author : dubilluz
+     * @author :  
      * @since  : 29.08.2007
      */
     private void seleccionaProductoTarjetaVirtual(String cantidad) { //VariablesVentas.vTotalPrecVtaProd  75.0
@@ -4974,7 +4132,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
     /**
      * Proceso para revisar eventos externos para los pedidos
      * como productos de regalo ,cumpones y/o complementarios
-     * @author dubilluz
+     * @author  
      * @since  08.04.2007
      */
     private boolean procesoProductoRegalo(String pNumped,
@@ -5240,7 +4398,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
     private void añadirProductoRegalo(String pCodProd, int pCantidad,
                                       String pNumped, int pSecDet,
                                       int pValPrec, String pDescProd) {
-        VariablesVentas.secRespStk=""; //ASOSA, 26.08.2010
+        VariablesVentas.secRespStk=""; // , 26.08.2010
         if ( /*UtilityVentas.actualizaStkComprometidoProd(pCodProd,pCantidad,
                                     ConstantsVentas.INDICADOR_A,
                                     ConstantsPtoVenta.TIP_OPERACION_RESPALDO_SUMAR,
@@ -5248,7 +4406,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
                                                   true,
                                                   this,
                                                   tblProductos))*/
-            UtilityVentas.operaStkCompProdResp(pCodProd, //ASOSA, 08.07.2010
+            UtilityVentas.operaStkCompProdResp(pCodProd, // , 08.07.2010
                 pCantidad, ConstantsVentas.INDICADOR_A,
                 ConstantsPtoVenta.TIP_OPERACION_RESPALDO_SUMAR, pCantidad,
                 true, this, tblProductos, "")) {
@@ -5258,9 +4416,9 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
                 //DBVentas.grabaProductoRegalo(pNumped,pCodProd,pSecDet,pCantidad,pValPrec); //Antes
                 DBVentas.grabaProductoRegalo_02(pNumped, pCodProd, pSecDet,
                                                 pCantidad, pValPrec,
-                                                VariablesVentas.secRespStk); //ASOSA, 09.07.2010
+                                                VariablesVentas.secRespStk); // , 09.07.2010
                 //FarmaUtility.showMessage(this, "wawawa", null);
-                /*DBPtoVenta.ejecutaRespaldoStock(pCodProd, //Antes, ASOSA, 09.07.2010
+                /*DBPtoVenta.ejecutaRespaldoStock(pCodProd, //Antes,  , 09.07.2010
                                         pNumped,
                                         ConstantsPtoVenta.TIP_OPERACION_RESPALDO_ACTUALIZAR_PEDIDO,
                                         0,
@@ -5270,7 +4428,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
                  *                 DBVentas.actualizarRespaldoNumPedido(pCodProd,
                                                      ConstantsPtoVenta.MODULO_VENTAS,
                                                      pNumped,
-                                                     VariablesVentas.secRespStk); //ASOSA, 09.07.2010
+                                                     VariablesVentas.secRespStk); // , 09.07.2010
                  * */
                 //FarmaUtility.showMessage(this, "wowowo", null);
                 String mensaje =
@@ -5288,7 +4446,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
     /**
      * Procesa las campañas sean multimarca y/o cupones
      * @param pNumPed
-     * @author dubilluz
+     * @author  
      * @since  10.07.2008
      */
     private void procesoCampañas(String pNumPed) throws Exception {
@@ -5300,7 +4458,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
     }
 
 
-    //Modificado por DVELIZ  04.10.08
+    //Modificado por    04.10.08
 
     private void procesoCampanaCupon(String pNumPed) throws Exception {
         DBVentas.procesaCampanaCupon(pNumPed,
@@ -5485,7 +4643,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
      * Procensa las multimarcas aplicables al pedido actual
      * @param pNumPed
      * @throws Exception
-     * @author dubilluz
+     * @author  
      * @since  10.07.2008
      */
     private void procesoMultimarca(String pNumPed) throws Exception {
@@ -5591,7 +4749,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
 
     /**
      * se lista productos complementarios
-     * @author JCORTEZ
+     * @author  
      * @since  10.05.2008
      */
     private void agregarComplementarios(String vkF) {
@@ -5626,21 +4784,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
 
 
 
-        //Agregado por FRAMIREZ 11.02.2012 Flag Para Mostrar productos complementarios para un convenio
-        if(UtilityConvenioBTLMF.esActivoConvenioBTLMF(this, null) && VariablesConvenioBTLMF.vHayDatosIngresadosConvenioBTLMF)
-        {
-        	 if (VariablesConvenioBTLMF.vIndVtaComplentaria.equals("S"))
-        	  {
-		         DlgComplementarios1 dlgcomplementarios = new DlgComplementarios1(myParentFrame, "", true);
-		         dlgcomplementarios.setVisible(true);
-		      }
-        	 else
-        	  {
-        		 FarmaVariables.vAceptar = false;
-		      }
-        }
-        else
-        {
+    
         if (mostrar) {
             DlgComplementarios1 dlgcomplementarios =
                 new DlgComplementarios1(myParentFrame, "", true);
@@ -5648,33 +4792,23 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
         } else {
             FarmaVariables.vAceptar = false;
         }
-        }
+       
 
         System.out.println("FarmaVariables.vAceptar : " +
                            FarmaVariables.vAceptar);
 
         if (FarmaVariables.vAceptar) {
-            VariablesVentas.vCodFiltro = ""; //JCORTEZ 25/04/08
-            VariablesVentas.vEsProdOferta = false; //JCORTEZ 25/04/08
+            VariablesVentas.vCodFiltro = ""; //  25/04/08
+            VariablesVentas.vEsProdOferta = false; //  25/04/08
             aceptaOperacion(); //agrega producto al pedido
 
             //operaResumenPedido(); REEMPLAZADO POR EL DE ABAJO
-            neoOperaResumenPedido(); //nuevo metodo jcallo 10.03.2009
+            neoOperaResumenPedido(); //nuevo metodo   10.03.2009
 
 
         } else {
 
-          //Agregado Por FRAMIREZ
-          if(UtilityConvenioBTLMF.esActivoConvenioBTLMF(this,null)
-        	 && VariablesConvenioBTLMF.vCodConvenio != null && VariablesConvenioBTLMF.vCodConvenio.length() > 0)
-          {
-	            if (vkF.equalsIgnoreCase("F1")) {
-	               grabarPedidoVenta(ConstantsVentas.TIPO_COMP_BOLETA);
-	               //VariablesVentas.venta_producto_virtual = false;
-	            }
-          }
-          else
-          {
+      
                 if (vkF.equalsIgnoreCase("F1")) {
                     grabarPedidoVenta(ConstantsVentas.TIPO_COMP_BOLETA);
                                         //VariablesVentas.venta_producto_virtual = false;
@@ -5683,7 +4817,7 @@ FarmaUtility.getDecimalNumber((FarmaUtility.formatNumber(aux2, 3)));
                     //VariablesVentas.venta_producto_virtual = false;
 	            }
 
-            }
+            
         }
 
 
@@ -6095,7 +5229,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                 return;
 
             String pCadenaOriginal = txtDescProdOculto.getText().trim();
-            //dubilluz 21.07.2011
+            //  21.07.2011
             setFormatoTarjetaCredito(txtDescProdOculto.getText().trim());
             String pCadenaNueva = txtDescProdOculto.getText().trim();
             System.err.println("pasoTarjeta:"+pasoTarjeta);*/
@@ -6111,7 +5245,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                 }
 
                 String pCadenaOriginal = txtDescProdOculto.getText().trim();
-                //dubilluz 21.07.2011
+                //  21.07.2011
                 setFormatoTarjetaCredito(txtDescProdOculto.getText().trim());
                 String pCadenaNueva = txtDescProdOculto.getText().trim();
                 /*
@@ -6127,12 +5261,12 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                 System.err.println("pasoTarjeta:"+pasoTarjeta);
 
 
-                //JCORTEZ 25/04/08
+                //  25/04/08
                 String codProd = txtDescProdOculto.getText().trim();
                 if (UtilityVentas.isNumerico(codProd)) {
 
                     // inicio
-                    //AGREGADO POR DVELIZ 26.09.08
+                    //AGREGADO POR   26.09.08
                     //Cambiar en el futuro esto por una consulta a base de datos.
                     String cadena = codProd.trim();
                     String formato = "";
@@ -6185,7 +5319,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                             return;
                         }
                     }
-                    //fin  dubilluz
+                    //fin   
 
                     if (cadena.trim().length() > 6)
                         formato = cadena.substring(0, 5);
@@ -6210,16 +5344,16 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
 
                     }
                     ///fin 2
-                    //Dubilluz saber si ingreso una tarjeta y esta en una campaña automatica
+                    //  saber si ingreso una tarjeta y esta en una campaña automatica
                     //para q aparezca la pantalla de fidelizacion
-                    //inicio dubilluz 15.07.2011
+                    //inicio   15.07.2011
                     boolean pIsTarjetaEnCampana = UtilityFidelizacion.isTarjetaPagoInCampAutomatica(cadena.trim());
                     if(pIsTarjetaEnCampana){
                         System.err.println("es una tarjeta de pago q esta en una campana automatica:");
                        validaIngresoTarjetaPagoCampanaAutomatica(cadena.trim());
                        return;
                     }
-                    //fin dubilluz 15.07.2011
+                    //fin   15.07.2011
 
                     /***Jquispe 22.04.2010 cambio para leer el codigo de barra************/
 
@@ -6431,15 +5565,15 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
         if (e.getKeyChar() == '+') {
             e.consume();
             //validaConvenio(e, VariablesConvenio.vPorcCoPago);
-            //JMIRANDA 23.06.2010
-            validaConvenio_v2(e, VariablesConvenio.vPorcCoPago);
+            //  23.06.2010
+            
             FarmaUtility.moveFocus(txtDescProdOculto);
         }
     }
 
     /**
      * Se muestra filtro para filtrar los productos
-     * @author JCORTEZ
+     * @author  
      * @since  17.04.2008
      */
     private void mostrarFiltro() {
@@ -6522,7 +5656,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
     private void procesoPack(String pNumPed) {
         try {
             //DBVentas.procesoPackRegalo(pNumPed.trim()); Antes
-            DBVentas.procesoPackRegalo_02(pNumPed.trim()); //ASOSA, 06.07.2010
+            DBVentas.procesoPackRegalo_02(pNumPed.trim()); // , 06.07.2010
         } catch (SQLException sql) {
             sql.printStackTrace();
             FarmaUtility.showMessage(this,
@@ -6573,7 +5707,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
         //String vIndFidCupon = "N";//obtiene el ind fid -- codCampCupon
         String vIndFidCupon = UtilityFidelizacion.getIndfidelizadoUso(codCampCupon);
         //if(vIndFidCupon.trim().equalsIgnoreCase("S")){
-        //inicio dubilluz 09.06.2011
+        //inicio   09.06.2011
         if(vIndFidCupon.trim().equalsIgnoreCase("S")) {
             if(VariablesFidelizacion.vDniCliente.trim().length()==0){
                funcionF12(codCampCupon);
@@ -6730,13 +5864,13 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
         /*DlgCupones dlgCupones = new DlgCupones(myParentFrame,"",true);
     dlgCupones.setVisible(true);*/
 
-        /*//Dveliz 22.08.08
+        /*//  22.08.08
      VariablesCampana.vCodCupon = cadena;
      ingresarDatosCampana();
      if(VariablesCampana.vListaCupones.size()>0)
         VariablesCampana.vFlag = true;*/
 
-        //dveliz 25.08.08
+        //  25.08.08
 
         VariablesCampana.vCodCupon = cadena;
         //ingresarDatosCampana();
@@ -6750,7 +5884,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
         txtDescProdOculto.setText("");
         lblCuponIngr.setText(VariablesVentas.vMensCuponIngre);
         calculaTotalesPedido();
-        //Fin dveliz
+        //Fin  
     }
 
 
@@ -6927,10 +6061,10 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
         //Recorre todos los cupones que estan ordenados por prioridad
         //-- PENDIENTE
         //-- SOLO UTILIZAR LOS CUPONES VALIDOS
-        log.debug("JCALLO : Cupones a Procesar" +
+        log.debug("  : Cupones a Procesar" +
                   VariablesVentas.vArrayList_Cupones);
-        log.debug("JCALLO : uso me memoria total:" + rt.totalMemory());
-        log.debug("JCALLO : uso me memoria libre:" + rt.freeMemory());
+        log.debug("  : uso me memoria total:" + rt.totalMemory());
+        log.debug("  : uso me memoria libre:" + rt.freeMemory());
         for (int j = 0; j < VariablesVentas.vArrayList_Cupones.size(); j++) {
             cupon = (ArrayList)VariablesVentas.vArrayList_Cupones.get(j);
             log.debug("cupon:" + cupon);
@@ -6949,8 +6083,8 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
 
             log.debug("vMontoMin:" + vMontoMin);
             log.debug("vUnidsMin:" + vUnidsMin);
-            log.debug("JCALLO : uso me memoria total:" + rt.totalMemory());
-            log.debug("JCALLO : uso me memoria libre:" + rt.freeMemory());
+            log.debug("  : uso me memoria total:" + rt.totalMemory());
+            log.debug("  : uso me memoria libre:" + rt.freeMemory());
 
             ArrayList vAuxPordPedCamp = new ArrayList();
             cantProds = 0;
@@ -6962,7 +6096,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
             vMontoDscto = 0;
 
 
-            //JCORTEZ
+            // 
             double vTotalValorProd = 0;
             double totalNeto1 = 0;
 
@@ -6971,9 +6105,9 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                 for (int i = 0;
                      i < VariablesVentas.vArrayList_ResumenPedido.size();
                      i++) {
-                    log.debug("JCALLO : uso me memoria totalResumenPedido:" +
+                    log.debug("  : uso me memoria totalResumenPedido:" +
                               "{" + i + "}" + rt.totalMemory());
-                    log.debug("JCALLO : uso me memoria libreResumenPedido:" +
+                    log.debug("  : uso me memoria libreResumenPedido:" +
                               "{" + i + "}" + rt.freeMemory());
 
                     codProd =
@@ -7005,10 +6139,10 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                     //Que no sean ofertas, ni este afectado por otro cupon
                     //if(!vTipoOrigen.equals(ConstantsVentas.IND_ORIGEN_OFER) && vProdCuponCamp.equals(""))
                     //Segun gerencia debe de aplicar tambien a ofertas
-                    // Dubilluz 24.11.2008
+                    //   24.11.2008
                     vIndPordCamp =
                             DBVentas.verificaProdCamp(vCodCamp, codProd);
-                    log.debug("JCALLO : vIndPordCamp:" + vIndPordCamp);
+                    log.debug("  : vIndPordCamp:" + vIndPordCamp);
                     if (UtilityVentas.isAplicoPrecioCampanaCupon(codProd.trim(),
                                                                  vIndPordCamp) &&
                         vProdCuponCamp.equals("")) {
@@ -7024,8 +6158,8 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                             totalNeto +=
                                     FarmaUtility.getDecimalNumber((String)((ArrayList)VariablesVentas.vArrayList_ResumenPedido.get(i)).get(7));
                             //System.out.println("cantidad " + cantidad + " / fraccion " + fraccion);
-                            log.debug("JCALLO : vCantUnid " + vCantUnid);
-                            log.debug("JCALLO : vCantProdMax " + vCantProdMax);
+                            log.debug("  : vCantUnid " + vCantUnid);
+                            log.debug("  : vCantProdMax " + vCantProdMax);
 
                             if (vIndTipoCupon.equalsIgnoreCase("P")) {
                                 if (vCantUnid > vCantProdMax) {
@@ -7077,7 +6211,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                                     sPrecioFinal =
                                             Double.toString(precioFinal); //si por x motivos no se obtiene el precio final se asignara el precio comun
                                 }
-                                log.debug("JCALLO==> CUPONES PRECIO :precioConDcto=" +
+                                log.debug(" ==> CUPONES PRECIO :precioConDcto=" +
                                           precioConDcto + " sPrecioFinal=" +
                                           sPrecioFinal);
                                 //verificar si el precio final cambio
@@ -7211,7 +6345,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                                                                 7); //Total Precio Vta
                                         log.debug("&&&& 16 &&&");
 
-                                        //Modificado por DVELIZ 09.10.08
+                                        //Modificado por   09.10.08
                                         double ahorro = montoDescuento;
                                         log.debug("&&&& 17 &&&");
                                         String porc_dcto_1 = cValorCupon;
@@ -7335,7 +6469,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                                         } catch (Exception e) {
                                             FarmaUtility.enviaCorreoPorBD(FarmaVariables.vCodGrupoCia,
                                                                           FarmaVariables.vCodLocal,
-                                                    //"jcallo",
+                                                    //" ",
                                                     VariablesPtoVenta.vDestEmailErrorCobro,
                                                     "ERROR VALOR NULO , 6 LOCALES CON EL CAMBIO ",
                                                     "ERROR VALOR NULO , 6 LOCALES CON EL CAMBIO ",
@@ -7346,11 +6480,11 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                                                     rt.freeMemory() +
                                                     " MEMORIA TOTAL:" +
                                                     rt.totalMemory(),
-                                                    //"dubilluz"
+                                                    //" "
                                                     "");
-                                            log.error("ERRORDUBILLUZ aplicar descuento1  " +
+                                            log.error("ERROR  aplicar descuento1  " +
                                                       e.getStackTrace());
-                                            log.error("ERRORDUBILLUZ aplicar descuento2  " +
+                                            log.error("ERROR  aplicar descuento2  " +
                                                       e.getMessage());
                                         }
                                         log.debug("666 : 2da");
@@ -7395,18 +6529,18 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                 retorno = false;
                 FarmaUtility.enviaCorreoPorBD(FarmaVariables.vCodGrupoCia,
                                               FarmaVariables.vCodLocal,
-                        //"jcallo",
+                        //" ",
                         VariablesPtoVenta.vDestEmailErrorCobro,
                         "Error de valor nulo ptoventa con los cambios actuale y el log al calcular los descuentos, tema del stringtokenizer ",
                         "Error de valor nulo, en calculo de descuento",
                         "Error de valor nulo, en calculo de descuento : vCodCamp=" +
                         vCodCamp + ", ipPC=" + FarmaVariables.vIpPc,
-                        //"dubilluz"
+                        //" "
                         "");
                 log.debug("666 : 24.02.2009");
-                log.error("ERRORJCALLO aplicar descuento1  " +
+                log.error("ERROR  aplicar descuento1  " +
                           e.getStackTrace());
-                log.error("ERRORJCALLO aplicar descuento2  " + e.getMessage());
+                log.error("ERROR  aplicar descuento2  " + e.getMessage());
             }
         }
 
@@ -7423,7 +6557,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
     /**
      * Valida monto de cupones del pedido
      * se reempn el nuevo metodo validaCampsMontoNetoPedido
-     * @author dubilluz
+     * @author  
      * @since  23.07.2008, modif 11.03.2009
      * @param  pNetoPedido
      * @deprecated
@@ -7509,7 +6643,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
     }
 
     /**
-     * JCORTEZ
+     *  
      * metodo ya no se usa. ya que para calcular el ahorro insertaba en tablas temporales
      * los productos con las campanias
      * @deprecated
@@ -7613,7 +6747,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
             ArrayList array =
                 (ArrayList)VariablesFidelizacion.vDataCliente.get(0);
             UtilityFidelizacion.setVariablesDatos(array);
-            //fin jcallo 02.10.2008
+            //fin   02.10.2008
             if (VariablesFidelizacion.vIndExisteCliente) {
                 FarmaUtility.showMessage(this, "Bienvenido \n" +
                         VariablesFidelizacion.vNomCliente + " " +
@@ -7648,7 +6782,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
 
             VariablesVentas.vArrayList_CampLimitUsadosMatriz = new ArrayList();
             //Ya no validara en Matriz
-            //14.04.2009 DUBILLUZ
+            //14.04.2009  
             //cargando las campañas automaticas limitadas en cantidad de usos desde matriz
             /*log.debug("**************************************");
             VariablesFidelizacion.vIndConexion = FarmaUtility.getIndLineaOnLine(FarmaConstants.CONECTION_MATRIZ,
@@ -7663,21 +6797,21 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
             //cargando las campañas automaticas limitadas en cantidad de usos desde matriz
 
             //operaResumenPedido(); REEMPLAZADO POR EL DE ABAJO
-            neoOperaResumenPedido(); //nuevo metodo jcallo 10.03.2009
+            neoOperaResumenPedido(); //nuevo metodo   10.03.2009
 
 
             VariablesFidelizacion.vIndAgregoDNI = "";
-            //dubilluz 19.07.2011 - inicio
+            //  19.07.2011 - inicio
             if(VariablesFidelizacion.tmp_NumTarjeta_unica_Campana.trim().length()>0){
                UtilityFidelizacion.grabaTarjetaUnica(VariablesFidelizacion.tmp_NumTarjeta_unica_Campana.trim(),VariablesFidelizacion.vDniCliente);
             }
-            //dubilluz 19.07.2011 - fin
+            //  19.07.2011 - fin
         } else {
-            //jcallo 02.10.2008
+            //  02.10.2008
             lblCliente.setText(VariablesFidelizacion.vNomCliente); /*+" "
                                +VariablesFidelizacion.vApePatCliente+" "
                                +VariablesFidelizacion.vApeMatCliente);*/
-            //fin jcallo 02.10.2008
+            //fin   02.10.2008
         }
         txtDescProdOculto.setText("");
     }
@@ -7699,14 +6833,14 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                     VariablesFidelizacion.vApePatCliente + " " +
                     VariablesFidelizacion.vApeMatCliente + "\n" +
                     "DNI: " + VariablesFidelizacion.vDniCliente, null);
-            //dubilluz 19.07.2011 - inicio
+            //  19.07.2011 - inicio
             if(VariablesFidelizacion.tmp_NumTarjeta_unica_Campana.trim().length()>0){
                UtilityFidelizacion.grabaTarjetaUnica(VariablesFidelizacion.tmp_NumTarjeta_unica_Campana.trim(),VariablesFidelizacion.vDniCliente);
             }
-            //dubilluz 19.07.2011 - fin
-            //jcallo 02.10.2008
+            //  19.07.2011 - fin
+            //  02.10.2008
             lblCliente.setText(VariablesFidelizacion.vNomCliente);
-            //fin jcallo 02.10.2008
+            //fin   02.10.2008
             //DAUBILLUZ -- Filtra los DNI anulados
             //25.05.2009
             VariablesFidelizacion.vDNI_Anulado =
@@ -7734,14 +6868,14 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                         FarmaConstants.INDICADOR_N;
 
                 log.debug("************************");
-                //      if(VariablesFidelizacion.vIndConexion.equals(FarmaConstants.INDICADOR_S)){//VER SI HAY LINEA CON MATRIZ   // JCHAVEZ 27092009. se comentó pues no es necesario que valide ya que se consultará al local
+                //      if(VariablesFidelizacion.vIndConexion.equals(FarmaConstants.INDICADOR_S)){//VER SI HAY LINEA CON MATRIZ   //   27092009. se comentó pues no es necesario que valide ya que se consultará al local
                 log.debug("jjccaalloo:VariablesFidelizacion.vDniCliente" +
                           VariablesFidelizacion.vDniCliente);
                 VariablesVentas.vArrayList_CampLimitUsadosMatriz =
                         CampLimitadasUsadosDeMatrizXCliente(VariablesFidelizacion.vDniCliente);
                 log.debug("******VariablesVentas.vArrayList_CampLimitUsadosMatriz" +
                           VariablesVentas.vArrayList_CampLimitUsadosMatriz);
-                //     } // JCHAVEZ 27092009. se comentó pues no es necesario que valide ya que se consultará al local
+                //     } //   27092009. se comentó pues no es necesario que valide ya que se consultará al local
 
 
                 //cargando las campañas automaticas limitadas en cantidad de usos desde matriz
@@ -7750,7 +6884,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
             }
 
             //operaResumenPedido(); REEMPLAZADO POR EL DE ABAJO
-            neoOperaResumenPedido(); //nuevo metodo jcallo 10.03.2009
+            neoOperaResumenPedido(); //nuevo metodo   10.03.2009
 
 
         }
@@ -7758,7 +6892,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
     }*/
 
     /**
-     * @author  dveliz
+     * @author   
      * @since   09.10.08
      * @param array
      * @deprecated
@@ -7770,7 +6904,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                                           String.valueOf(array.get(2)),
                                           String.valueOf(array.get(3)),
                                           String.valueOf(array.get(4)),
-                                          String.valueOf(array.get(5))); //JMIRANDA 30.10.09
+                                          String.valueOf(array.get(5))); //  30.10.09
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -7778,7 +6912,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
 
     /**
      * el procedimiento en  BASE DE DATOS esta haciendo commit cuando no debe
-     * @author  author JCALLO
+     * @author  author  
      * @since   09.10.08
      * @param array
      */
@@ -7798,10 +6932,10 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
     }
 
     /* *************************************************************************** */
-    //Inicio de Campañas Acumuladas DUBILLUZ 18.12.2008
+    //Inicio de Campañas Acumuladas   18.12.2008
 
     /**
-     * @author Dubilluz
+     * @author  
      * @since  17.12.2008
      * @param  pNumPed,pDniCli
      */
@@ -7874,7 +7008,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
 
     /**
      * Envia unidades acumulaciones local matriz
-     * @author Dubilluz
+     * @author  
      * @param  pNumPedido
      * @param  pDniCli
      * @param  pIndLinea
@@ -7996,7 +7130,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                 pCodCamp = listaCAEfectivas.get(i).toString().trim();
                 //DBVentas.añadeRegaloCampaña(pNumPed,pDniCli,pCodCamp); antes
                 DBVentas.añadeRegaloCampaña_02(pNumPed, pDniCli,
-                                               pCodCamp); //ASOSA, 07.07.2010
+                                               pCodCamp); // , 07.07.2010
             }
 
 
@@ -8189,7 +7323,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
         try {
             //listaCampLimitUsadosMatriz = DBCaja.getListaCampUsadosMatrizXCliente(dniCliente);
             listaCampLimitUsadosMatriz =
-                    DBCaja.getListaCampUsadosLocalXCliente(dniCliente); //DBCaja.getListaCampUsadosMatrizXCliente(dniCliente); // JCHAVEZ 27092009. se comentó pues no es necesario que valide ya que se consultará al local
+                    DBCaja.getListaCampUsadosLocalXCliente(dniCliente); //DBCaja.getListaCampUsadosMatrizXCliente(dniCliente); //   27092009. se comentó pues no es necesario que valide ya que se consultará al local
             if (listaCampLimitUsadosMatriz.size() > 0) {
                 listaCampLimitUsadosMatriz =
                         (ArrayList)listaCampLimitUsadosMatriz.get(0);
@@ -8214,7 +7348,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
         //para reiniciar todo el calculo.
         VariablesFidelizacion.vAhorroDNI_Pedido = 0;
 
-        log.debug("JCALLO: nuevo metodo de calculo de descuento");
+        log.debug(" : nuevo metodo de calculo de descuento");
         long timeIni = System.currentTimeMillis();
 
         List listaCodProds =
@@ -8222,7 +7356,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
         Map mapaAux;
         String codProdAux = "";
         String codCampAux = "";
-        //dubilluz 21.06.2011
+        //  21.06.2011
         double totalProducto = 0.0;
         System.err.println("LISTA PROD:" +
                            VariablesVentas.vArrayList_ResumenPedido);
@@ -8240,13 +7374,13 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                     FarmaUtility.getValueFieldArrayList(VariablesVentas.vArrayList_ResumenPedido,
                                                         i, 0).toString();
             // precio de venta total x producto.
-            // dubilluz 21.06.2011
+            //   21.06.2011
             totalProducto =
             FarmaUtility.getDecimalNumber(FarmaUtility.getValueFieldArrayList(VariablesVentas.vArrayList_ResumenPedido,
                                                                                 i, 3).toString())*
             FarmaUtility.getDecimalNumber(FarmaUtility.getValueFieldArrayList(VariablesVentas.vArrayList_ResumenPedido,
                                                                                 i, 4).toString());
-            // fin dubilluz 21.06.2011
+            // fin   21.06.2011
             mapaAux.put("COD_PROD", codProdAux);
             mapaAux.put("TOTAL_PROD", totalProducto+"");
             listaCodProds.add(mapaAux);
@@ -8261,7 +7395,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                                                                                   i,
                                                                                   4));
 
-            //JCHAVEZ 29102009 inicio
+            //  29102009 inicio
             String auxPrecAnt;
             try {
                 if (VariablesVentas.vIndAplicaRedondeo.equalsIgnoreCase("")) {
@@ -8278,7 +7412,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                 auxPrecAnt =
                         FarmaUtility.formatNumber(auxPrecio * auxCantidad);
             }
-            //JCHAVEZ 29102009 fin
+            //  29102009 fin
             double porcIgv =
                 FarmaUtility.getDecimalNumber(FarmaUtility.getValueFieldArrayList(VariablesVentas.vArrayList_ResumenPedido,
                                                                                   i,
@@ -8347,7 +7481,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
         for (int u = 0; u < prodsCampanias.size(); u++) {
             codCampTemp =
                     ((Map)prodsCampanias.get(u)).get("COD_CAMP_CUPON").toString();
-            // dubilluz 01.06.2012
+            //   01.06.2012
             if (UtilityFidelizacion.getPermiteCampanaTarj(codCampTemp,
                                                           VariablesFidelizacion.vDniCliente,
                                                           VariablesFidelizacion.vNumTarjeta))
@@ -8380,7 +7514,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
         System.err.println("prodsCampanias>>>"+prodsCampanias.size());
         prodsCampanias = prodsCampaniasNUEVA;
         System.err.println("prodsCampanias>>>"+prodsCampanias.size());
-        //// dubilluz 05.06.2012
+        ////   05.06.2012
         log.debug("listaCampAhorro:" + listaCampAhorro);
         /*calculando los descuentos por cada productos para todas las cammpanias**/
         //variables auxiliares usados para calcular
@@ -8429,7 +7563,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
         acumuladoDesctoPedido += VariablesFidelizacion.vAhorroDNI_x_Periodo;
         log.info("Descuento maximo utilizado: " + acumuladoDesctoPedido);
 
-        // dubilluz 01.06.2010
+        //   01.06.2010
         double valorCuponNuevo = 0.0;
 
         boolean indExcluyeProd_AHORRO_ACUM = false;
@@ -8450,7 +7584,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
             log.debug("analizando el prod:" + codProdAux + ",cod_camp_cupon:" + 
                       codCampAux);
             //verifica si existe la campaña en el listado y asi operarlo
-            //DUBILLUZ 05.06.2012
+            //  05.06.2012
 
             //BUSCANDO EL INDICE DEL PRODUCTO EN ARREGLO AL CUAL APLICAR EL DSCTO;
             int indiceProducto = -1;
@@ -8464,7 +7598,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                     break;
                 }
             }
-            log.debug("JCALLO:indiceProducto:" + indiceProducto);
+            log.debug(" :indiceProducto:" + indiceProducto);
             //hasta aqui se tiene el indice donde se encuentra el producto al cual se le aplicar el dcto
 
             //BUSCANDO EL INDICE DE LA CAMPANA CUPON del listado de campanas cupones
@@ -8478,7 +7612,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                     break;
                 }
             }
-            log.debug("JCALLO:indiceCamp:" + indiceCamp);
+            log.debug(" :indiceCamp:" + indiceCamp);
             //hasta aqui tenemos el indice donde se encuentra la campana cupon a aplicar
 
 
@@ -8496,7 +7630,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                         break;
                     }
                 }
-                log.debug("JCALLO:indiceProdCamp:" + indiceProdCamp);
+                log.debug(" :indiceProdCamp:" + indiceProdCamp);
                 //hasta aqui se tiene el indice de de los datos de  montoAhorro acumulado por campana a aplicar
                 //obteniendo datos principales del producto del resumen pedido
                 cantPed =
@@ -8533,7 +7667,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                 //unidades aplicables de la campania
                 //double unidMaximaAplicable = Double.parseDouble(mapaCupon.get("UNID_MAX_PROD").toString());
                 //Obtiene el maximo de unidades a la compra del producto
-                //DUBILLUZ 28.05.2009
+                //  28.05.2009
                 double unidMaximaAplicable =
                     UtilityFidelizacion.getMaxUnidDctoProdCampana(codCampAux,
                                                                   codProdAux);
@@ -8543,7 +7677,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                 }
 
                 //Obtiene el porcentaje descuento personalizado de producto
-                //DUBILLUZ 01.06.2010
+                //  01.06.2010
                 valorCuponNuevo = Double.parseDouble( mapaCupon.get("VALOR_CUPON").toString());
                 /*
                  Esto se comentara porque NO RECUERDAN CUANDO PIDIERON ESTO.
@@ -8646,7 +7780,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                 log.debug("ahorro 2:" + ahorro);
                 /*
                                 //--INICIO de verificar maximo descuento por dia del DNI
-                                // DUBILLUZ 27.05.2009
+                                //   27.05.2009
 
 
                                 if( (acumuladoDesctoPedido + ahorro) > VariablesFidelizacion.vMaximoAhorroDNIxPeriodo ){
@@ -8685,7 +7819,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                                 acumuladoDesctoPedido += ahorro;
                                 System.err.println("Descuento Parcial "+ahorro);
                                 System.err.println("Descuento acumulado "+acumuladoDesctoPedido);
-                                // Fin de Validacion de Maximo -- DUBILLUZ
+                                // Fin de Validacion de Maximo --  
 
                                  * */
 
@@ -8709,7 +7843,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                 //ver si el ahorro calculado es mayor al que se tenia anteriormente
                 if (ahorro > mayorAhorro && cantUnidPed >= unidMinUso )
                     // el mont minimo de uso debe ser de todos los productos USO de la campana
-                    // dubilluz 21.06.2011
+                    //   21.06.2011
                     //&&totalXProd >= montMinUso)
                 {
                     mayorAhorro = ahorro;
@@ -8720,7 +7854,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                     cantPedMayorAhorro = cantAplicable;
 
                     //valorCuponMayorAhorro = Double.parseDouble( mapaCupon.get("VALOR_CUPON").toString() );
-                    //dubilluz 01.06.2010
+                    //  01.06.2010
                     valorCuponMayorAhorro = valorCuponNuevo;
                 }
                 //fin de ver el maximo ahorro
@@ -8750,7 +7884,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
 
 
                 //--INICIO de verificar maximo descuento por dia del DNI
-                // DUBILLUZ 27.05.2009
+                //   27.05.2009
                 if (((Map)VariablesVentas.vArrayList_Cupones.get(indiceCamp)).get("IND_FID").toString().trim().equals(FarmaConstants.INDICADOR_S) | 
                     VariablesFidelizacion.vDniCliente.trim().length() > 0) {
                     if(!indExcluyeProd_AHORRO_ACUM) {
@@ -8828,14 +7962,14 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                     System.err.println("Descuento Parcial " + mayorAhorro);
                     System.err.println("Descuento acumulado " + 
                                        acumuladoDesctoPedido);
-                    // Fin de Validacion de Maximo -- DUBILLUZ
+                    // Fin de Validacion de Maximo --  
                 }
 
 
                 log.debug("aplicando el dcto al producto : " +
                           ((ArrayList)VariablesVentas.vArrayList_ResumenPedido.get(indiceProducto)).get(0).toString());
                 //duda si hacer esto esta bien la parecer al hacer set solo estaria referenciando direcion de memoria a la
-                //variable señalada ahi podria haber problemas, es solo una suposicion. JCALLO
+                //variable señalada ahi podria haber problemas, es solo una suposicion.  
 
                 ((ArrayList)VariablesVentas.vArrayList_ResumenPedido.get(indiceProducto)).set(COL_RES_CUPON,
                                                                                               campMayorAhorro);
@@ -8848,7 +7982,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                 ((ArrayList)VariablesVentas.vArrayList_ResumenPedido.get(indiceProducto)).set(7,
                                                                                               FarmaUtility.formatNumber(totalVtaMayorAhorro,
                                                                                                                         2));
-                // dubilluz 07.11.2012
+                //   07.11.2012
                 if(indExcluyeProd_AHORRO_ACUM){
                     VariablesVentas.vListProdExcluyeAcumAhorro.add(((ArrayList)VariablesVentas.vArrayList_ResumenPedido.get(indiceProducto)).get(0).toString());
                 }
@@ -8862,7 +7996,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                 mapaDctoProd.put("VALOR_CUPON", "" + valorCuponMayorAhorro);
                 mapaDctoProd.put("AHORRO", "" + mayorAhorro);
                 mapaDctoProd.put("DCTO_AHORRO", "" + dctoVtaMayorAhorro);
-                //JMIRANDA 30.10.09 AÑADE SEC DETALLE PEDIDO
+                //  30.10.09 AÑADE SEC DETALLE PEDIDO
                 mapaDctoProd.put("SEC_PED_VTA_DET", "" + (indiceProducto + 1));
                 System.out.println("JM 30.10.09, SEC_PED_VTA_DET " +
                                    (indiceProducto + 1));
@@ -8926,7 +8060,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                 totalVtaMayorAhorro = 0.0;
                 dctoVtaMayorAhorro = 0.0;
                 cantPedMayorAhorro = 0;
-                //dubilluz -01.06.2010
+                //  -01.06.2010
                 valorCuponNuevo = 0.0;
             } //fin de aplicar el mejor descuento descuento
 
@@ -8943,7 +8077,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
     		mapaAux    = (Map)prodsCampanias.get(i);
     		codProdAux = (String)mapaAux.get("COD_PROD");
     		codCampAux = (String)mapaAux.get("COD_CAMP_CUPON");
-    		log.debug("JCALLO:analizando el prod:"+codProdAux+",cod_camp_cupon:"+codCampAux);
+    		log.debug(" :analizando el prod:"+codProdAux+",cod_camp_cupon:"+codCampAux);
 
     		//BUSCANDO EL INDICE DEL PRODUCTO EN EL ARREGLO DE RESUMEN PEDIDO AL CUAL APLICAR EL CUPON;
     		int indiceProducto = -1;
@@ -8955,7 +8089,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
     				break;
     			}
     		}
-    		log.debug("JCALLO:indiceProducto:"+indiceProducto);
+    		log.debug(" :indiceProducto:"+indiceProducto);
     		//hasta aqui se tiene el indice donde se encuentra el producto al cual se le aplicar el dcto
 
     		//BUSCANDO EL INDICE DE LA CAMPANA CUPON del listado de campanas cupones
@@ -8968,7 +8102,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
     				break;
     			}
     		}
-    		log.debug("JCALLO:indiceCamp:"+indiceCamp);
+    		log.debug(" :indiceCamp:"+indiceCamp);
     		//hasta aqui tenemos el indice donde se encuentra la campana cupon a aplicar
 
     		//verificando los cupones de tipo MONTO
@@ -8981,7 +8115,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
         System.err.println("Ahorror Actual Total del Pedido " +
                            VariablesFidelizacion.vAhorroDNI_Pedido);
 
-        //JCHAVEZ 29102009 inicio
+        //  29102009 inicio
 
         try {
             if (VariablesVentas.vIndAplicaRedondeo.equalsIgnoreCase("")) {
@@ -8992,7 +8126,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
             ex.printStackTrace();
         }
         if (VariablesVentas.vIndAplicaRedondeo.equalsIgnoreCase("S")) {
-            //JCHAVEZ 29102009 inicio Redondeando montos
+            //  29102009 inicio Redondeando montos
             for (int i = 0;
                  i < VariablesVentas.vArrayList_ResumenPedido.size(); i++) {
                 String codProd =
@@ -9070,7 +8204,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                 System.out.println("cantidad: " + cantidad);
             }
 
-            //JCHAVEZ 29102009 fin
+            //  29102009 fin
         }
         return true; //por ahora dejando asi nomas jeje
 
@@ -9078,7 +8212,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
 
     /**
      * nuevo metodo encargado de resumen pedido
-     * @author jcallo
+     * @author  
      * **/
     private void neoOperaResumenPedido() {
 
@@ -9095,7 +8229,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
         }
 
 
-        //jcallo quitar las campañas que ya han terminado de ser usados por el cliente
+        //  quitar las campañas que ya han terminado de ser usados por el cliente
         log.debug("quitando las campañas limitadas en numeros de usos del cliente");
         log.debug("VariablesVentas.vArrayList_Cupones:" +
                   VariablesVentas.vArrayList_Cupones);
@@ -9121,27 +8255,11 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
         calculaTotalesPedido(); //dentro de esto esta el aplicar los dctos por campanias cupon
 
 
-        System.out.println("VariablesConvenioBTLMF.vHayDatosIngresadosConvenioBTLMF: " + VariablesConvenioBTLMF.vHayDatosIngresadosConvenioBTLMF);
+        
 
-		if (UtilityConvenioBTLMF.esActivoConvenioBTLMF(this,null) && VariablesConvenioBTLMF.vHayDatosIngresadosConvenioBTLMF)
-		{
-			lblCliente.setText(VariablesConvenioBTLMF.vNomCliente);
-		    this.setTitle("Resumen de Pedido - Pedido por Convenio: OK " +
-		                  VariablesConvenioBTLMF.vNomConvenio + " /  IP : " +
-		                  FarmaVariables.vIpPc);
-		    System.out.println("------------------------" + this.getTitle());
-		    System.out.println("VariablesConvenio.vTextoCliente : *****" +
-		                       VariablesConvenioBTLMF.vNomCliente);
-
-		    lblLCredito_T.setText(VariablesConvenioBTLMF.vDatoLCredSaldConsumo);
-            lblBeneficiario_T.setText(getMensajeComprobanteConvenio(VariablesConvenioBTLMF.vCodConvenio));
-
-		}
-		else
-		{
+		
         evaluaTitulo(); //titulo y datos dependiendo del tipo de pedido que se este haciendo
-		}
-
+		
         //refrescando los nuevos datos en tabla de resumen pedido
         tableModelResumenPedido.clearTable();
         tableModelResumenPedido.fireTableDataChanged();
@@ -9155,7 +8273,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
             tableModelResumenPedido.fireTableDataChanged();
         }
 
-        //JCHAVEZ 29102009 inicio Redondeando montos
+        //  29102009 inicio Redondeando montos
         System.out.println("VariablesVentas.vArrayList_Promociones: " +
                            VariablesVentas.vArrayList_Promociones);
         try {
@@ -9241,7 +8359,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                 System.out.println("cantidad: " + cantidad);
             }
         }
-        //JCHAVEZ 29102009 fin
+        //  29102009 fin
 
         for (int i = 0; i < VariablesVentas.vArrayList_Promociones.size();
              i++) {
@@ -9289,7 +8407,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
      * FALTA TERMINAR IMPLEMENTAR PARA EL CASO DE CUPONES TIPO MONTO
      * Valida monto de cupones del pedido
      * verifica el uso de cupones de tipo MONTO, el valor de los ingresados no se mayor al monto del pedido
-     * @author JCALLO
+     * @author  
      * @since  11.03.2009
      * @param  pNetoPedido
      * @return boolean
@@ -9317,7 +8435,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                     lblDNI_Anul.setText("");
                     lblDNI_Anul.setVisible(false);
                     //Se evalua si ya esta en el limite de ahorro diario
-                    //DUBILLUZ 28.05.2009
+                    //  28.05.2009
                     System.err.println("VariablesFidelizacion.vAhorroDNI_Pedido:" +
                                        VariablesFidelizacion.vAhorroDNI_Pedido);
                     System.err.println("VariablesFidelizacion.vAhorroDNI_x_Periodo:" +
@@ -9354,7 +8472,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
 */
     /**
      * Se carga cupones emitidos por el cliente fidelizado.
-     * @author JCORTEZ
+     * @author  
      * @since  05.08.09
      * */
     private void cargarCupones() {
@@ -9362,7 +8480,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
             new DlgListaCupones(myParentFrame, "", true);
         dlglista.setVisible(true);
         if (FarmaVariables.vAceptar) {
-            log.info("***********JCORTEZ--- procesando cupones clientes*********");
+            log.info("*********** --- procesando cupones clientes*********");
             operaCupones();
         }
     }
@@ -9370,7 +8488,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
 
     /**
      * Se procesa los cupones cargados
-     * @author JCORTEZ
+     * @author  
      * @since 05.08.09
      * */
     private void operaCupones() {
@@ -9396,7 +8514,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
 
     /**
      * Determina si se llama a la nueva ventana de cobro o se cobra defrente
-     * @author ASOSA
+     * @author  
      * @since 17.02.2010
      */
     private void determinarCobro() {
@@ -9412,267 +8530,18 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
         }
         if (flag) {
             System.out.println("JIJIJIJJIJIJIJJJJJJJJJJJJJJJJJJJJJJ");
-            mostrarNewDlgCobro();
+            
         } else {
             System.out.println("JOJOJOJOKOKOKOKJOJOJOKOKOKOOJOJOJKOKO");
-            procesarCobroSinForm();
+            
         }
     }
 
-    /**
-     * muestra la nueva ventana de cobro
-     * @author ASOSA
-     * @since 17.02.2010
-     */
-    private void mostrarNewDlgCobro() {
-        DlgNewCobro dlgFormaPago = new DlgNewCobro(myParentFrame, "", true);
-        dlgFormaPago.setIndPantallaCerrarAnularPed(true);
-        /*dlgFormaPago.setIndPedirLogueo(false);        */
-        dlgFormaPago.setIndPantallaCerrarCobrarPed(true);
-        dlgFormaPago.setVisible(true);
-        System.err.println("XXXXX_FarmaVariables.vAceptar:" +
-                           FarmaVariables.vAceptar);
-        if (FarmaVariables.vAceptar) {
-            FarmaVariables.vAceptar = false;
-            cerrarVentana(true);
-        } else
-            pedidoGenerado = false;
-    }
 
     //==================================================================================================================
     //==================================================================================================================
     //==================================================================================================================
 
-    /**
-     * procesa en cobro sin llamar a la nueva ventana de cobro
-     * @author ASOSA
-     * @since 17.02.2010
-     */
-    private void procesarCobroSinForm() {
-        /********HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA***********/
-        VariablesCaja.vIndPedidoConProdVirtual = false;
-        VariablesFidelizacion.vRecalculaAhorroPedido = false;
-        VariablesCaja.arrayDetFPCredito = new ArrayList();
-        VariablesCaja.cobro_Pedido_Conv_Credito = "N";
-        VariablesCaja.uso_Credito_Pedido_N_Delivery = "N";
-        VariablesCaja.arrayPedidoDelivery = new ArrayList();
-        VariablesCaja.usoConvenioCredito = "";
-        VariablesCaja.valorCredito_de_PedActual = 0.0;
-        VariablesCaja.monto_forma_credito_ingresado = "0.00";
-        /********ADIOSSSSSSSSSSSSSS******************************/
-        UtilityNewCobro.inicializarVariables();
-        /*txttarj.setEnabled(false);
-        txtdol.setEnabled(false);
-        lblvuelto.setText("0.00");*/
-        VariablesNewCobro.numpeddiario = VariablesCaja.vNumPedPendiente;
-        VariablesNewCobro.numpedvta = VariablesVentas.vNum_Ped_Vta;
-        /*FarmaUtility.centrarVentana(this);
-        FarmaUtility.moveFocus(txtsol);*/
-        if (!UtilityCaja.existeCajaUsuarioImpresora(this, null) ||
-            !UtilityCaja.validaFechaMovimientoCaja(this, null)) {
-            FarmaUtility.showMessage(this,
-                                     "El Pedido sera Anulado. Vuelva a generar uno nuevo.",
-                                     null);
-            try {
-                DBCaja.anularPedidoPendiente(VariablesNewCobro.numpedvta);
-                anularAcumuladoCanje();
-                //HOLA
-                VariablesCaja.vCierreDiaAnul = false;
-                //ADIOS
-                FarmaUtility.aceptarTransaccion();
-                FarmaUtility.showMessage(this, "Pedido Anulado Correctamente",
-                                         null);
-                //cerrarVentana(true);
-                return;
-            } catch (SQLException sql) {
-                FarmaUtility.liberarTransaccion();
-                sql.printStackTrace();
-                FarmaUtility.showMessage(this,
-                                         "procesar sin abrir dlg new cobro - Error al Anular el Pedido.\n" +
-                        sql.getMessage(), null);
-                //cerrarVentana(true);
-                return;
-            }
-        }
-        buscaPedidoDiario();
-        //HOLA
-        VariablesCaja.vNumPedPendiente = "";
-        VariablesCaja.vFecPedACobrar = "";
-        FarmaVariables.vAceptar = false;
-        //ADIOS
-
-
-        String esCredito = "";
-        String creditoSaldo = "";
-        String fpago = "";
-        try {
-            esCredito =
-                    DBConvenio.obtenerPorcentajeCopago(VariablesNewCobro.codconv);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            FarmaUtility.showMessage(this,
-                                     "Error al saber si el convenio fue credito ",
-                                     null);
-        }
-        System.out.println("VariablesNewCobro.codconv: " +
-                           VariablesNewCobro.codconv);
-        System.out.println("VariablesNewCobro.codcli: " +
-                           VariablesNewCobro.codcli);
-        if (esCredito.equalsIgnoreCase("S")) {
-            /////////// JMIRANDA 01.07.2010 COMENTADO PARA NUEVO PROCESO DE CONVENIO
-/*
-                try {
-                    creditoSaldo =
-                            DBConvenio.obtieneConvenioCredito(VariablesNewCobro.codconv,
-                                                              VariablesNewCobro.codcli,
-                                                              FarmaConstants.INDICADOR_S);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                    FarmaUtility.showMessage(this,
-                                             "Error al saber si tiene saldo de credito aún",
-                                             null);
-                }
-                if (creditoSaldo.equalsIgnoreCase("S")) {
-                    String mon_cred =
-                        UtilityNewCobro.obtenerCreditoDisponible(VariablesNewCobro.codcli,
-                                                                 VariablesNewCobro.codconv,
-                                                                 this);
-                    mon_cred = mon_cred.replace(',', '.');
-                    //FarmaUtility.showMessage(this,"mon_cred "+mon_cred,null);
-                    //FarmaUtility.showMessage(this,"VariablesNewCobro.montoTotal "+VariablesNewCobro.montoTotal,null);
-                    if (Double.parseDouble(mon_cred) >=
-                        VariablesNewCobro.montoTotal) {
-                        VariablesNewCobro.indCredito = "S";
-                        try {
-                            fpago =
-                                    DBCaja.obtenerFPagoConvenio(VariablesNewCobro.codconv);
-                        } catch (SQLException e) {
-                            System.out.println("ERROR al obtener la forma de pago convenio: " +
-                                               e.getMessage());
-                        }
-                        if (!fpago.equalsIgnoreCase(FarmaConstants.INDICADOR_N)) {
-                            String list[] = fpago.split(",");
-                            agregarDetalle(list[0], list[1], "SOLES",
-                                           VariablesNewCobro.montoTotal,
-                                           VariablesNewCobro.montoTotal, "01");
-                        }
-                    } else {
-                        FarmaUtility.showMessage(this,
-                                                 "El monto excede el saldo disponible de " +
-                                                 mon_cred + " soles", null);
-                    }
-                } else {
-                    FarmaUtility.showMessage(this,
-                                             "No hay saldo disponible en el credito del cliente",
-                                             null);
-                }
-*/
-            ///////////
-            //JMIRANDA 01.07.2010
-
-            boolean indExisteConv = false;
-            boolean indMontoValido = false;
-            try {
-                //verificar la conexión con MATRIZ
-                String vIndLinea =
-                    FarmaUtility.getIndLineaOnLine(FarmaConstants.CONECTION_MATRIZ,
-                                                   FarmaConstants.INDICADOR_N);
-
-                if (vIndLinea.trim().equalsIgnoreCase(FarmaConstants.INDICADOR_S)) {
-                    System.out.println("Existe conexion a Matriz");
-                    //Paso 1 valida que exista el convenio
-                    indExisteConv =
-                            UtilityConvenio.getIndClienteConvActivo(this,
-                                                                    txtDescProdOculto,
-                                                                    VariablesNewCobro.codconv,
-                                                                    "", //DNI
-                                                                    VariablesNewCobro.codcli);
-                    if (indExisteConv) {
-                        //Paso 2 validar el monto disponible
-                        indMontoValido =
-                                UtilityConvenio.getIndValidaMontoConvenio(this,
-                                                                          txtDescProdOculto,
-                                                                          VariablesNewCobro.codconv,
-                                                                          "",
-                                    //DNI
-                                                                          VariablesNewCobro.montoTotal,
-                                                                          VariablesNewCobro.codcli);
-                        if (indMontoValido) {
-                            creditoSaldo =
-                                    DBConvenio.obtieneConvenioCredito(VariablesNewCobro.codconv,
-                                                                      VariablesNewCobro.codcli,
-                                                                      FarmaConstants.INDICADOR_S);
-
-                            /////
-                            if (creditoSaldo.equalsIgnoreCase("S")) {
-                                String mon_cred =
-                                    UtilityNewCobro.obtenerCreditoDisponible(VariablesNewCobro.codcli,
-                                                                             VariablesNewCobro.codconv,
-                                                                             this);
-                                mon_cred = mon_cred.replace(',', '.');
-                                if (Double.parseDouble(mon_cred) >=
-                                    VariablesNewCobro.montoTotal) {
-                                    VariablesNewCobro.indCredito = "S";
-
-                                    fpago =
-                                            DBCaja.obtenerFPagoConvenio(VariablesNewCobro.codconv);
-                                    System.err.println("NOOOOOOOOOO, fpago"+fpago);
-                                    if (!fpago.equalsIgnoreCase(FarmaConstants.INDICADOR_N)) {
-                                        String list[] = fpago.split(",");
-                                        agregarDetalle(list[0], list[1],
-                                                       "SOLES",
-                                                       VariablesNewCobro.montoTotal,
-                                                       VariablesNewCobro.montoTotal,
-                                                       "01");
-                                        System.err.println("NOOOOOOOOOO 2, list[]"+list[0]+" - "+list[1]);
-                                    }
-                                } else {
-                                    FarmaUtility.showMessage(this,
-                                                             "El monto excede el saldo disponible de " +
-                                                             mon_cred +
-                                                             " soles", txtDescProdOculto);
-                                }
-                            } else {
-                                FarmaUtility.showMessage(this,
-                                                         "No hay saldo disponible en el credito del cliente",
-                                                         txtDescProdOculto);
-                            }
-                            /////
-                        }
-                    }
-                }
-
-            } catch (SQLException sql) {
-                //sql.printStackTrace();
-                if (sql.getErrorCode() > 20000) {
-                    FarmaUtility.showMessage(this,
-                                             sql.getMessage().substring(10,
-                                                                        sql.getMessage().indexOf("ORA-06512")),
-                                             txtDescProdOculto);
-                } else {
-                    FarmaUtility.showMessage(this,
-                                             "Ocurrió un error al validar el convenio.\n" +
-                            sql.getMessage(), txtDescProdOculto);
-                }
-            }
-
-
-        } else {
-            VariablesNewCobro.indCredito = "N";
-            try {
-                fpago = DBCaja.obtenerFPagoConvenio(VariablesNewCobro.codconv);
-            } catch (SQLException e) {
-                System.out.println("ERROR al obtener la forma de pago convenio: " +
-                                   e.getMessage());
-            }
-            if (!fpago.equalsIgnoreCase(FarmaConstants.INDICADOR_N)) {
-                String list[] = fpago.split(",");
-                agregarDetalle(list[0], list[1], "SOLES",
-                               VariablesNewCobro.montoTotal,
-                               VariablesNewCobro.montoTotal, "01");
-            }
-        }
-    }
 
     private void anularAcumuladoCanje() {
         try {
@@ -9700,7 +8569,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                                                   FarmaConstants.INDICADOR_S);
             FarmaUtility.aceptarTransaccion();
             log.info("Pedido anulado sin quitar respaldo.");
-            //JMIRANDA 05.07.2010
+            //  05.07.2010
             log.error("nooooOOOOOOOOOOOOOOOO. entro aqui");
             cerrarVentana(false);
         } catch (Exception sql) {
@@ -9764,10 +8633,6 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
         VariablesCaja.vIndPedidoCobrado = false;
         VariablesCaja.vIndPedidoConProdVirtual = false;
         VariablesCaja.vIndPedidoConvenio = "";
-        VariablesConvenio.vCodCliente = "";
-        VariablesConvenio.vCodConvenio = "";
-        VariablesConvenio.vCodCliente = "";
-        VariablesConvenio.vValCredDis = 0.00;
     }
 
     private void muestraInfoPedido(ArrayList pArrayList) {
@@ -9812,8 +8677,8 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
         */
         VariablesNewCobro.indDistribGratel =
                 ((String)((ArrayList)pArrayList.get(0)).get(11)).trim();
-        //ASOSA VariablesCaja.vIndDeliveryAutomatico = ((String)((ArrayList)pArrayList.get(0)).get(12)).trim();
-        //JMIRANDA 05.07.2010
+        //  VariablesCaja.vIndDeliveryAutomatico = ((String)((ArrayList)pArrayList.get(0)).get(12)).trim();
+        //  05.07.2010
         VariablesCaja.vIndDeliveryAutomatico = ((String)((ArrayList)pArrayList.get(0)).get(12)).trim();
         VariablesNewCobro.cantItemsPed =
                 ((String)((ArrayList)pArrayList.get(0)).get(13)).trim();
@@ -9989,15 +8854,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
     }
 
     private void procesar() {
-        //verificar si es un pedido con convenio
-        /* if (VariablesNewCobro.indPedConv.equalsIgnoreCase(FarmaConstants.INDICADOR_S) &&
-              !VariablesNewCobro.codcli.equalsIgnoreCase("")) {
-           //if(VariablesVentas.vEsPedidoDelivery){   //Se valida tipo delivery, aunque sea convenio.
-              //log.debug("***************COBRO PEDIDO TIPO DELIVERY**********************");
-              //procesoCobroDelivery();
-        }else*/if (VariablesNewCobro.indCredito.trim().equalsIgnoreCase("S")) {
-            procesoCobroCredito002();
-        } else {
+   
             log.debug("*Cobro de Pedido Normal");
             //la generacion de cupones no aplica convenios
             VariablesNewCobro.indPermitCampana =
@@ -10014,181 +8871,15 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                 cobrarPedido(); //procesar cobro de pedido
             }
             pedidoCobrado();
-        }
-        //UtilityNewCobro.inicializarVariables(); , ASOSA, 06.07.2010
-        //Si la variable indica que de escape y recalcule todo el ahorro del cliente
-        if (VariablesFidelizacion.vRecalculaAhorroPedido) { //ASOSA, lo comento porque al parecer ya ni entraria jamas a este if
+      
+        //UtilityNewCobro.inicializarVariables(); ,  , 06.07.2010
+        //Si la variable indica que de escape y recalcule to do el ahorro del cliente
+        if (VariablesFidelizacion.vRecalculaAhorroPedido) { // , lo comento porque al parecer ya ni entraria jamas a este if
             eventoEscape();
         }
     }
 
-    private void procesoCobroCredito002() {
-        String valido = "S";
-        int f_fp_convenio = 2;
-        VariablesCaja.usoConvenioCredito = "S";
-        if (VariablesCaja.usoConvenioCredito.equalsIgnoreCase("S")) {
-            String pValidaCredito =
-                validaCreditoCliente(f_fp_convenio).trim(); //aqui abre conexion remota
-            if (pValidaCredito.equalsIgnoreCase(FarmaConstants.INDICADOR_S)) { //ver si se execedio del credito disponible
-                valido = "N";
-                FarmaUtility.showMessage(this,
-                                         "No se puede cobrar el Pedido. \n" +
-                        "El cliente excede en S/. " + (diferencia * -1) +
-                        " el limite de su crédito.", null);
-                return;
-            } else {
-                if (pValidaCredito.equalsIgnoreCase("OUT")) { // NO hay conexion con matriz y no se puede cobrar el pedido
-                    FarmaUtility.showMessage(this,
-                                             "En este momento no hay linea con matriz.\n " +
-                                             "Si el problema persiste comunicarse con el operador de sistema",
-                                             null);
-                    return;
-                }
-            }
-        }
-        log.debug("estado de la validacion de credito=" + valido);
-        if (valido.equalsIgnoreCase("S")) {
-            cobrarPedido();
-            pedidoCobrado();
-        }
-    }
 
-
-    /**
-     * Carga la el Pedido pero en ARRAY
-     */
-    private void colocaFormaPagoDeliveryArray(String pNumPedido) {
-        try {
-            VariablesCaja.arrayPedidoDelivery = new ArrayList();
-            DBCaja.colocaFormaPagoDeliveryArray(VariablesCaja.arrayPedidoDelivery,
-                                                pNumPedido);
-        } catch (SQLException ex) {
-            log.error(null, ex);
-            FarmaUtility.showMessage(this,
-                                     "Error al obtener forma de pago delivery automatico.\n" +
-                    ex.getMessage(), null);
-        }
-    }
-
-    /** Obtiene el Codigo de Forma del Convenio
-     */
-    private String obtieneCodFormaConvenio(String pConvenio) {
-        String codForma = "";
-        try {
-            codForma = DBCaja.cargaFormaPagoConvenio(pConvenio);
-            System.out.println("CodFormaConve ***" + codForma);
-        } catch (SQLException ex) {
-            //ex.printStackTrace();
-            log.error(null, ex);
-            FarmaUtility.showMessage(this,
-                                     "Error al obtener el Codigo de la forma de pago del Convenio.\n" +
-                    ex.getMessage(), null);
-        }
-        return codForma.trim();
-    }
-
-    /**
-     * Valida si uso el Credito
-     */
-    private int uso_Credito(String codFormaPago) {
-        if (codFormaPago.trim().equalsIgnoreCase("N")) {
-            if (VariablesCaja.uso_Credito_Pedido_N_Delivery.trim().equalsIgnoreCase("S"))
-                return 2;
-            else
-                return -1;
-        } else {
-            ArrayList aux = new ArrayList();
-            for (int i = 0; i < VariablesCaja.arrayPedidoDelivery.size();
-                 i++) {
-                aux = (ArrayList)VariablesCaja.arrayPedidoDelivery.get(i);
-                System.out.println("VAriables de formaPago >>>" + aux);
-                System.out.println("Comparando >>" +
-                                   ((String)aux.get(0)).trim() + "xxxx" +
-                                   codFormaPago.trim());
-                if (((String)aux.get(0)).trim().equalsIgnoreCase(codFormaPago.trim()))
-                    return i;
-            }
-            return -1;
-        }
-    }
-
-    private String validaCreditoCliente(int f_fp_convenio) {
-        String vRes = "";
-        try {
-            if (VariablesCaja.vIndDeliveryAutomatico.trim().equalsIgnoreCase("N")) {
-                VariablesConvenio.vValCoPago =
-                        String.valueOf(VariablesNewCobro.montoIngreso); //VariablesCaja.monto_forma_credito_ingresado;
-            } else if (VariablesCaja.vIndDeliveryAutomatico.trim().equalsIgnoreCase("S")) {
-                /*VariablesConvenio.vValCoPago = FarmaUtility.getValueFieldJTable(tblDetallePago, //ASOSA
-                                                                                  f_fp_convenio,
-                                                                                  4).trim();*/
-                BeanDetaPago objobj =
-                    (BeanDetaPago)VariablesNewCobro.listDeta.get(f_fp_convenio);
-                VariablesConvenio.vValCoPago = objobj.getMonto();
-            }
-            log.debug("VariablesConvenio.vValCoPago=" +
-                      VariablesConvenio.vValCoPago);
-            if (FarmaUtility.getDecimalNumber(VariablesConvenio.vValCoPago) !=
-                0) {
-                log.debug("jcallo: va usar credito por convenio");
-                //verificar si hay linea con matriz y no cerrar la conexion
-                String vIndLinea =
-                    FarmaUtility.getIndLineaOnLine(FarmaConstants.CONECTION_MATRIZ,
-                                                   FarmaConstants.INDICADOR_N);
-                //si hay linea
-                if (vIndLinea.trim().equalsIgnoreCase(FarmaConstants.INDICADOR_S)) {
-                    valor =
-                            DBConvenio.validaCreditoCli(VariablesNewCobro.codconv,
-                                                        VariablesNewCobro.codcli,
-                                                        VariablesConvenio.vValCoPago,
-                                                        FarmaConstants.INDICADOR_S);
-                    log.debug("diferencia de credito que le quedaria al cliente por convenio: " +
-                              valor);
-                    diferencia = FarmaUtility.getDecimalNumber(valor);
-                    if (diferencia < 0) {
-                        log.debug("credito insuficiente del cliente, ya que se excederia en " +
-                                  diferencia);
-                        vRes = "S";
-                    } else { //quiere decir que tiene saldo suficiente
-                        VariablesConvenio.vValCredDis =
-                                FarmaUtility.getDecimalNumber(VariablesConvenio.vValCoPago) +
-                                diferencia;
-
-                        VariablesConvenio.vCredito =
-                                DBConvenio.obtieneCredito(VariablesNewCobro.codconv,
-                                                          VariablesNewCobro.codcli,
-                                                          FarmaConstants.INDICADOR_S);
-                        log.debug("VariablesConvenio.vCredito: " +
-                                  VariablesConvenio.vCredito);
-                        VariablesConvenio.vCreditoUtil =
-                                DBConvenio.obtieneCreditoUtil(VariablesNewCobro.codconv,
-                                                              VariablesNewCobro.codcli,
-                                                              FarmaConstants.INDICADOR_S);
-                        log.debug("VariablesConvenio.vCreditoUtil: " +
-                                  VariablesConvenio.vCreditoUtil);
-
-                        VariablesConvenio.vValCredDis =
-                                FarmaUtility.getDecimalNumber(VariablesConvenio.vValCoPago.trim()); //FarmaUtility.getDecimalNumber(VariablesConvenio.vValCoPago)  + diferencia ;
-
-                        vRes = "N";
-                    }
-                } else { //quiere decir que no hay linea con matriz
-                    vRes = "OUT";
-                }
-            } else {
-                vRes = "N";
-            }
-        } catch (SQLException sql) {
-            log.error(sql);
-            FarmaUtility.showMessage(this,
-                                     "Error al validar limite de credito.",
-                                     null);
-            //FarmaUtility.moveFocus(txtNroPedido);
-            vRes = "N";
-        }
-
-        return vRes;
-    }
 
     /**
      * Se valida que el pedido tenga productos de campaña
@@ -10207,26 +8898,8 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
     }
 
     private void cobrarPedido() {
-        UtilityNewCobro.igualarVariables();
-        cajita.setText(VariablesNewCobro.numpeddiario);
-        DlgProcesarCobroNew dlgproc =
-            new DlgProcesarCobroNew(myParentFrame, "", true, tabla01,
-                                    lblvuelto, tabla02, cajita,
-                                    VariablesNewCobro.listDeta);
-        dlgproc.setVisible(true);
-        if (!FarmaVariables.vAceptar) {
-            if (VariablesCaja.vCierreDiaAnul) {
-                anularAcumuladoCanje();
-                //HOLA
-                VariablesCaja.vCierreDiaAnul = false;
-                //ADIOS
-            }
-        }
-        /* Cierra la conexion si se utilizo credito */
-        if (VariablesCaja.usoConvenioCredito.equalsIgnoreCase("S")) { //ASOSA, lo comento debido a que es para convenio credito
-            FarmaConnection.closeConnection();
-            FarmaConnection.anularConnection();
-        }
+        
+        
         VariablesCaja.vNumPedVta = "";
     }
 
@@ -10264,7 +8937,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                          i++) {
                         maxform =
                                 VariablesNewCobro.listDeta.size(); //ultima forma de pago restar vuelto
-                        /*codSel=((String) tblDetallePago.getValueAt(i,0)).trim(); //ASOSA
+                        /*codSel=((String) tblDetallePago.getValueAt(i,0)).trim(); // 
                 descrip=((String) tblDetallePago.getValueAt(i,1)).trim();*/
 
                         BeanDetaPago objx =
@@ -10275,7 +8948,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                         if (VariablesNewCobro.listDeta.size() > 0) {
 
                             if (codSel.trim().equalsIgnoreCase(codobtenido.trim())) {
-                                //monto2=((String) tblDetallePago.getValueAt(i,5)).trim(); //ASOSA
+                                //monto2=((String) tblDetallePago.getValueAt(i,5)).trim(); // 
                                 monto2 = objx.getTotal();
 
                                 System.out.println("monto pagado :" +
@@ -10376,7 +9049,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                 System.out.println("VariablesCaja.vSecMovCaja-->" +
                                    VariablesCaja.vSecMovCaja);
                 if (validaIngresoSobre()) {
-                    //dubilluz 20.07.2010
+                    //  20.07.2010
                     //if(FarmaUtility.rptaConfirmDialog(this, "Existe efectivo suficiente. Desea ingresar sobres en su turno?")){
                     if(FarmaUtility.rptaConfirmDialog(this, "Ha excedido el importe máximo de dinero en su caja. \n" +
                                                             "Desea hacer entrega de un nuevo sobre?\n")){
@@ -10386,10 +9059,10 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                 }
                 cerrarVentana(true);
             }
-            limpiarDatos(); //ASOSA, a lo mejor se tendra que hacer algo parecido pero con mis variabes
-            //limpiarPagos(); ASOSA
-            //limpiaVariablesVirtuales(); ASOSA
-            //FarmaUtility.moveFocus(txtNroPedido); ASOSA
+            limpiarDatos(); // , a lo mejor se tendra que hacer algo parecido pero con mis variabes
+            //limpiarPagos();  
+            //limpiaVariablesVirtuales();  
+            //FarmaUtility.moveFocus(txtNroPedido);  
             System.out.println("-********************LIMPIANDO VARIABLES***********************-");
         }
     }
@@ -10512,7 +9185,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                             FarmaUtility.showMessage(this,
                                                      "Error al Anular el Pedido.\n" +
                                     sql.getMessage(), null);
-                        cerrarVentana(true); //ASOSA, 06.07.2010, estaba en false
+                        cerrarVentana(true); // , 06.07.2010, estaba en false
                     }
                 }
 
@@ -10522,124 +9195,8 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
             cerrarVentana(false);
     }
 
-    //JMIRANDA 23.06.2010
-    //NUEVO PROCESO PARA VALIDAR CONVENIO
 
-    private void validaConvenio_v2(KeyEvent e, String vCoPagoConvenio) {
-
-        String vkF = "";
-        boolean indExisteConv = false;
-        boolean indMontoValido = false;
-
-        if (pedidoEnProceso) {
-            return;
-        }
-        pedidoEnProceso = true;
-        if (VariablesVentas.vEsPedidoConvenio) //Ha elegido un convenio y un cliente
-        {
-            //-----------INI PEDIDO CONVENIO
-            System.out.println("VariablesConvenio.vArrayList_DatosConvenio : " +
-                               VariablesConvenio.vArrayList_DatosConvenio);
-            String vCodCli =
-                "" + VariablesConvenio.vArrayList_DatosConvenio.get(1);
-            String vDniCli =
-                "" + VariablesConvenio.vArrayList_DatosConvenio.get(5);
-            String vCodConvenio =
-                "" + VariablesConvenio.vArrayList_DatosConvenio.get(0);
-            System.out.println("vCodConvenio " +
-                               VariablesConvenio.vArrayList_DatosConvenio.get(0));
-            System.out.println("vDniCLi " +
-                               VariablesConvenio.vArrayList_DatosConvenio.get(5));
-            if (!vCodCli.equalsIgnoreCase("")) {
-                //--INI TIENE CODCLI
-                String mensaje = "";
-                //1° Obtiene valor de copago
-                try {
-                    double totalS =
-                        FarmaUtility.getDecimalNumber(lblTotalS.getText());
-
-                    if (FarmaUtility.getDecimalNumber(vCoPagoConvenio) != 0) {
-                        //verificar la conexión con MATRIZ
-                        String vIndLinea =
-                            FarmaUtility.getIndLineaOnLine(FarmaConstants.CONECTION_MATRIZ,
-                                                           FarmaConstants.INDICADOR_N);
-
-                        if (vIndLinea.trim().equalsIgnoreCase(FarmaConstants.INDICADOR_S)) {
-                            System.out.println("Existe conexion a Matriz");
-                            //Paso 1 valida que exista el convenio
-                            indExisteConv =
-                                    UtilityConvenio.getIndClienteConvActivo(this,
-                                                                            txtDescProdOculto,
-                                                                            vCodConvenio,
-                                                                            vDniCli,
-                                                                            vCodCli);
-                            if (indExisteConv) {
-                                //Paso 2 validar el monto disponible
-                                indMontoValido =
-                                        UtilityConvenio.getIndValidaMontoConvenio(this,
-                                                                                  txtDescProdOculto,
-                                                                                  vCodConvenio,
-                                                                                  vDniCli,
-                                                                                  totalS,
-                                                                                  vCodCli);
-                                if (indMontoValido) {
-                                    if(colocaVariablesDU(VariablesConvenio.vCodCliente,lblTotalS.getText())){
-                                        //El convenio está activo y el monto a usar es correcto
-                                        continuarCobroPedido(e);
-                                    }
-                                    else{
-
-                                        FarmaUtility.showMessage(this,
-                                                                 "Ocurrió un problema al obtener variables convenio.",
-                                                                 txtDescProdOculto);
-                                        return;
-                                    }
-
-
-                                }
-                            }
-                        } else {
-                            FarmaUtility.showMessage(this,
-                                                     "No hay linea con matriz.\n Inténtelo nuevamente si el problema persiste comuníquese con el Operador de Sistemas.",
-                                                     txtDescProdOculto);
-                        }
-
-                    } else {
-                        continuarCobroPedido(e);
-                    }
-                } catch (SQLException sql) {
-                    sql.printStackTrace();
-                    if(sql.getErrorCode()>20000)
-                    {
-                      FarmaUtility.showMessage(this,sql.getMessage().substring(10,sql.getMessage().indexOf("ORA-06512")),txtDescProdOculto);
-                    }else
-                    {
-                      FarmaUtility.showMessage(this,"Ocurrió un error al validar el convenio.\n"+sql,txtDescProdOculto);
-                    }
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                    FarmaUtility.showMessage(this, mensaje + ex.getMessage(), tblProductos);
-                } finally {
-                    //cerrar conexión
-                    FarmaConnectionRemoto.closeConnection();
-                }
-                //--FIN TIENE CODCLI
-            } else {
-                continuarCobroPedido(e);
-            }
-            //-----------FIN PEDIDO CONVENIO
-        } else {
-            continuarCobroPedido(e);
-        }
-
-        pedidoEnProceso = false;
-        if (VariablesVentas.vIndVolverListaProductos){
-
-            agregarProducto();
-        }
-    }
-
-    //JMIRANDA 23.06.2010
+    //  23.06.2010
 
     public void continuarCobroPedido(KeyEvent e) {
         String vkF = "";
@@ -10656,62 +9213,6 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
     }
 
 
-    public boolean colocaVariablesDU(String vCodCli,String totalS){
-        boolean pResultado = false;
-        String pCodPago = "";
-        double diferencia = 0.0;
-        double valTotal = 0.0;
-        double totalS_double = 0.0;
-            FarmaUtility.getDecimalNumber(totalS.trim());
-        try {
-            totalS_double =  FarmaUtility.getDecimalNumber(totalS);
-
-            pCodPago =
-                DBConvenio.obtieneCoPagoConvenio(VariablesConvenio.vCodConvenio,
-                                                 vCodCli,
-                                                 FarmaUtility.formatNumber(totalS_double));
-
-            diferencia = 0.0;
-            valTotal = FarmaUtility.getDecimalNumber(pCodPago);
-            System.out.println("Monto Copago: " + pCodPago);
-            String valor =
-                DBConvenio.validaCreditoCli(VariablesConvenio.vCodConvenio,
-                                            vCodCli,
-                                            FarmaUtility.formatNumber(valTotal),
-                                            FarmaConstants.INDICADOR_S);
-            System.out.println("Diferencia: " + valor);
-            diferencia = FarmaUtility.getDecimalNumber(valor);
-            System.out.println("VariablesConvenio.vIndSoloCredito: " + VariablesConvenio.vIndSoloCredito);
-            if (diferencia < 0) {
-                if (VariablesConvenio.vIndSoloCredito.equals(FarmaConstants.INDICADOR_N)) {
-                    valTotal = valTotal + diferencia;
-                }
-            }
-
-            VariablesConvenio.vValCoPago =
-                    FarmaUtility.formatNumber(valTotal);
-            System.err.println("0000000000000000000000:");
-            System.out.println("VariablesConvenio.vValCoPago: " + VariablesConvenio.vValCoPago);
-            System.err.println("0000000000000000000000:");
-            if(VariablesConvenio.vValCoPago.trim().length()>0){
-                pResultado = true;
-            }
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return pResultado;
-    }
-/**
-     * Graba el detalle de Producto por promocion
-     * @param pTiComprobante
-     * @param array
-     * @param pFila
-     * @param tipo indica si es Producto simple o de una promocion
-     * @throws Exception
-     * @author ASOSA
-     * @since  05.07.2010
-     */
     private void grabarDetalle_02(String pTiComprobante, ArrayList array,
                                   int pFila, int tipo) throws Exception {
 
@@ -10756,7 +9257,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
         VariablesVentas.vVal_Igv_Prod = ((String)(array.get(11))).trim();
         VariablesVentas.vUnid_Vta = ((String)(array.get(2))).trim();
         VariablesVentas.vNumeroARecargar = ((String)(array.get(13))).trim();
-        String secrespaldo = ""; //ASOSA, 05.07.2010
+        String secrespaldo = ""; // , 05.07.2010
 
         //ConstantsVentas.IND_PROD_SIMPLE
         // numero 24
@@ -10772,7 +9273,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                                  null);*/
         System.out.println("WAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaa: "+posSecRespaldo);
         secrespaldo =
-                ((String)(array.get(posSecRespaldo))).trim(); //ASOSA, 05.07.2010
+                ((String)(array.get(posSecRespaldo))).trim(); // , 05.07.2010
 
         //System.out.println("***-VariablesVentas.vVal_Prec_Pub "+VariablesVentas.vVal_Prec_Pub);
         if (tipo == ConstantsVentas.IND_PROD_SIMPLE)
@@ -10780,7 +9281,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
         if (tipo == ConstantsVentas.IND_PROD_PROM)
             VariablesVentas.vVal_Prec_Pub = ((String)(array.get(21))).trim();
         /*
-       Para grabar la promocion  en el detalle dubilluz 28.02.2008
+       Para grabar la promocion  en el detalle   28.02.2008
        */
 
         if (tipo == ConstantsVentas.IND_PROD_PROM)
@@ -10801,12 +9302,12 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
         } else {
 
             VariablesVentas.vIndOrigenProdVta =
-                    array.get(23).toString().trim(); //JCHAVEZ 20102009 se asignaba cadena nula ""
+                    array.get(23).toString().trim(); //  20102009 se asignaba cadena nula ""
             VariablesVentas.vCantxDia = "";
             VariablesVentas.vCantxDias = "";
         }
 
-        //JCHAVEZ 20102009
+        //  20102009
         if (tipo == ConstantsVentas.IND_PROD_PROM) {
             VariablesVentas.vAhorroPack = ((String)(array.get(22))).trim();
 
@@ -10816,26 +9317,15 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
         System.out.println("VariablesVentas.tipo:"+ tipo);
 
 
-        if(UtilityConvenioBTLMF.esActivoConvenioBTLMF(this, null) && VariablesConvenioBTLMF.vCodConvenio != null && VariablesConvenioBTLMF.vCodConvenio.length() > 0)
-	     {
-	        //JCHAVEZ 20102009
-        	if (tipo == ConstantsVentas.IND_PROD_SIMPLE)
-        	{
-
-		        DBVentas.grabarDetallePedido_02(secrespaldo);
-		        VariablesVentas.vCodPromoDet = "";
-        	}
-	     }
-        else
-         {
-        //JCHAVEZ 20102009
+    
+        //  20102009
         DBVentas.grabarDetallePedido_02(secrespaldo);
         VariablesVentas.vCodPromoDet = "";
-         }
+         
 
 
-            //dveliz 15.08.08
-            //DUBILLUZ 22.08.2008
+            //  15.08.08
+            //  22.08.2008
             /* if(VariablesCampana.vFlag){
               for(int i =0; i<VariablesCampana.vListaCupones.size();i++){
                   ArrayList myList = (ArrayList)VariablesCampana.vListaCupones.get(i);
@@ -10855,12 +9345,12 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
 
     }
 
-    /************************************************************ INI - ASOSA, 09.07.2010 ***************************************************************/
+    /************************************************************ INI -  , 09.07.2010 ***************************************************************/
     private void cancelaOperacion_02() {
         String codProd = "";
         String cantidad = "";
         String indControlStk = "";
-        String secRespaldo = ""; //ASOSA, 02.07.2010
+        String secRespaldo = ""; // , 02.07.2010
         for (int i = 0; i < VariablesVentas.vArrayList_ResumenPedido.size();
              i++) {
             codProd =
@@ -10878,10 +9368,10 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
             secRespaldo =
                     FarmaUtility.getValueFieldArrayList(VariablesVentas.vArrayList_ResumenPedido,
                                                         i,
-                                                        26); //ASOSA, 02.07.2010
-            VariablesVentas.secRespStk=""; //ASOSA, 26.08.2010
+                                                        26); // , 02.07.2010
+            VariablesVentas.secRespStk=""; // , 26.08.2010
             if (indControlStk.equalsIgnoreCase(FarmaConstants.INDICADOR_S) &&
-                /*!UtilityVentas.actualizaStkComprometidoProd(codProd, //ANTES-ASOSA, 02.07.2010
+                /*!UtilityVentas.actualizaStkComprometidoProd(codProd, //ANTES- , 02.07.2010
                                                        Integer.parseInt(cantidad),
                                                        ConstantsVentas.INDICADOR_D,
                                                        ConstantsPtoVenta.TIP_OPERACION_RESPALDO_BORRAR,
@@ -10890,7 +9380,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                                                        this,
                                                        tblProductos))*/
                 !UtilityVentas.operaStkCompProdResp(codProd,
-                                                    //ASOSA, 02.07.2010
+                                                    // , 02.07.2010
                     0, ConstantsVentas.INDICADOR_D,
                     ConstantsPtoVenta.TIP_OPERACION_RESPALDO_BORRAR, 0, true,
                     this, tblProductos, secRespaldo))
@@ -10898,7 +9388,7 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
         }
         /**
        * Actualiza comprometido a Arra Promociones
-       * @author : dubilluz
+       * @author :  
        * @since  : 25.06.2007
        */
         ArrayList aux = new ArrayList();
@@ -10930,15 +9420,15 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
                 VariablesVentas.vVal_Frac = ((String)(aux.get(10))).trim();
                 indControlStk = ((String)(aux.get(16))).trim();
                 secRespaldo =
-                        ((String)(aux.get(24))).trim(); //ASOSA, 08.07.2010
-                VariablesVentas.secRespStk=""; //ASOSA, 26.08.2010
+                        ((String)(aux.get(24))).trim(); // , 08.07.2010
+                VariablesVentas.secRespStk=""; // , 26.08.2010
                 if (indControlStk.equalsIgnoreCase(FarmaConstants.INDICADOR_S) &&
-                    /*!UtilityVentas.actualizaStkComprometidoProd(codProd,Integer.parseInt(cantidad),ConstantsVentas.INDICADOR_D, ConstantsPtoVenta.TIP_OPERACION_RESPALDO_BORRAR, Integer.parseInt(cantidad), //Antes, ASOSA, 08.07.2010
+                    /*!UtilityVentas.actualizaStkComprometidoProd(codProd,Integer.parseInt(cantidad),ConstantsVentas.INDICADOR_D, ConstantsPtoVenta.TIP_OPERACION_RESPALDO_BORRAR, Integer.parseInt(cantidad), //Antes,  , 08.07.2010
                                                          false,
                                                          this,
                                                          tblProductos))*/
                     !UtilityVentas.operaStkCompProdResp(codProd,
-                                                        //ASOSA, 08.07.2010
+                                                        // , 08.07.2010
                         0, ConstantsVentas.INDICADOR_D,
                         ConstantsPtoVenta.TIP_OPERACION_RESPALDO_BORRAR, 0,
                         false, this, tblProductos, secRespaldo))
@@ -10949,13 +9439,13 @@ msn + " / " + FarmaUtility.getValueFieldArrayList(vMensajesCampCupon, e, 0);
         }
         FarmaUtility.aceptarTransaccion();
         inicializaArrayList();
-        //jcallo: el parametro estaba en false--> se cambio a true
+        // : el parametro estaba en false--> se cambio a true
         cerrarVentana(true);
     }
 
     /**
      * Grabar el pedidio convenio generado
-     * @author ASOSA
+     * @author  
      * @since 17.08.2010
      * @param pCodCli
      * @param pNumDocIden
@@ -11013,7 +9503,7 @@ boolean band = false;
      //limpiando variables de fidelizacion
      //UtilityFidelizacion.setVariables();
 
-     //JCORTEZ 04.08.09 Se limpiar cupones.
+     //  04.08.09 Se limpiar cupones.
      VariablesVentas.vArrayListCuponesCliente.clear();
      VariablesVentas.dniListCupon = "";
 
@@ -11028,17 +9518,12 @@ boolean band = false;
      dlgLogin.setVisible(true);
      if (FarmaVariables.vAceptar) {
 
-            //Agregado por FRAMIREZ 09/11/2011
+            //Agregado por   09/11/2011
             //Muestra mensaje de retencion de un convenio.
-            System.out.println("<<<<<<<<Ingresando al mensaje de Retencion>>>>>>>>>");
-            System.out.println("vCodConvenio :" +
-                               VariablesConvenioBTLMF.vCodConvenio);
+            
 
-            if (VariablesConvenioBTLMF.vHayDatosIngresadosConvenioBTLMF) {
-                mostrarMensajeRetencion();
-            }
 
-         log.info("******* JCORTEZ *********");
+         log.info("*******   *********");
          if (UtilityCaja.existeIpImpresora(this, null)) {
              if (FarmaVariables.vTipCaja.equalsIgnoreCase(ConstantsPtoVenta.TIP_CAJA_MULTIFUNCIONAL) &&
                  !UtilityCaja.existeCajaUsuarioImpresora(this, null)) {
@@ -11072,25 +9557,6 @@ boolean band = false;
  }
 
 
-    //Agregado Por FRAMIREZ.
-
-    public void mostrarMensajeRetencion() {
-        ArrayList htmlDerecho = new ArrayList();
-
-
-        UtilityConvenioBTLMF.listaMensaje(htmlDerecho,
-                                          VariablesConvenioBTLMF.vCodConvenio,
-                                          ConstantsConvenioBTLMF.FLG_DOC_RETENCION,
-                                          this, null);
-
-        System.out.println("Tamaño:" + htmlDerecho);
-        if (htmlDerecho.size() != 0) {
-            DlgMensajeRetencion dlg =
-                new DlgMensajeRetencion(myParentFrame, "", false);
-            dlg.setVisible(true);
-        }
-
-    }
 
     public void funcionF12(String pCodCampanaCupon) {
     	 /*
@@ -11109,15 +9575,15 @@ boolean band = false;
         neoOperaResumenPedido();
         FarmaUtility.moveFocus(txtDescProdOculto);
         VariablesFidelizacion.tmpCodCampanaCupon = "N";
-        //Inicio - dubilluz 15.06.2011
+        //Inicio -   15.06.2011
         evaluaFormaPagoFidelizado();
-        //Fin - dubilluz 15.06.2011
+        //Fin -   15.06.2011
     }
 
     public void evaluaFormaPagoFidelizado(){
 
         if(VariablesFidelizacion.vDniCliente.trim().length()>=1){
-            //Inicio - dubilluz 15.06.2011
+            //Inicio -   15.06.2011
             lblFormaPago.setVisible(false);
             lblFormaPago.setOpaque(false);
             if(VariablesFidelizacion.vIndUsoEfectivo.trim().equalsIgnoreCase("S")||
@@ -11135,7 +9601,7 @@ boolean band = false;
                 }
                 lblFormaPago.setText("  "+lblFormaPago.getText().trim().toUpperCase());
             }
-            //Fin - dubilluz 15.06.2011
+            //Fin -   15.06.2011
         }
     }
 
@@ -11182,10 +9648,10 @@ boolean band = false;
                                  UtilityFidelizacion.getAhorroDNIxPeriodoActual(VariablesFidelizacion.vDniCliente,
                                                                                VariablesFidelizacion.vNumTarjeta);
                          // envio sl numero de tarjeta
-                         // 01.06.2012 dubilluz
+                         // 01.06.2012  
                          VariablesFidelizacion.vMaximoAhorroDNIxPeriodo =
                                  UtilityFidelizacion.getMaximoAhorroDnixPeriodo(VariablesFidelizacion.vDniCliente,VariablesFidelizacion.vNumTarjeta);
-                         // 01.06.2012 dubilluz
+                         // 01.06.2012  
                          log.info("Variable de DNI_ANULADO: " +
                                   VariablesFidelizacion.vDNI_Anulado);
                          log.info("Variable de vAhorroDNI_x_Periodo: " +
@@ -11257,7 +9723,7 @@ boolean band = false;
 
     }
 
-    //Dubilluz - 06.12.2011
+    //  - 06.12.2011
 
     public void ingresaMedicoFidelizado() {
         AuxiliarFidelizacion.ingresoMedico(this.myParentFrame,lblMedico,lblDNI_Anul,lblCliente,this,"R",lblDNI_SIN_COMISION,txtDescProdOculto);
@@ -11324,34 +9790,8 @@ boolean band = false;
         }*/
 
     }
-   //Agregado Por FRAMIREZ para convenio BTLMF
-    public boolean existeSaldoCredDispBenif(JDialog dialog)
-    {
-        boolean ret = true;
-        if(VariablesConvenioBTLMF.vImpSubTotal > FarmaUtility.getDecimalNumber(VariablesConvenioBTLMF.vMontoSaldo))
-        {
-
-            FarmaUtility.showMessage(dialog, "El importe " + VariablesConvenioBTLMF.vImpSubTotal+ " supera el saldo de credito del Benificiario!!",
-                                     "");
-            ret = false;
-        }
-
-        return ret;
-    }
 
 
-    public String getMensajeComprobanteConvenio(String pCodConvenio){
-        String pCadena = "";
-        try {
-            pCadena = DBConvenioBTLMF.getMsgComprobante(pCodConvenio,VariablesConvenioBTLMF.vImpSubTotal);
-            System.out.println("XXXX");
-        } catch (SQLException e) {
-            pCadena = "N";
-            System.out.println("yyy");
-            e.printStackTrace();
-        }
-        return pCadena;
-    }
 
     private void txtDescProdOculto_actionPerformed(ActionEvent e) {
     }

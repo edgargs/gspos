@@ -609,7 +609,7 @@ public class DlgPedidoReposicionNuevo extends JDialog
     //
     String cantidad;
     /**Nuevo Cambio
-     * @Autor: Luis Reque Orellana
+     * @Autor:  
      * @Fecha: 20/04/2007
      * */
     /*lblLaboratorio.setText(tblListaProductos.getValueAt(row,9).toString());
@@ -672,7 +672,7 @@ public class DlgPedidoReposicionNuevo extends JDialog
       {
         DBInventario.actualizaMaxMin();
         //Actualiza los indicadores de Stock de Locales
-        //22.10.2007 dubilluz        
+        //22.10.2007          
         actIndStock();
         cargaListaProductos();
       }
@@ -724,7 +724,7 @@ public class DlgPedidoReposicionNuevo extends JDialog
     VariablesInventario.vNomProd_PedRep=tblListaProductos.getValueAt(pos,2).toString();
     VariablesInventario.vUnidMed_PedRep=tblListaProductos.getValueAt(pos,3).toString();
     /**Nuevo Cambio
-     * @Autor: Luis Reque Orellana
+     * @Autor:  
      * @Fecha: 20/04/2007
      * */
     /*VariablesInventario.vValFrac_PedRep=tblListaProductos.getValueAt(pos,21).toString();
@@ -739,7 +739,7 @@ public class DlgPedidoReposicionNuevo extends JDialog
     VariablesInventario.vStkFisico_PedRep=tblListaProductos.getValueAt(pos,4).toString();
     VariablesInventario.vCantSug_PedRep=tblListaProductos.getValueAt(pos,6).toString();
     VariablesInventario.vCantMax_PedRep=tblListaProductos.getValueAt(pos,22).toString();
-    //Agregado DUBILLUZ 26.09.2007
+    //Agregado   26.09.2007
     VariablesInventario.vCantAdicional = tblListaProductos.getValueAt(pos,9).toString();
   }
   
@@ -809,7 +809,7 @@ public class DlgPedidoReposicionNuevo extends JDialog
           VariablesInventario.vFechaCalculoMaxMin = DBInventario.obtieneFechaCalculoMaxMin();
           /**
            * Actualizando indicadores de stock 
-           * @author dubilluz
+           * @author  
            * @since  22.10.2007
            */
            actIndStock();           
@@ -924,7 +924,7 @@ public class DlgPedidoReposicionNuevo extends JDialog
   {
     DlgOrdenar dlgOrdenar = new DlgOrdenar(myParentFrame,"Ordenar",true);
     /**Nuevo Cambio
-     * @Autor: Luis Reque Orellana
+     * @Autor:  
      * @Fecha: 20/04/2007
      * */
     //String [] IND_DESCRIP_CAMPO = {"Código","Descripción","Unidad","Mín.","Máx.","Stock","Pedir","Calc","Solic."};
@@ -959,7 +959,7 @@ public class DlgPedidoReposicionNuevo extends JDialog
   }
   
   /**NUEVO
-   * @Autor: Luis Reque Orellana
+   * @Autor:  
    * @Fecha: 30-03-2007
    * */
   private void obtieneFechaCalculo()
@@ -1009,7 +1009,7 @@ public class DlgPedidoReposicionNuevo extends JDialog
   }  
 
   /**NUEVO
-   * @Autor: Luis Reque Orellana
+   * @Autor:  
    * @Fecha: 20-04-2007
    * */  
   private void funcionF11()
@@ -1054,7 +1054,7 @@ public class DlgPedidoReposicionNuevo extends JDialog
   
  /**
   * Metodo que actualiza indicadores de  Stock 
-  * @author dubilluz
+  * @author  
   * @since  22.10.2007 
   */
  private void actIndStock()
@@ -1076,7 +1076,7 @@ public class DlgPedidoReposicionNuevo extends JDialog
  
  /**
   * Actualiza el indicador en linea
-  * @author dubilluz
+  * @author  
   * @since  13.11.2007
   */
  public void actualizaIndLinea()

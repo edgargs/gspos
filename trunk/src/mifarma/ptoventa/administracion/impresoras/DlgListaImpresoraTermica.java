@@ -40,7 +40,7 @@ import mifarma.ptoventa.administracion.impresoras.reference.*;
 * Nombre de la Aplicación : DlgDatosLaboratorio.java<br>
 * <br>
 * Histórico de Creación/Modificación<br>
-* JCHAVEZ      25.06.2009   Creación <br>
+*        25.06.2009   Creación <br>
 * <br>
 * @author Jenny Chavez<br>
 * @version 1.0<br>

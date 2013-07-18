@@ -47,7 +47,7 @@ import mifarma.ptoventa.ce.reference.DBCajaElectronica;
  * Nombre de la Aplicación : DlgTarjeCred.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JCORTEZ      29.01.2010   Creación<br>
+ *        29.01.2010   Creación<br>
  * <br>
  * @AUTHOR JORGE CORTEZ ALVAREZ<br>
  * @version 1.0<br>

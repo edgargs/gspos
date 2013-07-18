@@ -43,11 +43,11 @@ import mifarma.ptoventa.caja.reference.VariablesCaja;
 import mifarma.ptoventa.caja.reference.DBCaja;
 import mifarma.ptoventa.caja.reference.UtilityCaja;
 
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.DefaultCategoryDataset;
+ 
+ 
+ 
+ 
+ 
 import javax.swing.JFrame;
 
 import mifarma.ptoventa.caja.reference.ConstantsSobres;
@@ -68,8 +68,8 @@ import mifarma.ptoventa.ventas.reference.DBVentas;
  * Nombre de la Aplicación : DlgIngresoSobre.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JCORTEZ     03.11.2009   Creación<br>
- * JCORTEZ     28.03.2010   Modificado<br>
+ *       03.11.2009   Creación<br>
+ *       28.03.2010   Modificado<br>
  * <br>
  * @AUTHOR JORGE LUIS CORTEZ ALVAREZ<br>
  * @VERSION 2.0<br>
@@ -338,7 +338,7 @@ public class DlgIngresoSobre extends JDialog
       FarmaUtility.initSimpleList(tblSobres,tableModelLista,ConstantsCaja.columnsListaSobresTmp);
       cargaCombo();
       
-    //dubilluz 20.07.2010 
+    //  20.07.2010 
     // YA NO LISTA LOS SOBRES ANTERIORES REGISTRADOS
     //lista sobres existentes
     ///listarSobres();
@@ -365,8 +365,8 @@ public class DlgIngresoSobre extends JDialog
       lblCaja.setText(VariablesCaja.vNumCaja);
       lblTipoCambio.setText(VariablesCaja.vValTipoCambioPedido);
       cargarFecha();
-      lblTotalVenta.setVisible(false); //INI ASOSA, 03.06.2010
-      T_lblTotalVenta.setVisible(false); //FIN ASOSA, 03.06.2010
+      lblTotalVenta.setVisible(false); //INI  , 03.06.2010
+      T_lblTotalVenta.setVisible(false); //FIN  , 03.06.2010
   }
   
   
@@ -626,10 +626,10 @@ public class DlgIngresoSobre extends JDialog
       String codMoneda = FarmaLoadCVL.getCVLCode(ConstantsCaja.HASHTABLE_MONEDASOBRES,cmbMoneda.getSelectedIndex());
       VariablesCaja.vCodMonedaPagoTmp = codMoneda;
       VariablesCaja.vDescMonedaPagoTmp = FarmaLoadCVL.getCVLDescription(ConstantsCaja.HASHTABLE_MONEDASOBRES, codMoneda);
-      System.out.println(" JCORTEZ ::::txtMonto.getText()" + FarmaUtility.getDecimalNumber(txtMonto.getText().trim()));
+      System.out.println("   ::::txtMonto.getText()" + FarmaUtility.getDecimalNumber(txtMonto.getText().trim()));
       //VariablesCaja.vValMontoPagadoTmp = FarmaUtility.formatNumber(FarmaUtility.getDecimalNumber(txtMonto.getText().trim()));
       VariablesCaja.vValMontoPagadoTmp = FarmaUtility.getDecimalNumber(txtMonto.getText().trim())+"";
-        System.out.println("JCORTEZ :::: VariablesCaja.vValMontoPagadoTmp" +VariablesCaja.vValMontoPagadoTmp);
+        System.out.println("  :::: VariablesCaja.vValMontoPagadoTmp" +VariablesCaja.vValMontoPagadoTmp);
       
       if(codMoneda.equalsIgnoreCase(FarmaConstants.CODIGO_MONEDA_SOLES))
         VariablesCaja.vValTotalPagadoTmp = VariablesCaja.vValMontoPagadoTmp;
@@ -649,13 +649,13 @@ public class DlgIngresoSobre extends JDialog
                 String sTotal=lblTotal.getText().trim();
                 String TotalVentas=DBCaja.getMontoVentas(VariablesCaja.vSecMovCaja);
              
-               /*T_lblTotalVenta.setVisible(true); //ASOSA, 16.06.2010
+               /*T_lblTotalVenta.setVisible(true); // , 16.06.2010
                lblTotalVenta.setVisible(true);*/
                lblTotalVenta.setText(TotalVentas);
              
                 double dTotal=Double.parseDouble(sTotal);
                 //double dIngreso=Double.parseDouble(VariablesCaja.vValTotalPagadoTmp);
-                double dIngreso=FarmaUtility.getDecimalNumber(VariablesCaja.vValTotalPagadoTmp); //ASOSA, 16.06.2010
+                double dIngreso=FarmaUtility.getDecimalNumber(VariablesCaja.vValTotalPagadoTmp); // , 16.06.2010
               System.out.println("TotalVentas: "+TotalVentas);
                double dVentas=FarmaUtility.getDecimalNumber(TotalVentas.trim());
               System.out.println("Ventas turno: "+dVentas);
@@ -803,7 +803,7 @@ public class DlgIngresoSobre extends JDialog
                } else if (sql.getErrorCode() == 20002) {
                    FarmaUtility.showMessage(this, "No se puede eliminar el sobre.\n" +"Porque el día ya se asoció a un Remito.",null);
                } else {
-                   //dubilluz - 20.07.2010
+                   //  - 20.07.2010
                    if(sql.getErrorCode() > 20000){
                        FarmaUtility.showMessage(this, 
                                                 sql.getMessage().substring(10, 
@@ -897,12 +897,12 @@ public class DlgIngresoSobre extends JDialog
               System.out.println("pSecMovCaja:"+pSecMovCaja); 
               */
               pSecSobre = //DBCaja.agregaSobre(FarmaUtility.getValueFieldArrayList(tableModelLista.data,tblSobres.getSelectedRow(),7),
-                            /*DBCaja.agregaSobre(pSecMovCaja, ASOSA, 11.06.2010, porque mejor utilizo un metodo deDUBILLUZ q tiene el bloqueo
+                            /*DBCaja.agregaSobre(pSecMovCaja,  , 11.06.2010, porque mejor utilizo un metodo de  q tiene el bloqueo
                                                        ((String)tblSobres.getValueAt(i,0)).trim(),
                                                         tip,
                                                        ((String)tblSobres.getValueAt(i,3)).trim(),
                                                        ((String)tblSobres.getValueAt(i,4)).trim()); */
-                            DBCaja.getRealizaAccionSobreTMP_02(ConstantsSobres.ACC_INGRESO, //ASOSA, 11.06.2010 usando metodo mejorado
+                            DBCaja.getRealizaAccionSobreTMP_02(ConstantsSobres.ACC_INGRESO, // , 11.06.2010 usando metodo mejorado
                                                             " ",
                                                             " ",
                                                             pSecMovCaja,
@@ -916,10 +916,10 @@ public class DlgIngresoSobre extends JDialog
                pIndSobre = FarmaConstants.INDICADOR_S;
                
                  FarmaUtility.aceptarTransaccion();
-                /*INICION DE IMPRESION DE SOBRES EN VOUCHER ASOSA, 26.07.2010*/
+                /*INICION DE IMPRESION DE SOBRES EN VOUCHER  , 26.07.2010*/
                 imprimeSobresDeclarados(this,pSecMovCaja,pSecSobre); 
                /*FIN DE IMPRESION DE SOBE4S EN VOUCHER*/
-                /*tblSobres.setValueAt(pIndSobre,i,5); ASOSA, 11.06.2010, porque inmediatamente se cierra la pantalla y no tiene sentido que se setee ademas q no es lo mas adecuado
+                /*tblSobres.setValueAt(pIndSobre,i,5);  , 11.06.2010, porque inmediatamente se cierra la pantalla y no tiene sentido que se setee ademas q no es lo mas adecuado
                 tblSobres.repaint();
                 tblSobres.setValueAt(pSecSobre,i,6);
                 tblSobres.repaint();
@@ -935,7 +935,7 @@ public class DlgIngresoSobre extends JDialog
                                    "Recoger Voucher de sobres declarados.",
                                    null);
             System.out.println("Cantidad Sobres: "+cant);
-            //dubilluz - 20.07.2010
+            //  - 20.07.2010
             //FarmaUtility.showMessage(this,"Se registraron correctamente los sobres sin codigo", cmbMoneda);
             //listarSobres();
       } catch (SQLException sql)
@@ -956,7 +956,7 @@ public class DlgIngresoSobre extends JDialog
             FarmaUtility.showMessage(this,"Ocurrió un error al Agregar sobre.\n"+sql,null);
           }
       }
-      this.setVisible(false); //ASOSA, 03.06.2010
+      this.setVisible(false); // , 03.06.2010
     }
 
 
@@ -987,7 +987,7 @@ public class DlgIngresoSobre extends JDialog
     /**
      * 
      * Se valida el ingreso de sobre en local
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE 03.11.09
      * */
     private boolean validaIngresoSobre() {
@@ -1025,7 +1025,7 @@ public class DlgIngresoSobre extends JDialog
         dlgLogin.setRolUsuario(FarmaConstants.ROL_ADMLOCAL);
         dlgLogin.setVisible(true);
         
-        //Dubilluz 27.07.2010
+        //  27.07.2010
         VariablesCajaElectronica.pSecUsu_APRUEBA_SOBRE = FarmaVariables.vNuSecUsu;
           
         FarmaVariables.vNuSecUsu  = numsec ;
@@ -1051,7 +1051,7 @@ public class DlgIngresoSobre extends JDialog
     
     
     /**
-     * @author ASOSA
+     * @author  
      * @since 26.07.2010
      */
     
@@ -1078,7 +1078,7 @@ public class DlgIngresoSobre extends JDialog
                          for(int f=0;f<pLista.size();f++){
                              //pCodSobre = FarmaUtility.getValueFieldArrayList(pLista,f,0);
                              String html = DBCajaElectronica.getHtmlSobreDeclarados_02(pSecMovCaja,pSecSobre);                             
-                             PrintConsejo.imprimirHtml(html.trim(),VariablesPtoVenta.vImpresoraActual,VariablesPtoVenta.vTipoImpTermicaxIp);//JCHAVEZ 03.07.2009 se reemplaza la variable pTipoImp por la constante VariablesPtoVenta.vTipoImpTermicaxIp
+                             PrintConsejo.imprimirHtml(html.trim(),VariablesPtoVenta.vImpresoraActual,VariablesPtoVenta.vTipoImpTermicaxIp);//  03.07.2009 se reemplaza la variable pTipoImp por la constante VariablesPtoVenta.vTipoImpTermicaxIp
                              indImp = true;
                          }
                          /*

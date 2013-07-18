@@ -42,7 +42,7 @@ import java.awt.event.ActionListener;
 * <br>
 * Histórico de Creación/Modificación<br>
 * LMESIA      23.02.2006   Creación<br>
-* PAULO       03.03.2006   Modificacion
+*         03.03.2006   Modificacion
 * <br>
 * @author Luis Mesia Rivera<br>
 * @version 1.0<br>

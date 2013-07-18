@@ -50,7 +50,7 @@ public class EconoFar {
      */
     public EconoFar() {
         if (readFileProperties() && readFilePasswordProperties() &&
-            //añadido dubilluz
+            //añadido  
             readFileServRemotosProperties()) {
             Frame frame = new FrmEconoFar();
             Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -85,10 +85,6 @@ public class EconoFar {
             System.out.println(args[1]);
             System.out.println(args[2]);
             new EconoFar(args[0], args[1], args[2]);
-        } else if (args.length == 
-                   2) /* 25.01.2008 ERIOS Ejecuta Ptoventa_Matriz */
-        {
-            new EconoFar_Matriz(args[0], args[1]);
         } else {
             new EconoFar();
         }
@@ -134,7 +130,7 @@ this.getClass().getResourceAsStream("/PtoVentaServ.properties");
 
                 /**
          * SE COMENTO PARA CARGAR EL SID Y USER DE PROPERTI ID
-         * @AUTHOR DUBILLUZ
+         * @AUTHOR  
          * @SINCE  13.10.2007
          */
                 /* FarmaVariables.vSID = properties.getProperty("SID");
@@ -208,7 +204,7 @@ this.getClass().getResourceAsStream(FarmaConstants.RUTA_PROPERTIES_CLAVE);
                 
                 /**
          * Obtiene los valores de SID y USER de la BD
-         * @author dubilluz
+         * @author  
          * @since  13.10.2007
          */
                 FarmaVariables.vSID = properties.getProperty("SID");
@@ -310,7 +306,7 @@ this.getClass().getResourceAsStream("/PtoVentaServRemotos.properties");
                         properties.getProperty("SidDelivery");
                 //System.out.println("FarmaVariables.vSidDBDelivery   =" + FarmaVariables.vSidDBDelivery   );
 
-                //Agregado por DVELIZ 15.12.2008
+                //Agregado por   15.12.2008
                 FarmaVariables.vIdUsuDBADMCentral = 
                         properties.getProperty("UsuarioADMCentral");
                 //System.out.println("FarmaVariables.vIdUsuDBADMCentral   =" + FarmaVariables.vIdUsuDBADMCentral   );
@@ -330,7 +326,7 @@ this.getClass().getResourceAsStream("/PtoVentaServRemotos.properties");
                 
                 
                 
-                //Agregado por FRAMIREZ 16.12.2011
+                //Agregado por   16.12.2011
 
                 FarmaVariables.vIdUsuDBRac = properties.getProperty("UsuarioRAC");
                 FarmaVariables.vClaveBDRac = FarmaEncripta.desencripta(properties.getProperty("ClaveRAC"));

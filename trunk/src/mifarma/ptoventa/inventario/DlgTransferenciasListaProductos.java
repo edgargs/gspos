@@ -399,8 +399,8 @@ public class DlgTransferenciasListaProductos extends JDialog
       {
         /*agregarProducto();   antes
         seleccionaProducto();*/
-        seleccionaProducto(); //ASOSA, 14.07.2010
-        agregarProducto_02(VariablesInventario.secRespStk); //ASOSA, 14.07.2010
+        seleccionaProducto(); // , 14.07.2010
+        agregarProducto_02(VariablesInventario.secRespStk); // , 14.07.2010
         FarmaUtility.setCheckValue(tblListaProductos,false);
         FarmaVariables.vAceptar = false;
         tblListaProductos.setRowSelectionInterval(VariablesInventario.vPos,VariablesInventario.vPos);
@@ -433,14 +433,14 @@ public class DlgTransferenciasListaProductos extends JDialog
     VariablesInventario.vPrecVta_Transf = tblListaProductos.getValueAt(tblListaProductos.getSelectedRow(),6).toString();
     
 
-    //JCORTEZ 20.07.09  Se elimina la coma del formato precio
+    //  20.07.09  Se elimina la coma del formato precio
      double aux=0.00;
-    System.out.println("**********JCORTEZ......Precio producto-->"+VariablesInventario.vPrecVta_Transf);
+    System.out.println("********** ......Precio producto-->"+VariablesInventario.vPrecVta_Transf);
     
       aux+=FarmaUtility.getDecimalNumber((String)(VariablesInventario.vPrecVta_Transf.trim()));
       VariablesInventario.vPrecVta_Transf=aux+"";
       
-      System.out.println("**********JCORTEZ.2.....Precio producto-->"+VariablesInventario.vPrecVta_Transf);
+      System.out.println("********** .2.....Precio producto-->"+VariablesInventario.vPrecVta_Transf);
       
     VariablesInventario.vCant_Transf = "";
     VariablesInventario.vLote_Transf = "";
@@ -530,7 +530,7 @@ public class DlgTransferenciasListaProductos extends JDialog
   private void seleccionaProducto()
   {      
       //if(!actualizaStkComprometidoProd(VariablesInventario.vCodProd_Transf,Integer.parseInt(VariablesInventario.vCant_Transf),ConstantsInventario.INDICADOR_A, ConstantsInventario.TIP_OPERACION_RESPALDO_SUMAR, Integer.parseInt(VariablesInventario.vCant_Transf))) antes
-      if(!actualizaStkComprometidoProd_02(VariablesInventario.vCodProd_Transf,  //-ASOSA, 14.07.2010
+      if(!actualizaStkComprometidoProd_02(VariablesInventario.vCodProd_Transf,  //- , 14.07.2010
                                           Integer.parseInt(VariablesInventario.vCant_Transf),
                                           ConstantsInventario.INDICADOR_A, 
                                           ConstantsInventario.TIP_OPERACION_RESPALDO_SUMAR, 
@@ -646,13 +646,13 @@ public class DlgTransferenciasListaProductos extends JDialog
   {
     String cantidad = "";
     VariablesInventario.vCodProd_Transf = ((String)(tblListaProductos.getValueAt(tblListaProductos.getSelectedRow(),1))).trim();
-    String secRespaldo=""; //ASOSA, 14.07.2010
+    String secRespaldo=""; // , 14.07.2010
     for(int i=0;i<arrayProductos.size();i++)
     {
       if(((ArrayList)arrayProductos.get(i)).contains(VariablesInventario.vCodProd_Transf))
       {
         cantidad = ((ArrayList)arrayProductos.get(i)).get(4).toString();
-        secRespaldo = ((ArrayList)arrayProductos.get(i)).get(12).toString(); //ASOSA, 14.07.2010
+        secRespaldo = ((ArrayList)arrayProductos.get(i)).get(12).toString(); // , 14.07.2010
         break;
       }
     }
@@ -662,7 +662,7 @@ public class DlgTransferenciasListaProductos extends JDialog
                                      ConstantsInventario.INDICADOR_D, 
                                      ConstantsInventario.TIP_OPERACION_RESPALDO_BORRAR, 
                                      Integer.parseInt(cantidad)))*/
-        if(!actualizaStkComprometidoProd_02(VariablesInventario.vCodProd_Transf,  //-ASOSA, 14.07.2010
+        if(!actualizaStkComprometidoProd_02(VariablesInventario.vCodProd_Transf,  //- , 14.07.2010
                                             0,
                                             ConstantsInventario.INDICADOR_D, 
                                             ConstantsInventario.TIP_OPERACION_RESPALDO_BORRAR, 
@@ -721,11 +721,11 @@ public class DlgTransferenciasListaProductos extends JDialog
     String codProd = "";
     String codProdTmp = "";
     boolean existe = false;
-    String secRespaldo=""; //ASOSA, 14.07.2010
+    String secRespaldo=""; // , 14.07.2010
     for(int i=0; i<arrayProductos.size(); i++) {
       codProd = (String)(((ArrayList)arrayProductos.get(i)).get(0));
       String cantidad = (String)(((ArrayList)arrayProductos.get(i)).get(4));
-        secRespaldo = (String)(((ArrayList)arrayProductos.get(i)).get(12)); //ASOSA, 14.07.2010
+        secRespaldo = (String)(((ArrayList)arrayProductos.get(i)).get(12)); // , 14.07.2010
       for(int j=0; j<VariablesInventario.vArrayTransferenciaProductos.size(); j++) {
         codProdTmp = (String)(((ArrayList)VariablesInventario.vArrayTransferenciaProductos.get(j)).get(0));
         if(codProd.equalsIgnoreCase(codProdTmp)) {
@@ -738,7 +738,7 @@ public class DlgTransferenciasListaProductos extends JDialog
                                                ConstantsInventario.INDICADOR_D, 
                                                ConstantsInventario.TIP_OPERACION_RESPALDO_BORRAR, 
                                                FarmaUtility.trunc(FarmaUtility.getDecimalNumber(cantidad)));*/
-            actualizaStkComprometidoProd_02(codProd,  //-ASOSA, 14.07.2010
+            actualizaStkComprometidoProd_02(codProd,  //- , 14.07.2010
                                             0,
                                             ConstantsInventario.INDICADOR_D, 
                                             ConstantsInventario.TIP_OPERACION_RESPALDO_BORRAR, 
@@ -764,7 +764,7 @@ public class DlgTransferenciasListaProductos extends JDialog
                                      ConstantsInventario.INDICADOR_A, 
                                      ConstantsInventario.TIP_OPERACION_RESPALDO_SUMAR, 
                                      FarmaUtility.trunc(FarmaUtility.getDecimalNumber(cantidad)));*/
-        actualizaStkComprometidoProd_02(codProd,        //-ASOSA, 14.07.2010
+        actualizaStkComprometidoProd_02(codProd,        //- , 14.07.2010
                                         FarmaUtility.trunc(FarmaUtility.getDecimalNumber(cantidad)),
                                         ConstantsInventario.INDICADOR_A, 
                                         ConstantsInventario.TIP_OPERACION_RESPALDO_SUMAR, 
@@ -777,7 +777,7 @@ public class DlgTransferenciasListaProductos extends JDialog
                                        ConstantsInventario.INDICADOR_D, 
                                        ConstantsInventario.TIP_OPERACION_RESPALDO_BORRAR, 
                                        Integer.parseInt(cantidad));*/
-          actualizaStkComprometidoProd_02(codProd,        //-ASOSA, 14.07.2010
+          actualizaStkComprometidoProd_02(codProd,        //- , 14.07.2010
                                           0,
                                           ConstantsInventario.INDICADOR_D, 
                                           ConstantsInventario.TIP_OPERACION_RESPALDO_BORRAR, 
@@ -789,7 +789,7 @@ public class DlgTransferenciasListaProductos extends JDialog
                                        ConstantsInventario.INDICADOR_A, 
                                        ConstantsInventario.TIP_OPERACION_RESPALDO_SUMAR, 
                                        Integer.parseInt(cantidad));*/
-          actualizaStkComprometidoProd_02(codProd,        //-ASOSA, 14.07.2010
+          actualizaStkComprometidoProd_02(codProd,        //- , 14.07.2010
                                           (Integer.parseInt(cantidad) - Integer.parseInt(cantidadTmp)),
                                           ConstantsInventario.INDICADOR_A, 
                                           ConstantsInventario.TIP_OPERACION_RESPALDO_SUMAR, 
@@ -817,7 +817,7 @@ public class DlgTransferenciasListaProductos extends JDialog
         VariablesInventario.vBusquedaProdTransf = "";
     }
     
-    //-----------------------=ASOSA=-------------------------->>
+    //-----------------------= =-------------------------->>
     
     private void agregarProducto_02(String secRespaldo)
     {
@@ -849,7 +849,7 @@ public class DlgTransferenciasListaProductos extends JDialog
         /*try 
         {
           
-          VariablesInventario.secRespStk=""; //ASOSA, 26.08.2010
+          VariablesInventario.secRespStk=""; // , 26.08.2010
             VariablesInventario.secRespStk=DBVentas.operarResStkAntesDeCobrar(pCodigoProducto,
                                                                               String.valueOf(pCantidadStk),
                                                                               VariablesInventario.vValFrac_Transf,

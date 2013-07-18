@@ -24,20 +24,20 @@ import mifarma.ptoventa.ventas.DlgMedicoCampana;
 import mifarma.ptoventa.ventas.reference.DBVentas;
 import mifarma.ptoventa.ventas.reference.VariablesVentas;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public class UtilityFidelizacion {
 
-    private static final Log log = LogFactory.getLog(UtilityFidelizacion.class);
+    private static final Logger log = LoggerFactory.getLogger(UtilityFidelizacion.class);
     
     public UtilityFidelizacion() {
     }
     
     /**
      * Valida la tarjeta en el momento mismo de la lectura de esta
-     * @Author DVELIZ
+     * @Author  
      * @Since 30.09.08
      * @param vCodTarjeta
      * @param pParent
@@ -74,7 +74,7 @@ public class UtilityFidelizacion {
             }
             
             /*No se realizará la accion en Matriz
-             * dubilluz 26/07/2009
+             *   26/07/2009
             if(VariablesFidelizacion.vIndConexion.equals("S")){
                 System.out.println("Voy a validar en matriz");
                 validaTarjetaMatriz(vCodTarjeta,FarmaConstants.INDICADOR_N,
@@ -98,7 +98,7 @@ public class UtilityFidelizacion {
     
     /**
      * Metodo de validacion general de la tarjeta de fidelizacion
-     * @Author DVELIZ
+     * @Author  
      * @Since 30.09.08
      * @param pCadena
      * @return
@@ -124,7 +124,7 @@ public class UtilityFidelizacion {
     
     /**
      * Valida que si el numero leido es numerico
-     * @Author DVELIZ
+     * @Author  
      * @Since 30.09.08
      * @param pcadena
      * @return
@@ -158,7 +158,7 @@ public class UtilityFidelizacion {
     
     /**
      * Valida si el numero leido es codigo de barra
-     * @Author DVELIZ
+     * @Author  
      * @Since 30.09.08
      * @param cadena
      * @return
@@ -184,7 +184,7 @@ public class UtilityFidelizacion {
     
     /**
      * Valida tarjeta en local
-     * @Author DVELIZ
+     * @Author  
      * @Since 30.09.08
      * @param cadena
      * @return
@@ -210,7 +210,7 @@ public class UtilityFidelizacion {
     
     /**
      * Valida la tarjeta en matriz
-     * @Author DVELIZ
+     * @Author  
      * @Since 30.09.08
      * @param pTarjeta
      * @param pIndCloseConecction
@@ -253,7 +253,7 @@ public class UtilityFidelizacion {
     
     /**
      * Valida la carga de interfaces segun el indiccador de existencia
-     * @Author DVELIZ
+     * @Author  
      * @Since 30.09.08
      * @param vIndExiste
      * @param pTarjeta
@@ -316,7 +316,7 @@ public class UtilityFidelizacion {
     }
     /**
      * Metodo que muestra la interfaz de ingreso de datos de cliente
-     * @Author DVELIZ
+     * @Author  
      * @Since 30.09.08
      * @param pCadena
      * @param pParent
@@ -354,7 +354,7 @@ public class UtilityFidelizacion {
     
     /**
      * Metodo que sirve para validar que existe conexion en matriz
-     * @Author DVELIZ
+     * @Author  
      * @Since 30.09.08
      * @param pCadena
      * @param pParent
@@ -376,7 +376,7 @@ public class UtilityFidelizacion {
 
     /**     
      * Procedimiento encargado de procesar las campañas que tiene asociado
-     * @author dubilluz
+     * @author  
      * @since  26.09.2008
      * @param pLista
      * @param pNumTarjeta
@@ -401,7 +401,7 @@ public class UtilityFidelizacion {
     
     /**     
      * Procedimiento encargado de obtener el listado de campañas automaticas
-     * @author JCALLO
+     * @author  
      * @since  03.03.2009
      * @param  List listaCampaTarj
      * @param pNumTarjeta
@@ -592,7 +592,7 @@ public class UtilityFidelizacion {
     /**
      * metodo encargado de setear los datos 
      * del arreglo en las variables del cliente
-     * @autor jcallo
+     * @autor  
      * @since 02.10.2008
      * */
     public static void setVariablesDatos(ArrayList lDatosCliente){
@@ -666,7 +666,7 @@ public class UtilityFidelizacion {
     
     /**
      * Metodo encargado de validar formato de correo.
-     *@autor jcallo
+     *@autor  
      *@since 02.10.2008
      */
     public static boolean validarEmail( String email ) { 
@@ -678,7 +678,7 @@ public class UtilityFidelizacion {
     
     /**
      * Metodo encargado de validacion del documento de identificacion ( DNI, CARNE DE EXTRANJERIA)     * 
-     *@autor jcallo
+     *@autor  
      *@since 06.10.2008
      */
     public static boolean validarDocIndentificacion( String docIden ) { 
@@ -706,7 +706,7 @@ public class UtilityFidelizacion {
      * Metodo encargado de validar que el parametro, es numero de 13 digitos
      * ademas que no es un codigo de barra
      * ademas que el numero de tarjeta este disponible
-     * @Author JCALLO
+     * @Author  
      * @Since 30.09.08
      * @param pCadena
      * @return
@@ -731,7 +731,7 @@ public class UtilityFidelizacion {
     
     /**
      * verifica si la tarjeta es valida y esta dispoble para ser usado
-     * @Author JCALLO
+     * @Author  
      * @Since 18.12.08
      * @param cadena
      * @return
@@ -777,7 +777,7 @@ public class UtilityFidelizacion {
    
    /**
     * Inserta la nueva tarjeta de fidelizacion en matriz
-    * @author      dveliz
+    * @author       
     * @since       14.02.2009 
     */
     
@@ -806,7 +806,7 @@ public class UtilityFidelizacion {
    
    /**
      * Trae la tarjeta de matriz a Local
-     * @author Dubilluz
+     * @author  
      * @since  17.02.2009
      */
    public static void creaTarjetaLocal(String vCodTarjeta, String vIndConexion) {
@@ -843,7 +843,7 @@ public class UtilityFidelizacion {
    
    /**
      * Obtiene el DNI valido o NO
-     * @author DUBILLUZ
+     * @author  
      * @since  28.05.2009
      * @param pDni
      * @return
@@ -867,7 +867,7 @@ public class UtilityFidelizacion {
        } catch (Exception e) {
            log.debug("Error al obtener");
            log.info("Cliente SI aplica DESCUENTO");
-           log.info(e.getStackTrace());
+            
            pResultado = true;
        }
        return pResultado;
@@ -892,7 +892,7 @@ public class UtilityFidelizacion {
         } catch (Exception e) {
             log.debug("Error al obtener");
             log.info("RUC SI aplica DESCUENTO");
-            log.info(e.getStackTrace());
+             
             pResultado = true;
         }
         return pResultado;
@@ -900,7 +900,7 @@ public class UtilityFidelizacion {
    
    /**
      * Retorna Ahorro DNI x Periodo
-     * @author DUBILLUZ
+     * @author  
      * @since  28.05.2009
      * @param pDni
      * @return
@@ -914,19 +914,19 @@ public class UtilityFidelizacion {
         } catch (Exception e)
         {
             log.debug("Error al obtener ahorro actual al periodo x DNI");
-            log.info(e.getStackTrace());
+             
             pResultado = 0;
         }
         return pResultado;
     }  
     /**
      * Retorna el maximo ahorro DNI x Periodo
-     * @author DUBILLUZ
+     * @author  
      * @since  28.05.2009
      * @param pDni
      * @return
      */
-    // dubilluz 01.06.2012
+    //   01.06.2012
     public static double getMaximoAhorroDnixPeriodo(String pDni,String pTarjeta){
         double pResultado = 0;
         String pStrRes;
@@ -937,7 +937,7 @@ public class UtilityFidelizacion {
         } catch (Exception e)
         {
             log.debug("Error al obtener Maximo Ahorro x DNI");
-            log.info(e.getStackTrace());
+             
             pResultado = 0;
         }
         return pResultado;
@@ -952,7 +952,7 @@ public class UtilityFidelizacion {
         } catch (Exception e)
         {
             log.debug("Error al obtener Maximo Unidades de Dcto Producto");
-            log.info(e.getStackTrace());
+             
             pResultado = -1;
         }
         System.err.println("Maximo de Dcto Unid Prod Campana: pCodProd: " + pCodProd+" -pCodCampana: "+ pCodCampana +" -MaxUnid: "+pResultado);
@@ -962,7 +962,7 @@ public class UtilityFidelizacion {
     /**
      * Este procedimiento valida el pedido Fidelizado
      * como el DNi valido, RUC valido o Maximo DCTO x DNI
-     * @author DUBILLUZ
+     * @author  
      * @since  29.05.2009
      * @param pCodCampana
      * @param pCodProd
@@ -1023,7 +1023,7 @@ public class UtilityFidelizacion {
         } catch (Exception e)
         {
             log.debug("Error al validar el Pedido Fidelizado");
-            log.info(e.getStackTrace());
+             
             pResultado = true;
         }
         return pResultado;
@@ -1051,7 +1051,7 @@ public class UtilityFidelizacion {
         } catch (Exception e)
         {
             log.debug("Error al obtener el descuento personalizado por Campana y producto");
-            log.info(e.getStackTrace());
+             
             pResultado = -1;
         }
         System.err.println("Descuento PersonalizadoProd Campana: pCodProd: " + pCodProd+" -pCodCampana: "+ pCodCampana +" - Descuento: "+pResultado);
@@ -1119,7 +1119,7 @@ public class UtilityFidelizacion {
         }    
     
     /**
-     * Dubilluz
+     *  
      * 19.07.2011
      */
     public static void grabaTarjetaUnica(String pTarjetaPago,String pdni)
@@ -1201,7 +1201,7 @@ public class UtilityFidelizacion {
     
     /**
      * Recibe la primera Trama
-     * @author Dubilluz
+     * @author  
      * @since  21.07.2011
      * @return
      */
@@ -1261,7 +1261,7 @@ public class UtilityFidelizacion {
     }
     
     /**
-     * dubilluz 06.12.2011
+     *   06.12.2011
      * @return
      */
     public static String getPermiteIngresoMedido()
@@ -1273,7 +1273,7 @@ public class UtilityFidelizacion {
      }
     }
     /**
-     * dubilluz 06.12.2011
+     *   06.12.2011
      * @return
      */
     public static String getExisteMedido(Frame pParent,String pCodMedido)
@@ -1340,7 +1340,7 @@ public class UtilityFidelizacion {
     }
     
     /**
-     * dubilluz 06.12.2011
+     *   06.12.2011
      * @param pNumTarjeta
      * @return
      */
@@ -1487,7 +1487,7 @@ public class UtilityFidelizacion {
     }
     
     /**
-     * Dubilluz - 01.06.2012
+     *   - 01.06.2012
      * @param pCodCampana
      * @param pDni
      * @param pTarj
@@ -1518,7 +1518,7 @@ public class UtilityFidelizacion {
     }
     /**
      * Verifica si existe el DNI ingresado en la BD de RENIEC
-     * @author dubilluz
+     * @author  
      * @param pDNI
      * @return
      */

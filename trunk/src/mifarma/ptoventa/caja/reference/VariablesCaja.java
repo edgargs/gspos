@@ -2,12 +2,12 @@ package mifarma.ptoventa.caja.reference;
 
 import java.util.*;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class VariablesCaja {
 	
-	private static final Log log = LogFactory.getLog(DBCaja.class);
+	private static final Logger log = LoggerFactory.getLogger(DBCaja.class);
 	
 	public VariablesCaja() {
 		
@@ -149,7 +149,7 @@ public class VariablesCaja {
    /// Variables para las VAliodaciones de Forma de Pago
   /**
    * Variables para el Cobro de un Convenio de Tipo Credito
-   * @author : dubilluz
+   * @author :  
    * @since  : 08.09.2007
    */
   public static ArrayList arrayDetFPCredito = new ArrayList();  
@@ -158,7 +158,7 @@ public class VariablesCaja {
    
   /**
    * Variables para Verificar el Credito usado_f
-   * @author : dubilluz
+   * @author :  
    * @since  : 26.07.2007
    */
   public static ArrayList arrayPedidoDelivery = new ArrayList();
@@ -176,14 +176,14 @@ public class VariablesCaja {
   
   /**
    * Variable para saber si el pedido es de recarga virtual
-   * @author dubilluz
+   * @author  
    * @since  14.11.2007
    */
    public static String vIndPedidoRecargaVirtual = "";
    
   /**
    * Variable para saber si el pedido es de convenio
-   * @author JCORTEZ
+   * @author  
    * @since  17.03.2008
    */ 
    public static String vIndConvenio = "";
@@ -192,7 +192,7 @@ public class VariablesCaja {
    
    /**
    * Variable permite pedido campaña
-   * @author JCORTEZ
+   * @author  
    * @since  03.07.2008
    */ 
    public static String vPermiteCampaña="N";
@@ -203,7 +203,7 @@ public class VariablesCaja {
    /**
     * Se declara la variable para el listado de cupones usados por el pedido
     * ya sea al momento de cobrar y/o anular el pedido
-    * @author dubilluz
+    * @author  
     * @since  03.09.2008
     */
    public static ArrayList listCuponesUsadosPedido = new ArrayList(); 
@@ -215,17 +215,17 @@ public class VariablesCaja {
    /**
     * Variable para la cantidad de lineas en el detalle de impresion de la boleta
     * dependiendo de si es o no con convenio
-    * @author dveliz
+    * @author  
     * @since  03.09.2008
     */
    public static int TOTAL_LINEAS_POR_BOLETA_CONVENIO = 0;
    public static int TOTAL_LINEAS_POR_FACTURA_CONVENIO = 0;
-   //JCORTEZ 25.03.09
+   //  25.03.09
    public static int TOTAL_LINEAS_POR_TICKET = 0;
    
     /**
      * Variable que almacena el motivo de la anulacion
-     * @author asolis
+     * @author  
      * @since  01.12.2008
      */
     
@@ -234,35 +234,35 @@ public class VariablesCaja {
         
     /**
      * Variable indicador en linea ADMCentral
-     * @author dveliz
+     * @author  
      * @since  15.12.2008
      */
     public static String vIndLineaADMCentral = "";
     
     /**
         * Variable  indicador de conexion a Matriz 
-        * @author asolis
+        * @author  
         * @since  11.12.2008
         */
        public static String  vIndConexion    = "";
        
     /**
         * Variable que almacena el estado de impresion sea boleta ,factura ,etc
-        * @author asolis
+        * @author  
         * @since  17.12.2008
         */
        public static String vEstadoSinComprobanteImpreso="S";
     
     /**
         * respuesta de exito de recarga virtual
-        * @author dveliz
+        * @author  
         * @since  19.12.2008
         */
     public static String vRespuestaExito = "";
     
     /**
      * Anulacion Pedidos Fidelizados
-     * @Author JCORTEZ
+     * @Author  
      * @since  18.12.08
      */ 
     public static String vIndPedFidelizado = "";
@@ -272,7 +272,7 @@ public class VariablesCaja {
     public static boolean vCierreDiaAnul=false;
     
     /**
-     * @author jcallo
+     * @author  
      * @since  06.01.2008
      * metodo encargado de imprimir todos los valores de los atributos
      * de la clase VariablesCaja
@@ -402,7 +402,7 @@ public class VariablesCaja {
     
     /**
      * Remitos Prosegur
-     * @Author JCORTEZ
+     * @Author  
      * @since  18.12.08
      */ 
     public static String vFechaIni = "";
@@ -422,7 +422,7 @@ public class VariablesCaja {
     
     /**
      * Variables Secuencial de Comprobantes para Aperturar y Cerrar Caja
-     * @Author ASOLIS
+     * @Author  
      * @since  01.02.09
      */
     public static int  vNumeroBoleta=0;
@@ -432,14 +432,14 @@ public class VariablesCaja {
     
     /**
      * Variables Codigo de Cajero
-     * @Author ASOLIS
+     * @Author  
      * @since  11.02.09
      */
      public static String vSec_usu_local = "";
     
     /**
      * indicador de parametros en Respuesta Recarga
-     * @author asolis
+     * @author  
      * @since  11.02.2009
      */
 
@@ -447,7 +447,7 @@ public class VariablesCaja {
     
     /**
      * indicador de mostrar Mensaje
-     * @author asolis
+     * @author  
      * @since  13.02.2009
      */
 
@@ -459,19 +459,19 @@ public class VariablesCaja {
    
     /**
      * variable que guarda el secuencial del usuario
-     * @author mfajardo
+     * @author  
      * @since  29.04.2009
      */
-    //Mfajardo 24/04/09 metodo imprimir ticket de anulacion            
+    //  24/04/09 metodo imprimir ticket de anulacion            
      public static String vSecuenciaUsoUsuario = "";
     
     
-    //JCORTEZ 16.06.09  
+    //  16.06.09  
      public static String vDescripImpr = "";
     
     /**
      * variables ingreso de sobre
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE 03.11.09
      * */
     
@@ -490,16 +490,16 @@ public class VariablesCaja {
     public static String vSecTmp = "";
     
     
-    //JMIRANDA 15.12.09
+    //  15.12.09
     //Punto de LLegada para Vta institucional.
     public static String vPuntoLlegada = "";
     public static String vPuntoPartida = "";
     
-    //JMIRANDA 12.01.2011
+    //  12.01.2011
     public static String vMostrarMontoComprobante = "S";
     //JQUISPE 13.01.2011
     public static boolean vVerificaCajero = true;
-    //dubilluz 16.09.2011    
+    //  16.09.2011    
     public static boolean vImprimeFideicomizo = false;
     public static String vCadenaFideicomizo = "";
     

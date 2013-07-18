@@ -318,7 +318,7 @@ public class DlgPedidoReposicionIngresoCantidad extends JDialog
         FarmaUtility.showMessage(this, "Debe ingresar una cantidad Menor o Igual a la cantidad maxima aceptada por el Sistema: "+cantSug,txtCantidad);
         return;
       }
-      ///26.09.2007 DUBILLUZ MODIFICACION
+      ///26.09.2007   MODIFICACION
       else if(validaIngresoExistsAdicional())
       {
         FarmaUtility.showMessage(this, "Si ingreso un adicional debe de ingresar la cantidad maxima :" + VariablesInventario.vCantMax_PedRep ,txtCantidad);
@@ -362,7 +362,7 @@ public class DlgPedidoReposicionIngresoCantidad extends JDialog
   
   /**
    * Valida si Ingreso Adicional la cantidad que coloque debe ser la maxima
-   * @author dubilluz
+   * @author  
    * @since  26.09.2007
    */
   private boolean validaIngresoExistsAdicional()

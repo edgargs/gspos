@@ -46,15 +46,15 @@ import mifarma.ptoventa.caja.reference.ConstantsCaja;
 import mifarma.ptoventa.caja.reference.DBCaja;
 import mifarma.ptoventa.caja.reference.UtilityCaja;
 import mifarma.ptoventa.caja.reference.VariablesCaja;
-import mifarma.ptoventa.convenioBTLMF.reference.DBConvenioBTLMF;
-import mifarma.ptoventa.convenioBTLMF.reference.UtilityConvenioBTLMF;
-import mifarma.ptoventa.convenioBTLMF.reference.VariablesConvenioBTLMF;
+ 
+ 
+ 
 import mifarma.ptoventa.reference.VariablesPtoVenta;
 import mifarma.ptoventa.ventas.reference.ConstantsVentas;
 import mifarma.ptoventa.ventas.reference.VariablesVentas;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Date;
 
@@ -67,7 +67,7 @@ public class DlgNotaCreditoNueva extends JDialog
 
   Frame myParentFrame;
   FarmaTableModel tableModel;
-  private static final Log log = LogFactory.getLog(DlgAnularPedidoComprobante.class);
+  private static final Logger log = LoggerFactory.getLogger(DlgAnularPedidoComprobante.class);
   private final static int COL_COD_PROD = 0;
   private final static int COL_DESC_PROD = 1;
   private final static int COL_UND_MED = 2;
@@ -238,72 +238,13 @@ public class DlgNotaCreditoNueva extends JDialog
     {
       if(validaDatos())
       {
-    	//Modificado por FRAMIREZ 29.02.2012 se agrego para generar la nota credito del convenio BTLMF
+    	//Modificado por   29.02.2012 se agrego para generar la nota credito del convenio BTLMF
         if (FarmaUtility.rptaConfirmDialog(this, "¿Está seguro de generar la Nota Credito?")) 
         {
 
         	 boolean estaGrabado = false;
 
-        	  //ini-Agregado Por FRAMIREZ 28.02.2012 metodo que genera nota credito convenio BTLMF
-              Map vtaPedido = (Map)UtilityConvenioBTLMF.obtieneConvenioXpedido(VariablesCaja.vNumPedVta_Anul,this);
-              String indConvenioBTLMF = (String)vtaPedido.get("IND_CONV_BTL_MF");
-              boolean esConvenioBTLMF = UtilityConvenioBTLMF.esActivoConvenioBTLMF(this, null);
-
-              if(esConvenioBTLMF && indConvenioBTLMF != null && indConvenioBTLMF.equals("S"))
-              {
-            	  boolean esCompCredito = UtilityConvenioBTLMF.esCompCredito(this);
-                  log.debug("Es comprobante Crédito "+ esCompCredito);
-
-                  if (esCompCredito)
-                  {
-	                 String indConexionRac = FarmaUtility.getIndLineaOnLine(FarmaConstants.CONECTION_RAC, FarmaConstants.INDICADOR_S);
-	             	 System.out.println("indConexionRac :"+indConexionRac);
-	             	 if (indConexionRac.equals("S"))
-	             	 {
-	             		String pedidoAnuladoRac ="";
-                        try
-                        {
-	             		  pedidoAnuladoRac =  DBConvenioBTLMF.anularPedidoRac(null, FarmaConstants.INDICADOR_N);
-                        }
-                        catch(SQLException SQL)
-                        {
-                           estaGrabado = false;
-                           SQL.printStackTrace();
-                        }
-
-                		log.debug("Pedido Anulado en el Rac?"+pedidoAnuladoRac);
-
-                		 if (pedidoAnuladoRac.equals("S"))
-                		 {
-                				log.debug("Pedido Anulado en el 22?"+pedidoAnuladoRac);
-
-                			  estaGrabado = grabarBTLMF();
-
-                			  log.debug("graboo?"+estaGrabado);
-                		 }
-                		 else
-                		 {
-                			 FarmaUtility.showMessage(this,"No se pudo anular el pediddo Convenio en el RAC",tblListaProductos);
-                		 }
-
-	             	 }
-	             	else
-	           		 {
-	           			FarmaUtility.showMessage(this,"No puede anular el pedido, porque no existe una conexion con el RAC",tblListaProductos);
-	           		 }
-
-                  }
-                  else
-                  {
-
-           	   			estaGrabado = grabarBTLMF();
-                  }
-
-              }
-              else
-              {
            	    estaGrabado = grabar();
-              }
 
 
               log.debug("Genero Nota credito satisfactoriamente:"+estaGrabado);
@@ -313,16 +254,11 @@ public class DlgNotaCreditoNueva extends JDialog
           {
               
             FarmaUtility.showMessage(this, "¡Nota Credito generada satisfactoriamente!", btnRelacionProductos);
-            //JCHAVEZ 10.07.2009.sn
-	  	          if(esConvenioBTLMF && indConvenioBTLMF != null && indConvenioBTLMF.equals("S"))
-	              {
-	  	            imprimeTicketBTLMF();
-	              }
-	  	          else
-	  	          {
+            //  10.07.2009.sn
+	  	       
             imprimeTicket();
-	  	          }
-            //JCHAVEZ 10.07.2009.en
+	  	       
+            //  10.07.2009.en
             
             cerrarVentana(true);
           }
@@ -416,7 +352,7 @@ public class DlgNotaCreditoNueva extends JDialog
     {
       pDatosDel = DBCaja.getDatosPedDelivery(VariablesCaja.vNumPedVta_Anul);
         //Esta decision fue tomada por gerencia
-        //dubilluz 02.12.2008
+        //  02.12.2008
       DBCaja.activarCuponesUsados(VariablesCaja.vNumPedVta_Anul);
 
       System.out.println("-----");
@@ -432,7 +368,7 @@ public class DlgNotaCreditoNueva extends JDialog
 	    String numera = DBCaja.agregarCabeceraNotaCredito(VariablesCaja.vNumPedVta_Anul,tipoCambio,VariablesCaja.vMotivoAnulacion);
 
 
-          System.out.println("Numera JCORTEZ: " + numera);
+          System.out.println("Numera  : " + numera);
 
         for(int i=0;i<tblListaProductos.getRowCount();i++)
         {
@@ -445,7 +381,7 @@ public class DlgNotaCreditoNueva extends JDialog
           String cantDisp = FarmaUtility.getValueFieldJTable(tblListaProductos,i,COL_CANT_DISP);
           String cantNC = FarmaUtility.getValueFieldJTable(tblListaProductos,i,COL_CANT_NC);
 
-            //JCORTEZ 23.04.2009
+            //  23.04.2009
             //Se considera grabar del igual forma tipo de comprobante TICKET al generar el detalle de la nota de credito
           if(VariablesCaja.vTipComp.equals(ConstantsVentas.TIPO_COMP_BOLETA)||
               VariablesCaja.vTipComp.equals(ConstantsVentas.TIPO_COMP_TICKET))
@@ -522,7 +458,7 @@ public class DlgNotaCreditoNueva extends JDialog
     {
       pDatosDel = DBCaja.getDatosPedDelivery(VariablesCaja.vNumPedVta_Anul);
         //Esta decision fue tomada por gerencia
-        //dubilluz 02.12.2008
+        //  02.12.2008
         DBCaja.activarCuponesUsados(VariablesCaja.vNumPedVta_Anul);
         
         System.out.println("-----"); 
@@ -538,7 +474,7 @@ public class DlgNotaCreditoNueva extends JDialog
 	String numera = DBCaja.agregarCabeceraNotaCredito(VariablesCaja.vNumPedVta_Anul,tipoCambio,VariablesCaja.vMotivoAnulacion);
 	
         
-          System.out.println("Numera JCORTEZ: " + numera);
+          System.out.println("Numera  : " + numera);
           
         for(int i=0;i<tblListaProductos.getRowCount();i++)
         {   
@@ -551,7 +487,7 @@ public class DlgNotaCreditoNueva extends JDialog
           String cantDisp = FarmaUtility.getValueFieldJTable(tblListaProductos,i,COL_CANT_DISP);
           String cantNC = FarmaUtility.getValueFieldJTable(tblListaProductos,i,COL_CANT_NC);
             
-            //JCORTEZ 23.04.2009 
+            //  23.04.2009 
             //Se considera grabar del igual forma tipo de comprobante TICKET al generar el detalle de la nota de credito
           if(VariablesCaja.vTipComp.equals(ConstantsVentas.TIPO_COMP_BOLETA)||
               VariablesCaja.vTipComp.equals(ConstantsVentas.TIPO_COMP_TICKET)) 
@@ -591,13 +527,13 @@ public class DlgNotaCreditoNueva extends JDialog
 	cobrarPedido(numera);
         FarmaUtility.aceptarTransaccion();
 	//--Se anula los cupones en Matriz 
-        //  04.09.2008 Dubilluz
+        //  04.09.2008  
         UtilityCaja.anulaCuponesPedido(VariablesCaja.vNumPedVta_Anul,
                                        this,
                                        btnRelacionProductos);
         
         //Activa los cupones en matriz
-        //03.12.2008 dubilluz
+        //03.12.2008  
         UtilityCaja.activaCuponesMatriz(VariablesCaja.vNumPedVta_Anul,this,btnRelacionProductos);          
           
         UtilityCaja.alertaPedidoDelivery(pDatosDel.trim());
@@ -614,7 +550,7 @@ public class DlgNotaCreditoNueva extends JDialog
     {
       e.printStackTrace();
       FarmaUtility.liberarTransaccion();
-      UtilityConvenioBTLMF.liberarTransaccionRempota(null,null,FarmaConstants.INDICADOR_S);
+      
       FarmaUtility.showMessage(this,"Error al grabar nota de credito :\n" + e.getMessage(),btnRelacionProductos);
       retorno = false;
     }
@@ -666,7 +602,7 @@ public class DlgNotaCreditoNueva extends JDialog
 
             ruta=DBCaja.ObtieneDirectorio();
             //ruta=ruta+"T_"+VariablesCaja.vNumPedVta_Anul+"_Anul";
-            //JMIRANDA 08/07/09
+            //  08/07/09
             ruta=ruta+fechaImpresion+"_"+"T_"+VariablesCaja.vNumPedVta_Anul+"_Anul";
             
             caja_turno=DBCaja.obtieneCajaTurnoPedidoAnulado(VariablesCaja.vNumPedVta_Anul);
@@ -699,7 +635,7 @@ public class DlgNotaCreditoNueva extends JDialog
             e.printStackTrace();
             FarmaUtility.enviaCorreoPorBD(FarmaVariables.vCodGrupoCia,
                                           FarmaVariables.vCodLocal,
-                                          //"dubilluz",
+                                          //" ",
                                           VariablesPtoVenta.vDestEmailErrorAnulacion,
                                           "Error de Impresión Ticket Anulado Nota de Credito",
                                           "Error de Impresión Nota de Credito Anulado",
@@ -729,35 +665,14 @@ public class DlgNotaCreditoNueva extends JDialog
 
             ruta=DBCaja.ObtieneDirectorio();
             //ruta=ruta+"T_"+VariablesCaja.vNumPedVta_Anul+"_Anul";
-            //JMIRANDA 08/07/09
+            //  08/07/09
             ruta=ruta+fechaImpresion+"_"+"T_"+VariablesCaja.vNumPedVta_Anul+"_Anul";
 
             caja_turno=DBCaja.obtieneCajaTurnoPedidoAnulado(VariablesCaja.vNumPedVta_Anul);
             String [] arrayDatos =  caja_turno.split("Ã");
 
             VariablesCaja.vNumPedVta = VariablesCaja.vNumPedVta_Anul;
-            if (UtilityConvenioBTLMF.obtieneCompPago(new JDialog(), "", null))
-            {
-
-	           	for (int j = 0 ; j < VariablesConvenioBTLMF.vArray_ListaComprobante.size(); j++)
-	           	{
-
-           	       VariablesConvenioBTLMF.vNumCompPago = ((String)((ArrayList)VariablesConvenioBTLMF.vArray_ListaComprobante.get(j)).get(0)).trim();
-
-
-                   UtilityConvenioBTLMF.imprimeMensajeTicketAnulacion(VariablesCaja.vNumCaja,
-                                                      VariablesCaja.vNumTurnoCaja,
-                                                      VariablesCaja.vNumPedVta_Anul,
-                                                      "00", ruta+"_1.TXT", false, "S",
-                                                      VariablesConvenioBTLMF.vNumCompPago);
-		           //para montos inafectos
-                   UtilityConvenioBTLMF.imprimeMensajeTicketAnulacion(VariablesCaja.vNumCaja,
-		                                                      VariablesCaja.vNumTurnoCaja,
-		                                                      VariablesCaja.vNumPedVta_Anul,
-		                                                      "01", ruta+"_2.TXT", false, "S",
-		                                                      VariablesConvenioBTLMF.vNumCompPago);
-	           	}
-            }
+            
 
 
 
@@ -778,7 +693,7 @@ public class DlgNotaCreditoNueva extends JDialog
             e.printStackTrace();
             FarmaUtility.enviaCorreoPorBD(FarmaVariables.vCodGrupoCia,
                                           FarmaVariables.vCodLocal,
-                                          //"dubilluz",
+                                          //" ",
                                           VariablesPtoVenta.vDestEmailErrorAnulacion,
                                           "Error de Impresión Ticket Anulado Nota de Credito",
                                           "Error de Impresión Nota de Credito Anulado",

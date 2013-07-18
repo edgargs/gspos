@@ -34,8 +34,8 @@ import mifarma.ptoventa.caja.reference.DBCaja;
 import com.gs.mifarma.componentes.JButtonLabel;
 import com.gs.mifarma.componentes.JLabelFunction;
 import mifarma.ptoventa.caja.reference.UtilityCaja;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -50,8 +50,8 @@ import mifarma.ptoventa.ventas.reference.UtilityVentas;
  * Nombre de la Aplicación : DlgListaIPSImpresora.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JCORTEZ 04.06.2009 Creación<br>
- * JCHAVEZ 26.06.2009 Modificación<br>
+ *   04.06.2009 Creación<br>
+ *   26.06.2009 Modificación<br>
  * <br>
  * 
  * @author JORGE CORTEZ ALVAREZ<br>
@@ -66,7 +66,7 @@ public class DlgListaIPSImpresora extends JDialog {
 
 	 FarmaTableModel tableModel;
         
-        private static final Log log = LogFactory.getLog(UtilityCaja.class);//JCHAVEZ 06.07.2009.n
+        private static final Logger log = LoggerFactory.getLogger(UtilityCaja.class);//  06.07.2009.n
 
 	private BorderLayout borderLayout1 = new BorderLayout();
 
@@ -329,7 +329,7 @@ public class DlgListaIPSImpresora extends JDialog {
                                FarmaUtility.showMessage(this,"La ip ingresada no es válida. Verifique!!!",txtIP);           
                            }
                      }          
-                   }else if (e.getKeyCode() == KeyEvent.VK_F3)//JCHAVEZ 25.06.09.sn
+                   }else if (e.getKeyCode() == KeyEvent.VK_F3)//  25.06.09.sn
                    {
                        if(tblMaestro.getSelectedRow()>-1){
                        VariablesImpresoras.vSecIP=tblMaestro.getValueAt(tblMaestro.getSelectedRow(), 0).toString().trim();  
@@ -339,18 +339,18 @@ public class DlgListaIPSImpresora extends JDialog {
                              
                            if(FarmaVariables.vAceptar){
                                cagarIPs();
-                               //JCHAVEZ 06.07.2009.sn  para refrescar el nombre de la impresora termica y su tipo
-                               //dubilluz 19.08.2010
+                               //  06.07.2009.sn  para refrescar el nombre de la impresora termica y su tipo
+                               //  19.08.2010
                                if(!FarmaVariables.vEconoFar_Matriz)  {
                                UtilityVentas.carga_impresoras(myParentFrame);
                                }                               
-                               //JCHAVEZ 06.07.2009.en
+                               //  06.07.2009.en
                            }
                            
                        }else 
                            FarmaUtility.showMessage(this,"Debe seleccionar un registro.",tblMaestro);
                    }
-                   //JCHAVEZ 25.06.09.en 
+                   //  25.06.09.en 
             }
 
 

@@ -1138,7 +1138,7 @@ public class DlgDetalleMovimientos extends JDialog {
      vPrint.printBold(FarmaPRNUtility.llenarBlancos(17)+"--------      -------------",true);
      vPrint.printLine(" Bol.Emitidas  :   "+FarmaPRNUtility.alinearDerecha(lblCantBoletasGen.getText().trim(),6)+"   "+FarmaPRNUtility.alinearDerecha(txtBoletasGen.getText().trim(),16),true);
      vPrint.printLine(" Bol.Anuladas  :   "+FarmaPRNUtility.alinearDerecha(lblCantBoletasAnu.getText().trim(),6)+"   "+FarmaPRNUtility.alinearDerecha(txtBoletasAnu.getText().trim(),16),true);
-        //JMIRANDA 23.09.09
+        //  23.09.09
      vPrint.printLine("Tick Emitidos :   "+FarmaPRNUtility.alinearDerecha(lblCantTicketsGen.getText().trim(),6)+"   "+FarmaPRNUtility.alinearDerecha(txtTicketGen.getText().trim(),16),true);
      vPrint.printLine("Tick Anulados :   "+FarmaPRNUtility.alinearDerecha(lblCantTicketsAn.getText().trim(),6)+"   "+FarmaPRNUtility.alinearDerecha(txtTicketAn.getText().trim(),16),true);   
      vPrint.printLine("Fact Emitidas  :   "+FarmaPRNUtility.alinearDerecha(lblCantFacturasGen.getText().trim(),6)+"   "+FarmaPRNUtility.alinearDerecha(txtFacturasGen.getText().trim(),16),true);

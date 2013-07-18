@@ -38,7 +38,7 @@ import java.awt.event.ActionEvent;
 * Nombre de la Aplicación : DlgListado.java<br>
 * <br>
 * Histórico de Creación/Modificación<br>
-* JCORTEZ      12.11.2007   Creación<br>
+*        12.11.2007   Creación<br>
 * <br>
 * @author  Jorge Cortez Alvarez <br>
 * @version 1.0<br>

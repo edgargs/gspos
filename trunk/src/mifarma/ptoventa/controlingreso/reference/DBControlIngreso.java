@@ -19,7 +19,7 @@ import mifarma.common.FarmaVariables;
 * Histórico de Creación/Modificación<br>
 * PAMEGHINO      10.10.2007   Creación<br>
 * <br>
-* @author PAULO CESAR AMEGHINO ROJAS<br>
+* @author   CESAR AMEGHINO ROJAS<br>
 * @version 1.0<br>
 *
 */
@@ -146,7 +146,7 @@ public class DBControlIngreso
 
    /**
    * Verificamos la existencia del registro del trabajador en el dia
-   * @author JCORTEZ
+   * @author  
    * @since 03.10.2007
    * */
   public static void getRegistro(ArrayList pArray,String pDni) throws SQLException
@@ -158,7 +158,7 @@ public class DBControlIngreso
   }
    /**
    * valida que se registre la salida cuando sea necesaria
-   * @author JCORTEZ
+   * @author  
    * @since 03.10.2007
    * */
    public static void validaSalida(ArrayList pArray,String pDni) throws SQLException
@@ -171,7 +171,7 @@ public class DBControlIngreso
   
     /**
     * Se lista el historico de temperaturas
-    * @author JCORTEZ
+    * @author  
     * @since 11.02.2009
     * */
     public static void cargaListaHistoricoTemp(FarmaTableModel pTableModel)
@@ -189,7 +189,7 @@ public class DBControlIngreso
     /**
      * Se Ingresa temperatura
      * @throws SQLException
-     * @author JCORTEZ
+     * @author  
      * @since 12.02.2009
      */
     public static void ingresaTemperatura(String ValVta,String ValAlm, String ValRefrig)
@@ -284,7 +284,7 @@ public class DBControlIngreso
      * @param SecUsu
      * @param CodRol
      * @throws SQLException
-     * @author Asolis
+     * @author  
      * @since 25.02.2009
      */
      public static String ValidaRolTrabLocal(String SecUsu,String CodRolCajero,String CodRolVendedor,String CodRolAdministrador) throws SQLException
@@ -303,7 +303,7 @@ public class DBControlIngreso
     /**
      * Genera cupones de regalo 
      * @throws SQLException
-     * @author JCORTEZ
+     * @author  
      * @since 18.08.2009
      */
     public static void generaCuponesRegalo(String NumDni)
@@ -321,7 +321,7 @@ public class DBControlIngreso
     
     /**
      * Se obtiene los cupones emitidos por QF
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @AINCE  18.08.09 
      */
     public static void obtieneCuponesRegalo(ArrayList cuponesRegalo,String vDni) throws SQLException
@@ -338,7 +338,7 @@ public class DBControlIngreso
     
     /**
      * validar rol usuario
-     * @author Asolis
+     * @author  
      * @since 25.02.2009
      */
      public static String existCuponRegalo(String Dni) throws SQLException

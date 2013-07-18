@@ -18,8 +18,8 @@ import javax.swing.BorderFactory;
 import javax.swing.JDialog;
 import javax.swing.JTable;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import mifarma.common.FarmaConnectionRemoto;
 import mifarma.common.FarmaConstants;
@@ -49,9 +49,9 @@ import com.gs.mifarma.componentes.JPanelWhite;
  * Nombre de la Aplicación : DlgSelecLocal.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JCALLO      20.10.2008   Creación<br>
+ *        20.10.2008   Creación<br>
  * <br>
- * @author JCALLO<br>
+ * @author  <br>
  * @version 1.0<br>
  *
  */
@@ -60,11 +60,11 @@ public class DlgGenerarTransfDelivery extends JDialog {
 	/*                        DECLARACION PROPIEDADES                         */
 	/* ********************************************************************** */
 	
-	private static final Log log = LogFactory.getLog(DlgGenerarTransfDelivery.class);
+	private static final Logger log = LoggerFactory.getLogger(DlgGenerarTransfDelivery.class);
 	
 	Frame myParentFrame;
 	FarmaTableModel tableModel;
-        ArrayList tableModel_02; //ASOSA, 31.08.2010
+        ArrayList tableModel_02; // , 31.08.2010
 
 	private BorderLayout borderLayout1 = new BorderLayout(); 
 	private JPanelWhite jContentPane = new JPanelWhite(); 
@@ -81,17 +81,17 @@ public class DlgGenerarTransfDelivery extends JDialog {
 
 	public DlgGenerarTransfDelivery() {
 		//this(null, "", false,null); antes
-		this(null, "", false,null,null);    //ASOSA, 31.08.2010
+		this(null, "", false,null,null);    // , 31.08.2010
 	}
 
 	public DlgGenerarTransfDelivery(Frame parent, String title, 
 			boolean modal,JTable tblProdTransf,
-                                        ArrayList tableModel02) { //ASOSA, 31.08.2010
+                                        ArrayList tableModel02) { // , 31.08.2010
 		super(parent, title, modal);
 		myParentFrame    = parent;
 		this.tblProdTransf  = tblProdTransf;
 		this.tableModel  = (FarmaTableModel)tblProdTransf.getModel();
-                this.tableModel_02=tableModel02; //ASOSA, 31.08.2010
+                this.tableModel_02=tableModel02; // , 31.08.2010
 		try {
 			jbInit();
 			initialize();
@@ -207,7 +207,7 @@ public class DlgGenerarTransfDelivery extends JDialog {
 
 	/**
 	 * Metodo encargado de validar formato de Fecha formato dd/MM/yyyy.
-	 *@autor jcallo
+	 *@autor  
 	 *@since 20.10.2008
 	 */
 	public boolean validarFecha( String fecha, String formato ) {
@@ -232,7 +232,7 @@ public class DlgGenerarTransfDelivery extends JDialog {
 
 	/**
 	 * Metodo encargado de validar formato de correo.
-	 *@autor jcallo
+	 *@autor  
 	 *@since 17.10.2008
 	 */
 	public boolean validarHora( String hora ) { 
@@ -245,7 +245,7 @@ public class DlgGenerarTransfDelivery extends JDialog {
 
 	private boolean procesarTransferencia(){
 		boolean retorno = false;
-	        int valFracProd; //JCHAVEZ 25082009.n
+	        int valFracProd; //  25082009.n
 	        String indFraccionamiento="";
 		try
 		{
@@ -287,7 +287,7 @@ public class DlgGenerarTransfDelivery extends JDialog {
 				//DBInventario.obtieneStockProducto_ForUpdate(pArrayList, tableModel.getValueAt(i,0).toString());
 				//if(((String)((ArrayList)pArrayList.get(0)).get(0)).trim())
 
-				//JCHAVEZG 25082009.sn          
+				// G 25082009.sn          
 				  if (VariablesInventario.vTipoDestino_Transf.equals("01")) { //si la transferencia es local
 				    
                                     valFracProd= DBTranfDelivery.getValFracProducto(tableModel.getValueAt(i,0).toString()); 
@@ -304,24 +304,24 @@ public class DlgGenerarTransfDelivery extends JDialog {
 				          return retorno;
 				    }
 				  }
-				//JCHAVEZG 25082009.en
+				// G 25082009.en
 
 				/*DBTranfDelivery.agregarDetalleTransferencia(numera,tableModel.getValueAt(i,0).toString(),     antes
 						tableModel.getValueAt(i,13).toString(), tableModel.getValueAt(i,14).toString(), 
 						tableModel.getValueAt(i,4).toString(), tableModel.getValueAt(i,6).toString(),
 						tableModel.getValueAt(i,5).toString(),VariablesTranfDelivery.vTipoDestino_Transf,
 						VariablesTranfDelivery.vCodLocalDestino,tableModel.getValueAt(i,10).toString(),indFraccionamiento);*/
-				//INI ASOSA, 31.08.2010
+				//INI  , 31.08.2010
                                 ArrayList listaxx=(ArrayList)tableModel_02.get(i);
                                 String secResp=listaxx.get(16).toString();
-				DBTranfDelivery.agregarDetalleTransferencia_02(numera,tableModel.getValueAt(i,0).toString(),   //INI ASOSA, 31.08.2010
+				DBTranfDelivery.agregarDetalleTransferencia_02(numera,tableModel.getValueAt(i,0).toString(),   //INI  , 31.08.2010
 				                                                tableModel.getValueAt(i,13).toString(), tableModel.getValueAt(i,14).toString(), 
 				                                                tableModel.getValueAt(i,4).toString(), tableModel.getValueAt(i,6).toString(),
 				                                                tableModel.getValueAt(i,5).toString(),VariablesTranfDelivery.vTipoDestino_Transf,
 				                                                VariablesTranfDelivery.vCodLocalDestino,tableModel.getValueAt(i,10).toString(),indFraccionamiento,
                                                                                 secResp //secRespaldo
                                                                             );
-                                //FIN ASOSA, 31.08.2010
+                                //FIN  , 31.08.2010
 				//actualizaStkComprometidoProd_sinCommit(tblListaProductos.getValueAt(i,0).toString(),Integer.parseInt(tblListaProductos.getValueAt(i,4).toString()),ConstantsInventario.INDICADOR_D, ConstantsInventario.TIP_OPERACION_RESPALDO_BORRAR, Integer.parseInt(tblListaProductos.getValueAt(i,4).toString()));
 			}
 
@@ -381,13 +381,13 @@ public class DlgGenerarTransfDelivery extends JDialog {
 			
 			
 			log.debug("tratando de enviar el pedido de transferencia a local destino");
-			log.debug("jcallo: verificando si hay linea con matriz");				
+			log.debug(" : verificando si hay linea con matriz");				
 			VariablesInventario.vIndLineaMatriz = FarmaUtility.getIndLineaOnLine(FarmaConstants.CONECTION_MATRIZ, FarmaConstants.INDICADOR_S);
-			log.debug("jcallo: VariablesInventario.vIndLineaMatriz:"+VariablesInventario.vIndLineaMatriz);
+			log.debug(" : VariablesInventario.vIndLineaMatriz:"+VariablesInventario.vIndLineaMatriz);
 			//si hay linea con matriz, se intentara realizar la trasnferencia a matriz y local destino.
 			//si ocurriera algun error, se realizara solo la confirmacion en local origen
 			if ( VariablesInventario.vIndLineaMatriz.equals(FarmaConstants.INDICADOR_S)){
-				log.debug("jcallo: tratando de realizar la transferencia a local destino y matriz con estado L");						
+				log.debug(" : tratando de realizar la transferencia a local destino y matriz con estado L");						
 				String resultado = DBInventario.realizarTransfDestino(	numera, 
 																		VariablesTranfDelivery.vCodLocalDestino, 
 																		FarmaConstants.INDICADOR_N).trim();

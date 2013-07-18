@@ -51,7 +51,7 @@ import java.sql.*;
 import java.util.*;
 import javax.swing.SwingConstants;
 import com.gs.mifarma.componentes.JLabelOrange;
-import oracle.jdeveloper.layout.XYConstraints;
+ 
 
 import mifarma.common.FarmaColumnData;
 import mifarma.common.*;
@@ -64,7 +64,7 @@ import mifarma.common.*;
  * Nombre de la Aplicación : DlgOCProdDist.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JCORTEZ      08.11.2007   Creación<br>
+ *        08.11.2007   Creación<br>
  * <br>
  * @author Jorge Cortez Alvarez<br>
  * @version 1.0<br>
@@ -309,11 +309,11 @@ public class DlgOCProdDist extends JDialog
    
     srcOCPend.getViewport();
     srcUnidadesVendidas.getViewport();
-    pnlTitulo7.add(lblUVMes3, new XYConstraints(210, 0, 70, 20));
-    pnlTitulo7.add(lblUVMes2, new XYConstraints(210, 0, 70, 20));
-    pnlTitulo7.add(lblUVMes1, new XYConstraints(140, 0, 70, 20));
-    pnlTitulo7.add(lblUVMes0, new XYConstraints(70, 0, 70, 20));
-    pnlTitulo7.add(btnListado8, new XYConstraints(10, 0, 55, 20));
+    pnlTitulo7.add(lblUVMes3);
+    pnlTitulo7.add(lblUVMes2);
+    pnlTitulo7.add(lblUVMes1);
+    pnlTitulo7.add(lblUVMes0);
+    pnlTitulo7.add(btnListado8);
     jPanelWhite1.add(lblSaldoQS, null);
     jPanelWhite1.add(lblSaldoQS_T, null);
     pnlTitulo6.add(lblSStock, null);

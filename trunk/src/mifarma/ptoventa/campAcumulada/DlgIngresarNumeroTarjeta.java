@@ -28,8 +28,8 @@ import com.gs.mifarma.componentes.JTextFieldSanSerif;
 import mifarma.ptoventa.ventas.DlgListaProductos;
 import mifarma.ptoventa.fidelizacion.reference.*;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Copyright (c) 2008 MIFARMA S.A.C.<br>
@@ -38,7 +38,7 @@ import org.apache.commons.logging.LogFactory;
  * Nombre de la Aplicación : DlgListaLocalesMot.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JCALLO      16.12.2008   Creación<br>
+ *        16.12.2008   Creación<br>
  * <br>
  * @author Javier Callo Quispe<br>
  * @version 1.0<br>
@@ -49,7 +49,7 @@ public class DlgIngresarNumeroTarjeta extends JDialog
 	/* ********************************************************************** */
 	/*                        DECLARACION PROPIEDADES                         */
 	/* ********************************************************************** */
-	private static final Log log = LogFactory.getLog(DlgIngresarNumeroTarjeta.class);
+	private static final Logger log = LoggerFactory.getLogger(DlgIngresarNumeroTarjeta.class);
 	private Frame myParentFrame;
 	FarmaTableModel tableModel;
 	  
@@ -204,7 +204,7 @@ public class DlgIngresarNumeroTarjeta extends JDialog
       //lblNombMotorizado_T.setText(VariablesCtrlMotorizado.vNombre_Motorizado);
       FarmaUtility.centrarVentana(this);
       FarmaUtility.moveFocus(txtTarjeta);
-      // DUBILLUZ 15.05.2009
+      //   15.05.2009
       VariablesCampAcumulada.vNroTarjeta = creaTarjeta().trim();
       cerrarVentana(true);
   }
@@ -298,12 +298,12 @@ public class DlgIngresarNumeroTarjeta extends JDialog
   private String creaTarjeta()
   {
       long tmpIni = System.currentTimeMillis();
-      log.debug("DUBILLUZ: INICIO GENRAR TARJ Campaña acumulada");
+      log.debug(" : INICIO GENRAR TARJ Campaña acumulada");
        String vNuevaTarjetaFidelizacion = 
               UtilityFidelizacion.generaNuevaTarjeta(ConstantsFidelizacion.PREFIJO_TARJETA_FIDELIZACION,
                                                      FarmaVariables.vCodLocal);
       long tmpFin = System.currentTimeMillis();                                                               
-      log.debug("DUBILLUZ: FIN GENRAR TARJ"+ "DURACION: "+(tmpFin - tmpIni)+" milisegundos Campaña acumulada");
+      log.debug(" : FIN GENRAR TARJ"+ "DURACION: "+(tmpFin - tmpIni)+" milisegundos Campaña acumulada");
       // setNumeroTarjeta(vNuevaTarjetaFidelizacion);      
       log.debug("Tarjeta Nueva " + vNuevaTarjetaFidelizacion);
       

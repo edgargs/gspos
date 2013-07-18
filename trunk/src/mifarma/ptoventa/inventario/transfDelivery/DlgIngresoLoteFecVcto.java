@@ -46,9 +46,9 @@ import com.gs.mifarma.componentes.JTextFieldSanSerif;
  * Nombre de la Aplicación : DlgIngresoLoteFecVcto.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JCALLO      20.10.2008   Creación<br>
+ *        20.10.2008   Creación<br>
  * <br>
- * @author JCALLO<br>
+ * @author  <br>
  * @version 1.0<br>
  *
  */
@@ -400,7 +400,7 @@ public class DlgIngresoLoteFecVcto extends JDialog
       {
         //Se movera el foco a valor fraccion si 
         //el campo de cantidad este vacio y si el campo de fraccion este habilitado
-        //dubilluz 15.10.2007
+        //  15.10.2007
        //if(txtCantidad.getText().trim().length()>0)
         //{
           if(txtFraccion.isEditable())
@@ -613,12 +613,12 @@ public class DlgIngresoLoteFecVcto extends JDialog
 			System.out.println("OBTIENE STOCK DE : "+ VariablesTranfDelivery.vCodProducto);
 			DBInventario.obtieneStockProducto_ForUpdate(pArrayList, VariablesTranfDelivery.vCodProducto);
 		    FarmaUtility.liberarTransaccion();
-		    //dubilluz 13.10.2011
+		    //  13.10.2011
 		} catch(SQLException sql)
 		{
 			sql.printStackTrace();
 		    FarmaUtility.liberarTransaccion();
-		    //dubilluz 13.10.2011
+		    //  13.10.2011
 			FarmaUtility.showMessage(this,"Ha ocurrido un error al obtener el stock del producto : \n" + sql.getMessage(),txtCantidad);
 		}
 	}
@@ -649,7 +649,7 @@ public class DlgIngresoLoteFecVcto extends JDialog
 	private void txtFraccion_keyPressed(KeyEvent e)
 	{ 
 		//modificado para que el foco se coloque donde el campo esta habilitado
-		//dubilluz 15.10.2007
+		//  15.10.2007
 		if(e.getKeyCode() == KeyEvent.VK_ENTER){
 			if(txtLote.isEditable())
 				FarmaUtility.moveFocus(txtLote);

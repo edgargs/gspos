@@ -39,8 +39,8 @@ import mifarma.ptoventa.ventas.reference.ConstantsVentas;
 import mifarma.ptoventa.ventas.reference.DBVentas;
 import mifarma.ptoventa.ventas.reference.VariablesVentas;
 
-import oracle.jdeveloper.layout.XYConstraints;
-import oracle.jdeveloper.layout.XYLayout;
+ 
+ 
 
 
 public class DlgListaPromocion extends JDialog 
@@ -75,7 +75,7 @@ public class DlgListaPromocion extends JDialog
   private JTextArea txtDescPromocion = new JTextArea();
   private JScrollPane jScrollPane2 = new JScrollPane();
   JPanel pnlStock2 = new JPanel();
-  XYLayout xYLayout4 = new XYLayout();
+   
   private JButtonLabel btnDescripcion = new JButtonLabel();
 
 
@@ -155,7 +155,7 @@ public class DlgListaPromocion extends JDialog
     pnlStock2.setBounds(new Rectangle(10, 250, 600, 25));
     pnlStock2.setFont(new Font("SansSerif", 0, 11));
     pnlStock2.setBackground(new Color(255, 130, 14));
-    pnlStock2.setLayout(xYLayout4);
+    pnlStock2 .setLayout(null);
     pnlStock2.setBorder(BorderFactory.createLineBorder(Color.black, 1));
     pnlStock2.setForeground(Color.white);
     btnDescripcion.setText("Descripción");
@@ -187,7 +187,7 @@ public class DlgListaPromocion extends JDialog
         }
       });
     jScrollPane1.setBounds(new Rectangle(10, 85, 600, 155));
-    pnlStock2.add(btnDescripcion, new XYConstraints(5, 0, 70, 20));
+    pnlStock2.add(btnDescripcion);
     jPanelWhite1.add(pnlStock2, null);
     jScrollPane2.getViewport().add(txtDescPromocion, null);
     jPanelWhite1.add(jScrollPane2, null);
@@ -377,7 +377,7 @@ public class DlgListaPromocion extends JDialog
   
   /**
    * Se muestra el detalle de la promocion 
-   * @author JCORTEZ
+   * @author  
    * @since 08.04.2008
    */  
   private void mostrarDetallePromocion()

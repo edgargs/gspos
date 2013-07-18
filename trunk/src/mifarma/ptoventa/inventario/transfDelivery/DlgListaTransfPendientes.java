@@ -41,9 +41,9 @@ import com.gs.mifarma.componentes.JPanelWhite;
  * Nombre de la Aplicación : DlgListaTransfPendientes.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JCALLO      20.10.2008   Creación<br>
+ *        20.10.2008   Creación<br>
  * <br>
- * @author JCALLO<br>
+ * @author  <br>
  * @version 1.0<br>
  *
  */
@@ -251,7 +251,7 @@ public class DlgListaTransfPendientes extends JDialog
 				{
 					VariablesInventario.vArrayTransferenciaProductos = new ArrayList();
 					VariablesInventario.vHistoricoLote = true;
-					/*JCALLO 05.11.2008
+					/*  05.11.2008
       DlgTransferenciasNueva dlgTransferenciasNueva = new DlgTransferenciasNueva(myParentFrame,"",true);
       dlgTransferenciasNueva.setVisible(true);
 					 */  
@@ -282,7 +282,7 @@ public class DlgListaTransfPendientes extends JDialog
 				VariablesTranfDelivery.vCodLocalDel  = tableModel.getValueAt(row,COL_LOCAL).toString().trim();
 				VariablesTranfDelivery.vSecTrans = tableModel.getValueAt(row,COL_SEC_TRANS).toString().trim();
 
-				/* JCALLO 05.11.2008*/
+				/*   05.11.2008*/
 				DlgTransfDeliveryDetalle dlgTransfDeliveryDetalle = new DlgTransfDeliveryDetalle(myParentFrame,"",true);
 				dlgTransfDeliveryDetalle.setVisible(true);
 
@@ -336,7 +336,7 @@ public class DlgListaTransfPendientes extends JDialog
 
 	private void funcionF8()
 	{
-		/* JCALLO 05.11.2008
+		/*   05.11.2008
     DlgTransferenciasPorConfirmar dlgTransferenciasPorConfirmar = new DlgTransferenciasPorConfirmar(myParentFrame,"",true);
     dlgTransferenciasPorConfirmar.setVisible(true);
 		 */
@@ -354,7 +354,7 @@ public class DlgListaTransfPendientes extends JDialog
 		{
 			VariablesInventario.vTipoNota = ConstantsPtoVenta.TIP_NOTA_SALIDA;
 			VariablesInventario.vNomInHashtableGuias = ConstantsInventario.NOM_HASTABLE_CMBFILTRO_TRANSF;
-			/* JCALLO 05.11.2008
+			/*   05.11.2008
       DlgFiltroGuias dlgFiltroGuias = new DlgFiltroGuias(myParentFrame,"", true);      
       dlgFiltroGuias.setVisible(true);
 			 */

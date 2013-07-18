@@ -10,7 +10,7 @@ public class ConstantsCampAcumulada {
     
     /**
      * Se declaran las variables para el listado de CAMPANAIAS ACUMULABLES
-     * @author JCALLO
+     * @author  
      * @since  15.12.2008
      */
     public static final FarmaColumnData columnsListaCampAcumuDisp[] = {
@@ -47,7 +47,7 @@ public class ConstantsCampAcumulada {
     
     /**
      * datos manejados en el tema registro de datos de cliente   * 
-     * @autor jcallo
+     * @autor  
      * 
      * **/
     public static final FarmaColumnData[] columnsListaDatosClienteCampAcumulada =

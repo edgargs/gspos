@@ -128,7 +128,7 @@ public class ConstantsPtoVenta
   public static final String LISTA_CAJEROS_DIA_VENTA = "12";
   public static final String LISTA_TRANSPORTISTA = "13";
   public static final String LISTA_CLIENTES_CONVENIO = "14";
-    public static final String LISTA_TRANSP_CIEGA="15"; //ASOSA 05.04.2010
+    public static final String LISTA_TRANSP_CIEGA="15"; //  05.04.2010
   
   public static final String LISTA_MAESTRO_LOCAL = "01";
   public static final String LISTA_MAESTRO_MATRIZ = "02";

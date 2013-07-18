@@ -30,7 +30,7 @@ public class ConstantsReporte
     
     /**
      * datos a mostrar en el detalle del reporte de los pedidos de venta
-     * @autor jcallo
+     * @autor  
      * @since 14.10.2008
      * **/
     public static final FarmaColumnData columnsListaDetalleVentas[] = {
@@ -123,9 +123,9 @@ public class ConstantsReporte
 	  new FarmaColumnData( "%PP", 80, JLabel.RIGHT ),
 	  new FarmaColumnData( "Pedidos", 80, JLabel.RIGHT ),
     //new FarmaColumnData( "Correlativo",0, JLabel.RIGHT ),
-    new FarmaColumnData( "Farma",80, JLabel.RIGHT ),//JCORTEZ 24/03/08
-    new FarmaColumnData( "No Farma",80, JLabel.RIGHT ),//JCORTEZ 24/03/08
-    new FarmaColumnData( "Grupo No A",80, JLabel.RIGHT ),//JCORTEZ 24/03/08
+    new FarmaColumnData( "Farma",80, JLabel.RIGHT ),//  24/03/08
+    new FarmaColumnData( "No Farma",80, JLabel.RIGHT ),//  24/03/08
+    new FarmaColumnData( "Grupo No A",80, JLabel.RIGHT ),//  24/03/08
     new FarmaColumnData( "Correlativo",0, JLabel.RIGHT )
 */
     new FarmaColumnData( "Codigo", 60, JLabel.CENTER ),// 1
@@ -192,23 +192,23 @@ public class ConstantsReporte
   public static final FarmaColumnData columnsListaVentasPorDia[] = {
     new FarmaColumnData( "Fecha", 73, JLabel.CENTER ), //90
     new FarmaColumnData( "Pedidos", 50, JLabel.RIGHT ), //70
-    new FarmaColumnData( "Tic.Ini", 79, JLabel.CENTER ), //JCHAVEZ 13.07.2009.n
+    new FarmaColumnData( "Tic.Ini", 79, JLabel.CENTER ), //  13.07.2009.n
     new FarmaColumnData( "Bol.Ini", 79, JLabel.CENTER ),
     new FarmaColumnData( "Fac.Ini", 79, JLabel.CENTER ),
-    new FarmaColumnData( "No.Tic", 39, JLabel.RIGHT), //JCHAVEZ 13.07.2009.n 60
+    new FarmaColumnData( "No.Tic", 39, JLabel.RIGHT), //  13.07.2009.n 60
     new FarmaColumnData( "No.Bol", 39, JLabel.RIGHT),
     new FarmaColumnData( "No.Fac", 39, JLabel.RIGHT),
-    new FarmaColumnData( "No.Tic.Anul", 78, JLabel.RIGHT),//JCHAVEZ 13.07.2009.n  80
+    new FarmaColumnData( "No.Tic.Anul", 78, JLabel.RIGHT),//  13.07.2009.n  80
     new FarmaColumnData( "No.Bol.Anul", 78, JLabel.RIGHT),
     new FarmaColumnData( "No.Fact.Anul", 80, JLabel.RIGHT),
     new FarmaColumnData( "Total", 81, JLabel.RIGHT),
     /**
-     * @author : dubilluz
+     * @author :  
      * @author : 28.08.2007
      */
     new FarmaColumnData( "Fechaordenar",0, JLabel.CENTER)
 	};
-	public static final Object[] defaultValuesListaVentasPorDia = {" "," ", " ", " ", " ", " "," "," "," "," "," "," "};//JCHAVEZ 13.07.2009.n agregué 3 elementos
+	public static final Object[] defaultValuesListaVentasPorDia = {" "," ", " ", " ", " ", " "," "," "," "," "," "," "};//  13.07.2009.n agregué 3 elementos
 	
   public static final FarmaColumnData columnsListaDetalladoResumenVta[] = {
     new FarmaColumnData( "Fecha", 130, JLabel.CENTER),
@@ -236,7 +236,7 @@ public class ConstantsReporte
    public static final String TIP_COMP_GUIA = "03";
    public static final String TIP_PEDIDO_DELIVERY = "D";
    public static final String TIP_PEDIDO_INSTITUCIONAL = "I";
-    public static final String TIP_COMP_TICKET = "05"; //JCHAVEZ 13.07.2009.n
+    public static final String TIP_COMP_TICKET = "05"; //  13.07.2009.n
    
    public static final String TIP_FILTRO = "FILTRAR";
   
@@ -335,14 +335,14 @@ public class ConstantsReporte
 	public static final Object[] defaultValuesListaProdABC = {" ", " ", " ", " ", " ", " ", " ", " "};  
   
   //Histórico de Creación/Modificación
-  //Paulo      29.08.2006   Creación
+  //       29.08.2006   Creación
   //DlgProductosABC
   public static String vProductosABC = "ProductosABC";
   public static String[] vCodTipo = {"A","B","C"};
   public static String[] vDescTipo = {"Tipo A","Tipo B","Tipo C"};
 
   //Histórico de Creación/Modificación
-  //Paulo      29.08.2006   Creación
+  //       29.08.2006   Creación
   //DlgProductosABC  
   public static String vNombreInHashtableABC ="IND_CAMPO_ORDENAR_ABC";
   public static String[] vCodABC = {"0","1", "2","3" ,"4","5","6","7"};
@@ -387,7 +387,7 @@ public class ConstantsReporte
  
  /**
   * MOdificado 
-  * @author : dubilluz
+  * @author :  
   * @since  : 21.08.2007
   */
   public static final FarmaColumnData columnsListaProdSinVtaNDias[] = {
@@ -416,7 +416,7 @@ public class ConstantsReporte
   public static final String VNOMBREINHASHTABLEPRODSINVTANDIAS ="IND_CAMPO_ORDENAR_PRODSINVTANDIAS";
   
   /** Descripcion del listado de las formas de pago por pedido
-   * @Author: JCORTEZ
+   * @Author:  
    * @Since: 04/0/07
    */
     public static final FarmaColumnData columnsListaFormasPago[] = {

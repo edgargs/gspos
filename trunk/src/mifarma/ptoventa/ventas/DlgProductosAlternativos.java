@@ -42,16 +42,16 @@ import mifarma.common.FarmaTableModel;
 import mifarma.common.FarmaUtility;
 import mifarma.common.FarmaVariables;
 
-import mifarma.ptoventa.convenio.reference.DBConvenio;
-import mifarma.ptoventa.convenio.reference.VariablesConvenio;
+ 
+ 
 import mifarma.ptoventa.reference.ConstantsPtoVenta;
 import mifarma.ptoventa.ventas.reference.ConstantsVentas;
 import mifarma.ptoventa.ventas.reference.DBVentas;
 import mifarma.ptoventa.ventas.reference.UtilityVentas;
 import mifarma.ptoventa.ventas.reference.VariablesVentas;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -75,7 +75,7 @@ public class DlgProductosAlternativos
 /*                           DECLARACION PROPIEDADES                          */
 /* ************************************************************************** */
   
-  private static final Log log = LogFactory.getLog(DlgProductosAlternativos.class);
+  private static final Logger log = LoggerFactory.getLogger(DlgProductosAlternativos.class);
   
   private Frame myParentFrame;
 
@@ -700,7 +700,7 @@ public class DlgProductosAlternativos
   {
     int vFila = tblProductos.getSelectedRow();
     String codProd = FarmaUtility.getValueFieldJTable(tblProductos,vFila,COL_COD);
-      //JMIRANDA 22/09/2009 lleno la variable vCod_Prod
+      //  22/09/2009 lleno la variable vCod_Prod
       VariablesVentas.vCod_Prod = codProd;
     
     try
@@ -803,7 +803,7 @@ public class DlgProductosAlternativos
       return;
     
       FarmaVariables.vAceptar = true;
-      //JMIRANDA 21/09/2009
+      //  21/09/2009
       boolean flagContinua = true;
       
       try{
@@ -842,7 +842,7 @@ public class DlgProductosAlternativos
               //flagContinua = FarmaUtility.rptaConfirmDialog(this,sMensaje);
               //FarmaVariables.vAceptar = flagContinua;
               //System.out.println("Mensaje flagContinua: "+flagContinua);                           
-              //JMIRANDA 26.03.2010
+              //  26.03.2010
               FarmaUtility.showMessage(this,sMensaje,txtProducto);
           }
           
@@ -999,9 +999,9 @@ public class DlgProductosAlternativos
     VariablesVentas.vTotalPrecVtaProd = 
         (FarmaUtility.getDecimalNumber(VariablesVentas.vCant_Ingresada) * 
          FarmaUtility.getDecimalNumber(VariablesVentas.vVal_Prec_Vta));
-      VariablesVentas.secRespStk=""; //ASOSA, 26.08.2010
+      VariablesVentas.secRespStk=""; // , 26.08.2010
     if (VariablesVentas.vIndProdControlStock && 
-        /*!UtilityVentas.actualizaStkComprometidoProd(VariablesVentas.vCod_Prod,    //antes - ASOSA, 22.07.2010
+        /*!UtilityVentas.actualizaStkComprometidoProd(VariablesVentas.vCod_Prod,    //antes -  , 22.07.2010
                                       Integer.parseInt(VariablesVentas.vCant_Ingresada), 
                                       ConstantsVentas.INDICADOR_A, 
                                       ConstantsPtoVenta.TIP_OPERACION_RESPALDO_SUMAR, 
@@ -1009,7 +1009,7 @@ public class DlgProductosAlternativos
                                                     true,
                                                     this,
                                                     txtProducto)*/
-        !UtilityVentas.operaStkCompProdResp(VariablesVentas.vCod_Prod,  //ASOSA, 22.07.2010
+        !UtilityVentas.operaStkCompProdResp(VariablesVentas.vCod_Prod,  // , 22.07.2010
                                       Integer.parseInt(VariablesVentas.vCant_Ingresada), 
                                       ConstantsVentas.INDICADOR_A, 
                                       ConstantsPtoVenta.TIP_OPERACION_RESPALDO_SUMAR, 
@@ -1022,8 +1022,8 @@ public class DlgProductosAlternativos
     FarmaUtility.setCheckValue(tblProductos, false);
     Boolean valor = 
       (Boolean) (tblProductos.getValueAt(vFila, 0));
-    //UtilityVentas.operaProductoSeleccionadoEnArrayList(valor); antes - ASOSA, 22.07.2010
-    UtilityVentas.operaProductoSeleccionadoEnArrayList_02(valor,VariablesVentas.secRespStk); //ASOSA, 22.07.2010
+    //UtilityVentas.operaProductoSeleccionadoEnArrayList(valor); antes -  , 22.07.2010
+    UtilityVentas.operaProductoSeleccionadoEnArrayList_02(valor,VariablesVentas.secRespStk); // , 22.07.2010
   }
 
   private void deseleccionaProducto()
@@ -1033,7 +1033,7 @@ public class DlgProductosAlternativos
     VariablesVentas.vCod_Prod = FarmaUtility.getValueFieldJTable(tblProductos,vFila,COL_COD);
     String indicadorControlStock = FarmaConstants.INDICADOR_S;
     String codigoTmp = "";
-    String secRespaldo=""; //ASOSA, 22.07.2010
+    String secRespaldo=""; // , 22.07.2010
     for (int i = 0; i < VariablesVentas.vArrayList_PedidoVenta.size(); i++)
     {
       codigoTmp = 
@@ -1045,16 +1045,16 @@ public class DlgProductosAlternativos
                                                 i, 16);
         cantidad = 
             (String) ((ArrayList) VariablesVentas.vArrayList_PedidoVenta.get(i)).get(4);
-        secRespaldo=FarmaUtility.getValueFieldArrayList(VariablesVentas.vArrayList_PedidoVenta,i,26).trim(); //ASOSA, 22.07.2010
+        secRespaldo=FarmaUtility.getValueFieldArrayList(VariablesVentas.vArrayList_PedidoVenta,i,26).trim(); // , 22.07.2010
         VariablesVentas.vVal_Frac = FarmaUtility.getValueFieldArrayList(VariablesVentas.vArrayList_PedidoVenta,i,10);
         break;
       }
     }
     /*Boolean valorTmp = 
       (Boolean) (tblProductos.getValueAt(vFila, 0));*/
-    VariablesVentas.secRespStk=""; //ASOSA, 26.08.2010
+    VariablesVentas.secRespStk=""; // , 26.08.2010
     if (indicadorControlStock.equalsIgnoreCase(FarmaConstants.INDICADOR_S) && 
-        /*!UtilityVentas.actualizaStkComprometidoProd(VariablesVentas.vCod_Prod,  antes - ASOSA, 22.07.2010
+        /*!UtilityVentas.actualizaStkComprometidoProd(VariablesVentas.vCod_Prod,  antes -  , 22.07.2010
                                       Integer.parseInt(cantidad), 
                                       ConstantsVentas.INDICADOR_D, 
                                       ConstantsPtoVenta.TIP_OPERACION_RESPALDO_BORRAR, 
@@ -1062,7 +1062,7 @@ public class DlgProductosAlternativos
                                                     true,
                                                     this,
                                                     txtProducto)*/
-        !UtilityVentas.operaStkCompProdResp(VariablesVentas.vCod_Prod,  //ASOSA, 22.07.2010
+        !UtilityVentas.operaStkCompProdResp(VariablesVentas.vCod_Prod,  // , 22.07.2010
                                       0, 
                                       ConstantsVentas.INDICADOR_D, 
                                       ConstantsPtoVenta.TIP_OPERACION_RESPALDO_BORRAR, 
@@ -1078,7 +1078,7 @@ public class DlgProductosAlternativos
     Boolean valor = 
       (Boolean) (tblProductos.getValueAt(vFila, 0));
     //UtilityVentas.operaProductoSeleccionadoEnArrayList(valor); antes
-    UtilityVentas.operaProductoSeleccionadoEnArrayList_02(valor,VariablesVentas.secRespStk); //ASOSA, 22.07.2010
+    UtilityVentas.operaProductoSeleccionadoEnArrayList_02(valor,VariablesVentas.secRespStk); // , 22.07.2010
     if (VariablesVentas.vArrayList_PedidoVenta.size() == 0)
       VariablesVentas.vIndPedConProdVirtual = false;
     //indicadorItems = FarmaConstants.INDICADOR_N;
@@ -1177,7 +1177,7 @@ public class DlgProductosAlternativos
 
   /**
    * Coloca el tipo de producto 
-   * @author dubilluz
+   * @author  
    * @since 22.10.2007
    */
   private void muestraIndTipoProd(int pColumna, JLabel pLabel, 
@@ -1216,7 +1216,7 @@ public class DlgProductosAlternativos
   
   /**
    * Muestra si es producto de Encarte
-   * @author JCORTEZ
+   * @author  
    * @since  08.04.2008
    */
   private void muestraProductoEncarte(int pColumna, JLabel pLabel)
@@ -1239,7 +1239,7 @@ public class DlgProductosAlternativos
 
   /**
    * Se muestra el tratemiento del producto
-   * @author JCORTEZ
+   * @author  
    * @since 29.05.2008
    */
   private void mostrarTratamiento(){
@@ -1280,38 +1280,7 @@ public class DlgProductosAlternativos
   private void guardaInfoProdVariables()
   {
     log.debug("*************************************************");
-     if(VariablesVentas.vEsPedidoConvenio)//Se ha seleccionado un convenio
-     {
-       //String indControlPrecio = "";
-       String mensaje = "";
-       try{
-         //mensaje = "Error al obtener el indicador de control de precio del producto.\n";
-         //indControlPrecio = DBConvenio.obtieneIndPrecioControl(VariablesVentas.vCod_Prod);
-         
-         VariablesConvenio.vVal_Prec_Vta_Local = VariablesVentas.vVal_Prec_Pub;
-         
-         /* 23.01.2007 ERIOS La validacion de realiza por las listas de exclusion */
-         //if(indControlPrecio.equals(FarmaConstants.INDICADOR_N))
-         if(true)
-         {
-           mensaje = "Error al obtener el nuevo precio del producto.\n";
-           VariablesConvenio.vVal_Prec_Vta_Conv = DBConvenio.obtieneNvoPrecioConvenio(VariablesConvenio.vCodConvenio,
-                                                                                      VariablesVentas.vCod_Prod,
-                                                                                      VariablesVentas.vVal_Prec_Pub);
-         }
-         else
-         {
-           
-           VariablesConvenio.vVal_Prec_Vta_Conv = VariablesVentas.vVal_Prec_Pub;
-         }
-       }catch(SQLException sql)
-       {
-         //sql.printStackTrace();
-         log.error(sql);
-         FarmaUtility.showMessage(this,mensaje+sql.getMessage(),null);
-         FarmaUtility.moveFocus(txtProducto);
-       }
-     }
+     
   }
   
     private boolean validaLoginVendedor()

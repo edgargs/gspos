@@ -1,8 +1,5 @@
 package mifarma.ptoventa.caja.reference;
 
-import com.gs.mifarma.MetodosBprepaid;
-import com.gs.mifarma.MetodosTXFactory;
-import com.gs.mifarma.MetodosTXVirtual;
 import mifarma.common.FarmaUtility;
 import java.awt.*;
 import java.util.*;
@@ -39,7 +36,7 @@ import javax.swing.JDialog;
 //import tarjetas.MetodosG;
 //import tarjetas.RespuestaNavSatBean;
 import mifarma.ptoventa.ce.reference.DBCajaElectronica;
-import mifarma.ptoventa.convenio.reference.*;
+
 import mifarma.ptoventa.fidelizacion.reference.DBFidelizacion;
 import mifarma.ptoventa.fidelizacion.reference.VariablesFidelizacion;
 import mifarma.ptoventa.ventas.DlgResumenPedido;
@@ -60,24 +57,21 @@ import mifarma.common.FarmaVariables;
 
 import mifarma.ptoventa.caja.reference.TimerRecarga;
 import mifarma.ptoventa.caja.reference.VariablesCaja;
-import mifarma.ptoventa.convenio.reference.DBConvenio;
+ 
 import mifarma.ptoventa.reference.ConstantsPtoVenta;
 import mifarma.ptoventa.reference.VariablesPtoVenta;
 import mifarma.ptoventa.ventas.reference.ConstantsVentas;
 import mifarma.ptoventa.ventas.reference.VariablesVentas;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
-import com.gs.mifarma.MetodosBprepaid;
-import com.gs.mifarma.MetodosTXFactory;
-import com.gs.mifarma.MetodosTXVirtual;
 
 import mifarma.ptoventa.ce.reference.UtilityCajaElectronica;
-import mifarma.ptoventa.delivery.reference.VariablesDelivery;
+ 
 
-import mifarma.ptoventa.recepcionCiega.reference.DBRecepCiega; //JCHAVEZ 23112009
+import mifarma.ptoventa.recepcionCiega.reference.DBRecepCiega; //  23112009
 /**
  * Copyright (c) 2006 MIFARMA S.A.C.<br>
  * <br>
@@ -94,7 +88,7 @@ import mifarma.ptoventa.recepcionCiega.reference.DBRecepCiega; //JCHAVEZ 2311200
 
 public class UtilityCaja {
 
-  private static final Log log = LogFactory.getLog(UtilityCaja.class);
+  private static final Logger log = LoggerFactory.getLogger(UtilityCaja.class);
   private static boolean consejo=false;
   
   private static int numeroCorrel = 1;
@@ -106,7 +100,7 @@ public class UtilityCaja {
       
     /**
      * Metodo que sirve para validar que existe conexion en matriz
-     * @Author DVELIZ
+     * @Author  
      * @Since 30.09.08
      * @param pCadena
      * @param pParent
@@ -130,22 +124,6 @@ public class UtilityCaja {
      
     }
 
-  //private static MetodosG proveedorTarjeta;
-
-  /**
-   * El proveedor ahora es Brightstar
-   * @author Edgar Rios Navarro
-   * @since 27.09.2007
-   * @deprecated
-   */
-  private static MetodosBprepaid proveedorTarjetaBprepaid;
-  
-  /**
-   * Se utiliza el patron Factory para invocar a estos metodos.
-   * @author Edgar Rios Navarro
-   * @since 14.12.2007
-   */
-  private static MetodosTXVirtual proveedorTarjetaVirtual;
 
 
   public static String obtieneEstadoPedido(JDialog pDialog, String pNumPedVta)
@@ -220,7 +198,7 @@ public class UtilityCaja {
 
   public static boolean existeImpresorasVenta(JDialog pDialog, Object pObjectFocus) throws SQLException {
     boolean existeImpresorasVenta = true;
-    //JCORTEZ 24.03.09 No se valida por ahora la relacion de caja impresora obligatoria
+    //  24.03.09 No se valida por ahora la relacion de caja impresora obligatoria
     //String tipoComprobanteImpresora = DBCaja.verificaRelacionCajaImpresoras();
    /* if ( tipoComprobanteImpresora.equalsIgnoreCase(ConstantsVentas.TIPO_COMP_BOLETA) )
     {
@@ -293,14 +271,14 @@ public class UtilityCaja {
 
     /**
      * Ruta para la generecion del archivo
-     * @author JCORTEZ
+     * @author  
      * @since 06.07.09
      * */
         String ruta ="";
         ruta=DBCaja.ObtieneDirectorio();
         
         //Se agrega la Fecha al archivo Impreso.
-        //JMIRANDA  07/07/2009
+        //   07/07/2009
         Date vFecImpr = new Date();
         String fechaImpresion;
               
@@ -314,7 +292,7 @@ public class UtilityCaja {
   if ( pTipCompPago.equalsIgnoreCase(ConstantsVentas.TIPO_COMP_BOLETA) ){
   
       //ruta=ruta+"B_"+VariablesCaja.vNumPedVta+"_"+pNumComprobante+".TXT";
-      //JMIRANDA 07/07/09 se agrega FECHA al Nombre
+      //  07/07/09 se agrega FECHA al Nombre
       ruta=ruta+fechaImpresion+"_"+"B_"+VariablesCaja.vNumPedVta+"_"+pNumComprobante+".TXT";
       
    //impresion 
@@ -330,13 +308,13 @@ public class UtilityCaja {
                     ruta,true);
 
                     
-  }else if (pTipCompPago.equalsIgnoreCase(ConstantsVentas.TIPO_COMP_TICKET)){  //JCORTEZ  25.03.09
-   System.out.println("*******JCORTEZ**********");
+  }else if (pTipCompPago.equalsIgnoreCase(ConstantsVentas.TIPO_COMP_TICKET)){  //   25.03.09
+   System.out.println("******* **********");
         System.out.println("PARAMETROS-->");
         System.out.println("pNomImpreso-->"+pNomImpreso);
         System.out.println("pDirImpreso-->"+pDirImpreso);
         //ruta=ruta+"T_"+VariablesCaja.vNumPedVta+"_"+pNumComprobante+".TXT";
-        //JMIRANDA 07/07/09 se agrega FECHA al Nombre
+        //  07/07/09 se agrega FECHA al Nombre
         ruta=ruta+fechaImpresion+"_"+"T_"+VariablesCaja.vNumPedVta+"_"+pNumComprobante+".TXT";
         System.out.println("fecha : " +fechaImpresion);
         
@@ -359,7 +337,7 @@ public class UtilityCaja {
       {
         System.out.println("*******imprimir factura para venta institucional**********");
           //ruta=ruta+"FI_"+VariablesCaja.vNumPedVta+"_"+pNumComprobante+".TXT";
-          //JMIRANDA 07/07/09 se agrega FECHA al Nombre
+          //  07/07/09 se agrega FECHA al Nombre
           ruta=ruta+fechaImpresion+"_"+"FI_"+VariablesCaja.vNumPedVta+"_"+pNumComprobante+".TXT";
         
           
@@ -382,7 +360,7 @@ public class UtilityCaja {
       } else
       {
           //ruta=ruta+"F_"+VariablesCaja.vNumPedVta+"_"+pNumComprobante+".TXT";
-          //JMIRANDA 07/07/09 se agrega FECHA al Nombre
+          //  07/07/09 se agrega FECHA al Nombre
           ruta=ruta+fechaImpresion+"_"+"F_"+VariablesCaja.vNumPedVta+"_"+pNumComprobante+".TXT";
         //impresion
         imprimeFactura(pJDialog,
@@ -442,13 +420,13 @@ public class UtilityCaja {
     String indProdVirtual = "";
     VariablesCaja.vIndPedidoConProdVirtualImpresion = false;
     
-    //JCORTEZ 06.07.09 ruta para la genericon de archivo
+    //  06.07.09 ruta para la genericon de archivo
    // if(bol) VariablesCaja.vRutaImpresora=pRuta;
     
     //FarmaPrintService vPrint = new FarmaPrintService(24, VariablesCaja.vRutaImpresora + "boleta" + pNumComprobante + ".txt", false);
     FarmaPrintService vPrint = new FarmaPrintService(24, VariablesCaja.vRutaImpresora, false);
 
-      //JCORTEZ 16.07.09 Se genera archivo linea por linea
+      //  16.07.09 Se genera archivo linea por linea
       FarmaPrintServiceTicket vPrintArchivo = new FarmaPrintServiceTicket(666, pRuta, false);
       vPrintArchivo.startPrintService();
       
@@ -474,7 +452,7 @@ public class UtilityCaja {
               vPrint.printLine(FarmaPRNUtility.llenarBlancos(30) + VariablesPtoVenta.vDireccionCortaMatriz ,true);
               vPrintArchivo.printLine(FarmaPRNUtility.llenarBlancos(30) + VariablesPtoVenta.vDireccionCortaMatriz ,true);
           }
-   //JMIRANDA 22.08.2011 Cambio para verificar si imprime
+   //  22.08.2011 Cambio para verificar si imprime
    if(UtilityVentas.getIndImprimeCorrelativo()){        
     vPrint.printLine(FarmaPRNUtility.llenarBlancos(11) + pFechaBD + "   CORR." + VariablesCaja.vNumPedVta,true);
       vPrintArchivo.printLine(FarmaPRNUtility.llenarBlancos(11) + pFechaBD + "   CORR." + VariablesCaja.vNumPedVta,true);
@@ -494,11 +472,11 @@ public class UtilityCaja {
       vPrintArchivo.printLine(" ",true);
     int linea = 0;
     for (int i=0; i<pDetalleComprobante.size(); i++) {
-      //Agregado por DVELIZ 13.10.08
+      //Agregado por   13.10.08
       String valor = ((String)((ArrayList)pDetalleComprobante.get(i)).get(16)).toString().trim();
         System.out.println("valor 1:"+valor);
       if(valor.equals("0.000")) valor = " ";
-      //fin DVELIZ
+      //fin  
       System.out.println("Deta "+ (ArrayList)pDetalleComprobante.get(i) );
         System.out.println("valor 2:"+valor);
       vPrint.printLine("" +
@@ -507,7 +485,7 @@ public class UtilityCaja {
                        FarmaPRNUtility.alinearIzquierda(((String)((ArrayList)pDetalleComprobante.get(i)).get(2)).trim(),11) + "  " +
                        FarmaPRNUtility.alinearIzquierda(((String)((ArrayList)pDetalleComprobante.get(i)).get(3)).trim(),16) + "  " +
                        FarmaPRNUtility.alinearDerecha(((String)((ArrayList)pDetalleComprobante.get(i)).get(4)).trim(),10) + " " +
-                       //Agregado por DVELIZ 10.10.08
+                       //Agregado por   10.10.08
                        FarmaPRNUtility.alinearDerecha(valor,8) + "" +
                        FarmaPRNUtility.alinearDerecha(((String)((ArrayList)pDetalleComprobante.get(i)).get(5)).trim(),10),true);
                        
@@ -517,7 +495,7 @@ public class UtilityCaja {
                        FarmaPRNUtility.alinearIzquierda(((String)((ArrayList)pDetalleComprobante.get(i)).get(2)).trim(),11) + "  " +
                        FarmaPRNUtility.alinearIzquierda(((String)((ArrayList)pDetalleComprobante.get(i)).get(3)).trim(),16) + "  " +
                        FarmaPRNUtility.alinearDerecha(((String)((ArrayList)pDetalleComprobante.get(i)).get(4)).trim(),10) + " " +
-                       //Agregado por DVELIZ 10.10.08
+                       //Agregado por   10.10.08
                        FarmaPRNUtility.alinearDerecha(valor,8) + "" +
                        FarmaPRNUtility.alinearDerecha(((String)((ArrayList)pDetalleComprobante.get(i)).get(5)).trim(),10),true);                       
       linea += 1;
@@ -550,7 +528,7 @@ public class UtilityCaja {
     {
         linea++;
     }
-    //MODIFICADO POR DVELIZ 13.10.08
+    //MODIFICADO POR   13.10.08
     //
     if(!VariablesVentas.vEsPedidoConvenio){
         if(pDetalleComprobante.size()< 8){
@@ -568,106 +546,11 @@ public class UtilityCaja {
     //*************************************INFORMACION DEL CONVENIO*************************************************//
     //*******************************************INICIO************************************************************//
 
-    if(VariablesCaja.vIndPedidoConvenio.equalsIgnoreCase(FarmaConstants.INDICADOR_S))
-    {
-      try
-      {
-        ArrayList aInfoPedConv = new ArrayList();
-        DBConvenio.obtieneInfoPedidoConv(aInfoPedConv,VariablesCaja.vNumPedVta, ""+FarmaUtility.getDecimalNumber(pValTotalNeto));
-
-        for(int i=0; i<aInfoPedConv.size(); i++)
-        {
-          ArrayList registro = (ArrayList) aInfoPedConv.get(i);
-        //JCORTEZ 10/10/2008 Se muestra informacion de convenio si no es de tipo competencia
-        String Ind_Comp=((String)registro.get(8)).trim();
-        if(Ind_Comp.equalsIgnoreCase("N")){
-          vPrint.printLine(FarmaPRNUtility.alinearIzquierda(" Titular Cliente: "+((String)registro.get(4)).trim(),60)+" "+
-                           //FarmaPRNUtility.alinearIzquierda("Dscto: "+((String)registro.get(2)).trim()+" %",24)+" "+
-                           FarmaPRNUtility.alinearIzquierda("Co-Pago: "+((String)registro.get(3)).trim()+" %",25)
-                           ,true);
-                           
-           vPrintArchivo.printLine(FarmaPRNUtility.alinearIzquierda(" Titular Cliente: "+((String)registro.get(4)).trim(),60)+" "+
-                           //FarmaPRNUtility.alinearIzquierda("Dscto: "+((String)registro.get(2)).trim()+" %",24)+" "+
-                           FarmaPRNUtility.alinearIzquierda("Co-Pago: "+((String)registro.get(3)).trim()+" %",25)
-                           ,true);                           
-          /* 07.03.2008 ERIOS Si se tiene el valor del credito disponible, se muestra en el comprobante */
-          String vCredDisp = ((String)registro.get(7)).trim();
-          if(vCredDisp.equals(""))
-          {
-            vPrint.printLine(//FarmaPRNUtility.alinearIzquierda(" Credito: S/. "+vCoPago,60)+" "+
-                             FarmaPRNUtility.alinearIzquierda(" Credito: S/. "+((String)registro.get(5)).trim(),60)+" "+
-                             FarmaPRNUtility.alinearIzquierda("A Cuenta: S/. "+((String)registro.get(6)).trim(),25)
-                             ,true);
-              vPrintArchivo.printLine(//FarmaPRNUtility.alinearIzquierda(" Credito: S/. "+vCoPago,60)+" "+
-                               FarmaPRNUtility.alinearIzquierda(" Credito: S/. "+((String)registro.get(5)).trim(),60)+" "+
-                               FarmaPRNUtility.alinearIzquierda("A Cuenta: S/. "+((String)registro.get(6)).trim(),25)
-                               ,true);
-          }else
-          {
-            vPrint.printLine(//FarmaPRNUtility.alinearIzquierda(" Credito: S/. "+vCoPago,60)+" "+
-                             FarmaPRNUtility.alinearIzquierda(" Credito: S/. "+((String)registro.get(5)).trim(),60)+" "+
-                             FarmaPRNUtility.alinearIzquierda("A Cuenta: S/. "+((String)registro.get(6)).trim(),25)+" "+
-                             FarmaPRNUtility.alinearIzquierda("Cred Disp: S/."+vCredDisp,25)
-                             ,true);
-              vPrintArchivo.printLine(//FarmaPRNUtility.alinearIzquierda(" Credito: S/. "+vCoPago,60)+" "+
-                               FarmaPRNUtility.alinearIzquierda(" Credito: S/. "+((String)registro.get(5)).trim(),60)+" "+
-                               FarmaPRNUtility.alinearIzquierda("A Cuenta: S/. "+((String)registro.get(6)).trim(),25)+" "+
-                               FarmaPRNUtility.alinearIzquierda("Cred Disp: S/."+vCredDisp,25)
-                               ,true);
-          } 
-         } 
-        }
-
-      }
-        //ASOLIS 
-                //IMPRIMIR  EL  IP ,NUMERO COMPROBANTE y HORA DE IMPRESIÓN  EN CASO DE ERROR.*/
-              catch(SQLException sql)
-              {
-                  VariablesCaja.vEstadoSinComprobanteImpreso="S";
-                  
-                //sql.printStackTrace();
-                System.out.println("Error de BD "+ sql.getMessage());
-                
-                  log.info("**** Fecha :"+ pFechaBD);
-                  log.info("**** CORR :"+ VariablesCaja.vNumPedVta);
-                  log.info("**** NUMERO COMPROBANTE BOLETA:" + pNumComprobante);
-                  log.info("**** IP :" + FarmaVariables.vIpPc);
-                  log.info("Error al obtener informacion del Pedido Convenio ");
-                  log.info("Error al imprimir la BOLETA : ");
-                  log.error(null,sql);
-                  
-                  //JMIRANDA 23/07/09 Envia Error al Imprimir a Email
-                    enviaErrorCorreoPorDB(sql.toString(),VariablesCaja.vNumPedVta);
-              }
-              
-                catch(Exception e){
-                  
-                  VariablesCaja.vEstadoSinComprobanteImpreso="S";
-                  
-                  log.info("**** Fecha :"+ pFechaBD);
-                  log.info("**** CORR :"+ VariablesCaja.vNumPedVta);
-                  log.info("**** NUMERO COMPROBANTE BOLETA :" + pNumComprobante);
-                  log.info("**** IP :" + FarmaVariables.vIpPc);
-                  log.info("Error al imprimir la BOLETA : "+e);
-                  
-                  //JMIRANDA 23/07/09 Envia Error al Imprimir a Email
-                    enviaErrorCorreoPorDB(e.toString(),VariablesCaja.vNumPedVta);
-              }
-      
-      //vPrint.printLine(" ",true);
-    }
-     else
-    {
-    //dveliz 13.10.08
-      //vPrint.printLine(" ",true);
-      //vPrint.printLine(" ",true);
-      //vPrint.printLine(" ",true);
-    }
     
     //ERIOS 25.07.2008 imprime el monto ahorrado.
     double auxTotalDcto = FarmaUtility.getDecimalNumber(pValTotalAhorro);
     
-    //DUBILLUZ 22.08.2008 MSG DE CUPONES
+    //  22.08.2008 MSG DE CUPONES
     String msgCumImpresos = " ";
     if(VariablesCaja.vNumCuponesImpresos>0){
         String msgNumCupon = "";
@@ -681,7 +564,7 @@ public class UtilityCaja {
                          msgNumCupon;
     }
       
-    //MODIFICADO POR DVELIZ 02.10.08
+    //MODIFICADO POR   02.10.08
     //vPrint.printLine(" "+VariablesFidelizacion.vNomClienteImpr, true);
     if(auxTotalDcto > 0)
     {
@@ -699,7 +582,7 @@ public class UtilityCaja {
         */
 log.info("Imprimiendo Ahorro");
         
-        //JCORTEZ 02.09.2009 Se muestra mensaje distinto si es fidelizado o no.
+        //  02.09.2009 Se muestra mensaje distinto si es fidelizado o no.
         String obtenerMensaje="";
         String indFidelizado="";
         log.info("Identificando cliente fidelizado");
@@ -765,7 +648,7 @@ log.info("Imprimiendo Ahorro");
                        " VEND: " + VariablesCaja.vNomVendedorImpreso + " " +VariablesCaja.vApePatVendedorImpreso  ,true);
     vPrint.printLine(" Forma(s) de pago: " + VariablesCaja.vFormasPagoImpresion  + FarmaPRNUtility.llenarBlancos(11) + VariablesVentas.vTituloDelivery ,true);
       vPrintArchivo.printLine(" Forma(s) de pago: " + VariablesCaja.vFormasPagoImpresion  + FarmaPRNUtility.llenarBlancos(11) + VariablesVentas.vTituloDelivery ,true);
-    /*dubilluz 2011.09.16*/
+    /*  2011.09.16*/
     if(VariablesCaja.vImprimeFideicomizo){
         String[] lineas = VariablesCaja.vCadenaFideicomizo.trim().split("@");
         if(lineas.length>0){
@@ -779,7 +662,7 @@ log.info("Imprimiendo Ahorro");
         vPrintArchivo.printLine(""+VariablesCaja.vCadenaFideicomizo.trim(),true);
         }
     }
-    /*FIN dubilluz 2011.09.16*/
+    /*FIN   2011.09.16*/
           
     vPrint.deactivateCondensed();
     vPrint.endPrintService();
@@ -788,7 +671,7 @@ log.info("Imprimiendo Ahorro");
     log.info("Fin al imprimir la boleta: " + pNumComprobante);
     VariablesCaja.vEstadoSinComprobanteImpreso="N";
     
-      //JCORTEZ 16.07.09 Se guarda fecha de impresion por comprobantes
+      //  16.07.09 Se guarda fecha de impresion por comprobantes
       DBCaja.actualizaFechaImpr(VariablesCaja.vNumPedVta,pNumComprobante,"C");
       log.debug("Guardando fecha impresion cobro..."+pNumComprobante); 
   }               
@@ -804,7 +687,7 @@ log.info("Imprimiendo Ahorro");
                                                   log.info("**** IP :" + FarmaVariables.vIpPc);
                                                   log.info("Error al imprimir la boleta : " + sql.getMessage());
                                                   log.error(null,sql);
-                                                  //JMIRANDA 23/07/09 Envia Error al Imprimir a Email
+                                                  //  23/07/09 Envia Error al Imprimir a Email
                                                     enviaErrorCorreoPorDB(sql.toString(),VariablesCaja.vNumPedVta);
                                               }
                                               
@@ -815,7 +698,7 @@ log.info("Imprimiendo Ahorro");
                                                   log.info("**** NUMERO COMPROBANTE :" + pNumComprobante);
                                                   log.info("**** IP :" + FarmaVariables.vIpPc);
                                                   log.info("Error al imprimir la boleta: "+e);
-                                                  //JMIRANDA 23/07/09 Envia Error al Imprimir a Email
+                                                  //  23/07/09 Envia Error al Imprimir a Email
                                                     enviaErrorCorreoPorDB(e.toString(),VariablesCaja.vNumPedVta);
                                               } 
                                     
@@ -844,14 +727,14 @@ log.info("Imprimiendo Ahorro");
     System.out.println("IMPRIMIR FACTURA No : " + pNumComprobante);
     String indProdVirtual = "";
     
-    //jcortez 06.07.09 Se verifica ruta 
+    //  06.07.09 Se verifica ruta 
    // if(bol) VariablesCaja.vRutaImpresora=pRuta;
         
     VariablesCaja.vIndPedidoConProdVirtualImpresion = false;
     //FarmaPrintService vPrint = new FarmaPrintService(36,VariablesCaja.vRutaImpresora + "factura" + pNumComprobante + ".txt",false);
     FarmaPrintService vPrint = new FarmaPrintService(36,VariablesCaja.vRutaImpresora,false);
     
-      //JCORTEZ 16.07.09 Se genera archivo linea por linea
+      //  16.07.09 Se genera archivo linea por linea
       FarmaPrintServiceTicket vPrintArchivo = new FarmaPrintServiceTicket(666, pRuta, false);
       vPrintArchivo.startPrintService();
     
@@ -898,7 +781,7 @@ log.info("Imprimiendo Ahorro");
         vPrint.printLine(" ",true);
         vPrintArchivo.printLine(" ",true);   
         
-        //JMIRANDA 22.08.2011 Cambio para verificar si imprime
+        //  22.08.2011 Cambio para verificar si imprime
         if(UtilityVentas.getIndImprimeCorrelativo()){
         vPrint.printLine(FarmaPRNUtility.llenarBlancos(17) + FarmaVariables.vCodLocal + " - " + FarmaVariables.vDescLocal + FarmaPRNUtility.llenarBlancos(35) + "CORR." + VariablesCaja.vNumPedVta,true);
             vPrintArchivo.printLine(FarmaPRNUtility.llenarBlancos(17) + FarmaVariables.vCodLocal + " - " + FarmaVariables.vDescLocal + FarmaPRNUtility.llenarBlancos(35) + "CORR." + VariablesCaja.vNumPedVta,true);
@@ -982,7 +865,7 @@ log.info("Imprimiendo Ahorro");
         linea++;
     }
 
-    //MODIFICADO POR DVELIZ 13.10.08
+    //MODIFICADO POR   13.10.08
     //
      if(!VariablesVentas.vEsPedidoConvenio){
          if(pDetalleComprobante.size() < 10){
@@ -997,104 +880,10 @@ log.info("Imprimiendo Ahorro");
     //*************************************INFORMACION DEL CONVENIO*************************************************//
     //*******************************************INICIO************************************************************//
 
-    if(VariablesCaja.vIndPedidoConvenio.equalsIgnoreCase(FarmaConstants.INDICADOR_S))
-    {
-      try
-      {
-        System.out.println("****Imprimiendo... "+VariablesCaja.vNumPedVta);
-        ArrayList aInfoPedConv = new ArrayList();
-        DBConvenio.obtieneInfoPedidoConv(aInfoPedConv,VariablesCaja.vNumPedVta, ""+FarmaUtility.getDecimalNumber(pValTotalNeto));
-
-        for(int i=0; i<aInfoPedConv.size(); i++)
-        {
-          ArrayList registro = (ArrayList) aInfoPedConv.get(i);
-         //JCORTEZ 10/10/2008 Se muestra informacion de convenio si no es de tipo competencia
-         String Ind_Comp=((String)registro.get(8)).trim();
-         if(Ind_Comp.equalsIgnoreCase("N")){
-          System.out.println("registro "+registro);
-          vPrint.printLine(FarmaPRNUtility.alinearIzquierda(" Titular Cliente: "+((String)registro.get(4)).trim(),60)+" "+
-                           //FarmaPRNUtility.alinearIzquierda("Dscto: "+((String)registro.get(2)).trim()+" %",24)+" "+
-                           FarmaPRNUtility.alinearIzquierda("Co-Pago: "+((String)registro.get(3)).trim()+" %",25)
-                           ,true);
-                           
-             vPrintArchivo.printLine(FarmaPRNUtility.alinearIzquierda(" Titular Cliente: "+((String)registro.get(4)).trim(),60)+" "+
-                              //FarmaPRNUtility.alinearIzquierda("Dscto: "+((String)registro.get(2)).trim()+" %",24)+" "+
-                              FarmaPRNUtility.alinearIzquierda("Co-Pago: "+((String)registro.get(3)).trim()+" %",25)
-                              ,true);                           
-          /* 07.03.2008 ERIOS Si se tiene el valor del credito disponible, se muestra en el comprobante */
-          String vCredDisp = ((String)registro.get(7)).trim();
-          if(vCredDisp.equals(""))
-          {
-            vPrint.printLine(//FarmaPRNUtility.alinearIzquierda(" Credito: S/. "+vCoPago,60)+" "+
-                             FarmaPRNUtility.alinearIzquierda(" Credito: S/. "+((String)registro.get(5)).trim(),60)+" "+
-                             FarmaPRNUtility.alinearIzquierda("A Cuenta: S/. "+((String)registro.get(6)).trim(),25)
-                             ,true);
-              vPrintArchivo.printLine(//FarmaPRNUtility.alinearIzquierda(" Credito: S/. "+vCoPago,60)+" "+
-                               FarmaPRNUtility.alinearIzquierda(" Credito: S/. "+((String)registro.get(5)).trim(),60)+" "+
-                               FarmaPRNUtility.alinearIzquierda("A Cuenta: S/. "+((String)registro.get(6)).trim(),25)
-                               ,true);
-          }else
-          {
-            vPrint.printLine(//FarmaPRNUtility.alinearIzquierda(" Credito: S/. "+vCoPago,60)+" "+
-                             FarmaPRNUtility.alinearIzquierda(" Credito: S/. "+((String)registro.get(5)).trim(),60)+" "+
-                             FarmaPRNUtility.alinearIzquierda("A Cuenta: S/. "+((String)registro.get(6)).trim(),25)+" "+
-                             FarmaPRNUtility.alinearIzquierda("Cred Disp: S/."+vCredDisp,25)
-                             ,true);
-            vPrintArchivo.printLine(//FarmaPRNUtility.alinearIzquierda(" Credito: S/. "+vCoPago,60)+" "+
-                               FarmaPRNUtility.alinearIzquierda(" Credito: S/. "+((String)registro.get(5)).trim(),60)+" "+
-                               FarmaPRNUtility.alinearIzquierda("A Cuenta: S/. "+((String)registro.get(6)).trim(),25)+" "+
-                               FarmaPRNUtility.alinearIzquierda("Cred Disp: S/."+vCredDisp,25)
-                               ,true);
-          }
-         }
-        }
-
-      }catch(SQLException sql)
-      {
-        //sql.printStackTrace();
-        System.out.println("Error de BD "+ sql.getMessage());
-          VariablesCaja.vEstadoSinComprobanteImpreso="S";      
-          log.info("**** Fecha :"+ pFechaBD);
-          log.info("**** CORR :"+ VariablesCaja.vNumPedVta);
-          log.info("**** NUMERO COMPROBANTE :" + pNumComprobante);
-          log.info("**** IP :" + FarmaVariables.vIpPc);
-          log.info("Error al obtener Informacion Pedido Convenio: ");
-          log.info("Error al imprimir la factura : " + sql.getMessage());
-          log.error(null,sql);
-          
-          //JMIRANDA 23/07/09 Envia Error al Imprimir a Email
-            enviaErrorCorreoPorDB(sql.toString(),VariablesCaja.vNumPedVta);
-      }
-      
-        catch(Exception e){
-          VariablesCaja.vEstadoSinComprobanteImpreso="S";      
-          log.info("**** Fecha :"+ pFechaBD);
-          log.info("**** CORR :"+ VariablesCaja.vNumPedVta);
-          log.info("**** NUMERO COMPROBANTE :" + pNumComprobante);
-          log.info("**** IP :" + FarmaVariables.vIpPc);
-          log.info("Error al obtener Informacion Pedido Convenio : ");
-          log.info("Error al imprimir la factura: "+e);
-          
-          //JMIRANDA 23/07/09 Envia Error al Imprimir a Email
-            enviaErrorCorreoPorDB(e.toString(),VariablesCaja.vNumPedVta);
-      }
-      
-      
-      
-      
-
-      //vPrint.printLine(" ",true);
-    }else
-    {
-        //dveliz 13.10.08
-      //vPrint.printLine(" ",true);
-      //vPrint.printLine(" ",true);
-      //vPrint.printLine(" ",true);
-    }
     //*********************************************FIN*************************************************************//
     //*************************************INFORMACION DEL CONVENIO***********************************************//
     
-     //MODIFICADO POR DVELIZ 02.10.08
+     //MODIFICADO POR   02.10.08
     //vPrint.printLine(" "+VariablesFidelizacion.vNomClienteImpr, true);
       
       
@@ -1109,7 +898,7 @@ log.info("Imprimiendo Ahorro");
 		
         log.info("Imprimiendo Ahorro");
         
-        //JCORTEZ 02.09.2009 Se muestra mensaje distinto si es fidelizado o no.
+        //  02.09.2009 Se muestra mensaje distinto si es fidelizado o no.
         String obtenerMensaje="";
         String indFidelizado="";
         log.info("Identificando cliente fidelizado");
@@ -1163,7 +952,7 @@ log.info("Imprimiendo Ahorro");
                         vPrint.printLine("XXXXX ",true);
                         vPrint.printLine("YYYYY",true);
                                   vPrintArchivo.printLine("YYYYY",true);*/
-    //dubilluz
+    // 
               if(!VariablesCaja.vImprimeFideicomizo){
         vPrintArchivo.printLine(" ",true);
                   vPrint.printLine(" ",true);
@@ -1188,7 +977,7 @@ log.info("Imprimiendo Ahorro");
                                FarmaPRNUtility.alinearDerecha(pPorcIgv,6) + FarmaPRNUtility.llenarBlancos(11) +
                                FarmaPRNUtility.alinearDerecha(pValTotalIgv,10) + FarmaPRNUtility.llenarBlancos(8) +
                                "S/. " + FarmaPRNUtility.alinearDerecha(pValTotalNeto,10),true);
-      /*dubilluz 2011.09.16*/
+      /*  2011.09.16*/
       
       if(VariablesCaja.vImprimeFideicomizo){
           String[] lineas = VariablesCaja.vCadenaFideicomizo.trim().split("@");
@@ -1204,7 +993,7 @@ log.info("Imprimiendo Ahorro");
           }
       }
     
-      /*FIN dubilluz 2011.09.16*/
+      /*FIN   2011.09.16*/
      /* vPrintArchivo.printLine(" XXXXX ",true);
                               vPrint.printLine("XXXXX ",true);
                               vPrint.printLine("YYYYY",true);
@@ -1212,7 +1001,7 @@ log.info("Imprimiendo Ahorro");
     vPrint.endPrintService();
      vPrintArchivo.endPrintService();
      
-              //JCORTEZ 16.07.09 Se guarda fecha de impresion por comprobantes
+              //  16.07.09 Se guarda fecha de impresion por comprobantes
               DBCaja.actualizaFechaImpr(VariablesCaja.vNumPedVta,pNumComprobante,"C");
               log.debug("Guardando fecha impresion cobro..."+pNumComprobante); 
     
@@ -1230,7 +1019,7 @@ log.info("Imprimiendo Ahorro");
                   log.info("**** IP :" + FarmaVariables.vIpPc);
                   log.info("Error al imprimir Factura: " + e);
                   
-                  //JMIRANDA 23/07/09 Envia Error al Imprimir a Email
+                  //  23/07/09 Envia Error al Imprimir a Email
                     enviaErrorCorreoPorDB(e.toString(),VariablesCaja.vNumPedVta);
                  
               }
@@ -1257,13 +1046,13 @@ log.info("Imprimiendo Ahorro");
                                          boolean   bol) throws Exception {
     System.out.println("IMPRIMIR FACTURA No : " + pNumComprobante);
 
-        //jcortez 06.07.09 Se verifica ruta 
+        //  06.07.09 Se verifica ruta 
       //  if(bol) VariablesCaja.vRutaImpresora=pRuta;
 
     //FarmaPrintService vPrint = new FarmaPrintService(36,VariablesCaja.vRutaImpresora + "factura" + pNumComprobante + ".txt",false);
     FarmaPrintService vPrint = new FarmaPrintService(66,VariablesCaja.vRutaImpresora,false);
     
-      //JCORTEZ 16.07.09 Se genera archivo linea por linea
+      //  16.07.09 Se genera archivo linea por linea
       FarmaPrintServiceTicket vPrintArchivo = new FarmaPrintServiceTicket(666, pRuta, false);
       vPrintArchivo.startPrintService();
       
@@ -1282,7 +1071,7 @@ log.info("Imprimiendo Ahorro");
       
       else{
           try{
-          //JMIRANDA 15.12.09
+          //  15.12.09
             //ALMACENO LA VARIABLE PUNTO DE LLEGADA 
             String vPuntoPartidaLlegada = DBCaja.getPuntoPartidaLlegada();
               log.error("LLegada y Partida: "+vPuntoPartidaLlegada);
@@ -1344,7 +1133,7 @@ log.info("Imprimiendo Ahorro");
           vPrintArchivo.printLine(" ",true);
     vPrint.printLine(" ",true);
           vPrintArchivo.printLine(" ",true);
-   //JMIRANDA 22.08.2011 Cambio para verificar si imprime
+   //  22.08.2011 Cambio para verificar si imprime
    if(UtilityVentas.getIndImprimeCorrelativo()){
     vPrint.printLine(FarmaPRNUtility.llenarBlancos(30) + VariablesCaja.vNumPedVta,false);
           vPrintArchivo.printLine(FarmaPRNUtility.llenarBlancos(30) + VariablesCaja.vNumPedVta,false);
@@ -1364,7 +1153,7 @@ log.info("Imprimiendo Ahorro");
           vPrintArchivo.printLine(" ",true);*/
     vPrint.printLine(" ",true);
           vPrintArchivo.printLine(" ",true);
-    /** JMIRANDA 15.12.09 COMENTADO PARA AGREGAR PUNTO DE PARTIDA Y LLEGADA A LA FACTURA POR VTA INSTITUCIONAL */
+    /**   15.12.09 COMENTADO PARA AGREGAR PUNTO DE PARTIDA Y LLEGADA A LA FACTURA POR VTA INSTITUCIONAL */
     vPrint.printLine(FarmaPRNUtility.llenarBlancos(2)+
                      FarmaPRNUtility.alinearIzquierda(VariablesCaja.vPuntoPartida,40)+
                      "    "+FarmaPRNUtility.alinearIzquierda(VariablesCaja.vPuntoLlegada,50), true);
@@ -1393,7 +1182,7 @@ log.info("Imprimiendo Ahorro");
                          
                         //--se cambio la logica de que precio mostrar para ventas a QS en base a un precio
                         //  y esto se mostrara en un descuento en soles
-                        //  dubilluz 07.05.2009
+                        //    07.05.2009
                         /*
                         FarmaPRNUtility.alinearDerecha(((String)((ArrayList)pDetalleComprobante.get(i)).get(4)).trim(),13) + FarmaPRNUtility.llenarBlancos(4) +
                         FarmaPRNUtility.alinearDerecha(((String)((ArrayList)pDetalleComprobante.get(i)).get(5)).trim(),10)
@@ -1413,7 +1202,7 @@ log.info("Imprimiendo Ahorro");
                          
                         //--se cambio la logica de que precio mostrar para ventas a QS en base a un precio
                         //  y esto se mostrara en un descuento en soles
-                        //  dubilluz 07.05.2009
+                        //    07.05.2009
                         /*
                         FarmaPRNUtility.alinearDerecha(((String)((ArrayList)pDetalleComprobante.get(i)).get(4)).trim(),13) + FarmaPRNUtility.llenarBlancos(4) +
                         FarmaPRNUtility.alinearDerecha(((String)((ArrayList)pDetalleComprobante.get(i)).get(5)).trim(),10)
@@ -1438,11 +1227,11 @@ log.info("Imprimiendo Ahorro");
     
 
     
-      //MODIFICADO POR DVELIZ 13.10.08
+      //MODIFICADO POR   13.10.08
       //for (int j=linea; j<=ConstantsPtoVenta.TOTAL_LINEAS_POR_FACTURA; j++)  vPrint.printLine(" ",true);
     //  for (int j=linea; j<=ConstantsPtoVenta.TOTAL_LINEAS_POR_FACTURA; j++)  vPrint.printLine(" ",true);
     //for (int k=0; k<=10; k++)  vPrint.printLine(" ",true);
-    //MODIFICADO POR JMIRANDA 16.12.09        
+    //MODIFICADO POR   16.12.09        
     // TOTAL DE LINEAS - LINEAS IMPRESAS = LINEAS EN BLANCO
     //ConstantsPtoVenta.TOTAL_LINEAS_FACTURA_GUIA
          for (int z=0; z< (ConstantsPtoVenta.TOTAL_LINEAS_FACTURA_GUIA-linea);z++)
@@ -1513,7 +1302,7 @@ log.info("Imprimiendo Ahorro");
                            FarmaPRNUtility.alinearDerecha(pValTotalAfecto,10) + FarmaPRNUtility.llenarBlancos(15) +
                            FarmaPRNUtility.alinearDerecha(pValTotalIgv,10) + FarmaPRNUtility.llenarBlancos(17) +
                            FarmaPRNUtility.alinearDerecha(pValTotalNeto,10),true);
-          /*dubilluz 2011.09.16*/
+          /*  2011.09.16*/
           if(VariablesCaja.vImprimeFideicomizo){
               vPrint.printLine("",true);
               vPrint.printLine("",true);
@@ -1529,11 +1318,11 @@ log.info("Imprimiendo Ahorro");
               vPrintArchivo.printLine(""+VariablesCaja.vCadenaFideicomizo.trim(),true);
               }
           }
-          /*FIN dubilluz 2011.09.16*/          
+          /*FIN   2011.09.16*/          
     vPrint.endPrintService();
           vPrintArchivo.endPrintService();
           
-          //JCORTEZ 16.07.09 Se guarda fecha de impresion por comprobantes
+          //  16.07.09 Se guarda fecha de impresion por comprobantes
           DBCaja.actualizaFechaImpr(VariablesCaja.vNumPedVta,pNumComprobante,"C");
           log.debug("Guardando fecha impresion cobro..."+pNumComprobante);           
     
@@ -1548,7 +1337,7 @@ log.info("Imprimiendo Ahorro");
                   log.info("**** IP :" + FarmaVariables.vIpPc);
                   log.info("Error al imprimir la factura-guia: "+e);
                   
-                  //JMIRANDA 23/07/09 Envia Error al Imprimir a Email
+                  //  23/07/09 Envia Error al Imprimir a Email
                     enviaErrorCorreoPorDB(e.toString(),VariablesCaja.vNumPedVta);
               }         
         
@@ -1598,22 +1387,22 @@ log.info("Imprimiendo Ahorro");
                  }
         }
         else if(VariablesVentas.vTip_Comp_Ped.equalsIgnoreCase(ConstantsVentas.TIPO_COMP_TICKET)){
-            //JCORTEZ 25.03.09
+            //  25.03.09
             //proximamente se tendra que configurar el ticket Factura
             secImprLocal = VariablesCaja.vSecImprLocalTicket;
         }*/
-        //dubilluz 16.09.2011
+        //  16.09.2011
         VariablesCaja.vImprimeFideicomizo = false;
         VariablesCaja.vCadenaFideicomizo = getMensajeFideicomizo();
         if(VariablesCaja.vCadenaFideicomizo.trim().length()>0) VariablesCaja.vImprimeFideicomizo = true;
         /**
-         * @AUTHOR JCORTEZ
+         * @AUTHOR  
          * @SINCE 09.06.09
          * Se valida el tipo de comprobante para obtener el secuencialde impresora
          * */
         if(VariablesVentas.vTip_Comp_Ped.equalsIgnoreCase(ConstantsVentas.TIPO_COMP_BOLETA)||
             VariablesVentas.vTip_Comp_Ped.equalsIgnoreCase(ConstantsVentas.TIPO_COMP_TICKET)){
-             //JMIRANDA 23/07/09 posee Throws SQLException va enviar Error via email
+             //  23/07/09 posee Throws SQLException va enviar Error via email
              secImprLocal= DBCaja.getObtieneSecImpPorIP(FarmaVariables.vIpPc);
          }
         else
@@ -1625,7 +1414,7 @@ log.info("Imprimiendo Ahorro");
                    {
                       log.debug("************Entro a institucional*******************");
                       tmpT1 = System.currentTimeMillis();
-                       //JMIRANDA 23/07/09 POSEE THROWS EXCEPTION, ENVIA A ERROR X EMAIL 
+                       //  23/07/09 POSEE THROWS EXCEPTION, ENVIA A ERROR X EMAIL 
                       secImprLocal = obtieneSecImprVtaInstitucional(ConstantsVentas.TIPO_COMP_FACTURA);
                       tmpT2 = System.currentTimeMillis();
                       log.debug("Tiempo 1: obtieneSecImprVtaInstitucional:"+(tmpT2 - tmpT1)+" milisegundos");
@@ -1665,7 +1454,7 @@ log.info("Imprimiendo Ahorro");
         log.debug("Secuencial Impresora de Caja: "+secImprLocal);
         log.debug("VariablesCaja.vNumSecImpresionComprobantes: "+VariablesCaja.vNumSecImpresionComprobantes);
         tmpT1 = System.currentTimeMillis();
-        //JMIRANDA 23/07/09 posee Throws SQLException
+        //  23/07/09 posee Throws SQLException
         resultado = DBCaja.verificaComprobantePago(secImprLocal,VariablesCaja.vNumSecImpresionComprobantes);
         tmpT2 = System.currentTimeMillis();
         log.debug("Tiempo 1: verificaComprobantePago:"+(tmpT2 - tmpT1)+" milisegundos");
@@ -1685,13 +1474,9 @@ log.info("Imprimiendo Ahorro");
       
       //cambiando el estado de pedido al estado C -- que es estado IMPRESO y COBRADO
       tmpT1 = System.currentTimeMillis();
-        //JMIRANDA 23/07/09 posee Throws SQLException 
+        //  23/07/09 posee Throws SQLException 
        
       actualizaEstadoPedido(VariablesCaja.vNumPedVta, ConstantsCaja.ESTADO_COBRADO);
-      
-      //JCORTEZ  07.08.09 por motivo de pedido delivery local
-      if(VariablesVentas.vEsPedidoDelivery)
-      actualizarDatosDelivery(VariablesCaja.vNumPedVta, ConstantsCaja.ESTADO_COBRADO);
       
       tmpT2 = System.currentTimeMillis();
       log.debug("Tiempo 2: Actualiza Estado de Pedido:"+(tmpT2 - tmpT1)+" milisegundos");
@@ -1702,7 +1487,7 @@ log.info("Imprimiendo Ahorro");
       VariablesCaja.vNumCuponesImpresos = 0;
       tmpT1 = System.currentTimeMillis();
       
-      //JMIRANDA 23/07/09 Posee try-catch interno. Envia Error via Email
+      //  23/07/09 Posee try-catch interno. Envia Error via Email
       int cantidadCupones = imprimeCupones(pJDialog);
       tmpT2 = System.currentTimeMillis();
       log.debug("Tiempo 3: Obtiene Cantidad de Cupones a Imprimir:"+(tmpT2 - tmpT1)+" milisegundos");
@@ -1711,14 +1496,14 @@ log.info("Imprimiendo Ahorro");
           VariablesCaja.vNumCuponesImpresos = cantidadCupones;
       }
         
-      /**jcallo modificando add lista de numeros de comprobante**/
+      /**  modificando add lista de numeros de comprobante**/
       ArrayList listaNumCompro = new ArrayList(VariablesCaja.vNumSecImpresionComprobantes);
       log.error("Sec.Impresion..VariablesCaja.vNumSecImpresionComprobantes :" + VariablesCaja.vNumSecImpresionComprobantes);
       
       tmpT1 = System.currentTimeMillis();  
       for(int i=1; i<=VariablesCaja.vNumSecImpresionComprobantes; i++)
       {
-        //JMIRANDA 23/07/09 Posee try-catch interno. Envia Error via Email  
+        //  23/07/09 Posee try-catch interno. Envia Error via Email  
         VariablesCaja.vNumCompImprimir = obtieneNumCompPago_ForUpdate(pJDialog, secImprLocal, pObjectFocus);
         log.debug(""+i+")VariablesCaja.vNumCompImprimir : " + VariablesCaja.vNumCompImprimir);
         if(VariablesCaja.vNumCompImprimir.equalsIgnoreCase(""))
@@ -1733,7 +1518,7 @@ log.info("Imprimiendo Ahorro");
         //obteniendo el detalle del comprobante a imprimir
         //el mensaje de error se encuentra dentro del mismo metodo, tb se hace rollback dentro del mismo metodo
         // T4
-           //JMIRANDA 23/07/09 Posee try-catch interno. Envia Error via Email
+           //  23/07/09 Posee try-catch interno. Envia Error via Email
         if(!obtieneDetalleImprComp(pJDialog, String.valueOf(i), pObjectFocus))
         {
         	FarmaUtility.liberarTransaccion();
@@ -1749,7 +1534,7 @@ log.info("Imprimiendo Ahorro");
         //obtiene el total del comprobante a imprimir
         //muestra el mensaje de error dentro del mismo metodo, tb hace rollback dentro del mismo metodo
         // T5  
-            //JMIRANDA 23/07/09 Posee try-catch interno. Envia Error via Email
+            //  23/07/09 Posee try-catch interno. Envia Error via Email
         if(!obtieneTotalesComprobante(pJDialog, secCompPago, pObjectFocus)){
         	FarmaUtility.liberarTransaccion();
         	FarmaUtility.showMessage(pJDialog, "El pedido fue Cobrado pero no se pudo determinar los Totales del Comprobante. Verifique!!!.", pObjectFocus);
@@ -1757,7 +1542,7 @@ log.info("Imprimiendo Ahorro");
         }
         
         // T6  
-          //JMIRANDA 23/07/09 *Posee try-catch interno. Envia Error via Email
+          //  23/07/09 *Posee try-catch interno. Envia Error via Email
         actualizaComprobanteImpreso(secCompPago, VariablesVentas.vTip_Comp_Ped, VariablesCaja.vNumCompImprimir);
         
         // T7  
@@ -1780,7 +1565,7 @@ log.info("Imprimiendo Ahorro");
 	log.debug("listaNumCompro("+i+")"+i+": "+listaNumCompro.get(i).toString());
 	log.debug("listaNumCompro("+i+")"+i+": "+listaNumCompro.get(i).toString());			
           
-            //JMIRANDA 23/07/09 Posee try-catch interno. Envia Error via Email   
+            //  23/07/09 Posee try-catch interno. Envia Error via Email   
          if(!obtieneDetalleImprComp(pJDialog, String.valueOf(i+1), pObjectFocus))
          {
          	FarmaUtility.liberarTransaccion();
@@ -1792,7 +1577,7 @@ log.info("Imprimiendo Ahorro");
        
          String secCompPago = ((String)(VariablesCaja.vArrayList_SecCompPago.get(i))).trim();
          log.debug("secCompPago : " + secCompPago);
-            //JMIRANDA 23/07/09 Posee try-catch interno. Envia Error via Email
+            //  23/07/09 Posee try-catch interno. Envia Error via Email
          if(!obtieneTotalesComprobante(pJDialog, secCompPago, pObjectFocus))
          {
 	    FarmaUtility.liberarTransaccion();
@@ -1801,14 +1586,14 @@ log.info("Imprimiendo Ahorro");
 	 }
          
          tmpT1 = System.currentTimeMillis();
-            //JMIRANDA 23/07/09 Posee try-catch interno. Envia Error via Email
+            //  23/07/09 Posee try-catch interno. Envia Error via Email
          VariablesCaja.vRutaImpresora = obtieneRutaImpresora(secImprLocal.trim());
          tmpT2 = System.currentTimeMillis();
          log.debug("Tiempo 9: Obtiene Ruta Impresora:"+(tmpT2 - tmpT1)+" milisegundos");        
          tmpT1 = System.currentTimeMillis();
          
          /**
-          * @author JCORTEZ
+          * @author  
           * @since  09.06.09
           * Se valida relacion paquina impresora ticket
           * */
@@ -1817,7 +1602,7 @@ log.info("Imprimiendo Ahorro");
           VariablesVentas.vTip_Comp_Ped.equalsIgnoreCase(ConstantsPtoVenta.TIP_COMP_BOLETA)){
           System.out.println("Validando IP");
               //FarmaVariables.vIpPc = FarmaUtility.getHostAddress();
-              //JMIRANDA 23/07/09 Posee try-catch interno. Envia Error via Email
+              //  23/07/09 Posee try-catch interno. Envia Error via Email
               System.out.println(FarmaVariables.vIpPc+" /"+VariablesVentas.vTip_Comp_Ped);
             if(!validaImpresioPorIP(FarmaVariables.vIpPc,VariablesVentas.vTip_Comp_Ped,pJDialog,pObjectFocus)){
                 FarmaUtility.liberarTransaccion();
@@ -1825,7 +1610,7 @@ log.info("Imprimiendo Ahorro");
                 return;            
             }
           }
-            //JMIRANDA 23/07/09 Posee try-catch interno. Envia Error via Email
+            //  23/07/09 Posee try-catch interno. Envia Error via Email
          imprimeComprobantePago( pJDialog,
                                  VariablesCaja.vArrayList_DetalleImpr,
                                  VariablesCaja.vArrayList_TotalesComp,
@@ -1844,35 +1629,35 @@ log.info("Imprimiendo Ahorro");
         log.debug("Tiempo 11: Fin de Impresion de Comprobantes:"+(tmpT2 - tmpT1)+" milisegundos");                
         
         System.out.println("************PEDIDO DELIVERY*********"+VariablesVentas.vEsPedidoDelivery);
-        //JCORTEZ 07.08.09
+        //  07.08.09
         if(VariablesVentas.vEsPedidoDelivery)
         imprimeDatosDeliveryLocal(pJDialog,VariablesCaja.vNumPedVta); 
       
       //ERIOS 09.05.2008 Se manda a imprimir consejos.
-      //JCALLO 19.12.2008
+      //  19.12.2008
       //este metodo tiene su propio rollback y commit, pero si fallara la impresion de consejos 
       //aparentemente no haria roolback...falta revisar o probar el caso, ya que se quedaria bloqueado
       log.debug("imprimiendo consejos ... ");
       // T12  
-      //JMIRANDA 23/07/09
+      //  23/07/09
       imprimeConsejos(pJDialog);
       log.debug("FIN imprimiendo consejos ");
        
-      //mfajardo -imprime mensaje campana- 13.04.2009
+      //  -imprime mensaje campana- 13.04.2009
       log.debug("imprimiendo Mensaje de Campana"); 
-        //JMIRANDA 23/07/09
+        //  23/07/09
       imprimeMensajeCampana(pJDialog,VariablesVentas.vNum_Ped_Vta);
       log.debug("FIN imprimiendo Mensaje de Campana");
-      //mfajardo FIN
+      //  FIN
       
-      //JCORTEZ 11.06.2008 Se imprimi cierto datos de la comanda
+      //  11.06.2008 Se imprimi cierto datos de la comanda
       log.debug("VariablesCaja.vIndDeliveryAutomatico :"+VariablesCaja.vIndDeliveryAutomatico);
       if(VariablesCaja.vIndDeliveryAutomatico.trim().equalsIgnoreCase("S")){
-          //JMIRANDA 23/07/09 POSEE SQLEXCEPTION
+          //  23/07/09 POSEE SQLEXCEPTION
         String vNumPedDely = DBCaja.obtieneNumPedDelivery(VariablesCaja.vNumPedVta);
         log.debug("vNumPedDely XXX:"+vNumPedDely);
         tmpT1 = System.currentTimeMillis();
-          //JMIRANDA 23/07/09 Posee try-catch interno. Envia Error via Email
+          //  23/07/09 Posee try-catch interno. Envia Error via Email
         imprimeDatosDelivery(pJDialog,vNumPedDely);
         tmpT2 = System.currentTimeMillis();
         log.debug("Tiempo 15: Imprimi datos de Delivery:"+(tmpT2 - tmpT1)+" milisegundos");
@@ -1882,7 +1667,7 @@ log.info("Imprimiendo Ahorro");
        mensCons="\nRecoger Consejo.";
       }
 
-      //JCALLO 19.12.2008
+      //  19.12.2008
       //se manda imprimir Record Campanias Acumuladas del cliente
       tmpT1 = System.currentTimeMillis();
       String DniClienteImpRecord = obtenerDniPedidoAcumulaVenta(VariablesCaja.vNumPedVta);
@@ -1923,10 +1708,10 @@ log.info("Imprimiendo Ahorro");
     	 log.debug("FIN imprimiendo Record Campanias Acumuladas del cliente ... ");
       }
         
-      //JCALLO 19.12.2008 fin de imprimir Record Campanias Acumuladas del cliente      
+      //  19.12.2008 fin de imprimir Record Campanias Acumuladas del cliente      
      
         if(!VariablesCaja.vIndPedidoConProdVirtual) {
-          //JMIRANDA 24/07/09 VERIFICA IMPRESION COMPROBANTE  
+          //  24/07/09 VERIFICA IMPRESION COMPROBANTE  
           if(VariablesCaja.vEstadoSinComprobanteImpreso.equalsIgnoreCase("N")){            
               //"Comprobantes Impresos conA Exito\n"+  
             if(cantidadCupones>0)
@@ -1979,7 +1764,7 @@ log.info("Imprimiendo Ahorro");
       log.error(null,sql);
       FarmaUtility.showMessage(pJDialog, "Error en BD al Imprimir los Comprobantes del Pedido.\n" + sql,pObjectFocus);
       
-      //JMIRANDA 22/07/09 envia via email el error generado cuando no imprime       
+      //  22/07/09 envia via email el error generado cuando no imprime       
       enviaErrorCorreoPorDB(sql.toString(),VariablesCaja.vNumPedVta_Anul);
             
     } catch(Exception e){
@@ -1987,7 +1772,7 @@ log.info("Imprimiendo Ahorro");
       log.error(null,e);      
       FarmaUtility.showMessage(pJDialog, "Error en la Aplicacion al Imprimir los Comprobantes del Pedido.\n" + e,pObjectFocus);
       
-      //JMIRANDA 22/07/09 envia via email el error generado cuando no imprime 
+      //  22/07/09 envia via email el error generado cuando no imprime 
       enviaErrorCorreoPorDB(e.toString(),VariablesCaja.vNumPedVta_Anul);
       
     }
@@ -2016,7 +1801,7 @@ log.info("Imprimiendo Ahorro");
       //sql.printStackTrace();
       
       log.error(null,sql);
-        //JMIRANDA 23/07/09 ENVIA ERROR X CORREO
+        //  23/07/09 ENVIA ERROR X CORREO
         enviaErrorCorreoPorDB(sql.toString(),null);  
       return secImprVtaInst;
       
@@ -2035,8 +1820,8 @@ log.info("Imprimiendo Ahorro");
       else*/
       DBCaja.obtieneNumComp_ForUpdate(myArray, pSecImprLocal);
       
-        System.out.println("VariablesVentas.vTip_Comp_Ped JCORTEZ : " + VariablesVentas.vTip_Comp_Ped);
-        System.out.println("VariablesCaja.vNumPedVta JCORTEZ : " + VariablesCaja.vNumPedVta);
+        System.out.println("VariablesVentas.vTip_Comp_Ped   : " + VariablesVentas.vTip_Comp_Ped);
+        System.out.println("VariablesCaja.vNumPedVta   : " + VariablesCaja.vNumPedVta);
         
       if(myArray.size() == 0)
       {
@@ -2053,7 +1838,7 @@ log.info("Imprimiendo Ahorro");
       FarmaUtility.showMessage(pJDialog,"Error al validar Agrupacion de Comprobante.",pObjectFocus);
       //sql.printStackTrace();
       log.error(null,sql);
-        //JMIRANDA 23/07/09 Envia Error al Imprimir a Email
+        //  23/07/09 Envia Error al Imprimir a Email
                    enviaErrorCorreoPorDB(sql.toString().toString(),null);
       return numCompPago;
     }
@@ -2070,8 +1855,8 @@ log.info("Imprimiendo Ahorro");
       DBCaja.obtieneInfoDetalleImpresion(VariablesCaja.vArrayList_DetalleImpr, pSecGrupoImpr);
       if(VariablesCaja.vArrayList_DetalleImpr.size() == 0)
       {
-    	//JCALLO 19.12.2008 , debido a que no se hacia rollback si no encontraba el detalle del pedido
-    	FarmaUtility.liberarTransaccion();//JCALLO 19.12.2008
+    	//  19.12.2008 , debido a que no se hacia rollback si no encontraba el detalle del pedido
+    	FarmaUtility.liberarTransaccion();//  19.12.2008
         FarmaUtility.showMessage(pJDialog,
                                  "No se pudo determinar el detalle del Pedido. Verifique!!!.",
                                  pObjectFocus);
@@ -2087,7 +1872,7 @@ log.info("Imprimiendo Ahorro");
       log.error(null,sql);
       valor =false;
       
-        //JMIRANDA 23/07/09 Envia Error al Imprimir a Email
+        //  23/07/09 Envia Error al Imprimir a Email
            enviaErrorCorreoPorDB(sql.toString(),null);     
     }
     
@@ -2109,8 +1894,8 @@ log.info("Imprimiendo Ahorro");
       DBCaja.obtieneInfoTotalesComprobante(VariablesCaja.vArrayList_TotalesComp, pSecCompPago);
       if(VariablesCaja.vArrayList_TotalesComp.size() == 0)
       {
-    	//JCALLO 19.12.2008 , debido a que no se hacia rollback si no encontraba el detalle del pedido
-    	FarmaUtility.liberarTransaccion();//JCALLO 19.12.2008
+    	//  19.12.2008 , debido a que no se hacia rollback si no encontraba el detalle del pedido
+    	FarmaUtility.liberarTransaccion();//  19.12.2008
         FarmaUtility.showMessage(pJDialog,"No se pudo determinar los Totales del Comprobante. Verifique!!!.",pObjectFocus);
         valor = false;
       }
@@ -2122,7 +1907,7 @@ log.info("Imprimiendo Ahorro");
       FarmaUtility.showMessage(pJDialog,"Error al obtener Totales de Comprobante.",pObjectFocus);
       log.error(null,sql);
       valor = false;
-        //JMIRANDA 23/07/09 Envia Error al Imprimir a Email
+        //  23/07/09 Envia Error al Imprimir a Email
           enviaErrorCorreoPorDB(sql.toString(),null);
       
     }
@@ -2153,7 +1938,7 @@ log.info("Imprimiendo Ahorro");
             log.info("ERROR DE ACTUALIZAR COMPROBANTE IMPRESO : ");
             log.error(null, sql);
             
-            //JMIRANDA 23/07/09 Envia Error al Imprimir a Email
+            //  23/07/09 Envia Error al Imprimir a Email
               enviaErrorCorreoPorDB(sql.toString(),VariablesCaja.vNumPedVta);
             
         } catch (Exception e) {
@@ -2162,7 +1947,7 @@ log.info("Imprimiendo Ahorro");
             log.info("**** IP :" + FarmaVariables.vIpPc);
             log.info("ERROR DE ACTUALIZAR COMPROBANTE IMPRESO : " + e);
             
-            //JMIRANDA 23/07/09 Envia Error al Imprimir a Email
+            //  23/07/09 Envia Error al Imprimir a Email
               enviaErrorCorreoPorDB(e.toString(),VariablesCaja.vNumPedVta);
         }
       tmpT2 = System.currentTimeMillis();
@@ -2190,18 +1975,7 @@ log.info("Imprimiendo Ahorro");
     DBCaja.actualizaEstadoPedido(pNumPedVta, pEstPedVta);
   }
   
-  /**
-   * @AUTHOR  JCORTEZ
-   * @SINCE  07.08.09
-   * */
-    private static void actualizarDatosDelivery(String pNumPedVta, String pEstPedVta) throws SQLException
-    {
-    
-      DBCaja.actualizaDatosDelivery(pNumPedVta, pEstPedVta,
-                    VariablesDelivery.vCodCli,VariablesDelivery.vNombreCliente,
-                    VariablesDelivery.vNumeroTelefonoCabecera,VariablesDelivery.vDireccion,
-                    VariablesDelivery.vNumeroDocumento);
-    }
+
 
   public static boolean verificaEstadoPedido(JDialog pJDialog, String pNumPedVta, String estadoAEvaluar, Object pObjectFocus)
   {
@@ -2209,7 +1983,7 @@ log.info("Imprimiendo Ahorro");
     estadoPed = obtieneEstadoPedido(pJDialog, pNumPedVta);
     log.debug("Estado de Pedido:" + estadoPed);
     if(estadoAEvaluar.equalsIgnoreCase(estadoPed)) return true;
-    //dubilluz 13.10.2011 bloqueo NO SE DEBE LIBERAR DEBIDO A Q YA EXISTE UN BLOQUEO DE STOCK DE PRODUCTOS.
+    //  13.10.2011 bloqueo NO SE DEBE LIBERAR DEBIDO A Q YA EXISTE UN BLOQUEO DE STOCK DE PRODUCTOS.
     //FarmaUtility.liberarTransaccion();
     if(estadoPed.equalsIgnoreCase(ConstantsCaja.ESTADO_COBRADO))
     {
@@ -2337,8 +2111,8 @@ log.info("Imprimiendo Ahorro");
       cantPedidosPendientes = DBCaja.cantidadPedidosPendAnulMasivo();
       if(cantPedidosPendientes == 0) return;
       FarmaUtility.showMessage(pJDialog, "Existen Pedidos Pendientes de cobro con mas de " + FarmaVariables.vMinutosPedidosPendientes + " minutos.\nEstos pedidos seran anulados.", null);
-      //DBCaja.anulaPedidosPendientesMasivo(); --antes - ASOSA, 12.07.2010
-        DBCaja.anulaPedidosPendientesMasivo_02(); //ASOSA, 12.07.2010
+      //DBCaja.anulaPedidosPendientesMasivo(); --antes -  , 12.07.2010
+        DBCaja.anulaPedidosPendientesMasivo_02(); // , 12.07.2010
       FarmaUtility.aceptarTransaccion();
     } catch(SQLException sql){
       FarmaUtility.liberarTransaccion();
@@ -2375,74 +2149,10 @@ log.info("Imprimiendo Ahorro");
     vPrint.endPrintService();
   }
 
-  /**
-   * Metodo que procesa la venta de tarjetas virtuales.
-   * Este metodo se conectara con el proveedor de servicios a traves de su interfase.
-   * Creado x LMesia 12/01/2007
-   */
-  public static void procesaVentaProductoVirtual(JDialog pDialog, Object pObjectFocus) throws SQLException, Exception
-  {
-    //colocaVariablesVirtuales();
-    colocaVariablesVirtualesBprepaid();
-    if(VariablesCaja.vTipoProdVirtual.equalsIgnoreCase(ConstantsVentas.TIPO_PROD_VIRTUAL_RECARGA))
-    {
-      System.out.println("entro a venta de recarga virtual");
-      obtieneInfoRecargaVirtualBprepaid();
-      //obtieneInfoRecargaVirtual();
-      if(!validaHostPuertoProveedor())
-      {
-        limpiaInfoTransaccionTarjVirtuales();
-        throw new Exception("Error al obtener host y puerto de Navsat para recarga automatica");
-      }
-      /* 27.09.2007 ERIOS Se cambio de proveedor (Brightstar). */
-      //ventaRecargaVirtualBprepaid();
-      //ventaRecargaVirtual();
-      /* 14.12.2007 ERIOS Se utliza el metodo generico. */
-      ventaRecargaVirtualTX();
-      //captura el error de conexion cuando los valores son nulos
-      //16.11.2007  dubilluz modificado
-      if(VariablesVirtual.respuestaTXBean.getCodigoRespuesta()==null)
-      { 
-        throw new Exception("Hubo un error con la conexion. Intentarlo mas tarde.");
-      }
-      //if(VariablesVirtual.respuestaTXBean.getCodigoRespuesta()!=null)
-      colocaInfoRecargaVirtualBprepaid();
-      
-      //Mostramos el mensaje de respuesta del proveedor
-      //05.12.2007  dubilluz  modificacion
-      if(!validaCodigoRespuestaTransaccion())
-      {
-         throw new Exception("Error al realizar la transaccion con el proveedor.\n" + 
-                                         VariablesVirtual.respuestaTXBean.getCodigoRespuesta() + " - " + VariablesVirtual.respuestaTXBean.getDescripcion());
-      }    
-
-      
-    } else
-    {
-      System.out.println("entro a venta de tarjeta virtual");
-      obtieneInfoRecargaVirtualBprepaid();
-      //obtieneInfoTarjetaVirtual();
-      if(!validaHostPuertoProveedor())
-      {
-        limpiaInfoTransaccionTarjVirtuales();
-        throw new Exception("Error al obtener host y puerto de Navsat para tarjeta virtual");
-      }
-      /* 27.09.2007 ERIOS Se cambio de proveedor (Brightstar). */
-      //ventaTarjetaVirtualBprepaid();
-      //ventaTarjetaVirtual();
-      /* 14.12.2007 ERIOS Se utiliza el metodo generico. */
-      ventaTarjetaVirtualTX();
-      colocaInfoTransaccionVirtualBprepaid();
-    }
-    //colocaInfoTransaccionVirtualBprepaid();
-    //colocaInfoTransaccionVitual();
-    actualizaInfoPedidoVirtual(pDialog);
-    //throw new Exception("NO Error al procesar el pedido virtual - Para prueba");
-}
 
   /**
    * Valida el codigo de respuesta
-   * @author dubilluz
+   * @author  
    * @since  05.12.2007
    */
   private static boolean validaCodigoRespuestaTransaccion() 
@@ -2630,43 +2340,7 @@ log.info("Imprimiendo Ahorro");
     VariablesVirtual.vNumeroPin = VariablesVirtual.respuestaNavSatBean.getCodigoPIN();*/
   }
 
-  /**
-   * Guarda la respuesta desde el TXBean
-   * @throws Exception
-   * @author Edgar Rios Navarro
-   * @since 27.09.2007
-   */
-  private static void colocaInfoTransaccionVirtualBprepaid() throws Exception
-  {
-    VariablesVirtual.vCodigoRespuesta = VariablesVirtual.respuestaTXBean.getCodigoRespuesta();
-    VariablesVirtual.vDescripcionRespuesta = VariablesVirtual.respuestaTXBean.getDescripcion();
-    VariablesVirtual.vNumTrace = VariablesVirtual.respuestaTXBean.getNumeroTrace();
-    VariablesVirtual.vCodigoAprobacion = VariablesVirtual.respuestaTXBean.getCodigoAprobacion();
-    VariablesVirtual.vNumeroTarjeta = VariablesVirtual.respuestaTXBean.getNumeroTarjeta();
-    VariablesVirtual.vNumeroPin = VariablesVirtual.respuestaTXBean.getCodigoPIN();
-    VariablesVirtual.vFechaTX = VariablesVirtual.respuestaTXBean.getFechaTX();
-    VariablesVirtual.vHoraTX = VariablesVirtual.respuestaTXBean.getHoraTX();
-  }
 
-  /**
-   * Guarda la respuesta desde el TXBean de Recarga.
-   * @throws Exception
-   * @author Edgar Rios Navarro
-   * @since 28.09.2007
-   */
-  private static void colocaInfoRecargaVirtualBprepaid() throws Exception
-  {
-    VariablesVirtual.vCodigoRespuesta = VariablesVirtual.respuestaTXBean.getCodigoRespuesta();
-    VariablesVirtual.vDescripcionRespuesta = VariablesVirtual.respuestaTXBean.getDescripcion();
-    VariablesVirtual.vNumTrace = VariablesVirtual.respuestaTXBean.getNumeroTrace();
-    VariablesVirtual.vCodigoAprobacion = VariablesVirtual.respuestaTXBean.getCodigoAprobacion();
-    VariablesVirtual.vNumeroTarjeta = "";
-    VariablesVirtual.vNumeroPin = "";
-    VariablesVirtual.vFechaTX = VariablesVirtual.respuestaTXBean.getFechaTX();
-    VariablesVirtual.vHoraTX = VariablesVirtual.respuestaTXBean.getHoraTX();
-    VariablesVirtual.vDatosImprimir = VariablesVirtual.respuestaTXBean.getDatosImprimir();
-   
-  }
 
   /**
    *
@@ -2906,7 +2580,7 @@ log.info("Imprimiendo Ahorro");
       pVPrint.printLine(FarmaPRNUtility.llenarBlancos(5) + "Monto Recarga   : " + pMonto, true);*/
       /**
        * Imprime los datos de Impresion de Recarga
-       * 02.11.2007 dubilluz creacion
+       * 02.11.2007   creacion
        */
       obtieneDescImpresion(pNumPedido,pCodProd);
 
@@ -2954,7 +2628,7 @@ log.info("Imprimiendo Ahorro");
         pVPrint.printLine(FarmaPRNUtility.llenarBlancos(5) + "Monto Recarga   : " + pMonto, true);*/
         /**
          * Imprime los datos de Impresion de Recarga
-         * 02.11.2007 dubilluz creacion
+         * 02.11.2007   creacion
          */
         obtieneDescImpresion(pNumPedido,pCodProd);
 
@@ -3139,7 +2813,7 @@ log.info("Imprimiendo Ahorro");
   }
   /**
    * Coloca la descripcion de la impresion que el proveedor requiere en la boleta
-   * @author dubilluz
+   * @author  
    * @since  02.11.2007
    */
   public static void obtieneDescImpresion(String pNumped,String pCodProd)
@@ -3157,95 +2831,7 @@ log.info("Imprimiendo Ahorro");
     }
   }
 
-  /**
-   * Se encarga de realizar la venta de una Tarjeta Virtual.
-   * @throws Exception
-   * @author Edgar Rios Navarro
-   * @since 14.12.2007
-   */
-  private static void ventaTarjetaVirtualTX() throws Exception
-  {
 
-    proveedorTarjetaVirtual = MetodosTXFactory.getMetodosTXVirtual(MetodosTXFactory.METODO_BPCLIENTWS);
-    VariablesVirtual.respuestaTXBean =  proveedorTarjetaVirtual.VentaTarjetaVirtual(VariablesVirtual.vCodigoComercio,
-                                                                                 VariablesVirtual.vTipoTarjeta,
-                                                                                 VariablesVirtual.vMonto,
-                                                                                 VariablesVirtual.vNumTerminal,
-                                                                                 VariablesVirtual.vNumSerie,
-                                                                                 VariablesVirtual.vNumTrace,
-                                                                                 VariablesVirtual.vIPHost,
-                                                                                 VariablesVirtual.vPuertoHost);
-    System.out.println("VariablesVirtual.respuestaNavSatBean: " + VariablesVirtual.respuestaTXBean);
-    System.out.println("getCodigoRespuesta(): " + VariablesVirtual.respuestaTXBean.getCodigoRespuesta());
-    System.out.println("getNumeroTrace(): " + VariablesVirtual.respuestaTXBean.getNumeroTrace());
-    System.out.println("getCodigoAprobacion(): " + VariablesVirtual.respuestaTXBean.getCodigoAprobacion());
-    System.out.println("getNumeroTarjeta(): " + VariablesVirtual.respuestaTXBean.getNumeroTarjeta());
-    System.out.println("getCodigoPIN(): " + VariablesVirtual.respuestaTXBean.getCodigoPIN());
-    System.out.println("getFechaTX(): " + VariablesVirtual.respuestaTXBean.getFechaTX());
-    System.out.println("getHoraTX(): " + VariablesVirtual.respuestaTXBean.getHoraTX());
-  }
-  
-  /**
-   * Se encarga de realizar la venta de una Recarga Virtual.
-   * @throws Exception
-   * @author Edgar Rios Navarro
-   * @since 14.12.2007
-   */
-  private static void ventaRecargaVirtualTX() throws Exception
-  {
-    proveedorTarjetaVirtual = MetodosTXFactory.getMetodosTXVirtual(MetodosTXFactory.METODO_BPCLIENTWS);
-    VariablesVirtual.respuestaTXBean =  proveedorTarjetaVirtual.VentaRecarga(VariablesVirtual.vCodigoComercio,
-                                                                          VariablesVirtual.vNumeroCelular,
-                                                                          VariablesVirtual.vCodigoProv,
-                                                                          VariablesVirtual.vMonto,
-                                                                          VariablesVirtual.vNumTerminal,
-                                                                          VariablesVirtual.vNumSerie,
-                                                                          VariablesVirtual.vNumTrace,
-                                                                          VariablesVirtual.vIPHost,
-                                                                          VariablesVirtual.vPuertoHost,
-                                                                          FarmaVariables.vCodLocal,
-                                                                          VariablesCaja.vNumPedVta);
-    System.out.println("VariablesVirtual.respuestaNavSatBean: " + VariablesVirtual.respuestaTXBean);
-    System.out.println("getCodigoRespuesta(): " + VariablesVirtual.respuestaTXBean.getCodigoRespuesta());
-    System.out.println("getNumeroTrace(): " + VariablesVirtual.respuestaTXBean.getNumeroTrace());
-    System.out.println("getCodigoAprobacion(): " + VariablesVirtual.respuestaTXBean.getCodigoAprobacion());
-    System.out.println("getNumeroTarjeta(): " + VariablesVirtual.respuestaTXBean.getNumeroTarjeta());
-    System.out.println("getCodigoPIN(): " + VariablesVirtual.respuestaTXBean.getCodigoPIN());
-    System.out.println("getFechaTX(): " + VariablesVirtual.respuestaTXBean.getFechaTX());
-    System.out.println("getHoraTX(): " + VariablesVirtual.respuestaTXBean.getHoraTX());
-
-  }
-  
-  /**
-   * Realiza la anulacion de una venta de producto virtual.
-   * @throws Exception
-   * @author Edgar Rios Navarro
-   * @since 14.12.2007
-   */
-  private static void anulaVentaRecargaVirtualTX() throws Exception
-  {
-    proveedorTarjetaVirtual = MetodosTXFactory.getMetodosTXVirtual(MetodosTXFactory.METODO_BPCLIENTWS);
-    VariablesVirtual.respuestaTXBean =  proveedorTarjetaVirtual.AnulacionVentaRecarga(VariablesVirtual.vCodigoComercio,
-                                                                                   VariablesVirtual.vNumeroCelular,
-                                                                                   VariablesVirtual.vCodigoProv,
-                                                                                   VariablesVirtual.vMonto,
-                                                                                   VariablesVirtual.vNumTerminal,
-                                                                                   VariablesVirtual.vNumSerie,
-                                                                                   VariablesVirtual.vNumTrace,
-                                                                                   VariablesVirtual.vCodAprobacionOriginal,
-                                                                                   VariablesVirtual.vNumTraceOriginal,
-                                                                                   VariablesVirtual.vIPHost,
-                                                                                   VariablesVirtual.vPuertoHost,
-                                                                                   VariablesVirtual.vFechaTX,
-                                                                                   VariablesVirtual.vHoraTX,
-                                                                                   FarmaVariables.vCodLocal,
-                                                                                   VariablesCaja.vNumPedVta_Anul);
-    System.out.println("VariablesVirtual.respuestaNavSatBean: " + VariablesVirtual.respuestaTXBean);
-    System.out.println("getCodigoRespuesta(): " + VariablesVirtual.respuestaTXBean.getCodigoRespuesta());
-    System.out.println("getNumeroTrace(): " + VariablesVirtual.respuestaTXBean.getNumeroTrace());
-    System.out.println("getCodigoAprobacion(): " + VariablesVirtual.respuestaTXBean.getCodigoAprobacion());
-  }
-  
   /**
    * Se evalua la fecha de movimiento de la caja.
    * @param pDialogo
@@ -3287,7 +2873,7 @@ log.info("Imprimiendo Ahorro");
       try
       {    
           //String vIndExisteImpresora = DBCaja.obtieneNameImpConsejos();
-        //  String pTipoImp = DBCaja.obtieneTipoImprConsejo(); JCHAVEZ 03.07.2009 se comentó para obtener el tipo de impresora por IP         
+        //  String pTipoImp = DBCaja.obtieneTipoImprConsejo();   03.07.2009 se comentó para obtener el tipo de impresora por IP         
                
               tmpT1 = System.currentTimeMillis();
               String htmlConsejo = DBCaja.obtieneConsejos(VariablesCaja.vNumPedVta, 
@@ -3297,7 +2883,7 @@ log.info("Imprimiendo Ahorro");
             if (!htmlConsejo.equals("N"))
             {
                 tmpT1 = System.currentTimeMillis();
-              PrintConsejo.imprimirHtml(htmlConsejo, VariablesPtoVenta.vImpresoraActual,VariablesPtoVenta.vTipoImpTermicaxIp);//JCHAVEZ 03.07.2009 se reemplaza la variable pTipoImp por la constante VariablesPtoVenta.vTipoImpTermicaxIp
+              PrintConsejo.imprimirHtml(htmlConsejo, VariablesPtoVenta.vImpresoraActual,VariablesPtoVenta.vTipoImpTermicaxIp);//  03.07.2009 se reemplaza la variable pTipoImp por la constante VariablesPtoVenta.vTipoImpTermicaxIp
                 tmpT2 = System.currentTimeMillis();
                 log.debug("Tiempo 13: Obtiene Cadena para Consejo:"+(tmpT2 - tmpT1)+" milisegundos");
               consejo=true;//Se muestra mensaje de impresion de consejos
@@ -3321,13 +2907,13 @@ log.info("Imprimiendo Ahorro");
         log.error(null,sqlException);
         FarmaUtility.showMessage(pDialogo, 
                                  "Error al obtener los consejos.", null);
-          //JMIRANDA 23/07/09 Envia Error al Imprimir a Email
+          //  23/07/09 Envia Error al Imprimir a Email
             enviaErrorCorreoPorDB(sqlException.toString(),"\nError al imprimir CONSEJO");
 
       }catch(Exception e){
     	  System.err.println("error imprimir consejo:"+e.getMessage());
     	  FarmaUtility.liberarTransaccion();
-          //JMIRANDA 23/07/09 Envia Error al Imprimir a Email
+          //  23/07/09 Envia Error al Imprimir a Email
             enviaErrorCorreoPorDB(e.toString(),"\nError al imprimir CONSEJO");
           
       }
@@ -3346,7 +2932,7 @@ log.info("Imprimiendo Ahorro");
       try
       {
         //String vIndExisteImpresora = DBCaja.obtieneNameImpConsejos();
-       // String pTipoImp = DBCaja.obtieneTipoImprConsejo();JCHAVEZ 03.07.2009 se comentó para obtener el tipo de impresora por IP         
+       // String pTipoImp = DBCaja.obtieneTipoImprConsejo();  03.07.2009 se comentó para obtener el tipo de impresora por IP         
                                
            String vIndImpre = DBCaja.obtieneIndImpresion();
            System.out.println("vIndImpre :"+vIndImpre);
@@ -3354,7 +2940,7 @@ log.info("Imprimiendo Ahorro");
             {
               String htmlDelivery = DBCaja.obtieneDatosDelivery(NumPed,FarmaVariables.vIPBD);
 			  //System.out.println(datos);
-              PrintConsejo.imprimirHtml(htmlDelivery,VariablesPtoVenta.vImpresoraActual,VariablesPtoVenta.vTipoImpTermicaxIp);//JCHAVEZ 03.07.2009 se reemplaza la variable pTipoImp por la constante VariablesPtoVenta.vTipoImpTermicaxIp
+              PrintConsejo.imprimirHtml(htmlDelivery,VariablesPtoVenta.vImpresoraActual,VariablesPtoVenta.vTipoImpTermicaxIp);//  03.07.2009 se reemplaza la variable pTipoImp por la constante VariablesPtoVenta.vTipoImpTermicaxIp
               //break;
             }
           
@@ -3364,7 +2950,7 @@ log.info("Imprimiendo Ahorro");
         //sqlException.printStackTrace();
         log.error(null,sqlException);
         FarmaUtility.showMessage(pDialogo, "Error al obtener los datos de delivery.:"+sqlException.getMessage(), null);
-          //JMIRANDA 23/07/09 Envia Error al Imprimir a Email
+          //  23/07/09 Envia Error al Imprimir a Email
             enviaErrorCorreoPorDB(sqlException.toString(),NumPed);
       }
     
@@ -3401,7 +2987,7 @@ log.info("Imprimiendo Ahorro");
         FarmaUtility.showMessage(pDialogo, 
                                 "Error al verificar si tiene cupones el pedido.\n"+
                                  sqlException.getMessage(), null);
-        //JMIRANDA 23/07/09 Envia Error al Imprimir a Email
+        //  23/07/09 Envia Error al Imprimir a Email
            enviaErrorCorreoPorDB(sqlException.toString(),null);
        }
     
@@ -3429,7 +3015,7 @@ log.info("Imprimiendo Ahorro");
       try
       {
         //String vIndExisteImpresora = DBCaja.obtieneNameImpConsejos();
-        //String pTipoImp = DBCaja.obtieneTipoImprConsejo(); JCHAVEZ 03.07.2009 se comentó para obtener el tipo de impresora por IP
+        //String pTipoImp = DBCaja.obtieneTipoImprConsejo();   03.07.2009 se comentó para obtener el tipo de impresora por IP
         
         int cantIntentosLectura = Integer.parseInt(DBCaja.obtieneCantIntentosLecturaImg().trim());
               
@@ -3440,7 +3026,7 @@ log.info("Imprimiendo Ahorro");
             if(!vCupon.equals("N"))
             {
             	log.debug("cupon a imprimir : "+vCupon);
-            	PrintConsejo.imprimirCupon(vCupon,VariablesPtoVenta.vImpresoraActual,VariablesPtoVenta.vTipoImpTermicaxIp,vCodeCupon, cantIntentosLectura);//JCHAVEZ 03.07.2009 se reemplaza la variable pTipoImp por la constante VariablesPtoVenta.vTipoImpTermicaxIp
+            	PrintConsejo.imprimirCupon(vCupon,VariablesPtoVenta.vImpresoraActual,VariablesPtoVenta.vTipoImpTermicaxIp,vCodeCupon, cantIntentosLectura);//  03.07.2009 se reemplaza la variable pTipoImp por la constante VariablesPtoVenta.vTipoImpTermicaxIp
             	log.debug("despues a imprimir");
             	// -- Proceso autonomo que tiene COMMIT
             	DBCaja.cambiaIndImpresionCupon(VariablesCaja.vNumPedVta,vCodeCupon);
@@ -3598,7 +3184,7 @@ log.info("Imprimiendo Ahorro");
   
     /**
        * Retorna el numero de cupones emitidos
-       * @author DUbilluz
+       * @author  
        * @param pNumPed
        * @return
        */
@@ -3664,7 +3250,7 @@ log.info("Imprimiendo Ahorro");
     }
 
     /**
-     * @author dubilluz
+     * @author  
      * @param secIni
      * @param secFin
      * @return
@@ -3727,7 +3313,7 @@ log.info("Imprimiendo Ahorro");
     
     /**
      * Revisa si el pedido es de Delivery para enviar un alerta de Anulacion     * 
-     * @author Dubilluz
+     * @author  
      * @since  26.11.2008
      * @param pCadena
      */
@@ -3754,7 +3340,7 @@ log.info("Imprimiendo Ahorro");
     
     /**
      * Validar si existen comprobantes desfasados
-     * @author Dubilluz
+     * @author  
      * @since  27.11.2008
      * @param pFechaDia
      * @return
@@ -3778,7 +3364,7 @@ log.info("Imprimiendo Ahorro");
     
     /**
      * 
-     * @author dubilluz
+     * @author  
      * @since  28.11.2008
      * @return
      */
@@ -3819,7 +3405,7 @@ log.info("Imprimiendo Ahorro");
     }
     /**
      * 
-     * @author dubilluz
+     * @author  
      * @since  28.11.2008
      * @return
      */
@@ -3860,7 +3446,7 @@ log.info("Imprimiendo Ahorro");
         {
           //String vIndExisteImpresora = DBCaja.obtieneNameImpConsejos();
           
-          //  String pTipoImp = DBCaja.obtieneTipoImprConsejo(); JCHAVEZ 03.07.2009 se comentó para obtener el tipo de impresora por IP         
+          //  String pTipoImp = DBCaja.obtieneTipoImprConsejo();   03.07.2009 se comentó para obtener el tipo de impresora por IP         
           
           int cantIntentosLectura = Integer.parseInt(DBCaja.obtieneCantIntentosLecturaImg().trim());
           
@@ -3876,7 +3462,7 @@ log.info("Imprimiendo Ahorro");
               String vCupon = DBCaja.pruebaImpresoraTermica(pCodCupon);
               log.debug(" prueba de impresion termica...");
               
-              PrintConsejo.imprimirCupon(vCupon,VariablesPtoVenta.vImpresoraActual,VariablesPtoVenta.vTipoImpTermicaxIp,pCodCupon, cantIntentosLectura);//JCHAVEZ 03.07.2009 se reemplaza la variable pTipoImp por la constante VariablesPtoVenta.vTipoImpTermicaxIp
+              PrintConsejo.imprimirCupon(vCupon,VariablesPtoVenta.vImpresoraActual,VariablesPtoVenta.vTipoImpTermicaxIp,pCodCupon, cantIntentosLectura);//  03.07.2009 se reemplaza la variable pTipoImp por la constante VariablesPtoVenta.vTipoImpTermicaxIp
               //break;
             //}
           //}
@@ -3950,7 +3536,7 @@ log.info("Imprimiendo Ahorro");
    
     /**
      * obtener DNI del cliente si se trata de una venta que acumula ventas
-     * @author JCALLO
+     * @author  
      * @param  pNumPed
      * @return
      */
@@ -3973,7 +3559,7 @@ log.info("Imprimiendo Ahorro");
     /**
      * Analiza si el pedido es de camapana acumulada
      * y revertira todo o confirmara segun sea el caso
-     * @author dubilluz
+     * @author  
      * @since  19.12.2008
      * @param  pNumPed
      * @param  pDialogos
@@ -4013,14 +3599,14 @@ log.info("Imprimiendo Ahorro");
                            enviaRegaloMatriz(sDNI,pNumPed);                                      
                 }
                 */
-                //JMIRANDA 17/07/09 
+                //  17/07/09 
                 DBCaja.analizaCanjeLocal(sDNI,pNumPed,pAccion,pIndEliminaRespaldo);
                /* if(pIndLinea.trim().equalsIgnoreCase(FarmaConstants.INDICADOR_S))
                 {   
                 DBCaja.analizaCanjeMatriz(sDNI,pNumPed,pAccion);
                 }
                 */
-                //JMIRANDA 16/07/09
+                //  16/07/09
                DBCaja.analizaCanjeMatriz(sDNI,pNumPed,pAccion);
                 System.out.println("TRUE 1 ANALIZACANJEMATRIZ");
                 return true;
@@ -4053,7 +3639,7 @@ log.info("Imprimiendo Ahorro");
         {
           //String vIndExisteImpresora = DBCaja.obtieneNameImpConsejos();
  
-         //  String pTipoImp = DBCaja.obtieneTipoImprConsejo(); JCHAVEZ 03.07.2009 se comentó para obtener el tipo de impresora por IP        
+         //  String pTipoImp = DBCaja.obtieneTipoImprConsejo();   03.07.2009 se comentó para obtener el tipo de impresora por IP        
                 
           //for (int i = 0; i < servicio.length; i++)
           //{
@@ -4141,7 +3727,7 @@ log.info("Imprimiendo Ahorro");
                 if (html.toString().length()>0)
                 {
                   System.err.println("htmlImprimir:"+html.toString());
-                  PrintConsejo.imprimirHtml(html.toString(), VariablesPtoVenta.vImpresoraActual,VariablesPtoVenta.vTipoImpTermicaxIp);//JCHAVEZ 03.07.2009 se reemplaza la variable pTipoImp por la constante VariablesPtoVenta.vTipoImpTermicaxIp
+                  PrintConsejo.imprimirHtml(html.toString(), VariablesPtoVenta.vImpresoraActual,VariablesPtoVenta.vTipoImpTermicaxIp);//  03.07.2009 se reemplaza la variable pTipoImp por la constante VariablesPtoVenta.vTipoImpTermicaxIp
                 }
                // break;
             //}
@@ -4174,7 +3760,7 @@ log.info("Imprimiendo Ahorro");
         {
           //String vIndExisteImpresora = DBCaja.obtieneNameImpConsejos();
           
-          //  String pTipoImp = DBCaja.obtieneTipoImprConsejo(); JCHAVEZ 03.07.2009 se comentó para obtener el tipo de impresora por IP
+          //  String pTipoImp = DBCaja.obtieneTipoImprConsejo();   03.07.2009 se comentó para obtener el tipo de impresora por IP
          
           //for (int i = 0; i < servicio.length; i++)
           //{
@@ -4237,7 +3823,7 @@ log.info("Imprimiendo Ahorro");
               if (html.toString().length()>0)
               {
                 System.err.println("htmlImprimir:"+html.toString());
-                PrintConsejo.imprimirHtml(html.toString(), VariablesPtoVenta.vImpresoraActual,VariablesPtoVenta.vTipoImpTermicaxIp);//JCHAVEZ 03.07.2009 se reemplaza la variable pTipoImp por la constante VariablesPtoVenta.vTipoImpTermicaxIp
+                PrintConsejo.imprimirHtml(html.toString(), VariablesPtoVenta.vImpresoraActual,VariablesPtoVenta.vTipoImpTermicaxIp);//  03.07.2009 se reemplaza la variable pTipoImp por la constante VariablesPtoVenta.vTipoImpTermicaxIp
               }
              // break;
             //}
@@ -4323,7 +3909,7 @@ log.info("Imprimiendo Ahorro");
 
     /**
     * Se imprime VOUCHER para el remito 
-    * @author JCORTEZ
+    * @author  
     * @since 14.01.09
     */
      //MARCO FAJARDO cambio: lentitud impresora termica 08/04/09
@@ -4337,7 +3923,7 @@ log.info("Imprimiendo Ahorro");
         imprimeTermicaRemito(pDialogo,NumRemito);     
     }
     /**
-     * @author Dubilluz 
+     * @author   
      * @since  02.05.2012
      * @param pDialogo
      * @param NumRemito
@@ -4497,7 +4083,7 @@ log.info("Imprimiendo Ahorro");
           {
             //String vIndExisteImpresora = DBCaja.obtieneNameImpConsejos();
             
-             //  String pTipoImp = DBCaja.obtieneTipoImprConsejo(); JCHAVEZ 03.07.2009 se comentó para obtener el tipo de impresora por IP
+             //  String pTipoImp = DBCaja.obtieneTipoImprConsejo();   03.07.2009 se comentó para obtener el tipo de impresora por IP
             
             //for (int i = 0; i < servicio.length; i++)
             //{
@@ -4511,9 +4097,9 @@ log.info("Imprimiendo Ahorro");
                 if (!vIndImpre.equals("N"))
                 {
                   //String htmlRemitos = DBCaja.obtieneDatosVoucherRem(NumRemito,FarmaVariables.vIPBD);
-                   String htmlRemitos=DBCajaElectronica.getHTML_VOUCHER_REMITO(NumRemito); //ASOSA, 22.04.2010
+                   String htmlRemitos=DBCajaElectronica.getHTML_VOUCHER_REMITO(NumRemito); // , 22.04.2010
                   log.debug("htmlRemitos:"+htmlRemitos);
-                  PrintConsejo.imprimirHtml(htmlRemitos,VariablesPtoVenta.vImpresoraActual,VariablesPtoVenta.vTipoImpTermicaxIp);//JCHAVEZ 03.07.2009 se reemplaza la variable pTipoImp por la constante VariablesPtoVenta.vTipoImpTermicaxIp
+                  PrintConsejo.imprimirHtml(htmlRemitos,VariablesPtoVenta.vImpresoraActual,VariablesPtoVenta.vTipoImpTermicaxIp);//  03.07.2009 se reemplaza la variable pTipoImp por la constante VariablesPtoVenta.vTipoImpTermicaxIp
                     FarmaUtility.showMessage(pDialogo, "Se asignó las fechas al nuevo remito con éxito \n" +
                      "Voucher impreso con éxito.", null);
                     //FarmaUtility.showMessage(pDialogo, "Voucher impreso con éxito.",null);            
@@ -4537,7 +4123,7 @@ log.info("Imprimiendo Ahorro");
     
     /**
      * Se imprime ticket al consultar recarga virtual 
-     * @author Asolis
+     * @author  
      * @since 11.02.2009
      */
 
@@ -4556,7 +4142,7 @@ log.info("Imprimiendo Ahorro");
        {
          //String vIndExisteImpresora = DBCaja.obtieneNameImpConsejos();
          
-           //  String pTipoImp = DBCaja.obtieneTipoImprConsejo(); JCHAVEZ 03.07.2009 se comentó para obtener el tipo de impresora por IP
+           //  String pTipoImp = DBCaja.obtieneTipoImprConsejo();   03.07.2009 se comentó para obtener el tipo de impresora por IP
            
          //for (int i = 0; i < servicio.length; i++)
          //{
@@ -4573,7 +4159,7 @@ log.info("Imprimiendo Ahorro");
                String htmlTicket = DBCaja.obtieneDatosTicket(pNumPedVta,pMonto);
                   
                log.debug("htmlRemitos:"+htmlTicket);
-               PrintConsejo.imprimirHtml(htmlTicket,VariablesPtoVenta.vImpresoraActual,VariablesPtoVenta.vTipoImpTermicaxIp);//JCHAVEZ 03.07.2009 se reemplaza la variable pTipoImp por la constante VariablesPtoVenta.vTipoImpTermicaxIp
+               PrintConsejo.imprimirHtml(htmlTicket,VariablesPtoVenta.vImpresoraActual,VariablesPtoVenta.vTipoImpTermicaxIp);//  03.07.2009 se reemplaza la variable pTipoImp por la constante VariablesPtoVenta.vTipoImpTermicaxIp
                  FarmaUtility.showMessage(pDialogo, "Ticket impreso con éxito.",null);            
                //break;
              }
@@ -4604,7 +4190,7 @@ log.info("Imprimiendo Ahorro");
     
     /**
      * Se imprime formato por IP
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE 24.03.09
      * */
     
@@ -4624,7 +4210,7 @@ log.info("Imprimiendo Ahorro");
         FarmaUtility.showMessage(pJDialog, "ERROR DE IMPRESORA : No se pudo imprimir ticket de prueba", null);
     }else{
      // vPrint.activateCondensed();
-         //JCHAVEZ 03.07.2009.sn
+         //  03.07.2009.sn
          System.out.println("Seteando el Color ...");
          Date fechaJava = new Date();
          System.out.println("fecha : " +fechaJava);
@@ -4637,7 +4223,7 @@ log.info("Imprimiendo Ahorro");
             vPrint.printLine((char)27+"4",true );  //rojo
          else
             vPrint.printLine((char)27+"5",true );  //negro
-         //JCHAVEZ 03.07.2009.en
+         //  03.07.2009.en
         log.info("**** RUTA :" + ruta);
       vPrint.printLine("***************************************",true);
       vPrint.printLine("PRUEBA DE IMPRESION TICKETERA",true);
@@ -4680,7 +4266,7 @@ log.info("Imprimiendo Ahorro");
     }    
     /**
      * Se ajusta posiciones para ticketera
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE 23.03.09
      * */
     private static void imprimeBoletaTicket(JDialog   pJDialog,
@@ -4701,19 +4287,19 @@ log.info("Imprimiendo Ahorro");
       String indProdVirtual = "";
       VariablesCaja.vIndPedidoConProdVirtualImpresion = false;
       
-      //jcortez 06.07.09 Se verifica ruta 
+      //  06.07.09 Se verifica ruta 
         //if(bol) VariablesCaja.vRutaImpresora=pruta;
         
       FarmaPrintServiceTicket vPrint = new FarmaPrintServiceTicket(666, VariablesCaja.vRutaImpresora, false);
       
-        //JCORTEZ 16.07.09 Se genera archivo linea por linea
+        //  16.07.09 Se genera archivo linea por linea
         FarmaPrintServiceTicket vPrintArchivo = new FarmaPrintServiceTicket(666, pruta, false);
         vPrintArchivo.startPrintService();
         
       log.info("Ruta : " + VariablesCaja.vRutaImpresora  + "   boleta" + VariablesCaja.vNumPedVta + ".txt");
        System.out.println("VariablesCaja.vNumPedVta:" + VariablesCaja.vNumPedVta);
    
-    //JMIRANDA 24/07/09 NRO DE PEDIDO ( CORRELATIVO) PARA ENVIAR X CORREO SI EXIS ERROR
+    //  24/07/09 NRO DE PEDIDO ( CORRELATIVO) PARA ENVIAR X CORREO SI EXIS ERROR
         FarmaVariables.vNroPedidoNoImp = VariablesCaja.vNumPedVta;           
     if ( !vPrint.startPrintService() ) {               
                 VariablesCaja.vEstadoSinComprobanteImpreso="S";      
@@ -4737,7 +4323,7 @@ log.info("Imprimiendo Ahorro");
         
         try {
        
-         //JCHAVEZ 03.07.2009.sn
+         //  03.07.2009.sn
          System.out.println("Seteando el Color ...");
          Date fechaJava = new Date();
          System.out.println("fecha : " +fechaJava);
@@ -4749,14 +4335,14 @@ log.info("Imprimiendo Ahorro");
             vPrint.printLine((char)27+"4",true );  //rojo
          else
             vPrint.printLine((char)27+"5",true );  //negro
-        //JCHAVEZ 03.07.2009.en         
+        //  03.07.2009.en         
        
         log.info("imprime datos de cabecera de impresion");
         vPrint.printLine(FarmaPRNUtility.llenarBlancos(12)+ " BOTICAS MIFARMA"+FarmaPRNUtility.llenarBlancos(12),true);
      vPrintArchivo.printLine(FarmaPRNUtility.llenarBlancos(12)+ " BOTICAS MIFARMA"+FarmaPRNUtility.llenarBlancos(12),true);
 //        vPrint.printLine(FarmaPRNUtility.llenarBlancos(1)+ " TICKET - MIFARMA S.A.C" + " " +  "RUC: "+FarmaVariables.vNuRucCia,true);
 //     vPrintArchivo.printLine(FarmaPRNUtility.llenarBlancos(1)+ " TICKET - MIFARMA S.A.C" + " " +  "RUC: "+FarmaVariables.vNuRucCia,true);
-  //JMIRANDA 13.11.09
+  //  13.11.09
         vPrint.printLine(FarmaPRNUtility.llenarBlancos(1)+ " TICKET - MIFARMA S.A.C." + " " +  "RUC: "+FarmaVariables.vNuRucCia,true);
      vPrintArchivo.printLine(FarmaPRNUtility.llenarBlancos(1)+ " TICKET - MIFARMA S.A.C." + " " +  "RUC: "+FarmaVariables.vNuRucCia,true);
      
@@ -4766,7 +4352,7 @@ log.info("Imprimiendo Ahorro");
 /*        vPrint.printLine(FarmaPRNUtility.llenarBlancos(1) + "Telf: 2130760 "+"          "+"CORR. "+VariablesCaja.vNumPedVta,true);
      vPrintArchivo.printLine(FarmaPRNUtility.llenarBlancos(1) + "Telf: 2130760 "+"          "+"CORR. "+VariablesCaja.vNumPedVta,true);   
 */
-//JMIRANDA 22.08.2011 Cambio para verificar si imprime
+//  22.08.2011 Cambio para verificar si imprime
 if(UtilityVentas.getIndImprimeCorrelativo()){
         vPrint.printLine(FarmaPRNUtility.llenarBlancos(1) + "Telf: 2130760 "+"          "+"CORR. "+VariablesCaja.vNumPedVta,true);
      vPrintArchivo.printLine(FarmaPRNUtility.llenarBlancos(1) + "Telf: 2130760 "+"          "+"CORR. "+VariablesCaja.vNumPedVta,true);   
@@ -4803,15 +4389,15 @@ else{
             
         for (int i=0; i<pDetalleComprobante.size(); i++)
         {
-            //Agregado por DVELIZ 13.10.08
+            //Agregado por   13.10.08
             String valor = ((String)((ArrayList)pDetalleComprobante.get(i)).get(16)).toString().trim();
             log.info("Fila detalle "+ i+ ") "+ valor);
             if(valor.equals("0.000")) valor = " ";
-            //fin DVELIZ
+            //fin  
             log.info("Detalle "+i+")"+ (ArrayList)pDetalleComprobante.get(i) );
             System.out.println("valor 2:"+valor);
             log.info("valor "+valor);
-            //JMIRANDA 06.10.09
+            //  06.10.09
             
             double valor1 =  (UtilityVentas.Redondear(FarmaUtility.getDecimalNumber(valor),2));
             log.error("valor1: "+valor1);
@@ -4826,7 +4412,7 @@ else{
                              //9
                              //FarmaPRNUtility.alinearDerecha(((String)((ArrayList)pDetalleComprobante.get(i)).get(0)).trim(),9) + "  " +
                              //SE ESTA CENTRANDO LA CANTIDAD COMPRADA 
-                             //DUBILLUZ 09/07/2009
+                             //  09/07/2009
                              pFormatoLetra(FarmaUtility.getValueFieldArrayList(pDetalleComprobante,i,0),9," ")+ "  " +
                              //20
                              
@@ -4852,7 +4438,7 @@ else{
                             FarmaPRNUtility.alinearIzquierda(((String)((ArrayList)pDetalleComprobante.get(i)).get(2)).trim(),11) + " " +
                             //LAB                             
                             FarmaPRNUtility.alinearIzquierda(((String)((ArrayList)pDetalleComprobante.get(i)).get(3)).trim(),9) + " "+
-                            //JMIRANDA 06.10.09
+                            //  06.10.09
                             //AHORRO         
                             FarmaPRNUtility.alinearDerecha(valor,5) + "  " +
                             //FarmaPRNUtility.alinearDerecha(UtilityVentas.Redondear(FarmaUtility.getDecimalNumber(valor),2),5) + "  " +
@@ -4869,7 +4455,7 @@ else{
                             "       "+ 
                             FarmaPRNUtility.alinearIzquierda( "      "+ ((String)((ArrayList)pDetalleComprobante.get(i)).get(2)).trim(),15) + "  " +
                             FarmaPRNUtility.alinearIzquierda(((String)((ArrayList)pDetalleComprobante.get(i)).get(3)).trim(),11) + " "+
-            //JMIRANDA 06.10.09 
+            //  06.10.09 
             FarmaPRNUtility.alinearDerecha(UtilityVentas.Redondear(FarmaUtility.getDecimalNumber(valor),2),5) + "  " +
                             FarmaPRNUtility.alinearDerecha(((String)((ArrayList)pDetalleComprobante.get(i)).get(5)).trim(),10)
                              ,true);                             
@@ -4915,94 +4501,6 @@ else{
         //*************************************INFORMACION DEL CONVENIO*************************************************//
         //*******************************************INICIO************************************************************//
 
-        if(VariablesCaja.vIndPedidoConvenio.equalsIgnoreCase(FarmaConstants.INDICADOR_S))
-        {
-        log.info("Inicio de COnvenio");
-        try
-        {
-          ArrayList aInfoPedConv = new ArrayList();
-          log.info("Obtienes datos de Convenio");
-          DBConvenio.obtieneInfoPedidoConv(aInfoPedConv,VariablesCaja.vNumPedVta, ""+FarmaUtility.getDecimalNumber(pValTotalNeto));
-
-         vPrint.printLine("------------------------------------------" ,true);
-            vPrintArchivo.printLine("------------------------------------------", true);
-            
-          log.info("INicio de impresion de datos convenio");
-          for(int i=0; i<aInfoPedConv.size(); i++)
-          {
-            ArrayList registro = (ArrayList) aInfoPedConv.get(i);
-          //JCORTEZ 10/10/2008 Se muestra informacion de convenio si no es de tipo competencia
-          String Ind_Comp=((String)registro.get(8)).trim();
-          if(Ind_Comp.equalsIgnoreCase("N")){
-            vPrint.printLine(FarmaPRNUtility.alinearIzquierda("Titular Cliente: "+((String)registro.get(4)).trim(),41)+"\n "+
-                             FarmaPRNUtility.alinearIzquierda("Co-Pago: "+((String)registro.get(3)).trim()+" %",20),true);
-                             
-            vPrintArchivo.printLine(FarmaPRNUtility.alinearIzquierda("Titular Cliente: "+((String)registro.get(4)).trim(),41)+"\n "+
-                             FarmaPRNUtility.alinearIzquierda("Co-Pago: "+((String)registro.get(3)).trim()+" %",20), true);                             
-               
-            /* 07.03.2008 ERIOS Si se tiene el valor del credito disponible, se muestra en el comprobante */
-            String vCredDisp = ((String)registro.get(7)).trim();
-            if(vCredDisp.equals(""))
-            {
-              vPrint.printLine(//FarmaPRNUtility.alinearIzquierda(" Credito: S/. "+vCoPago,60)+" "+
-                               FarmaPRNUtility.alinearIzquierda("Credito: S/."+((String)registro.get(5)).trim(),18)+" "+
-                               FarmaPRNUtility.alinearDerecha("A Cuenta: S/."+((String)registro.get(6)).trim(),21),true);
-                               
-              vPrintArchivo.printLine(FarmaPRNUtility.alinearIzquierda("Credito: S/."+((String)registro.get(5)).trim(),18)+" "+
-                                 FarmaPRNUtility.alinearDerecha("A Cuenta: S/."+((String)registro.get(6)).trim(),21),true);                               
-            }else
-            {
-              vPrint.printLine(//FarmaPRNUtility.alinearIzquierda(" Credito: S/. "+vCoPago,60)+" "+
-                               FarmaPRNUtility.alinearIzquierda("Credito: S/."+((String)registro.get(5)).trim(),18)+" "+
-                               FarmaPRNUtility.alinearDerecha("A Cuenta: S/."+((String)registro.get(6)).trim(),21),true);
-                vPrint.printLine("Cred Disp: S/."+vCredDisp,true);
-                
-              vPrintArchivo.printLine(FarmaPRNUtility.alinearIzquierda("Credito: S/."+((String)registro.get(5)).trim(),18)+" "+
-                                 FarmaPRNUtility.alinearDerecha("A Cuenta: S/."+((String)registro.get(6)).trim(),21),true);
-                vPrintArchivo.printLine("Cred Disp: S/."+vCredDisp,true);
-            } 
-           } 
-          }
-          log.info("Fin impresion de datos convenio");
-
-        }
-          //ASOLIS 
-                  //IMPRIMIR  EL  IP ,NUMERO COMPROBANTE y HORA DE IMPRESIÓN  EN CASO DE ERROR.*/
-                catch(SQLException sql)
-                {
-                    VariablesCaja.vEstadoSinComprobanteImpreso="S";
-                    
-                  //sql.printStackTrace();
-                  System.out.println("Error de BD "+ sql.getMessage());
-                  
-                    log.info("**** Fecha :"+ pFechaBD);
-                    log.info("**** CORR :"+ VariablesCaja.vNumPedVta);
-                    log.info("**** NUMERO COMPROBANTE BOLETA:" + pNumComprobante);
-                    log.info("**** IP :" + FarmaVariables.vIpPc);
-                    log.info("Error al obtener informacion del Pedido Convenio ");
-                    log.info("Error al imprimir la BOLETA 2: ");
-                    log.error(null,sql);
-                    
-                    //JMIRANDA 23/07/09 Envia Error al Imprimir a Email
-                      enviaErrorCorreoPorDB(sql.toString(),VariablesCaja.vNumPedVta);
-                }
-                
-                  catch(Exception e){
-                    
-                    VariablesCaja.vEstadoSinComprobanteImpreso="S";
-                    
-                    log.info("**** Fecha :"+ pFechaBD);
-                    log.info("**** CORR :"+ VariablesCaja.vNumPedVta);
-                    log.info("**** NUMERO COMPROBANTE BOLETA :" + pNumComprobante);
-                    log.info("**** IP :" + FarmaVariables.vIpPc);
-                    log.info("Error al imprimir la BOLETA 3: "+e);
-                    
-                    //JMIRANDA 23/07/09 Envia Error al Imprimir a Email
-                      enviaErrorCorreoPorDB(e.toString(),VariablesCaja.vNumPedVta);
-                }
-        
-        //vPrint.printLine(" ",true);
-        }
         
         //ERIOS 25.07.2008 imprime el monto ahorrado.
         double auxTotalDcto = FarmaUtility.getDecimalNumber(pValTotalAhorro);
@@ -5035,7 +4533,7 @@ else{
             vPrintArchivo.printLine("Descuentos en esta compra S/. "+pValTotalAhorro,true);
 	        */
             
-            //JCORTEZ 02.09.2009 Se muestra mensaje distinto si es fidelizado o no .
+            //  02.09.2009 Se muestra mensaje distinto si es fidelizado o no .
             String obtenerMensaje="";
             String indFidelizado="";
             log.info("Identificando cliente fidelizado");
@@ -5098,7 +4596,7 @@ else{
     
     vPrint.printLine(FarmaPRNUtility.llenarBlancos(10) + VariablesVentas.vTituloDelivery ,true);
     
-            //DUBILLUZ 22.08.2008 MSG DE CUPONES
+            //  22.08.2008 MSG DE CUPONES
             String msgCumImpresos = " ";
             if(VariablesCaja.vNumCuponesImpresos>0){
               String msgNumCupon = "";
@@ -5112,7 +4610,7 @@ else{
                                msgNumCupon;
             }
             
-            //MODIFICADO POR DVELIZ 02.10.08
+            //MODIFICADO POR   02.10.08
             /*
             if(auxTotalDcto > 0)
             {
@@ -5133,7 +4631,7 @@ else{
             //vPrint.printLine(" " ,true);
             vPrint.printLine("   No se aceptan devoluciones de dinero." ,true);
             vPrintArchivo.printLine("   No se aceptan devoluciones de dinero.",true);
-            //Mensaje JULIO  JMIRANDA 13.11.2009
+            //Mensaje JULIO    13.11.2009
             vPrint.printLine("  Cambio de mercadería únicamente dentro  " ,true);
             vPrint.printLine("  de las 48 horas siguientes a la compra.",true);
             vPrint.printLine("   Indispensable presentar comprobante",true);
@@ -5151,7 +4649,7 @@ else{
            
            
            
-           //JCORTEZ 07.09.09 Se obtiene mensaje predeterminado
+           //  07.09.09 Se obtiene mensaje predeterminado
            String mensaje=DBCaja.obtieneMensajeTicket();
            if(!mensaje.equalsIgnoreCase("N")){
                vPrint.printLine("          "+mensaje,true);
@@ -5163,7 +4661,7 @@ else{
             
         //vPrint.printLine( ""+(char)27 + "d"+(char)2,true);
         //vPrint.deactivateCondensed();
-        /*dubilluz 2011.09.16*/
+        /*  2011.09.16*/
         if(VariablesCaja.vImprimeFideicomizo){
             String[] lineas = VariablesCaja.vCadenaFideicomizo.trim().split("@");
             String pCadena = "";
@@ -5180,7 +4678,7 @@ else{
             vPrintArchivo.printLine(""+VariablesCaja.vCadenaFideicomizo.trim(),true);
             }
         }
-        /*FIN dubilluz 2011.09.16*/
+        /*FIN   2011.09.16*/
         log.info("Antes de End PrintService");    
         vPrint.endPrintService();
         vPrintArchivo.endPrintService();
@@ -5188,7 +4686,7 @@ else{
         VariablesCaja.vEstadoSinComprobanteImpreso="N";
         
         
-            //JCORTEZ 16.07.09 Se guarda fecha de impresion por comprobantes
+            //  16.07.09 Se guarda fecha de impresion por comprobantes
             DBCaja.actualizaFechaImpr(VariablesCaja.vNumPedVta,pNumComprobante,"C");
             log.debug("Guardando fecha impresion cobro..."+pNumComprobante); 
         
@@ -5206,7 +4704,7 @@ else{
                                                     log.info("Error al imprimir la boleta 4: " + sql.getMessage());
                                                     log.error(null,sql);
                                                     
-                                                    //JMIRANDA 23/07/09 Envia Error al Imprimir a Email
+                                                    //  23/07/09 Envia Error al Imprimir a Email
                                                       enviaErrorCorreoPorDB(sql.toString(),VariablesCaja.vNumPedVta);
                                                 }
                                                 
@@ -5218,7 +4716,7 @@ else{
                                                     log.info("**** IP :" + FarmaVariables.vIpPc);
                                                     log.info("Error al imprimir la boleta 5: "+e);
                                                     
-                                                    //JMIRANDA 23/07/09 Envia Error al Imprimir a Email
+                                                    //  23/07/09 Envia Error al Imprimir a Email
                                                       enviaErrorCorreoPorDB(e.toString(),VariablesCaja.vNumPedVta);
                                                 } 
                                       
@@ -5231,11 +4729,11 @@ else{
     }
 
     /**
-     * mfajardo 
+     *   
      * @param pJDialog
      * @param pNumPedVta
      */
-     //mfajardo -imprime mensaje campana- 13.04.2009
+     //  -imprime mensaje campana- 13.04.2009
     private static void imprimeMensajeCampana(JDialog pJDialog,String pNumPedVta) {
 
           try
@@ -5249,14 +4747,14 @@ else{
                   log.debug("htmlRemitos:"+htmlTicket);
                   if(!htmlTicket.equals("N"))
                   {
-                    PrintConsejo.imprimirHtml(htmlTicket,VariablesPtoVenta.vImpresoraActual,VariablesPtoVenta.vTipoImpTermicaxIp);//JCHAVEZ 03.07.2009 se reemplaza la variable pTipoImp por la constante VariablesPtoVenta.vTipoImpTermicaxIp
+                    PrintConsejo.imprimirHtml(htmlTicket,VariablesPtoVenta.vImpresoraActual,VariablesPtoVenta.vTipoImpTermicaxIp);//  03.07.2009 se reemplaza la variable pTipoImp por la constante VariablesPtoVenta.vTipoImpTermicaxIp
                   }
                 }
           }catch (Exception sqlException)
           {
               {log.error(null,sqlException);
               FarmaUtility.showMessage(pJDialog, "Error al obtener los datos de Ticket.", null);
-                  //JMIRANDA 23/07/09 Envia Error al Imprimir a Email
+                  //  23/07/09 Envia Error al Imprimir a Email
                     enviaErrorCorreoPorDB(sqlException.toString(),"<br>Error Al Obtener Datos de Ticket");
               }
             
@@ -5264,12 +4762,12 @@ else{
     }
     
     /**
-     * mfajardo 
+     *   
      * @param pJDialog
      * imprime mensaje Ticket Anulacion - 24.04.2009
      */
-    //Mfajardo 24/04/09 metodo imprimir ticket de anulacion    
-     //JCORTEZ 10.06.09 Se obtiene datos de impresora por relacion ip - impresora
+    //  24/04/09 metodo imprimir ticket de anulacion    
+     //  10.06.09 Se obtiene datos de impresora por relacion ip - impresora
      //jquispe 25/03/2010 agregar el motivo de anulacion en la impresion
    public static boolean imprimeMensajeTicketAnulacion(String cajero, String turno, 
                                        String numpedido, String cod_igv, 
@@ -5278,7 +4776,7 @@ else{
 
         // try
         // {
-           //String pTipoImp = DBCaja.obtieneTipoImprConsejo();JCHAVEZ 03.07.2009 se comentó para obtener el tipo de impresora por IP
+           //String pTipoImp = DBCaja.obtieneTipoImprConsejo();  03.07.2009 se comentó para obtener el tipo de impresora por IP
            //String vIndImpre = DBCaja.obtieneIndImpresion();
            String vIndImpre  = "S";
            boolean vResultado = false;
@@ -5320,9 +4818,9 @@ else{
                            secImprLocal = VariablesCaja.vSecImprLocalTicket;                           
                            VariablesCaja.vRutaImpresora = obtieneRutaImpresora(secImprLocal);                           
                            
-                           //JCORTEZ 06.07.09 Se genera archivo 
+                           //  06.07.09 Se genera archivo 
                            //No se realizará este paso.
-                           //dubilluz 14.07.2009
+                           //  14.07.2009
                            /*if(valor)
                            {
                               VariablesCaja.vRutaImpresora =ruta;
@@ -5335,7 +4833,7 @@ else{
                            vPrint.startPrintService_DU();
                            log.info("..start ruta Archivo: "+ ruta);
                            vPrintArchivo.startPrintService_DU();
-                           //JCHAVEZ 03.07.2009.sn
+                           //  03.07.2009.sn
                            log.info("Seteando el Color ...");
                            Date fechaJava = new Date();
                            log.info("fecha : " +fechaJava);
@@ -5352,7 +4850,7 @@ else{
                                vPrint.printLine((char)27+"5",true ); //negro
                                vPrintArchivo.printLine((char)27+"5",true ); //negro
                            }
-                          //JCHAVEZ 03.07.2009.en
+                          //  03.07.2009.en
                            
                                log.info("imprime datos de cabecera de impresion");
                                vPrint.printLine(FarmaPRNUtility.llenarBlancos(1)+ "----------Anulación de Pedido----------",true);
@@ -5396,7 +4894,7 @@ else{
                              }                                              
                         */
                         
-                          //JCORTEZ 16.07.09 Se guarda fecha de anulacion por comprobantes
+                          //  16.07.09 Se guarda fecha de anulacion por comprobantes
                           DBCaja.actualizaFechaImpr(numpedido,""+myArray.get(8),"A");
                        log.info("Guardando fecha impresion Anulacion ..."+myArray.get(8));
                    }
@@ -5410,7 +4908,7 @@ else{
               * 
              FarmaUtility.enviaCorreoPorBD(FarmaVariables.vCodGrupoCia,
                                            FarmaVariables.vCodLocal,
-                                           "dubilluz",
+                                           " ",
                                            "Error de Impresión Ticket Anulado",
                                            "Error de Impresión",
                                            "Error al imprimir ticket Anulado :<br>"+
@@ -5444,7 +4942,7 @@ else{
     
     /**
      * Se valida ip de la maquina para la emision de ticket
-     * @author  JCORTEZ
+     * @author   
      * @since  09.06.09
      * */
     private static boolean  validaImpresioPorIP(String IP,String TipComp,JDialog pJDialog, Object pObjectFocus){
@@ -5460,7 +4958,7 @@ else{
             sql.printStackTrace();
             FarmaUtility.showMessage(pJDialog,"Ocurrio un error al cargar el reporte.\n"+sql.getMessage(),pObjectFocus);
             
-              //JMIRANDA 23/07/09 Envia Error al Imprimir a Email
+              //  23/07/09 Envia Error al Imprimir a Email
                 enviaErrorCorreoPorDB(sql.toString(),null);
           }
         return valor;
@@ -5470,7 +4968,7 @@ else{
     
     /**
        * Valida si existe impresora asociada a la IP desde donde se realizara el cobro
-       * @AUTHOR JCORTEZ
+       * @AUTHOR  
        * @SINCE 09.06.09
        */
     public static boolean existeIpImpresora(JDialog pDialog, Object pObjectFocus) {
@@ -5507,7 +5005,7 @@ else{
       {
         try
         {
-        //  String pTipoImp = DBCaja.obtieneTipoImprConsejo(); JCHAVEZ 03.07.2009 se comentó para obtener el tipo de impresora por IP
+        //  String pTipoImp = DBCaja.obtieneTipoImprConsejo();   03.07.2009 se comentó para obtener el tipo de impresora por IP
           int cantIntentosLectura = Integer.parseInt(DBCaja.obtieneCantIntentosLecturaImg().trim());
           for (int i = 0; i < servicio.length; i++)
           {
@@ -5523,7 +5021,7 @@ else{
               log.debug(" pNombreImpresora:"+ pNombreImpresora);
               log.debug(" pTipo:"+ pTipo);
                 
-              PrintConsejo.imprimirCupon(vCupon,impresora,pTipo,pCodCupon, cantIntentosLectura);//JCHAVEZ 03.07.2009 se reemplaza la variable pTipoImp por la constante VariablesPtoVenta.vTipoImpTermicaxIp
+              PrintConsejo.imprimirCupon(vCupon,impresora,pTipo,pCodCupon, cantIntentosLectura);//  03.07.2009 se reemplaza la variable pTipoImp por la constante VariablesPtoVenta.vTipoImpTermicaxIp
               FarmaUtility.showMessage(pDialogo, 
                                         "Se realizó la prueba de impresión a "+pNombreImpresora.trim()+
                                         " , recoja la impresión.", pObject);
@@ -5569,7 +5067,7 @@ else{
     }
     
     public static void enviaErrorCorreoPorDB(String message, String vCorrelativo)  {
-        //JMIRANDA 22/07/09 envia via email el error generado cuando no imprime 
+        //  22/07/09 envia via email el error generado cuando no imprime 
         FarmaUtility.enviaCorreoPorBD(FarmaVariables.vCodGrupoCia,
                                       FarmaVariables.vCodLocal,
                                       //ConstantsCaja.EMAIL_DESTINATARIO_ERROR_IMPRESION,
@@ -5588,7 +5086,7 @@ else{
     }
     
     public static void enviaErrorCorreoPorDB(Exception message, String vCorrelativo)  {
-        //JMIRANDA 22/07/09 envia via email el error generado cuando no imprime 
+        //  22/07/09 envia via email el error generado cuando no imprime 
         FarmaUtility.enviaCorreoPorBD(FarmaVariables.vCodGrupoCia,
                                       FarmaVariables.vCodLocal,
                                       //ConstantsCaja.EMAIL_DESTINATARIO_ERROR_IMPRESION,
@@ -5609,7 +5107,7 @@ else{
     
     /**
     * Se imprime la comanda al cobrar un pedido tipo delivery
-    * @AUTHOR JCORTEZ
+    * @AUTHOR  
     * @SINCE 07.08.09
     */
     public static void imprimeDatosDeliveryLocal(JDialog pDialogo,String NumPed)
@@ -5621,7 +5119,7 @@ else{
              if (!vIndImpre.equals("N"))
              { 
                String htmlDelivery = DBCaja.obtieneDatosDeliveryLocal(NumPed,FarmaVariables.vIPBD);
-               PrintConsejo.imprimirHtml(htmlDelivery,VariablesPtoVenta.vImpresoraActual,VariablesPtoVenta.vTipoImpTermicaxIp);//JCHAVEZ 03.07.2009 se reemplaza la variable pTipoImp por la constante VariablesPtoVenta.vTipoImpTermicaxIp
+               PrintConsejo.imprimirHtml(htmlDelivery,VariablesPtoVenta.vImpresoraActual,VariablesPtoVenta.vTipoImpTermicaxIp);//  03.07.2009 se reemplaza la variable pTipoImp por la constante VariablesPtoVenta.vTipoImpTermicaxIp
                //break;
              }
        }catch (SQLException sqlException)
@@ -5635,20 +5133,20 @@ else{
     
     /**
      * Se elimina productos regalo de encarte vigente dentro del pedido.
-     * @author JCORTEZ
+     * @author  
      * @since  13.08.2009
      */
     public static void liberaProdRegalo(String pNumPed,
                                              String pAccion,
-                                             String pIndEliminaRespaldo) throws SQLException{//ASOSA,13.07.2010 - agregue el throws y quit el try-catch para que no este cun try-catch dentro de otro
+                                             String pIndEliminaRespaldo) throws SQLException{// ,13.07.2010 - agregue el throws y quit el try-catch para que no este cun try-catch dentro de otro
         //try{
         
-            //JCORTEZ 13.08.09  Se elimina producto regalo
-            System.out.println("****************JCORTEZ********************");
+            //  13.08.09  Se elimina producto regalo
+            System.out.println("**************** ********************");
             System.out.println("pAccion-->"+pAccion);
             System.out.println("pIndEliminaRespaldo-->"+pIndEliminaRespaldo);
             //DBCaja.eliminaProdRegalo(pNumPed,pAccion,pIndEliminaRespaldo); antes
-            DBCaja.eliminaProdRegalo_02(pNumPed,pAccion,pIndEliminaRespaldo); //ASOSA, 13.07.2010
+            DBCaja.eliminaProdRegalo_02(pNumPed,pAccion,pIndEliminaRespaldo); // , 13.07.2010
             //return true;
         /*}catch (SQLException e){
             e.printStackTrace();
@@ -5660,7 +5158,7 @@ else{
              
      /**
       * Se imprime cupones regalo 
-      * @AUTHOR JCORTEZ
+      * @AUTHOR  
       * @SINCE 18.07.09
       */
      public static void imprimeCuponRegalo(JDialog pDialogo,String vCodeCupon,String Dni)
@@ -5670,13 +5168,13 @@ else{
          try
          {
            //String vIndExisteImpresora = DBCaja.obtieneNameImpConsejos();
-           //String pTipoImp = DBCaja.obtieneTipoImprConsejo(); JCHAVEZ 03.07.2009 se comentó para obtener el tipo de impresora por IP
+           //String pTipoImp = DBCaja.obtieneTipoImprConsejo();   03.07.2009 se comentó para obtener el tipo de impresora por IP
            int cantIntentosLectura = Integer.parseInt(DBCaja.obtieneCantIntentosLecturaImg().trim());
                String vCupon = DBCaja.obtieneImprCuponRegalo(FarmaVariables.vIPBD,vCodeCupon,Dni);
                if(!vCupon.equals("N"))
                {
                    log.debug("cupon regalo a imprimir : "+vCupon);
-                   PrintConsejo.imprimirCupon(vCupon,VariablesPtoVenta.vImpresoraActual,VariablesPtoVenta.vTipoImpTermicaxIp,vCodeCupon, cantIntentosLectura);//JCHAVEZ 03.07.2009 se reemplaza la variable pTipoImp por la constante VariablesPtoVenta.vTipoImpTermicaxIp
+                   PrintConsejo.imprimirCupon(vCupon,VariablesPtoVenta.vImpresoraActual,VariablesPtoVenta.vTipoImpTermicaxIp,vCodeCupon, cantIntentosLectura);//  03.07.2009 se reemplaza la variable pTipoImp por la constante VariablesPtoVenta.vTipoImpTermicaxIp
                    log.debug("despues a imprimir");
                    // -- Proceso autonomo que tiene COMMIT
                    DBCaja.cambiaIndImpresionCupon(VariablesCaja.vNumPedVta,vCodeCupon);
@@ -5694,7 +5192,7 @@ else{
     
     /**
      * Se obtiene mensaje de ahorro en comprobantes 
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE  03.09.2009
      * */
    public static String obtenerMensaAhorro(JDialog pDialogo,String indFid){
@@ -5716,7 +5214,7 @@ else{
     
     /**
      * Se valida guias pendientes
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE  27.10.2009
      */
     public static boolean validaGuiasPendAlmc()
@@ -5738,7 +5236,7 @@ else{
   
     /**
     * Se imprime VOUCHER para diferencias
-    * @author JCHAVEZ
+    * @author  
     * @since 23.11.09
     */     
     public static void imprimeVoucherDiferencias(JDialog pDialogo)
@@ -5751,7 +5249,7 @@ else{
        {
          //String vIndExisteImpresora = DBCaja.obtieneNameImpConsejos();
          
-          //  String pTipoImp = DBCaja.obtieneTipoImprConsejo(); JCHAVEZ 03.07.2009 se comentó para obtener el tipo de impresora por IP
+          //  String pTipoImp = DBCaja.obtieneTipoImprConsejo();   03.07.2009 se comentó para obtener el tipo de impresora por IP
          
          //for (int i = 0; i < servicio.length; i++)
          //{
@@ -5788,7 +5286,7 @@ else{
     }  
     /**
      * Se valida guias pendientes de confirmar de locales
-     * @AUTHOR JMIRANDA
+     * @AUTHOR  
      * @SINCE  15.12.2009
      */
     public static boolean validaGuiasXConfirmarLocal()
@@ -5861,7 +5359,7 @@ else{
         {
           //String vIndExisteImpresora = DBCaja.obtieneNameImpConsejos();
           
-          //  String pTipoImp = DBCaja.obtieneTipoImprConsejo(); JCHAVEZ 03.07.2009 se comentó para obtener el tipo de impresora por IP         
+          //  String pTipoImp = DBCaja.obtieneTipoImprConsejo();   03.07.2009 se comentó para obtener el tipo de impresora por IP         
           
           int cantIntentosLectura = Integer.parseInt(DBCaja.obtieneCantIntentosLecturaImg().trim());
           
@@ -5891,7 +5389,7 @@ else{
             if (flag==true)
             
            PrintConsejo.imprimirCuponStick(vCupon,VariablesPtoVenta.vImpresoraActual,VariablesPtoVenta.vTipoImpTermicaxIp,pCodCupon, cantIntentosLectura,
-                                             pCantidadFilas);//JCHAVEZ 03.07.2009 se reemplaza la variable pTipoImp por la constante VariablesPtoVenta.vTipoImpTermicaxIp
+                                             pCantidadFilas);//  03.07.2009 se reemplaza la variable pTipoImp por la constante VariablesPtoVenta.vTipoImpTermicaxIp
               //break;
             //}
           //}

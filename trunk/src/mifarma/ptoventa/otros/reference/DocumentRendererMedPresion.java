@@ -248,7 +248,7 @@ public class DocumentRendererMedPresion implements Printable {
       double paperWidth  =  79/25.4;//3.11;//8.26; mm
       //Se modifico para el tamaño de la imagen que se imprimira en la impresora
       //ticket
-      //dVeliz 03.09.2008
+      //  03.09.2008
       //double paperHeight = 100/25.4; // mm
       double paperHeight = 150/25.4; // mm
       

@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * Nombre de la Aplicación : VariablesCampana.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * DVELIZ      19.08.2008   Creación<br>
+ *        19.08.2008   Creación<br>
  * <br>
  * @author Daniel Fernando Veliz La Rosa<br>
  * @version 1.0<br>

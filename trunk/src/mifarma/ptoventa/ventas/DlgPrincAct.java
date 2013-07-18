@@ -38,7 +38,7 @@ import mifarma.ptoventa.ventas.reference.DBVentas;
  * Nombre de la Aplicación : DlgPrincAct.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * ASOSA      29.09.2010   Creación
+ *        29.09.2010   Creación
  * @author Alfredo Sosa Dordán<br>
  * @version 1.0<br>
  *

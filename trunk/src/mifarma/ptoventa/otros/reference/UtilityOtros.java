@@ -4,8 +4,8 @@ import java.util.regex.Pattern;
 
 import mifarma.common.FarmaTableModel;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -15,7 +15,7 @@ import org.apache.commons.logging.LogFactory;
 * Nombre de la Aplicación : UtilityOtros.java<br>
 * <br>
 * Histórico de Creación/Modificación<br>
-* JCALLO      24.10.2008   Creación<br>
+*        24.10.2008   Creación<br>
 * <br>
 * @author Edgar Rios Navarro<br>
 * @version 1.0<br>
@@ -24,11 +24,11 @@ import org.apache.commons.logging.LogFactory;
 
 public class UtilityOtros {
 	
-	private static final Log log = LogFactory.getLog(UtilityOtros.class);
+	private static final Logger log = LoggerFactory.getLogger(UtilityOtros.class);
 	
 	/**
      * Metodo encargado de validar formato de correo.
-     *@autor jcallo
+     *@autor  
      *@since 02.10.2008
      */
     public static boolean validarEmail( String email ) { 
@@ -40,7 +40,7 @@ public class UtilityOtros {
     
     /**
      * Metodo encargado de validacion del documento de identificacion ( DNI, CARNE DE EXTRANJERIA)     * 
-     *@autor jcallo
+     *@autor  
      *@since 06.10.2008
      *@param String docIden , String valoresValidos
      */
@@ -67,7 +67,7 @@ public class UtilityOtros {
     
     /**
      * generar html del documento a imprimir 
-     *@autor jcallo
+     *@autor  
      *@since 06.10.2008
      *@param String CantItems , String ipServidor, FarmaTableModel farmaTableModel
      */

@@ -34,8 +34,8 @@ import mifarma.ptoventa.administracion.impresoras.reference.*;
 //import mifarma.ptoventa.caja.reference.ConstantsCaja;
 import mifarma.ptoventa.caja.reference.DBCaja;
 import mifarma.ptoventa.caja.reference.VariablesCaja;
-import oracle.jdeveloper.layout.XYConstraints;
-import oracle.jdeveloper.layout.XYLayout;
+ 
+ 
 
 import com.gs.mifarma.componentes.JLabelFunction;
 import com.gs.mifarma.componentes.JButtonLabel;
@@ -63,14 +63,14 @@ public class DlgCajasImpresoras extends JDialog {
 
 	JPanel pnlRelacion = new JPanel();
 
-	XYLayout xYLayout2 = new XYLayout();
+	 
 
 
 	JScrollPane scrDetalle = new JScrollPane();
 
 	JPanel pnlItems = new JPanel();
 
-	XYLayout xYLayout3 = new XYLayout();
+	 
 
 	JButton btnDetalle = new JButton();
 
@@ -132,7 +132,7 @@ public class DlgCajasImpresoras extends JDialog {
 		scrListaCajas.setBounds(new Rectangle(10, 255, 635, 10));
 		scrListaCajas.setBackground(new Color(255, 130, 14));
 		pnlRelacion.setBackground(new Color(255, 130, 14));
-		pnlRelacion.setLayout(xYLayout2);
+		pnlRelacion. setLayout(null);
 		pnlRelacion.setFont(new Font("SansSerif", 0, 11));
 		pnlRelacion.setBounds(new Rectangle(10, 245, 635, 10));
 		scrDetalle.setFont(new Font("SansSerif", 0, 11));
@@ -140,7 +140,7 @@ public class DlgCajasImpresoras extends JDialog {
 		scrDetalle.setBackground(new Color(255, 130, 14));
 		pnlItems.setBackground(new Color(255, 130, 14));
 		pnlItems.setFont(new Font("SansSerif", 0, 11));
-		pnlItems.setLayout(xYLayout3);
+		pnlItems. setLayout(null);
 		pnlItems.setBounds(new Rectangle(10, 10, 635, 25));
 		btnDetalle.setText("Lista de Impresoras");
 		btnDetalle.setFont(new Font("SansSerif", 1, 11));
@@ -197,11 +197,11 @@ public class DlgCajasImpresoras extends JDialog {
         jContentPane.add(lblEnter, null);
         scrListaCajas.getViewport().add(tblListaCajas, null);
         jContentPane.add(scrListaCajas, null);
-        pnlRelacion.add(btnRelacionCajas, new XYConstraints(5, 5, 115, 15));
+        pnlRelacion.add(btnRelacionCajas);
         jContentPane.add(pnlRelacion, null);
         scrDetalle.getViewport().add(tblDetalle, null);
         jContentPane.add(scrDetalle, null);
-        pnlItems.add(btnDetalle, new XYConstraints(10, 5, 165, 15));
+        pnlItems.add(btnDetalle);
         jContentPane.add(pnlItems, null);
         jContentPane.add(jLabel3, null);
         jContentPane.add(lblEsc, null);

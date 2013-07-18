@@ -36,7 +36,7 @@ import mifarma.ptoventa.inventariodiario.reference.*;
 * Nombre de la Aplicación : DlgListaTrabajadores.java<br>
 * <br>
 * Histórico de Creación/Modificación<br>
-* DUBILLUZ     15.06.2009   Creación<br>
+*       15.06.2009   Creación<br>
 * <br>
 * @author Diego Ubilluz Carrillo<br>
 * @version 1.0<br>

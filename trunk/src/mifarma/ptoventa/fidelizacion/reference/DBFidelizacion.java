@@ -16,15 +16,15 @@ import mifarma.common.FarmaVariables;
 
 import mifarma.ptoventa.campAcumulada.reference.VariablesCampAcumulada;
 import mifarma.ptoventa.campana.reference.VariablesCampana;
-import mifarma.ptoventa.convenio.DlgDatosConvenio;
+ 
 import mifarma.ptoventa.ventas.reference.VariablesVentas;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DBFidelizacion {
     
-    private static final Log log = LogFactory.getLog(DBFidelizacion.class);
+    private static final Logger log = LoggerFactory.getLogger(DBFidelizacion.class);
 
     private static ArrayList parametros = new ArrayList();
     
@@ -34,7 +34,7 @@ public class DBFidelizacion {
     }
     
     /**
-     * @Author DVELIZ
+     * @Author  
      * @Since  26.09.08
      * @param pTableModel
      * @throws SQLException
@@ -54,7 +54,7 @@ public class DBFidelizacion {
         parametros = new ArrayList();
         parametros.add(vCodTarjeta);
         parametros.add(FarmaVariables.vCodLocal);
-        log.debug("jcallo: valida cliente local "+parametros);
+        log.debug(" : valida cliente local "+parametros);
         log.debug("invocando a  PTOVENTA_FIDELIZACION.FID_F_VAR_VALIDA_CLIENTE (?,?):"+parametros);
         return FarmaDBUtility.executeSQLStoredProcedureStr(
             "PTOVENTA_FIDELIZACION.FID_F_VAR_VALIDA_CLIENTE (?,?)", parametros);
@@ -133,7 +133,7 @@ public class DBFidelizacion {
     
     /**
        * Obtiene las campañas que tiene asociado la tarjeta
-       * @author Dubilluz 
+       * @author   
        * @param pArreglo
        * @param pNumTarjeta
        * @throws SQLException
@@ -153,7 +153,7 @@ public class DBFidelizacion {
     
     /**
      * Valida si la tarjeta tiene asociado al DNI ingresado
-     * @author DUBILLUZ
+     * @author  
      * @param pDni
      * @param pTarjeta
      * @return
@@ -285,7 +285,7 @@ public class DBFidelizacion {
     
     /**
        * Inserta en la tabla FID_TARJETA_PEDIDO 
-       * @Author DVELIZ
+       * @Author  
        * @since 02.10.08
        * @param pNumPed
        * @throws SQLException
@@ -300,9 +300,9 @@ public class DBFidelizacion {
 //        parametros.add(VariablesFidelizacion.vDniCliente);
 //        parametros.add(new Double(FarmaUtility.getDecimalNumber(VariablesVentas.vVal_Dcto_Ped)));
 //        parametros.add(FarmaVariables.vIdUsu);
-//        //dubilluz - 21.05.2012
+//        //  - 21.05.2012
 //
-////        // dubilluz 21.05.2012
+////        //   21.05.2012
 ////        if(VariablesFidelizacion.vSIN_COMISION_X_DNI)
 ////          parametros.add(FarmaConstants.INDICADOR_N);
 ////        else
@@ -325,7 +325,7 @@ public class DBFidelizacion {
     
     /**
            * Inserta en la tabla FID_TARJETA_PEDIDO 
-           * @Author DVELIZ
+           * @Author  
            * @since 02.10.08
            * @param pNumPed
            * @throws SQLException
@@ -388,7 +388,7 @@ public class DBFidelizacion {
     
     /**
        * Obtiene parametro de validacion de longitud de doc de identificacion
-       * @Author JCALLO
+       * @Author  
        * @since 06.10.2008
        * @throws SQLException
        */
@@ -402,7 +402,7 @@ public class DBFidelizacion {
 
     /**
      * Metodo encargado de obtener si la tarjeta es valido y disponible para ser usado
-     * @Author JCALLO
+     * @Author  
      * @since  18.12.2008
      * @param cadena
      * @return
@@ -423,7 +423,7 @@ public class DBFidelizacion {
    /**
     * Metodo encargado de obtener el nuevo codigo ean de una nueva tarjeta de
     * fidelizacion creada en local.
-    * @author   dveliz
+    * @author    
     * @since    13.02.2009
     */
     public static String generaNuevaTarjetaFidelizacion(String vConcatenado) throws SQLException{
@@ -440,7 +440,7 @@ public class DBFidelizacion {
     /**
      * Metodo encargado inserta en matriz una nueva tarjeta de
      * fidelizacion creada en local.
-     * @author   dveliz
+     * @author    
      * @since    14.02.2009
      */
      public static void insertarNuevaTarjetaFidelizacionMatriz(
@@ -514,8 +514,8 @@ public class DBFidelizacion {
     
     /**
      * Obtiene todas la campañas automaticas asociadas a la tarjetas de fidelizacion de acuerdo al cliente
-     * @author JCALLO
-     * @since JCALLO
+     * @author  
+     * @since  
      * @param pNumTarjeta
      * @throws SQLException
      */
@@ -553,7 +553,7 @@ public class DBFidelizacion {
    
    /**
      * Metodo que verifica si el DNI esta en la Lista NEGRA
-     * @author DUBILLUZ
+     * @author  
      * @since  25.05.2009
      * @param  pCodTarjeta
      * @return
@@ -581,7 +581,7 @@ public class DBFidelizacion {
   
   /**
      * Retorna el ahorro acumulado del DNI segun periodo
-     * @author DUBILLUZ
+     * @author  
      * @since  28.05.2009
      * @param  pDNI
      * @return
@@ -600,7 +600,7 @@ public class DBFidelizacion {
   
   /**
      * Retorna el maximo ahorro x DNI segun Periodo
-     * @author DUBILLUZ
+     * @author  
      * @since  28.05.2009
      * @return
      * @throws SQLException
@@ -639,7 +639,7 @@ public class DBFidelizacion {
                                                                   parametros);
     }
     
-    //JCORTEZ 02.07.09
+    //  02.07.09
     public static void buscarTarjetasDni(ArrayList array,
                                           String pDni)throws SQLException{      
         parametros = new ArrayList();
@@ -650,7 +650,7 @@ public class DBFidelizacion {
                                     
     }
     /**
-     * @author DUBILLUZ 03.10.2009
+     * @author   03.10.2009
      * @param pNumPed
      * @param pRuc
      * @return
@@ -674,7 +674,7 @@ public class DBFidelizacion {
     
     /**
      * Se obtiene mensaje de confirmacion
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE 06.10.09
      * */   
     public static String getMsg() throws SQLException {
@@ -686,7 +686,7 @@ public class DBFidelizacion {
 
     /**
      * Se envia correo de confirmaciony se crea o actualiza cliente
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE 06.10.09
      * */   
     public static void enviaCorreoConfirmacion(String DescDoc,String NumDoc,String Nomcli,String FecNac ,String pCodTarjeta) throws SQLException {
@@ -707,7 +707,7 @@ public class DBFidelizacion {
 
     /**
      * Se obtiene rol confirmacion
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE 06.10.09
      * */   
     public static String obtieneRolConfirmacin() throws SQLException {
@@ -718,7 +718,7 @@ public class DBFidelizacion {
     }
     
     /**
-     * @author DUbilluz
+     * @author  
      * @return
      * @throws SQLException
      */
@@ -728,7 +728,7 @@ public class DBFidelizacion {
     }
 
     /**
-     * @author dubilluz
+     * @author  
      * @return
      * @throws SQLException
      */
@@ -739,7 +739,7 @@ public class DBFidelizacion {
     
         
     /**
-     * @author dubilluz
+     * @author  
      * @since  20.10.2009
      * @return
      * @throws SQLException
@@ -778,7 +778,7 @@ public class DBFidelizacion {
     
     /**
      * Carga de Las formas de Pago de campana
-     * 09.06.2011 - DUbilluz
+     * 09.06.2011 -  
      * @param array
      * @throws SQLException
      */
@@ -794,7 +794,7 @@ public class DBFidelizacion {
     }
     
     /**
-     * Dubilluz - 17/06/2011 
+     *   - 17/06/2011 
      * @param cCodCampana
      * @return
      * @throws SQLException
@@ -895,7 +895,7 @@ public class DBFidelizacion {
     }
     
     /**
-     * dubilluz 17.10.2011
+     *   17.10.2011
      * @param pCodCampania
      * @return
      * @throws SQLException
@@ -912,7 +912,7 @@ public class DBFidelizacion {
     }
 
     /**
-     * dubilluz  06.12.2011
+     *    06.12.2011
      * @return
      * @throws SQLException
      */
@@ -926,7 +926,7 @@ public class DBFidelizacion {
     }     
     
     /**
-     * dubilluz 06.12.2011
+     *   06.12.2011
      * @param pCodMedico
      * @return
      * @throws SQLException
@@ -942,7 +942,7 @@ public class DBFidelizacion {
     }
 
     /**
-     * Dubilluz 06.12.2011
+     *   06.12.2011
      * @param pNumTarjeta
      * @param pCodMedico
      * @return
@@ -959,7 +959,7 @@ public class DBFidelizacion {
     }    
     
     
-// dubilluz 01.06.2012 
+//   01.06.2012 
     public static double getMaximoAhorroDNI_NEW(String pDni,String pTarjeta)throws SQLException{
         parametros = new ArrayList();
         parametros.add(FarmaVariables.vCodGrupoCia);
@@ -972,7 +972,7 @@ public class DBFidelizacion {
                                                                 parametros);
     }
 
-    // dubilluz 01.06.2012 
+    //   01.06.2012 
     public static void getCampTarjetaEspecial(ArrayList listaCamp,String pDni,String pTarjeta)throws SQLException{
         parametros = new ArrayList();
         parametros.add(FarmaVariables.vCodGrupoCia);
@@ -986,7 +986,7 @@ public class DBFidelizacion {
 
 /**
      * Obtiene Datos DNI 
-     * @author dubilluz
+     * @author  
      * @since  2012.05.18
      * @param pDni
      * @return
@@ -1012,7 +1012,7 @@ public class DBFidelizacion {
     
     /**
      * Obtiene Datos DNI 
-     * @author dubilluz
+     * @author  
      * @since  2012.05.18
      * @param pDni
      * @return

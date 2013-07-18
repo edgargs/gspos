@@ -12,7 +12,7 @@ import mifarma.ptoventa.ventas.reference.VariablesVentas;
  * Nombre de la Aplicación : VariablesFidelizacion.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * DVELIZ      26.09.2008   Creación<br>
+ *        26.09.2008   Creación<br>
  * <br>
  * @author Daniel Fernando Veliz La Rosa<br>
  * @version 1.0<br>
@@ -49,12 +49,12 @@ public class VariablesFidelizacion {
     
     /**
      * Variables auxiliares de fidelizacion
-     * @author dubilluz
+     * @author  
      * @since  29.09.2008
      */
     public static String vNumTarjeta = "";
     
-    //ArrayList reemplazado con List JCALLO 03/03/2009
+    //ArrayList reemplazado con List   03/03/2009
     public static List vListCampañasFidelizacion = new ArrayList();   
     
     public static String vIndAgregoDNI = "";
@@ -62,7 +62,7 @@ public class VariablesFidelizacion {
     
     /**
      * Variable agregada para la impresion del nombre en boleta
-     * @author dveliz
+     * @author  
      * @since  02.10.2008
      */
      
@@ -73,7 +73,7 @@ public class VariablesFidelizacion {
    
     /**
      * Variable de parametro de validacion de DOC de IDENTIFICACION
-     * @author JCALLO
+     * @author  
      * @since  06.10.2008
      */
      public static String vDocValidos = "";
@@ -82,7 +82,7 @@ public class VariablesFidelizacion {
     /**
      * Bloqueo de USO descuento para DNI Anulados
      * Esta variable es para ver si da o no da Descuento de Campañas
-     * @author DUBILLUZ
+     * @author  
      * @since  25.05.2009 
      */
     public static boolean vDNI_Anulado = false;
@@ -96,11 +96,11 @@ public class VariablesFidelizacion {
     public static boolean vRecalculaAhorroPedido = false;
     
     
-    //JCORTEZ 02.07.09 se obtiene datos por DNI
+    //  02.07.09 se obtiene datos por DNI
      public static ArrayList  auxDataCli    = new ArrayList();
     public static String NumDniAux = "";
     
-    //JCORTEZ 05.10.09 Se guarda tipo y num_doc
+    //  05.10.09 Se guarda tipo y num_doc
      public static String Tip_doc = "";
     public static String Desc_Tip_doc = "";
     public static String Num_Doc = "";
@@ -114,7 +114,7 @@ public class VariablesFidelizacion {
     public static String vCampanaSinFidelizar;
     
     // Formas de Pago para el uso de Campañas
-    //DUBILLUZ - 09.06.2011
+    //  - 09.06.2011
     public static String vIndUsoEfectivo  = "NULL";
     public static String vIndUsoTarjeta   = "NULL";
     public static String vCodFPagoTarjeta = "NULL";
@@ -124,7 +124,7 @@ public class VariablesFidelizacion {
     
     public static String vNumTarjetaCreditoDebito_Campana = "";
     public static String tmp_NumTarjeta_unica_Campana = "";
-    //dubilluz 07.12.2011
+    //  07.12.2011
     public static String vColegioMedico = "";
     public static boolean vSIN_COMISION_X_DNI = false;
 
@@ -145,7 +145,7 @@ public class VariablesFidelizacion {
     
     public void limpiaVariables(){
         //SE LIMPIAN LAS VARABLES DE FIDELIZACION
-        //29.09.2008 DUBILLUZ
+        //29.09.2008  
         VariablesFidelizacion.vNumTarjeta = "";
         VariablesFidelizacion.vNomCliente = "";
         VariablesFidelizacion.vApeMatCliente = "";
@@ -167,7 +167,7 @@ public class VariablesFidelizacion {
         VariablesVentas.vMensCuponIngre = "";
         
         //Limpia Variables de Fidelizacion de FORMA DE PAGO
-        //dubilluz 09.06.2011
+        //  09.06.2011
         VariablesFidelizacion.vIndUsoEfectivo  = "NULL";
         VariablesFidelizacion.vIndUsoTarjeta   = "NULL";
         VariablesFidelizacion.vCodFPagoTarjeta = "NULL";

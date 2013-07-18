@@ -31,10 +31,10 @@ public class VariablesOtros
     
     public static String vMensajeMiFarmaImpresion = " mensaje MIFARMA";
     
-    // JCALLO doc validos de identificacion
+    //   doc validos de identificacion
     public static String vDocValidos = "";
     
-    // JCALLO rango de valores validos de la MP
+    //   rango de valores validos de la MP
     public static String vValMPValidos = "";
     
     public static boolean vIndExisteCliente = false;
@@ -42,12 +42,12 @@ public class VariablesOtros
     public static ArrayList     vDataCliente    = new ArrayList();
     
     public static String        vDniCliente     = "";
-    public static String        vDniCliente_bk     = "";//JCHAVEZ 06102009
+    public static String        vDniCliente_bk     = "";//  06102009
     public static String        vApePatCliente  = "";
     public static String        vApeMatCliente  = "";
     public static String        vNomCliente     = "";    
     public static String        vFecNacimiento  = "";
-    public static String        vFecNacimiento_bk     = "";//JCHAVEZ 06102009
+    public static String        vFecNacimiento_bk     = "";//  06102009
     public static String        vSexo           = "";
     public static String        vDireccion      = "";
     public static String        vTelefono       = "";
@@ -66,11 +66,11 @@ public class VariablesOtros
     public static boolean       vSexoExists;
     public static boolean       vFlagMandatory;
     
-    //jcallo 27.10.2008 variables de medida de presion
+    //  27.10.2008 variables de medida de presion
     public static String        vMaxSistolica    = "";
     public static String        vMinDiastolica    = "";
     
-  //jcallo 27.10.2008 variables de medida de presion
+  //  27.10.2008 variables de medida de presion
     public static String        vFecIni    = "";
     public static String        vFecFin    = "";
     

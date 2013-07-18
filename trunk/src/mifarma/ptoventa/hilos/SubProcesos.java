@@ -79,7 +79,7 @@ public class SubProcesos extends Thread {
                    if(pNombre_2.trim().toUpperCase().equalsIgnoreCase("CARGA_IMP_TERMICA")){
                        String vIndImpre = DBCaja.obtieneIndImpresion(); 
                        if(!FarmaVariables.vEconoFar_Matriz)  {
-                           // lapaz dubilluz 17.09.2010
+                           // lapaz   17.09.2010
                            if (vIndImpre.trim().equalsIgnoreCase(FarmaConstants.INDICADOR_S)) {
                                UtilityVentas.carga_impresoras(null);
                                cargaIndImpresionRojoTicket();

@@ -52,14 +52,14 @@ public class VariablesPtoVenta
   
   /**
    * VAlor de NUmero de Dias sin Ventas para el reporte
-   * @author : dubilluz
+   * @author :  
    * @since  : 21.08.2007
    */
   public static String vNumeroDiasSinVentas = " "; 
 
   /**
    * Variable para ver si consultara el IndVerStockLocales
-   * @author dubilluz
+   * @author  
    * @since  05.11.2007
    */  
   public static String vRevisarIndStockLocales = "";
@@ -67,7 +67,7 @@ public class VariablesPtoVenta
   /**
    * Esta variables se utilizara para saber si se realiza una accion de una funcion
    * y esta no se pueda realizar mas de una vez.
-   * @author dubilluz
+   * @author  
    * @since  02.12.2008
    */
   public static boolean vEjecutaAccionTecla = false;
@@ -75,24 +75,24 @@ public class VariablesPtoVenta
   //MARCO FAJARDO cambio: lentitud impresora termica 08/04/09
    public static PrintService vImpresoraActual;
    
-    public static String vIndExisteImpresoraConsejo=""; //JCHAVEZ 01.07.2009.n variable para obtener la impresora termica 
-    public static String  vTipoImpTermicaxIp="";//JCHAVEZ 03.07.2009.n variable para obtener el tipo de impresora termica 
+    public static String vIndExisteImpresoraConsejo=""; //  01.07.2009.n variable para obtener la impresora termica 
+    public static String  vTipoImpTermicaxIp="";//  03.07.2009.n variable para obtener el tipo de impresora termica 
     
    public static boolean  vIndImprimeRojo=false;
    
-    //JMIRANDA 04/08/09
+    //  04/08/09
     public static String vDestEmailErrorCobro = "";
     public static String vDestEmailErrorAnulacion = "";
     public static String vDestEmailErrorImpresion = "";
     
-    //dubilluz 25/08/2009
+    //  25/08/2009
     public static String vIndVerStockLocales = "";
     
-    //JCHAVEZ 17122009
+    //  17122009
     public static String vIndRecepCiega="";
     public static String vFechaInicioPruebas="";
     
-    //JMIRANDA 19.01.2010
+    //  19.01.2010
     public static String vDireccionMatriz = "";
     public static String vDireccionCortaMatriz = "";
     public static boolean vIndDirMatriz = false;

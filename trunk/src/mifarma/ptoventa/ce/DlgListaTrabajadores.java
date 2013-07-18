@@ -43,7 +43,7 @@ import java.awt.event.KeyListener;
 * Nombre de la Aplicación : DlgListaTrabajadores.java<br>
 * <br>
 * Histórico de Creación/Modificación<br>
-* DUBILLUZ     22.11.2007   Creación<br>
+*       22.11.2007   Creación<br>
 * <br>
 * @author Diego Ubilluz Carrillo<br>
 * @version 1.0<br>

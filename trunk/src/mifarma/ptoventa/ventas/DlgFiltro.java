@@ -42,7 +42,7 @@ import mifarma.ptoventa.ventas.reference.VariablesVentas;
  * Nombre de la Aplicación : DlgFiltro.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JCORTEZ      17.04.2008   Creación<br>
+ *        17.04.2008   Creación<br>
  * <br>
  * @author Jorge Luis Cortez<br>
  * @version 1.0<br>

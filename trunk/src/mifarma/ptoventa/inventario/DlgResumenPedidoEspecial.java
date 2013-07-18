@@ -209,7 +209,7 @@ public class DlgResumenPedidoEspecial extends JDialog
     
   /**
    * metodo encargado de cargas el resumen de pedido especial
-   * @author jcallo
+   * @author  
    * @since  16.10.2008
    * **/
   private void cargarResumenPedidoEsp(){
@@ -295,7 +295,7 @@ public class DlgResumenPedidoEspecial extends JDialog
     	    indCierraVenta = false;
     		if(FarmaUtility.rptaConfirmDialog(this,"Esta seguro de quitar el producto del pedido ?")){
                 
-                        //Agregado por DVELIZ 18.10.08
+                        //Agregado por   18.10.08
                         borrarSeleccionListProducto(rowSel);   
                     
     			tableModel.deleteRow(rowSel);
@@ -332,7 +332,7 @@ public class DlgResumenPedidoEspecial extends JDialog
     	}
     }else if(e.getKeyCode() == KeyEvent.VK_F11)
     {
-    	//add jcallo validacion de que se especifique al menos un producto por pedido
+    	//add   validacion de que se especifique al menos un producto por pedido
         if(VariablesInventario.vArrayProductosEspeciales.size()<1){
             FarmaUtility.showMessage(this, 
                                      "Seleccione los productos del pedido. !",
@@ -366,7 +366,7 @@ public class DlgResumenPedidoEspecial extends JDialog
             if (!VariablesInventario.vIrResumen) {
                 // Esto solo lo debe de hacer cuando ha hecho la opcion de Modificar
                 // No cuando es un pedido Nuevo o esta en Ver Pedido.
-                // Dubilluz 19.10.2008
+                //   19.10.2008
                 // Validara que el pedido este en estado M si esta modificando el pedido.
                 if(VariablesInventario.vFModificar&&!VariablesInventario.vFNuevo)
                    if(!validaAccionModificacion())return;
@@ -526,7 +526,7 @@ public class DlgResumenPedidoEspecial extends JDialog
   
   /**
    * metodo que genera el pedido especial
-   * @author jcallo 
+   * @author   
    * @since  16.10.2008
    * */
   private void generaPedido(){
@@ -569,7 +569,7 @@ public class DlgResumenPedidoEspecial extends JDialog
   /**
    * Se validara que la cantidad de items ingresados no sean mayores del 
    * parametrizado para el local
-   * @author dubilluz
+   * @author  
    * @since  22.09.2008
    */
   private boolean validaItemPedEspecial(int pTipoValidacion){

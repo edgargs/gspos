@@ -276,7 +276,7 @@ public class DlgDatosImpresoras extends JDialog {
 	private void this_windowOpened(WindowEvent e) {
 		FarmaUtility.centrarVentana(this);
 		FarmaUtility.moveFocus(txtDescImpresora);
-        //JCORTEZ 14.03.09 solo para tipo ticket no se podra modificar la cola de impresion
+        //  14.03.09 solo para tipo ticket no se podra modificar la cola de impresion
        /* if (VariablesImpresoras.vTipoComp.trim().equalsIgnoreCase(ConstantsPtoVenta.TIP_COMP_TICKET)){//tipo ticket solamente
             txtColaImpresion.setEditable(false);
         }else
@@ -338,7 +338,7 @@ public class DlgDatosImpresoras extends JDialog {
                 
                     boolean valor=true;
                     if (datosValidados()){
-                        //JCORTEZ 14.03.09 solo para tipo ticket no se podra modificar la cola de impresion con una que ya exista
+                        //  14.03.09 solo para tipo ticket no se podra modificar la cola de impresion con una que ya exista
                         if (VariablesImpresoras.vTipoComp.trim().equalsIgnoreCase(ConstantsPtoVenta.TIP_COMP_TICKET)){
                             if(!validaRuta()){
                                 FarmaUtility.showMessage(this,"No se puede asignar una ruta de impresion que ya existe.",txtColaImpresion);

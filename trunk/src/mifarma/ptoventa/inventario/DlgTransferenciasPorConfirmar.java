@@ -25,8 +25,8 @@ import mifarma.ptoventa.inventario.reference.ConstantsInventario;
 import mifarma.ptoventa.inventario.reference.DBInventario;
 import mifarma.ptoventa.inventario.reference.VariablesInventario;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.gs.mifarma.componentes.JButtonLabel;
 import com.gs.mifarma.componentes.JLabelFunction;
@@ -51,7 +51,7 @@ public class DlgTransferenciasPorConfirmar extends JDialog
 	/*                        DECLARACION PROPIEDADES                         */
 	/* ********************************************************************** */
 
-	private static final Log log = LogFactory.getLog(DlgTransferenciasPorConfirmar.class);
+	private static final Logger log = LoggerFactory.getLogger(DlgTransferenciasPorConfirmar.class);
 	
   Frame myParentFrame;
   FarmaTableModel tableModel; 
@@ -268,25 +268,25 @@ public class DlgTransferenciasPorConfirmar extends JDialog
 				log.debug("codLocalDestino:"+codLocalDestino+"***");
 				log.debug("numTransf:"+numTransf+"***");
 			        
-                                DBInventario.grabaInicioFinConfirmacionTransferencia(numTransf,"I","N");//JCHAVEZ 10122009 graba inicio de confimacion de transferencia en local origen
+                                DBInventario.grabaInicioFinConfirmacionTransferencia(numTransf,"I","N");//  10122009 graba inicio de confimacion de transferencia en local origen
 				DBInventario.confirmarTransferencia(numTransf);
-			        DBInventario.grabaInicioFinConfirmacionTransferencia(numTransf,"F","N");//JCHAVEZ 10122009 graba fin de confimacion de transferencia en local origen
+			        DBInventario.grabaInicioFinConfirmacionTransferencia(numTransf,"F","N");//  10122009 graba fin de confimacion de transferencia en local origen
 				
                                 FarmaUtility.aceptarTransaccion();
 				
 				if(tipoOrigenTransf.equals("01")){//si es TIPO LOCAL
-					log.debug("jcallo: verificando si hay linea con matriz");				
+					log.debug(" : verificando si hay linea con matriz");				
 					VariablesInventario.vIndLineaMatriz = FarmaUtility.getIndLineaOnLine(FarmaConstants.CONECTION_MATRIZ, FarmaConstants.INDICADOR_S);
-					log.debug("jcallo: VariablesInventario.vIndLineaMatriz:"+VariablesInventario.vIndLineaMatriz);
+					log.debug(" : VariablesInventario.vIndLineaMatriz:"+VariablesInventario.vIndLineaMatriz);
 					//si hay linea con matriz, se intentara realizar la trasnferencia a matriz y local destino.
 					//si ocurriera algun error, se realizara solo la confirmacion en local origen
 					if ( VariablesInventario.vIndLineaMatriz.equals(FarmaConstants.INDICADOR_S)){
-						log.debug("jcallo: tratando de realizar la transferencia a local destino y matriz con estado L");						
-					        DBInventario.grabaInicioFinConfirmacionTransferencia(numTransf,"I","S");//JCHAVEZ 10122009 graba inicio de confimacion remota de transferencia de local origen a matriz
+						log.debug(" : tratando de realizar la transferencia a local destino y matriz con estado L");						
+					        DBInventario.grabaInicioFinConfirmacionTransferencia(numTransf,"I","S");//  10122009 graba inicio de confimacion remota de transferencia de local origen a matriz
 						String resultado = DBInventario.realizarTransfDestino(	numTransf, 
 																				codLocalDestino, 
 																				FarmaConstants.INDICADOR_N).trim();
-					        DBInventario.grabaInicioFinConfirmacionTransferencia(numTransf,"F","S");//JCHAVEZ 10122009 graba fin de confimacion remota de transferencia de local origen a matriz
+					        DBInventario.grabaInicioFinConfirmacionTransferencia(numTransf,"F","S");//  10122009 graba fin de confimacion remota de transferencia de local origen a matriz
 						log.debug("despues de invocar a matriz RESPUESTA:"+resultado);
 						if(resultado.equals(FarmaConstants.INDICADOR_S)){
 						        

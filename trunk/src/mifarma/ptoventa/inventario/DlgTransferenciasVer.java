@@ -331,11 +331,11 @@ public class DlgTransferenciasVer extends JDialog
     boolean retorno=false;
     try
     {   
-        DBInventario.grabaInicioFinAnulaTransferencia(VariablesInventario.vNumNota,"I"); //JCHAVEZ 10122009 graba inicio de anulacion de transferencia
+        DBInventario.grabaInicioFinAnulaTransferencia(VariablesInventario.vNumNota,"I"); //  10122009 graba inicio de anulacion de transferencia
         if(VariablesInventario.vTipoNotaOrigen.equalsIgnoreCase(ConstantsPtoVenta.LISTA_MAESTRO_LOCAL)){
             if (vEstadoNota.equalsIgnoreCase("P") ){
                 DBInventario.anularTransferencia_02(VariablesInventario.vNumNota);
-                DBInventario.grabaInicioFinAnulaTransferencia(VariablesInventario.vNumNota,"F");//JCHAVEZ 10122009 graba fin de anulacion de transferencia
+                DBInventario.grabaInicioFinAnulaTransferencia(VariablesInventario.vNumNota,"F");//  10122009 graba fin de anulacion de transferencia
                 FarmaUtility.aceptarTransaccion();
                 retorno = true;
             }else if (vEstadoNota.equalsIgnoreCase("L") ){
@@ -345,7 +345,7 @@ public class DlgTransferenciasVer extends JDialog
                 if (vIndLinea.trim().equalsIgnoreCase(FarmaConstants.INDICADOR_S)) {                                  
                     DBInventario.anularTransferenciaMatriz(VariablesInventario.vNumNota);               
                     DBInventario.anularTransferencia_02(VariablesInventario.vNumNota);
-                    DBInventario.grabaInicioFinAnulaTransferencia(VariablesInventario.vNumNota,"F");//JCHAVEZ 10122009 graba fin de anulacion de transferencia
+                    DBInventario.grabaInicioFinAnulaTransferencia(VariablesInventario.vNumNota,"F");//  10122009 graba fin de anulacion de transferencia
                     FarmaUtility.aceptarTransaccionRemota(FarmaConstants.CONECTION_MATRIZ,FarmaConstants.INDICADOR_S);
                     FarmaUtility.aceptarTransaccion();
                     
@@ -360,7 +360,7 @@ public class DlgTransferenciasVer extends JDialog
             
             }else{
                 DBInventario.anularTransferencia_02(VariablesInventario.vNumNota);
-                DBInventario.grabaInicioFinAnulaTransferencia(VariablesInventario.vNumNota,"F");//JCHAVEZ 10122009 graba fin de anulacion de transferencia
+                DBInventario.grabaInicioFinAnulaTransferencia(VariablesInventario.vNumNota,"F");//  10122009 graba fin de anulacion de transferencia
                 FarmaUtility.aceptarTransaccion();
                 retorno = true;
             }        
@@ -370,9 +370,9 @@ public class DlgTransferenciasVer extends JDialog
       FarmaUtility.liberarTransaccion();
       if(sql.getErrorCode() == 20002)
         FarmaUtility.showMessage(this,"La Fracción Actual no permite anular esta Guia.\n"+sql,btnRelacionProductos);
-      else if (sql.getErrorCode() == 20000)//JCHAVEZ 27112009
+      else if (sql.getErrorCode() == 20000)//  27112009
         FarmaUtility.showMessage(this,"La transferencia ya ha sido aceptada por el local destino.\n"+sql,btnRelacionProductos);
-      else if (sql.getErrorCode() == 20003)//JCHAVEZ 27112009
+      else if (sql.getErrorCode() == 20003)//  27112009
           FarmaUtility.showMessage(this,"La existencia de productos congelado no permite anular esta Guia.\n"+sql,btnRelacionProductos);
       else
       {
@@ -430,13 +430,13 @@ public class DlgTransferenciasVer extends JDialog
                                            "Ha ocurrido un error al consultar estado.\n" +
                           e, btnRelacionProductos);
               }
-          } else if(vEstadoNota.equals("C")) //JCHAVEZ 27112009 SE COMENTO PARA ANULAR TRANSFERENCIAS, YA QUE SE CAMBIO LA TRANSFERENCIA A CONFIRMACION AUTOMÁTICA, DONDE EL ESTADO LO DEJA YA EN 'L'
+          } else if(vEstadoNota.equals("C")) //  27112009 SE COMENTO PARA ANULAR TRANSFERENCIAS, YA QUE SE CAMBIO LA TRANSFERENCIA A CONFIRMACION AUTOMÁTICA, DONDE EL ESTADO LO DEJA YA EN 'L'
           {
-              //JMIRANDA 26.10.2010
+              //  26.10.2010
           retorno = false;
           //FarmaUtility.showMessage(this,"Esta transferencia ha sido confirmada.",btnRelacionProductos);
           //FarmaUtility.showMessage(this,"Está transferencia no puede ser Anulada.",btnRelacionProductos);
-          } /*else if(vEstadoNota.equals("M") || vEstadoNota.equals("L"))  //JCHAVEZ 27112009 SE COMENTO PARA ANULAR TRANSFERENCIAS , YA QUE SE CAMBIO LA TRANSFERENCIA A CONFIRMACION AUTOMÁTICA, DONDE EL ESTADO LO DEJA YA EN 'L'
+          } /*else if(vEstadoNota.equals("M") || vEstadoNota.equals("L"))  //  27112009 SE COMENTO PARA ANULAR TRANSFERENCIAS , YA QUE SE CAMBIO LA TRANSFERENCIA A CONFIRMACION AUTOMÁTICA, DONDE EL ESTADO LO DEJA YA EN 'L'
           {
           retorno = false;
           FarmaUtility.showMessage(this,"Esta transferencia ha sido enviada al local destino.",btnRelacionProductos);
@@ -558,10 +558,10 @@ public class DlgTransferenciasVer extends JDialog
         //FarmaUtility.liberarTransaccion();
         //Imprimir Comprobantes
         VariablesInventario.vNumNotaEs = VariablesInventario.vNumNota;
-        DBInventario.grabaInicioFinGuiasTransferencia(VariablesInventario.vNumNotaEs,"I");//JCHAVEZ 10122009 registra fecha inicio de generar guias e imprimirlas  
+        DBInventario.grabaInicioFinGuiasTransferencia(VariablesInventario.vNumNotaEs,"I");//  10122009 registra fecha inicio de generar guias e imprimirlas  
         UtilityInventario.procesoImpresionComprobante(this, tblListaProductos);
-        DBInventario.grabaInicioFinGuiasTransferencia(VariablesInventario.vNumNotaEs,"F");//JCHAVEZ 10122009 registra fecha fin de generar guias e imprimirlas  
-        FarmaUtility.aceptarTransaccion();//JCHAVEZ 10122009   
+        DBInventario.grabaInicioFinGuiasTransferencia(VariablesInventario.vNumNotaEs,"F");//  10122009 registra fecha fin de generar guias e imprimirlas  
+        FarmaUtility.aceptarTransaccion();//  10122009   
         retorno = true;
       }/*catch(SQLException sql)
       {

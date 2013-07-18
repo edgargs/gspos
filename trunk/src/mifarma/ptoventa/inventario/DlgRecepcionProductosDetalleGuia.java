@@ -185,7 +185,7 @@ public class DlgRecepcionProductosDetalleGuia extends JDialog {
 		lblF9.setText("[ F9 ] Afecta por Producto");
 		lblF9.setBounds(new Rectangle(390, 350, 175, 20));
 		lblF2.setText("[ F2 ] Afecta Página");
-                  //JMIRANDA 14.12.09
+                  //  14.12.09
                   lblF2.setVisible(true);
 	          lblF9.setVisible(true);
 		lblF2.setBounds(new Rectangle(130, 350, 125, 20));
@@ -227,7 +227,7 @@ public class DlgRecepcionProductosDetalleGuia extends JDialog {
 	private void initialize() {
 		mifarma.common.FarmaVariables.vAceptar = false;
 		initTable();
-                inicializa();//JCHAVEZ 17122009  
+                inicializa();//  17122009  
 	}
 
 	// **************************************************************************
@@ -247,7 +247,7 @@ public class DlgRecepcionProductosDetalleGuia extends JDialog {
         
     private void inicializa(){
         
-        if (VariablesPtoVenta.vIndRecepCiega.equalsIgnoreCase("S")){// JCHAVEZ 1712009 si el indicador esta en "S" estaactiva la reccepcion ciega
+        if (VariablesPtoVenta.vIndRecepCiega.equalsIgnoreCase("S")){//   1712009 si el indicador esta en "S" estaactiva la reccepcion ciega
             //lblF2.setVisible(false);
             lblF9.setVisible(false);
         }
@@ -489,7 +489,7 @@ public class DlgRecepcionProductosDetalleGuia extends JDialog {
              //if (FarmaVariables.vAceptar) {
              VariablesRecepCiega.vNro_Recepcion = DBInventario.creaRecepEntrega();
              DBInventario.actualizaPagina();
-               //JMIRANDA 09.02.10
+               //  09.02.10
                //Cambio para asociar las entregas en la tabla lgt_recep_entrega solo si no esta activado la RecepCiega
                DBInventario.asociaRecepEntrega(VariablesRecepCiega.vNro_Recepcion);
                //ingresa 1 porque se ha seleccionado 1 detalle
@@ -540,7 +540,7 @@ public class DlgRecepcionProductosDetalleGuia extends JDialog {
               //if (FarmaVariables.vAceptar) {
               VariablesRecepCiega.vNro_Recepcion = DBInventario.creaRecepEntrega();
               DBInventario.actualizaPagina();
-                //JMIRANDA 09.02.10
+                //  09.02.10
                 //Cambio para asociar las entregas en la tabla lgt_recep_entrega solo si no esta activado la RecepCiega
                 DBInventario.asociaRecepEntrega(VariablesRecepCiega.vNro_Recepcion);
                 //ingresa 1 porque se ha seleccionado 1 detalle
@@ -579,7 +579,7 @@ public class DlgRecepcionProductosDetalleGuia extends JDialog {
         }
     
     private void funcionF2(){
-        if (VariablesPtoVenta.vIndRecepCiega.equalsIgnoreCase("N"))  {//JCHAVEZ 1712009 solo si la recepcion ciega no esta activa         
+        if (VariablesPtoVenta.vIndRecepCiega.equalsIgnoreCase("N"))  {//  1712009 solo si la recepcion ciega no esta activa         
             boolean flag = false;//----
             flag = validaTipos();
            //----
@@ -596,7 +596,7 @@ public class DlgRecepcionProductosDetalleGuia extends JDialog {
             }
             
         }else{
-            //JMIRANDA 18.03.2010 CON RECEP CIEGA ACTIVA
+            //  18.03.2010 CON RECEP CIEGA ACTIVA
             boolean flag2 = false;//----
             flag2 = validaTipos();
             if(!flag2){
@@ -659,7 +659,7 @@ public class DlgRecepcionProductosDetalleGuia extends JDialog {
     
     private void funcionF9(){
         // por producto
-                //JCHAVEZ 1712009 solo si la recepcion ciega no esta activa 
+                //  1712009 solo si la recepcion ciega no esta activa 
                 if (VariablesPtoVenta.vIndRecepCiega.equalsIgnoreCase("N"))  {
                     if(FarmaVariables.vEconoFar_Matriz)
                       FarmaUtility.showMessage(this,ConstantsPtoVenta.MENSAJE_MATRIZ,txtBuscar);
@@ -693,12 +693,12 @@ public class DlgRecepcionProductosDetalleGuia extends JDialog {
     }
     
     private void funcionEnter(){
-        if (VariablesPtoVenta.vIndRecepCiega.equalsIgnoreCase("N"))  {//JCHAVEZ 1712009 solo si la recepcion ciega no esta activa 
-            //JMIRANDA 14.12.09 SE INHABILITA PORQUE DEBE AFECTARSE TODA LA GUIA
+        if (VariablesPtoVenta.vIndRecepCiega.equalsIgnoreCase("N"))  {//  1712009 solo si la recepcion ciega no esta activa 
+            //  14.12.09 SE INHABILITA PORQUE DEBE AFECTARSE TODA LA GUIA
             mostrarIngresoCantidad();
         }
         else{
-            //JMIRANDA 18.03.2010 SI RECEP CIEGA HABILITADA APLICA A ZREG, ZTNL, UB_L
+            //  18.03.2010 SI RECEP CIEGA HABILITADA APLICA A ZREG, ZTNL, UB_L
             if(!validaTipos()){
                 //es valido Zreg
                 mostrarIngresoCantidad();
@@ -749,11 +749,11 @@ public class DlgRecepcionProductosDetalleGuia extends JDialog {
               //if (FarmaVariables.vAceptar) {
               //VariablesRecepCiega.vNro_Recepcion = DBInventario.creaRecepEntrega();
               DBInventario.actualizaPagina();
-                //JMIRANDA 09.02.10
+                //  09.02.10
                 //Cambio para asociar las entregas en la tabla lgt_recep_entrega solo si no esta activado la RecepCiega
                 DBInventario.asociaRecepEntrega(VariablesRecepCiega.vTran_NroRecepcion);
                 //ingresa 1 porque se ha seleccionado 1 detalle
-                //JMIRANDA 18.03.2010 SUMAR 1 A LA CANT OBTENIDA
+                //  18.03.2010 SUMAR 1 A LA CANT OBTENIDA
                 int vCantGuias = DBRecepCiega.getCantGuias(VariablesRecepCiega.vTran_NroRecepcion);
                 DBInventario.actualizaCantGuias(vCantGuias+1,VariablesRecepCiega.vTran_NroRecepcion);
               FarmaUtility.aceptarTransaccion();
@@ -800,11 +800,11 @@ public class DlgRecepcionProductosDetalleGuia extends JDialog {
               //if (FarmaVariables.vAceptar) {
               //VariablesRecepCiega.vNro_Recepcion = DBInventario.creaRecepEntrega();
               DBInventario.actualizaPagina();
-                //JMIRANDA 09.02.10
+                //  09.02.10
                 //Cambio para asociar las entregas en la tabla lgt_recep_entrega solo si no esta activado la RecepCiega
                 DBInventario.asociaRecepEntrega(VariablesRecepCiega.vTran_NroRecepcion);
                 //ingresa 1 porque se ha seleccionado 1 detalle
-                //JMIRANDA 18.03.2010 SUMAR 1 A LA CANT OBTENIDA
+                //  18.03.2010 SUMAR 1 A LA CANT OBTENIDA
                 int vCantGuias = DBRecepCiega.getCantGuias(VariablesRecepCiega.vTran_NroRecepcion);
                 DBInventario.actualizaCantGuias(vCantGuias+1,VariablesRecepCiega.vTran_NroRecepcion);
               FarmaUtility.aceptarTransaccion();

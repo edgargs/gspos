@@ -3,8 +3,8 @@ package mifarma.ptoventa.ce.reference;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 import mifarma.common.*;
@@ -30,7 +30,7 @@ import mifarma.ptoventa.reference.*;
 public class DBCajaElectronica
 {
 	
-	private static final Log log = LogFactory.getLog(DBCajaElectronica.class);
+	private static final Logger log = LoggerFactory.getLogger(DBCajaElectronica.class);
 
 	private static ArrayList parametros;
 
@@ -38,7 +38,7 @@ public class DBCajaElectronica
   {
   }
   
-  /******************************PAULO*********************************/
+  /****************************** *********************************/
   public static String agregaFormaPagoEntrega(String pSecMovCaja,
                                             String pCodFormaPago,
                                             String pCantVoucher,
@@ -337,7 +337,7 @@ public class DBCajaElectronica
     return FarmaDBUtility.executeSQLStoredProcedureStr("PTOVENTA_CE.CE_OBTIENE_VB_QF(?,?,?)",parametros); 
     }    
     
-  /******************************PAULO*********************************/
+  /****************************** *********************************/
 
   /*-----BEGIN ERIOS BLOCK-----*/
   //DlgCuadraturas
@@ -1001,7 +1001,7 @@ public class DBCajaElectronica
   /**
    * NUEVO
    * @Autor: Luis Reque
-   * @modify: ASOSA, 18.06.2010
+   * @modify:  , 18.06.2010
    * @Fecha: 20-03-2007
    * */
   public static void obtieneFormasPago(FarmaTableModel pTableModel) throws SQLException{
@@ -1010,11 +1010,11 @@ public class DBCajaElectronica
     parametros.add(FarmaVariables.vCodLocal);
     System.out.println("PARAMETROS FORMA PAGOOOOOOOOOOOO: "+parametros);
     //FarmaDBUtility.executeSQLStoredProcedure(pTableModel,"PTOVENTA_CE.CE_OBTIENE_FORMAS_PAGO(?,?)",parametros, false);
-      FarmaDBUtility.executeSQLStoredProcedure(pTableModel,"PTOVENTA_CE.CE_OBTIENE_FORMAS_PAGO_AS(?,?)",parametros, false);//ASOSA, 18.06.2010
+      FarmaDBUtility.executeSQLStoredProcedure(pTableModel,"PTOVENTA_CE.CE_OBTIENE_FORMAS_PAGO_AS(?,?)",parametros, false);// , 18.06.2010
   }
   
    /**Devuelve un listado de los pedidos del dia  para buscar desfasados
-   * @author: JCORTEZ
+   * @author:  
    * @since : 09/07/07
    */
    public static void getListaPedidosCompRangosCierre(ArrayList pArrayList, String vFechaHoy ) throws SQLException {
@@ -1028,7 +1028,7 @@ public class DBCajaElectronica
  	}
 
   /**Devuelve un listado de los productos virtuales del dia 
-   * @author: JCORTEZ
+   * @author:  
    * @since : 11/07/07
    */
    public static void getListaProductosVirtuales(ArrayList pArrayList, String vFechaHoy ) throws SQLException {
@@ -1051,7 +1051,7 @@ public class DBCajaElectronica
   }
   /**
    * Carga la lista de Trabajadores con el codigo de RRHH
-   * @author dubilluz
+   * @author  
    * @since  22.11.2007
    */
   public static void cargaListaTrabajadores(FarmaTableModel pTableModel, String pTipoMaestro) throws SQLException {
@@ -1072,7 +1072,7 @@ public class DBCajaElectronica
     
     /**
      * Verifica si la cuadratura tiene 
-     * @author dubilluz
+     * @author  
      * @since  01.12.2008
      * @param pCodCuadratura
      * @return
@@ -1088,7 +1088,7 @@ public class DBCajaElectronica
   
   /**
      * Obtiene el indicador de Ce Seguridad (PROSEGUR)
-     * @author DUBILLUZ
+     * @author  
      * @since  13.01.2009
      * @return
      * @throws SQLException
@@ -1105,7 +1105,7 @@ public class DBCajaElectronica
   
   /**
      * Agrega el Sobre a la forma de pago 
-     * @author DUBILLUZ
+     * @author  
      * @param pSecMovCaja
      * @param pSecFPago
      * @throws SQLException
@@ -1169,7 +1169,7 @@ public class DBCajaElectronica
     /**
      * Obtiene el indicador de Prosegur
      * @return
-     * @author DUBILLUZ
+     * @author  
      * @throws SQLException
      */
     public static String getIndProsegur()throws SQLException
@@ -1184,7 +1184,7 @@ public class DBCajaElectronica
     /**
      * Obtiene el indicador tipo Local
      * @return
-     * @author JCORTEZ
+     * @author  
      * @throws SQLException
      */
     public static String getTipoLocal() throws SQLException {
@@ -1197,7 +1197,7 @@ public class DBCajaElectronica
     /**
      * Obtiene el indicador de poder cambiar el combo de SOBRE de forma de entrega efectivo
      * @return String
-     * @author JCALLO
+     * @author  
      * @throws SQLException
      */
     public static String getIndChangeComboSobre()throws SQLException
@@ -1210,7 +1210,7 @@ public class DBCajaElectronica
     /**
      * Obtiene la cantidad de veces que puede modificar los sobres declarados por los cajeros
      * @return String
-     * @author JCALLO
+     * @author  
      * @throws SQLException
      */
     public static String getCantModificacionesSobre()throws SQLException
@@ -1223,7 +1223,7 @@ public class DBCajaElectronica
     /**
      * Obtiene la cantidad de veces que puede modificar los sobres declarados por los cajeros
      * @return String
-     * @author JCALLO
+     * @author  
      * @throws SQLException
      */
      public static String getCantSobresEliminados(String pFecCierreCaja, String pSecMovCaja)throws SQLException
@@ -1240,7 +1240,7 @@ public class DBCajaElectronica
     /**
      * Obtiene la cantidad de veces que puede modificar los sobres declarados por los cajeros
      * @return String
-     * @author JCALLO
+     * @author  
      * @throws SQLException
      */
      public static void enviarCorreoSobresModificados(String pFecCierreCaja, String pSecMovCaja,String TipoMensaje,String codSobre)throws SQLException
@@ -1259,7 +1259,7 @@ public class DBCajaElectronica
      
     /**
      * Se obtiene tipo de cambio deacuerdo a la fecha
-     * @AUTHOR JCORTEZ 
+     * @AUTHOR   
      * @SINCE  19.05.09
      * */     
      public static double getTipoCambio(String pDiaVenta) throws SQLException {
@@ -1272,7 +1272,7 @@ public class DBCajaElectronica
     /*****************************CAMBIO DE FORMA DE PAGO**************************************************/
      /**
       * Se obtiene detalle de venta para el cambio de formas de pago
-      * @AUTHOR JCORTEZ 
+      * @AUTHOR   
       * @SINCE  26.02.10
       * */     
       public static void cargaListaRegistroVentas(FarmaTableModel pTableModel,
@@ -1332,7 +1332,7 @@ public class DBCajaElectronica
      
      
     /** Listado de formas de pago por pedido
-     * @AUTHOR JCORTEZ 
+     * @AUTHOR   
      * @SINCE  26.02.10
      */
     public static void cargaListaFormasPago(FarmaTableModel pTableModel, 
@@ -1397,7 +1397,7 @@ public class DBCajaElectronica
     }
 
 /** Se guarda la nueva forma de pago
-     * @AUTHOR JCORTEZ 
+     * @AUTHOR   
      * @SINCE  26.02.10
      */
     public static void grabaFormaPagoPedidoBackup(String pCodFormaPago,
@@ -1412,7 +1412,7 @@ public class DBCajaElectronica
     }
     
     /** Se guarda la nueva forma de pago
-     * @AUTHOR JCORTEZ 
+     * @AUTHOR   
      * @SINCE  26.02.10
      */
 
@@ -1453,7 +1453,7 @@ public class DBCajaElectronica
     
     /**
      * Obtiene la informacion de la tarjeta seleccionada(a que forma de pago pertenece y que tipo de tarjeta es)
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE 01.03.2010
      */
     public static void obtenerInfoTarjeta(ArrayList pArrayList, String nrotarj)throws SQLException{
@@ -1466,7 +1466,7 @@ public class DBCajaElectronica
     
     
     /** Se valida montos efectivo y tarjeta segun lo declarado
-     * @AUTHOR JCORTEZ 
+     * @AUTHOR   
      * @SINCE  01.03.10
      */
     public static void validaMontoDeclarado(String pSecMovCajaCierre,
@@ -1483,7 +1483,7 @@ public class DBCajaElectronica
     
     /**
      * Obtiene indicador para habilitar cambio de forma de pago en cierre de turno
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE  01.03.10
      */
     public static String getIndCambioFormaPago()throws SQLException
@@ -1497,7 +1497,7 @@ public class DBCajaElectronica
     /*****************************PROCESO INGRESO SOBRES**************************************************/
     /**
        * Se obtiene si esta aprobado el sobre creado.
-       * @AUTHOR JCORTEZ
+       * @AUTHOR  
        * @SINCE  29.03.2010
        */
     public static String getSobreAprobado(String pCodigoSobre,
@@ -1514,7 +1514,7 @@ public class DBCajaElectronica
     
     /**
      * Se valida que el sobre no este asociado remito
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE  30.03.2010
      */
     public static String getExistSobreRemito(String diaCierre,
@@ -1532,7 +1532,7 @@ public class DBCajaElectronica
     
     /**
      * Se obtiene el indicador que determina si el local tiene o no la opcion de prosegur activa
-     * @author ASOSA
+     * @author  
      * @since 09.04.2010
      * @return
      * @throws SQLException
@@ -1547,7 +1547,7 @@ public class DBCajaElectronica
     
     /**
      * Lista los sobres de este local siempre y cuando se hallan aprobado y se halla hecho el cierre de dia por el QF
-     * @author ASOSA
+     * @author  
      * @since 09.04.2010
      * @param ftable
      * @param fecha
@@ -1565,7 +1565,7 @@ public class DBCajaElectronica
 
     /**
      * Agrega remitos actualizando con su codigo los sobres que contiene
-     * @author ASOSA
+     * @author  
      * @since 09.04.2010
      * @param numremi
      * @param list
@@ -1590,7 +1590,7 @@ public class DBCajaElectronica
             System.out.println("parametros agregaRemito_AS: "+parametros);
             FarmaDBUtility.executeSQLStoredProcedure(null,"PTOVENTA_CE.CE_P_AGREGA_REMITO(?,?,?,?,?)",parametros,false);
             */
-            //dubilluz 27.07.2010
+            //  27.07.2010
             System.out.println("parametros agregaRemito_DU: "+parametros);
             FarmaDBUtility.executeSQLStoredProcedure(null,"PTOVENTA_CE_REMITO.CE_P_AGREGA_REMITO_DU(?,?,?,?,?,?,?)",parametros,false);            
         }
@@ -1598,7 +1598,7 @@ public class DBCajaElectronica
     
     /**
      * Retorna el html que se imprimira en el voucher del remito
-     * @author ASOSA
+     * @author  
      * @since 09.04.2010
      * @param codremi
      * @return
@@ -1612,13 +1612,13 @@ public class DBCajaElectronica
         parametros.add(FarmaVariables.vIPBD);
         System.out.println("parametros getHTML_VOUCHER_REMITO: "+parametros);
         //return FarmaDBUtility.executeSQLStoredProcedureStr("PTOVENTA_CE.CE_F_HTML_VOUCHER_REMITO(?,?,?,?)",parametros);
-        //dubilluz 27.07.2010 NUEVO FORMATO
+        //  27.07.2010 NUEVO FORMATO
         return FarmaDBUtility.executeSQLStoredProcedureStr("PTOVENTA_CE_REMITO.CE_F_HTML_VOUCHER_REMITO_DU(?,?,?,?)",parametros);
     }
     
     /**
      * graba el historial de remito
-     * @author ASOSA
+     * @author  
      * @since 22.04.2010
      * @param codremi
      */
@@ -1629,14 +1629,14 @@ public class DBCajaElectronica
         parametros.add(codremi.trim());
         parametros.add(FarmaVariables.vIdUsu);
         System.out.println("parametros saveHistorialRemito: "+parametros);
-        //dubilluz 27.07.2010
+        //  27.07.2010
         //FarmaDBUtility.executeSQLStoredProcedure(null,"PTOVENTA_CE.CE_P_SAVE_HIST_REMI(?,?,?,?)",parametros,false);        
         FarmaDBUtility.executeSQLStoredProcedure(null,"PTOVENTA_CE_REMITO.CE_P_SAVE_HIST_REMI(?,?,?,?)",parametros,false);
     }
     
     /**
      * Lista de el detalle que se podra eliminar delas cuadraturas
-     * @author ASOSA
+     * @author  
      * @since 25/04/2010
      * @param pTableModel
      * @param pCodCuadratura
@@ -1658,7 +1658,7 @@ public class DBCajaElectronica
     
     /**
      * Lista el consolidado de efectivos rendidos por el QF
-     * @author ASOSA
+     * @author  
      * @since 25/04/2010
      * @param pTableModel
      * @param pFechaCierreDia
@@ -1676,7 +1676,7 @@ public class DBCajaElectronica
     
     /**
      * Valida que no halla diferencia entre rendido y recaudado
-     * @author ASOSA
+     * @author  
      * @since 25.04.2010
      * @param cierredia
      * @return
@@ -1693,7 +1693,7 @@ public class DBCajaElectronica
     
     /**
      * lISTA LAS CUADRATURAS CON SU MONTO DECLARADO CORRESPONDIENTE
-     * @author ASOSA
+     * @author  
      * @since 29.04.2010
      * @param pTableModel
      * @param pFechaCierre
@@ -1711,7 +1711,7 @@ public class DBCajaElectronica
     }
 /**
      * Si el indicador de concepto de sobres esta en 'S' y la forma de pago puede ponerse en sobres entonces devuelve 'S' sino 'N'
-     * @author ASOSA
+     * @author  
      * @since 31.05.2010
      * @param pCodigoFormaPago
      * @return
@@ -1770,7 +1770,7 @@ public class DBCajaElectronica
     
     /**
      * GRABA LOS SOBRES PARCIALES Y LOS APRUEBA(GRABA EN FORMA PAGO ENTREGA Y EN CE_SOBRE
-     * @author ASOSA
+     * @author  
      * @since 03.06.2010
      * @param secMovCaja
      * @throws SQLException
@@ -1787,7 +1787,7 @@ public class DBCajaElectronica
     
     /**
      * lISTO TODOS LOS SOBRES PARCIALES QUE NO HAN SIDO GRABADOS
-     * @author ASOSA
+     * @author  
      * @since 07.06.2010
      * @param pTableModel
      * @throws SQLException
@@ -1868,7 +1868,7 @@ public class DBCajaElectronica
     }
     
     
-    /***********************************ASOSA, 26.07.2010**********************************************/
+    /*********************************** , 26.07.2010**********************************************/
     
     public static void getSobreDeclarados_02(String pSecMovCaja,
                                           ArrayList pListaSobre,
@@ -1910,7 +1910,7 @@ public class DBCajaElectronica
     */
     /**
      * Solo obtiene sobre para reimpresion
-     * @author ASOSA
+     * @author  
      * @since 04.08.2010
      * @param pSecMovCaja
      * @param pCodSobre
@@ -1930,7 +1930,7 @@ public class DBCajaElectronica
     
     /**
      * Cambiar codigo de remito
-     * @author ASOSA
+     * @author  
      * @since 09.08.2010
      * @param codremold
      * @param codremnew
@@ -1950,7 +1950,7 @@ public class DBCajaElectronica
     
     /**
      * Solo obtiene sobre para reimpresion en forma de pago entrega
-     * @author ASOSA
+     * @author  
      * @since 04.08.2010
      * @param pSecMovCaja
      * @param pCodSobre
@@ -1970,7 +1970,7 @@ public class DBCajaElectronica
     
     /**
      * Aprueba sobres
-     * @author ASOSA
+     * @author  
      * @since 11.08.2010
      * @param pSecMovCaja
      * @throws SQLException
@@ -1990,7 +1990,7 @@ public class DBCajaElectronica
     
     /**
      * Registrar la cotizacion de competencia en el cierre de turno
-     * @author ASOSA
+     * @author  
      * @since 12.08.2010
      * @param pCodCuadratura
      * @param pNumeroSec
@@ -2019,7 +2019,7 @@ public class DBCajaElectronica
     
     /**
      * Lista los documentos para la cotizacion competencia de turno
-     * @author ASOSA
+     * @author  
      * @since 12.08.2010
      * @param pTableModel
      * @param codCuadratura
@@ -2074,7 +2074,7 @@ public class DBCajaElectronica
     }
     
     /**
-     * @author Dubilluz 
+     * @author   
      * @since  02.05.2012
      * @param pCodRemito
      * @return

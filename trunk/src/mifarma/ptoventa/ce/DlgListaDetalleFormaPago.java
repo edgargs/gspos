@@ -38,9 +38,9 @@ import com.gs.mifarma.componentes.JLabelWhite;
  * Nombre de la Aplicación : DlgListaEliminacionCuadratura.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * PAULO      03.10.2006   Creación<br>
+ *        03.10.2006   Creación<br>
  * <br>
- * @author Paulo Cesar Ameghino Rojas<br>
+ * @author   Cesar Ameghino Rojas<br>
  * @version 1.0<br>
  * 
  */

@@ -32,8 +32,8 @@ import mifarma.ptoventa.ventas.reference.ConstantsVentas;
 import mifarma.ptoventa.ventas.reference.DBVentas;
 import mifarma.ptoventa.ventas.reference.VariablesVentas;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -54,7 +54,7 @@ public class DlgCupones
 /* ************************************************************************** */
 /*                           DECLARACION PROPIEDADES                          */
 /* ************************************************************************** */
-  private static final Log log = LogFactory.getLog(DlgCupones.class);
+  private static final Logger log = LoggerFactory.getLogger(DlgCupones.class);
   
   Frame myParentFrame;
   FarmaTableModel tableModel;

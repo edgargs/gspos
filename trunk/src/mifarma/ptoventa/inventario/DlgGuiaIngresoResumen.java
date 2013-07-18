@@ -392,7 +392,7 @@ public class DlgGuiaIngresoResumen extends JDialog
           if(grabar())
           {
             //Procedera a anular la cotizacion si se dio la opcion
-            //26.11.2007 dubilluz 
+            //26.11.2007   
             if(VariablesInventario.vIndAnularNota.equalsIgnoreCase(FarmaConstants.INDICADOR_S)){
                System.out.println("Anulando la cotizacion Nro: " + VariablesInventario.vNumNota_Anular);
                   if(anular(VariablesInventario.vNumNota_Anular))
@@ -438,7 +438,7 @@ public class DlgGuiaIngresoResumen extends JDialog
 		/**
      * Limpiamos las variables que contienen la informacion de la
      * competencia seleccionada
-     * @author dubilluz
+     * @author  
      * @since  12.11.2007
      */
     VariablesInventario.vDescripcionCompetencia = "";
@@ -607,7 +607,7 @@ public class DlgGuiaIngresoResumen extends JDialog
   }
   /**
    * Modificado para enviale un parametro de numero de cotizacion
-   * @author dubilluz
+   * @author  
    * @since  26.11.2007
    */
   private boolean anular(String pNumNota)

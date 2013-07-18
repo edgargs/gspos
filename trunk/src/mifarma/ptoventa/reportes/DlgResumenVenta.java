@@ -646,11 +646,11 @@ public class DlgResumenVenta extends JDialog
     txtGuiasEmitidas.setText( ((String) ((ArrayList) infoResumen.get(i)).get(2)).trim() );
     txtGuiasEmitidasM.setText( ((String) ((ArrayList) infoResumen.get(i)).get(3)).trim() );
       }
-    //JCHAVEZ 13.07.2009.sn    
+    //  13.07.2009.sn    
     else if ( flag.equals("N") && tipComp.equals(ConstantsReporte.TIP_COMP_TICKET) ) {
         this.txtTicketsEmitidos.setText( ((String) ((ArrayList) infoResumen.get(i)).get(2)).trim() );
         this.txtTicketsEmitidosM.setText( ((String) ((ArrayList) infoResumen.get(i)).get(3)).trim() );
-    }  //JCHAVEZ 13.07.2009.en
+    }  //  13.07.2009.en
       
          
     
@@ -664,11 +664,11 @@ public class DlgResumenVenta extends JDialog
     txtGuiasAnuladas.setText( ((String) ((ArrayList) infoResumen.get(i)).get(2)).trim() );
     txtGuiasAnuladasM.setText( ((String) ((ArrayList) infoResumen.get(i)).get(3)).trim() );
     }
-    //JCHAVEZ 13.07.2009.sn    
+    //  13.07.2009.sn    
     else if ( flag.equals("S") && tipComp.equals(ConstantsReporte.TIP_COMP_TICKET) ) {
         this.txtTicketsAnulados.setText( ((String) ((ArrayList) infoResumen.get(i)).get(2)).trim() );
         this.txtTicketsAnuladosM.setText( ((String) ((ArrayList) infoResumen.get(i)).get(3)).trim() );
-    }  //JCHAVEZ 13.07.2009.en
+    }  //  13.07.2009.en
               
         
     
@@ -726,12 +726,12 @@ public class DlgResumenVenta extends JDialog
     cantboletas = (Integer.parseInt(txtBoletasEmitidas.getText().trim()) - Integer.parseInt(txtBoletasAnuladas.getText().trim()));
     cantfacturas = (Integer.parseInt(txtFacturasEmitidas.getText().trim()) - Integer.parseInt(txtFacturasAnuladas.getText().trim()));
     cantguias = (Integer.parseInt(txtGuiasEmitidas.getText().trim()) - Integer.parseInt(txtGuiasAnuladas.getText().trim()));
-    canttickets=(Integer.parseInt(this.txtTicketsEmitidos.getText().trim()) - Integer.parseInt(this.txtTicketsAnulados.getText().trim()));//JCHAVEZ 13.07.2009.n
+    canttickets=(Integer.parseInt(this.txtTicketsEmitidos.getText().trim()) - Integer.parseInt(this.txtTicketsAnulados.getText().trim()));//  13.07.2009.n
     
     montboletas = FarmaUtility.getDecimalNumber(txtBoletasEmitidasM.getText().trim()) - FarmaUtility.getDecimalNumber(txtBoletasAnuladasM.getText().trim());
     montfacturas = FarmaUtility.getDecimalNumber(txtFacturasEmitidasM.getText().trim()) - FarmaUtility.getDecimalNumber(txtFacturasAnuladasM.getText().trim());
     montguias = FarmaUtility.getDecimalNumber(txtGuiasEmitidasM.getText().trim()) - FarmaUtility.getDecimalNumber(txtGuiasAnuladasM.getText().trim());
-    monttickets=FarmaUtility.getDecimalNumber(this.txtTicketsEmitidosM.getText().trim()) - FarmaUtility.getDecimalNumber(this.txtTicketsAnuladosM.getText().trim());//JCHAVEZ 13.07.2009.n
+    monttickets=FarmaUtility.getDecimalNumber(this.txtTicketsEmitidosM.getText().trim()) - FarmaUtility.getDecimalNumber(this.txtTicketsAnuladosM.getText().trim());//  13.07.2009.n
     
     montonotacredito = FarmaUtility.getDecimalNumber(txtNcbMonto.getText().trim()) + FarmaUtility.getDecimalNumber(txtNcfMonto.getText().trim());
     cantdelivery = (Integer.parseInt(txtDeliveryEmitido.getText().trim()) - Integer.parseInt(txtDeliveryAnulado.getText().trim()));
@@ -739,8 +739,8 @@ public class DlgResumenVenta extends JDialog
     cantinstitucionales = (Integer.parseInt(txtInstEmitida.getText().trim()) - Integer.parseInt(txtInstAnulado.getText().trim()));
     montinstitucionales = FarmaUtility.getDecimalNumber(txtInstEmitidoM.getText().trim()) - FarmaUtility.getDecimalNumber(txtInstiAnuladoM.getText().trim()); 
     
-    totcantidad = cantboletas + cantfacturas + cantguias +canttickets ;//JCHAVEZ 13.07.2009.n se agregó canttickets
-    totmonto = montboletas + montfacturas + montguias + montonotacredito+monttickets; //JCHAVEZ 13.07.2009.n monttickets
+    totcantidad = cantboletas + cantfacturas + cantguias +canttickets ;//  13.07.2009.n se agregó canttickets
+    totmonto = montboletas + montfacturas + montguias + montonotacredito+monttickets; //  13.07.2009.n monttickets
         
     lblTotalCantidad.setText(""+totcantidad);
     lblTotalMonto.setText(""+FarmaUtility.formatNumber(totmonto));
@@ -862,7 +862,7 @@ public class DlgResumenVenta extends JDialog
   }
 
   /**NUEVO!!
-   * @Autor: Luis Reque Orellana
+   * @Autor:  
    * @Fecha: 13-04-2007
    * */
   private void mostrarLabelHora()

@@ -39,7 +39,7 @@ import mifarma.ptoventa.matriz.mantenimientos.productos.references.VariablesProd
  * Histórico de Creación/Modificación<br>
  * LREQUE      22.02.2007   Creación<br>
  * <br>
- * @author Luis Reque Orellana<br>
+ * @author  <br>
  * @version 1.0<br>
  *
  */

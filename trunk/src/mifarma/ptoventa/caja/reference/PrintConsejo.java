@@ -13,13 +13,13 @@ import javax.swing.JEditorPane;
 import javax.swing.JLabel;
 import javax.swing.text.html.HTMLDocument;
 
-import mifarma.ptoventa.caja.reference.UtilityBarCode;
 
-import org.jbarcode.encode.InvalidAtributeException;
+
+
 
 public class PrintConsejo
 {
-  private static UtilityBarCode uBCode = new UtilityBarCode();
+  
 
   public static void imprimir(String pConsejos,String pTipImpr,String pCodCupon)
   {
@@ -28,8 +28,6 @@ public class PrintConsejo
     
     try
     {
-      // Se crea la imagen
-      createImageCode(pCodCupon, 1);
       // Marcamos el editor para que use HTML 
       
       editor.setContentType("text/html");
@@ -62,8 +60,6 @@ public class PrintConsejo
     
     try
     {
-      // Se crea la imagen
-      createImageCode(pCodCupon, cantIntentosLectura);
         
       // Marcamos el editor para que use HTML 
       editor.setContentType("text/html");
@@ -105,22 +101,7 @@ public class PrintConsejo
     }
   }
   
-  
-  /**
-     * Crea imagen de codigo de barra
-     * @param pNameImage
-     * @author Diego Ubilluz Carrillo
-     * @since  03.07.2008
-     */
-  private static void createImageCode(String pNameImage, int cantIntentoLectura)
-                            throws InvalidAtributeException{
-      if(pNameImage!=null)
-      {
-         if(pNameImage.trim().length()>0)
-            //uBCode.generarBarcodeCode39(pNameImage);   
-            uBCode.generarBarcode(pNameImage, cantIntentoLectura);   
-      }
-  }
+
   /**
      * Elimina la imagen
      * @param pNameImage
@@ -144,10 +125,8 @@ public class PrintConsejo
     try
     {
       // Marcamos el editor para que use HTML 
-      UtilityBarCode u = new  UtilityBarCode();
-      String nombre = u.crea_ima();
-      String nombre2 = nombre;
-      nombre  = nombre.substring(3);
+      
+     
         
       editor.setContentType("text/html");
       // molde 3
@@ -166,7 +145,7 @@ public class PrintConsejo
             "        <td height=\"13\" colspan=\"3\">         </td>" + 
             "      </tr>        " + 
             "      <tr>" + 
-                           "        <td height=\"50\" colspan=\"3\"><div align=\"center\" class=\"style8\"><img src=file://///C:/"+nombre+" width=\"300\" height=\"107\" class=\"style3\"></div></td>       " + 
+                           "        <td height=\"50\" colspan=\"3\"><div align=\"center\" class=\"style8\"><img src=file://///C:/"+" width=\"300\" height=\"107\" class=\"style3\"></div></td>       " + 
             "      </tr>" + 
             "      <tr>" + 
             "        <td height=\"12\" colspan=\"3\">         </td>" + 

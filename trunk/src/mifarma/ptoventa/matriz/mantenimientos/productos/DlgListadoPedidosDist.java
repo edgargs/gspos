@@ -55,7 +55,7 @@ import java.util.*;
  * Nombre de la Aplicación : DlgListadoPedidosDist.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JCORTEZ      08.11.2007   Creación<br>
+ *        08.11.2007   Creación<br>
  * <br>
  * @author Jorge Cortez Alvarez<br>
  * @version 1.0<br>
@@ -281,7 +281,7 @@ public class DlgListadoPedidosDist extends JDialog
   {
     /**
     * Se setea la variable FarmaVariables para trabajar los pedidos de distribucion
-    * @author JCORTEZ
+    * @author  
     * @since  03/12/2007
     * */
     FarmaVariables.vCodLocal="010";

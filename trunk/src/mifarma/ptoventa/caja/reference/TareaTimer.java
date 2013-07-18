@@ -3,12 +3,12 @@ package mifarma.ptoventa.caja.reference;
 import java.io.File;
 import java.util.TimerTask;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TareaTimer extends TimerTask {
 	
-	private static final Log log = LogFactory.getLog(TareaTimer.class);
+	private static final Logger log = LoggerFactory.getLogger(TareaTimer.class);
 	
 	int cant=1;
 	String nombreArchivo = "";

@@ -25,11 +25,11 @@ import mifarma.ptoventa.inventariodiario.reference.DBInvDiario;
 import mifarma.ptoventa.ventas.reference.VariablesVentas;
 import mifarma.ptoventa.ventas.DlgResumenPedido;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DlgListaDiferenciasToma extends JDialog {
-    private static final Log log = LogFactory.getLog(DlgResumenPedido.class);
+    private static final Logger log = LoggerFactory.getLogger(DlgResumenPedido.class);
     FarmaTableModel tableModelDiferenciasConsolidado;
     Frame myParentFrame;
     private BorderLayout borderLayout1 = new BorderLayout();
@@ -495,7 +495,7 @@ public class DlgListaDiferenciasToma extends JDialog {
 
     /**
      * Metodo para Revertir
-     * @author DUBILLUZ
+     * @author  
      * @since  10.06.2009
      */
     private void fReverir()
@@ -606,7 +606,7 @@ public class DlgListaDiferenciasToma extends JDialog {
         vProductoSeleccionado.add(FarmaUtility.getValueFieldJTable(tblRelacionDiferenciasProductos,row,6));
         
       //System.out.println("Lista Dif Seleccionada: "+ tableModelDiferenciasConsolidado.data);
-        //JMIRANDA 25.09.09 Limpia el array VariablesInvDiario.vListadoProductosDiferenciaSeleccionadas si
+        //  25.09.09 Limpia el array VariablesInvDiario.vListadoProductosDiferenciaSeleccionadas si
         //escapa de DlgIngresoTrabajadores
         if (!VariablesInvDiario.vIndSeleccionado){
             VariablesInvDiario.vListadoProductosDiferenciaSeleccionadas.clear();
@@ -683,7 +683,7 @@ public void fGeneraPedidoDescuentoPersonal(){
     
     /**
      * Metodo que muestra solo los seleccionados.
-     * @author dubilluz
+     * @author  
      * @since  18.06.2009
      */
     public void verSeleccionados(){
@@ -739,7 +739,7 @@ public void fGeneraPedidoDescuentoPersonal(){
     
     /**
      * Ajuste de productos
-     * @author JCORTEZ
+     * @author  
      * @since  15.06.09
      */
     private void ajustarProd()
@@ -796,7 +796,7 @@ public void fGeneraPedidoDescuentoPersonal(){
     
     /**
      * Se realiza proceso de ajuste, asi se ingrese o no montos por trabajador
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE 18.06.09
      * */
     private void realizarAjuste(){
@@ -866,7 +866,7 @@ public void fGeneraPedidoDescuentoPersonal(){
     
     /**
      * Se guarda LGT_AJUSTE_TOMA_INV_DIA_LOC/ LGT_AJUSTE_PROD /LGT_AJUSTE_TRAB
-     * @author JCORTEZ
+     * @author  
      * @since 16.06.09
      * */
     private boolean agregarAjuste(){
@@ -908,7 +908,7 @@ public void fGeneraPedidoDescuentoPersonal(){
     
     /**
      * Obtien monto de productos con diferencia
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE 17.06.09
      * */
     private void obetenerTotal(){

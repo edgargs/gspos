@@ -171,7 +171,7 @@ public class DlgEfectivoRendido extends JDialog
     try
     {
       //DBCajaElectronica.listaCuadraturasCierreDia(tableModel,VariablesCajaElectronica.vFechaCierreDia);
-      DBCajaElectronica.listaCuadraturasCierreDia_02(tableModel,VariablesCajaElectronica.vFechaCierreDia);//ASOSA, 29.04.2010
+      DBCajaElectronica.listaCuadraturasCierreDia_02(tableModel,VariablesCajaElectronica.vFechaCierreDia);// , 29.04.2010
       FarmaUtility.ordenar(tblLista,tableModel,0,FarmaConstants.ORDEN_ASCENDENTE);
     }catch(SQLException e)
     {

@@ -705,7 +705,7 @@ public class DlgDatosEfectivoRendido
           /**
            * Se vario el listado de maestro si era el tipo de trabajador como esta en la primera condicion
            * mostraria el codigo de RR.HH, y para el resto la lista de maestro existente
-           * @author dubilluz
+           * @author  
            * @since  22.11.2007
            */
             if(pTipoMaestro.equals(ConstantsPtoVenta.LISTA_TRABAJADOR) ||

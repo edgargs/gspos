@@ -46,8 +46,8 @@ import mifarma.ptoventa.ventas.reference.ConstantsVentas;
 import mifarma.ptoventa.ventas.reference.DBVentas;
 import mifarma.ptoventa.ventas.reference.VariablesVentas;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Copyright (c) 2010 MIFARMA S.A.C.<br>
@@ -56,7 +56,7 @@ import org.apache.commons.logging.LogFactory;
  * Nombre de la Aplicación : DlgListaProdDigemidDCI.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JMIRANDA       02.10.2010   Creacion <br>
+ *         02.10.2010   Creacion <br>
  * <br>
  * @author John Miranda<br>
  * @version 1.0<br>
@@ -65,7 +65,7 @@ import org.apache.commons.logging.LogFactory;
 
 public class DlgListaProdDigemidDCI extends JDialog {
     
-    private static final Log log = LogFactory.getLog(DlgListaProdDigemidDCI.class);
+    private static final Logger log = LoggerFactory.getLogger(DlgListaProdDigemidDCI.class);
     
     private Frame myParentFrame;
 

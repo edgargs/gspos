@@ -171,7 +171,7 @@ public class DlgFidelizacionValidaDocumento extends JDialog {
 
     private void initTable() {
        
-        //JCORTEZ 05.10.09 Se carga Mensake HTML                                    
+        //  05.10.09 Se carga Mensake HTML                                    
         cargarMensaje();
         cargar_cmbTipo();
     }
@@ -199,7 +199,7 @@ public class DlgFidelizacionValidaDocumento extends JDialog {
 
        
             if (e.getKeyCode() == KeyEvent.VK_F11) {
-                //JCORTEZ 05.10.09
+                //  05.10.09
                 obtenerDatos();
               
             }

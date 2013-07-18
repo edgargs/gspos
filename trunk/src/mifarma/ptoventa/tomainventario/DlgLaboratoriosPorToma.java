@@ -68,7 +68,7 @@ public class DlgLaboratoriosPorToma extends JDialog {
   
   /**
    * Variable de Filtro Estado
-   * @author  dubilluz
+   * @author   
    * @since  08.01.2008
    */  
   private String filtroEstado = "";
@@ -263,7 +263,7 @@ public class DlgLaboratoriosPorToma extends JDialog {
 				DlgProductosPorToma dlgProductosPorToma = new DlgProductosPorToma(myParentFrame, "", true);
 				dlgProductosPorToma.setVisible(true);
         /**listara lab para actualizar los estados **/
-        //08.01.2008 dubilluz modificacion
+        //08.01.2008   modificacion
         cargaLabFiltrados();
 			}
 		}else if (e.getKeyCode() == KeyEvent.VK_F12){
@@ -274,7 +274,7 @@ public class DlgLaboratoriosPorToma extends JDialog {
 
     /**
      * Añadido : Filtro por : Usuario y Estado
-     * @author : dubilluz
+     * @author :  
      * @since  : 08.01.2008
      */
      else if (e.getKeyCode() == KeyEvent.VK_F10)
@@ -414,7 +414,7 @@ public class DlgLaboratoriosPorToma extends JDialog {
    /**
    * Muestra  el cuadro de diálogo 
    * donde seleccionara el tipo de Filtro
-   * @author : dubilluz
+   * @author :  
    * @since  : 08.01.2008
    */
   private void filtrar()
@@ -439,7 +439,7 @@ public class DlgLaboratoriosPorToma extends JDialog {
   
   /**
    * Cargara la tabla con laboratorios de estado
-   * @author : dubilluz
+   * @author :  
    * @since  : 08.01.2008
    */
   private void cargaLabFiltrados()
@@ -460,7 +460,7 @@ public class DlgLaboratoriosPorToma extends JDialog {
   
   /**
    * Quita el filtro 
-   * @author : dubilluz
+   * @author :  
    * @since  : 08.01.2008  
    */
   private void quitarFiltro()
@@ -473,7 +473,7 @@ public class DlgLaboratoriosPorToma extends JDialog {
   
   /**
    * Ingreso de codigos de Barra para los productos
-   * @author dubilluz
+   * @author  
    * @since  21.12.2009
    */
   private void ingresoCodigoBarra(){

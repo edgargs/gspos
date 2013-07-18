@@ -40,7 +40,7 @@ import javax.swing.JComboBox;
 * <br>
 * Histórico de Creación/Modificación<br>
 * ERIOS      12.07.2006   Creación<br>
-* ASOLIS     04.11.2008   Modificación<br>
+*       04.11.2008   Modificación<br>
 * <br>
 * @author Edgar Rios Navarro<br>
 * @version 1.0<br>

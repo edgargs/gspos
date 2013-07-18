@@ -18,8 +18,8 @@ import java.awt.event.KeyEvent;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
-import oracle.jdeveloper.layout.XYConstraints;
-import oracle.jdeveloper.layout.XYLayout;
+ 
+ 
 import com.gs.mifarma.componentes.JLabelFunction;
 import java.awt.event.WindowListener;
 import java.awt.event.WindowEvent;
@@ -69,7 +69,7 @@ public class DlgIngresoRangoComprobantes extends JDialog
   private JTextField txtRangoFin = new JTextField();
   private JScrollPane scrRangoComprobantes = new JScrollPane();
   private JPanel pnlRangoComprobantes = new JPanel();
-  private XYLayout xYLayout1 = new XYLayout();
+  
   private JButton btnRanCompIngresados = new JButton();
   private JButton btnRanFin = new JButton();
   private JLabelFunction lblF5 = new JLabelFunction();
@@ -200,7 +200,7 @@ public class DlgIngresoRangoComprobantes extends JDialog
     pnlRangoComprobantes.setBounds(new Rectangle(15, 185, 460, 25));
     pnlRangoComprobantes.setFont(new Font("SansSerif", 0, 11));
     pnlRangoComprobantes.setBackground(new Color(255, 130, 14));
-    pnlRangoComprobantes.setLayout(xYLayout1);
+    pnlRangoComprobantes.setLayout(null);
     btnRanCompIngresados.setText("Rango de Comprobantes Ingresados :");
     btnRanCompIngresados.setFont(new Font("SansSerif", 1, 11));
     btnRanCompIngresados.setForeground(Color.white);
@@ -327,7 +327,7 @@ public class DlgIngresoRangoComprobantes extends JDialog
     jContentPane.add(lblEsc, null);
     jContentPane.add(lblF11, null);
     jContentPane.add(lblF5, null);
-    pnlRangoComprobantes.add(btnRanCompIngresados, new XYConstraints(10, 5, 225, 15));
+    pnlRangoComprobantes.add(btnRanCompIngresados);
     jContentPane.add(pnlRangoComprobantes, null);
     scrRangoComprobantes.getViewport().add(tblRangoComprobantes, null);
     jContentPane.add(scrRangoComprobantes, null);

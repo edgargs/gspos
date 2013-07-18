@@ -44,7 +44,7 @@ import mifarma.common.FarmaVariables;
 
 import mifarma.ptoventa.campana.reference.VariablesCampana;
 import mifarma.ptoventa.ce.reference.ConstantsCajaElectronica;
-import mifarma.ptoventa.convenio.DlgDatosConvenio;
+
 import mifarma.ptoventa.fidelizacion.reference.ConstantsFidelizacion;
 import mifarma.ptoventa.fidelizacion.reference.DBFidelizacion;
 import mifarma.ptoventa.fidelizacion.reference.UtilityFidelizacion;
@@ -54,8 +54,8 @@ import mifarma.ptoventa.reference.ConstantsPtoVenta;
 
 import mifarma.ptoventa.ventas.reference.VariablesVentas;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -65,7 +65,7 @@ import org.apache.commons.logging.LogFactory;
  * Nombre de la Aplicación : DlgFidelizacionClientes.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * DVELIZ      26.09.2008   Creación<br>
+ *        26.09.2008   Creación<br>
  * <br>_F
  * @author Daniel Fernando Veliz La Rosa<br>
  * @version 1.0<br>
@@ -74,7 +74,7 @@ import org.apache.commons.logging.LogFactory;
 
 public class DlgFidelizacionClientes extends JDialog {
 
-    private static final Log log = LogFactory.getLog(DlgFidelizacionClientes.class);
+    private static final Logger log = LoggerFactory.getLogger(DlgFidelizacionClientes.class);
 
     /* ********************************************************************** */
     /*                        DECLARACION PROPIEDADES                         */
@@ -145,7 +145,7 @@ public class DlgFidelizacionClientes extends JDialog {
     private final int COL_EMAIL = 8;
     private JLabelFunction lblf1 = new JLabelFunction();
     
-    //JCORTEZ 03.07.09
+    //  03.07.09
     private boolean valor=false;
 
 
@@ -166,7 +166,7 @@ public class DlgFidelizacionClientes extends JDialog {
         super(parent, title, modal);
         pCodTarjetaIngresado = pCodTarjeta.trim();
 
-        //Agregado por DVELIZ 30.09.08
+        //Agregado por   30.09.08
         VariablesFidelizacion.vNumTarjeta = pCodTarjeta.trim();
         myParentFrame = parent;
         try {
@@ -346,7 +346,7 @@ public class DlgFidelizacionClientes extends JDialog {
             //funcionF11();
         }
         
-        //JCORTEZ  24.07.09 Se setea el DNI
+        //   24.07.09 Se setea el DNI
         String codCampo="";
         int pos=0;
         if(!VariablesFidelizacion.NumDniAux.equalsIgnoreCase("")){
@@ -409,7 +409,7 @@ public class DlgFidelizacionClientes extends JDialog {
         String codigoCampo = "";
         String vTipoDato;
         String vIndSoloLec;
-        //Dveliz 26.08.08
+        //  26.08.08
         String vIndOblig;
         for (int i = 0; i < tblLista.getRowCount(); i++) {
             codigoCampo = tblLista.getValueAt(i, COL_COD).toString().trim();
@@ -418,15 +418,15 @@ public class DlgFidelizacionClientes extends JDialog {
             vIndSoloLec = 
                     FarmaUtility.getValueFieldJTable(tblLista, i, COL_SOLO_LECTURA);
 
-            //dveliz 26.08.08
+            //  26.08.08
             vIndOblig = 
                     FarmaUtility.getValueFieldJTable(tblLista, i, COL_IND_OBLI);
             if (vIndOblig.equals("S")) {
                 VariablesCampana.vFlagMandatory = true;
             }
-            //fin dveliz
+            //fin  
 
-            //dveliz 27.08.08
+            //  27.08.08
             if (i == 0) {
                 if (codigoCampo.equals(ConstantsFidelizacion.DNI_CLIENTE)) {
                     getTxtNumeroDocumento(i, vTipoDato, vIndSoloLec);
@@ -655,16 +655,16 @@ public class DlgFidelizacionClientes extends JDialog {
                                                  pCadena);
 
                                         try {
-                                            //JCORTEZ 02.07.09 obtiene tarjeta existente en local
+                                            //  02.07.09 obtiene tarjeta existente en local
                                             DBFidelizacion.buscarTarjetasDni(VariablesFidelizacion.auxDataCli, 
                                                                              pCadena);
-                                            log.info("JCORTEZ TARJETA... " + 
+                                            log.info("  TARJETA... " + 
                                                      VariablesFidelizacion.auxDataCli);
                                         } catch (Exception a) {
                                             a.printStackTrace();
                                         }
 
-                                        //JCORTEZ 04.08.09 Se obtiene dni del cliente para cargar cupones emitidos
+                                        //  04.08.09 Se obtiene dni del cliente para cargar cupones emitidos
                                         VariablesVentas.dniListCupon = 
                                                 pCadena.trim();
 
@@ -679,9 +679,9 @@ public class DlgFidelizacionClientes extends JDialog {
 
                                             if ((vFila + 1) == 
                                                 tblLista.getRowCount())
-                                                //dveliz 27.08.08
+                                                //  27.08.08
                                                 moveFocusTo(0);
-                                            // fin dveliz
+                                            // fin  
                                             else {
                                                 long tmpIni_3, tmpFin_3;
 
@@ -699,7 +699,7 @@ public class DlgFidelizacionClientes extends JDialog {
                                                                          1, 1, 
                                                                          false, 
                                                                          false);
-                                                //dubilluz - 05.04.2010
+                                                //  - 05.04.2010
                                                 if(FarmaUtility.getValueFieldArrayList(tableModel.data,vFila + 
                                                                          1,0).trim().toUpperCase().indexOf("SEXO")!=-1)
                                                 {
@@ -734,9 +734,9 @@ public class DlgFidelizacionClientes extends JDialog {
 
 
                                              if ((vFila + 1) == tblLista.getRowCount())
-                                                //dveliz 27.08.08
+                                                //  27.08.08
                                                 moveFocusTo(0);
-                                            // fin dveliz
+                                            // fin  
                                             else{
 
                                                 FarmaUtility.setearRegistro(tblLista,
@@ -792,9 +792,9 @@ public class DlgFidelizacionClientes extends JDialog {
                                     } else {
                                         if ((vFila + 1) == 
                                             tblLista.getRowCount())
-                                            //dveliz 27.08.08
+                                            //  27.08.08
                                             moveFocusTo(0);
-                                        // fin dveliz
+                                        // fin  
                                         else {
 
                                             FarmaUtility.setearRegistro(tblLista, 
@@ -805,7 +805,7 @@ public class DlgFidelizacionClientes extends JDialog {
                                             tblLista.changeSelection(vFila + 1, 
                                                                      1, false, 
                                                                      false);
-                                            // dubilluz - 05.04.2010
+                                            //   - 05.04.2010
                                             if(FarmaUtility.getValueFieldArrayList(tableModel.data,vFila+1,0).trim().toUpperCase().indexOf("SEXO")!=-1)
                                             {
                                                 ((JComboBox)cmbSexo).requestFocus();
@@ -967,7 +967,7 @@ public class DlgFidelizacionClientes extends JDialog {
                                     FarmaUtility.setearRegistro(tblLista, 
                                                                 tblLista.getSelectedRow(), 
                                                                 null, 0);
-                                    moveFocusTo(0); //ASOSA, 06.04.2010
+                                    moveFocusTo(0); // , 06.04.2010
                                 } else {
                                     FarmaUtility.setearRegistro(tblLista, 
                                                                 tblLista.getSelectedRow() + 
@@ -975,7 +975,7 @@ public class DlgFidelizacionClientes extends JDialog {
                                     //moveFocusTo(tblLista.getSelectedRow());
                                     tblLista.changeSelection(tblLista.getSelectedRow(), 
                                                              1, false, 
-                                                             false); //ASOSA, 06.04.2010
+                                                             false); // , 06.04.2010
                                 }
                             }
                         }
@@ -1092,7 +1092,7 @@ public class DlgFidelizacionClientes extends JDialog {
                 0) {
                 VariablesFidelizacion.vNumTarjeta = "";
                 VariablesFidelizacion.vIndExisteCliente = false;
-                VariablesFidelizacion.auxDataCli.clear();//jcortez 
+                VariablesFidelizacion.auxDataCli.clear();//  
                 cerrarVentana(false);
                 
             }
@@ -1269,12 +1269,12 @@ public class DlgFidelizacionClientes extends JDialog {
                VariablesFidelizacion.vIndEstado  = "A";*/
                 cargaVariables();
                 
-                if(valor){//jcortez evitar guardar dni con letras o caracteres no validos
+                if(valor){//  evitar guardar dni con letras o caracteres no validos
                 /*
                if(JOptionPane.showConfirmDialog(this, "Esta seguro de grabar esta informacion",
                                     "Mensaje de Confirmación", JOptionPane.YES_NO_OPTION)==0){*/
                 
-                //JCORTEZ 02.07.09 Si no existe tarjeta para el Dni permite ingresar nueva tarjeta
+                //  02.07.09 Si no existe tarjeta para el Dni permite ingresar nueva tarjeta
                 System.out.println("TARJETA ENCONTRADA-->  "+VariablesFidelizacion.auxDataCli);
                  String formato = "";
                  if(VariablesFidelizacion.vNumTarjeta.trim().length()>6){
@@ -1418,13 +1418,13 @@ public class DlgFidelizacionClientes extends JDialog {
         System.out.println("qiere cc"+txtNumeroDocumento.getText().trim());
         System.out.println("qiere cc"+txtApellidoPaterno.getText().trim());
        
-        //JCORTEZ valida DNI
+        //  valida DNI
             valor=FarmaUtility.validateNumber(this,txtNumeroDocumento,"Número de documento no válido.",true);
         if(valor)  {
             try{
-            //JCORTEZ 02.07.09 obtiene tarjeta existente en local
+            //  02.07.09 obtiene tarjeta existente en local
             DBFidelizacion.buscarTarjetasDni(VariablesFidelizacion.auxDataCli,txtNumeroDocumento.getText().trim());
-               System.out.println("JCORTEZ TARJETA... " + VariablesFidelizacion.auxDataCli);
+               System.out.println("  TARJETA... " + VariablesFidelizacion.auxDataCli);
             }catch(Exception a){
              a.printStackTrace();
             }
@@ -1462,7 +1462,7 @@ public class DlgFidelizacionClientes extends JDialog {
         
         
         //SE COLOCAN LOS VALORES FINALES SI ENTRO A LA PANTALLA DE VALIDACION DE CLIENTES.
-        //dubilluz 20.10.2009
+        //  20.10.2009
         log.info("VariablesFidelizacion.vDatosFinalTerceraValidacion:"+VariablesFidelizacion.vDatosFinalTerceraValidacion);
         if(VariablesFidelizacion.vDatosFinalTerceraValidacion != null)
         if(VariablesFidelizacion.vDatosFinalTerceraValidacion.size()>0){
@@ -1695,7 +1695,7 @@ public class DlgFidelizacionClientes extends JDialog {
         log.info("Datos del cliente " + 
                            VariablesFidelizacion.vDataCliente);
         //NO VENDRA A MATRIZ
-        //JCORTEZ 02.07.09 se vuelve a buscar en matriz
+        //  02.07.09 se vuelve a buscar en matriz
         // UtilityFidelizacion.validarConexionMatriz();  
          
          
@@ -1705,7 +1705,7 @@ public class DlgFidelizacionClientes extends JDialog {
             "", vSexCli = "", vDirCli = "", vTlfCli = "", vEma = "";
 
         try {
-            //JCORTEZ 05.10.09 Se obtiene datos de PBL_DNI_RED o FID_TARJETA
+            //  05.10.09 Se obtiene datos de PBL_DNI_RED o FID_TARJETA
             DBFidelizacion.getDatosExisteDNI(vListaDatosDNI, pDNI);
             int pExist = -1 ;
             log.info("vListaDatosDNI:"+vListaDatosDNI);
@@ -1900,7 +1900,7 @@ buscaPosFila(ConstantsFidelizacion.TELEFONO_CLIENTE);
    }
     
     /**
-     * @autor dubilluz
+     * @autor  
      * @since 04.10.2009
      * @return
      */

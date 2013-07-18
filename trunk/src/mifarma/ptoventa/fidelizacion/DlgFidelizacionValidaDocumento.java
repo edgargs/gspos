@@ -48,12 +48,12 @@ import mifarma.ptoventa.fidelizacion.reference.UtilityFidelizacion;
 import mifarma.ptoventa.fidelizacion.reference.VariablesFidelizacion;
 import mifarma.ptoventa.reference.ConstantsPtoVenta;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DlgFidelizacionValidaDocumento extends JDialog {
     
-    private static final Log log = LogFactory.getLog(DlgFidelizacionValidaDocumento.class);
+    private static final Logger log = LoggerFactory.getLogger(DlgFidelizacionValidaDocumento.class);
     
     Frame myParentFrame;
 
@@ -179,7 +179,7 @@ public class DlgFidelizacionValidaDocumento extends JDialog {
 
     private void initTable() {
        
-        //JCORTEZ 05.10.09 Se carga Mensake HTML                                    
+        //  05.10.09 Se carga Mensake HTML                                    
         cargarMensaje();
         cargar_cmbTipo();
     }
@@ -207,7 +207,7 @@ public class DlgFidelizacionValidaDocumento extends JDialog {
 
        
             if (e.getKeyCode() == KeyEvent.VK_F11) {
-                //JCORTEZ 05.10.09
+                //  05.10.09
                 if(
                    isInteger(txtDocumento.getText().trim())&&
                    UtilityFidelizacion.validarDocIndentificacion(txtDocumento.getText().trim())
@@ -322,7 +322,7 @@ public class DlgFidelizacionValidaDocumento extends JDialog {
             }
         } else {
             //Este metodo se ha comentado para colocarlo en el metodo reingresoValidacionDNI.
-            //20.10.2009 dubilluz   
+            //20.10.2009     
             /*FarmaUtility.showMessage(this,
                                     "El documento ingresado (Nº. "+ VariablesFidelizacion.Num_Doc+" ) es diferente \n" +
                                     " al digitado en la pantalla anterior (Nº. "+ VariablesFidelizacion.vDniCliente+" ) \n \n"+
@@ -342,7 +342,7 @@ public class DlgFidelizacionValidaDocumento extends JDialog {
    
    /**
      * Algoritmo para validar todo en BD 
-     * @author dubilluz
+     * @author  
      * @since  20.10.2009
      * @return
      */

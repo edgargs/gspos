@@ -37,8 +37,8 @@ import mifarma.ptoventa.otros.reference.UtilityOtros;
 import mifarma.ptoventa.otros.reference.VariablesOtros;
 import mifarma.ptoventa.reference.ConstantsPtoVenta;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.gs.mifarma.componentes.JButtonLabel;
 import com.gs.mifarma.componentes.JLabelFunction;
@@ -57,16 +57,16 @@ import mifarma.ptoventa.fidelizacion.reference.VariablesFidelizacion;
  * Nombre de la Aplicación : DlgRegDatosCliente.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JCALLO      23.10.2008   Creación<br>
+ *        23.10.2008   Creación<br>
  * <br>
- * @author JCALLO<br>
+ * @author  <br>
  * @version 1.0<br>
  * 
  */
 
 public class DlgRegDatosCliente extends JDialog {
 
-    private static final Log log = LogFactory.getLog(DlgRegDatosCliente.class);
+    private static final Logger log = LoggerFactory.getLogger(DlgRegDatosCliente.class);
 
     /* ********************************************************************** */
     /*                        DECLARACION PROPIEDADES                         */
@@ -368,7 +368,7 @@ public class DlgRegDatosCliente extends JDialog {
         String codigoCampo = "";
         String vTipoDato;
         String vIndSoloLec;
-        //Dveliz 26.08.08
+        //  26.08.08
         String vIndOblig;
         for (int i = 0; i < tblLista.getRowCount(); i++) {
             //codigoCampo = tblLista.getValueAt(i, COL_COD).toString().trim();
@@ -378,15 +378,15 @@ public class DlgRegDatosCliente extends JDialog {
             vIndSoloLec = tableModel.getValueAt(i, COL_SOLO_LECTURA).toString().trim();
                     //FarmaUtility.getValueFieldJTable(tblLista, i, COL_SOLO_LECTURA);
 
-            //dveliz 26.08.08
+            //  26.08.08
             vIndOblig = tableModel.getValueAt(i, COL_IND_OBLI).toString().trim();
                     //FarmaUtility.getValueFieldJTable(tblLista, i, COL_IND_OBLI);
             if (vIndOblig.equals("S")) {
             	VariablesOtros.vFlagMandatory = true;
             }
-            //fin dveliz
+            //fin  
 
-            //dveliz 27.08.08
+            //  27.08.08
             if (i == 0) {
                 if (codigoCampo.equals(ConstantsOtros.DNI_CLIENTE)) {
                     getTxtNumeroDocumento(i, vTipoDato, vIndSoloLec);
@@ -882,7 +882,7 @@ public class DlgRegDatosCliente extends JDialog {
     					  							      FarmaConstants.INDICADOR_N);
             		FarmaConnectionRemoto.closeConnection();
             	}
-            	log.debug(e);
+            	 log.debug("",e);
                 FarmaUtility.showMessage(this, "ERROR:"+e, txtNumeroDocumento);
             }
         }
@@ -1078,7 +1078,7 @@ public class DlgRegDatosCliente extends JDialog {
     
     /**
      * metodo encargado de validar los campos que son obligatorios especificar para registrar al cliente
-     * @author jcallo
+     * @author  
      * */
     private boolean validateMandatory() {
         boolean dataExists = true;
@@ -1163,7 +1163,7 @@ public class DlgRegDatosCliente extends JDialog {
     
     /**
      * metodo encargado de vargar los datos en las variablesOtros para poder registrar los datos correctamente
-     * @author jcallo
+     * @author  
      * **/
     private void cargaVariables() {
         
@@ -1215,7 +1215,7 @@ public class DlgRegDatosCliente extends JDialog {
         return tipoSexo;
     }
     /**
-     * @autor dubilluz
+     * @autor  
      * @since 04.10.2009
      * @return
      */

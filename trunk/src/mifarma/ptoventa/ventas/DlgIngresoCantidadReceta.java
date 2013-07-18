@@ -35,8 +35,8 @@ import mifarma.common.FarmaVariables;
 import mifarma.ptoventa.ventas.reference.DBVentas;
 import mifarma.ptoventa.ventas.reference.VariablesReceta;
 
-import oracle.jdeveloper.layout.XYConstraints;
-import oracle.jdeveloper.layout.XYLayout;
+ 
+ 
 
 
 /**
@@ -65,13 +65,13 @@ public class DlgIngresoCantidadReceta
   private BorderLayout borderLayout1 = new BorderLayout();
   private JPanel jContentPane = new JPanel();
   JPanel pnlStock = new JPanel();
-  XYLayout xYLayout2 = new XYLayout();
+   
   JLabel lblUnidades = new JLabel();
   JLabel lblStock = new JLabel();
   JLabel lblFechaHora = new JLabel();
   JLabel lblStockTexto = new JLabel();
   JPanel pnlDetalleProducto = new JPanel();
-  XYLayout xYLayout1 = new XYLayout();
+   
   JTextField txtPrecioVenta = new JTextField();
   JLabel lblUnidadT = new JLabel();
   JLabel lblDescripcionT = new JLabel();
@@ -104,9 +104,9 @@ public class DlgIngresoCantidadReceta
 
   /**
    * Constructor
-   * @param <b>parent</b> Objeto Frame de la Aplicación.
-   * @param <b>title</b> Título de la Ventana.
-   * @param <b>modal</b> Tipo de Ventana.
+   * @param   Objeto Frame de la Aplicación.
+   * @param   Título de la Ventana.
+   * @param   Tipo de Ventana.
    */
   public DlgIngresoCantidadReceta(Frame parent, String title, 
                                   boolean modal)
@@ -157,7 +157,7 @@ public class DlgIngresoCantidadReceta
     pnlStock.setBounds(new Rectangle(15, 20, 325, 55));
     pnlStock.setFont(new Font("SansSerif", 0, 11));
     pnlStock.setBackground(new Color(255, 130, 14));
-    pnlStock.setLayout(xYLayout2);
+    pnlStock. setLayout(null);
     pnlStock.setBorder(BorderFactory.createLineBorder(Color.black, 1));
     pnlStock.setForeground(Color.white);
     lblUnidades.setText("unidades");
@@ -174,7 +174,7 @@ public class DlgIngresoCantidadReceta
     lblStockTexto.setFont(new Font("SansSerif", 0, 12));
     lblStockTexto.setForeground(Color.white);
     pnlDetalleProducto.setBounds(new Rectangle(15, 80, 325, 220));
-    pnlDetalleProducto.setLayout(xYLayout1);
+    pnlDetalleProducto. setLayout(null);
     pnlDetalleProducto.setBorder(BorderFactory.createLineBorder(Color.black, 
           1));
     pnlDetalleProducto.setFont(new Font("SansSerif", 0, 11));
@@ -241,33 +241,25 @@ public class DlgIngresoCantidadReceta
         });
     btnPrecioVta.setText("Precio Venta : S/.");
     btnPrecioVta.setForeground(Color.black);
-    pnlStock.add(lblUnidades, new XYConstraints(230, 10, 75, 20));
-    pnlStock.add(lblStock, new XYConstraints(140, 5, 80, 30));
-    pnlStock.add(lblFechaHora, new XYConstraints(5, 20, 130, 20));
-    pnlStock.add(lblStockTexto, new XYConstraints(5, 0, 125, 20));
-    pnlDetalleProducto.add(btnPrecioVta, 
-                           new XYConstraints(10, 175, 100, 20));
-    pnlDetalleProducto.add(btnCantidad, 
-                           new XYConstraints(185, 175, 60, 20));
-    pnlDetalleProducto.add(txtPrecioVenta, 
-                           new XYConstraints(115, 175, 60, 20));
-    pnlDetalleProducto.add(lblUnidadT, new XYConstraints(10, 145, 50, 20));
-    pnlDetalleProducto.add(lblDescripcionT, 
-                           new XYConstraints(10, 55, 95, 20));
-    pnlDetalleProducto.add(lblCodigoT, new XYConstraints(10, 10, 55, 20));
-    pnlDetalleProducto.add(lblLaboratorio, 
-                           new XYConstraints(10, 120, 280, 20));
-    pnlDetalleProducto.add(lblDcto, new XYConstraints(265, 145, 40, 20));
-    pnlDetalleProducto.add(lblLaboratorioT, 
-                           new XYConstraints(10, 100, 80, 20));
-    pnlDetalleProducto.add(lblDscto, new XYConstraints(215, 145, 50, 20));
-    pnlDetalleProducto.add(lblPrecio, new XYConstraints(120, 175, 55, 20));
-    pnlDetalleProducto.add(txtCantidad, 
-                           new XYConstraints(250, 175, 50, 20));
-    pnlDetalleProducto.add(lblUnidad, new XYConstraints(70, 145, 135, 20));
-    pnlDetalleProducto.add(lblDescripcion, 
-                           new XYConstraints(10, 75, 270, 20));
-    pnlDetalleProducto.add(lblCodigo, new XYConstraints(10, 30, 55, 20));
+    pnlStock.add(lblUnidades);
+    pnlStock.add(lblStock);
+    pnlStock.add(lblFechaHora);
+    pnlStock.add(lblStockTexto);
+    pnlDetalleProducto.add(btnPrecioVta);
+    pnlDetalleProducto.add(btnCantidad);
+    pnlDetalleProducto.add(txtPrecioVenta);
+    pnlDetalleProducto.add(lblUnidadT);
+    pnlDetalleProducto.add(lblDescripcionT);
+    pnlDetalleProducto.add(lblCodigoT);
+    pnlDetalleProducto.add(lblLaboratorio);
+    pnlDetalleProducto.add(lblDcto);
+    pnlDetalleProducto.add(lblLaboratorioT);
+    pnlDetalleProducto.add(lblDscto);
+    pnlDetalleProducto.add(lblPrecio);
+    pnlDetalleProducto.add(txtCantidad);
+    pnlDetalleProducto.add(lblUnidad);
+    pnlDetalleProducto.add(lblDescripcion);
+    pnlDetalleProducto.add(lblCodigo);
     this.getContentPane().add(jContentPane, BorderLayout.CENTER);
     jContentPane.add(lblEsc, null);
     jContentPane.add(lblF11, null);

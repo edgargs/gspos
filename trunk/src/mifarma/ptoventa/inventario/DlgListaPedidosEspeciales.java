@@ -324,7 +324,7 @@ public class DlgListaPedidosEspeciales extends JDialog
     chkKeyPressed(e);
   }
   
-  //jcallo 16.10.2008 evento del teclado 
+  //  16.10.2008 evento del teclado 
   private void txtFecIni_keyTyped(KeyEvent e)
   {
     //chkKeyPressed(e);
@@ -514,14 +514,14 @@ public class DlgListaPedidosEspeciales extends JDialog
   }*/
   
   /**
-   * @author JCORTEZ
+   * @author  
    * */
   private void nuevoPedido(){
-        //Modificado por DVELIZ 18.10.08
+        //Modificado por   18.10.08
           VariablesInventario.vEsModificado = true;
       System.out.println("F1 - VariablesInventario.vEsModificado "+VariablesInventario.vEsModificado);
           limpiarTableModelEspecial();
-          //FIN DVELIZ
+          //FIN  
           VariablesInventario.vFModificar = false; 
       VariablesInventario.vFNuevo = true;
 	  DlgResumenPedidoEspecial dglResuPedidoEspecial = new DlgResumenPedidoEspecial(myParentFrame,"",true);
@@ -565,7 +565,7 @@ public class DlgListaPedidosEspeciales extends JDialog
   
   /**
    * validarFechas 
-   * @author JCALLO
+   * @author  
    * @since 16.10.2008
    * */
   private boolean validarFechas(){
@@ -613,7 +613,7 @@ public class DlgListaPedidosEspeciales extends JDialog
 
 /**
  * Evento F3 de la interfaz
- * @author DVELIZ
+ * @author  
  * @since 18.10.08
  */
     private void modificarPedido() {

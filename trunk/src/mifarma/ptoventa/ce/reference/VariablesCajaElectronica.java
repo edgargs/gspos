@@ -22,7 +22,7 @@ public class VariablesCajaElectronica
   {
   }
    
-  /******************************PAULO*********************************/
+  /****************************** *********************************/
    public static ArrayList listaCompsDesfasados = new ArrayList();
    public static ArrayList listaEliminacion = new ArrayList();
    public static ArrayList compMinMax = new ArrayList();
@@ -67,7 +67,7 @@ public class VariablesCajaElectronica
    public static String vIndDebito = "" ;
    
    
-  /******************************PAULO*********************************/
+  /****************************** *********************************/
   
   /**************LMESIA***************/
   public static String vIndVBCajero = "";
@@ -155,7 +155,7 @@ public class VariablesCajaElectronica
   /**
    * Variable agregada para ver si la forma de pago 
    * se asociara a un sobre o no
-   * @author dubilluz
+   * @author  
    * @since  14.01.2008
    */
   public static String vIndSobre = "";
@@ -163,7 +163,7 @@ public class VariablesCajaElectronica
   public static String vCodigoSobre = "" ;
   
   
-  //jcallo 02/02/2009
+  //  02/02/2009
   public static String vIndChangeSobre = "N" ;
   public static int vCantModSobres = 3 ;
   public static String vFecCierreCajaAux="";
@@ -314,7 +314,7 @@ public class VariablesCajaElectronica
    /// Variables para las VAliodaciones de Forma de Pago
   /**
    * Variables para el Cobro de un Convenio de Tipo Credito
-   * @author : dubilluz
+   * @author :  
    * @since  : 08.09.2007
    */
   public static ArrayList arrayDetFPCredito = new ArrayList();  
@@ -323,7 +323,7 @@ public class VariablesCajaElectronica
    
   /**
    * Variables para Verificar el Credito usado_f
-   * @author : dubilluz
+   * @author :  
    * @since  : 26.07.2007
    */
   public static ArrayList arrayPedidoDelivery = new ArrayList();
@@ -341,14 +341,14 @@ public class VariablesCajaElectronica
   
   /**
    * Variable para saber si el pedido es de recarga virtual
-   * @author dubilluz
+   * @author  
    * @since  14.11.2007
    */
    public static String vIndPedidoRecargaVirtual = "";
    
   /**
    * Variable para saber si el pedido es de convenio
-   * @author JCORTEZ
+   * @author  
    * @since  17.03.2008
    */ 
    public static String vIndConvenio = "";
@@ -357,7 +357,7 @@ public class VariablesCajaElectronica
    
    /**
    * Variable permite pedido campaña
-   * @author JCORTEZ
+   * @author  
    * @since  03.07.2008
    */ 
    public static String vPermiteCampaña="N";
@@ -368,7 +368,7 @@ public class VariablesCajaElectronica
    /**
     * Se declara la variable para el listado de cupones usados por el pedido
     * ya sea al momento de cobrar y/o anular el pedido
-    * @author dubilluz
+    * @author  
     * @since  03.09.2008
     */
    public static ArrayList listCuponesUsadosPedido = new ArrayList(); 
@@ -380,17 +380,17 @@ public class VariablesCajaElectronica
    /**
     * Variable para la cantidad de lineas en el detalle de impresion de la boleta
     * dependiendo de si es o no con convenio
-    * @author dveliz
+    * @author  
     * @since  03.09.2008
     */
    public static int TOTAL_LINEAS_POR_BOLETA_CONVENIO = 0;
    public static int TOTAL_LINEAS_POR_FACTURA_CONVENIO = 0;
-   //JCORTEZ 25.03.09
+   //  25.03.09
    public static int TOTAL_LINEAS_POR_TICKET = 0;
    
     /**
      * Variable que almacena el motivo de la anulacion
-     * @author asolis
+     * @author  
      * @since  01.12.2008
      */
     
@@ -399,35 +399,35 @@ public class VariablesCajaElectronica
         
     /**
      * Variable indicador en linea ADMCentral
-     * @author dveliz
+     * @author  
      * @since  15.12.2008
      */
     public static String vIndLineaADMCentral = "";
     
     /**
         * Variable  indicador de conexion a Matriz 
-        * @author asolis
+        * @author  
         * @since  11.12.2008
         */
        public static String  vIndConexion    = "";
        
     /**
         * Variable que almacena el estado de impresion sea boleta ,factura ,etc
-        * @author asolis
+        * @author  
         * @since  17.12.2008
         */
        public static String vEstadoSinComprobanteImpreso="S";
     
     /**
         * respuesta de exito de recarga virtual
-        * @author dveliz
+        * @author  
         * @since  19.12.2008
         */
     public static String vRespuestaExito = "";
     
     /**
      * Anulacion Pedidos Fidelizados
-     * @Author JCORTEZ
+     * @Author  
      * @since  18.12.08
      */ 
     public static String vIndPedFidelizado = "";
@@ -440,7 +440,7 @@ public class VariablesCajaElectronica
     
     /**
      * Remitos Prosegur
-     * @Author JCORTEZ
+     * @Author  
      * @since  18.12.08
      */ 
     public static String vFechaIni = "";
@@ -460,7 +460,7 @@ public class VariablesCajaElectronica
     
     /**
      * Variables Secuencial de Comprobantes para Aperturar y Cerrar Caja
-     * @Author ASOLIS
+     * @Author  
      * @since  01.02.09
      */
     public static int  vNumeroBoleta=0;
@@ -470,14 +470,14 @@ public class VariablesCajaElectronica
     
     /**
      * Variables Codigo de Cajero
-     * @Author ASOLIS
+     * @Author  
      * @since  11.02.09
      */
      public static String vSec_usu_local = "";
     
     /**
      * indicador de parametros en Respuesta Recarga
-     * @author asolis
+     * @author  
      * @since  11.02.2009
      */
 
@@ -485,7 +485,7 @@ public class VariablesCajaElectronica
     
     /**
      * indicador de mostrar Mensaje
-     * @author asolis
+     * @author  
      * @since  13.02.2009
      */
 
@@ -497,19 +497,19 @@ public class VariablesCajaElectronica
    
     /**
      * variable que guarda el secuencial del usuario
-     * @author mfajardo
+     * @author  
      * @since  29.04.2009
      */
-    //Mfajardo 24/04/09 metodo imprimir ticket de anulacion            
+    //  24/04/09 metodo imprimir ticket de anulacion            
      public static String vSecuenciaUsoUsuario = "";
     
     
-    //JCORTEZ 16.06.09  
+    //  16.06.09  
      public static String vDescripImpr = "";
     
     /**
      * variables ingreso de sobre
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE 03.11.09
      * */
     
@@ -528,7 +528,7 @@ public class VariablesCajaElectronica
     public static String vSecTmp = "";
     
     
-    //JMIRANDA 15.12.09
+    //  15.12.09
     //Punto de LLegada para Vta institucional.
     public static String vPuntoLlegada = "";
     public static String vPuntoPartida = "";
@@ -537,12 +537,12 @@ public class VariablesCajaElectronica
     public static String vIndCambioFormaPago = "";
     public static boolean indExitoCambioFP = false;
     
-    //ASOSA, 21.06.2010
+    // , 21.06.2010
     public static String indAutoFSEN = "N";
   
-    //dubilluz 27.07.2010
+    //  27.07.2010
     public static String pSecUsu_APRUEBA_SOBRE = "";
-    //ASOSA, 11.08.2010
+    // , 11.08.2010
     public static String idUsu_APRUEBA_SOBRE="";
     
     //JQUISPE 20/12/2010 INDICADOR QUE DEJE GRABAR CIERRE DE TURNO DE UN MISMO CAJERO Y QUIMICO.  

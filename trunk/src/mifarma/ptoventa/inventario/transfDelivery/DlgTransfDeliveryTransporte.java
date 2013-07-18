@@ -54,9 +54,9 @@ import com.gs.mifarma.componentes.JTextFieldSanSerif;
  * Nombre de la Aplicación : DlgTransfDeliveryTransporte.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JCALLO      20.10.2008   Creación<br>
+ *        20.10.2008   Creación<br>
  * <br>
- * @author JCALLO<br>
+ * @author  <br>
  * @version 1.0<br>
  *
  */
@@ -414,7 +414,7 @@ public class DlgTransfDeliveryTransporte extends JDialog
 		FarmaLoadCVL.loadCVLFromSP(cmbTipo,ConstantsInventario.NOM_HASHTABLE_CMBTIPO_TRANSF,"PTOVENTA_INV.INV_GET_TIPO_TRANSFERENCIA",parametros, false); 
 		parametros = null;
 	}
-	//Agregado por Paulo motivos de transferencia interno 
+	//Agregado por   motivos de transferencia interno 
 	private void initCmbMotivoInterno()
 	{
 		cmbDefinicion.removeAllItems();
@@ -899,7 +899,7 @@ public class DlgTransfDeliveryTransporte extends JDialog
 
 	/**
 	 * obtiene el valor para poder saber si se habilitara el Text de Fraccion
-	 * @author dubilluz
+	 * @author  
 	 * @since  15.10.2007
 	 */
 	public void consultamotivo()

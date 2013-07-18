@@ -39,11 +39,7 @@ import mifarma.ptoventa.caja.reference.VariablesCaja;
 import mifarma.ptoventa.caja.reference.DBCaja;
 import mifarma.ptoventa.caja.reference.UtilityCaja;
 
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.DefaultCategoryDataset;
+
 import javax.swing.JFrame;
 
 import mifarma.ptoventa.ce.reference.DBCajaElectronica;
@@ -363,8 +359,8 @@ public class DlgListaRemito extends JDialog
         UtilityCaja.imprimeVoucherRemito(this,VariablesCaja.NumRemito);
        }
        }else if (e.getKeyCode()==KeyEvent.VK_F6){
-           cambiarCodigoRemito(); //ASOSA, 09.08.2010
-           listarRemitos(); //ASOSA, 13.08.2010
+           cambiarCodigoRemito(); // , 09.08.2010
+           listarRemitos(); // , 13.08.2010
        }else if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
             this.setVisible(false);
         }
@@ -519,7 +515,7 @@ public class DlgListaRemito extends JDialog
   
   /**
    * Cambiar el codigo de remito
-   * @author ASOSA
+   * @author  
    * @since 09.08.2010
    */
   private void cambiarCodigoRemito(){

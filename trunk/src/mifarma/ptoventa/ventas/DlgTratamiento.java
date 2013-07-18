@@ -35,12 +35,12 @@ import mifarma.common.FarmaConstants;
 import mifarma.common.FarmaUtility;
 import mifarma.common.FarmaVariables;
 
-import mifarma.ptoventa.convenio.reference.VariablesConvenio;
+ 
 import mifarma.ptoventa.ventas.reference.DBVentas;
 import mifarma.ptoventa.ventas.reference.VariablesVentas;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -50,7 +50,7 @@ import org.apache.commons.logging.LogFactory;
  * Nombre de la Aplicación : DlgTratamiento.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JCORTEZ      29.05.2008   Creación<br>
+ *        29.05.2008   Creación<br>
  * <br>
  * @author Jorge Cortez Alvarez<br>
  * @version 1.0<br>
@@ -59,7 +59,7 @@ import org.apache.commons.logging.LogFactory;
 
 public class DlgTratamiento extends JDialog 
 {
-  private static final Log log = LogFactory.getLog(DlgTratamiento.class);
+  private static final Logger log = LoggerFactory.getLogger(DlgTratamiento.class);
 
   private int cantInic = 0;
   private Frame myParentFrame;
@@ -70,7 +70,7 @@ public class DlgTratamiento extends JDialog
   private String lblUnidPresProdSug;
   private String lblCantSug;
   private String lblTotalSug;
-  private String lblTotalSugRedondeado; //JCHAVEZ 29102009
+  private String lblTotalSugRedondeado; //  29102009
   private String lblPreUnitSug;
   private String lblStockFracSug;
   
@@ -482,7 +482,7 @@ public class DlgTratamiento extends JDialog
     else if(e.getKeyCode() == KeyEvent.VK_F11)
     {
       aceptaCantidadIngresada("VK_F11");
-      //DVELIZ
+      // 
       //cerrarVentana(true);
     }
     else if(e.getKeyCode() == KeyEvent.VK_F12)
@@ -490,7 +490,7 @@ public class DlgTratamiento extends JDialog
       if(vIndTieneSug)
       {
         aceptaCantidadIngresada("VK_F12");
-        //DVELIZ
+        // 
         //cerrarVentana(true);
       }
     }
@@ -566,7 +566,7 @@ public class DlgTratamiento extends JDialog
       
         /*if((!VariablesVentas.vEsPedidoDelivery && !VariablesVentas.vEsPedidoInstitucional) || !VariablesVentas.vIngresaCant_ResumenPed)
         {
-         //JCORTEZ 11/04/08 no se actualiza el precio y descuento si es producto  oferta
+         //  11/04/08 no se actualiza el precio y descuento si es producto  oferta
          if(!VariablesVentas.vIndOrigenProdVta.equals("5")){
             System.out.println("SETEANDO DESCUENTO");
             VariablesVentas.vVal_Prec_Vta = ((String)((ArrayList)myArray.get(0)).get(3)).trim();
@@ -632,8 +632,8 @@ public class DlgTratamiento extends JDialog
       
       VariablesVentas.vTotalPrecVtaTra = FarmaUtility.getDecimalNumber(lblTotalVenta.getText());
       
-      // -- Añadido DUBILLUZ
-      // COMENTADO POR JCALLO 23.10.2008
+      // -- Añadido  
+      // COMENTADO POR   23.10.2008
       /*VariablesVentas.vCantxDia  = txtCantxDia.getText().trim(); // 1
       VariablesVentas.vCantxDias  = txtCant.getText().trim();// 2*/
       // --FIN
@@ -714,13 +714,13 @@ public class DlgTratamiento extends JDialog
                                               VariablesVentas.vVal_Frac);
         FarmaUtility.liberarTransaccion();
         //quitar bloqueo de stock fisico 
-        //dubilluz 13.10.2011  
+        //  13.10.2011  
     } catch(SQLException sql)
     {
       //sql.printStackTrace();
       FarmaUtility.liberarTransaccion();
       //quitar bloqueo de stock fisico 
-      //dubilluz 13.10.2011  
+      //  13.10.2011  
       log.error(null,sql);
       FarmaUtility.showMessage(this,"Error al obtener stock del producto. \n" + sql.getMessage(),txtCant);
     }
@@ -753,7 +753,7 @@ public class DlgTratamiento extends JDialog
         
         lblCantTrata.setText(""+(int)cantTra);
         
-        //JCALLO 23.10.2008
+        //  23.10.2008
         VariablesVentas.vCantxDia  = txtCantxDia.getText().trim();
         VariablesVentas.vCantxDias  = txtCant.getText().trim();
         
@@ -799,12 +799,12 @@ public class DlgTratamiento extends JDialog
      //lblStockEntSug.setText("");
      lblCantSug = (String)((ArrayList)myArray.get(0)).get(0);
       lblTotalSug = (String)((ArrayList)myArray.get(0)).get(1);
-      //JCHAVEZ 29102009 inicio  
+      //  29102009 inicio  
       try{
           double precSugeridoRedondeadoNum = DBVentas.getPrecioRedondeado(Double.parseDouble(lblTotalSug));
           /*
            * Modificacion
-           * Autor: ASOSA
+           * Autor:  
            * Fecha: 28.12.2009
            *<<---------------- */
           /*String*/ lblTotalSugRedondeado = FarmaUtility.formatNumber(FarmaUtility.getDecimalNumber(""+precSugeridoRedondeadoNum),3); 
@@ -815,7 +815,7 @@ public class DlgTratamiento extends JDialog
           ex.printStackTrace();
       }
      
-      //JCHAVEZ 29102009 fin
+      //  29102009 fin
       lblUnidPresProdSug = (String)((ArrayList)myArray.get(0)).get(2);
       VariablesVentas.vDesc_Unid_Vta_Sug=((String)((ArrayList)myArray.get(0)).get(2)).trim();
       
@@ -831,7 +831,7 @@ public class DlgTratamiento extends JDialog
      VariablesVentas.vValFracLocal =(String)((ArrayList)myArray.get(0)).get(10);
      VariablesVentas.vTotal_Vta = FarmaUtility.getValueFieldArrayList(myArray,0,11);
      
-     //JCHAVEZ 29102009 inicio
+     //  29102009 inicio
      try{
          double precTotalVtaRedondeadoNum = DBVentas.getPrecioRedondeado(Double.parseDouble(VariablesVentas.vTotal_Vta));
          System.out.println("precTotalVtaRedondeadoNum: "+precTotalVtaRedondeadoNum);
@@ -841,7 +841,7 @@ public class DlgTratamiento extends JDialog
      catch(SQLException ex){
          ex.printStackTrace();
      }    
-     //JCHAVEZ 29102009 fin
+     //  29102009 fin
      
       lblTotalVenta.setText(VariablesVentas.vTotal_Vta);
      String auxIndSug = FarmaUtility.getValueFieldArrayList(myArray,0,12);
@@ -910,7 +910,7 @@ public class DlgTratamiento extends JDialog
    lblS1.setVisible(valor);
    lblStockEntSug.setVisible(valor);
    lblEnter1.setVisible(valor);
-    lblMensaje.setText("Llévate "+lblCantSug+" "+lblUnidPresProdSug+" por sólo S/."+lblTotalSugRedondeado);//JCHAVEZ 29102009 se cambio lblTotalSug por lblTotalSugRedondeado
+    lblMensaje.setText("Llévate "+lblCantSug+" "+lblUnidPresProdSug+" por sólo S/."+lblTotalSugRedondeado);//  29102009 se cambio lblTotalSug por lblTotalSugRedondeado
     lblMensaje.setVisible(valor);
    vIndTieneSug = valor;
   }

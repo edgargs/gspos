@@ -24,7 +24,7 @@ public class DBUsuarios {
     parametros.add(pActivo);
 		FarmaDBUtility.executeSQLStoredProcedure(pTableModel,"PTOVENTA_ADMIN_USU.USU_LISTA_USUARIOS_LOCAL(?,?,?)", parametros, false);
 	}
-  //27.11.2007 dubilluz modificado
+  //27.11.2007   modificado
 	public static void ingresaUsuario(String pCodTrab, String pNomUsu, String pApePat, String pApeMat,
 			String pLoginUsu, String pClaveUsu, String pTelefUsu,
 			String pDireccUsu, String pFecNac, String pDni,String pCodRRHH) throws SQLException {
@@ -182,7 +182,7 @@ public class DBUsuarios {
 
   /**
    * Busca si el usuario tiene caja asignada
-   * @author : dubilluz
+   * @author :  
    * @since  : 12.07.2007
    */
   public static String buscaCajaAsignada(String  sec_usuario)throws SQLException
@@ -195,7 +195,7 @@ public class DBUsuarios {
    }
   /**
    * Busca si existen usuarios sin cajas asignadas
-   * @author : dubilluz
+   * @author :  
    * @since  : 12.07.2007
    */
   public static String buscaUsuSinCajaAsignada()throws SQLException
@@ -207,7 +207,7 @@ public class DBUsuarios {
    }
   /**
    * Modifica el Estado caja de usuario
-   * @author : dubilluz
+   * @author :  
    * @since  : 12.07.2007
    */   
   public static void cambiaEstadoCaja(String pNumCaja) throws SQLException {
@@ -223,7 +223,7 @@ public class DBUsuarios {
   
   /**
    * Obtiene el estado de la Caja
-   * @author : dubilluz
+   * @author :  
    * @since  : 12.07.2007
    */
   public static String obtieneEstadoCaja(String pNumCaja)throws SQLException
@@ -237,7 +237,7 @@ public class DBUsuarios {
   
 
   /** Permite Validar la cantidad maxima de dias para modificar el codigo de trabajador
-   * @author: JCORTEZ
+   * @author:  
    * @since:  03/07/2007
    */
     public static String  validaDiasMaximos(String vLogin)throws SQLException
@@ -253,7 +253,7 @@ public class DBUsuarios {
   
  /**
   * Verifica si el usuario existe
-  * @author dubilluz
+  * @author  
   * @since  27.11.2007
   */
  
@@ -268,7 +268,7 @@ public class DBUsuarios {
   }  
   /**
    * Obtiene el indicador de validar al usuario
-   * @author dubilluz
+   * @author  
    * @since  27.11.2007
    */
   public static String getIndValidarUsuario()throws SQLException
@@ -379,7 +379,7 @@ public class DBUsuarios {
     
     
     /**
-       * @Author Asolis
+       * @Author  
        * @Since  17.02.09
        * @description Ingresar Carne Sanidad
        * @throws SQLException
@@ -402,7 +402,7 @@ public class DBUsuarios {
     }
     
     /**
-       * @Author Asolis
+       * @Author  
        * @Since  20.02.09
        * @description Envia Alerta de Registro de Carne Sanidad
        * @throws SQLException
@@ -516,7 +516,7 @@ public class DBUsuarios {
     
     
     /**
-       * @Author Asolis
+       * @Author  
        * @Since  20.02.09
        * @description Envia Alerta de Cuando el Usuario Sin Carne Marca Ingreso al Local
        * @throws SQLException

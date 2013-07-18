@@ -52,7 +52,7 @@ import mifarma.ptoventa.caja.reference.VariablesCaja;
 
 public class DlgMantCarne extends JDialog {
 
-    /*** @Author Asolis
+    /*** @Author  
        * @Since  20.02.09
        * @description Mant. Carne Sanidad*/
 
@@ -616,7 +616,7 @@ public class DlgMantCarne extends JDialog {
 
     /**
      * Solo se permitira numeros en telefono y DNI
-     * @author dubilluz
+     * @author  
      * @since 28.11.2007
      */
     private void txtDni_keyTyped(KeyEvent e) {

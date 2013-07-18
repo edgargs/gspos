@@ -49,7 +49,7 @@ import mifarma.ptoventa.matriz.mantenimientos.productos.references.ConstantsProd
  * Nombre de la Aplicación : DlgResumenPedEspecialMatriz.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JCORTEZ   04.01.10   Creación<br>
+ *     04.01.10   Creación<br>
  * <br>
  * @author JORGE CORTEZ ALVAREZ<br>
  * @version 1.0<br>
@@ -330,7 +330,7 @@ public class DlgResumenPedEspecialMatriz extends JDialog
     	    indCierraVenta = false;
     		if(FarmaUtility.rptaConfirmDialog(this,"Esta seguro de quitar el producto del pedido ?")){
                 
-                        //Agregado por DVELIZ 18.10.08
+                        //Agregado por   18.10.08
                         borrarSeleccionListProducto(rowSel);   
     			tableModel.deleteRow(rowSel);
     			VariablesProducto.vArrayProductosEspeciales.remove(rowSel);

@@ -24,20 +24,20 @@ import mifarma.ptoventa.caja.reference.DBCaja;
 import mifarma.ptoventa.caja.reference.UtilityCaja;
 import mifarma.ptoventa.caja.reference.VariablesCaja;
 import mifarma.ptoventa.caja.reference.VariablesVirtual;
-import mifarma.ptoventa.convenio.reference.DBConvenio;
-import mifarma.ptoventa.convenio.reference.VariablesConvenio;
+ 
+ 
 import mifarma.ptoventa.fidelizacion.reference.VariablesFidelizacion;
 import mifarma.ptoventa.fidelizacion.reference.UtilityFidelizacion;
 import mifarma.ptoventa.ventas.reference.ConstantsVentas;
 import mifarma.ptoventa.ventas.reference.DBVentas;
 import mifarma.ptoventa.ventas.reference.VariablesVentas;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.gs.mifarma.componentes.JPanelWhite;
 
-import mifarma.ptoventa.convenio.reference.UtilityConvenio;
+ 
 import mifarma.ptoventa.reference.VariablesPtoVenta;
 
 
@@ -56,7 +56,7 @@ import mifarma.ptoventa.reference.VariablesPtoVenta;
  */
 public class DlgProcesarCobro extends JDialog {
 	
-  private static final Log log = LogFactory.getLog(DlgProcesarCobro.class);
+  private static final Logger log = LoggerFactory.getLogger(DlgProcesarCobro.class);
 
   private Frame myParentFrame;
   //private boolean vValorProceso;
@@ -146,7 +146,7 @@ public class DlgProcesarCobro extends JDialog {
   
   /**
    * Validaciones de Cobro de Pedido
-   * @author Dubilluz
+   * @author  
    * @since  05.03.2009
    */
   private boolean validacionesCobroPedido(){
@@ -165,12 +165,12 @@ public class DlgProcesarCobro extends JDialog {
            return false;
        } 
 
-       //Inicio Adicion Paulo. Validacion para cajeros
+       //Inicio Adicion  . Validacion para cajeros
        if (!UtilityCaja.existeCajaUsuarioImpresora(this, null)){
                cerrarVentana(false);
            return false;
        }
-       //Fin Adicion Paulo.
+       //Fin Adicion  .
        
        /*
         * Validacion de Fecha actual del sistema contra
@@ -197,7 +197,7 @@ public class DlgProcesarCobro extends JDialog {
                                                      VariablesVentas.vRuc_Cli_Ped,
                                                       this,
                                                      tblFormasPago,
-                                                      // dubilluz 01.06.2012
+                                                      //   01.06.2012
                                                       VariablesFidelizacion.vNumTarjeta
                                                      ))
        {
@@ -233,7 +233,7 @@ public class DlgProcesarCobro extends JDialog {
       
       /**
        * Se valida que la caja este abierta y se bloquea al mismo tiempo.
-       * @AUTHOR JCORTEZ 
+       * @AUTHOR   
        * @SINCE 18.05.09
        * */
       tmpT3 = System.currentTimeMillis();      
@@ -258,7 +258,7 @@ public class DlgProcesarCobro extends JDialog {
                                 VariablesCaja.listCuponesUsadosPedido,
                                 ConstantsCaja.CONSULTA_VALIDA_CUPONES);
         
-        log.debug("JCALLO VariablesCaja.listCuponesUsadosPedido:"+VariablesCaja.listCuponesUsadosPedido);
+        log.debug("  VariablesCaja.listCuponesUsadosPedido:"+VariablesCaja.listCuponesUsadosPedido);
         //validar los cupones usados en el pedido
         if(VariablesCaja.listCuponesUsadosPedido.size()>0){
         	//validacion de cupon activos, ya que alguno pudiera estar inactivo por xmotivos
@@ -280,17 +280,17 @@ public class DlgProcesarCobro extends JDialog {
           tmpT2 = System.currentTimeMillis();      
           log.debug("t3 Validacion de cupones Usados: "+(tmpT2 - tmpT1)+" milisegundos");
           tmpT1 = System.currentTimeMillis();      
-        log.debug("jcallo:  validacion de campañas limitadas en cantidad de uso");
+        log.debug(" :  validacion de campañas limitadas en cantidad de uso");
         //validacion de campañas limitadas en cantidad de uso        
         //obteniendo el dni del cliente si se trata de una venta cliente fidelizado
         String dniClienteFidelizado = obtenerDniClienteFidelizado(VariablesCaja.vNumPedVta).trim();
-        log.debug("jcallo :dniClienteFidelizado:"+dniClienteFidelizado);
+        log.debug("  :dniClienteFidelizado:"+dniClienteFidelizado);
         if(dniClienteFidelizado.length()>0){//quiere decir que es pedido de venta fidelizado
         	ArrayList listaCampLimitTerminados = new ArrayList();
         	ArrayList listaCampAutomaticasPedido = new ArrayList();
         	listaCampAutomaticasPedido = getCampAutomaticasPedido(VariablesCaja.vNumPedVta);//obtiene todas las campañas automaticas usados en el pedido
-        	log.debug("jcallo :listaCampAutomaticasPedido:"+listaCampAutomaticasPedido);
-                //DUBILLUZ - 01.12.2009
+        	log.debug("  :listaCampAutomaticasPedido:"+listaCampAutomaticasPedido);
+                //  - 01.12.2009
                 //Correccion reportado por Jose.
         	/*
         	if (VariablesCaja.vIndLinea.length()<1){//quiere decir que no se validado aun el indicador de linea en matriz
@@ -301,25 +301,25 @@ public class DlgProcesarCobro extends JDialog {
         	/*if(VariablesCaja.vIndLinea.equals(FarmaConstants.INDICADOR_S)){//si hay linea con matriz
         		//traer todas las campañas limitadas que no deben aplicar para el cliente
         		listaCampLimitTerminados = CampLimitadasUsadosDeMatrizXCliente(dniClienteFidelizado);
-        		log.debug("jcallo :listaCampLimitTerminados de MATRIZ:"+listaCampLimitTerminados);
+        		log.debug("  :listaCampLimitTerminados de MATRIZ:"+listaCampLimitTerminados);
         	}else{
         		listaCampLimitTerminados = CampLimitadasUsadosDeLocalXCliente(dniClienteFidelizado);
-        		log.debug("jcallo :listaCampLimitTerminados de LOCAL:"+listaCampLimitTerminados);
+        		log.debug("  :listaCampLimitTerminados de LOCAL:"+listaCampLimitTerminados);
         	}
                 */
                 //Valida localmente
-                //14.04.2009 DUBILLUZ
+                //14.04.2009  
                 listaCampLimitTerminados = CampLimitadasUsadosDeLocalXCliente(dniClienteFidelizado);
-                log.debug("jcallo :listaCampLimitTerminados de LOCAL:"+listaCampLimitTerminados);
+                log.debug("  :listaCampLimitTerminados de LOCAL:"+listaCampLimitTerminados);
         	
         	
         	boolean flag = false;
         	
         	for(int i = 0; i<listaCampLimitTerminados.size();i++){
         		String cod_camp = listaCampLimitTerminados.get(i).toString();
-        		log.debug(" jcallo : cod_camp :"+cod_camp);
+        		log.debug("   : cod_camp :"+cod_camp);
         		if( listaCampAutomaticasPedido.contains(cod_camp) ){
-        			log.debug(" jcallo : cod_camp ENCONTRADO UNO QUE NO DEBERIA PODER USARSE:"+cod_camp);
+        			log.debug("   : cod_camp ENCONTRADO UNO QUE NO DEBERIA PODER USARSE:"+cod_camp);
         			flag = true;
         			break;
         		}
@@ -335,7 +335,7 @@ public class DlgProcesarCobro extends JDialog {
           tmpT2 = System.currentTimeMillis();      
           log.debug("t4 Validaciondes de Fidelizados.Uso de campañas Automatica: "+(tmpT2 - tmpT1)+" milisegundos");        
         
-        log.debug("jcallo:  fin de validacion de campañas limitadas en cantidad de uso");
+        log.debug(" :  fin de validacion de campañas limitadas en cantidad de uso");
           tmpT1 = System.currentTimeMillis();      
         VariablesCaja.mostrarValoresVariables();
         //fin de la validacion de campañas limitadas en cantidad de usos
@@ -344,7 +344,7 @@ public class DlgProcesarCobro extends JDialog {
         String pIndPedConvenio = DBCaja.getIndPedConvenio(VariablesCaja.vNumPedVta);
         VariablesVentas.vEsPedidoConvenio = (pIndPedConvenio.equals("S")) ? true:false;
         
-        log.debug("jcallo VariablesVentas.vEsPedidoConvenio:"+VariablesVentas.vEsPedidoConvenio);
+        log.debug("  VariablesVentas.vEsPedidoConvenio:"+VariablesVentas.vEsPedidoConvenio);
         //fin verificar si es pedido por convenio
 
         //numero de liner por BOLETA
@@ -372,7 +372,7 @@ public class DlgProcesarCobro extends JDialog {
                  VariablesCaja.vNumSecImpresionComprobantes = DBCaja.agrupaImpresionDetallePedido(
                 		 VariablesCaja.TOTAL_LINEAS_POR_FACTURA_CONVENIO);
              }
-        }else if (VariablesVentas.vTip_Comp_Ped.equalsIgnoreCase(ConstantsVentas.TIPO_COMP_TICKET)) { //JCORTEZ 25.03.09 numero de linea por TICKET
+        }else if (VariablesVentas.vTip_Comp_Ped.equalsIgnoreCase(ConstantsVentas.TIPO_COMP_TICKET)) { //  25.03.09 numero de linea por TICKET
              if(VariablesVentas.vEsPedidoConvenio){
                  VariablesCaja.TOTAL_LINEAS_POR_TICKET = Integer.parseInt(
                 		 DBCaja.getLineasDetalleDocumento(ConstantsVentas.LINEAS_TICKET));
@@ -387,11 +387,11 @@ public class DlgProcesarCobro extends JDialog {
         }
         
         //muestra las secuencia de numero de comprobantes
-        log.debug("jcallo:VariablesCaja.vNumSecImpresionComprobantes : " + VariablesCaja.vNumSecImpresionComprobantes);
+        log.debug(" :VariablesCaja.vNumSecImpresionComprobantes : " + VariablesCaja.vNumSecImpresionComprobantes);
         //obtiene el monto del vuelto
         String vueltoPedido = lblVuelto.getText().trim();
         colocaVueltoDetallePago(vueltoPedido);
-        log.debug("jcallo: despues de colocar vuelto");
+        log.debug(" : despues de colocar vuelto");
         //detalle de formas de pago
         VariablesCaja.vDescripcionDetalleFormasPago = "";
         VariablesCaja.vDescripcionDetalleFormasPago = ConstantsCaja.COLUMNAS_DETALLE_FORMA_PAGO;
@@ -420,9 +420,9 @@ public class DlgProcesarCobro extends JDialog {
         }
         
         //obtiene la descrip de la formas de pago para la impresion
-        log.debug("jcallo: antes de la descripcion de formas de pago impresion");
+        log.debug(" : antes de la descripcion de formas de pago impresion");
         formasPagoImpresion();
-        log.debug("jcallo: fin de descripcion de formas de pago");
+        log.debug(" : fin de descripcion de formas de pago");
         //actualiza datos del cliente como nombre direccion ruc, etc
         if(!VariablesVentas.vCod_Cli_Local.equalsIgnoreCase("")) {
            log.debug("Actualizando datos del cliente en local ...");
@@ -430,7 +430,7 @@ public class DlgProcesarCobro extends JDialog {
         }
         
         //cobrar pedido DEVOLVERA EXITO. si cobro correctamente
-        //JCORTEZ 18.08.09 Se agrega DNI para guardar en cupone generados
+        //  18.08.09 Se agrega DNI para guardar en cupone generados
         String resultado = DBCaja.cobraPedido(VariablesVentas.vTip_Comp_Ped,VariablesCaja.vPermiteCampaña.trim(),dniClienteFidelizado.trim());
         log.debug(" verificando si el pedido es EXITOSO resultado Verifica: " + resultado);
         
@@ -451,179 +451,10 @@ public class DlgProcesarCobro extends JDialog {
             log.debug("t6 Agrupa Comprobantes: "+(tmpT2 - tmpT1)+" milisegundos");        
             
             VariablesCaja.vIndPedidoCobrado = true;
-            log.debug("jcallo:VariablesCaja.vIndPedidoConvenio=" + VariablesCaja.vIndPedidoConvenio + ", VariablesConvenio.vValCoPago=" +VariablesConvenio.vValCoPago);
-            //si es pedido convenio y va usar credito de convenio
-          if ( VariablesCaja.vIndPedidoConvenio.equalsIgnoreCase(FarmaConstants.INDICADOR_S) && 
-              FarmaUtility.getDecimalNumber(VariablesConvenio.vValCoPago) != 0) {
-              tmpT1 = System.currentTimeMillis(); 
-              //JMIRANDA 23.06.2010 COMENTADO PARA LA NUEVA VALIDACION
-          /*
-        	  log.debug("jcallo: actualizar el monto del cliente. VariablesConvenio.vValCredDis=" + 
-                            	  	VariablesConvenio.vValCredDis + " convenio=" + VariablesCaja.usoConvenioCredito);
-        	  //uso convenio credito
-        	  if (VariablesCaja.usoConvenioCredito.equalsIgnoreCase("S")) {
-        	//	  //validar credito del cliente si es que hay linea con matriz
-                        if (VariablesCaja.vIndLinea.length() < 
-                            1) { //quiere decir que no se validado aun el indicador de linea en matriz
-                            VariablesCaja.vIndLinea = 
-                                    FarmaUtility.getIndLineaOnLine(FarmaConstants.CONECTION_MATRIZ, 
-                                                                   FarmaConstants.INDICADOR_S);
-                        }
-        	    
-        		  if(VariablesCaja.vIndLinea.equalsIgnoreCase(FarmaConstants.INDICADOR_S)){
-                            String valor = 
-                                DBConvenio.validaCreditoCli(VariablesConvenio.vCodConvenio, 
-                                                            VariablesConvenio.vCodCliente, 
-                                                            "" + 
-                                                            VariablesConvenio.vValCredDis, 
-                                                            FarmaConstants.INDICADOR_S);
-                            log.debug("credito disponible que tendria despues del pedido : " + 
-                                      valor);
-                            double vValCredDisponible = 
-                                FarmaUtility.getDecimalNumber(valor);
-                            if (vValCredDisponible < 
-                                0) { //quiere decir que no tiene saldo suficiente
-                                FarmaUtility.liberarTransaccion();
-                                FarmaUtility.showMessage(this, 
-                                                         "Cliente no tiene saldo suficiente.\nSe excede en S/." + 
-                                                         vValCredDisponible + 
-                                                         " soles !", 
-                                                         tblFormasPago);
-                                return;
-                            } else { //quiere decir que tiene saldo suficiente
-                                //actualiza consumo del cliente en matriz
-                                DBConvenio.actualizaConsumoClienteEnMatriz(VariablesConvenio.vCodConvenio, 
-                                                                           VariablesConvenio.vCodCliente, 
-                                                                           "" + 
-                                                                           VariablesConvenio.vValCredDis, 
-                                                                           FarmaConstants.INDICADOR_N, 
-                                                                           VariablesCaja.vNumPedVta, 
-                                                                           FarmaVariables.vIdUsu);
-                                //JMIRANDA 25/08/2009
-                                //En el Metodo ActualizaConsumoClienteEnMatriz se inserta los Datos del consumo
-                                //del convenio en la tabla CON_REG_VENTA
-
-
-                                VariablesCaja.vIndCommitRemota = 
-                                        true; //indica que debera hacer commit remotamente si todo el proceso es exitoso
-                                //actualizar credito disponible del cliente en local * / ---/-/-/
-                                DBConvenio.actualizarCreditoDisp(VariablesConvenio.vCodConvenio, 
-                                                                 VariablesConvenio.vCodCliente, 
-                                                                 VariablesCaja.vNumPedVta, 
-                                                                 vValCredDisponible);
-
-                            }
-        		  }else{//si no hay linea con matriz
-        			  FarmaUtility.liberarTransaccion();
-        			  log.error("jcallo:no hay conexion a matriz, para validar y actualizar pedido por convenio");
-    				  FarmaUtility.showMessage(this, 
-                              "Error: En este momento no hay linea con matriz.\nSi el problema persiste comunicarse con el operador de sistema !",
-                              tblFormasPago);
-    				  return;
-        		  }
-        	  }
-                  */
-              
-              //////////////////
-                    String vIndLinea = 
-                        FarmaUtility.getIndLineaOnLine(FarmaConstants.CONECTION_MATRIZ, 
-                                                       FarmaConstants.INDICADOR_S);
-                    boolean indExisteConv = false;
-                    boolean indMontoValido = false;
-
-                    //JMIRANDA 23.06.2010
-                    //NUEVO METODO DE CONVENIO
-                    if (vIndLinea.trim().equalsIgnoreCase(FarmaConstants.INDICADOR_S)) {
-                        System.out.println("Existe conexion a Matriz");
-                        String valor = 
-                            DBConvenio.validaCreditoCli(VariablesConvenio.vCodConvenio, 
-                                                        VariablesConvenio.vCodCliente, 
-                                                        "" + 
-                                                        VariablesConvenio.vValCredDis, 
-                                                        FarmaConstants.INDICADOR_S);
-                        log.debug("credito disponible que tendria despues del pedido : " + 
-                                  valor);
-                        double vValCredDisponible = 
-                            FarmaUtility.getDecimalNumber(valor);
-
-                        //Paso 1 valida que exista el convenio
-                        indExisteConv = 
-                                UtilityConvenio.getIndClienteConvActivo(this, 
-                                                                        tblFormasPago, 
-                                                                        VariablesConvenio.vCodConvenio, 
-                                                                        VariablesConvenio.vNumDocIdent,
-                                                                        VariablesConvenio.vCodCliente);
-                        log.error("PASO 1. FORMA PAGO.  indExisteConv: " + 
-                                  indExisteConv);
-                        if (indExisteConv) {
-                            //Paso 2 validar el monto disponible
-                            indMontoValido = 
-                                    UtilityConvenio.getIndValidaMontoConvenio(this, 
-                                                                              tblFormasPago, 
-                                                                              VariablesConvenio.vCodConvenio, 
-                                                                              VariablesConvenio.vNumDocIdent, 
-                                                                              FarmaUtility.getDecimalNumber(VariablesConvenio.vValCoPago),
-                                                                                VariablesConvenio.vCodCliente
-                                                                              );
-                            log.error("PASO 2. FORMA PAGO indMontoValido: " + 
-                                      indMontoValido);
-                            if (indMontoValido) {
-                                log.error("eNTRO. FORMA PAGO indMontoValido: " + 
-                                          indMontoValido);
-                                //El convenio está activo y el monto a usar es correcto  
-
-
-                                //actualiza consumo del cliente en matriz
-                                /*
-                                DBConvenio.actualizaConsumoClienteEnMatriz(VariablesConvenio.vCodConvenio, 
-                                                                           VariablesConvenio.vCodCliente, 
-                                                                           "" + 
-                                                                           VariablesConvenio.vValCredDis, 
-                                                                           FarmaConstants.INDICADOR_N, 
-                                                                           VariablesCaja.vNumPedVta, 
-                                                                           FarmaVariables.vIdUsu);
-                                */
-                                DBConvenio.actualizaConsumoClienteEnMatriz_v2(VariablesConvenio.vCodConvenio, 
-                                                                           VariablesConvenio.vCodCliente, 
-                                                                           "" +VariablesConvenio.vValCredDis, 
-                                                                           FarmaConstants.INDICADOR_N, 
-                                                                           VariablesCaja.vNumPedVta, 
-                                                                           FarmaVariables.vIdUsu,
-                                                                           VariablesConvenio.vNumDocIdent);
-                                //JMIRANDA 25/08/2009
-                                //En el Metodo ActualizaConsumoClienteEnMatriz se inserta los Datos del consumo
-                                //del convenio en la tabla CON_REG_VENTA
-
-
-                                VariablesCaja.vIndCommitRemota = true;
-                                //indica que debera hacer commit remotamente si todo el proceso es exitoso
-                                //actualizar credito disponible del cliente en local*/
-                                DBConvenio.actualizarCreditoDisp(VariablesConvenio.vCodConvenio, 
-                                                                 VariablesConvenio.vCodCliente, 
-                                                                 VariablesCaja.vNumPedVta, 
-                                                                 vValCredDisponible);
-                                
-                                indUpdateEnConvenio = true;
-                                
-                            }
-                        }
-
-                    } else { //si no hay linea con matriz
-                        FarmaUtility.liberarTransaccion();
-                        log.error("jcallo:no hay conexion a matriz, para validar y actualizar pedido por convenio");
-                        FarmaUtility.showMessage(this, 
-                                                 "Error: En este momento no hay linea con matriz.\nSi el problema persiste comunicarse con el operador de sistema !", 
-                                                 tblFormasPago);
-                        return;
-                    }
-
-                    //////////////////
-              
-              tmpT2 = System.currentTimeMillis();      
-              log.debug("t7 Validaciones de convenio: "+(tmpT2 - tmpT1)+" milisegundos");        
-          }
+            
+          
             tmpT1 = System.currentTimeMillis();      
-          log.debug("jcallo: VariablesCaja.vIndPedidoConProdVirtual="+VariablesCaja.vIndPedidoConProdVirtual);
+          log.debug(" : VariablesCaja.vIndPedidoConProdVirtual="+VariablesCaja.vIndPedidoConProdVirtual);
           //obtener flag de IND PARA SABER SI IMPRIMIRA ANTES DE LA RECARGA VIRTUAL
           indCommitBefore =  getIndCommitAntesRecargar();
             tmpT2 = System.currentTimeMillis();      
@@ -639,7 +470,7 @@ public class DlgProcesarCobro extends JDialog {
                                                                                             txtNroPedido,
                                                                                             FarmaConstants.INDICADOR_N
                                                                                            );
-                    log.debug("jcallo: pRspCampanaAcumulad="+pRspCampanaAcumulad);
+                    log.debug(" : pRspCampanaAcumulad="+pRspCampanaAcumulad);
                     if (!pRspCampanaAcumulad){
                             FarmaUtility.liberarTransaccion();
                             FarmaUtility.liberarTransaccionRemota(FarmaConstants.CONECTION_MATRIZ,
@@ -652,7 +483,7 @@ public class DlgProcesarCobro extends JDialog {
                                                     "\n" +
                                                     "Gracias.",
                                                     tblFormasPago);
-                            return; //se olvido dubilluz
+                            return; //se olvido  
                     }
             
             
@@ -665,29 +496,7 @@ public class DlgProcesarCobro extends JDialog {
           if(indCommitBefore.equalsIgnoreCase(FarmaConstants.INDICADOR_S)){
 	        log.debug("indCommitBefore : S ");
 	        log.debug("###VariablesCaja.vIndPedidoConProdVirtual  "+VariablesCaja.vIndPedidoConProdVirtual);
-	        if (VariablesCaja.vIndPedidoConProdVirtual) {
-	            tmpT1 = System.currentTimeMillis();     	
-	            	//viendo si tiene indicador linea matriz 
-	            	if (VariablesCaja.vIndLinea.length()<1){//quiere decir que no se validado aun el indicador de linea en matriz
-		    	     	VariablesCaja.vIndLinea = FarmaUtility.getIndLineaOnLine(FarmaConstants.CONECTION_MATRIZ, FarmaConstants.INDICADOR_S);
-	            	}
-	            	
-	            if (VariablesCaja.vIndLinea.equalsIgnoreCase(FarmaConstants.INDICADOR_S)) {
-	                VariablesCaja.vIndEnvioRecargar = true;//indicador de que se mando a recargar
-	                ejecutaRecargaVirtual();
-	            } else {
-	                FarmaUtility.liberarTransaccion();
-	                VariablesCaja.vIndPedidoCobrado = false;
-	                FarmaUtility.showMessage(this, 
-	                                         "El pedido no puede ser cobrado. \n" +	
-	                                         "No hay linea com matriz.\n" +
-	                                         "Intentelo nuevamente.", 
-	                                         tblFormasPago);
-	                return; //se olvido dubilluz
-	            }
-	            tmpT2 = System.currentTimeMillis();      
-	            log.debug("t9 Ejecuta la Recarga Virtual: "+(tmpT2 - tmpT1)+" milisegundos");
-	        }
+	        
 	        //evalua indicador de impresion por error
 	        tmpT1 = System.currentTimeMillis();      	        
 	        String vIndImpre = DBCaja.obtieneIndImpresionRecarga(VariablesVirtual.vCodigoRespuesta);
@@ -724,11 +533,11 @@ public class DlgProcesarCobro extends JDialog {
                                                      VariablesCaja.listCuponesUsadosPedido,
                                                      VariablesCaja.vIndLinea);
                             tmpT2 = System.currentTimeMillis();      
-                            log.debug("t12 Actualiza Cupones en Local: "+(tmpT2 - tmpT1)+" milisegundos dubilluz 23.04.2010");
+                            log.debug("t12 Actualiza Cupones en Local: "+(tmpT2 - tmpT1)+" milisegundos   23.04.2010");
                                 
                         }
                         
-                        /*** JCALLO ****/
+                        /***   ****/
                         if( dniClienteFidelizado.length() > 0 ){//quiere decir que es pedido fidelizado
                         	ArrayList listaCampAutomaticasPedido = new ArrayList();
                                 tmpT1 = System.currentTimeMillis();      
@@ -750,14 +559,14 @@ public class DlgProcesarCobro extends JDialog {
                                 log.debug("t14 Fin de proceso de Campañas Acumuladas: "+(tmpT2 - tmpT1)+" milisegundos");
                                 
                         }
-                        /*** FIN JCALLO ***/
+                        /*** FIN   ***/
                         
                         /*
                          * Validacion de Fecha actual del sistema contra
                          * la fecha del cajero que cobrara
                          * Se añadio para validar pedido Cobrado 
                          * despues de una fecha establecida al inicio
-                         * dubilluz 04.03.2009
+                         *   04.03.2009
                          **/
                         log.debug("antes de validar");
                         if(!UtilityCaja.validaFechaMovimientoCaja(this, tblFormasPago)){
@@ -776,36 +585,12 @@ public class DlgProcesarCobro extends JDialog {
                             log.debug("despues de hacer commmit remota");
                         }*/
      /////********
-     //JMIRANDA 24.06.2010
-     //VALIDAR SI HIZO UPDATE DAR COMMIT
-     if ( VariablesCaja.vIndPedidoConvenio.equalsIgnoreCase(FarmaConstants.INDICADOR_S)
-          &&                              
-         FarmaUtility.getDecimalNumber(VariablesConvenio.vValCoPago) != 0){  
-             String vIndLineaMat = 
-                 FarmaUtility.getIndLineaOnLine(FarmaConstants.CONECTION_MATRIZ, 
-                                                FarmaConstants.INDICADOR_S);
-         
-           if(((indUpdateEnConvenio ) && 
-              VariablesCaja.usoConvenioCredito.equalsIgnoreCase("S")) &&
-              vIndLineaMat.equalsIgnoreCase(FarmaConstants.INDICADOR_S) ){                   
-                           FarmaUtility.aceptarTransaccion();
-                       if(VariablesCaja.vIndCommitRemota){
-                                            FarmaUtility.aceptarTransaccionRemota(FarmaConstants.CONECTION_MATRIZ,FarmaConstants.INDICADOR_N);
-                       }
-            }else {
-                  //DUBILLUZ 25.06.2010
-                  VariablesCaja.vIndPedidoCobrado = false;
-                  FarmaUtility.liberarTransaccion();
-                  FarmaUtility.liberarTransaccionRemota(FarmaConstants.CONECTION_MATRIZ,FarmaConstants.INDICADOR_N);                 
-                  return;                             
-                  }
-         }else{
+     
                     FarmaUtility.aceptarTransaccion();
                      if(VariablesCaja.vIndCommitRemota){
                      FarmaUtility.aceptarTransaccionRemota(FarmaConstants.CONECTION_MATRIZ,FarmaConstants.INDICADOR_N);
                      }
-                  }                                    
-
+          
      /////********                   
                         
                         if(VariablesCaja.vIndPedidoConProdVirtual) {
@@ -832,7 +617,7 @@ public class DlgProcesarCobro extends JDialog {
 		                //obtiene informacion del vendedor
 		                UtilityCaja.obtieneInfoVendedor();
 		                //proceso de impresion de comprobante del pedido
-		                //JCALLO ...corregir todo este metodo, se agrego el indicador de linea con matriz
+		                //  ...corregir todo este metodo, se agrego el indicador de linea con matriz
 		                //pIndLineaMatriz
 		                VariablesCaja.vIndLineaMatriz = VariablesCaja.vIndLinea;
                                 tmpT2 = System.currentTimeMillis();
@@ -840,7 +625,7 @@ public class DlgProcesarCobro extends JDialog {
                                 
                                 
                                 //tmpT1 = System.currentTimeMillis();
-                                //JCHAVEZ 09.07.2009.sn graba el tiempo dei fin de cobro
+                                //  09.07.2009.sn graba el tiempo dei fin de cobro
                                 
                                 try{
                                     DBCaja.grabaInicioFinProcesoCobroPedido(VariablesCaja.vNumPedVta,"F");
@@ -853,7 +638,7 @@ public class DlgProcesarCobro extends JDialog {
                                     FarmaUtility.liberarTransaccion();
                                     System.out.println("Error al grabar el tiempo de fin de cobro");
                                 }       
-                                //JCHAVEZ 09.07.2009.en graba el tiempo de fin de cobro
+                                //  09.07.2009.en graba el tiempo de fin de cobro
 		                UtilityCaja.procesoImpresionComprobante(this, txtNroPedido); 
                                 
 		                if(VariablesCaja.vIndPedidoConProdVirtual) {
@@ -871,27 +656,7 @@ public class DlgProcesarCobro extends JDialog {
                     log.debug("indCommitBefore : N ");
                     // Se mantiene la logica anterior , cobra realiza la recarga
                     // y solo si se obtuvo exito colocara el codigo de respuesta.
-                    if (VariablesCaja.vIndPedidoConProdVirtual) {
-                    	
-                    	//viendo si tiene indicador linea matriz 
-        	        	if (VariablesCaja.vIndLinea.length()<1){//quiere decir que no se validado aun el indicador de linea en matriz
-        			     	VariablesCaja.vIndLinea = FarmaUtility.getIndLineaOnLine(FarmaConstants.CONECTION_MATRIZ, FarmaConstants.INDICADOR_S);
-        	        	}
-        	        	
-                        if (VariablesCaja.vIndLinea.trim().equalsIgnoreCase(FarmaConstants.INDICADOR_S)) {
-                            tmpT1 = System.currentTimeMillis();
-                            ejecutaRecargaVirtual();
-                            tmpT2 = System.currentTimeMillis();
-                            log.debug("t18 Proceso de Recarga Virtual: "+(tmpT2 - tmpT1)+" milisegundos");                            
-                        } else {
-                            FarmaUtility.liberarTransaccion();
-                            VariablesCaja.vIndPedidoCobrado = false;
-                            FarmaUtility.showMessage(this,  "El pedido no puede ser cobrado. \n" +
-                                                            "No hay linea com matriz.\n" +
-                                                            "Intentelo nuevamente.", 
-                                        		    tblFormasPago);
-                        }
-                    }                        
+                                
                     
                     
                 	if(VariablesCaja.listCuponesUsadosPedido.size()>0){//solo si se uso algun cupon
@@ -911,7 +676,7 @@ public class DlgProcesarCobro extends JDialog {
                      * la fecha del cajero que cobrara
                      * Se añadio para validar pedido Cobrado 
                      * despues de una fecha establecida al inicio
-                     * dubilluz 04.03.2009
+                     *   04.03.2009
                      **/
                     log.debug("antes de validar");
                     if(!UtilityCaja.validaFechaMovimientoCaja(this, tblFormasPago)){
@@ -920,39 +685,12 @@ public class DlgProcesarCobro extends JDialog {
                     }
                     tmpFin = System.currentTimeMillis();
                     log.debug("t19 Fin de Proceso de Cobro antes de commit: "+(tmpFin - tmpIni)+" milisegundos");
-                    //FarmaUtility.aceptarTransaccion();
-                    //**
-                    //JMIRANDA 24.06.2010
-                    //VALIDAR SI HIZO UPDATE DAR COMMIT
-                    if ( VariablesCaja.vIndPedidoConvenio.equalsIgnoreCase(FarmaConstants.INDICADOR_S)
-                         &&                              
-                        FarmaUtility.getDecimalNumber(VariablesConvenio.vValCoPago) != 0){  
-                            String vIndLineaMat = 
-                                FarmaUtility.getIndLineaOnLine(FarmaConstants.CONECTION_MATRIZ, 
-                                                               FarmaConstants.INDICADOR_S);
-                        
-                          if(((indUpdateEnConvenio ) && 
-                             VariablesCaja.usoConvenioCredito.equalsIgnoreCase("S")) &&
-                             vIndLineaMat.equalsIgnoreCase(FarmaConstants.INDICADOR_S) ){                   
-                                          FarmaUtility.aceptarTransaccion();
-                                      if(VariablesCaja.vIndCommitRemota){
-                                                           FarmaUtility.aceptarTransaccionRemota(FarmaConstants.CONECTION_MATRIZ,FarmaConstants.INDICADOR_N);
-                                      }
-                           }else {
-                                     //DUBILLUZ 25.06.2010
-                                     VariablesCaja.vIndPedidoCobrado = false;
-                              
-                                 FarmaUtility.liberarTransaccion();
-                                 FarmaUtility.liberarTransaccionRemota(FarmaConstants.CONECTION_MATRIZ,FarmaConstants.INDICADOR_N);
-                                 FarmaUtility.showMessage(this,"Error al actualizar el uso del Convenio.\nComuníquese con el Operador de Sistemas.",null);
-                                 return;                             
-                                 }
-                        }else{
+                    
                                    FarmaUtility.aceptarTransaccion();
                                     if(VariablesCaja.vIndCommitRemota){
                                     FarmaUtility.aceptarTransaccionRemota(FarmaConstants.CONECTION_MATRIZ,FarmaConstants.INDICADOR_N);
                                     }
-                                 }                                   
+                                                             
 
                     //**
                     //if(VariablesCaja.vIndCommitRemota)
@@ -976,7 +714,7 @@ public class DlgProcesarCobro extends JDialog {
                     
                     
                     tmpT1 = System.currentTimeMillis();
-                    //JCHAVEZ 09.07.2009.sn graba el tiempo dei fin de cobro
+                    //  09.07.2009.sn graba el tiempo dei fin de cobro
                   
                     try{
                         DBCaja.grabaInicioFinProcesoCobroPedido(VariablesCaja.vNumPedVta,"F");
@@ -989,7 +727,7 @@ public class DlgProcesarCobro extends JDialog {
                         FarmaUtility.liberarTransaccion();
                         System.out.println("Error al grabar el tiempo de fin de cobro");
                     }       
-                    //JCHAVEZ 09.07.2009.en graba el tiempo de fin de cobro
+                    //  09.07.2009.en graba el tiempo de fin de cobro
                     UtilityCaja.procesoImpresionComprobante(this, txtNroPedido); 
                     tmpT2 = System.currentTimeMillis();
                     log.debug("t22 Proceso de Impresion de Comprobante: "+(tmpT2 - tmpT1)+" milisegundos");
@@ -1035,13 +773,13 @@ public class DlgProcesarCobro extends JDialog {
                 try{
                     FarmaUtility.enviaCorreoPorBD(FarmaVariables.vCodGrupoCia,
                                                   FarmaVariables.vCodLocal,
-                                                  //"jcallo",
-                                                  VariablesPtoVenta.vDestEmailErrorCobro, //JMIRANDA 04/08/09
+                                                  //" ",
+                                                  VariablesPtoVenta.vDestEmailErrorCobro, //  04/08/09
                                                   "Error Recarga Virtual, error de base datos",
                                                   "Error de Recarga Virtual",
                                                   "Error al realizar recarga virtual al numero : "+VariablesCaja.vNumeroCelular,
-                                                  "IP PC: " + FarmaVariables.vIpPc + "<br>"+ //JMIRANDA 30/07/09
-                                                  //"dubilluz"
+                                                  "IP PC: " + FarmaVariables.vIpPc + "<br>"+ //  30/07/09
+                                                  //" "
                                                   "");
                 }catch(Exception e){
                     log.error("ERROR AL TRATAR de enviar correo de alerta de recarga virtual");
@@ -1069,7 +807,7 @@ public class DlgProcesarCobro extends JDialog {
                         
         }
       } catch (Exception ex) {//error inesperado
-    	  log.error(ex);//error inesperado
+    	  log.error("",ex);//error inesperado
     	  if(indCommitBefore.equalsIgnoreCase(FarmaConstants.INDICADOR_S)) {
     		  if(VariablesCaja.vIndPedidoConProdVirtual) {
     			  //evalua indicador de impresion por error
@@ -1077,7 +815,7 @@ public class DlgProcesarCobro extends JDialog {
     			  try {
     				  vIndImpre = DBCaja.obtieneIndImpresionRecarga(VariablesVirtual.vCodigoRespuesta);
     			  }catch(Exception e){
-    				  log.error("jcallo: no pudo obtener el indicador de impresion de recarga");
+    				  log.error(" : no pudo obtener el indicador de impresion de recarga");
     				  vIndImpre = "N";
     			  }
     			  log.debug("vIndImpre :"+vIndImpre);
@@ -1089,7 +827,7 @@ public class DlgProcesarCobro extends JDialog {
     			       * la fecha del cajero que cobrara
     			       * Se añadio para validar pedido Cobrado 
     			       * despues de una fecha establecida al inicio
-    			       * dubilluz 04.03.2009
+    			       *   04.03.2009
     			       **/
     			      log.debug("antes de validar");
     			      if(!UtilityCaja.validaFechaMovimientoCaja(this, tblFormasPago)){
@@ -1100,54 +838,27 @@ public class DlgProcesarCobro extends JDialog {
     			      tmpFin = System.currentTimeMillis();
     			      log.debug("t23 Finaliza el Proceso de Cobro antes de Commit: "+(tmpFin - tmpIni)+" milisegundos");
                               
-    				  //FarmaUtility.aceptarTransaccion();
-    				  //**
-    				  //JMIRANDA 24.06.2010
-    				  //VALIDAR SI HIZO UPDATE DAR COMMIT
-    				  if ( VariablesCaja.vIndPedidoConvenio.equalsIgnoreCase(FarmaConstants.INDICADOR_S)
-    				       &&                              
-    				      FarmaUtility.getDecimalNumber(VariablesConvenio.vValCoPago) != 0){  
-    				          String vIndLineaMat = 
-    				              FarmaUtility.getIndLineaOnLine(FarmaConstants.CONECTION_MATRIZ, 
-    				                                             FarmaConstants.INDICADOR_S);
-    				      
-    				        if(((indUpdateEnConvenio ) && 
-    				           VariablesCaja.usoConvenioCredito.equalsIgnoreCase("S")) &&
-    				           vIndLineaMat.equalsIgnoreCase(FarmaConstants.INDICADOR_S) ){                   
-    				                        FarmaUtility.aceptarTransaccion();
-    				                    if(VariablesCaja.vIndCommitRemota){
-    				                                         FarmaUtility.aceptarTransaccionRemota(FarmaConstants.CONECTION_MATRIZ,FarmaConstants.INDICADOR_N);
-    				                    }
-    				         }else {
-    				                   //DUBILLUZ 25.06.2010
-    				                   VariablesCaja.vIndPedidoCobrado = false;
-                                            
-    				               FarmaUtility.liberarTransaccion();
-    				               FarmaUtility.liberarTransaccionRemota(FarmaConstants.CONECTION_MATRIZ,FarmaConstants.INDICADOR_N);
-    				               FarmaUtility.showMessage(this,"Error al actualizar el uso del Convenio.\nComuníquese con el Operador de Sistemas.",null);
-    				               return;                             
-    				               }
-    				      }else{
+    				
     				                 FarmaUtility.aceptarTransaccion();
     				                  if(VariablesCaja.vIndCommitRemota){
     				                  FarmaUtility.aceptarTransaccionRemota(FarmaConstants.CONECTION_MATRIZ,FarmaConstants.INDICADOR_N);
     				                  }
-    				               }                                   
+    				                                          
                                   //**
     				  /*if(VariablesCaja.vIndCommitRemota){
     					  //FarmaUtility.aceptarTransaccionRemota(FarmaConstants.CONECTION_MATRIZ,FarmaConstants.INDICADOR_N);    					  
     				  }*/
     			      tmpT1 = System.currentTimeMillis();
-		              log.error("jcallo:obtiene informacion de cajero");
+		              log.error(" :obtiene informacion de cajero");
 		              UtilityCaja.obtieneInfoCajero(VariablesCaja.vSecMovCaja);
-		              log.error("jcallo:obtiene informacion del vendedor");
+		              log.error(" :obtiene informacion del vendedor");
 		              UtilityCaja.obtieneInfoVendedor();
-		              log.error("jcallo:proceso de impresion de comprobante");
+		              log.error(" :proceso de impresion de comprobante");
     			      tmpT2 = System.currentTimeMillis();
     			      log.debug("t24 Obtiene Info. de Vendedor y Cajero: "+(tmpT2 - tmpT1)+" milisegundos");
                               
     			      tmpT1 = System.currentTimeMillis();
-    			      //JCHAVEZ 09.07.2009.sn graba el tiempo dei fin de cobro
+    			      //  09.07.2009.sn graba el tiempo dei fin de cobro
     			   
     			      try{
     			          DBCaja.grabaInicioFinProcesoCobroPedido(VariablesCaja.vNumPedVta,"F");
@@ -1160,12 +871,12 @@ public class DlgProcesarCobro extends JDialog {
     			          FarmaUtility.liberarTransaccion();
     			          System.out.println("Error al grabar el tiempo de fin de cobro");
     			      }       
-    			      //JCHAVEZ 09.07.2009.en graba el tiempo de fin de cobro
+    			      //  09.07.2009.en graba el tiempo de fin de cobro
 		              UtilityCaja.procesoImpresionComprobante(this, txtNroPedido);
     			      tmpT2 = System.currentTimeMillis();
     			      log.debug("t25 Finaliza Proceso de Impresion de Comprobantes: "+(tmpT2 - tmpT1)+" milisegundos");
                               
-		              log.error("jcallo:fin proceso de impresion de comprobante");
+		              log.error(" :fin proceso de impresion de comprobante");
 		              log.error("FIN imprimir si se trata de un producto virtual a pesar del error");
 		
 			           
@@ -1178,7 +889,7 @@ public class DlgProcesarCobro extends JDialog {
     			  }else{
     				  FarmaUtility.liberarTransaccion();
     				  if(VariablesCaja.vIndCommitRemota){
-    					  log.debug("jcallo: liberando transaccione remota");
+    					  log.debug(" : liberando transaccione remota");
     					  FarmaUtility.liberarTransaccionRemota(FarmaConstants.CONECTION_MATRIZ,
                                                       		FarmaConstants.INDICADOR_N);
     				  }
@@ -1288,38 +999,6 @@ public class DlgProcesarCobro extends JDialog {
                                   VariablesVentas.vRuc_Cli_Ped);
   }
 
-  private void procesaPedidoVirtual() throws Exception{
-    obtieneInfoPedidoVirtual();
-    if (VariablesVirtual.vArrayList_InfoProdVirtual.size() != 1)
-    {
-      throw new Exception("Error al validar info del pedido virtual");
-    }
-    colocaInfoPedidoVirtual();
-    try
-    {
-      UtilityCaja.procesaVentaProductoVirtual(this, txtNroPedido);
-    }
-    catch (Exception ex)
-    {
-      throw new Exception("Error al procesar el pedido virtual - \n" + 
-                          ex.getMessage());
-
-    }
-    /*
-     * Se grabara la respuesta obtenida por el proveedor al realizar la
-     * recarga virtual
-     */
-    DBCaja.grabaRespuestaRecargaVirtual(VariablesVirtual.respuestaTXBean.getCodigoRespuesta(),
-                                        VariablesCaja.vNumPedVta);
-    
-    if (!validaCodigoRespuestaTransaccion())
-    {
-      throw new Exception("Error al realizar la transaccion con el proveedor.\n" + 
-                          VariablesVirtual.respuestaTXBean.getCodigoRespuesta() + 
-                          " - " + 
-                          VariablesVirtual.respuestaTXBean.getDescripcion());
-    }
-  }
 
   private void evaluaMsjVentaVirtualGenerado(String pTipoProdVirtual)
   {
@@ -1333,7 +1012,7 @@ public class DlgProcesarCobro extends JDialog {
 
   /**
    * Obtiene el codFormaPago Dolares
-   * @author dubilluz
+   * @author  
    * @since  13.10.2007
    */
   public String getCodFormaPagoDolares()
@@ -1349,7 +1028,7 @@ public class DlgProcesarCobro extends JDialog {
       FarmaUtility.showMessage(this, "Error al Obtener el codidgo de Forma de Pago Dolares.\n" + 
                                ex.getMessage(), tblFormasPago);
     }
-    log.debug("jcallo: codforma de pago dolares "+codFP);
+    log.debug(" : codforma de pago dolares "+codFP);
     return codFP;
   }
 
@@ -1431,18 +1110,10 @@ public class DlgProcesarCobro extends JDialog {
       
      return ind.trim(); 
   }
-         
-  private void ejecutaRecargaVirtual() throws Exception{
-      procesaPedidoVirtual();
-      System.out.println("VariablesVirtual.vCodigoRespuesta 2" + 
-                         VariablesVirtual.vCodigoRespuesta);
-      System.out.println("**** graba la respuesta obtenida... ** ");
 
-  }
-  
   /**
    * Se generan los cupones por pedido luego de ser cobrados 
-   * @author JCORTEZ
+   * @author  
    * @since 03.07.2008
    * */
   private boolean generarPedidoCupon(String NumPed){
@@ -1606,7 +1277,7 @@ public class DlgProcesarCobro extends JDialog {
         * la fecha del cajero que cobrara
         * Se añadio para validar pedido Cobrado 
         * despues de una fecha establecida al inicio
-        * dubilluz 04.03.2009
+        *   04.03.2009
         **/
        log.debug("antes de validar");
        if(!UtilityCaja.validaFechaMovimientoCaja(this, tblFormasPago)){
@@ -1623,7 +1294,7 @@ public class DlgProcesarCobro extends JDialog {
     
    /**
     * Valida el uso de cupones
-    * @author dubilluz
+    * @author  
     * @since  20.08.2008
     */
    private boolean validaUsoCupones(String pNumPedVta,String pIndCloseConecction,
@@ -1665,7 +1336,7 @@ public class DlgProcesarCobro extends JDialog {
                    indMultiUso = DBCaja.getIndCuponMultiploUso(pNumPedVta,vCodCupon).trim();
                    
                    //Se valida el Cupon en el local
-                    //Modificado por DVELIZ 04.10.08
+                    //Modificado por   04.10.08
                    DBVentas.verificaCupon(vCodCupon,ltDatosCupon,indMultiUso,
                    VariablesFidelizacion.vDniCliente);
                    

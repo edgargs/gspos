@@ -39,7 +39,7 @@ public class DlgBuscaTrabajadorLocal extends JDialog {
     /*                          DECLARACION PROPIEDADES                         */
     /* ************************************************************************ */
 
-    /** * @Author Asolis
+    /** * @Author  
        * @Since  20.02.09
        * @description Busca Trabajador Local*/
 

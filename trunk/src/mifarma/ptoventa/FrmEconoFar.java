@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 import javax.print.PrintService;
 import javax.print.PrintServiceLookup;
-import javax.swing.BorderFactory;//JCHAVEZ 18122009
+import javax.swing.BorderFactory;//  18122009
 import javax.swing.JCheckBox;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
@@ -73,7 +73,7 @@ import mifarma.ptoventa.cliente.DlgBuscaClienteJuridico;
 import mifarma.ptoventa.cliente.reference.VariablesCliente;
 import mifarma.ptoventa.controlingreso.DlgControlIngreso;
 import mifarma.ptoventa.controlingreso.DlgHistoricoTemperatura;
-import mifarma.ptoventa.delivery.DlgUltimosPedidos;
+
 import mifarma.ptoventa.inventario.DlgAjustesporFecha;
 import mifarma.ptoventa.inventario.DlgGuiasIngresosRecibidas;
 import mifarma.ptoventa.inventario.DlgGuiasRemision;
@@ -133,8 +133,8 @@ import mifarma.ptoventa.ventas.DlgListaProdDIGEMID;
 import mifarma.ptoventa.ventas.reference.VariablesVentas;
 
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
@@ -161,7 +161,7 @@ import mifarma.ptoventa.ventas.reference.ConstantsVentas;
  * <br>
  * Histórico de Creación/Modificación<br>
  * LMESIA      27.12.2005   Creación<br>
- * ASOSA       13.01.2010   Modificación<br>
+ *         13.01.2010   Modificación<br>
  * <br>
  * @author Luis Mesia Rivera<br>
  * @version 1.0<br>
@@ -203,8 +203,8 @@ public class FrmEconoFar extends JFrame  {
   private JMenuItem mnuInventario_GuiaEntrada = new JMenuItem();
   private JMenuItem mnuInventario_Kardex = new JMenuItem();
   private JMenu mnuInventario_Transferencias = new JMenu();
-  private JMenuItem mnuInventario_Transf_local = new JMenuItem();//jcallo 05.11.2008
-  private JMenuItem mnuInventario_Transf_delivery = new JMenuItem();//jcallo 05.11.2008
+  private JMenuItem mnuInventario_Transf_local = new JMenuItem();//  05.11.2008
+  private JMenuItem mnuInventario_Transf_delivery = new JMenuItem();//  05.11.2008
   private JMenuItem mnuInventario_PedioReposicion = new JMenuItem();
   private JMenuItem mnuInventario_RecepcionProductos = new JMenuItem();
   private JMenu mnuCaja_MovimientosCaja = new JMenu();
@@ -223,10 +223,10 @@ public class FrmEconoFar extends JFrame  {
   //private JMenuItem mnuReportes_VentasVendedor = new JMenuItem();
   private JMenu mnuReportes_VentasVendedor = new JMenu();
     
-  private JMenuItem mnuReportes_VentasVendedor_Total = new JMenuItem();//asolis 24.11.2008
-  private JMenuItem mnuReportes_VentasVendedor_Mezon = new JMenuItem();//asolis 24.11.2008
-  private JMenuItem mnuReportes_VentasVendedor_Delivery = new JMenuItem();//asolis 24.11.2008
-  private JMenuItem mnuReportes_VentasVendedor_Institucional = new JMenuItem();//asolis 24.11.2008
+  private JMenuItem mnuReportes_VentasVendedor_Total = new JMenuItem();//  24.11.2008
+  private JMenuItem mnuReportes_VentasVendedor_Mezon = new JMenuItem();//  24.11.2008
+  private JMenuItem mnuReportes_VentasVendedor_Delivery = new JMenuItem();//  24.11.2008
+  private JMenuItem mnuReportes_VentasVendedor_Institucional = new JMenuItem();//  24.11.2008
   private JMenuItem mnuReportes_DetalleVentas = new JMenuItem();
   private JMenuItem mnuReportes_ResumenVentaDia = new JMenuItem();
   private JMenuItem mnuReportes_VentasProducto = new JMenuItem();
@@ -272,7 +272,7 @@ public class FrmEconoFar extends JFrame  {
   private JMenuItem mnuInventarioCiclico_Inicio = new JMenuItem();
   private JMenuItem mnuInventarioCiclico_Toma = new JMenuItem();  
   
-  //mfajardo
+  // 
   private JMenu mnuTomaInventario_Diario = new JMenu();
   private JMenuItem mnuInventarioDiario_Inicio = new JMenuItem();
   private JMenuItem mnuInventarioDiario_Toma = new JMenuItem();  
@@ -288,7 +288,7 @@ public class FrmEconoFar extends JFrame  {
 
 
   /**NUEVO! 02/02/2007
-   * Luis Reque Orellana
+   *  
    * */
   private JMenuItem mnuReportes_UnidVtaLocal = new JMenuItem();
   private JMenuItem mnuReportes_ProdSinVtaNDias = new JMenuItem();
@@ -311,7 +311,7 @@ public class FrmEconoFar extends JFrame  {
     private JMenuItem mnuInventario_Recepcion = new JMenuItem();
     private JMenuItem jMenuItem3 = new JMenuItem();
 
-    //JMIRANDA 11.12.09
+    //  11.12.09
     //private JMenu mnuPedidosLocales = new JMenu();
 	private JButtonLabel btnRevertir = new JButtonLabel();
     private JTextFieldSanSerif txtRevertir = new JTextFieldSanSerif();
@@ -503,7 +503,7 @@ public class FrmEconoFar extends JFrame  {
                     mnuInventario_PedioReposicion_actionPerformed(e);
                 }
             });
-        //JMIRANDA 11.12.09 SE AGRUPA PARA RECEPCION DE MERCADERÍA
+        //  11.12.09 SE AGRUPA PARA RECEPCION DE MERCADERÍA
         mnuInventario_Mercaderia.setText("4. Recepcion Mercaderia");
                 mnuInventario_Mercaderia.setDisplayedMnemonicIndex(0);
                 mnuInventario_Mercaderia.setMnemonic('4');
@@ -561,7 +561,7 @@ public class FrmEconoFar extends JFrame  {
 /******/
  mnuPedidosLocales.setText("5. Pedidos Locales");
  mnuPedidosLocales.setFont(new Font("SansSerif", 0, 11));
- //dveliz
+ // 
  mnuPedidosLocales.setEnabled(true);
  mnuPedidosLocales.setMnemonic('4');
  mnuPedidoReposicion.setText("1. Pedido Reposición");
@@ -640,7 +640,7 @@ public class FrmEconoFar extends JFrame  {
                         mnuCaja_ReimpresionTicketsAnulados_actionPerformed(e);
                     }
                 });
-        //JMIRANDA 11.12.09 de 9 a 4
+        //  11.12.09 de 9 a 4
         /*mnuInventario_Mercaderia.setText("4. Recepcion Mercaderia");
         mnuInventario_Mercaderia.setDisplayedMnemonicIndex(0);
         mnuInventario_Mercaderia.setMnemonic('4');
@@ -665,16 +665,7 @@ public class FrmEconoFar extends JFrame  {
                     }
                 });
         txtRevertir.setBounds(new Rectangle(0, 540, 70, 10));
-       // txtRevertir.setVisible(false);        
-       txtRevertir.setBorder(BorderFactory.createLineBorder(Color.WHITE));
-       txtRevertir.setLengthText(2);
-       txtRevertir.setFont(new Font("SansSerif", 1, 1));
-       txtRevertir.setForeground(Color.WHITE);
-        txtRevertir.addKeyListener(new KeyAdapter() {
-                    public void keyPressed(KeyEvent e) {
-                        txtRevertir_keyPressed(e);
-                    }
-                });
+
         lblMensaje.setText("EN PRUEBAS");
         lblMensaje.setBounds(new Rectangle(155, 20, 515, 60));
         lblMensaje.setFont(new Font("Serif", Font.BOLD, 60));
@@ -815,7 +806,7 @@ public class FrmEconoFar extends JFrame  {
         }
       }
   );*/    
-    //--------------------------asolis 26.11.08-----------------------
+    //--------------------------  26.11.08-----------------------
         mnuReportes_VentasVendedor_Total.setText("1. Ventas Totales");
         mnuReportes_VentasVendedor_Mezon.setText("2. Ventas Meson");
         mnuReportes_VentasVendedor_Delivery.setText("3. Ventas Delivery");
@@ -1149,7 +1140,7 @@ public class FrmEconoFar extends JFrame  {
         }
       });
     
-    //mfajardo
+    // 
     //mnuTomaInventario_Diario.setEnabled(false);
     mnuTomaInventario_Diario.setText("3. Diario");
     mnuTomaInventario_Diario.setFont(new Font("SansSerif", 0, 11));
@@ -1448,7 +1439,7 @@ public class FrmEconoFar extends JFrame  {
         mnuEconoFar_Ventas.add(mnuVentas_MedidaPresion);
         mnuEconoFar_Ventas.add(mnuVentas_Recargas);
 
-        //--asolis
+        //-- 
         mnuEconoFar_Ventas.add(jMenuItem2);
         mnuEconoFar_Ventas.add(mnDigemid);
         mnuVentas_Recargas.add(mnuVentas_Correlativo);
@@ -1486,7 +1477,7 @@ public class FrmEconoFar extends JFrame  {
         mnuTomaInventario_Ciclico.add(mnuInventarioCiclico_Toma);
         mnuEconoFar_TomaInventario.add(mnuTomaInventario_Ciclico);
 
-        //mfajardo
+        // 
         //mnuTomaInventario_Diario.add(mnuInventarioDiario_Inicio);
         mnuTomaInventario_Diario.add(mnuInventarioDiario_Toma);
         mnuTomaInventario_Diario.add(mnuInventarioDiario_Diferencia);
@@ -1520,7 +1511,7 @@ public class FrmEconoFar extends JFrame  {
         mnuEconoFar_Administracion.add(mnuProdCambiados);
         mnuAdministracion_Otros.add(mnuOtros_MantProbisa);
 
-        //asolis 26.11.08
+        //  26.11.08
 
         mnuReportes_VentasVendedor.add(mnuReportes_VentasVendedor_Total);
         mnuReportes_VentasVendedor.add(mnuReportes_VentasVendedor_Mezon);
@@ -1563,14 +1554,14 @@ public class FrmEconoFar extends JFrame  {
 
   private void initialize()
   {
-      mnuCaja_ControlSobresParciales.setEnabled(false); //ASOSA, 07.06.2010
+      mnuCaja_ControlSobresParciales.setEnabled(false); // , 07.06.2010
       eliminaCodBarra();    /*JSANTIVANEZ 01.09.2010*/    
       eliminaBoletaTxt();
       
     muestraLogin();
     muestraUser();
     inicializa();
-    //JMIRANDA 19.01.10 Obtiene direccion Fiscal Matriz
+    //  19.01.10 Obtiene direccion Fiscal Matriz
     cargaDireccionFiscal();  
       obtieneIndDireMat();
       
@@ -1615,7 +1606,7 @@ public class FrmEconoFar extends JFrame  {
       } else {
           
           //inicio 
-          //lapaz dubilluz 17.09.2010
+          //lapaz   17.09.2010
           VariablesVentas.tableModelListaGlobalProductos = new FarmaTableModel(ConstantsVentas.columnsListaProductos,ConstantsVentas.defaultValuesListaProductos,0);
           
           System.out.println("Inicio de Hilo");
@@ -1632,9 +1623,9 @@ public class FrmEconoFar extends JFrame  {
             
           System.out.println("Fin de Hilo");
           //fin
-          //lapaz dubilluz 17.09.2010
+          //lapaz   17.09.2010
           
-          //JCORTEZ 04.09.09 Se valida cambio de clave para el usuario
+          //  04.09.09 Se valida cambio de clave para el usuario
           String  valida="";
           try{ valida=DBPtoVenta.validaCambioClave(); }catch(SQLException x){ x.printStackTrace();}
 
@@ -1741,7 +1732,7 @@ public class FrmEconoFar extends JFrame  {
     dlgResumenPedido.setVisible(true);
     dlgResumenPedido = null;
     while(FarmaVariables.vAceptar) {
-        if(VariablesVentas.vIndPrecioCabeCliente.equalsIgnoreCase("S")){    //Inicio: ASOSA 03.02.2010
+        if(VariablesVentas.vIndPrecioCabeCliente.equalsIgnoreCase("S")){    //Inicio:   03.02.2010
             VariablesVentas.vIndPrecioCabeCliente="N";
             //System.out.println("REWREWREWRWEREWREWREW");
             ind=1;
@@ -1754,7 +1745,7 @@ public class FrmEconoFar extends JFrame  {
                 ind=0;
                 break;        
             }
-        }                                                                 //Fin: ASOSA 03.02.2010
+        }                                                                 //Fin:   03.02.2010
     }
     if(!FarmaVariables.vAceptar) 
          //if (VariablesCaja.vVerificaCajero)//si es true pedira no validar al administrador
@@ -1836,7 +1827,7 @@ public class FrmEconoFar extends JFrame  {
     dlgTransferenciasRealizadas.setVisible(true);
   }
   
-    //jcallo 05.11.2008
+    //  05.11.2008
     private void mnuInventario_Transf_delivery_actionPerformed(ActionEvent e)
     {
       DlgListaTransfPendientes dlgListaTranfPendientes = new DlgListaTransfPendientes(this,"",true);
@@ -1860,7 +1851,7 @@ public class FrmEconoFar extends JFrame  {
   private void jMenuItem4_DIGEMID(ActionEvent e)
   {        
 
-      DlgListaProdDIGEMID objDIGEMID=new DlgListaProdDIGEMID(this,"",true); //ASOSA 04.02.2010
+      DlgListaProdDIGEMID objDIGEMID=new DlgListaProdDIGEMID(this,"",true); //  04.02.2010
       objDIGEMID.setVisible(true);
   }
   private void mnuCaja_ConfigurarCaja_actionPerformed(ActionEvent e)
@@ -1939,7 +1930,7 @@ public class FrmEconoFar extends JFrame  {
     if(FarmaVariables.vAceptar){
     /**
      * Colocara el valor de Dias de Base de Datos
-     * @author : dubilluz
+     * @author :  
      * @since  : 21.08.2007
      */
     mnuReportes_ProdSinVtaNDias.setText("13. Productos Sin Ventas en "+
@@ -2026,31 +2017,31 @@ public class FrmEconoFar extends JFrame  {
     mnuUsuarios_CambioUsuario.setEnabled(true);
     mnuUsuarios_CambioClave.setEnabled(true);
      mnuIngTransportista.setEnabled(false);
-    //jcallo
+    // 
     mnuVentas_MedidaPresion.setEnabled(false);
     mnuFondoSencillo.setVisible(false);
     
     if ( FarmaVariables.dlgLogin.verificaRol(FarmaConstants.ROL_VENDEDOR) ) {
         mnuEconoFar_Ventas.setEnabled(true);
         mnuVentas_GenerarPedido.setEnabled(true);
-        //asolis
+        // 
         mnuVentas_Recargas.setEnabled(true);
         mnuVentas_DeliveryAutomatico.setEnabled(true);
         
         
         mnuAdministracion_ControlHoras.setEnabled(false);
         
-        //dveliz
+        // 
         mnuPedidosLocales.setEnabled(false);
         if(FarmaVariables.vEconoFar_Matriz){
             mnuPedidoAdicional.setVisible(false);
             mnuPedidoEspecial.setVisible(false);
         }
         
-        //jcallo
+        // 
         mnuVentas_MedidaPresion.setEnabled(true);
         
-        //JCORTEZ 30.11.09
+        //  30.11.09
         mnuEconoFar_Inventario.setEnabled(true);
         
         mnuInventario_Mercaderia.setEnabled(true);
@@ -2059,7 +2050,7 @@ public class FrmEconoFar extends JFrame  {
 
     if ( FarmaVariables.dlgLogin.verificaRol(FarmaConstants.ROL_CAJERO) ) {
         
-        //asolis
+        // 
         mnuVentas_Recargas.setEnabled(true);
         
       mnuAdministracion_ControlHoras.setEnabled(false);
@@ -2073,7 +2064,7 @@ public class FrmEconoFar extends JFrame  {
          mnuCaja_PruebaImpresora.setEnabled(true);
         mnuEconofar_CajaElectronica.setEnabled(true);
         mnuCE_CierreTurno.setEnabled(true);
-         //dveliz
+         // 
          mnuPedidosLocales.setEnabled(false);
          if(FarmaVariables.vEconoFar_Matriz){
              mnuPedidoAdicional.setVisible(false);
@@ -2082,15 +2073,15 @@ public class FrmEconoFar extends JFrame  {
          
     if ( FarmaVariables.vTipCaja.equalsIgnoreCase(ConstantsPtoVenta.TIP_CAJA_TRADICIONAL) )
         mnuCaja_CobrarPedido.setEnabled(true);
-        //dveliz
-        //dveliz
+        // 
+        // 
         mnuPedidosLocales.setEnabled(false);
         if(FarmaVariables.vEconoFar_Matriz){
             mnuPedidoAdicional.setVisible(false);
             mnuPedidoEspecial.setVisible(false);
         }
         
-        //ASOSA, 03.06.2010
+        // , 03.06.2010
         mnuCaja_ControlSobresParciales.setEnabled(validaIndicadorControlSobres());
     }
 
@@ -2103,39 +2094,39 @@ public class FrmEconoFar extends JFrame  {
       //12.11.2007 MOdificado
       mnuAdministracion_ControlHoras.setEnabled(false);
       mnuInventarioCiclico_Inicio.setEnabled(false);
-        //dveliz
+        // 
         mnuPedidosLocales.setEnabled(true);
         if(FarmaVariables.vEconoFar_Matriz){
             mnuPedidoAdicional.setVisible(false);
             mnuPedidoEspecial.setVisible(false);
         }
-      //jcallo
+      // 
       mnuVentas_MedidaPresion.setEnabled(true);
-      //asolis
+      // 
         mnuVentas_Recargas.setEnabled(true);
         
-        //asolis 18.02.09
+        //  18.02.09
         mnuMantenimiento_Carne.setEnabled(true);
         
         // MODULO CAJA ELECTRONICA
-         //JCORTEZ 16.01.09
+         //  16.01.09
         mnuCE_Prosegur.setEnabled(true);
         
-        //JCORTEZ 09.04.10
+        //  09.04.10
          /*mnuSobres.setEnabled(validaIndicadorControlSobres());
          mnuRemito.setEnabled(isLocalProsegur());*/
          
-         //ASOSA, 03.06.2010
+         // , 03.06.2010
         mnuCaja_ControlSobresParciales.setEnabled(validaIndicadorControlSobres());
         mnuCE_Prosegur.setEnabled(isLocalProsegur());
         
         
-        //JCORTEZ 12.02.09
+        //  12.02.09
         mmuIngresoTemperatura.setEnabled(true);
         
-        //JCORTEZ 31.11.09
+        //  31.11.09
         mnuInventario_Mercaderia.setEnabled(true);
-        //JMIRANDA 04.03.10
+        //  04.03.10
         if(UtilityFondoSencillo.indActivoFondo()){
             mnuFondoSencillo.setEnabled(true);
             }else{
@@ -2149,7 +2140,7 @@ public class FrmEconoFar extends JFrame  {
             mnuIngTransportista.setEnabled(true);
         }
     }
-    //dubilluz 29.09.2010
+    //  29.09.2010
     if(FarmaVariables.dlgLogin.verificaRol(FarmaConstants.ROL_CONTABILIDAD)||
         FarmaVariables.dlgLogin.verificaRol(FarmaConstants.ROL_LECTURA_REPORTES)
       ){
@@ -2177,7 +2168,7 @@ public class FrmEconoFar extends JFrame  {
         mnuTomaInventario_Historico.setEnabled(true);
         mnuTomaInVentario_ItemsXLab.setEnabled(true);
         //mnuInventario_RecepcionLocales.setEnabled(pValor);
-          //dveliz
+          // 
           mnuPedidosLocales.setEnabled(true);
           mnuPedidoAdicional.setVisible(true);
           mnuPedidoEspecial.setVisible(true);
@@ -2187,7 +2178,7 @@ public class FrmEconoFar extends JFrame  {
         mnuTomaInventario_Tradicional.setEnabled(false);
         mnuTomaInventario_Ciclico.setEnabled(true);
         mnuTomaInventario_Historico.setEnabled(true);
-          //dveliz
+          // 
           mnuPedidosLocales.setEnabled(true);
           mnuPedidoAdicional.setVisible(false);
           mnuPedidoEspecial.setVisible(false);
@@ -2218,7 +2209,7 @@ public class FrmEconoFar extends JFrame  {
         mnuTomaInventario_Historico.setEnabled(true);
         mnuTomaInVentario_ItemsXLab.setEnabled(true);
         //mnuInventario_RecepcionLocales.setEnabled(pValor);
-          //dveliz
+          // 
           mnuPedidosLocales.setEnabled(true);
           mnuPedidoAdicional.setVisible(true);
           mnuPedidoEspecial.setVisible(true);
@@ -2228,7 +2219,7 @@ public class FrmEconoFar extends JFrame  {
         mnuTomaInventario_Tradicional.setEnabled(false);
         mnuTomaInventario_Ciclico.setEnabled(true);
         mnuTomaInventario_Historico.setEnabled(true);
-          //dveliz
+          // 
           mnuPedidosLocales.setEnabled(true);
           mnuPedidoAdicional.setVisible(false);
           mnuPedidoEspecial.setVisible(false);
@@ -2245,25 +2236,25 @@ public class FrmEconoFar extends JFrame  {
             mnuIngTransportista.setEnabled(true);
         }
       mnuInventarioCiclico_Inicio.setEnabled(true);
-         //dveliz
+         // 
          mnuPedidosLocales.setEnabled(true);
          if(FarmaVariables.vEconoFar_Matriz){
              mnuPedidoAdicional.setVisible(false);
              mnuPedidoEspecial.setVisible(false);
          }
-         //jcallo
+         // 
          mnuVentas_MedidaPresion.setEnabled(false);
-         //asolis
+         // 
          mnuVentas_Recargas.setEnabled(true);
 
-        //ASOSA, 03.06.2010
+        // , 03.06.2010
         mnuCaja_ControlSobresParciales.setEnabled(validaIndicadorControlSobres());
         mnuCE_Prosegur.setEnabled(isLocalProsegur());
         
         /*if(ConstantsRecepCiega.error_du){
             mnuIngTransportista.setEnabled(true);
         }*/
-        //JMIRANDA 04.03.10
+        //  04.03.10
         if(UtilityFondoSencillo.indActivoFondo()){
             mnuFondoSencillo.setEnabled(true);
             }else{
@@ -2282,7 +2273,7 @@ public class FrmEconoFar extends JFrame  {
         mnuAdministracion_ControlHoras.setEnabled(false);
         mnuPedidosLocales.setEnabled(true);
         
-         //dveliz
+         // 
          mnuPedidosLocales.setEnabled(true);
          if(FarmaVariables.vEconoFar_Matriz){
              mnuPedidoAdicional.setVisible(false);
@@ -2336,12 +2327,12 @@ public class FrmEconoFar extends JFrame  {
       mnuInventario_PedioReposicion.setEnabled(true);
       mnuAdministracion_ControlHoras.setEnabled(false);
       //mnuInventario_Guias.setEnabled(true);
-       //dveliz
+       // 
         //mnuPedidosLocales.setEnabled(true);
     }
     /**Diego Ubilluz
      * Rol: Supervisor Ventas
-     * @author: dubilluz
+     * @author:  
      * @since: 11.06.2007
      */
     if ( FarmaVariables.dlgLogin.verificaRol(FarmaConstants.ROL_SUPERVISOR_VENTAS) )
@@ -2382,9 +2373,9 @@ public class FrmEconoFar extends JFrame  {
        mnuCE_CierreLocal.setEnabled(true);
        
        //agregado 
-       //27.11.2007 dubilluz modificacion
+       //27.11.2007   modificacion
        mnuAdministracion_ControlHoras.setEnabled(true);
-         //dveliz
+         // 
        /*  mnuPedidosLocales.setEnabled(true);
          if(FarmaVariables.vEconoFar_Matriz){
              mnuPedidoAdicional.setVisible(false);
@@ -2479,7 +2470,7 @@ public class FrmEconoFar extends JFrame  {
       // MODULO INGRESO TEMPERATURA
       mmuIngresoTemperatura.setEnabled(pValor);
       
-      //JMIRANDA 02.03.10
+      //  02.03.10
             mnuFondoSencillo.setEnabled(pValor);
   }
 
@@ -2531,7 +2522,7 @@ public class FrmEconoFar extends JFrame  {
   }
 
 */
-  //-----------------------------Items Reportes asolis 26.11.08------------------------------------
+  //-----------------------------Items Reportes   26.11.08------------------------------------
   private void  mnuReportes_VentasVendedor_Total_actionPerformed(ActionEvent e){
       
        VariablesReporte.ACCION_MOSTRAR_TIPO_VENTA = ConstantsReporte.ACCION_MOSTRAR_TOTALES;
@@ -2671,7 +2662,7 @@ public class FrmEconoFar extends JFrame  {
   
   /**
   * Inicializa variables
-  * @author JCHAVEZ
+  * @author  
   * @since 17.12.2009
   */
   private void inicializa(){
@@ -2765,8 +2756,7 @@ public class FrmEconoFar extends JFrame  {
 
   private void mnuVentas_DeliveryAutomatico_actionPerformed(ActionEvent e)
   {
-    DlgUltimosPedidos dlgUltimosPedidos = new DlgUltimosPedidos(this, "", true);
-    dlgUltimosPedidos.setVisible(true);
+    
   }
   
   private void mnuVentas_MedidaPresion_actionPerformed(ActionEvent e)
@@ -2788,7 +2778,7 @@ public class FrmEconoFar extends JFrame  {
     {
       
         //DlgConsultarRecargaCorrelativo dlgRecargaCorrelativo = new DlgConsultarRecargaCorrelativo(this,"",true); //antes AS
-        DlgConsultarRecargaCorrelativo_AS dlgRecargaCorrelativo = new DlgConsultarRecargaCorrelativo_AS(this,"Consulta de recarga por correlativo",true); //ASOSA, 05.05.2010
+        DlgConsultarRecargaCorrelativo_AS dlgRecargaCorrelativo = new DlgConsultarRecargaCorrelativo_AS(this,"Consulta de recarga por correlativo",true); // , 05.05.2010
         dlgRecargaCorrelativo.setVisible(true);
     
     }
@@ -2880,7 +2870,7 @@ public class FrmEconoFar extends JFrame  {
 
 
     /**
-     * @author JCORTEZ
+     * @author  
      * @since  11.02.2009
      */
     private void mmuIngresoTemperatura_actionPerformed(ActionEvent e) {
@@ -2918,7 +2908,7 @@ public class FrmEconoFar extends JFrame  {
 
     private void mnuMantenimiento_MaquinaIP_actionPerformed(ActionEvent e) {
     
-        //JCORTEZ 05.06.09
+        //  05.06.09
         DlgListaIPSImpresora DlgIP=new  DlgListaIPSImpresora(this,"",true);
         DlgIP.setVisible(true);
     
@@ -2926,7 +2916,7 @@ public class FrmEconoFar extends JFrame  {
     
     private void mnuMantenimiento_ImpresoraTermica_actionPerformed(ActionEvent e) {
         
-        //JMIRANDA 25/06/2009
+        //  25/06/2009
         DlgListaImpresoraTermCreaMod dlgLstImprTermCreaMod=new  DlgListaImpresoraTermCreaMod(this,"",true);
         dlgLstImprTermCreaMod.setVisible(true);
         
@@ -2958,7 +2948,7 @@ public class FrmEconoFar extends JFrame  {
           
           
           FarmaVariables.vAceptar = false;
-          //añadido 21.09.2007 dubilluz
+          //añadido 21.09.2007  
           System.out.println("VariablesCaja.cobro_Pedido_Conv_Credito : "+VariablesCaja.cobro_Pedido_Conv_Credito);
           if(VariablesCaja.cobro_Pedido_Conv_Credito.equalsIgnoreCase("N"))
           {
@@ -2971,19 +2961,19 @@ public class FrmEconoFar extends JFrame  {
           System.out.println("Foco lo coloco en TxtMonto  2222");
           }
           
-          verificaMontoPagadoPedido();//jcortez
+          verificaMontoPagadoPedido();// 
 
         }*/
     }
 
     private void mnuCaja_ReimpresionTicketsAnulados_actionPerformed(ActionEvent e) {
-        //JCHAVEZ 06.07.2009
+        //  06.07.2009
         DlgListaTicketsAnulados dlgListaTicketsAnulados=new  DlgListaTicketsAnulados(this,"",true);
         dlgListaTicketsAnulados.setVisible(true);
     }
 
     private void mnuInventario_Recepcion_actionPerformed(ActionEvent e) {        
-            //JCORTEZ 16.11.2009
+            //  16.11.2009
             DlgHistoricoRecepcion dlgRecepcion=new  DlgHistoricoRecepcion(this,"",true);
             dlgRecepcion.setVisible(true);
         
@@ -2993,7 +2983,7 @@ public class FrmEconoFar extends JFrame  {
 
     private void btnRevertir_actionPerformed(ActionEvent e) {
         
-        //JCORTEZ 19.01.10 Se verificara indicador para validar proceso de pruebas.
+        //  19.01.10 Se verificara indicador para validar proceso de pruebas.
         if(validaIndicadorPruebas()){
         if (validaEsOperador()){
             DlgLogin dlgLogin = new DlgLogin(this,ConstantsPtoVenta.MENSAJE_LOGIN,true);
@@ -3011,7 +3001,7 @@ public class FrmEconoFar extends JFrame  {
     
     /**
      * Se valida indicador de proceso (pbl_tab_gral)
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE 19.01.10
      * */
     private boolean validaIndicadorPruebas(){
@@ -3032,121 +3022,6 @@ public class FrmEconoFar extends JFrame  {
     }
    
 
-    private void txtRevertir_keyPressed(KeyEvent e) {
-        System.out.println("Entra a revertir");
-        System.out.println("tecla ini cio: "+e.getKeyCode() );
-        
-        if (e.getKeyCode() == KeyEvent.VK_INSERT ) {
-        
-            System.out.println(":::JCORTEZ::::VALIDACION PROCESO REVERSION");
-            //JCORTEZ 19.01.10 Se verificara indicador para validar proceso de pruebas.
-            if(validaIndicadorPruebas()){        
-            if (validaEsOperador()){
-                DlgLogin dlgLogin1 = new DlgLogin(this,ConstantsPtoVenta.MENSAJE_LOGIN,true);
-                dlgLogin1.setRolUsuario(FarmaConstants.ROL_OPERADOR_SISTEMAS);
-                dlgLogin1.setVisible(true);
-                    
-                if ( FarmaVariables.vAceptar ){
-                    if (validaIndicadorRevertirLocal()){
-                    //    if (validaCantidadPruebasCompleta()){
-                        VariablesPtoVenta.vFechaInicioPruebas = obtieneFechaInicioPrueba();
-                        if (!VariablesPtoVenta.vFechaInicioPruebas.equalsIgnoreCase("")){
-                            boolean rptaRevertir = false;
-                            rptaRevertir =  FarmaUtility.rptaConfirmDialogDefaultNo(null,"Va a empezar a iniciar el proceso de revertir. \n ¿Está seguro de revertir las pruebas realizadas en el local nuevo a partir de la fecha "+ VariablesPtoVenta.vFechaInicioPruebas + " ?.\n Si desea continuar acepte.");
-                                
-                            if (rptaRevertir) 
-                            { 
-                                if (validaEsOperador()){
-                                    
-                                    DlgLogin dlgLogin = new DlgLogin(this,ConstantsPtoVenta.MENSAJE_LOGIN,true);
-                                    dlgLogin.setRolUsuario(FarmaConstants.ROL_OPERADOR_SISTEMAS);
-                                    dlgLogin.setVisible(true);
-                                        
-                                    if ( FarmaVariables.vAceptar ){
-                                        if (validaIndicadorRevertirLocal()){
-                                            if (validaCantidadPruebasCompleta()){                                                
-                                               revertirPruebasDeLocalNuevo();        
-                                            }else{
-                                               FarmaUtility.showMessage(this,"Ya no se puede revertir los datos de prueba en el local.\n Ya inició y finalizó la sesión de pruebas \n Comuníquese con el Operador.",null);       
-                                            }
-                                                
-                                        }else
-                                        FarmaUtility.showMessage(this,"Ya no se puede revertir los datos de prueba en el local.\n Comuníquese con el Operador.",null);    
-                                        
-                                    }else{
-                                        FarmaUtility.showMessage(this,"La clave ingresada no es correcta. \n",null);    
-                                    }
-                                        
-                                }
-                            }else
-                            {
-                                return;
-                            }
-                            // }else{
-                            //         FarmaUtility.showMessage(this,"Ya no se puede revertir los datos de prueba en el local.\n Ya inició y finalizó la sesión de pruebas \n Comuníquese con el Operador.",null);
-                            //      }
-                          
-                        }
-                    }else
-                       FarmaUtility.showMessage(this,"Ya no se puede revertir los datos de prueba en el local.\n Comuníquese con el Operador.",null);
-                }    
-                
-            }
-          }
-        } else if (e.getKeyCode() == 36) {
-              System.out.println(":::JCORTEZ::::VALIDACION PROCESO REVERSION");
-              //JCORTEZ 19.01.10 Se verificara indicador para validar proceso de pruebas.
-              if(validaIndicadorPruebas()){     
-                if (validaEsOperador()){
-                    DlgLogin dlgLogin = new DlgLogin(this,ConstantsPtoVenta.MENSAJE_LOGIN,true);
-                    dlgLogin.setRolUsuario(FarmaConstants.ROL_OPERADOR_SISTEMAS);
-                    dlgLogin.setVisible(true);
-                        
-                    if ( FarmaVariables.vAceptar ){
-                        if (validaIndicadorRevertirLocal()){
-                            if (validaCantidadPruebas()){
-                                grabaInicioFinPrueba("I");
-                                lblMensaje.setVisible(true);
-                                pnlEconoFar.setBackground(Color.ORANGE);
-                                btnRevertir.setBackground(Color.ORANGE);
-                                txtRevertir.setBorder(BorderFactory.createLineBorder(Color.ORANGE));
-                                txtRevertir.setBackground(Color.ORANGE);      
-                                btnRevertir.setForeground(Color.ORANGE);                        
-                            }else {
-                                FarmaUtility.showMessage(this,"Ya no puede iniciar la prueba, porque ya se hizo una. \n Comuníquese con el Operador."
-                                    , null);
-                                return;
-                            }
-                        }else{
-                                FarmaUtility.showMessage(this,"Ya no puede iniciar la prueba, ya se revirtió las pruebas en el local. \n Comuníquese con el Operador."
-                                    , null);
-                                return;
-                        }
-                            
-                    }   
-                }   
-              }
-            }/*else if (e.getKeyCode() == 35){
-                if (validaEsOperador()){
-                    DlgLogin dlgLogin = new DlgLogin(this,ConstantsPtoVenta.MENSAJE_LOGIN,true);
-                    dlgLogin.setRolUsuario(FarmaConstants.ROL_OPERADOR_SISTEMAS);
-                    dlgLogin.setVisible(true);
-                        
-                    if ( FarmaVariables.vAceptar ){
-                        grabaInicioFinPrueba("F");
-                        lblMensaje.setVisible(false);
-                        pnlEconoFar.setBackground(Color.WHITE);
-                        txtRevertir.setBorder(BorderFactory.createLineBorder(Color.WHITE));                    
-                        btnRevertir.setBackground(Color.WHITE);
-                        txtRevertir.setBackground(Color.WHITE);
-                        btnRevertir.setForeground(Color.WHITE);
-                    }   
-                }   
-            }*/
-            
-        /*}else
-            FarmaUtility.showMessage(this,"La opcion de reversión no esta habilitada en el local.",null);    */   
-    }
     private boolean validaEsOperador(){
         boolean vResultado=false;
         if (FarmaVariables.vNuSecUsu.equalsIgnoreCase(FarmaConstants.ROL_OPERADOR_SISTEMAS))
@@ -3158,7 +3033,7 @@ public class FrmEconoFar extends JFrame  {
     
     /**
      * valida si han pasado los dos dias permitidos para revertir los cambios en el local
-     * @author ASOSA
+     * @author  
      * @since  13.01.2010
      * @return flag
      */
@@ -3177,36 +3052,7 @@ public class FrmEconoFar extends JFrame  {
         return flag;
     }
     
-    private void revertirPruebasDeLocalNuevo(){
-        boolean rptaRevertir = false;
-        rptaRevertir =  FarmaUtility.rptaConfirmDialogDefaultNo(null,"¿Está seguro de revertir las pruebas realizadas en el local nuevo  a partir de la fecha "+ VariablesPtoVenta.vFechaInicioPruebas + " ?.\n Si acepta se borrará toda la información generada.");
-      
-        if (rptaRevertir) 
-        {           
-            if(validarPermiteRevertir()){
-                DlgProcesarRevertir vProcesaRevertir = new DlgProcesarRevertir(this,"",true);
-                vProcesaRevertir.setVisible(true);
-                if (FarmaVariables.vAceptar) {
-                    FarmaUtility.showMessage(this,"El proceso de revertir se realizó con éxito.\n" + "Para continuar salir de la aplicación.\n"
-                        , null);
-                    grabaInicioFinPrueba("F");
-                    lblMensaje.setVisible(false);
-                    pnlEconoFar.setBackground(Color.WHITE);
-                    txtRevertir.setBorder(BorderFactory.createLineBorder(Color.WHITE));                    
-                    btnRevertir.setBackground(Color.WHITE);
-                    txtRevertir.setBackground(Color.WHITE);
-                    btnRevertir.setForeground(Color.WHITE);
-                    
-                }else {
-                    FarmaUtility.showMessage(this,"Ocurrió un error al revertir, comuníquese con el Operador."
-                        , null);
-                }
-            }else{
-                FarmaUtility.showMessage(this,"Ya pasaron más de 2 dias de pruebas, no se pueden revertir los cambio",null);
-            }
-        }else
-            return;
-    }
+
     private boolean validaIndicadorRevertirLocal(){
         boolean vResultado=false;
         try{
@@ -3346,7 +3192,7 @@ public class FrmEconoFar extends JFrame  {
     */
     private void mnuFondoSencillo_actionPerformed(ActionEvent e) {
         if (UtilityFondoSencillo.indActivoFondo()) {
-            //JMIRANDA 02.06.2010
+            //  02.06.2010
             /*
             DlgHistoricoFondoSencillo dlgHistorico = 
                 new DlgHistoricoFondoSencillo(this, "", true);
@@ -3362,7 +3208,7 @@ public class FrmEconoFar extends JFrame  {
     }
 /**
      * Se muestra remitos
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE 30.03.2010
      * */
     private void mnuRemito_actionPerformed(ActionEvent e) {
@@ -3372,7 +3218,7 @@ public class FrmEconoFar extends JFrame  {
 
     /**
      * Se muestra sobres 
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE 30.03.2010
      * */
     private void mnuSobres_actionPerformed(ActionEvent e) {
@@ -3383,7 +3229,7 @@ public class FrmEconoFar extends JFrame  {
     
     /**
      * Se valida el ingreso de control de sobre
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE 09.04.2010
      * */
     private boolean validaIndicadorControlSobres(){
@@ -3400,7 +3246,7 @@ public class FrmEconoFar extends JFrame  {
     
     /**
      * Se valida el ingreso de Remito
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE 09.04.2010
      * */
      private boolean isLocalProsegur(){
@@ -3421,7 +3267,7 @@ public class FrmEconoFar extends JFrame  {
      }
 
 /**
-     * @author ASOSA
+     * @author  
      * @since 03.06.2010
      * @param e
      */
@@ -3431,7 +3277,7 @@ public class FrmEconoFar extends JFrame  {
     }
 
 /**
-     * @author ASOSA
+     * @author  
      * @since 03.06.2010
      * @param e
      */
@@ -3462,31 +3308,31 @@ public class FrmEconoFar extends JFrame  {
     mnuUsuarios_CambioUsuario.setEnabled(true);
     mnuUsuarios_CambioClave.setEnabled(true);
      mnuIngTransportista.setEnabled(false);
-    //jcallo
+    // 
     mnuVentas_MedidaPresion.setEnabled(false);
     mnuFondoSencillo.setVisible(false);
     
     if ( FarmaVariables.dlgLogin.verificaRol(FarmaConstants.ROL_VENDEDOR) ) {
         mnuEconoFar_Ventas.setEnabled(true);
         mnuVentas_GenerarPedido.setEnabled(true);
-        //asolis
+        // 
         mnuVentas_Recargas.setEnabled(true);
         mnuVentas_DeliveryAutomatico.setEnabled(true);
         
         
         mnuAdministracion_ControlHoras.setEnabled(false);
         
-        //dveliz
+        // 
         mnuPedidosLocales.setEnabled(false);
         if(FarmaVariables.vEconoFar_Matriz){
             mnuPedidoAdicional.setVisible(false);
             mnuPedidoEspecial.setVisible(false);
         }
         
-        //jcallo
+        // 
         mnuVentas_MedidaPresion.setEnabled(true);
         
-        //JCORTEZ 30.11.09
+        //  30.11.09
         mnuEconoFar_Inventario.setEnabled(true);
         
         mnuInventario_Mercaderia.setEnabled(true);
@@ -3495,7 +3341,7 @@ public class FrmEconoFar extends JFrame  {
 
     if ( FarmaVariables.dlgLogin.verificaRol(FarmaConstants.ROL_CAJERO) ) {
         
-        //asolis
+        // 
         mnuVentas_Recargas.setEnabled(true);
         
       mnuAdministracion_ControlHoras.setEnabled(false);
@@ -3509,7 +3355,7 @@ public class FrmEconoFar extends JFrame  {
          mnuCaja_PruebaImpresora.setEnabled(true);
         mnuEconofar_CajaElectronica.setEnabled(true);
         mnuCE_CierreTurno.setEnabled(true);
-         //dveliz
+         // 
          mnuPedidosLocales.setEnabled(false);
          if(FarmaVariables.vEconoFar_Matriz){
              mnuPedidoAdicional.setVisible(false);
@@ -3518,22 +3364,22 @@ public class FrmEconoFar extends JFrame  {
          
     if ( FarmaVariables.vTipCaja.equalsIgnoreCase(ConstantsPtoVenta.TIP_CAJA_TRADICIONAL) )
         mnuCaja_CobrarPedido.setEnabled(true);
-        //dveliz
-        //dveliz
+        // 
+        // 
         mnuPedidosLocales.setEnabled(false);
         if(FarmaVariables.vEconoFar_Matriz){
             mnuPedidoAdicional.setVisible(false);
             mnuPedidoEspecial.setVisible(false);
         }
         
-        //ASOSA, 03.06.2010
+        // , 03.06.2010
         mnuCaja_ControlSobresParciales.setEnabled(validaIndicadorControlSobres());
     }
 
     /*  
      * se quito el rol admin  
      * */
-    //dubilluz 29.09.2010
+    //  29.09.2010
     if(FarmaVariables.dlgLogin.verificaRol(FarmaConstants.ROL_CONTABILIDAD)||
         FarmaVariables.dlgLogin.verificaRol(FarmaConstants.ROL_LECTURA_REPORTES)
       ){
@@ -3561,7 +3407,7 @@ public class FrmEconoFar extends JFrame  {
         mnuTomaInventario_Historico.setEnabled(true);
         mnuTomaInVentario_ItemsXLab.setEnabled(true);
         //mnuInventario_RecepcionLocales.setEnabled(pValor);
-          //dveliz
+          // 
           mnuPedidosLocales.setEnabled(true);
           mnuPedidoAdicional.setVisible(true);
           mnuPedidoEspecial.setVisible(true);
@@ -3571,7 +3417,7 @@ public class FrmEconoFar extends JFrame  {
         mnuTomaInventario_Tradicional.setEnabled(false);
         mnuTomaInventario_Ciclico.setEnabled(true);
         mnuTomaInventario_Historico.setEnabled(true);
-          //dveliz
+          // 
           mnuPedidosLocales.setEnabled(true);
           mnuPedidoAdicional.setVisible(false);
           mnuPedidoEspecial.setVisible(false);
@@ -3602,7 +3448,7 @@ public class FrmEconoFar extends JFrame  {
         mnuTomaInventario_Historico.setEnabled(true);
         mnuTomaInVentario_ItemsXLab.setEnabled(true);
         //mnuInventario_RecepcionLocales.setEnabled(pValor);
-          //dveliz
+          // 
           mnuPedidosLocales.setEnabled(true);
           mnuPedidoAdicional.setVisible(true);
           mnuPedidoEspecial.setVisible(true);
@@ -3612,7 +3458,7 @@ public class FrmEconoFar extends JFrame  {
         mnuTomaInventario_Tradicional.setEnabled(false);
         mnuTomaInventario_Ciclico.setEnabled(true);
         mnuTomaInventario_Historico.setEnabled(true);
-          //dveliz
+          // 
           mnuPedidosLocales.setEnabled(true);
           mnuPedidoAdicional.setVisible(false);
           mnuPedidoEspecial.setVisible(false);
@@ -3629,25 +3475,25 @@ public class FrmEconoFar extends JFrame  {
             mnuIngTransportista.setEnabled(true);
         }
       mnuInventarioCiclico_Inicio.setEnabled(true);
-         //dveliz
+         // 
          mnuPedidosLocales.setEnabled(true);
          if(FarmaVariables.vEconoFar_Matriz){
              mnuPedidoAdicional.setVisible(false);
              mnuPedidoEspecial.setVisible(false);
          }
-         //jcallo
+         // 
          mnuVentas_MedidaPresion.setEnabled(false);
-         //asolis
+         // 
          mnuVentas_Recargas.setEnabled(true);
 
-        //ASOSA, 03.06.2010
+        // , 03.06.2010
         mnuCaja_ControlSobresParciales.setEnabled(validaIndicadorControlSobres());
         mnuCE_Prosegur.setEnabled(isLocalProsegur());
         
         /*if(ConstantsRecepCiega.error_du){
             mnuIngTransportista.setEnabled(true);
         }*/
-        //JMIRANDA 04.03.10
+        //  04.03.10
         if(UtilityFondoSencillo.indActivoFondo()){
             mnuFondoSencillo.setEnabled(true);
             }else{
@@ -3666,7 +3512,7 @@ public class FrmEconoFar extends JFrame  {
         mnuAdministracion_ControlHoras.setEnabled(false);
         mnuPedidosLocales.setEnabled(true);
         
-         //dveliz
+         // 
          mnuPedidosLocales.setEnabled(true);
          if(FarmaVariables.vEconoFar_Matriz){
              mnuPedidoAdicional.setVisible(false);
@@ -3720,12 +3566,12 @@ public class FrmEconoFar extends JFrame  {
       mnuInventario_PedioReposicion.setEnabled(true);
       mnuAdministracion_ControlHoras.setEnabled(false);
       //mnuInventario_Guias.setEnabled(true);
-       //dveliz
+       // 
         //mnuPedidosLocales.setEnabled(true);
     }
     /**Diego Ubilluz
      * Rol: Supervisor Ventas
-     * @author: dubilluz
+     * @author:  
      * @since: 11.06.2007
      */
     if ( FarmaVariables.dlgLogin.verificaRol(FarmaConstants.ROL_SUPERVISOR_VENTAS) )
@@ -3766,9 +3612,9 @@ public class FrmEconoFar extends JFrame  {
        mnuCE_CierreLocal.setEnabled(true);
        
        //agregado 
-       //27.11.2007 dubilluz modificacion
+       //27.11.2007   modificacion
        mnuAdministracion_ControlHoras.setEnabled(true);
-         //dveliz
+         // 
        /*  mnuPedidosLocales.setEnabled(true);
          if(FarmaVariables.vEconoFar_Matriz){
              mnuPedidoAdicional.setVisible(false);

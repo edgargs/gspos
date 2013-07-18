@@ -532,7 +532,7 @@ public class DlgListadoPedidoEspecial extends JDialog
     
     /**
      * Carga los productos para Pedido Especial
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE  04.02.2010
      */
     private void cargaListProdEspeciales(){

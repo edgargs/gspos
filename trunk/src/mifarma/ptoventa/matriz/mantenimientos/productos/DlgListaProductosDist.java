@@ -91,7 +91,7 @@ import mifarma.ptoventa.caja.reference.VariablesCaja;
  * Nombre de la Aplicación : DlgListaProductosDist.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JCORTEZ    12.11.2007   Creación<br>
+ *      12.11.2007   Creación<br>
  * <br>
  * @author Jorge Luis Cortez Alvarez<br>
  * @version 1.0<br>
@@ -125,7 +125,7 @@ public class DlgListaProductosDist
   
   /**
    * iNDICADOR DE ESTADO DE GRABADO
-   * @author dubilluz
+   * @author  
    * @since  17.09.2007
    */
   private final String EST_DEFINITIVO = "D";
@@ -158,7 +158,7 @@ public class DlgListaProductosDist
   private JLabelFunction lblF5 = new JLabelFunction();
   private JLabel lblTipoFiltro = new JLabel();
 
-  //Agregado por DVELIZ 18.09.08
+  //Agregado por   18.09.08
   private JLabelFunction lblEnter = new JLabelFunction();
   /* ************************************************************************ */
   /*                          CONSTRUCTORES                                   */
@@ -315,7 +315,7 @@ public class DlgListaProductosDist
     lblCantLocales_.setText("Cantidad de Productos:");
     lblF5.setBounds(new Rectangle(655, 435, 90, 20));
     lblF5.setText("[ F5 ] Ordenar");
-    //Agregado por DVELIZ 18.09.08
+    //Agregado por   18.09.08
     lblEnter.setBounds(new Rectangle(25, 435, 180, 20));
     lblEnter.setText("[ Enter ] Configurar PVM");
     
@@ -333,7 +333,7 @@ public class DlgListaProductosDist
     pnlCriterioBusqueda.add(txtDescLaboratorio, null);
     pnlCriterioBusqueda.add(btnBuscar, null);
     pnlCriterioBusqueda.add(btnLineaQS, null);
-        //Agregado por DVELIZ 18.09.08
+        //Agregado por   18.09.08
         jContentPane.add(lblF5, null);
 
         jContentPane.add(lblF1, null);
@@ -448,7 +448,7 @@ public class DlgListaProductosDist
             return;
           }else{
            System.out.println("SELECCIONA PRODUCTO");
-           /**JCORTEZ
+           /** 
             * 17/01/2007
             * **/
            //if(VariablesProducto.vTipoListado.equalsIgnoreCase(ConstantsProducto.listDist)){
@@ -480,7 +480,7 @@ public class DlgListaProductosDist
   {
     if (e.getKeyCode() == KeyEvent.VK_F1)
     {
-     /* if(!VariablesProducto.vTipoParametros){//JCORTEZ 11.09.2008
+     /* if(!VariablesProducto.vTipoParametros){//  11.09.2008
       if(!ExistTemporalPendiente()){ //si no hay pendientes en aux_det
           if(FarmaUtility.rptaConfirmDialog(this,"Esta seguro de distribuir los productos trabajados?")){
           agregarProductosTemporal();
@@ -1032,7 +1032,7 @@ public class DlgListaProductosDist
   
   /**
    * Se lista los productos de la cadena que tengan stock en almacen
-   * @author: JCORTEZ 
+   * @author:   
    * @since : 16/01/2007
    * */
   private void listarProductosAlmacen(String filtro){

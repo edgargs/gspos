@@ -51,7 +51,7 @@ import mifarma.ptoventa.administracion.mantenimiento.reference.*;
 * Histórico de Creación/Modificación<br>
 * LREQUE      30.04.2007   Creación
 * <br>
-* @author Luis Reque Orellana<br>
+* @author  <br>
 * @version 1.0<br>
 *
 */
@@ -435,7 +435,7 @@ public class DlgControlHoras extends JDialog
     try
     {
       DlgLogin dlgLogin = new DlgLogin(myParentFrame,"Validación de Usuario",true);
-      //14.11.2007 DUBILLUZ  MODIFICACION
+      //14.11.2007    MODIFICACION
       //dlgLogin.setRolUsuario(FarmaConstants.ROL_ADMLOCAL);
       dlgLogin.setRolUsuario(FarmaConstants.ROL_SUPERVISOR_VENTAS);
       dlgLogin.setVisible(true);

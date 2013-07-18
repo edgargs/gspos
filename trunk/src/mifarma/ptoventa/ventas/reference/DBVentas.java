@@ -15,16 +15,16 @@ import mifarma.common.FarmaUtility;
 import mifarma.common.FarmaVariables;
 
 import mifarma.ptoventa.caja.reference.VariablesCaja;
-import mifarma.ptoventa.convenio.reference.VariablesConvenio;
-import mifarma.ptoventa.convenioBTLMF.reference.UtilityConvenioBTLMF;
-import mifarma.ptoventa.convenioBTLMF.reference.VariablesConvenioBTLMF;
+ 
+ 
+ 
 import mifarma.ptoventa.fidelizacion.reference.VariablesFidelizacion;
 
 import mifarma.ptoventa.reference.ConstantsPtoVenta;
-import mifarma.ptoventa.retiro.reference.VariablesRetiro;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -35,8 +35,8 @@ import org.apache.commons.logging.LogFactory;
  * <br>
  * Histórico de Creación/Modificación<br>
  * LMESIA         14/02/2006   Creación<br>
- * JCALLO         04/03/2009   Modificacion <br>
- * ASOSA          02/02/2010   Modificacion <br>
+ *           04/03/2009   Modificacion <br>
+ *            02/02/2010   Modificacion <br>
  * <br>
  * @author Luis Mesia Rivera<br>
  * @version 1.0<br>
@@ -45,7 +45,7 @@ import org.apache.commons.logging.LogFactory;
 
 public class DBVentas
 {
-  private static final Log log = LogFactory.getLog(DBVentas.class);
+  private static final Logger log = LoggerFactory.getLogger(DBVentas.class);
   
   private static ArrayList parametros = new ArrayList();
   private static List prmts = new ArrayList();
@@ -64,7 +64,7 @@ public class DBVentas
   /**
    * Carga la lista de productos pero añadi tambien
    * si tiene promoción
-   * @author Dubilluz
+   * @author  
    * @since  14.06.2007
    */
     public static void cargaListaProductosVenta(FarmaTableModel pTableModel) throws SQLException {
@@ -162,59 +162,18 @@ public class DBVentas
     parametros.add(VariablesVentas.vIndDistrGratuita);
 
 
-        if (UtilityConvenioBTLMF.esActivoConvenioBTLMF(new JDialog(), null)){
-
-            /**NUEVO
-		     * @Autor: FRAMIREZ
-		     * @Fecha: 12.12.2011
-		     * */
-            //Indicador Pedido-Convenio
-            if (VariablesConvenioBTLMF.vCodConvenio.equalsIgnoreCase(""))
-                parametros.add(FarmaConstants.INDICADOR_N);
-            else
-                parametros.add(FarmaConstants.INDICADOR_S);
-            parametros.add(VariablesConvenioBTLMF.vCodConvenio);
-        } else {
-    /**NUEVO
-     * @Autor: Luis R.
-     * @Fecha: 19-03-2007
-     * */
-    //Indicador Pedido-Convenio
-    if(VariablesConvenio.vCodConvenio.equalsIgnoreCase(""))
-      parametros.add(FarmaConstants.INDICADOR_N);
-    else
-      parametros.add(FarmaConstants.INDICADOR_S);
-    parametros.add(VariablesConvenio.vCodConvenio);  
-
-        }
-    parametros.add(FarmaVariables.vNuSecUsu);//JCHAVEZ 07102009
+    parametros.add(FarmaVariables.vNuSecUsu);//  07102009
     //GRABA VARIABLES DE FORMA_PAGO_FIDELIZACION 
-    //dubilluz 09.06.2011
+    //  09.06.2011
     parametros.add(VariablesFidelizacion.vIndUsoEfectivo.trim());
     parametros.add(VariablesFidelizacion.vIndUsoTarjeta.trim());
     parametros.add(VariablesFidelizacion.vCodFPagoTarjeta.trim()); 
     System.out.println("SecUsuario Local "+FarmaVariables.vNuSecUsu);
     //log.info("Cabecera Pedido: "+parametros);
-    //dubilluz - 07.12.2011
+    //  - 07.12.2011
     parametros.add(VariablesFidelizacion.vColegioMedico.trim()); 
 
-        if (UtilityConvenioBTLMF.esActivoConvenioBTLMF(new JDialog(), null) &&
-        	VariablesConvenioBTLMF.vCodConvenio != null &&
-        	VariablesConvenioBTLMF.vCodConvenio.trim().length() > 0) {
-            /**NUEVO
-	     * @Autor: Fredy Ramirez C.(FRAMIREZ)
-	     * @Fecha: 12-12-2011
-	    **/
-
-            if (VariablesConvenioBTLMF.vCodCliente == null ||
-                VariablesConvenioBTLMF.vCodCliente.trim().equals(""))
-                VariablesConvenioBTLMF.vCodCliente = "0000000000";
-            parametros.add(VariablesConvenioBTLMF.vCodCliente);
-            parametros.add("S");
-        } else {
-            parametros.add(VariablesConvenio.vCodCliente);//28
-            parametros.add("N");
-        }
+      
       
                   
         System.out.println("SecUsuario Local " + FarmaVariables.vNuSecUsu);
@@ -225,7 +184,7 @@ public class DBVentas
   }
   /**
    * Para grabar la promocion  en el detalle
-   * @author dubilluz
+   * @author  
    * @since  28.02.2008
    */  
   public static void grabarDetallePedido() throws SQLException {
@@ -262,9 +221,9 @@ public class DBVentas
     parametros.add(VariablesVentas.vIndOrigenProdVta);
     parametros.add(VariablesVentas.vCantxDia);
     parametros.add(VariablesVentas.vCantxDias);
-    parametros.add(new Double(FarmaUtility.getDecimalNumber(VariablesVentas.vAhorroPack))); //JCHAVEZ 20102009 
+    parametros.add(new Double(FarmaUtility.getDecimalNumber(VariablesVentas.vAhorroPack))); //  20102009 
     log.debug("invocando  a PTOVENTA_VTA.VTA_GRABAR_PEDIDO_VTA_DET(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?):"+parametros);
-    FarmaDBUtility.executeSQLStoredProcedure(null,"PTOVENTA_VTA.VTA_GRABAR_PEDIDO_VTA_DET(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",parametros,false);//JCHAVEZ 19102009
+    FarmaDBUtility.executeSQLStoredProcedure(null,"PTOVENTA_VTA.VTA_GRABAR_PEDIDO_VTA_DET(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",parametros,false);//  19102009
   }
   
   public static String obtieneFecModNumeraPed() throws SQLException {
@@ -316,7 +275,7 @@ public class DBVentas
     
     System.out.println(pTipoFiltro + "  "+pCodFiltro);
     
-    //FarmaDBUtility.executeSQLStoredProcedure(pTableModel,"PTOVENTA_PROMOCION_DUBILLUZ.VTA_LISTA_PROD_FILTRO(?,?,?,?)",parametros,true);
+    //FarmaDBUtility.executeSQLStoredProcedure(pTableModel,"PTOVENTA_PROMOCION_ .VTA_LISTA_PROD_FILTRO(?,?,?,?)",parametros,true);
     log.debug("invocando  a PTOVENTA_VTA_LISTA.VTA_LISTA_PROD_FILTRO(?,?,?,?):"+parametros);
     FarmaDBUtility.executeSQLStoredProcedure(pTableModel,"PTOVENTA_VTA_LISTA.VTA_LISTA_PROD_FILTRO(?,?,?,?)",parametros,true);
   }
@@ -496,7 +455,7 @@ public class DBVentas
     pTableModel.clearTable();
     parametros = new ArrayList();
     // Se añadieron nuevas columnas
-    // 28.02.2008 dubilluz
+    // 28.02.2008  
     parametros.add(FarmaVariables.vCodGrupoCia);
     parametros.add(FarmaVariables.vCodLocal);
       log.debug("invocando  a PTOVENTA_PROMOCIONES.PROMOCIONES_LISTADO(?,?):"+parametros);
@@ -513,7 +472,7 @@ public class DBVentas
     pTableModel.clearTable();
     parametros = new ArrayList();
     // Se añadieron nuevas columnas
-    // 28.02.2008 dubilluz    
+    // 28.02.2008      
     parametros.add(FarmaVariables.vCodGrupoCia);
     parametros.add(FarmaVariables.vCodLocal);
     parametros.add(vCodProd);
@@ -562,7 +521,7 @@ public class DBVentas
     parametros.add(FarmaVariables.vCodLocal);
     parametros.add(pCodProm);
       log.debug("invocando  a PTOVENTA_PROMOCIONES.PROMOCIONES_LISTADO_PAQUETES(?,?,?):"+parametros);
-    FarmaDBUtility.executeSQLStoredProcedureArrayList(pArrayList,"PTOVENTA_PROMOCIONES.PROMOCIONES_LISTADO_PAQUETES(?,?,?)",parametros);//JCHAVEZ 20102009
+    FarmaDBUtility.executeSQLStoredProcedureArrayList(pArrayList,"PTOVENTA_PROMOCIONES.PROMOCIONES_LISTADO_PAQUETES(?,?,?)",parametros);//  20102009
   }
   
   
@@ -589,7 +548,7 @@ public class DBVentas
   }
   /**
    * Lista los stock en locales en general del producto
-   * @author dubilluz
+   * @author  
    * @since  05.11.2007
    */
   public static void cargaListaStockLocalesPreferidos(FarmaTableModel pTableModel,
@@ -630,7 +589,7 @@ public class DBVentas
   }*/
     /**
      * Modificado para conectarse directamente al Matriz
-     * @author : dubilluz
+     * @author :  
      * @since  : 20.08.2007
      */
     public static String obtieneInfoStock(String pCodProd,
@@ -657,7 +616,7 @@ public class DBVentas
 
  /**
   * Indicador de Stock Lima, Provincia y Almacen
-  * @author : dubilluz
+  * @author :  
   * @since  : 20.08.2007
   */
   public static String obtieneIndicadorStock(String pCodProd,
@@ -675,7 +634,7 @@ public class DBVentas
   
  /**
   * Retorna el numero de Dias para el Reporte de Dias sin Ventas
-  * @author : dubilluz
+  * @author :  
   * @since  : 20.08.2007
   */
   public static String obtieneNumeroDiasSinVentas() throws SQLException {
@@ -686,7 +645,7 @@ public class DBVentas
 
  /**
   * Retorna el mensaje para la fecha actual
-  * @author dubilluz
+  * @author  
   * @since  29.02.2008
   */
   public static String obtieneMensajeActual() throws SQLException {
@@ -698,7 +657,7 @@ public class DBVentas
   }
  /** 
   * Retorna la maxima longitud para el numero de telefono de recarga virtual
-  * @author dubilluz
+  * @author  
   * @since  26.03.2008
   */
   public static String obtieneMaxLongNumTelf() throws SQLException {
@@ -734,7 +693,7 @@ public class DBVentas
   /**
    * Obtiene informacion del pedido actual tiene productos de un encarte
    * y si este encarte esta activo
-   * @author dubilluz
+   * @author  
    * @since  09.04.2008
    */
   public static void analizaProdEncarte(ArrayList pArray,String pCodEncarte) throws SQLException {
@@ -743,7 +702,7 @@ public class DBVentas
     parametros.add(FarmaVariables.vCodLocal);
     parametros.add(FarmaVariables.vIpPc);
     parametros.add(pCodEncarte.trim());  
-      //dubilluz 14.10.2011
+      //  14.10.2011
       //los codigos de productos del resumen de pedido.separados por @
       parametros.add(UtilityVentas.getProdVendidos());
       log.debug("invocando a PTOVENTA_VTA.VTA_PERMITE_PROD_REGALO(?,?,?,?,?):"+parametros);      
@@ -752,7 +711,7 @@ public class DBVentas
 
  /** 
   * Retorna la descripcion del productos
-  * @author dubilluz
+  * @author  
   * @since  09.04.2008
   */
   public static String obtieneDescProducto(String pCodProd) throws SQLException {
@@ -765,7 +724,7 @@ public class DBVentas
  
  /** 
   * Retorna la descripcion del productos
-  * @author dubilluz
+  * @author  
   * @since  09.04.2008
   */
   public static String obtieneInfoProdRegalo(String pCodProd) throws SQLException {
@@ -778,7 +737,7 @@ public class DBVentas
  
   /**
    * Graba el detalle del pedido regalo
-   * @author dubilluz
+   * @author  
    * @since  09.04.2008
    */
   public static void grabaProductoRegalo(String pNumPed,String pCodprod,int pSecProd,int pCantAtend,
@@ -802,7 +761,7 @@ public class DBVentas
   /**
    * Obtiene informacion del pedido actual tiene productos para acceder a
    * obtener uno o mas cupones de regalo
-   * @author dubilluz
+   * @author  
    * @since  10.04.2008
    */
   public static void analizaProdCampCupon(ArrayList pArray,String pNumped,String pCodCampCupon) throws SQLException {
@@ -812,7 +771,7 @@ public class DBVentas
     parametros.add(FarmaVariables.vIpPc);
     parametros.add(pNumped.trim());
     parametros.add(pCodCampCupon.trim());
-    //dubilluz 15.10.2011
+    //  15.10.2011
     parametros.add(UtilityVentas.getProdVendidos());
       log.debug("invocando a PTOVENTA_VTA.VTA_PERMITE_CUPON(?,?,?,?,?,?):"+parametros);
     FarmaDBUtility.executeSQLStoredProcedureArrayList(pArray,"PTOVENTA_VTA.VTA_PERMITE_CUPON(?,?,?,?,?,?)",parametros);
@@ -824,7 +783,7 @@ public class DBVentas
     parametros.add(FarmaVariables.vCodGrupoCia);
     parametros.add(FarmaVariables.vCodLocal);
     parametros.add(FarmaVariables.vIpPc);
-    //dubilluz 14.10.2011
+    //  14.10.2011
     //los codigos de productos del resumen de pedido.separados por @
     parametros.add(UtilityVentas.getProdVendidos());
     log.debug("invocando a PTOVENTA_VTA_LISTA.VTA_LISTA_PROD_COMP1(?,?,?,?):"+parametros);
@@ -833,7 +792,7 @@ public class DBVentas
   
   /**
     * Graba la cantidad de cupones del pedido
-    * @author dubilluz
+    * @author  
     * @since  10.04.2008
     */
    public static void grabaCuponPedido(String pNumPed,String pCodCupon,int pCant,
@@ -857,7 +816,7 @@ public class DBVentas
     parametros.add(FarmaVariables.vCodGrupoCia);
     parametros.add(FarmaVariables.vCodLocal);
     parametros.add(FarmaVariables.vIpPc);
-      //dubilluz 15.10.2011
+      //  15.10.2011
       parametros.add(UtilityVentas.getProdVendidos());
       log.debug("invocando a PTOVENTA_VTA_LISTA.VTA_LISTA_PROD_OFERTA(?,?,?,?):"+parametros);
     FarmaDBUtility.executeSQLStoredProcedure(pTableModel,"PTOVENTA_VTA_LISTA.VTA_LISTA_PROD_OFERTA(?,?,?,?)",parametros,true);
@@ -866,7 +825,7 @@ public class DBVentas
   /**
    * Se obtiene informacion del producto en oferta
    * @throws SQLException
-   * @author JCORTEZ
+   * @author  
    * @since 11.05.2008
    */
    public static void obtieneInfoOfertProducto(ArrayList pArrayList, String pCodProd) throws SQLException {
@@ -881,7 +840,7 @@ public class DBVentas
    /**
    * Se obtiene informacion del producto en oferta
    * @throws SQLException
-   * @author JCORTEZ
+   * @author  
    * @since 15.04.2008
    */
    public static void obtieneInfoProdOrigenComp(ArrayList pArrayList, String pCodProd) throws SQLException {
@@ -983,7 +942,7 @@ public class DBVentas
     parametros.add(FarmaVariables.vIdUsu);
     parametros.add(FarmaVariables.vIpPc);
       log.debug("invocando a PTOVENTA_PROMOCIONES.PROCESO_PROM_REGALO(?,?,?,?,?,?):"+parametros);
-    FarmaDBUtility.executeSQLStoredProcedure(null,"PTOVENTA_PROMOCIONES.PROCESO_PROM_REGALO(?,?,?,?,?,?)",parametros,false);//JCHAVEZ 19102009
+    FarmaDBUtility.executeSQLStoredProcedure(null,"PTOVENTA_PROMOCIONES.PROCESO_PROM_REGALO(?,?,?,?,?,?)",parametros,false);//  19102009
       /*PTOVENTA_JCG*/
 
   }
@@ -1013,7 +972,7 @@ public class DBVentas
    * @author Edgar Rios Navarro
    * @since 03.07.2008
    */
-   //Modificado por DVELIZ 04.10.08
+   //Modificado por   04.10.08
   public static void verificaCupon(String pCupon, 
                                    ArrayList pArreglo,
                                    String indMultiUso,
@@ -1027,7 +986,7 @@ public class DBVentas
     parametros.add(vDniCliente);
     //FarmaDBUtility.executeSQLStoredProcedureArrayList(pArreglo,"PTOVENTA_VTA.VERIFICA_DATOS_CUPON(?,?,?,?)",parametros);
     //Se validara el cupon en el local
-    //01.09.2008 dubilluz Modificacion
+    //01.09.2008   Modificacion
     log.debug("invocando a PTOVENTA_CUPON.CUP_F_CUR_VALIDA_CUPON(?,?,?,?,?):"+parametros);
     FarmaDBUtility.executeSQLStoredProcedureArrayList(
             pArreglo,"PTOVENTA_CUPON.CUP_F_CUR_VALIDA_CUPON(?,?,?,?,?)",
@@ -1123,7 +1082,7 @@ public class DBVentas
      * @param pTipoCampana
      * @throws SQLException
      */
-   //Modificado por DVELIZ  04.10.08
+   //Modificado por    04.10.08
   public static void procesaCampanaCupon(String pNumPedVta,
                                          String pTipoCampana,
                                          String pDniCliente) throws SQLException  
@@ -1158,7 +1117,7 @@ public class DBVentas
   
   /**
    * Se obtiene el indicador de multiuso
-   * @author JCORTEZ
+   * @author  
    * @since 15.08.2008
    */
     public static void obtieneIndMultiuso(ArrayList pArrayList,String cadena) throws SQLException {
@@ -1175,7 +1134,7 @@ public class DBVentas
   /**
    * Se graba los productos ingresados
    * @throws SQLException
-   * @author JCORTEZ
+   * @author  
    * @since 20.08.2008
    */
   public static void insertProdCamp(String pCodProd, 
@@ -1193,7 +1152,7 @@ public class DBVentas
    /**
    * Se graba las campañas ingresadas
    * @throws SQLException
-   * @author JCORTEZ
+   * @author  
    * @since 20.08.2008
    */
   public static void insertCampCupon(String pCodCamp, 
@@ -1212,7 +1171,7 @@ public class DBVentas
   /**
    * Se obtiene el total de ahorro
    * @throws SQLException
-   * @author JCORTEZ
+   * @author  
    * @since 20.08.2008
    */
    public static String obtieneTotalAhorro(String totalPrecio) throws SQLException {
@@ -1227,7 +1186,7 @@ public class DBVentas
   
  /**
    * Se verifica la existencia del codigo de barra en el local
-   * @author JCORTEZ
+   * @author  
    * @since 28.08.2008
    */
   public static String verificaCodBarraLocal(String cadena) throws SQLException
@@ -1242,7 +1201,7 @@ public class DBVentas
   
   /**
    * obtiene los parametros del local como un arreglo
-   * @autor JCALLO
+   * @autor  
    * @since 01.10.2008
    * 
    * */
@@ -1281,7 +1240,7 @@ public class DBVentas
 
     /**
      * Actualiza el detalle del pedido de venta con los descuentos
-     * @author dveliz
+     * @author  
      * @since  09.10.08
      * @param codProd
      * @param porcDcto1
@@ -1305,7 +1264,7 @@ public class DBVentas
         parametros.add(new Double(porcDcto1));
         parametros.add(new Double(ahorro));
         parametros.add(new Double(porcDctoCalc));
-        parametros.add(new Integer(secPedVtaDet)); //JMIRANDA 30.10.2009 SE ENVIA EL SEC_PED_VTA_DET
+        parametros.add(new Integer(secPedVtaDet)); //  30.10.2009 SE ENVIA EL SEC_PED_VTA_DET
         
         log.debug("invocando a PTOVENTA_VTA.VTA_P_UPDATE_DET_PED_VTA (?,?,?,?,?,?,?,?,?):"+parametros);
         
@@ -1319,7 +1278,7 @@ public class DBVentas
      * metodo encargado de validar la consistencia del valor de la venta entre la cabecera y detalle
      * valor de redondeo
      * @since 04.11.2008
-     * @autor jcallo
+     * @autor  
      * @param pNumPedidoVenta     
      * @throws SQLException
      */
@@ -1347,7 +1306,7 @@ public class DBVentas
     
     /* ********************************************************************* */
     /**
-     * @author dubilluz
+     * @author  
      * @since  18.12.2008
      * @param  pNumPedidoVenta
      * @param  pDniCli
@@ -1370,7 +1329,7 @@ public class DBVentas
     /**
      * Retorna las unidades acumuladas en el pedido que actualmente se esta generando
      * luego estos mismos se insertaran en Matriz
-     * @authod Dubilluz
+     * @authod  
      * @since  18.12.2008
      * @param  pListaAcumulacion
      * @param  pNumPedVta
@@ -1472,14 +1431,14 @@ public class DBVentas
                                                        FarmaConstants.CONECTION_MATRIZ, 
                                                        FarmaConstants.INDICADOR_N);
         */
-        //JMIRANDA 16/07/09
+        //  16/07/09
         FarmaDBUtility.executeSQLStoredProcedure(null,
                         "PTOVENTA_MATRIZ_CA_CLI.CA_P_INSERT_HIS_PED_CLI(?,?,?,?,?,?,?,?,?,?,?,?,?)",parametros,false);
         
     }
 
     /**
-     * @author Dubilluz 
+     * @author   
      * @param  pListaDatos
      * @param  pNumPedVta
      * @param  pDniCli
@@ -1505,7 +1464,7 @@ public class DBVentas
                                                           FarmaConstants.CONECTION_MATRIZ, 
                                                           FarmaConstants.INDICADOR_N);
         */
-        //JMIRANDA 16/07/09
+        //  16/07/09
         
         FarmaDBUtility.executeSQLStoredProcedureArrayList(pListaDatos,
                         "PTOVENTA_MATRIZ_CA_CLI.CA_F_OPERA_BENEFICIO_CAMPANA(?,?,?,?,?)",parametros);
@@ -1593,7 +1552,7 @@ public class DBVentas
 
     /**
      * 
-     * @author dubilluz
+     * @author  
      * @param pCodProd
      * @throws SQLException
      */
@@ -1642,14 +1601,14 @@ public class DBVentas
        FarmaDBUtilityRemoto.executeSQLStoredProcedure(null,"PTOVENTA_MATRIZ_CA_CLI.CA_P_REVERTIR_CANJE_MATRIZ (?,?,?,?,?,?)",
                                                 parametros,true,FarmaConstants.CONECTION_MATRIZ,FarmaConstants.INDICADOR_N);
        */
-        //JMIRANDA 16/07/09
+        //  16/07/09
         FarmaDBUtility.executeSQLStoredProcedure(null,
                         "PTOVENTA_MATRIZ_CA_CLI.CA_P_REVERTIR_CANJE_MATRIZ (?,?,?,?,?,?)",parametros,false);
     }
     
     
     /**
-        * @author asolis 
+        * @author   
         * @fecha  14-01-09
         * VerificarRecargaPedido
         * @throws SQLException
@@ -1670,7 +1629,7 @@ public class DBVentas
        }
        
        /**
-        * @author asolis 
+        * @author   
         * @fecha  15-01-09
         *Muestra Mensaje
         * @throws SQLException
@@ -1684,7 +1643,7 @@ public class DBVentas
        }   
        
     /**
-     * @author asolis 
+     * @author   
      * @fecha  15-01-09
      *Muestra Mensaje
      * @throws SQLException
@@ -1705,7 +1664,7 @@ public class DBVentas
     
     /**
      * Retorna el numero de Pedido RecargaComprobante
-     * @author  asolis
+     * @author   
      * @since   16.01.2009
      */
     public static String getNumeroPedidoRecargaComprobante(String tipoComp,String numComp,String monto) throws SQLException
@@ -1722,7 +1681,7 @@ public class DBVentas
     
     /**
      * Retorna el precio final despues de validar con costro promedio y precio de venta
-     * @author  jcallo
+     * @author   
      * @since   05.02.2009
      */
     public static String getPrecioFinalCampania(String pCodProd,String pCodCamp,double pPrecioConDcto, double pPrecioVenta, int fraccion) throws SQLException
@@ -1747,7 +1706,7 @@ public class DBVentas
      * @param pPrecioConDcto
      * @param pPrecioVenta
      * @param fraccion
-     * @author Dubilluz
+     * @author  
      * @return
      * @throws SQLException
      */
@@ -1842,7 +1801,7 @@ public class DBVentas
         ")suma_pedido";
         
         codProds = "";
-        //fin dubilluz 21.06.2011
+        //fin   21.06.2011
         
         String p2=    " decode(COD_PROD,"; 
         for(int i=0;i<listProds.size();i++){
@@ -1928,7 +1887,7 @@ public class DBVentas
      * @param SecUsu
      * @param CodRol
      * @throws SQLException
-     * @author JCORTEZ
+     * @author  
      * @since 03.07.2009
      */
      public static String verificaRolUsuario(String SecUsu,String CodRol) throws SQLException
@@ -1941,7 +1900,7 @@ public class DBVentas
        System.out.println("verifica que el usuario tenga el rol adecuado: " + parametros);
        return FarmaDBUtility.executeSQLStoredProcedureStr("PTOVENTA_VTA.VERIFICA_ROL_USU(?,?,?,?)",parametros);
     }
-//JMIRANDA 04/08/09
+//  04/08/09
     public static String getDestinatarioErrorCobro() throws SQLException{
         parametros = new ArrayList();
         log.debug("invocando a Farma_Gral.F_VAR2_GET_EMAIL_COBRO:"+parametros);
@@ -1964,7 +1923,7 @@ public class DBVentas
      * obtiene cupones posibles a usar por el cliente
      * @param Dni
      * @throws SQLException
-     * @author JCORTEZ
+     * @author  
      * @since 04.08.2009
      */ 
    /* public static void obtieneCuponesCliente(ArrayList pArrayList,String Dni) throws SQLException
@@ -1986,7 +1945,7 @@ public class DBVentas
       log.info("PTOVENTA_FIDELIZACION.VTA_F_CUPON_CLI(?,?,?) :"+parametros);
       FarmaDBUtility.executeSQLStoredProcedure(pTableModel,"PTOVENTA_FIDELIZACION.VTA_F_CUPON_CLI(?,?,?)",parametros,true);
     }
- //JMIRANDA 11/08/09
+ //  11/08/09
     public static void actualizarCabeceraPedido() throws SQLException {
       parametros = new ArrayList();
       parametros.add(FarmaVariables.vCodGrupoCia);
@@ -2015,7 +1974,7 @@ public class DBVentas
         * obtiene cupones posibles a usar por el cliente
         * @param codigo producto
         * @throws SQLException
-        * @author JCHAVEZ
+        * @author  
         * @since 31.09.2009
         */
     public static String getDescPaquete(String pCodProd) throws SQLException{
@@ -2031,7 +1990,7 @@ public class DBVentas
      * @param pCodProd
      * @return
      * @throws SQLException
-     * @author JMIRANDA
+     * @author  
      * @since 18.09.2009
      */
     public static String getIndCodBarra(String pCodProd) throws SQLException
@@ -2048,7 +2007,7 @@ public class DBVentas
      * @param pCodProd
      * @return
      * @throws SQLException
-     * @author JMIRANDA
+     * @author  
      * @since 18.09.2009
      */
     public static String getIndSolIdUsu(String pCodProd) throws SQLException
@@ -2065,7 +2024,7 @@ public class DBVentas
      * @param pCodProd
      * @return
      * @throws SQLException
-     * @author JMIRANDA
+     * @author  
      * @since 18.09.2009
      */
     public static String getMensajeProd(String pCodProd) throws SQLException
@@ -2080,7 +2039,7 @@ public class DBVentas
     /** 
      * Obtiene Delimitador para los mensajes mostrados en el Listado de productos
      * @return
-     * @author JMIRANDA
+     * @author  
      * @since  18.09.2009
       */
     public static String getDelimitadorMensaje() throws SQLException{
@@ -2094,7 +2053,7 @@ public class DBVentas
     * obtiene indicador para visualizar la opcion Ver Cupones
     * @return indicador de ver supones: S muestra y N no se muestra
     * @throws SQLException
-    * @author JCHAVEZ
+    * @author  
     * @since 08.10.2009
     */
     public static boolean getIndVerCupones() throws SQLException{
@@ -2111,7 +2070,7 @@ public class DBVentas
     * obtiene indicador para visualizar la opcion Pedido Delivery
     * @return indicador de ver supones: S muestra y N no se muestra
     * @throws SQLException
-    * @author JCHAVEZ
+    * @author  
     * @since 08.10.2009
     */
     public static boolean getIndVerPedidoDelivery() throws SQLException{
@@ -2125,7 +2084,7 @@ public class DBVentas
     }
     
     
-    /**@author JMIRANDA 
+    /**@author   
     * Obtiene directorio para eliminar Log
     * @fecha  17.10.09
     * @throws SQLException
@@ -2140,7 +2099,7 @@ public class DBVentas
     /**
     * graba los promociones por pedido en la tabla pedido_pack
     * @throws SQLException
-    * @author JCHAVEZ
+    * @author  
     * @since 19.10.2009
     */
      public static void grabaPromXPedidoNoAutomaticos(String pCodProm,int pCantidad ) throws SQLException {
@@ -2160,7 +2119,7 @@ public class DBVentas
     /**
     * otiene precio redondeado
     * @throws SQLException
-    * @author JCHAVEZ
+    * @author  
     * @since 29.10.2009
     */
      public static double getPrecioRedondeado(double  pPrecio) throws SQLException {
@@ -2172,7 +2131,7 @@ public class DBVentas
      }
     
     
-    /**@author JCHAVEZ 
+    /**@author   
     * Obtiene indicador de redondeado, para apliocarlo o no
     * @fecha  29.10.09
     * @throws SQLException
@@ -2187,7 +2146,7 @@ public class DBVentas
     
     /**
      * Devuelve listado de productos para la lista disponible al cliente
-     * @author ASOSA
+     * @author  
      * @since  02.02.2010
      * @param pTableModel
      * @param cadena
@@ -2201,7 +2160,7 @@ public class DBVentas
         parametros.add(FarmaVariables.vCodGrupoCia);
         parametros.add(FarmaVariables.vCodLocal);
         parametros.add(cadena.trim());        
-        parametros.add(tipo.trim());    //ASOSA, 28.09.2010
+        parametros.add(tipo.trim());    // , 28.09.2010
         System.out.println("Parametros: PTOVENTA_VTA_LISTA_AS.VTA_LISTA_PROD_02_NEW"+parametros);
         FarmaDBUtility.executeSQLStoredProcedure(pTableModel,"PTOVENTA_VTA_LISTA_AS.VTA_LISTA_PROD_02_NEW(?,?,?,?)",parametros,false);
     }
@@ -2221,7 +2180,7 @@ public class DBVentas
     
     /**
      * Devuelve el mensaje formateado de acuerdo a si es para label y Message
-     * @author ASOSA
+     * @author  
      * @since 19.04.2010
      * @param codmsg
      * @return
@@ -2236,7 +2195,7 @@ public class DBVentas
     
     /**
      * Devuelve el indicador de label para el codigo de mensaje indicado
-     * @author ASOSA
+     * @author  
      * @since 19.04.2010
      * @param codmsg
      * @return
@@ -2251,7 +2210,7 @@ public class DBVentas
     
     /**
      * Compromete stock en el ptoventa, menos cuando cobra
-     * @author ASOSA
+     * @author  
      * @since 01.07.2010
      * @param codprod
      * @param cantMov
@@ -2282,7 +2241,7 @@ public class DBVentas
     */
     /**
      * Graba los detalles del pedido con sus respectivos secuenciales de respaldo
-     * @author ASOSA
+     * @author  
      * @since 05.07.2010
      * @throws SQLException
      */
@@ -2319,7 +2278,7 @@ public class DBVentas
       parametros.add(VariablesVentas.vIndOrigenProdVta);
       parametros.add(VariablesVentas.vCantxDia);
       parametros.add(VariablesVentas.vCantxDias);
-      parametros.add(new Double(FarmaUtility.getDecimalNumber(VariablesVentas.vAhorroPack))); //JCHAVEZ 20102009 
+      parametros.add(new Double(FarmaUtility.getDecimalNumber(VariablesVentas.vAhorroPack))); //  20102009 
       parametros.add(secrespaldo.trim()); 
       log.debug("invocando  a PTOVTA_RESPALDO_STK.PVTA_P_GRAB_PED_VTA_DET(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?):"+parametros);
       FarmaDBUtility.executeSQLStoredProcedure(null,"PTOVTA_RESPALDO_STK.PVTA_P_GRAB_PED_VTA_DET(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",parametros,false);
@@ -2327,7 +2286,7 @@ public class DBVentas
     
     /**
      * Actualiza respaldo stk con el nro de pedido correspondiente al momento de pasar a la venata de cobro que fuere
-     * @author ASOSA
+     * @author  
      * @since 06.07.2010
      * @param codprod
      * @param modulo
@@ -2354,7 +2313,7 @@ public class DBVentas
     */
     /**
      * Procesa los pack que dan productos regalo
-     * @author ASOSA
+     * @author  
      * @since 06.07.2010
      * @param pNumPedVta
      * @throws SQLException
@@ -2373,7 +2332,7 @@ public class DBVentas
     
     /**
      * Añade prod Regalo
-     * @author ASOSA
+     * @author  
      * @since 07.07.2010
      * @param pNumPedidoVenta
      * @param pDniCli
@@ -2404,7 +2363,7 @@ public class DBVentas
     
     /**
      * Graba el detalle del pedido regalo
-     * @author ASOSA
+     * @author  
      * @since 09.07.2010
      * @param pNumPed
      * @param pCodprod
@@ -2474,7 +2433,7 @@ public class DBVentas
     
     /**
      * Obtiene el Indicador si el producto es farma
-     * @author JMIRANDA
+     * @author  
      * @since 05.10.2010
      * @param pCodProd     
      * @return S si es producto farma
@@ -2490,7 +2449,7 @@ public class DBVentas
     
     /**
      * Obtiene el Indicador si imprime Correlativo o no
-     * @author JMIRANDA
+     * @author  
      * @since 22.08.2011
      * @return S si imprime Correlativo N no imprime
      * @throws SQLException
@@ -2504,7 +2463,7 @@ public class DBVentas
     
     /**
      * Obtiene el Correlativo y Monto Neto del Pedido
-     * @author JMIRANDA
+     * @author  
      * @since 22.08.2011
      * @param pTipoComp  Tipo Comprobante
      * @param pMontoNeto  Monto Neto

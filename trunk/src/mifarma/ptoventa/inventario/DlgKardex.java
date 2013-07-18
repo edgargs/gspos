@@ -268,7 +268,7 @@ public class DlgKardex extends JDialog {
             FarmaUtility.moveFocus(txtBuscar);
             lblLocal.setText(FarmaVariables.vDescCortaLocal);
             System.out.println("ROL USUARIO: "+FarmaVariables.vNuSecUsu);
-            if(validarAsistAudit()){ //ASOSA 18.01.2010
+            if(validarAsistAudit()){ //  18.01.2010
                 lblF2.setVisible(false);
                 lblF4.setVisible(false);
             }
@@ -324,7 +324,7 @@ public class DlgKardex extends JDialog {
                         if(VariablesInventario.vIndProdVirtual.equalsIgnoreCase(FarmaConstants.INDICADOR_S)) {
                             FarmaUtility.showMessage(this,"No se puede realizar un ajuste al tipo de producto virtual", txtBuscar);
                         } else {
-                            if(!validarAsistAudit()){//ASOSA 20.01.2010
+                            if(!validarAsistAudit()){//  20.01.2010
                                 VariablesInventario.vCFraccion=tblListaProductos.getValueAt(tblListaProductos.getSelectedRow(),7).toString();
                                 DlgAjusteKardex dlgAjusteKardex = new DlgAjusteKardex(myParentFrame, "", true);
                                 dlgAjusteKardex.setVisible(true);
@@ -350,7 +350,7 @@ public class DlgKardex extends JDialog {
             }
         } else if (e.getKeyCode() == KeyEvent.VK_F4) {
             if (FarmaVariables.dlgLogin.verificaRol(FarmaConstants.ROL_AUDITORIA) || FarmaVariables.dlgLogin.verificaRol(FarmaConstants.ROL_OPERADOR_SISTEMAS )){
-                if(!validarAsistAudit()) ajusteDiferencias(); //ASOSA 20.01.2010               
+                if(!validarAsistAudit()) ajusteDiferencias(); //  20.01.2010               
             } else 
                 FarmaUtility.showMessage(this,"Solo un usuario con rol Auditoria u Operador podra ingresar a esta opcion",txtBuscar);
         } else if (e.getKeyCode() == KeyEvent.VK_F5) {
@@ -519,7 +519,7 @@ public class DlgKardex extends JDialog {
   
     /**
     * Se da inicia el proceso de ver Stock Locales
-    * @author dubilluz
+    * @author  
     * @since  05.11.2007
     */
     private void funcion_F12()
@@ -542,7 +542,7 @@ public class DlgKardex extends JDialog {
     }
     /**
     * Se muestra el loguin 
-    * @author dubilluz
+    * @author  
     * @since  05.11.2007
     */  
     private boolean cargaLogin() {
@@ -577,7 +577,7 @@ public class DlgKardex extends JDialog {
     
     /**
      * devuelve true si se trata de un asistente de auditoria
-     * @author ASOSA
+     * @author  
      * @since  18.01.2010
      * @return
      */

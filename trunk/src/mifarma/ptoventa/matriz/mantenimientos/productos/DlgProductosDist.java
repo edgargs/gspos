@@ -69,7 +69,7 @@ import java.awt.event.KeyListener;
  * Nombre de la Aplicación : DlgProductosDist.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JCORTEZ      13.11.2007   Creación<br>
+ *        13.11.2007   Creación<br>
  * <br>
  * @author Jorge Luis Cortez Alvarez<br>
  * @version 1.0<br>1
@@ -119,7 +119,7 @@ public class DlgProductosDist extends JDialog
   private JButtonLabel btnLista1 = new JButtonLabel();
   private JLabelFunction lblFAceptar3 = new JLabelFunction();
 
- //Agregado por DVELIZ 19.09.08
+ //Agregado por   19.09.08
   private JLabelFunction lblF2 = new JLabelFunction();
     private JLabelFunction jLabelFunction1 = new JLabelFunction();
 
@@ -184,7 +184,7 @@ public class DlgProductosDist extends JDialog
     lblCantLocales_.setText("Cantidad de Locales:");
     lblFAceptar2.setBounds(new Rectangle(455, 360, 155, 20));
     lblFAceptar2.setText("[ F8 ] Quitar Distribucion");
-    //Agregado por DVELIZ 19.09.08
+    //Agregado por   19.09.08
     lblF2.setBounds(new Rectangle(5, 360, 140, 20));
     lblF2.setText("[ F2 ] Mostrar Todos");
         lblF2.setToolTipText("null");
@@ -270,7 +270,7 @@ public class DlgProductosDist extends JDialog
     pnlTitle2.add(lblCantStock, null);
     pnlTitle2.add(lblCantStock_, null);
 
-        //Agregado por DVELIZ 19.09.08
+        //Agregado por   19.09.08
 
         jPanelTitle2.add(lblCantLocales_, null);
         jPanelTitle2.add(lblCantLocales, null);
@@ -326,7 +326,7 @@ public class DlgProductosDist extends JDialog
     tblListaLocales.setRowEditorModel(rowEditorModel);
     cargaCampos();
     
-    if(VariablesProducto.vTipoParametros){//JCORTEZ 11.09.08 mant parametros
+    if(VariablesProducto.vTipoParametros){//  11.09.08 mant parametros
       lblCantRep.setVisible(false);
       lblCantRes.setVisible(false);
       lblCantRep_.setVisible(false);
@@ -472,7 +472,7 @@ public class DlgProductosDist extends JDialog
     
     }else if (e.getKeyCode() == KeyEvent.VK_F7)
     {
-     //if(!VariablesProducto.vTipoParametros){//JCORTEZ 11.09.08 mant parametros
+     //if(!VariablesProducto.vTipoParametros){//  11.09.08 mant parametros
      // if(!VariablesProducto.vTipoValidarFiltro.equalsIgnoreCase(ConstantsProducto.listAlmac)){
       if(isNumeric(txtCantStock.getText().trim())){
         if (txtCantStock.getText().trim().equalsIgnoreCase(""))
@@ -502,7 +502,7 @@ public class DlgProductosDist extends JDialog
     }
     else if (e.getKeyCode() == KeyEvent.VK_F8)
     {
-     //if(!VariablesProducto.vTipoParametros){//JCORTEZ 11.09.08 mant parametros
+     //if(!VariablesProducto.vTipoParametros){//  11.09.08 mant parametros
       //if(!VariablesProducto.vTipoValidarFiltro.equalsIgnoreCase(ConstantsProducto.listAlmac)){
         funcionF8();
       /*}else{
@@ -512,7 +512,7 @@ public class DlgProductosDist extends JDialog
     }
     else if (e.getKeyCode() == KeyEvent.VK_F11)
     {
-    // if(!VariablesProducto.vTipoParametros){//JCORTEZ 11.09.08 mant parametros
+    // if(!VariablesProducto.vTipoParametros){//  11.09.08 mant parametros
       //if(!VariablesProducto.vTipoValidarFiltro.equalsIgnoreCase(ConstantsProducto.listAlmac)){
         funcion_f11();
       /*}else{
@@ -628,7 +628,7 @@ public class DlgProductosDist extends JDialog
    }*/
     
     }else{
-    if(!VariablesProducto.vTipoParametros){//JCORTEZ 11.09.08 mant parametros
+    if(!VariablesProducto.vTipoParametros){//  11.09.08 mant parametros
       //setemos con cero todos los registros
       if (tblListaLocales.getRowCount()>0 ) {
         for (int i=0; i<tblListaLocales.getRowCount(); i++){
@@ -790,7 +790,7 @@ public class DlgProductosDist extends JDialog
     VariablesProducto.estadoAcccion=false;
     //tblListaLocales.changeSelection(0,3,false,false);
 
-    //JCORTEZ 11.09.08 mant parametros
+    //  11.09.08 mant parametros
      //FarmaUtility.moveFocus(tblListaLocales);
     int vCantReponer = getCantidadTotalReponer();
     System.out.println("Total Distribucion " +vCantReponer);
@@ -804,7 +804,7 @@ public class DlgProductosDist extends JDialog
           return;
         }*/
   
-      //JCORTEZ 11.09.08 mant parametros
+      //  11.09.08 mant parametros
     if(vCantReponer==0)
     {   
       vCantReponer = 0;
@@ -881,7 +881,7 @@ public class DlgProductosDist extends JDialog
           System.out.println("INGRESOS DETALLE--> :"+VariablesProducto.vNumPedidoDistGenerado_aux+"/ "+
             vLocal+"/ "+VariablesProducto.cCodProd+"/ "+vStockLocal+"/ "+vCant);
            
-          //JCORTEZ 11.09.08 mant parametros
+          //  11.09.08 mant parametros
           //se genera el numero auXiliar, ya que no hay pedidos temporales pendientes  
           /*DBProducto.insertarDetallePedido(VariablesProducto.vNumPedidoDistGenerado_aux,
                                            vLocal,
@@ -951,10 +951,10 @@ public class DlgProductosDist extends JDialog
                     new FarmaColumnData(VariablesProducto.mesesUnidVend[1], 60, JLabel.RIGHT),
                     new FarmaColumnData(VariablesProducto.mesesUnidVend[2], 60, JLabel.RIGHT),
                     new FarmaColumnData("Reponer", 65, JLabel.RIGHT)};*/
-        //Modificado por DVELIZ 19.09.08
+        //Modificado por   19.09.08
          FarmaColumnData auxColumnData[] =
             { 
-            //Modificado por DVELIZ 19.09.08
+            //Modificado por   19.09.08
               new FarmaColumnData("Codigo",50, JLabel.CENTER),
               new FarmaColumnData("Local", 205, JLabel.LEFT),
               new FarmaColumnData("Stock", 70, JLabel.RIGHT),

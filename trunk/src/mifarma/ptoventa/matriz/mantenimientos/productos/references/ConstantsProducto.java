@@ -14,7 +14,7 @@ import mifarma.common.FarmaColumnData;
  * Histórico de Creación/Modificación<br>
  * ERIOS      14.02.2007   Creación<br>
  * <br>
- * @author Luis Reque Orellana<br>
+ * @author  <br>
  * @version 1.0<br>
  *
  */
@@ -119,7 +119,7 @@ public class ConstantsProducto
   public static final Object[] defaultValuesListaDetalleLocales = {" ", " ", " ", " "," "};  
  /**
  * Listado de Productos para el pedido de distribucion
- * @author JCORTEZ 
+ * @author   
  * @since 08.11.2007
  */
   public static FarmaColumnData columnsListaProductos[] =
@@ -132,7 +132,7 @@ public class ConstantsProducto
     new FarmaColumnData("Laboratorio",120, JLabel.LEFT),
     new FarmaColumnData("Stk.Almc", 55, JLabel.RIGHT),//Stk.libre
      new FarmaColumnData("Stk.Bloq", 60, JLabel.RIGHT),
-    //Agregado por DVELIZ 19.09.08
+    //Agregado por   19.09.08
     new FarmaColumnData("Stk.Loc", 60, JLabel.RIGHT),
     
     new FarmaColumnData("Locales", 55, JLabel.RIGHT),
@@ -153,7 +153,7 @@ public class ConstantsProducto
  
 /**
  * Listado de laboratorios
- * @author JCORTEZ 
+ * @author   
  * @since 08.11.2007
  */
    public static final FarmaColumnData[] columnsListaLaboratorios = {
@@ -170,7 +170,7 @@ public class ConstantsProducto
     //columna editable
     
     //public static final int columnEditable_Cantidad_Distribu = 7;
-    //Modificador por DVELIZ 19.09.08
+    //Modificador por   19.09.08
     public static final int columnEditable_Cantidad_Distribu = 9;
     
     //secuencial del pedido de distribucion
@@ -231,7 +231,7 @@ public class ConstantsProducto
   
   /**
   * Variables para el Filtro en listad  o de productos
-  * @author  JCORTEZ
+  * @author   
   * @since   21.11.2007
   * 
   * @since   17.01.2008
@@ -263,7 +263,7 @@ public class ConstantsProducto
   
  /**
   * Tipos de listado
-  * @author  JCORTEZ
+  * @author   
   * @since   16.01.2008
   * */
   
@@ -272,7 +272,7 @@ public class ConstantsProducto
     
     /**
      * DlgHistoricoParamLocal
-     * @author  JCORTEZ
+     * @author   
      * @since   19.09.2008
      * */
   public static final FarmaColumnData[] columnsHistoParam = {
@@ -288,7 +288,7 @@ public class ConstantsProducto
   
   /**
    * Pedido Adioional Matriz
-   * @author DVELIZ
+   * @author  
    * @since 23.09.08
    */
   public static final FarmaColumnData columnsListaLocales[] = {
@@ -322,7 +322,7 @@ public class ConstantsProducto
   
     /**
      * Columnas de Lista de Pedidos Especiales
-     * @author dubilluz
+     * @author  
      * @since  22.09.2008
      */
     public static final FarmaColumnData columnsListaPedEspeciales[] = 
@@ -384,7 +384,7 @@ public class ConstantsProducto
 
     /************************PEDIDO ESPECIAL MATRIZ****************************************/
     /**
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE 05.02.2010
      * */
     
@@ -421,7 +421,7 @@ public class ConstantsProducto
     
     /*****************************PEDIDOS DISTRIBUCION MATRIZ***************************/
     /**
-     * @AUTHOR JCORTEZ
+     * @AUTHOR  
      * @SINCE 10.02.2010
      * */
     

@@ -43,18 +43,18 @@ import mifarma.ptoventa.caja.reference.DBCaja;
 import mifarma.ptoventa.caja.reference.UtilityCaja;
 import mifarma.ptoventa.caja.reference.VariablesCaja;
 import mifarma.ptoventa.caja.reference.VariablesVirtual;
-import mifarma.ptoventa.convenio.reference.VariablesConvenio;
+ 
 import mifarma.ptoventa.reference.ConstantsPtoVenta;
 import mifarma.ptoventa.ventas.reference.VariablesVentas;
 
-import oracle.jdeveloper.layout.XYConstraints;
-import oracle.jdeveloper.layout.XYLayout;
+ 
+ 
 
 
 import mifarma.ptoventa.inventariodiario.reference.*;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.gs.mifarma.componentes.JLabelFunction;
 
@@ -65,7 +65,7 @@ import com.gs.mifarma.componentes.JLabelFunction;
  * Nombre de la Aplicación : DlgInicioInvDiario.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * DUBILLUZ    23.06.2009   Creación<br>
+ *      23.06.2009   Creación<br>
  * <br>
  * @author Diego Armando Ubilluz Carrillo<br>
  * @version 1.0<br>
@@ -73,8 +73,8 @@ import com.gs.mifarma.componentes.JLabelFunction;
  */
 public class DlgFormaPagoInvDiario extends JDialog {
 
-    private static final Log log = 
-        LogFactory.getLog(DlgFormaPagoInvDiario.class);
+    private static final Logger log = 
+        LoggerFactory.getLogger(DlgFormaPagoInvDiario.class);
 
     /** Almacena el Objeto Frame de la Aplicación - Ventana Principal */
     private Frame myParentFrame;
@@ -88,7 +88,7 @@ public class DlgFormaPagoInvDiario extends JDialog {
     private String valor = "";
     private double diferencia = 0;
 
-    //JCORTEZ 08.07.08
+    //  08.07.08
     private boolean indBorra = false;
 
     private BorderLayout borderLayout1 = new BorderLayout();
@@ -96,7 +96,7 @@ public class DlgFormaPagoInvDiario extends JDialog {
     private JLabelFunction lblEsc = new JLabelFunction();
     private JLabelFunction lblF11 = new JLabelFunction();
     private JPanel pnlTotales = new JPanel();
-    private XYLayout xYLayout5 = new XYLayout();
+     
     private JLabel lblSaldoT = new JLabel();
     private JLabel lblSaldo = new JLabel();
     private JLabel lblVueltoT = new JLabel();
@@ -105,7 +105,7 @@ public class DlgFormaPagoInvDiario extends JDialog {
     private JLabel lblTipoComprobante = new JLabel();
     private JLabel lblTipoComprobante_T = new JLabel();
     private JPanel pnlTotal = new JPanel();
-    private XYLayout xYLayout2 = new XYLayout();
+     
     private JTextField txtNroPedido = new JTextField();
     private JButton btnPedido = new JButton();
     private JLabel lblDolares = new JLabel();
@@ -115,7 +115,7 @@ public class DlgFormaPagoInvDiario extends JDialog {
     private JLabel lblTotalPagar = new JLabel();
     private JScrollPane scrDetallePago = new JScrollPane();
     private JPanel pnlDetallePago = new JPanel();
-    private XYLayout xYLayout1 = new XYLayout();
+
     private JButton btnDetallePago = new JButton();
     private JTable tblDetallePago = new JTable();
     private JLabel lblFecPed = new JLabel();
@@ -185,7 +185,7 @@ public class DlgFormaPagoInvDiario extends JDialog {
         pnlTotales.setBounds(new Rectangle(10, 190, 565, 40));
         pnlTotales.setFont(new Font("SansSerif", 0, 11));
         pnlTotales.setBackground(new Color(43, 141, 39));
-        pnlTotales.setLayout(xYLayout5);
+        pnlTotales. setLayout(null);
         lblSaldoT.setText("TOTAL A PAGAR :  S/.");
         lblSaldoT.setFont(new Font("SansSerif", 1, 13));
         lblSaldoT.setForeground(Color.white);
@@ -216,7 +216,7 @@ public class DlgFormaPagoInvDiario extends JDialog {
         pnlTotal.setFont(new Font("SansSerif", 0, 11));
         pnlTotal.setBorder(BorderFactory.createTitledBorder(""));
         pnlTotal.setBackground(new Color(43, 141, 39));
-        pnlTotal.setLayout(xYLayout2);
+        pnlTotal. setLayout(null);
         txtNroPedido.setFont(new Font("SansSerif", 0, 12));
         txtNroPedido.setEditable(false);
         txtNroPedido.setDocument(new FarmaLengthText(4));
@@ -269,7 +269,7 @@ public class DlgFormaPagoInvDiario extends JDialog {
         pnlDetallePago.setBounds(new Rectangle(10, 85, 565, 25));
         pnlDetallePago.setFont(new Font("SansSerif", 0, 11));
         pnlDetallePago.setBackground(new Color(255, 130, 14));
-        pnlDetallePago.setLayout(xYLayout1);
+        pnlDetallePago. setLayout(null);
         btnDetallePago.setText("Detalle de Pago :");
         btnDetallePago.setFont(new Font("SansSerif", 1, 11));
         btnDetallePago.setForeground(Color.white);
@@ -310,22 +310,22 @@ public class DlgFormaPagoInvDiario extends JDialog {
         lblMsjNumRecarga.setFont(new Font("SansSerif", 1, 17));
         lblMsjNumRecarga.setBounds(new Rectangle(445, 80, 125, 20));
 
-        pnlTotales.add(lblSaldoT, new XYConstraints(105, 10, 150, 20));
-        pnlTotales.add(lblSaldo, new XYConstraints(255, 10, 105, 20));
-        pnlTotales.add(lblVueltoT, new XYConstraints(395, 10, 80, 20));
-        pnlTotales.add(lblVuelto, new XYConstraints(480, 10, 70, 20));
+        pnlTotales.add(lblSaldoT);
+        pnlTotales.add(lblSaldo);
+        pnlTotales.add(lblVueltoT);
+        pnlTotales.add(lblVuelto);
         pnlFormaPago.add(lblTipoCambio, null);
         pnlFormaPago.add(lblTipoCambioT, null);
         pnlFormaPago.add(lblTipoComprobante, null);
         pnlFormaPago.add(lblTipoComprobante_T, null);
-        pnlTotal.add(lblFecPed, new XYConstraints(130, 5, 70, 20));
-        pnlTotal.add(txtNroPedido, new XYConstraints(65, 0, 110, 25));
-        pnlTotal.add(btnPedido, new XYConstraints(0, 5, 60, 20));
-        pnlTotal.add(lblDolares, new XYConstraints(470, 5, 70, 20));
-        pnlTotal.add(lblSoles, new XYConstraints(340, 5, 75, 20));
-        pnlTotal.add(lblDolaresT, new XYConstraints(435, 5, 35, 20));
-        pnlTotal.add(lblSolesT, new XYConstraints(315, 5, 20, 20));
-        pnlTotal.add(lblTotalPagar, new XYConstraints(205, 5, 105, 20));
+        pnlTotal.add(lblFecPed);
+        pnlTotal.add(txtNroPedido);
+        pnlTotal.add(btnPedido);
+        pnlTotal.add(lblDolares);
+        pnlTotal.add(lblSoles);
+        pnlTotal.add(lblDolaresT);
+        pnlTotal.add(lblSolesT);
+        pnlTotal.add(lblTotalPagar);
         scrDetallePago.getViewport();
         this.getContentPane().add(jContentPane, BorderLayout.CENTER);
         jContentPane.add(lblMsjNumRecarga, null);
@@ -337,7 +337,7 @@ public class DlgFormaPagoInvDiario extends JDialog {
         jContentPane.add(pnlTotal, null);
         scrDetallePago.getViewport().add(tblDetallePago, null);
         jContentPane.add(scrDetallePago, null);
-        pnlDetallePago.add(btnDetallePago, new XYConstraints(10, 5, 115, 15));
+        pnlDetallePago.add(btnDetallePago);
         jContentPane.add(pnlDetallePago, null);
         //this.getContentPane().add(jContentPane, null);
     }
@@ -441,17 +441,13 @@ public class DlgFormaPagoInvDiario extends JDialog {
         VariablesCaja.vIndPedidoCobrado = false;
         VariablesCaja.vIndPedidoConProdVirtual = false;
         VariablesCaja.vIndPedidoConvenio = "";
-        VariablesConvenio.vCodCliente = "";
-        VariablesConvenio.vCodConvenio = "" ;
-        VariablesConvenio.vCodCliente = "" ; 
-        VariablesConvenio.vValCredDis = 0.00;
         VariablesCaja.cobro_Pedido_Conv_Credito = "N";
         VariablesCaja.valorCredito_de_PedActual = 0.0; 
         VariablesCaja.arrayDetFPCredito = new ArrayList();
         VariablesCaja.monto_forma_credito_ingresado = "0.00";
         VariablesCaja.uso_Credito_Pedido_N_Delivery = "N";
         VariablesCaja.usoConvenioCredito = "";
-        VariablesConvenio.vIndSoloCredito = "" ;
+        
         VariablesCaja.vValEfectivo="";
         VariablesCaja.vVuelto="";
         VariablesCaja.vIndTotalPedidoCubierto = false;
@@ -499,28 +495,13 @@ public class DlgFormaPagoInvDiario extends JDialog {
         lblMsjNumRecarga.setVisible(false);
         VariablesCaja.vIndPedidoConProdVirtual = false;
         VariablesCaja.vIndPedidoConvenio = "";
-        VariablesConvenio.vCodCliente = "";
-        VariablesConvenio.vCodConvenio = "";
-        VariablesConvenio.vCodCliente = "";
-        VariablesConvenio.vValCredDis = 0.00;
-        /**
-     * VAriables usadas para Convenio Tipo Credito
-     * @author dubilluz
-     * @since  08.09.2007
-     */
+        
         VariablesCaja.cobro_Pedido_Conv_Credito = "N";
         VariablesCaja.valorCredito_de_PedActual = 0.0;
         VariablesCaja.arrayDetFPCredito = new ArrayList();
         VariablesCaja.monto_forma_credito_ingresado = "0.00";
         VariablesCaja.uso_Credito_Pedido_N_Delivery = "N";
         VariablesCaja.usoConvenioCredito = "";
-        VariablesConvenio.vIndSoloCredito = "";
-
-        /**
-     * Para mostrar datos en ticket
-     * @author JCORTEZ
-     * @since 27.03.09
-     * */
         VariablesCaja.vValEfectivo = "";
         VariablesCaja.vVuelto = "";
     }
@@ -651,7 +632,7 @@ public class DlgFormaPagoInvDiario extends JDialog {
 
     private void procesar() {
         log.debug("*Cobro de Pedido Generado en Toma de Inv Diario");
-        //JCORTEZ 02.07.2008 la generacion de cupones no aplica convenios
+        //  02.07.2008 la generacion de cupones no aplica convenios
 
         if (tblDetallePago.getRowCount() > 0) {
             cobrarPedido(); //procesar cobro de pedido
@@ -767,10 +748,7 @@ public class DlgFormaPagoInvDiario extends JDialog {
                 ((String)((ArrayList)pArrayList.get(0)).get(13)).trim();
         VariablesCaja.vIndPedidoConvenio = 
                 ((String)((ArrayList)pArrayList.get(0)).get(14)).trim();
-        VariablesConvenio.vCodConvenio = 
-                ((String)((ArrayList)pArrayList.get(0)).get(15)).trim();
-        VariablesConvenio.vCodCliente = 
-                ((String)((ArrayList)pArrayList.get(0)).get(16)).trim();
+        
     }
 
     public void setIndPedirLogueo(boolean pValor) {

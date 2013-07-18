@@ -7,14 +7,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.TimerTask;
 import java.sql.SQLException;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import mifarma.ptoventa.caja.reference.*;
 import mifarma.common.FarmaUtility;
 
 public class TimerRecarga extends TimerTask {
 
-    private static final Log log = LogFactory.getLog(TimerRecarga.class);
+    private static final Logger log = LoggerFactory.getLogger(TimerRecarga.class);
 
     int cant = 1;
     String indicador = 

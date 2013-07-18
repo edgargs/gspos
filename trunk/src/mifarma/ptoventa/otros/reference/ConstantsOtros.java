@@ -24,7 +24,7 @@ public class ConstantsOtros
   
   /**
    * Se declaran las variables para el listado de MEDIDAS DE PRESION
-   * @author JCALLO
+   * @author  
    * @since  09.09.2008
    */
   public static final FarmaColumnData columnsListaMedPresion[] = {
@@ -41,7 +41,7 @@ public class ConstantsOtros
   
   /**
    * Se declaran las variables para el historico de MEDIDAS DE PRESION
-   * @author JCALLO
+   * @author  
    * @since  09.09.2008
    */
   public static final FarmaColumnData columnsListaHistMedPresion[] = {
@@ -56,7 +56,7 @@ public class ConstantsOtros
   
   /**
    * datos manejados en el tema registro de datos de cliente   * 
-   * @autor jcallo
+   * @autor  
    * 
    * **/
   public static final FarmaColumnData[] columnsListaDatosClienteMedPresion =

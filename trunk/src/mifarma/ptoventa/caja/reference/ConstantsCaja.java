@@ -141,7 +141,7 @@ public class ConstantsCaja {
             /* new FarmaColumnData( "", 0, JLabel.LEFT ),//Tipo de Pedido
             new FarmaColumnData( "", 0, JLabel.LEFT ),//Indicador Pedido Automatico
             new FarmaColumnData( "", 0, JLabel.LEFT ),//Indicador Pedido Fidelizado
-            new FarmaColumnData( "", 0, JLabel.LEFT )//Dni Cliente*/ //JCHAVEZ 06.07.2009.ec
+            new FarmaColumnData( "", 0, JLabel.LEFT )//Dni Cliente*/ //  06.07.2009.ec
 	  };
 	
 	public static final Object[] defaultValuesListaPedidos = {" ", " ", " ", " "," ", " ", " ", " "," "," "," "};
@@ -315,7 +315,7 @@ public class ConstantsCaja {
   
   //Constantes para tipo de consulas en cada tipo de metodo
   //Y fucionalidades en Matriz
-  //20.08.2008 dubilluz
+  //20.08.2008  
   public static final String CONSULTA_ACTUALIZA_CUPON_LOCAL = "ACTUALIZA_CUPON_LOCAL";
   public static final String CONSULTA_ACTUALIZA_MATRIZ = "ACTUALIZA_MATRIZ";
   public static final String CONSULTA_PROCESO_NOTA_CREDITO = "PROCESO_NOTA_CREDITO";
@@ -335,7 +335,7 @@ public class ConstantsCaja {
   public static final String ACCION_COBRO = "C";
   public static final String ACCION_ANULA_PENDIENTE = "N";
   
-  /** autor : asolis 
+  /** autor :   
    *  Fecha : 06/01/2009 */
   
     public static final String PROCESO_MOVIMIENTO_CIERRE = "C";
@@ -343,7 +343,7 @@ public class ConstantsCaja {
     
   /**
    * Modulo Remitos (PROSEGUR)
-   * @author : JCORTEZ 
+   * @author :   
    * @since: 13.01.09
    * */  
    
@@ -443,14 +443,14 @@ public class ConstantsCaja {
     public static final String[] vDescOrden ={FarmaConstants.ORDEN_ASCENDENTE,FarmaConstants.ORDEN_DESCENDENTE};
     public static final String NOM_HASTABLE_CMBORDENREMITO ="CMB_ORDERN_REMITO";
     
-    //JMIRANDA 23/07/09 Destinatarios para recibir Error de Impresion
-    public static final String EMAIL_DESTINATARIO_ERROR_IMPRESION = "dubilluz";
-    public static final String EMAIL_DESTINATARIO_CC_ERROR_IMPRESION = "joliva;operador;jmiranda";
+    //  23/07/09 Destinatarios para recibir Error de Impresion
+    public static final String EMAIL_DESTINATARIO_ERROR_IMPRESION = " ";
+    public static final String EMAIL_DESTINATARIO_CC_ERROR_IMPRESION = "joliva;operador; ";
     //public static final String EMAIL_DESTINATARIO_CC_ERROR_IMPRESION = "";
 
      /**
       *Ingreso de Sobres (PROSEGUR)
-      * @author : JCORTEZ 
+      * @author :   
       * @since: 03.11.09
       * */  
       public static final String HASHTABLE_MONEDASOBRES = "MONEDA";
@@ -476,12 +476,12 @@ public class ConstantsCaja {
     public static final String EFECTIVO_SOLES = "01";
     public static final String EFECTIVO_DOLARES = "02";
 
-    //JMIRANDA 10.03.2010
+    //  10.03.2010
     public static final String FORMA_PAGO_FONDO_SENCILLO = "00060";
-//mensaje constante de INGRESE monto ASOSA, 04.03.2010
+//mensaje constante de INGRESE monto  , 04.03.2010
     public static final String msgIngreso="INGRESE MONTO";
     
-    //lista de detalle de un pedido , ASOSA 05.03.2010
+    //lista de detalle de un pedido ,   05.03.2010
     public static final FarmaColumnData[] columnsDetallePedidoNew = {
        new FarmaColumnData("Codigo",60,JLabel.CENTER),
        new FarmaColumnData("Producto",140,JLabel.LEFT),
@@ -494,7 +494,7 @@ public class ConstantsCaja {
      public static final Object[] defaultDetallePedidoNew = {" ", " ", " ", " "," "," "," "};
      
      
-    //Variables para el filtro del listado de productos, ASOSA 19.03.2010
+    //Variables para el filtro del listado de productos,   19.03.2010
     public static final String[] descmoneda = {"SOLES","DOLARES"};
     public static final String[] codmoneda = {"0","1"};
     public static final String MON_HASTABLE_MONEDA ="CMB_MONEDA";
@@ -513,7 +513,7 @@ public class ConstantsCaja {
 
      public static final Object[] defaultValuesListaSobresControl = {"","","","","","","",""};
 
-    //Lista Sobres 02, ASOSA - 07.06.2010
+    //Lista Sobres 02,   - 07.06.2010
      public static final FarmaColumnData[] columnsListaSobresControl_02= {
                      new FarmaColumnData("Fec.Crea.", 70, JLabel.LEFT),
                      new FarmaColumnData("Hora.Crea.", 70, JLabel.CENTER),

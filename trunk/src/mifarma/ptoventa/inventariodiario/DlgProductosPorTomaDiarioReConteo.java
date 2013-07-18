@@ -219,7 +219,7 @@ public class DlgProductosPorTomaDiarioReConteo extends JDialog {
         FarmaUtility.centrarVentana(this);
         FarmaUtility.moveFocus(txtProductos);
         
-        //JMIRANDA 03/08/09
+        //  03/08/09
         try{
          DBInvDiario.modificaSegConteo();
          FarmaUtility.aceptarTransaccion();   
@@ -307,7 +307,7 @@ public class DlgProductosPorTomaDiarioReConteo extends JDialog {
                     
                     cargarRegistroSeleccionado();
                     
-                    //mfajardo 05.06.09 :Control de tiempo para realizar conteo
+                    //  05.06.09 :Control de tiempo para realizar conteo
                     Date fecha = new Date();                     
                     
                     long diferenciaMils = fecha.getTime() - VariablesInvDiario.vFechaInicial;
@@ -323,7 +323,7 @@ public class DlgProductosPorTomaDiarioReConteo extends JDialog {
                     
                     VariablesInvDiario.vMinutosTranscurridos=minutos; 
                     
-                    //MFAJARDO :  TIMER TOMA INVENTARIO DIARIO       
+                    //  :  TIMER TOMA INVENTARIO DIARIO       
                     
                        if(VariablesInvDiario.vMinutosTranscurridos >=tiempo)
                        { 
@@ -338,7 +338,7 @@ public class DlgProductosPorTomaDiarioReConteo extends JDialog {
                            DlgIngresoCantidadInvDiarioConteo dlgIngresoCantidadInvDiario = new DlgIngresoCantidadInvDiarioConteo(this.myParentFrame, "", true);
                            dlgIngresoCantidadInvDiario.setVisible(true);                            
                        }
-                    //mfajardo 05.06.09 :Control de tiempo para realizar conteo
+                    //  05.06.09 :Control de tiempo para realizar conteo
                     
                     if (FarmaVariables.vAceptar) {
                         cargaListaProductosXLaboratorio();
@@ -611,7 +611,7 @@ public class DlgProductosPorTomaDiarioReConteo extends JDialog {
         //rrellenar con ceros..
     }
     
-    //JMIRANDA 03/08/09
+    //  03/08/09
     private void this_windowClosing(WindowEvent e)
     {          
       /* boolean rptaCerrar;

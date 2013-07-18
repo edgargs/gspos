@@ -46,15 +46,15 @@ import mifarma.ptoventa.administracion.impresoras.reference.VariablesImpresoras;
 import mifarma.ptoventa.ce.reference.VariablesCajaElectronica;
 import mifarma.ptoventa.reference.ConstantsPtoVenta;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DlgDevolverMontoFondoSencillo extends JDialog {
     //Declarando Variables Globales 
     Frame myParentFrame;
 
-    private static final Log log = 
-        LogFactory.getLog(DlgDevolverMontoFondoSencillo.class);
+    private static final Logger log = 
+        LoggerFactory.getLogger(DlgDevolverMontoFondoSencillo.class);
 
     private BorderLayout borderLayout1 = new BorderLayout();
     private JPanelWhite jContentPane = new JPanelWhite();
@@ -187,8 +187,8 @@ public class DlgDevolverMontoFondoSencillo extends JDialog {
     private void this_windowOpened(WindowEvent e) {
         FarmaUtility.centrarVentana(this);
         FarmaUtility.moveFocus(cmbAdmLocal);
-        mostrarMontoAsignado();//ASOSA, 18.06.2010
-        txtMonto.setEnabled(false);//ASOSA, 18.06.2010
+        mostrarMontoAsignado();// , 18.06.2010
+        txtMonto.setEnabled(false);// , 18.06.2010
     }
 
     private void cerrarVentana(boolean pAceptar) {
@@ -203,7 +203,7 @@ public class DlgDevolverMontoFondoSencillo extends JDialog {
             VariablesFondoSencillo.vMonto = "";
             cerrarVentana(false);
         }
-        else if(e.getKeyCode() == KeyEvent.VK_ENTER){ //ASOSA, 18.06.2010
+        else if(e.getKeyCode() == KeyEvent.VK_ENTER){ // , 18.06.2010
             e.consume();
             funcionF11();
         }
@@ -293,7 +293,7 @@ public class DlgDevolverMontoFondoSencillo extends JDialog {
                     "\nMonto: "+FarmaUtility.getDecimalNumber(txtMonto.getText())            
                     
                 );
-                //JMIRANDA 02.03.2010 validar si tiene monto por devolver  
+                //  02.03.2010 validar si tiene monto por devolver  
                 VariablesFondoSencillo.vMonto =  txtMonto.getText().trim();
                 VariablesFondoSencillo.vIndTieneMontoDevolver = 
                         UtilityFondoSencillo.getIndTieneDevFondo(FarmaVariables.vNuSecUsu, 
@@ -391,7 +391,7 @@ public class DlgDevolverMontoFondoSencillo extends JDialog {
     
     /**
      * Obtiene el monto asignado para que sea devuelto por completo
-     * @author ASOSA
+     * @author  
      * @since 18.06.2010
      */
     private void mostrarMontoAsignado(){
@@ -407,7 +407,7 @@ public class DlgDevolverMontoFondoSencillo extends JDialog {
     }
 
     private void btnAdmLocal_actionPerformed(ActionEvent e) {
-        FarmaUtility.moveFocus(cmbAdmLocal); //ASOSA, 18.06.2010
+        FarmaUtility.moveFocus(cmbAdmLocal); // , 18.06.2010
     }
     
 }

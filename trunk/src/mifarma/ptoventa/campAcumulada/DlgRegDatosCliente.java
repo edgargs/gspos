@@ -47,8 +47,8 @@ import mifarma.ptoventa.campAcumulada.reference.UtilityCampAcumulada;
 import mifarma.ptoventa.fidelizacion.reference.VariablesFidelizacion;
 import mifarma.ptoventa.reference.ConstantsPtoVenta;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Copyright (c) 2008 MIFARMA S.A.C.<br>
@@ -57,17 +57,17 @@ import org.apache.commons.logging.LogFactory;
  * Nombre de la Aplicación : DlgRegDatosCliente.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JCALLO      15.12.2008   Creación<br>
+ *        15.12.2008   Creación<br>
  * <br>
- * @author JCALLO<br>
+ * @author  <br>
  * @version 1.0<br>
  *
  */
 
 public class DlgRegDatosCliente extends JDialog {
 
-    private static final Log log =
-        LogFactory.getLog(DlgRegDatosCliente.class);
+    private static final Logger log =
+        LoggerFactory.getLogger(DlgRegDatosCliente.class);
 
     /* ********************************************************************** */
     /*                        DECLARACION PROPIEDADES                         */
@@ -1150,7 +1150,7 @@ public class DlgRegDatosCliente extends JDialog {
 
     /**
      * metodo encargado de validar los campos que son obligatorios especificar para registrar al cliente
-     * @author jcallo
+     * @author  
      */
     private boolean validateMandatory() {
         boolean dataExists = true;
@@ -1232,7 +1232,7 @@ public class DlgRegDatosCliente extends JDialog {
 
     /**
      * metodo encargado de vargar los datos en las VariablesCampAcumulada para poder registrar los datos correctamente
-     * @author jcallo
+     * @author  
      * *
      */
     private void cargaVariables() {

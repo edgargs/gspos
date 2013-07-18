@@ -64,7 +64,7 @@ public class DlgHistoricoCierreDia extends JDialog
   private JLabelFunction lblF3 = new JLabelFunction();
   /**
    * Constantes para la ubicacion de las Columnas de las Tablas
-   * @author : dubilluz
+   * @author :  
    */
   //Constantes para las columnas
   int COL_DIA_CIERRE        =  0;  
@@ -304,7 +304,7 @@ public class DlgHistoricoCierreDia extends JDialog
     //VariablesCajaElectronica.vIndVBContable = FarmaUtility.getValueFieldJTable(pJTable, pRow, 3);
     /**
      * OBTIENE EL INDICADOR DE VB-CONTABLE
-     * @author : dubilluz
+     * @author :  
      * @since  : 06.09.2007
      */
     VariablesCajaElectronica.vIndVBContable = FarmaUtility.getValueFieldJTable(pJTable, pRow,COL_IND_VB_CONTABLE);//10); 

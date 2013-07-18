@@ -328,7 +328,7 @@ public class DlgTransferenciasIngresoCantidad extends JDialog
       txtLote.setEditable(false);
       /**
        * Habilita el text Fraccion
-       * @author dubilluz
+       * @author  
        * @since  15.10.2007
        */    
        VariablesInventario.vIndTextFraccion = VariablesInventario.vIndTextFraccion.trim();
@@ -345,7 +345,7 @@ public class DlgTransferenciasIngresoCantidad extends JDialog
         txtFraccion.setEditable(false);         
        }
     }
-    //JMIRANDA 25.03.2010 Deshabilita modificar lote si es para modificar
+    //  25.03.2010 Deshabilita modificar lote si es para modificar
     else{
        /* if (VariablesInventario.vIndModProdTransf) {
             txtFechaVenc.setEditable(false);
@@ -381,14 +381,14 @@ public class DlgTransferenciasIngresoCantidad extends JDialog
       {
         //Se movera el foco a valor fraccion si 
         //el campo de cantidad este vacio y si el campo de fraccion este habilitado
-        //dubilluz 15.10.2007
+        //  15.10.2007
        //if(txtCantidad.getText().trim().length()>0)
         //{
           if(txtFraccion.isEditable())
           FarmaUtility.moveFocus(txtFraccion);
         //}
        else{
-          //JMIRANDA 25.03.2010
+          //  25.03.2010
           if (!VariablesInventario.vIndModProdTransf) {
               VariablesPtoVenta.vTipoMaestro = ConstantsPtoVenta.LISTA_LOTE;
               txtLote.setText(txtLote.getText().toUpperCase());
@@ -645,11 +645,11 @@ public class DlgTransferenciasIngresoCantidad extends JDialog
     {
       DBInventario.obtieneStockProducto_ForUpdate(pArrayList, VariablesInventario.vCodProd_Transf);
         FarmaUtility.liberarTransaccion();
-        //dubilluz 13.10.2011
+        //  13.10.2011
     } catch(SQLException sql)
     {
         FarmaUtility.liberarTransaccion();
-        //dubilluz 13.10.2011
+        //  13.10.2011
       sql.printStackTrace();
       FarmaUtility.showMessage(this,"Ha ocurrido un error al obtener el stock del producto : \n" + sql.getMessage(),txtCantidad);
     }
@@ -667,7 +667,7 @@ public class DlgTransferenciasIngresoCantidad extends JDialog
     VariablesPtoVenta.vTituloListaMaestros="Seleccione el Lote y Fecha de Vencimiento";
     
     DlgListaMaestros dlgListaMaestros = new DlgListaMaestros(myParentFrame, "", true);
-    try{    //INI ASOSA, 13.04.2010  
+    try{    //INI  , 13.04.2010  
         dlgListaMaestros.ind=DBInventario.getIndIngresarLote();   
     }catch(SQLException e){
         if(e.getErrorCode()==20000){
@@ -679,7 +679,7 @@ public class DlgTransferenciasIngresoCantidad extends JDialog
     dlgListaMaestros.codprodx=lblCodigo.getText();
     dlgListaMaestros.indtrans="S";
     dlgListaMaestros.setVisible(true);
-      //FIN ASOSA, 14.04.2010
+      //FIN  , 14.04.2010
     if(FarmaVariables.vAceptar)
     {
       pJTextField_Cod.setText(VariablesPtoVenta.vCodMaestro);
@@ -694,7 +694,7 @@ public class DlgTransferenciasIngresoCantidad extends JDialog
   private void txtFraccion_keyPressed(KeyEvent e)
   { 
     //modificado para que el foco se coloque donde el campo esta habilitado
-    //dubilluz 15.10.2007
+    //  15.10.2007
     if(e.getKeyCode() == KeyEvent.VK_ENTER){
       if(txtLote.isEditable())
       FarmaUtility.moveFocus(txtLote);

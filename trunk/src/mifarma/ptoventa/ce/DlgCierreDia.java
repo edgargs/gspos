@@ -547,7 +547,7 @@ public class DlgCierreDia extends JDialog
     {
       System.out.println(" VariablesCajaElectronica.vFechaCierreDia : " + VariablesCajaElectronica.vFechaCierreDia);
       //DBCajaElectronica.cargaConsolidadoEfecRendidoCierre(tableModelEfectivoRendido, VariablesCajaElectronica.vFechaCierreDia);
-      DBCajaElectronica.cargaConsolidadoEfecRendidoCierre_02(tableModelEfectivoRendido, VariablesCajaElectronica.vFechaCierreDia);// ASOSA, 25.04.2010
+      DBCajaElectronica.cargaConsolidadoEfecRendidoCierre_02(tableModelEfectivoRendido, VariablesCajaElectronica.vFechaCierreDia);//  , 25.04.2010
         if(tblEfectivoRendido.getRowCount() > 0)
         FarmaUtility.ordenar(tblEfectivoRendido, tableModelEfectivoRendido, 0, FarmaConstants.ORDEN_ASCENDENTE);
       lblSubTotalEfecRendido.setText("" + FarmaUtility.formatNumber(FarmaUtility.sumColumTable(tblEfectivoRendido, 2)));
@@ -1011,7 +1011,7 @@ public class DlgCierreDia extends JDialog
   private void cambiaVBCierreDia()
   {
     evaluaExistenciaCajasSinVBQF(VariablesCajaElectronica.vFechaCierreDia);
-    //JMIRANDA 15.12.09 SE VERIFICASI HAY GUIAS PENDIENTES POR CONFIRMAR (TRANSFERENCIA DE LOCAL)
+    //  15.12.09 SE VERIFICASI HAY GUIAS PENDIENTES POR CONFIRMAR (TRANSFERENCIA DE LOCAL)
     if(UtilityCaja.validaGuiasXConfirmarLocal()){
         FarmaUtility.liberarTransaccion();
         FarmaUtility.showMessage(this,"No puede dar VoBo del día porque existen transferencias de otros " +
@@ -1019,7 +1019,7 @@ public class DlgCierreDia extends JDialog
             "Debe aceptar estas transferencias para poder dar VoBo del día.\n", tblEfectivoRendido);
         return;
     }     
-     //JCORTEZ 27.10.09 Se verifica si hay guias pendientes por confirmar (devolucion,etc)
+     //  27.10.09 Se verifica si hay guias pendientes por confirmar (devolucion,etc)
      if( UtilityCaja.validaGuiasPendAlmc())
        {
          FarmaUtility.liberarTransaccion();
@@ -1068,7 +1068,7 @@ public class DlgCierreDia extends JDialog
       }
       
       // Se validan comprobantes desfasados
-      // 27.11.2008 DUBILLUZ
+      // 27.11.2008  
       if(UtilityCaja.validaCompDesfase(VariablesCajaElectronica.vFechaCierreDia.trim())){
           FarmaUtility.liberarTransaccion();
         FarmaUtility.showMessage(this, 
@@ -1134,7 +1134,7 @@ public class DlgCierreDia extends JDialog
         } else FarmaUtility.liberarTransaccion();
       } else
       {
-          if(validaMontoRecRen()){ //ini ASOSA, 25/04/2010
+          if(validaMontoRecRen()){ //ini  , 25/04/2010
                 if ( FarmaUtility.rptaConfirmDialog(this, "Esta seguro de otorgar el VB de Cierre de Dia?") ){
                   VariablesCajaElectronica.vObsCierreDia = txtSObs.getText().trim().toUpperCase();
                   if( actualizaIndicadorVBCierreDia(VariablesCajaElectronica.vFechaCierreDia,
@@ -1152,7 +1152,7 @@ public class DlgCierreDia extends JDialog
                     evaluaMsgVBCierreDia(false);
                   }
                 } else FarmaUtility.liberarTransaccion();
-        }//fin ASOSA, 25/04/2010
+        }//fin  , 25/04/2010
       }
     } else if( VariablesCajaElectronica.vIndVBCierreDia.equalsIgnoreCase(FarmaConstants.INDICADOR_S) )
     {
@@ -1244,7 +1244,7 @@ public class DlgCierreDia extends JDialog
     VariablesCajaElectronica.vIsVentanaCierreDiaOpen = FarmaConstants.INDICADOR_N;
   }
 
-  //Inicion Adicion Paulo
+  //Inicion Adicion  
   /*private void obtieneComprobantesMinMax()
   {
     try
@@ -1391,7 +1391,7 @@ public class DlgCierreDia extends JDialog
      vPrint.printLine(" ",true);
      
     /** Imprimimos resumen de productos Virtuales
-      * @author: JCORTEZ
+      * @author:  
       * @since : 10/07/07
       */ 
      if(cargarProductosVirtuales()){
@@ -1414,7 +1414,7 @@ public class DlgCierreDia extends JDialog
      }
      
      /** Imprimimos los comprobantes desfasados
-      * @author: JCORTEZ
+      * @author:  
       * @since : 10/07/07
       */ 
      if(cargarComprobantes()){
@@ -1460,7 +1460,7 @@ public class DlgCierreDia extends JDialog
 
   
   /** Retorna por dia un listado de los comprobantes desfasados
-    * @author: JCORTEZ
+    * @author:  
     * @since : 10/07/07
     */
    private boolean cargarComprobantes()
@@ -1474,13 +1474,13 @@ public class DlgCierreDia extends JDialog
 		double valorSig = 0;
 		String tipAct = " ";
 		String tipSig = " ";
-        // JMIRANDA 29.10.2009
+        //   29.10.2009
                          String tipSerieAct  = "";
                          String tipSerieSig  = "";                         
                          String pCadenaAct = "";
                          String pCadenaSig = "";
     int indexBusqueda=10;
-         // JMIRANDA 29.10.2009
+         //   29.10.2009
          if( VariablesCaja.vTipOrdComprobantes.trim().equals(ConstantsCaja.TIP_ORD_CORRELATIVO)){
              indexBusqueda=11;
          }
@@ -1493,7 +1493,7 @@ public class DlgCierreDia extends JDialog
 		VariablesCaja.listaCompsDesfasados = new ArrayList();
  
 		for (int i = 0; i <  myArray.size() - 1; i++) {
-                    // JMIRANDA 29.10.2009			                        
+                    //   29.10.2009			                        
 		    pCadenaAct = FarmaUtility.getValueFieldArrayList(myArray,i, indexBusqueda).toString();
 		    pCadenaSig = FarmaUtility.getValueFieldArrayList(myArray,i + 1,indexBusqueda).toString();
 		                            
@@ -1502,7 +1502,7 @@ public class DlgCierreDia extends JDialog
 			tipAct = FarmaUtility.getValueFieldArrayList(myArray,i, 9);
 			tipSig = FarmaUtility.getValueFieldArrayList(myArray,i+1, 9);
       
-                        // JMIRANDA 29.10.2009
+                        //   29.10.2009
 		        tipSerieAct  = pCadenaAct.trim().substring(0,3);
 		        tipSerieSig  = pCadenaSig.substring(0,3);
                     
@@ -1533,7 +1533,7 @@ public class DlgCierreDia extends JDialog
   }
   
    /** Retorna por dia un resumen de productos Virtuales
-    * @author: JCORTEZ
+    * @author:  
     * @since : 10/07/07
     */
    private boolean cargarProductosVirtuales()
@@ -1568,7 +1568,7 @@ public class DlgCierreDia extends JDialog
      	 return rpta; 
   }
   
-  //Fin Adicion Paulo
+  //Fin Adicion  
   
   private void evaluaMsgEtiquetaVB(int pIndicador)
   {

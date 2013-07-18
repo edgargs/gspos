@@ -13,8 +13,8 @@ import java.sql.SQLException;
 
 import javax.swing.JDialog;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import mifarma.common.FarmaConnectionRemoto;
 import mifarma.common.FarmaConstants;
@@ -37,7 +37,7 @@ import com.gs.mifarma.componentes.JTextFieldSanSerif;
  * Nombre de la Aplicación : DlgModMedidaPresion.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JCALLO      21.10.2008   Creación<br>
+ *        21.10.2008   Creación<br>
  * <br>
  * @author Javier Callo Quispe<br>
  * @version 1.0<br>
@@ -49,7 +49,7 @@ public class DlgModMedidaPresion extends JDialog
 	/*                        DECLARACION PROPIEDADES                         */
 	/* ********************************************************************** */
 	
-	private static final Log log = LogFactory.getLog(DlgModMedidaPresion.class);
+	private static final Logger log = LoggerFactory.getLogger(DlgModMedidaPresion.class);
   
 	private Frame myParentFrame;
 	  

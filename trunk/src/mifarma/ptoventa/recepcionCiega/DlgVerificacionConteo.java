@@ -99,7 +99,7 @@ public class DlgVerificacionConteo extends JDialog{
         this.setSize(new Dimension(704, 488));
         this.getContentPane().setLayout(borderLayout1);
         this.setTitle("Verificación de Conteo");
-        //JMIRANDA 02.12.09
+        //  02.12.09
         this.setDefaultCloseOperation( JFrame.DO_NOTHING_ON_CLOSE  );        
         this.addWindowListener(new WindowAdapter() {
                 public void windowOpened(WindowEvent e) {
@@ -201,7 +201,7 @@ public class DlgVerificacionConteo extends JDialog{
             FarmaUtility.initSimpleList(tblListaProductos, tableModel,
                             ConstantsRecepCiega.columnsListaProductosSegundoConteo);
             cargaListaProductos();
-        // JMIRANDA 22.05.2010
+        //   22.05.2010
         //FarmaUtility.moveFocus(tblListaProductos);  
     }
     
@@ -210,7 +210,7 @@ public class DlgVerificacionConteo extends JDialog{
     // **************************************************************************
     private void this_windowOpened(WindowEvent e) {
            FarmaUtility.centrarVentana(this);
-        //JMIRANDA 02.12.09 mover foco a table
+        //  02.12.09 mover foco a table
         FarmaUtility.moveFocus(txtBuscar);
         boolean vRpta = false;
            /*try{               
@@ -222,7 +222,7 @@ public class DlgVerificacionConteo extends JDialog{
                FarmaUtility.showMessage(this,"Ocurrió un error al actualizar el indicador de segundo conteo en la recepción : \n",null); 
            }
            */
-           //JMIRANDA 20.03.2010 valida
+           //  20.03.2010 valida
            if(alertaMaxDiferencias()){
               vRpta =  FarmaUtility.rptaConfirmDialogDefaultNo(this,"La Recepción Actual tiene muchas diferencias.\n" +
                        "Verifique el Detalle de las Entregas por si faltan Asociar o si requiere Desasociar.\n" +
@@ -266,7 +266,7 @@ public class DlgVerificacionConteo extends JDialog{
     private void chkKeyPressed(KeyEvent e) {    
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             if (tblListaProductos.getRowCount() > 0){                
-                //JMIRANDA 22.05.2010
+                //  22.05.2010
                 int pFila = tblListaProductos.getSelectedRow();
                 //   VariablesRecepCiega.vCod_Barra = this.tblListaProductos.getValueAt(tblListaProductos.getSelectedRow(), 0).toString().trim();
           //      FarmaUtility.getValueFieldArrayList(tableModelProductos.data,fila,5)     
@@ -288,7 +288,7 @@ public class DlgVerificacionConteo extends JDialog{
                        tableModel.setValueAt(VariablesRecepCiega.vCantidadVerificaConteo, tblListaProductos.getSelectedRow(),COL_CANT);
                    //    tblListaProductos.setValueAt(VariablesRecepCiega.vCantidadVerificaConteo, tblListaProductos.getSelectedRow(), 3); 
                        cargaListaProductos();
-                            //JMIRANDA 22.05.2010 SELECCIONAR ÚLTIMO MODIFICADO
+                            //  22.05.2010 SELECCIONAR ÚLTIMO MODIFICADO
                             FarmaGridUtils.showCell(tblListaProductos,pFila,COL_DESC_PROD);                            
                        FarmaVariables.vAceptar = false;                       
                    }                   
@@ -464,7 +464,7 @@ public class DlgVerificacionConteo extends JDialog{
             this.dispose();
     }
 
-    //JMIRANDA 20.03.2010 valida el máximo de Productos con diferencias
+    //  20.03.2010 valida el máximo de Productos con diferencias
     private boolean alertaMaxDiferencias(){
         boolean flag = false;
         try {
@@ -493,7 +493,7 @@ public class DlgVerificacionConteo extends JDialog{
             if (existenProductosACompletarConCeros() ){
                 FarmaUtility.showMessage(this,"Existen productos que no han sido contados,\n para finalizar deberá completar con ceros los \n productos no contados\n",txtBuscar); 
             }else{
-                /* DUBILLUZ - 10.05.2010
+                /*   - 10.05.2010
                 if (!FarmaUtility.rptaConfirmDialog(this, "¿Está seguro de confirmar la cantidad ingresada para cada producto?,\n si continúa ya no podrá modificar las cantidades. \n Desea continuar con el proceso?")) //{
                     return;    
                     actualizaCantRecepXEntrega();  //de acuerdo a la cantidad contada de cada producto, se actualiza en la tabla LGT_NOTA_DET el campo CANT_RECEPCIONADA segun el algoritmo (tiene mas prioridad el que tiene menor cantidad en el campo CANT_ENVIADIA_MAtRIZ)          
@@ -506,7 +506,7 @@ public class DlgVerificacionConteo extends JDialog{
                         }    
                     }            
                     afectarGuiasDeRecepcion(); 
-                    //enviaCorreoDeDiferencias(); //JMIRANDA 01.02.10 se va comentar para enviar mediante JOB
+                    //enviaCorreoDeDiferencias(); //  01.02.10 se va comentar para enviar mediante JOB
                     try{
                         DBRecepCiega.actualizaIndSegundoConteo();
                         FarmaUtility.aceptarTransaccion();          
@@ -542,13 +542,13 @@ public class DlgVerificacionConteo extends JDialog{
             
             if (verificaExisteGuiasPendientes){ // en cada existan guias que sus productos no han sido contado, o simplemente la cantidad contada no cubre algunas entregas
             
-            /* JMIRANDA 22.07.2011
+            /*   22.07.2011
              * A partir de ahora ya no se liberara las Guías Pendientes estás se afectarán con cero*/                  
                 if(VariablesRecepCiega.vAfectaSobranteNuevo.equalsIgnoreCase("S")){
                     afectarEntregasPendientes();  
                 }
                 else{    
-                    //JMIRANDA esta desactivado la opción Nueva afectara como antes
+                    //  esta desactivado la opción Nueva afectara como antes
                          System.out.println("Existen guias pendientes");
                              mostrarListaGuiasPendientes(); 
                              if (FarmaVariables.vAceptar){                                
@@ -560,7 +560,7 @@ public class DlgVerificacionConteo extends JDialog{
        
             }            
             
-            //JMIRANDA 09.08.2011 Solo afectará sobrantes con la versión nueva.
+            //  09.08.2011 Solo afectará sobrantes con la versión nueva.
             if(VariablesRecepCiega.vAfectaSobranteNuevo.equalsIgnoreCase("S")){
                afectarEntregasSobrantes();
             }
@@ -587,7 +587,7 @@ public class DlgVerificacionConteo extends JDialog{
     private void txtBuscar_keyPressed(KeyEvent e) {
         FarmaGridUtils.aceptarTeclaPresionada(e,tblListaProductos,txtBuscar,COL_DESC_PROD); 
         if(e.getKeyCode() == KeyEvent.VK_ENTER){
-            //JMIRANDA 23.07.2010 ERROR PRODUCTOS IGUALES VUELVE A BUSCAR
+            //  23.07.2010 ERROR PRODUCTOS IGUALES VUELVE A BUSCAR
             /*  if (!(FarmaUtility.findTextInJTable(tblListaProductos,txtBuscar.getText().trim(), 0, 0)) )
              {
                FarmaUtility.showMessage(this,"¡Producto No Encontrado según Criterio de Búsqueda!", txtBuscar);

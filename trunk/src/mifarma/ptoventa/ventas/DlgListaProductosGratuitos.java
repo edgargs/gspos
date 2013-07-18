@@ -1022,7 +1022,7 @@ public class DlgListaProductosGratuitos extends JDialog
     else return false;
   }
   
-  //inicio adicion Paulo 15/06/2006
+  //inicio adicion   15/06/2006
   private void faltacero()
   {
     if(!validaStockDisponible())
@@ -1040,6 +1040,6 @@ public class DlgListaProductosGratuitos extends JDialog
       }
     }
   }
-  //fin adicion Paulo 15/06/2006
+  //fin adicion   15/06/2006
   
 }

@@ -11,7 +11,7 @@ import mifarma.common.FarmaColumnData;
  * Nombre de la Aplicación : ConstantsFidelizacion.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * DVELIZ      26.09.2008   Creación<br>
+ *        26.09.2008   Creación<br>
  * <br>
  * @author Daniel Fernando Veliz La Rosa<br>
  * @version 1.0<br>
@@ -58,7 +58,7 @@ public class ConstantsFidelizacion {
     
     /**
      * Constante Prefijo para generacion de nueva tarjeta de fidelizacion
-     * @author  dveliz
+     * @author   
      * @since   13.02.2009
      */
     public static final String PREFIJO_TARJETA_FIDELIZACION = "999";

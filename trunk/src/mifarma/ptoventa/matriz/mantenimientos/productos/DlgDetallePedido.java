@@ -65,7 +65,7 @@ import mifarma.ptoventa.matriz.mantenimientos.productos.references.*;
 * Nombre de la Aplicación : DlgDetalleTransferencia.java<br>
 * <br>
 * Histórico de Creación/Modificación<br>
-* JCORTEZ      16.07.2007   Creación<br>
+*        16.07.2007   Creación<br>
 * <br>
 * @author  Jorge Cortez Alvarez <br>
 * @version 1.0<br>
@@ -459,7 +459,7 @@ public class DlgDetallePedido
   
   /**
    * Se anula el pedido a nivel de local
-   * @author: JCORTEZ 
+   * @author:   
    * @since: 04/02/2007
    * */
   private void anularPedidoLocal(String vNumPedidoDist, String producto, String localdist){

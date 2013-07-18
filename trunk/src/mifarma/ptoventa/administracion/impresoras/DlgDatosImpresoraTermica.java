@@ -38,7 +38,7 @@ import mifarma.ptoventa.administracion.impresoras.reference.DBImpresoras;
 import mifarma.ptoventa.administracion.impresoras.reference.VariablesImpresoras;
 import mifarma.ptoventa.reference.*;
 
-//JMIRANDA 25/06/2009
+//  25/06/2009
 public class DlgDatosImpresoraTermica extends JDialog {
     Frame myParentFrame;
     private boolean existenDatos;
@@ -226,7 +226,7 @@ public class DlgDatosImpresoraTermica extends JDialog {
     private void this_windowOpened(WindowEvent e) {
         FarmaUtility.centrarVentana(this);
         FarmaUtility.moveFocus(txtDescImpresora);
-        //JCORTEZ 14.03.09 solo para tipo ticket no se podra modificar la cola de impresion
+        //  14.03.09 solo para tipo ticket no se podra modificar la cola de impresion
         /* if (VariablesImpresoras.vTipoComp.trim().equalsIgnoreCase(ConstantsPtoVenta.TIP_COMP_TICKET)){//tipo ticket solamente
             //txtColaImpresion.setEditable(false);
         }else
@@ -263,7 +263,7 @@ public class DlgDatosImpresoraTermica extends JDialog {
             
             if (datosValidados()) {
                 
-                //JCORTEZ 14.03.09 solo para tipo ticket no se podra modificar la cola de impresion con una que ya exista
+                //  14.03.09 solo para tipo ticket no se podra modificar la cola de impresion con una que ya exista
                            
                 if (valor)
                        
@@ -349,7 +349,7 @@ public class DlgDatosImpresoraTermica extends JDialog {
             
             txtNroImpresora.setText(VariablesImpresoras.vSecImprLocalTerm.toUpperCase());
             txtDescImpresora.setText(VariablesImpresoras.vDescImprLocalTerm.toUpperCase());
-            //JMIRANDA 01/07/09 se almacena nombre Impresora
+            //  01/07/09 se almacena nombre Impresora
             vDescImpr = VariablesImpresoras.vDescImprLocalTerm.toUpperCase();
             cmbEstado.setSelectedItem(VariablesImpresoras.vEstImprLocalTerm);
             cmbTipoImpresora.setSelectedItem(VariablesImpresoras.vMarcaImprLocalTerm);

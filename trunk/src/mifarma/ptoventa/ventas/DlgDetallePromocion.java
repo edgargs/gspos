@@ -42,8 +42,8 @@ import mifarma.ptoventa.ventas.reference.DBVentas;
 import mifarma.ptoventa.ventas.reference.UtilityVentas;
 import mifarma.ptoventa.ventas.reference.VariablesVentas;
 
-import oracle.jdeveloper.layout.XYConstraints;
-import oracle.jdeveloper.layout.XYLayout;
+ 
+ 
 
 
 public class DlgDetallePromocion extends JDialog 
@@ -64,9 +64,9 @@ public class DlgDetallePromocion extends JDialog
  
   private JPanelWhite jPanelWhite1 = new JPanelWhite();
   JPanel pnlStock = new JPanel();
-  XYLayout xYLayout2 = new XYLayout();
+   
   JPanel pnlStock1 = new JPanel();
-  XYLayout xYLayout3 = new XYLayout();
+   
   private JScrollPane jScrollPane1 = new JScrollPane();
   private JScrollPane jScrollPane2 = new JScrollPane();
   private JTable jTable1 = new JTable();
@@ -84,7 +84,7 @@ public class DlgDetallePromocion extends JDialog
   private JTextArea txtDescPromocion = new JTextArea();
   private JScrollPane jScrollPane3 = new JScrollPane();
   JPanel pnlStock2 = new JPanel();
-  XYLayout xYLayout4 = new XYLayout();
+   
   private JButtonLabel btnDescripcion = new JButtonLabel();
     private JTextField txtPrecioTotalRedondeado = new JTextField();
 
@@ -138,13 +138,13 @@ public class DlgDetallePromocion extends JDialog
     pnlStock.setBounds(new Rectangle(10, 5, 720, 5));
     pnlStock.setFont(new Font("SansSerif", 0, 11));
     pnlStock.setBackground(new Color(255, 130, 14));
-    pnlStock.setLayout(xYLayout2);
+    pnlStock. setLayout(null);
     pnlStock.setBorder(BorderFactory.createLineBorder(Color.black, 1));
     pnlStock.setForeground(Color.white);
     pnlStock1.setBounds(new Rectangle(10, 15, 720, 5));
     pnlStock1.setFont(new Font("SansSerif", 0, 11));
     pnlStock1.setBackground(new Color(255, 130, 14));
-    pnlStock1.setLayout(xYLayout3);
+    pnlStock1. setLayout(null);
     pnlStock1.setBorder(BorderFactory.createLineBorder(Color.black, 1));
     pnlStock1.setForeground(Color.white);
     jScrollPane1.setBounds(new Rectangle(10, 10, 720, 5));
@@ -222,7 +222,7 @@ public class DlgDetallePromocion extends JDialog
     pnlStock2.setBounds(new Rectangle(10, 5, 720, 25));
     pnlStock2.setFont(new Font("SansSerif", 0, 11));
     pnlStock2.setBackground(new Color(255, 130, 14));
-    pnlStock2.setLayout(xYLayout4);
+    pnlStock2 .setLayout(null);
     pnlStock2.setBorder(BorderFactory.createLineBorder(Color.black, 1));
     pnlStock2.setForeground(Color.white);
     btnDescripcion.setText("Descripción");
@@ -241,7 +241,7 @@ public class DlgDetallePromocion extends JDialog
       txtPrecioTotalRedondeado.setBounds(new Rectangle(110, 200, 60, 20));
       txtPrecioTotalRedondeado.setEnabled(false);
         
-        pnlStock2.add(btnDescripcion, new XYConstraints(5, 0, 70, 20));
+        pnlStock2.add(btnDescripcion);
         jPanelWhite1.add(txtPrecioTotalRedondeado, null);
         jPanelWhite1.add(pnlStock2, null);
     jScrollPane3.getViewport().add(txtDescPromocion, null);
@@ -255,9 +255,9 @@ public class DlgDetallePromocion extends JDialog
     jScrollPane2.getViewport().add(tblpaquete2, null);
     jPanelWhite1.add(jScrollPane2, null);
     jPanelWhite1.add(jScrollPane1, null);
-    pnlStock1.add(btnpaquete2, new XYConstraints(5, 0, 65, 20));
+    pnlStock1.add(btnpaquete2);
     jPanelWhite1.add(pnlStock1, null);
-    pnlStock.add(btnpaquete1, new XYConstraints(5, 0, 60, 20));
+    pnlStock.add(btnpaquete1);
     jPanelWhite1.add(pnlStock, null);
     jScrollPane1.getViewport().add(jTable1, null);
     jScrollPane1.getViewport().add(tblpaquete1, null);
@@ -325,7 +325,7 @@ public class DlgDetallePromocion extends JDialog
     this.dispose();
     /**
      * Limpia los valores 
-     * @author : dubilluz
+     * @author :  
      * @since  : 25.06.2007
      */
      VariablesVentas.accionModificar = false;
@@ -401,22 +401,22 @@ public class DlgDetallePromocion extends JDialog
      System.out.println("*****"); 
     double total1 = FarmaUtility.getDecimalNumber(FarmaUtility.getValueFieldJTable(tblpaquete1,0,9)) ;
     double  total2 = FarmaUtility.getDecimalNumber(FarmaUtility.getValueFieldJTable(tblpaquete2,0,9)); 
-    //JCHAVEZ 29102009 inicio
+    //  29102009 inicio
      double total1Aux = total1;
      double total2Aux = total2;   
-    //JCHAVEZ 29102009 fin    
+    //  29102009 fin    
     total2 += total1;
     
-    //JCHAVEZ 29102009 inicio
+    //  29102009 inicio
     double  totalRedondeadoNum = DBVentas.getPrecioRedondeado(total2); 
     String totalRedondeadoStr = FarmaUtility.formatNumber(FarmaUtility.getDecimalNumber(""+totalRedondeadoNum),3) ; 
     txtPrecioTotalRedondeado.setText(totalRedondeadoStr);    
     System.out.println("totalRedondeado:"+ totalRedondeadoStr);   
-    //JCHAVEZ 29102009 fin
+    //  29102009 fin
 
     // int totalDou = Integer.parseInt(totalStr.trim());    
                 
-    //JCHAVEZ 29102009 inicio
+    //  29102009 inicio
         try{
             if (VariablesVentas.vIndAplicaRedondeo.equalsIgnoreCase("")){
                 VariablesVentas.vIndAplicaRedondeo = DBVentas.getIndicadorAplicaRedondedo();    
@@ -439,7 +439,7 @@ public class DlgDetallePromocion extends JDialog
         catch(SQLException ex){
             ex.printStackTrace();
         }
-   //JCHAVEZ 29102009 fin    
+   //  29102009 fin    
     
      
       if(tblpaquete1.getRowCount()>0 && tblpaquete2.getRowCount()>0)
@@ -572,7 +572,7 @@ public class DlgDetallePromocion extends JDialog
         VariablesVentas.vStk_Prod = ((String) ((ArrayList) myArray.get(i)).get(4)).trim();
         VariablesVentas.vVal_Prec_Vta = ((String) ((ArrayList) myArray.get(i)).get(5)).trim();
         
-         //JCHAVEZ 29102009 inicio
+         //  29102009 inicio
                  try{
                      if (VariablesVentas.vIndAplicaRedondeo.equalsIgnoreCase("")){
                          VariablesVentas.vIndAplicaRedondeo = DBVentas.getIndicadorAplicaRedondedo();    
@@ -588,7 +588,7 @@ public class DlgDetallePromocion extends JDialog
                  catch(SQLException ex){
                      ex.printStackTrace();
                  }
-            //JCHAVEZ 29102009 fin    
+            //  29102009 fin    
           
         VariablesVentas.vTotalPrecVtaProd=  FarmaUtility.getDecimalNumber(VariablesVentas.vVal_Prec_Vta)*
         FarmaUtility.getDecimalNumber(VariablesVentas.vCant_Ingresada)*
@@ -619,7 +619,7 @@ public class DlgDetallePromocion extends JDialog
         //VariablesVentas.vVal_Prec_Pub=((String) ((ArrayList) myArray.get(i)).get(6)).trim();
         /**
          * VAriables descuentos y Precio_Publico
-         * @author : dubilluz
+         * @author :  
          * @since  : 03.07.2007
          */
          VariablesVentas.vPorc_Dcto_1  =  ((String) ((ArrayList) myArray.get(i)).get(17)).trim();
@@ -627,8 +627,8 @@ public class DlgDetallePromocion extends JDialog
          VariablesVentas.vVal_Prec_Pub = ((String)((ArrayList) myArray.get(i)).get(19)).trim();
         
         
-         VariablesVentas.vAhorroPack = ((String)((ArrayList) myArray.get(i)).get(20)).trim();//JCHAVEZ 20102009
-         VariablesVentas.vInd_Origen_Prod_Prom  = ((String)((ArrayList) myArray.get(i)).get(21)).trim();//JCHAVEZ 20102009
+         VariablesVentas.vAhorroPack = ((String)((ArrayList) myArray.get(i)).get(20)).trim();//  20102009
+         VariablesVentas.vInd_Origen_Prod_Prom  = ((String)((ArrayList) myArray.get(i)).get(21)).trim();//  20102009
         double totaltemp=Double.parseDouble(VariablesVentas.vCant_Ingresada.trim())* Double.parseDouble(VariablesVentas.vVal_Prec_Vta.trim());
        
         /*ERIOS 10.04.2008 Datos que se agregan al arreglo de prod_promociones,
@@ -664,17 +664,17 @@ public class DlgDetallePromocion extends JDialog
         //myArray2.add(" ");//23 cantxDia tratamiento
         //myArray2.add(" ");//24 cantxDias tratamiento
         
-        myArray2.add(""+FarmaUtility.getDecimalNumber(VariablesVentas.vAhorroPack));//JCHAVEZ 20102009 columna 22
-        myArray2.add(VariablesVentas.vInd_Origen_Prod_Prom); //JCHAVEZ 20102009 columna 23
+        myArray2.add(""+FarmaUtility.getDecimalNumber(VariablesVentas.vAhorroPack));//  20102009 columna 22
+        myArray2.add(VariablesVentas.vInd_Origen_Prod_Prom); //  20102009 columna 23
         
-        //agregado dubilluz 07.07.2010
+        //agregado   07.07.2010
             String codProd = ((String)(myArray2.get(0))).trim();
             String cantidadAux = ((String)(myArray2.get(4))).trim();
             String indControlStk = ((String)(myArray2.get(16))).trim();
             VariablesVentas.vVal_Frac = ((String)(myArray2.get(10))).trim();
-         VariablesVentas.secRespStk=""; //ASOSA, 26.08.2010
+         VariablesVentas.secRespStk=""; // , 26.08.2010
          if(indControlStk.equalsIgnoreCase(FarmaConstants.INDICADOR_S) &&
-             !UtilityVentas.operaStkCompProdResp(codProd,   //ASOSA, 07.07.2010
+             !UtilityVentas.operaStkCompProdResp(codProd,   // , 07.07.2010
                                                     Integer.parseInt(cantidadAux),
                                                     ConstantsVentas.INDICADOR_A, 
                                                     ConstantsPtoVenta.TIP_OPERACION_RESPALDO_SUMAR, 
@@ -689,13 +689,13 @@ public class DlgDetallePromocion extends JDialog
          }
          
          myArray2.add(VariablesVentas.secRespStk);// numero 24
-        //agregado dubilluz 07.07.2010
+        //agregado   07.07.2010
         
         Boolean valor = new Boolean(true);
         arrayProdProm.add(myArray2);
      }
      ///agrega areglor de promociones que mete en resumen pedido
-        //agregar dubilluz 07.07.2010
+        //agregar   07.07.2010
         Boolean valor2 = new Boolean(true);
         //llenado de arreglo de promociones 
         ArrayList myArrayP = new ArrayList();
@@ -768,7 +768,7 @@ public class DlgDetallePromocion extends JDialog
   
 /**
  * Coloca cantidad sise modificara la cantidad de Promocion
- * @author : dubilluz
+ * @author :  
  * @since  : 25.06.2007
  */
   private void obtieneCantidad(){
@@ -784,7 +784,7 @@ public class DlgDetallePromocion extends JDialog
    VariablesVentas.accionModificar = false;  
    /**
     * SETEO DE VARIABLES
-    * @author : dubilluz
+    * @author :  
     * @since  : 03.07.2007s
     */
    VariablesVentas.vPorc_Dcto_1 = "";
@@ -797,7 +797,7 @@ public class DlgDetallePromocion extends JDialog
 
     /**
      * Elimina elementos del Array
-     * @author : dubilluz
+     * @author :  
      * @since  : 25.06.2007
      */
   private void removeItemArray(ArrayList array,String codProm,int pos)
@@ -814,7 +814,7 @@ public class DlgDetallePromocion extends JDialog
  }
   /**
    * Actualiza el Stock
-   * @author dubilluz
+   * @author  
    * @since  27.06.2007
    */
   private void borraStock()
@@ -828,7 +828,7 @@ public class DlgDetallePromocion extends JDialog
     String codProd="";
     String  cantidad = "";//((String)(tblProductos.getValueAt(filaActual,4))).trim();
     String indControlStk = "";// ((String)(tblProductos.getValueAt(filaActual,16))).trim();
-    String secRespaldo=""; //ASOSA, 07.07.2010
+    String secRespaldo=""; // , 07.07.2010
     for(int j=0; j<prod_Prom.size(); j++)
     { 
       aux=(ArrayList)(prod_Prom.get(j));
@@ -836,10 +836,10 @@ public class DlgDetallePromocion extends JDialog
       VariablesVentas.vVal_Frac = ((String)(aux.get(10))).trim();
       cantidad = ((String)(aux.get(4))).trim();
       indControlStk = ((String)(aux.get(16))).trim();
-        secRespaldo = ((String)(aux.get(24))).trim(); //ASOSA, 07.07.2010 
-        VariablesVentas.secRespStk=""; //ASOSA, 26.08.2010
+        secRespaldo = ((String)(aux.get(24))).trim(); // , 07.07.2010 
+        VariablesVentas.secRespStk=""; // , 26.08.2010
       if(indControlStk.equalsIgnoreCase(FarmaConstants.INDICADOR_S) &&
-           /*!UtilityVentas.actualizaStkComprometidoProd(codProd, //Antes, ASOSA, 07.07.2010
+           /*!UtilityVentas.actualizaStkComprometidoProd(codProd, //Antes,  , 07.07.2010
                                                        Integer.parseInt(cantidad),
                                                        ConstantsVentas.INDICADOR_D, 
                                                        ConstantsPtoVenta.TIP_OPERACION_RESPALDO_BORRAR, 
@@ -847,7 +847,7 @@ public class DlgDetallePromocion extends JDialog
                                                        true,
                                                        this,
                                                        txtCantidad))*/           
-          !UtilityVentas.operaStkCompProdResp(codProd,   //ASOSA, 01.07.2010
+          !UtilityVentas.operaStkCompProdResp(codProd,   // , 01.07.2010
                                                      0,
                                                      ConstantsVentas.INDICADOR_D, 
                                                      ConstantsPtoVenta.TIP_OPERACION_RESPALDO_BORRAR, 
@@ -863,7 +863,7 @@ public class DlgDetallePromocion extends JDialog
   
   /**
    * Retorna el detalle de una promocion
-   * @author dubilluz
+   * @author  
    * @since  03.07.2007
    */
   private ArrayList detalle_Prom(ArrayList array, String codProm)
@@ -885,7 +885,7 @@ public class DlgDetallePromocion extends JDialog
   
     /**
    * Verifica el producto si esta comprado
-   * @author : dubilluz
+   * @author :  
    * @since  : 26.06.2007
    */
   private boolean  verificaProducto()
@@ -938,7 +938,7 @@ public class DlgDetallePromocion extends JDialog
   /**
    * Agrupa productos que esten en ambos paquetes
    * retorna el nuevoa arreglo
-   * @author : dubilluz
+   * @author :  
    * @author : 27.06.2007
    */
    private ArrayList agrupar(ArrayList array)
@@ -949,18 +949,18 @@ public class DlgDetallePromocion extends JDialog
        int cantidad1=0;
        int cantidad2=0;
        int suma=0;
-       System.out.println("****************************JCORTEZ **********AGRUPACION"+array);
+       System.out.println("****************************  **********AGRUPACION"+array);
        
        for(int i=0; i<array.size(); i++)
          {
           aux1=(ArrayList)(array.get(i));
-          //if(aux1.size()>0){//(((String)(aux1.get(19))).trim()).equalsIgnoreCase("Revisado")){//JCHAVEZ DECIA <23 Y CAMBIE a >0
-           if(aux1.size()<25){// JCORTEZ DICE POR NUEVO CAMPOS DE JCHAVEZ (23+2=25)
+          //if(aux1.size()>0){//(((String)(aux1.get(19))).trim()).equalsIgnoreCase("Revisado")){//  DECIA <23 Y CAMBIE a >0
+           if(aux1.size()<25){//   DICE POR NUEVO CAMPOS DE   (23+2=25)
           for(int j=i+1; j<array.size(); j++)
             {
             aux2=(ArrayList)(array.get(j));
-            //if(aux2.size()>0){               //JCHAVEZ DECIA <23 Y CAMBIE a >0
-             if(aux2.size()<25){  //JCORTEZ DICE POR NUEVO CAMPOS DE JCHAVEZ (23+2=25)
+            //if(aux2.size()>0){               //  DECIA <23 Y CAMBIE a >0
+             if(aux2.size()<25){  //  DICE POR NUEVO CAMPOS DE   (23+2=25)
               if((((String)(aux1.get(0))).trim()).equalsIgnoreCase((((String)(aux2.get(0))).trim())))
               { 
                 cantidad1=Integer.parseInt(((String)(aux1.get(4))).trim());
@@ -980,7 +980,7 @@ public class DlgDetallePromocion extends JDialog
    }
  /**
   * Acepta Modificacion de promocion
-  * @author : dubilluz
+  * @author :  
   * @since  : 04.07.2007
   */
   private void aceptaPromocion(){
@@ -1000,7 +1000,7 @@ public class DlgDetallePromocion extends JDialog
   /**
    * Agrupa productos del Paquete
    * retorna el nuevoa arreglo
-   * @author : dubilluz
+   * @author :  
    * @author : 27.06.2007
    */
    private ArrayList agruparProdPaquete(ArrayList array)
@@ -1016,11 +1016,11 @@ public class DlgDetallePromocion extends JDialog
          {
           aux1=(ArrayList)(array.get(i));
           System.out.println("Tamaño " +i+" "+aux1.size());
-          if(aux1.size()<23){//(((String)(aux1.get(19))).trim()).equalsIgnoreCase("Revisado")){//JCHAVEZ 20102009 DECIA <21
+          if(aux1.size()<23){//(((String)(aux1.get(19))).trim()).equalsIgnoreCase("Revisado")){//  20102009 DECIA <21
           for(int j=i+1; j<array.size(); j++)
             {
             aux2=(ArrayList)(array.get(j));
-            if(aux2.size()<23){ //JCHAVEZ 20102009 DECIA <21
+            if(aux2.size()<23){ //  20102009 DECIA <21
               if((((String)(aux1.get(0))).trim()).equalsIgnoreCase((((String)(aux2.get(0))).trim())))
               { 
                 cantidad1=Integer.parseInt(((String)(aux1.get(9))).trim());

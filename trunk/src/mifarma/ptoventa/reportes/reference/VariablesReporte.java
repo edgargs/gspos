@@ -3,7 +3,7 @@ package mifarma.ptoventa.reportes.reference;
 import java.util.*;
 import mifarma.common.*;
 
-import org.jfree.data.category.DefaultCategoryDataset;
+
 
 public class VariablesReporte 
 {
@@ -56,11 +56,8 @@ public class VariablesReporte
 
   public static ArrayList vArrayList_Registro_Ventas = new ArrayList();
   
-  /**Nuevas Variables*/
   
-  public static DefaultCategoryDataset vDataSet_Reporte = new DefaultCategoryDataset();
-  
-  /**ASOLIS
+  /** 
    * 26.11.08*/
 
   public static String ACCION_MOSTRAR_TIPO_VENTA="";  

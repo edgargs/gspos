@@ -45,24 +45,17 @@ import mifarma.common.FarmaTableModel;
 import mifarma.common.FarmaUtility;
 import mifarma.common.FarmaVariables;
 
-import mifarma.ptoventa.convenio.reference.DBConvenio;
-import mifarma.ptoventa.convenio.reference.VariablesConvenio;
-import mifarma.ptoventa.convenioBTLMF.DlgMensajeCobertura;
-import mifarma.ptoventa.convenioBTLMF.reference.DBConvenioBTLMF;
-import mifarma.ptoventa.convenioBTLMF.reference.UtilityConvenioBTLMF;
-import mifarma.ptoventa.convenioBTLMF.reference.VariablesConvenioBTLMF;
-import mifarma.ptoventa.hilos.SubProcesosConvenios;
+ 
 import mifarma.ptoventa.reference.ConstantsPtoVenta;
 import mifarma.ptoventa.ventas.reference.ConstantsVentas;
 import mifarma.ptoventa.ventas.reference.DBVentas;
 import mifarma.ptoventa.ventas.reference.UtilityVentas;
 import mifarma.ptoventa.ventas.reference.VariablesVentas;
 
-import oracle.jdeveloper.layout.XYConstraints;
-import oracle.jdeveloper.layout.XYLayout;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+
 
 
 /**
@@ -72,11 +65,11 @@ import org.apache.commons.logging.LogFactory;
  * Nombre de la Aplicación : DlgComplementarios1.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JCORTEZ       08.04.2008   Creacion <br>
+ *         08.04.2008   Creacion <br>
  * <br>
  * @author  Jorge Cortez Alvarez<br>
  * @version 1.0<br>
- * 
+ *
  */
 
 public class DlgComplementarios1
@@ -86,7 +79,7 @@ public class DlgComplementarios1
 /*                           DECLARACION PROPIEDADES                          */
 /* ************************************************************************** */
 
-  private static final Log log = LogFactory.getLog(DlgComplementarios1.class);
+  private static final Logger log = LoggerFactory.getLogger(DlgComplementarios1.class);
   
   private Frame myParentFrame;
 
@@ -104,17 +97,17 @@ public class DlgComplementarios1
   private String porcDscto_1 = "";
   
   private String indProdProm = "";
-  //JCORTEZ 11/04/08 descuento de oferta
+  //  11/04/08 descuento de oferta
   private String porcDscto_2 = ""; 
   private String valPrecVtaReal = "";
   private String valAhorro = "";
   
-  //JCORTEZ 15/04/08 descripcion Padre
+  //  15/04/08 descripcion Padre
   private String DescProdPadre = ""; 
   private String LabProdPadre = "";
   private String DescMotivo = "";
   
-  //Mfajardo 24/04/09
+  //  24/04/09
    private boolean vEjecutaAccionTeclaListado = false;
 
   private String tipoProd = "";
@@ -190,7 +183,7 @@ public class DlgComplementarios1
   private JLabel lblProdEncarte = new JLabel();
   private JLabelWhite lblMensaje = new JLabelWhite();
   private JPanel pnlAtencion2 = new JPanel();
-  private XYLayout xYLayout8 = new XYLayout();
+  
   private JLabel lblUltimoPedido2 = new JLabel();
   private JLabel lblTipoCambio2 = new JLabel();
   private JLabel lblPrecioDesc = new JLabel();
@@ -204,7 +197,7 @@ public class DlgComplementarios1
   private JLabel lblDesc = new JLabel();
   private JLabel lblLab = new JLabel();
   private JPanel pnlAtencion3 = new JPanel();
-  private XYLayout xYLayout9 = new XYLayout();
+  
   private JLabel lblUltimoPedido3 = new JLabel();
   private JLabel lblTipoCambio3 = new JLabel();
   private JLabelWhite lblmensaje2 = new JLabelWhite();
@@ -427,7 +420,7 @@ public class DlgComplementarios1
     lblMensaje.setHorizontalAlignment(SwingConstants.CENTER);
     lblMensaje.setForeground(new Color(27, 121, 53));
     pnlAtencion2.setFont(new Font("SansSerif", 0, 11));
-    pnlAtencion2.setLayout(xYLayout8);
+    pnlAtencion2.setLayout(null);
     pnlAtencion2.setBorder(BorderFactory.createLineBorder(Color.black, 1));
     pnlAtencion2.setBackground(new Color(255, 254, 254));
     pnlAtencion2.setBounds(new Rectangle(355, 0, 350, 30));
@@ -470,7 +463,7 @@ public class DlgComplementarios1
     lblLab.setFont(new Font("SansSerif", 1, 15));
     lblLab.setForeground(Color.white);
     pnlAtencion3.setFont(new Font("SansSerif", 0, 11));
-    pnlAtencion3.setLayout(xYLayout9);
+    pnlAtencion3.setLayout(null);
     pnlAtencion3.setBorder(BorderFactory.createLineBorder(Color.black, 1));
     pnlAtencion3.setBackground(new Color(255, 254, 254));
     pnlAtencion3.setBounds(new Rectangle(355, 0, 350, 30));
@@ -503,10 +496,10 @@ public class DlgComplementarios1
     lblUnidFracLoc.setForeground(new Color(43, 141, 39));
     jPanelWhite1.setBounds(new Rectangle(355, 45, 350, 20));
     jPanelWhite1.setBorder(BorderFactory.createLineBorder(Color.black, 1));
-    pnlAtencion3.add(lblUltimoPedido3, new XYConstraints(655, 10, 40, 15));
-    pnlAtencion3.add(lblTipoCambio3, new XYConstraints(205, 10, 40, 15));
-    pnlAtencion2.add(lblUltimoPedido2, new XYConstraints(655, 10, 40, 15));
-    pnlAtencion2.add(lblTipoCambio2, new XYConstraints(205, 10, 40, 15));
+    pnlAtencion3.add(lblUltimoPedido3);
+    pnlAtencion3.add(lblTipoCambio3);
+    pnlAtencion2.add(lblUltimoPedido2);
+    pnlAtencion2.add(lblTipoCambio2);
     JPanel3.add(lblAhorro, null);
     JPanel3.add(lblPrecioAhorro, null);
     JPanel3.add(lblPrecio2, null);
@@ -595,7 +588,7 @@ public class DlgComplementarios1
       lblMensaje.setVisible(false);
       
       //VariablesVentas.vEsProdOferta=false;
-      //JCORTEZ 25/04/08
+      //  25/04/08
       if(!VariablesVentas.vEsProdOferta)
       DBVentas.cargaListaProductosComplementarios1(tableModelListaComplementarios,VariablesVentas.vCodProdOrigen_Comple1);     
       
@@ -899,7 +892,7 @@ public class DlgComplementarios1
   {
     int vFila = tblProductos.getSelectedRow();
     String codProd = FarmaUtility.getValueFieldJTable(tblProductos,vFila,COL_COD);
-      //JMIRANDA 22/09/2009 lleno la variable vCod_Prod
+      //  22/09/2009 lleno la variable vCod_Prod
       VariablesVentas.vCod_Prod = codProd;
     try
     {
@@ -975,7 +968,7 @@ public class DlgComplementarios1
       
       
       
-      //JCORTEZ PORC_DSCT OFERTA SOLO SI ES DE ORIGEN OFERTA
+      //  PORC_DSCT OFERTA SOLO SI ES DE ORIGEN OFERTA
       if(VariablesVentas.vIndOrigenProdVta.equals(ConstantsVentas.IND_ORIGEN_OFER)){
        porcDscto_2=((String) ((ArrayList) myArray.get(0)).get(11)).trim(); }
       else {
@@ -1031,7 +1024,7 @@ public class DlgComplementarios1
     lblUnidFracLoc.setText(descUnidFracLoc);
     
     //lblDescMotivo.setText(DescMotivo);
-    //JCORTEZ 17.04.08
+    //  17.04.08
     txtDescMotivo.setLineWrap(true);
     txtDescMotivo.setWrapStyleWord(true);
     txtDescMotivo.setText(DescMotivo);
@@ -1053,7 +1046,7 @@ public class DlgComplementarios1
     VariablesVentas.vVal_Frac = valFracProd;
     VariablesVentas.vInd_Prod_Habil_Vta = indProdHabilVta;
     VariablesVentas.vPorc_Dcto_1 = porcDscto_1;
-    VariablesVentas.vPorc_Dcto_2 = porcDscto_2; //JCORTEZ
+    VariablesVentas.vPorc_Dcto_2 = porcDscto_2; // 
     tblProductos.repaint();
   }
 
@@ -1076,7 +1069,7 @@ public class DlgComplementarios1
     return;
     
     FarmaVariables.vAceptar = true;
-    //JMIRANDA 21/09/2009
+    //  21/09/2009
     boolean flagContinua = true;
       try{
           // Verifica si es obligatorio ingresar codigo de barra 
@@ -1111,7 +1104,7 @@ public class DlgComplementarios1
               //flagContinua = FarmaUtility.rptaConfirmDialog(this,sMensaje);
               //FarmaVariables.vAceptar = flagContinua;
               //System.out.println("Mensaje flagContinua: "+flagContinua); 
-              //JMIRANDA 26.03.2010
+              //  26.03.2010
               FarmaUtility.showMessage(this,sMensaje,txtProducto);
           }
           
@@ -1152,45 +1145,19 @@ public class DlgComplementarios1
     VariablesVentas.vCantxDias = "";
 
 
-    System.out.println("VariablesVentas.vCod_Prod: "+VariablesVentas.vCod_Prod);
-    System.out.println("VariablesConvenioBTLMF.vCodConvenio: "+VariablesConvenioBTLMF.vCodConvenio);
 
            /* try {*/
-                //ini-Agregado FRAMIREZ
-                if (UtilityConvenioBTLMF.esActivoConvenioBTLMF(this, null) &&
-                	VariablesConvenioBTLMF.vHayDatosIngresadosConvenioBTLMF &&
-                    VariablesVentas.vCod_Prod.trim().length() == 6) {
-                    /*String pAux =
-                        DBConvenioBTLMF.getIndExcluidoConv(VariablesVentas.vCod_Prod.trim());*/
-                    System.out.println("VariablesVentas.vEstadoProdConvenio: "+VariablesVentas.vEstadoProdConvenio);
-                    /*if (pAux.equalsIgnoreCase("E"))*/
-
-                     	UtilityConvenioBTLMF.Busca_Estado_ProdConv();
-	                    if (VariablesVentas.vEstadoProdConvenio.equalsIgnoreCase("E"))
-	                    {
-	                    	FarmaUtility.showMessage(this, "Producto no esta en cobertura del Convenio.", null);
-	                        flagContinua = false;
-	                    }
-
-                }
+                //ini-Agregado  
+         
             /*} catch (SQLException e) {
               FarmaUtility.showMessage(this,"Error en Validar Producto: "+e,txtProducto);
           }*/
 
-          //fin-Agregado FRAMIREZ
+          //fin-Agregado  
 
             if (flagContinua) {
     guardaInfoProdVariables();
 
-                    if (UtilityConvenioBTLMF.esActivoConvenioBTLMF(this,
-                                                                   null) &&
-                        VariablesConvenioBTLMF.vCodConvenio.trim().length() >
-                        0 && VariablesVentas.vCod_Prod.trim().length() == 6 && UtilityConvenioBTLMF.existeProductosConvenio(this,null)) {
-                        VariablesConvenioBTLMF.vValidaPrecio = true;
-                        SubProcesosConvenios precConv =
-                            new SubProcesosConvenios();
-                        precConv.start();
-                        }
     DlgIngresoCantidad dlgIngresoCantidad;
     dlgIngresoCantidad = new DlgIngresoCantidad(myParentFrame, "", true);
     
@@ -1213,7 +1180,7 @@ public class DlgComplementarios1
     {
       seleccionaProducto();
       FarmaVariables.vAceptar = false;
-      cerrarVentana(true); //jcortez
+      cerrarVentana(true); // 
     }
       }
   }
@@ -1246,7 +1213,7 @@ public class DlgComplementarios1
     }
     else
     {
-      VariablesVentas.vIndOrigenProdVta = FarmaUtility.getValueFieldJTable(tblProductos,vFila,COL_ORIG_PROD); //5 JCORTEZ
+      VariablesVentas.vIndOrigenProdVta = FarmaUtility.getValueFieldJTable(tblProductos,vFila,COL_ORIG_PROD); //5  
       muestraInfoProd();
       VariablesVentas.vIndProdVirtual = 
           FarmaUtility.getValueFieldJTable(tblProductos, vFila, COL_IND_VIRT);
@@ -1322,7 +1289,7 @@ public class DlgComplementarios1
     VariablesVentas.vTotalPrecVtaProd = 
         (FarmaUtility.getDecimalNumber(VariablesVentas.vCant_Ingresada) * 
          FarmaUtility.getDecimalNumber(VariablesVentas.vVal_Prec_Vta));
-      VariablesVentas.secRespStk=""; //ASOSA, 26.08.2010
+      VariablesVentas.secRespStk=""; // , 26.08.2010
     if (VariablesVentas.vIndProdControlStock && 
         /*!UtilityVentas.actualizaStkComprometidoProd(VariablesVentas.vCod_Prod, //ANTES, 02.07.2010
                                       Integer.parseInt(VariablesVentas.vCant_Ingresada), 
@@ -1332,7 +1299,7 @@ public class DlgComplementarios1
                                                     true,
                                                     this,
                                                     txtProducto))*/
-        !UtilityVentas.operaStkCompProdResp(VariablesVentas.vCod_Prod,   //ASOSA, 02.07.2010
+        !UtilityVentas.operaStkCompProdResp(VariablesVentas.vCod_Prod,   // , 02.07.2010
                                                Integer.parseInt(VariablesVentas.vCant_Ingresada),
                                                ConstantsVentas.INDICADOR_A, 
                                                ConstantsPtoVenta.TIP_OPERACION_RESPALDO_SUMAR, 
@@ -1345,7 +1312,7 @@ public class DlgComplementarios1
     FarmaUtility.setCheckValue(tblProductos, false);
     Boolean valor = 
       (Boolean) (tblProductos.getValueAt(vFila, 0));
-    UtilityVentas.operaProductoSeleccionadoEnArrayList_02(valor,VariablesVentas.secRespStk); //ASOSA, 06.07.2010
+    UtilityVentas.operaProductoSeleccionadoEnArrayList_02(valor,VariablesVentas.secRespStk); // , 06.07.2010
   }
 
   private void deseleccionaProducto()
@@ -1355,7 +1322,7 @@ public class DlgComplementarios1
     VariablesVentas.vCod_Prod = FarmaUtility.getValueFieldJTable(tblProductos,vFila,COL_COD);
     String indicadorControlStock = FarmaConstants.INDICADOR_S;
     String codigoTmp = "";
-    String secRespaldo=""; //ASOSA, 06.07.2010
+    String secRespaldo=""; // , 06.07.2010
     for (int i = 0; i < VariablesVentas.vArrayList_PedidoVenta.size(); i++)
     {
       codigoTmp = 
@@ -1368,15 +1335,15 @@ public class DlgComplementarios1
         cantidad = 
             (String) ((ArrayList) VariablesVentas.vArrayList_PedidoVenta.get(i)).get(4);
         VariablesVentas.vVal_Frac = FarmaUtility.getValueFieldArrayList(VariablesVentas.vArrayList_PedidoVenta,i,10);
-        secRespaldo=(String) ((ArrayList) VariablesVentas.vArrayList_PedidoVenta.get(i)).get(26); //ASOSA, 06.07.2010
+        secRespaldo=(String) ((ArrayList) VariablesVentas.vArrayList_PedidoVenta.get(i)).get(26); // , 06.07.2010
         break;
       }
     }
     /*Boolean valorTmp = 
       (Boolean) (tblProductos.getValueAt(vFila, 0));*/
-    VariablesVentas.secRespStk=""; //ASOSA, 26.08.2010
+    VariablesVentas.secRespStk=""; // , 26.08.2010
     if (indicadorControlStock.equalsIgnoreCase(FarmaConstants.INDICADOR_S) && 
-        /*!UtilityVentas.actualizaStkComprometidoProd(VariablesVentas.vCod_Prod, //ANTES, ASOSA, 02.07.2010
+        /*!UtilityVentas.actualizaStkComprometidoProd(VariablesVentas.vCod_Prod, //ANTES,  , 02.07.2010
                                       Integer.parseInt(cantidad), 
                                       ConstantsVentas.INDICADOR_D, 
                                       ConstantsPtoVenta.TIP_OPERACION_RESPALDO_BORRAR, 
@@ -1384,7 +1351,7 @@ public class DlgComplementarios1
                                                     true,
                                                     this,
                                                     txtProducto))*/
-        !UtilityVentas.operaStkCompProdResp(VariablesVentas.vCod_Prod,   //ASOSA, 02.07.2010
+        !UtilityVentas.operaStkCompProdResp(VariablesVentas.vCod_Prod,   // , 02.07.2010
                                            Integer.parseInt(cantidad),
                                            ConstantsVentas.INDICADOR_D, 
                                            ConstantsPtoVenta.TIP_OPERACION_RESPALDO_BORRAR, 
@@ -1399,7 +1366,7 @@ public class DlgComplementarios1
     FarmaUtility.setCheckValue(tblProductos, false);
     Boolean valor = 
       (Boolean) (tblProductos.getValueAt(vFila, 0));
-    UtilityVentas.operaProductoSeleccionadoEnArrayList_02(valor,VariablesVentas.secRespStk); //ASOSA, 06.07.2010
+    UtilityVentas.operaProductoSeleccionadoEnArrayList_02(valor,VariablesVentas.secRespStk); // , 06.07.2010
     if (VariablesVentas.vArrayList_PedidoVenta.size() == 0)
       VariablesVentas.vIndPedConProdVirtual = false;
     //indicadorItems = FarmaConstants.INDICADOR_N;
@@ -1498,7 +1465,7 @@ public class DlgComplementarios1
 
   /**
    * Coloca el tipo de producto 
-   * @author dubilluz
+   * @author  
    * @since 22.10.2007
    */
   private void muestraIndTipoProd(int pColumna, JLabel pLabel, 
@@ -1537,7 +1504,7 @@ public class DlgComplementarios1
   
   /**
    * Muestra si es producto de Encarte
-   * @author JCORTEZ
+   * @author  
    * @since  08.04.2008
    */
   private void muestraProductoEncarte(int pColumna, JLabel pLabel)
@@ -1561,7 +1528,7 @@ public class DlgComplementarios1
   
   /**
    * se obtiene la informacion del producto complementario
-   * @author JCORTEZ
+   * @author  
    * @since 16.04.2008
    * */
   private void obtieneInfoProdPadreComple(ArrayList pArrayList){
@@ -1581,7 +1548,7 @@ public class DlgComplementarios1
 
   /**
    * Se muestra el tratemiento del producto
-   * @author JCORTEZ
+   * @author  
    * @since 29.05.2008
    */
   private void mostrarTratamiento(){
@@ -1622,42 +1589,7 @@ public class DlgComplementarios1
   private void guardaInfoProdVariables()
   {
     log.debug("*************************************************");
-        if (!UtilityConvenioBTLMF.esActivoConvenioBTLMF(this, null)) {
-            log.debug("*************************************************");
-            if (VariablesVentas.vEsPedidoConvenio &&
-                !VariablesVentas.vIndOrigenProdVta.equals(ConstantsVentas.IND_ORIGEN_OFER)) //Se ha seleccionado un convenio
-     {
-       //String indControlPrecio = "";
-       String mensaje = "";
-       try{
-         //mensaje = "Error al obtener el indicador de control de precio del producto.\n";
-         //indControlPrecio = DBConvenio.obtieneIndPrecioControl(VariablesVentas.vCod_Prod);
-         
-         VariablesConvenio.vVal_Prec_Vta_Local = VariablesVentas.vVal_Prec_Pub;
-         
-         /* 23.01.2007 ERIOS La validacion de realiza por las listas de exclusion */
-         //if(indControlPrecio.equals(FarmaConstants.INDICADOR_N))
-         if(true)
-         {
-           mensaje = "Error al obtener el nuevo precio del producto.\n";
-           VariablesConvenio.vVal_Prec_Vta_Conv = DBConvenio.obtieneNvoPrecioConvenio(VariablesConvenio.vCodConvenio,
-                                                                                      VariablesVentas.vCod_Prod,
-                                                                                      VariablesVentas.vVal_Prec_Pub);
-         }
-         else
-         {
-           
-           VariablesConvenio.vVal_Prec_Vta_Conv = VariablesVentas.vVal_Prec_Pub;
-         }
-       }catch(SQLException sql)
-       {
-         //sql.printStackTrace();
-         log.error(sql);
-         FarmaUtility.showMessage(this,mensaje+sql.getMessage(),null);
-         FarmaUtility.moveFocus(txtProducto);
-       }
-      }
-    }
+      
   }
   
     private boolean validaLoginVendedor()

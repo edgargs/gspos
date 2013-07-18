@@ -9,7 +9,7 @@ package mifarma.ptoventa.controlingreso.reference;
 * Histórico de Creación/Modificación<br>
 * PAMEGHINO      10.10.2007   Creación<br>
 * <br>
-* @author PAULO CESAR AMEGHINO ROJAS<br>
+* @author   CESAR AMEGHINO ROJAS<br>
 * @version 1.0<br>
 *
 */
@@ -40,14 +40,14 @@ public class VariablesControlIngreso
 
  /**
   * Mant Temperatura
-  * @AUTHOR JCORTEZ
+  * @AUTHOR  
   * @SINCE 11.02.09
   * */
     public static int vTipoAccionTemp;
  
     /**
      * Mant Carné Sanidad
-     * @AUTHOR ASOLIS
+     * @AUTHOR  
      * @SINCE 25.02.09
      * */
        public static String vFechaVencCarne="";

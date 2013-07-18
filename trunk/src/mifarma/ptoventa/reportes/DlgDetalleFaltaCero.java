@@ -231,7 +231,7 @@ public class DlgDetalleFaltaCero extends JDialog
     if(e.getKeyCode() == KeyEvent.VK_F5)
     {
      if (FarmaVariables.dlgLogin.verificaRol(FarmaConstants.ROL_SUPERVISOR_VENTAS) ||
-     FarmaVariables.dlgLogin.verificaRol(FarmaConstants.ROL_ADMLOCAL) ) { //JCORTEZ 19.01.10 
+     FarmaVariables.dlgLogin.verificaRol(FarmaConstants.ROL_ADMLOCAL) ) { //  19.01.10 
       if(FarmaUtility.rptaConfirmDialog(this,"¿Está seguro que desea borrar el registro?"))
         borrarRegistro();
      }else{

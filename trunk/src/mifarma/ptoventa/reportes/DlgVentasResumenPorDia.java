@@ -419,14 +419,14 @@ public class DlgVentasResumenPorDia extends JDialog
   }
   /**
    * Modificado para Ordenar por Fecha
-   * @author : dubilluz
+   * @author :  
    * @since  : 28.08.2007
    */
   void muestraVentaPorDiaOrdenar()
   {
     DlgOrdenar dlgOrdenar = new DlgOrdenar(myParentFrame,"Ordenar",true);
     String [] IND_DESCRIP_CAMPO = {"Fecha","No Pedidos","Bol.Ini","Fac.Ini","No.Bol","No.Fac","No.Bol.Anul","No.Fac.Anul","Total"};
-    //Modificado DUBILLUZ
+    //Modificado  
     String [] IND_CAMPO = {/* "0 "*/"9","1","2","3","4","5","6","7","8"};
     System.out.println("Campo " + IND_DESCRIP_CAMPO[1]);
     VariablesReporte.vNombreInHashtable = ConstantsReporte.VNOMBREINHASHTABLERESUMENPORDIA ;

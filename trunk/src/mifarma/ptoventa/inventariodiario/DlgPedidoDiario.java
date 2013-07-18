@@ -291,7 +291,7 @@ public class DlgPedidoDiario extends JDialog {
 
     /**
      * Algoritmo para asignar los trabajadores 
-     * @author dubilluz
+     * @author  
      * @since  15.06.2009
      */
     public void asignarTrabajador(){

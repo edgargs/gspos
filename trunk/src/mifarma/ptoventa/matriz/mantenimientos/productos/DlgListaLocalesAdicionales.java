@@ -37,7 +37,7 @@ import mifarma.ptoventa.matriz.mantenimientos.productos.references.VariablesProd
  * Nombre de la Aplicación : FrmLocales_Matriz.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * DVELIZ      19.08.2008   Creación<br>
+ *        19.08.2008   Creación<br>
  * <br>
  * @author Daniel Fernando Veliz La Rosa<br>
  * @version 1.0<br>

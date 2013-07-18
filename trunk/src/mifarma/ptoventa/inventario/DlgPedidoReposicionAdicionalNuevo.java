@@ -40,7 +40,7 @@ import mifarma.ptoventa.reference.*;
 * Nombre de la Aplicación : DlgPedidoReposicionAdicionalNuevo.java<br>
 * <br>
 * Histórico de Creación/Modificación<br>
-* DVELIZ      10.09.08   Creación<br>
+*        10.09.08   Creación<br>
 * <br>
 * @author Daniel Fernando Veliz La Rosa<br>
 * @version 1.0<br>

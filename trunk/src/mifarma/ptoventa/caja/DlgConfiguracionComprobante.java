@@ -33,8 +33,8 @@ import mifarma.common.DlgLogin;
 import mifarma.ptoventa.caja.reference.ConstantsCaja;
 import mifarma.ptoventa.caja.reference.DBCaja;
 import mifarma.ptoventa.caja.reference.VariablesCaja;
-import oracle.jdeveloper.layout.XYConstraints;
-import oracle.jdeveloper.layout.XYLayout;
+ 
+ 
 
 import com.gs.mifarma.componentes.JLabelFunction;
 import com.gs.mifarma.componentes.JPanelTitle;
@@ -60,7 +60,7 @@ public class DlgConfiguracionComprobante extends JDialog {
 
 	private JLabel lblEtiquetaCajero = new JLabel();
 
-	private XYLayout xYLayout1 = new XYLayout();
+	
 
 	private JLabel lblCajero = new JLabel();
 
@@ -70,11 +70,11 @@ public class DlgConfiguracionComprobante extends JDialog {
 
 	private JButton btnRelacionImpresoras = new JButton();
 
-	private XYLayout xYLayout2 = new XYLayout();
+	 
 
 	private JLabel lblComprobante = new JLabel();
 
-	private XYLayout xYLayout3 = new XYLayout();
+	 
 
 	private JLabel lblGuion = new JLabel();
 
@@ -133,15 +133,15 @@ public class DlgConfiguracionComprobante extends JDialog {
 		jContentPane.setLayout(null);
 		pnlEncabezado.setBounds(new Rectangle(10, 10, 635, 30));
 		pnlEncabezado.setBackground(new Color(43, 141, 39));
-		pnlEncabezado.setLayout(xYLayout1);
+		pnlEncabezado.setLayout(null);
 		pnlEncabezado.setBorder(BorderFactory.createTitledBorder(""));
 		pnlTitulos.setBounds(new Rectangle(10, 45, 635, 25));
 		pnlTitulos.setBackground(new Color(255, 130, 14));
-		pnlTitulos.setLayout(xYLayout2);
+		pnlTitulos. setLayout(null);
 		scrListaImpresoras.setBounds(new Rectangle(10, 70, 635, 110));
 		scrListaImpresoras.setBackground(new Color(255, 130, 14));
 		pnlFooter.setBounds(new Rectangle(10, 180, 635, 30));
-		pnlFooter.setLayout(xYLayout3);
+		pnlFooter. setLayout(null);
 		lblEtiquetaCajero.setText("Cajero:");
 		lblEtiquetaCajero.setFont(new Font("SansSerif", 1, 12));
 		lblEtiquetaCajero.setForeground(Color.white);
@@ -243,17 +243,17 @@ public class DlgConfiguracionComprobante extends JDialog {
 		scrListaImpresoras.getViewport().add(tblListaImpresoras, null);
 		jContentPane.add(scrListaImpresoras, null);
 		jContentPane.add(pnlTitulos, null);
-		pnlFooter.add(btnNumeroComprobante, new XYConstraints(250, 5, 115, 20));
-		pnlFooter.add(cmbSerie, new XYConstraints(370, 5, 75, 20));
-		pnlFooter.add(txtComprobante, new XYConstraints(100, 5, 135, 20));
-		pnlFooter.add(txtNumeroComprobante, new XYConstraints(480, 5, 85, 20));
-		pnlFooter.add(lblGuion, new XYConstraints(460, 5, 10, 20));
-		pnlFooter.add(lblComprobante, new XYConstraints(10, 5, 85, 20));
-		pnlTitulos.add(btnRelacionImpresoras, new XYConstraints(5, 0, 155, 25));
-		pnlEncabezado.add(lblCaja, new XYConstraints(370, -5, 60, 25));
-		pnlEncabezado.add(lblTituloCaja, new XYConstraints(325, -5, 30, 25));
-		pnlEncabezado.add(lblCajero, new XYConstraints(65, 0, 240, 20));
-		pnlEncabezado.add(lblEtiquetaCajero, new XYConstraints(0, -5, 45, 25));
+		pnlFooter.add(btnNumeroComprobante);
+		pnlFooter.add(cmbSerie);
+		pnlFooter.add(txtComprobante);
+		pnlFooter.add(txtNumeroComprobante);
+		pnlFooter.add(lblGuion);
+		pnlFooter.add(lblComprobante);
+		pnlTitulos.add(btnRelacionImpresoras);
+		pnlEncabezado.add(lblCaja);
+		pnlEncabezado.add(lblTituloCaja);
+		pnlEncabezado.add(lblCajero);
+		pnlEncabezado.add(lblEtiquetaCajero);
 		jContentPane.add(pnlEncabezado, null);
 		this.getContentPane().add(jContentPane, BorderLayout.CENTER);
 		this.setDefaultCloseOperation(javax.swing.JFrame.DO_NOTHING_ON_CLOSE);

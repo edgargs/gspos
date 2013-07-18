@@ -45,11 +45,11 @@ import mifarma.ptoventa.caja.reference.VariablesCaja;
 import mifarma.ptoventa.caja.reference.DBCaja;
 import mifarma.ptoventa.caja.reference.UtilityCaja;
 
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.DefaultCategoryDataset;
+ 
+ 
+ 
+ 
+ 
 import javax.swing.JFrame;
 
 import mifarma.ptoventa.ce.reference.DBCajaElectronica;
@@ -322,7 +322,7 @@ public class DlgNuevoRemito extends JDialog
     FarmaUtility.initSimpleList(tblSobres,tableModeSobres,ConstantsCaja.columnsListaSobresDet);
     //listarFechaVentas();
     
-    if(listar()) listaSobres(""); //ASOSA, 22.04.2010
+    if(listar()) listaSobres(""); // , 22.04.2010
     
     if(tblLista.getRowCount()>-1){
     lblTotalDolares.setText(FarmaUtility.formatNumber(FarmaUtility.sumColumTable(tblSobres,8), 2));
@@ -331,7 +331,7 @@ public class DlgNuevoRemito extends JDialog
       lblCantS.setText(FarmaUtility.formatNumber(FarmaUtility.sumColumTable(tblSobres,9), 0));
     }
     
-    // dubilluz 09.05.2012
+    //   09.05.2012
     if(UtilityCajaElectronica.getIndImpreRemito_Matricial()){
         lblPrecinto.setVisible(true);
         txtPrecinto.setVisible(true);
@@ -572,8 +572,8 @@ public class DlgNuevoRemito extends JDialog
              VariablesCaja.NumRemito = txtNumRemito.getText().trim();
              String vPrecinto = txtPrecinto.getText().trim();
           //DBCaja.AsignarRemito(VariablesCaja.vArrayFechasSeleccinadas);
-         DBCajaElectronica.agregaRemito_AS(VariablesCaja.NumRemito,VariablesCaja.vArrayFechasSeleccinadas,vPrecinto); //INI ASOSA, 22.04.2010
-         DBCajaElectronica.saveHistorialRemito(VariablesCaja.NumRemito); //FIN ASOSA, 22.04.2010
+         DBCajaElectronica.agregaRemito_AS(VariablesCaja.NumRemito,VariablesCaja.vArrayFechasSeleccinadas,vPrecinto); //INI  , 22.04.2010
+         DBCajaElectronica.saveHistorialRemito(VariablesCaja.NumRemito); //FIN  , 22.04.2010
           //DBAdministracion.AsignarLocales(VariablesAdministracion.vArrayLocalesRelacionadosInactivos);
           FarmaUtility.aceptarTransaccion();
           //FarmaUtility.showMessage(this, "Se asignó las fechas al nuevo remito con éxito", txtNumRemito);
@@ -675,7 +675,7 @@ public class DlgNuevoRemito extends JDialog
         try
         {
          //DBCaja.getSobresFecNuevoRemito(tableModeSobres,Fecha);
-            DBCajaElectronica.getLISTA_SOBRE_AS(tableModeSobres,Fecha); //ASOSA, 22.04.2010
+            DBCajaElectronica.getLISTA_SOBRE_AS(tableModeSobres,Fecha); // , 22.04.2010
             if(tblSobres.getRowCount()>0)
             FarmaUtility.ordenar(tblSobres,tableModeSobres,0,FarmaConstants.ORDEN_ASCENDENTE);
         }catch(SQLException sql)
@@ -696,7 +696,7 @@ public class DlgNuevoRemito extends JDialog
     
     /**
      * determina si se debe o no listar los sobres.
-     * @author ASOSA
+     * @author  
      * @since 22.04.2010
      * @return
      */

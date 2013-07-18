@@ -246,7 +246,7 @@ public class DlgListaCajas extends JDialog {
       }
           } else if (e.getKeyCode() == KeyEvent.VK_F5) {
               
-        //JCORTEZ 17.03.09
+        //  17.03.09
         VariablesCajas.vNumCaja = tblListaCajas.getValueAt(tblListaCajas.getSelectedRow(), 0).toString().trim();  
             DlgCajasImpresoras dlgCajasImpresoras = new DlgCajasImpresoras(this.myParentFrame, "", true);
               dlgCajasImpresoras.setVisible(true); 

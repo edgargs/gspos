@@ -565,7 +565,7 @@ public class DlgDatosCuadratura
         {
           
           // Se validara si la cuadratura debe de ingresar obligatoriamente motivo
-          // dubilluz 01/12/2008 
+          //   01/12/2008 
           if(!ingresaMotivoCuadratura(VariablesCajaElectronica.vCodCuadratura))
             return; 
           

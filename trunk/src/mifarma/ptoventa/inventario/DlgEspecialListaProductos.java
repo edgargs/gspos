@@ -47,7 +47,7 @@ import mifarma.ptoventa.ventas.reference.UtilityVentas;
  * Nombre de la Aplicación : DlgEspecialListaProductos.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JCORTEZ      09.09.2008   Creación<br>
+ *        09.09.2008   Creación<br>
  * <br>
  * @author Jorge Cortez Alvarez<br>
  * @version 1.0<br>
@@ -200,7 +200,7 @@ private JButtonLabel lblCantProd_T = null;
 
   private void initTable()
   {
-    //Modificado por DVELIZ 18.10.08
+    //Modificado por   18.10.08
     /*VariablesInventario.tableModelEspecial = new FarmaTableModel(ConstantsInventario.columnsListaProductosEspeciales,
                 ConstantsInventario.defaultValuesListaProductosEspeciales,0);*/
     //tableModel.data = VariablesVentas.tableModelListaGlobalProductos.data;
@@ -215,7 +215,7 @@ private JButtonLabel lblCantProd_T = null;
     //cargaListaProductos();
   }
   
-  //Modificado por DVELIZ 18.10.08
+  //Modificado por   18.10.08
   /*
   private void cargaListaProductos()
   {
@@ -290,7 +290,7 @@ private JButtonLabel lblCantProd_T = null;
            }
            
            
-           //JCORTEZ 23.07.2008
+           //  23.07.2008
              ///if (productoBuscar.equalsIgnoreCase("000000")&&UtilityVentas.esCupon(productoBuscar,this,txtProducto)) {
              if (productoBuscar.equalsIgnoreCase("000000")) {
                FarmaUtility.showMessage(this, "No existe producto relacionado con el Codigo de Barra. Verifique!!!", txtBuscar);
@@ -509,7 +509,7 @@ private JButtonLabel lblCantProd_T = null;
   }
   
   /**
-   * @author jcallo
+   * @author  
    * @since  16.10.2008
    * **/
   private void cargaProductosSeleccionados()
@@ -605,7 +605,7 @@ private JButtonLabel lblCantProd_T = null;
   /**
    * Se validara que la cantidad de items ingresados no sean mayores del 
    * parametrizado para el local
-   * @author dubilluz
+   * @author  
    * @since  22.09.2008
    */
   private boolean validaItemPedEspecial(int pTipoValidacion){
@@ -675,11 +675,11 @@ private JButtonLabel getLblCantProd() {
     
     /**
      * realiza la funcion F11
-     * @auhtor DVELIZ
+     * @auhtor  
      * @since  18.10.08
      */
     public void funcion_F11(){
-        //add jcallo validacion de que se especifique al menos un producto por pedido
+        //add   validacion de que se especifique al menos un producto por pedido
         if(VariablesInventario.vArrayListaProdsEsp.size()<1){
             FarmaUtility.showMessage(this, 
                                      "Seleccione los productos del pedido. !",

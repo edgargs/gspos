@@ -214,10 +214,10 @@ public class DlgModNroComp extends JDialog
 
   private void txtNroComprobante_keyPressed(KeyEvent e){
     if(e.getKeyCode()==KeyEvent.VK_ENTER)
-    {// Adicion Paulo
+    {// Adicion  
      //txtNroComprobante.setText(FarmaUtility.caracterIzquierda(txtNroComprobante.getText().trim(),7,"0"));
      FarmaUtility.moveFocus(txtCantidad);
-     //Fin Adicion Paulo
+     //Fin Adicion  
     }
         chkKeyPressed(e);
   }
@@ -229,9 +229,9 @@ public class DlgModNroComp extends JDialog
   private void txtCantidad_keyPressed(KeyEvent e)
     {
     if(e.getKeyCode()==KeyEvent.VK_ENTER)
-    {// Adicion Paulo
+    {// Adicion  
      FarmaUtility.moveFocus(cmbCambioFormatoImp);
-     //Fin Adicion Paulo
+     //Fin Adicion  
     }
         chkKeyPressed(e);   
     }
@@ -258,10 +258,10 @@ public class DlgModNroComp extends JDialog
                 {
                     //VariablesCaja.vNumCompImprimir = VariablesCaja.vNumComp.substring(0, 3) + txtNroComprobante.getText().trim();
                     //System.out.println("VariablesCaja.vNumCompImprimir(corregido)=" + VariablesCaja.vNumCompImprimir);
-                    //inicio Adicion Paulo
+                    //inicio Adicion  
                     VariablesInventario.vCant = txtCantidad.getText().trim();
                     System.out.println("VariablesInventario.vCant : " + VariablesInventario.vCant);
-                    //Fin Adicion Paulo
+                    //Fin Adicion  
                     if(guardarNumComp())
                     cerrarVentana(true);
                 }
@@ -310,13 +310,13 @@ public class DlgModNroComp extends JDialog
             rpta = false;
             FarmaUtility.showMessage(this, "Debe ingresar un Numero de Comprobante ", txtNroComprobante);
         }
-        //Adicion Paulo
+        //Adicion  
         if(!FarmaUtility.isInteger(cantidad) || Integer.parseInt(cantidad) < 0 )
         {
             FarmaUtility.showMessage(this, "Ingrese una cantidad valida", txtCantidad);
             return false;
         }
-        //Fin Adicion Paulo
+        //Fin Adicion  
         return rpta;
     }
     

@@ -52,7 +52,7 @@ package mifarma.ptoventa.campAcumulada;
  * Nombre de la Aplicación : DlgListaLocalesMot.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JCALLO      15.12.2008   Creación<br>
+ *        15.12.2008   Creación<br>
  * <br>
  * @author Javier Callo Quispe<br>
  * @version 1.0<br>
@@ -569,7 +569,7 @@ package mifarma.ptoventa.campAcumulada;
                                             VariablesCampAcumulada.vListaCampanias);
                     
                     /**para actualizar la informacion del cliente***/
-                    // DUBILLUZ 15.05.2009
+                    //   15.05.2009
                     setDatosCliente();
                     /*
                     VariablesFidelizacion.vApeMatCliente = VariablesCampAcumulada.vApeMatCliente;
@@ -600,7 +600,7 @@ package mifarma.ptoventa.campAcumulada;
                         
                         VariablesFidelizacion.vNumTarjeta = VariablesCampAcumulada.vNroTarjeta;
                         
-                        // DUBILLUZ 15.05.2009
+                        //   15.05.2009
                         setDatosCliente();
                         /*
                         VariablesFidelizacion.vApeMatCliente = VariablesCampAcumulada.vApeMatCliente;
@@ -631,7 +631,7 @@ package mifarma.ptoventa.campAcumulada;
                             //asignar el numero de tarjeta del cliente en la clase de VariablesFidelizacion.vNumTarjeta
                             VariablesFidelizacion.vNumTarjeta = VariablesCampAcumulada.vNroTarjeta;
                             
-                            // DUBILLUZ 15.05.2009
+                            //   15.05.2009
                             setDatosCliente();
                             /*
                             VariablesFidelizacion.vApeMatCliente = VariablesCampAcumulada.vApeMatCliente;
@@ -704,7 +704,7 @@ package mifarma.ptoventa.campAcumulada;
              }
          }
             
-         /**JCALLO quitar de las campañas totales en las que este el cliente**/
+         /**  quitar de las campañas totales en las que este el cliente**/
          String cod_camp = "";        
          for(int i=0; i < tableModelInsc.getRowCount() ; i++){//campañas del cliente
              cod_camp = tableModelInsc.getValueAt(i,COL_COD_CAMP-1).toString().trim();
@@ -721,7 +721,7 @@ package mifarma.ptoventa.campAcumulada;
              tblCampAcumuInscritos.clearSelection();             
          }
          
-         /**JCALLO fin quitar de las campañas totales en las que este el cliente**/
+         /**  fin quitar de las campañas totales en las que este el cliente**/
          
          /**LIMPIA ALGUNAS VARIABLES**/
          if(tableModelDisp.getRowCount()>0){
@@ -979,7 +979,7 @@ package mifarma.ptoventa.campAcumulada;
                                                     VariablesCampAcumulada.vListaCampanias);
                             
                             /**para actualizar la informacion del cliente***/
-                            // DUBILLUZ 15.05.2009
+                            //   15.05.2009
                             setDatosCliente();
                             /*
                             VariablesFidelizacion.vApeMatCliente = VariablesCampAcumulada.vApeMatCliente;
@@ -1009,7 +1009,7 @@ package mifarma.ptoventa.campAcumulada;
                                                         VariablesCampAcumulada.vListaCampanias);
                                 
                                 VariablesFidelizacion.vNumTarjeta = VariablesCampAcumulada.vNroTarjeta;
-                                // DUBILLUZ 15.05.2009
+                                //   15.05.2009
                                 setDatosCliente();
                                 /*
                                 VariablesFidelizacion.vApeMatCliente = VariablesCampAcumulada.vApeMatCliente;
@@ -1041,7 +1041,7 @@ package mifarma.ptoventa.campAcumulada;
                                     //asignar el numero de tarjeta del cliente en la clase de VariablesFidelizacion.vNumTarjeta
                                     VariablesFidelizacion.vNumTarjeta = VariablesCampAcumulada.vNroTarjeta;
                                     
-                                    // DUBILLUZ 15.05.2009
+                                    //   15.05.2009
                                     setDatosCliente();
                                     /*
                                     VariablesFidelizacion.vApeMatCliente = VariablesCampAcumulada.vApeMatCliente;
@@ -1098,7 +1098,7 @@ package mifarma.ptoventa.campAcumulada;
     /**
      * Coloca los valores de los clientes inscritos o que se obtuvo de 
      * la campaña acumulada
-     * @author Dubilluz
+     * @author  
      * @since  15.05.2009
      */
     private void setDatosCliente(){

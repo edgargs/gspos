@@ -60,8 +60,8 @@ import mifarma.ptoventa.ventas.reference.VariablesVentas;
 import mifarma.ptoventa.ventas.DlgListaProductos;
 import mifarma.ptoventa.ventas.reference.DBVentas;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DlgConteoRecepMercaderia extends JDialog {
     private Frame myParentFrame;
@@ -71,7 +71,7 @@ public class DlgConteoRecepMercaderia extends JDialog {
     private JTable tblRelacionProductosConteo = new JTable();
     private JTable myJTable;
     
-    private static final Log log = LogFactory.getLog(DlgConteoRecepMercaderia.class);
+    private static final Logger log = LoggerFactory.getLogger(DlgConteoRecepMercaderia.class);
     
     private JPanelWhite jContentPane = new JPanelWhite();
     private BorderLayout borderLayout1 = new BorderLayout();
@@ -303,7 +303,7 @@ public class DlgConteoRecepMercaderia extends JDialog {
     private void chkKeyPressed(KeyEvent e) {
         
         //if(e.getKeyCode() == KeyEvent.VK_ENTER)
-        // dubilluz - 04.12.2009
+        //   - 04.12.2009
         /*
          * if(e.getKeyChar() == '+')
         {
@@ -361,7 +361,7 @@ public class DlgConteoRecepMercaderia extends JDialog {
         
     //valida el codBarra
     if (e.getKeyCode() == KeyEvent.VK_ENTER) {    
-        //dubilluz - 04.12.2009
+        //  - 04.12.2009
        // if(!VariablesRecepCiega.vIndFocoTablaConteo){
            e.consume();
            
@@ -399,7 +399,7 @@ public class DlgConteoRecepMercaderia extends JDialog {
                
     } 
     /*
-     * dubilluz  - 04.12.2009
+     *    - 04.12.2009
      * else if(e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_UP){
         VariablesRecepCiega.vIndFocoTablaConteo = true;
         FarmaUtility.moveFocus(tblRelacionProductosConteo);        
@@ -473,7 +473,7 @@ public class DlgConteoRecepMercaderia extends JDialog {
                            VariablesRecepCiega.vIndNoFound);
 
         //VariablesRecepCiega.vIndModificarCant = false;
-        //JMIRANDA 25.11.09 Se comenta para ingreso automatico
+        //  25.11.09 Se comenta para ingreso automatico
         VariablesRecepCiega.vLastCant = "1";
         //Ingreso Cantidad del Codigo de Barra Barrido           
         //mostrarIngresoCantPrimerConteo();
@@ -505,7 +505,7 @@ public class DlgConteoRecepMercaderia extends JDialog {
                 catch(SQLException sql){
                     //error
                     sql.printStackTrace();
-                    log.error(sql);
+                     log.error("",sql);
         
                  }
                 */
@@ -521,7 +521,7 @@ public class DlgConteoRecepMercaderia extends JDialog {
                                  FarmaConstants.ORDEN_DESCENDENTE);
             tblRelacionProductosConteo.repaint(); //pinta tabla ordenada
             if (VariablesRecepCiega.vIndNoFound.trim().equalsIgnoreCase("S")) {
-                //Agregar Mensaje Email JMIRANDA 26.11.09
+                //Agregar Mensaje Email   26.11.09
                 DBRecepCiega.enviaErrorCorreoPorDB(null, 
                                                    VariablesRecepCiega.vSecRecepGuia);
                 FarmaUtility.showMessage(this, 
@@ -544,8 +544,8 @@ public class DlgConteoRecepMercaderia extends JDialog {
         } catch (SQLException sql) {
             //error
             sql.printStackTrace();
-            log.error(sql);
-            //DUBILLUZ  - 14.01.2010
+             log.error("",sql);
+            //   - 14.01.2010
             FarmaUtility.liberarTransaccion();
             FarmaUtility.showMessage(this, 
                                      "Error al momento de agregar el código de barra.\n" +
@@ -557,7 +557,7 @@ public class DlgConteoRecepMercaderia extends JDialog {
 
     private void txtBuscar_keyTyped(KeyEvent e) {        
         FarmaUtility.admitirDigitos(txtBuscar,e);
-        //dubilluz - 04.12.2009
+        //  - 04.12.2009
         /*
         if(txtBuscar.getText().trim().length()>15){
             FarmaUtility.showMessage(this,"Cantidad Fuera de límite!",txtBuscar);
@@ -762,7 +762,7 @@ public class DlgConteoRecepMercaderia extends JDialog {
        //myJTable.repaint();*/
       
       
-      //dubilluz - 04.12.2009 
+      //  - 04.12.2009 
       setJTable(tblRelacionProductosConteo,txtBuscar);
     }
     
@@ -779,7 +779,7 @@ public class DlgConteoRecepMercaderia extends JDialog {
          rpta = DBRecepCiega.obtieneEstadoRecepCiega(pSecRecepCiega); 
         }catch(SQLException sql){
             sql.printStackTrace();
-            log.error(sql);
+             log.error("",sql);
             FarmaUtility.liberarTransaccion();
             FarmaUtility.showMessage(this, 
                                      "Error al obtener el estado de la Recepción.\n" +
@@ -803,7 +803,7 @@ public class DlgConteoRecepMercaderia extends JDialog {
    
     private void tblRelacionProductosConteo_keyPressed(KeyEvent e)
     {   
-        /* dubilluz - 04.12.2009
+        /*   - 04.12.2009
         if(e.getKeyCode() == KeyEvent.VK_ENTER)
         {
           e.consume();
@@ -814,7 +814,7 @@ public class DlgConteoRecepMercaderia extends JDialog {
         }
         */
         /*
-         * dubilluz - 04.12.2009
+         *   - 04.12.2009
         else if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT){
             VariablesRecepCiega.vIndFocoTablaConteo = false;
             FarmaUtility.moveFocus(txtBuscar);             
@@ -1009,7 +1009,7 @@ public class DlgConteoRecepMercaderia extends JDialog {
                 }
             } catch (SQLException sql) {
                 sql.printStackTrace();
-                log.error(sql);
+                 log.error("",sql);
                 FarmaUtility.liberarTransaccion();
                 FarmaUtility.showMessage(this, 
                                          "Error al momento de finalizar conteo.\n" +

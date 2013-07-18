@@ -37,7 +37,7 @@ public class VariablesVentas
   public static String vPorc_Dcto_1 = "";
   /**
    * Para el descuento del Producto de Promocion
-   * @author dubilluz
+   * @author  
    * @since  02.07.2007
    */
   public static String vPorc_Dcto_2 = "";
@@ -51,8 +51,8 @@ public class VariablesVentas
   public static String vPorc_Igv_Prod = "";
   public static String vEst_Ped_Vta_Cab = "";
   public static String vInd_Prod_Habil_Vta = "S";
-  public static String vAhorroPack = ""; //JCHAVEZ 20102009
-  public static String vInd_Origen_Prod_Prom = "";//JCHAVEZ 20102009
+  public static String vAhorroPack = ""; //  20102009
+  public static String vInd_Origen_Prod_Prom = "";//  20102009
   /**
    * Se indica el origen del producto: sustitutos, alternativos, etc.
    * @author Edgar Rios Navarro
@@ -76,13 +76,13 @@ public class VariablesVentas
   public static ArrayList vArrayList_Medicos = new ArrayList();
  /**
   * Array para las Promociones
-  * @author : dubilluz
+  * @author :  
   * @since  : 15.06.2007
   */
   public static ArrayList vArrayList_Prod_Promociones = new ArrayList();
  /**
   * Variables  para las Promociones
-  * @author : dubilluz
+  * @author :  
   * @since  : 15.06.2007
   */
   /* ************************************************************************* */
@@ -197,7 +197,7 @@ public class VariablesVentas
    public static String vCodProdFiltro="";
    /**
    * Variable para ver la Accion
-   * @author : dubilluz
+   * @author :  
    * @since  : 25.06.2007
    */
   public static String vCantidad = "";  
@@ -215,7 +215,7 @@ public class VariablesVentas
 
   /**
     * Variables  para las Promociones
-    * @author : dubilluz
+    * @author :  
     * @since  : 15.06.2007
     */
   public static String vCod_Prom= "";
@@ -238,7 +238,7 @@ public class VariablesVentas
  
   /**
    * Temporales para el dlgListaProductos
-   * @author : dubilluz
+   * @author :  
    * @since  : 04.07.2007
    */
   public static ArrayList vArrayList_Promociones_temporal      = new ArrayList();
@@ -248,7 +248,7 @@ public class VariablesVentas
   
   /**
    * Array para los datos de Producto de Tarjeta Virtual
-   * @author : dubilluz
+   * @author :  
    * @since  : 29/08/2007
    */
   public static ArrayList vArrayList_Prod_Tarjeta_Virtual      =  new ArrayList(); 
@@ -257,14 +257,14 @@ public class VariablesVentas
   
   /**
    * Codigo de promocion del detalle del pedido
-   * @author dubilluz
+   * @author  
    * @since  28.02.2008
    */  
   public static String vCodPromoDet = "";  
   
   /**
    * Descripcion de la Promocion
-   * @author JCORTEZ
+   * @author  
    * @since  08.04.2008
    */  
   public static String vDescProm = "";
@@ -278,7 +278,7 @@ public class VariablesVentas
   
   /**
    * Variables para productos de regalo y cupones de sorteo
-   * @author dubilluz 
+   * @author   
    * @since  09.04.2008
    */
   public static  String  vCodProd_Regalo  = ""; 
@@ -293,7 +293,7 @@ public class VariablesVentas
   
   /**
    * Codigo de producto para el listado de productos complementarios
-   * @author JCORTEZ
+   * @author  
    * @since 09.04.2008
    */
   public static String vCodProdOrigen_Comple1 = ""; 
@@ -302,7 +302,7 @@ public class VariablesVentas
   /**
    * Variable para verificar si se direccionara a la ventana 
    * de resumen de pedido
-   * @author dubilluz
+   * @author  
    * @since  11.04.2008
    */
   public static boolean vIndDireccionarResumenPed = false;
@@ -310,7 +310,7 @@ public class VariablesVentas
   
   /**
    * Variable para la busqueda de productos desde Resumen Pedido
-   * @author dubilluz
+   * @author  
    * @since  15.04.2008
    */
   public static KeyEvent vKeyPress = null;
@@ -319,7 +319,7 @@ public class VariablesVentas
   
    /**
    * Variable para el tipo de filtro desde resumen de pedido (Encarte,Cupon)
-   * @author JCORTEZ
+   * @author  
    * @since  07.04.2008
    */
   public static String vCodFiltro="";
@@ -328,7 +328,7 @@ public class VariablesVentas
   
   /**
    * Variable para busqueda del producto desde el resumen
-   * @author JCORTEZ
+   * @author  
    * @since  25.04.2008
    */
   public static String vCodProdBusq="";
@@ -344,7 +344,7 @@ public class VariablesVentas
   
   /**
    * venta sugerida
-   * @author JCORTEZ
+   * @author  
    * @since  29.05.2008
    */
    public static String vVal_Frac_Sug = "";
@@ -360,7 +360,7 @@ public class VariablesVentas
    public static String vCant_Vta= "";
    public static String vTotal_Vta = "";
   
-  //--  Añadido DUBILLUZ
+  //--  Añadido  
   public static String vCantxDia= "";
   public static String vCantxDias = "";
 
@@ -374,31 +374,31 @@ public class VariablesVentas
   public static ArrayList vArrayList_Cupones = new ArrayList();
   
   /**
-   * @author JCORTEZ
+   * @author  
    * @since 16.07.2008
    */
   public static String vIndZan = "";
   
   /**
-   * @author JCORTEZ
+   * @author  
    * @since 23.07.2008
    */
   public static String vMensCuponIngre = "";
   
   
   /**
-   * @autoror JCALLO
+   * @autoror  
    * @since 01.10.2008
    */
   public static String HabilitarF9 = "";
   
   
   /**
-   * @Author Dveliz
+   * @Author  
    * @since  09.10.08
    * 
    */
-   // 19.02.2009 DUBILLUZ
+   // 19.02.2009  
   //public static ArrayList vActDctoDetPedVta;
   public static ArrayList vResumenActDctoDetPedVta;
   
@@ -419,7 +419,7 @@ public class VariablesVentas
   public static boolean vIndObligaDatosCliente = false;
   
   /**
-   * @author JCALLO 
+   * @author   
    * @since  11.03.2009
    * */
   public static List vList_CuponesNoUsados = new ArrayList();
@@ -428,11 +428,11 @@ public class VariablesVentas
   
   public static String vIndVtaDebCostoProm = "S";//por defecto se esya poniendo que permita vender por debajo del costo promedio
   
-   //mfajardo 29/04/09 validar ingreso de productos virtuales
+   //  29/04/09 validar ingreso de productos virtuales
    public static boolean vProductoVirtual = false;
    
   
-  //JCORTEZ 04.08.09 
+  //  04.08.09 
   //datos para la carga de cupones posibles a usar.
    public static String dniListCupon = "";
     public static String codCupon = "";
@@ -440,16 +440,16 @@ public class VariablesVentas
     public static ArrayList vArrayListCuponesCliente = new ArrayList(); 
     public static int cPos = 0;
     
-  // JMIRANDA 18/09/2009
+  //   18/09/2009
     public static boolean bIndCodBarra = true;
     public static String vIndCodBarra = "";
     public static boolean vIndEsCodBarra = true;  
     public static String vIndSolIdUsu = "";
     public static boolean bIndSolIdUsu = true;
     
-    public static String vIndAplicaRedondeo = "";  //JCHAVEZ 29102009
+    public static String vIndAplicaRedondeo = "";  //  29102009
     
-    //ASOSA 03/02/2010
+    //  03/02/2010
     //Variable para identificar que se hizo escape a la ventana de precios para el cliente
     public static String vIndPrecioCabeCliente="N";
     
@@ -462,13 +462,13 @@ public class VariablesVentas
     //nueva posicion del producto en la tabla de lista de productos
     public static int vPosNew=0;
     
-    //ASOSA, 01.07.2010
+    // , 01.07.2010
     public static String secRespStk="";
       
-    //JMIRANDA 02.10.2010
+    //  02.10.2010
     public static String vCodProdDCI="";
     
-    //JMIRANDA 22.08.2011
+    //  22.08.2011
     public static String vNumPedVta_new = "";
     public static String vMontoNeto_new = "";
     

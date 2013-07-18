@@ -46,7 +46,7 @@ import mifarma.ptoventa.reference.ConstantsPtoVenta;
  * Nombre de la Aplicación : DlgDetalleGuia.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JCORTEZ 16.11.2009 Creación<br>
+ *   16.11.2009 Creación<br>
  * <br>
  *
  * @author JORGE CORTEZ ALVAREZ<br>

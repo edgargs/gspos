@@ -39,8 +39,8 @@ import java.awt.event.FocusEvent;
 import mifarma.ptoventa.caja.DlgProcesarCobro;
 import mifarma.ptoventa.cliente.reference.ConstantsCliente;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Copyright (c) 2006 MIFARMA S.A.C.<br>
@@ -63,7 +63,7 @@ public class DlgTransferenciasTransporte extends JDialog
 
   Frame myParentFrame;
   FarmaTableModel tableModel;
-    private static final Log log = LogFactory.getLog(DlgTransferenciasTransporte.class);
+    private static final Logger log = LoggerFactory.getLogger(DlgTransferenciasTransporte.class);
   
   private BorderLayout borderLayout1 = new BorderLayout();
   private JPanelWhite jContentPane = new JPanelWhite();
@@ -399,7 +399,7 @@ public class DlgTransferenciasTransporte extends JDialog
     FarmaLoadCVL.loadCVLFromSP(cmbTipo,ConstantsInventario.NOM_HASHTABLE_CMBTIPO_TRANSF,"PTOVENTA_INV.INV_GET_TIPO_TRANSFERENCIA",parametros, false); 
     parametros = null;
   }
- //Agregado por Paulo motivos de transferencia interno 
+ //Agregado por   motivos de transferencia interno 
   private void initCmbMotivoInterno()
   {
     cmbDefinicion.removeAllItems();
@@ -617,7 +617,7 @@ public class DlgTransferenciasTransporte extends JDialog
         /**
          * Consultara si Habilita el texto de Fraccion
          * de acuerdo al motivo , esta consulta se hace con base de datos
-         * @author dubilluz
+         * @author  
          * @since  15.10.2007
          */
         consultamotivo(); 
@@ -773,7 +773,7 @@ public class DlgTransferenciasTransporte extends JDialog
     else VariablesInventario.vMotivo_Transf_Interno = "" ;
     VariablesInventario.vMotivo_Transf = FarmaLoadCVL.getCVLCode(ConstantsInventario.NOM_HASHTABLE_CMBMOTIVO_TRANSF,cmbMotivo.getSelectedIndex());
     log.error("vMotivoTransf: "+VariablesInventario.vMotivo_Transf);
-    //JMIRANDA 10.12.09
+    //  10.12.09
     // nombre MOTIVO transf larga
     VariablesInventario.vDescMotivo_Transf = FarmaLoadCVL.getCVLDescription(ConstantsInventario.NOM_HASHTABLE_CMBMOTIVO_TRANSF,VariablesInventario.vMotivo_Transf);          
     VariablesInventario.vDescMotivo_Transf_Larga = obtieneDescripcionLarga(VariablesInventario.vMotivo_Transf.trim(),VariablesInventario.vDescMotivo_Transf.trim());
@@ -862,7 +862,7 @@ public class DlgTransferenciasTransporte extends JDialog
   
   /**
    * obtiene el valor para poder saber si se habilitara el Text de Fraccion
-   * @author dubilluz
+   * @author  
    * @since  15.10.2007
    */
   public void consultamotivo()
@@ -886,7 +886,7 @@ public class DlgTransferenciasTransporte extends JDialog
   
   /**
    * OBTIENE DESCRIPCION LARGA DE MOTIVO DE TRANSFERENCIA
-   * JMIRANDA 10.12.09
+   *   10.12.09
    */
   public String obtieneDescripcionLarga (String pLlaveTabGral, String pDescCorta) {
       String vDescLarga = "";

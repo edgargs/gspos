@@ -55,7 +55,7 @@ import mifarma.ptoventa.ventas.reference.VariablesVentas;
  * Nombre de la Aplicación : DlgListaProdEspecialMatriz.java<br>
  * <br>
  * Histórico de Creación/Modificación<br>
- * JCORTEZ   04.01.10   Creación<br>
+ *     04.01.10   Creación<br>
  * <br>
  * @author JORGE CORTEZ ALVAREZ<br>
  * @version 1.0<br>
@@ -236,7 +236,7 @@ private JButtonLabel lblCantProd_T = null;
 
   private void initTable()
   {
-      System.out.println("::::JCORTEZ:::::CARGA PRODUCTOS ESPECIALES");
+      System.out.println(":::: :::::CARGA PRODUCTOS ESPECIALES");
       tblListaProductos.getTableHeader().setReorderingAllowed(false);
       tblListaProductos.getTableHeader().setResizingAllowed(false);
     FarmaUtility.initSelectList(tblListaProductos,VariablesProducto.tableModelEspecialMatriz,
@@ -523,7 +523,7 @@ private JButtonLabel lblCantProd_T = null;
    ***/
   private void cargaProductosSeleccionados()
   {
-      System.out.println(":::::JCORTEZ:::CARGANDO SELECCIONADOS");  
+      System.out.println("::::: :::CARGANDO SELECCIONADOS");  
     if(VariablesProducto.vArrayProductosEspeciales.size()>0)
     {
         VariablesProducto.vArrayListaProdsEsp.clear();

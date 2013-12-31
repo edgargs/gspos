@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mifarma.ptoventa.recaudacion.dao.MapperRecaudacion">
+
+<resultMap type="mifarma.ptoventa.reference.BeanResultado" id="resultado">
+    <result property="strResultado" column="RESULTADO"/>
+</resultMap>
+
+</mapper>

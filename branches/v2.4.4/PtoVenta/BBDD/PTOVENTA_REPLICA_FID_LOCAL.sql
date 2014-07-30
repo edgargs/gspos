@@ -1,0 +1,52 @@
+--------------------------------------------------------
+--  DDL for Package PTOVENTA_REPLICA_FID_LOCAL
+--------------------------------------------------------
+
+  CREATE OR REPLACE PACKAGE "PTOVENTA"."PTOVENTA_REPLICA_FID_LOCAL" AS
+  TYPE FarmaCursor IS REF CURSOR;
+  V_USER VARCHAR2(15) := 'SP_AUT_REP';
+
+  /*******************************************************************/
+  /* JMIRANDA 20.07.2011
+     PROCESO QUE INICIA REPLICACION */
+  PROCEDURE SP_INICIA_REPLICA_LOCAL(COD_GRUPO_CIA_IN CHAR DEFAULT '001');
+
+  /*******************************************************************/
+  PROCEDURE SP_TRAE_LOCALES(COD_GRUPO_CIA_IN IN CHAR, COD_LOCAL_IN IN CHAR);
+
+  /*******************************************************************/
+  PROCEDURE SP_LLEVA_LOCALES(COD_GRUPO_CIA_IN IN CHAR, COD_LOCAL_IN IN CHAR);
+
+  /*******************************************************************/
+  /* JMIRANDA 20.07.2011
+     Trae tablas de Locales a Matriz */
+  PROCEDURE SP_GET_TABLA_1(COD_GRUPO_CIA_IN IN CHAR, COD_LOCAL_IN IN CHAR);
+
+  PROCEDURE SP_GET_TABLA_2(COD_GRUPO_CIA_IN IN CHAR, COD_LOCAL_IN IN CHAR);
+
+  PROCEDURE SP_GET_TABLA_3(COD_GRUPO_CIA_IN IN CHAR, COD_LOCAL_IN IN CHAR);
+
+  PROCEDURE SP_GET_TABLA_4(COD_GRUPO_CIA_IN IN CHAR, COD_LOCAL_IN IN CHAR);
+
+  PROCEDURE SP_GET_TABLA_5(COD_GRUPO_CIA_IN IN CHAR, COD_LOCAL_IN IN CHAR);
+
+  /*******************************************************************/
+  /* JMIRANDA 20.07.2011
+     Lleva tablas de Matriz a Locales*/
+
+  PROCEDURE SP_SET_TABLA_1(COD_GRUPO_CIA_IN IN CHAR, COD_LOCAL_IN IN CHAR);
+
+  PROCEDURE SP_SET_TABLA_2(COD_GRUPO_CIA_IN IN CHAR, COD_LOCAL_IN IN CHAR);
+
+  PROCEDURE SP_SET_TABLA_3(COD_GRUPO_CIA_IN IN CHAR, COD_LOCAL_IN IN CHAR);
+
+  PROCEDURE SP_SET_TABLA_4(COD_GRUPO_CIA_IN IN CHAR, COD_LOCAL_IN IN CHAR);
+
+  PROCEDURE SP_SET_TABLA_5(COD_GRUPO_CIA_IN IN CHAR, COD_LOCAL_IN IN CHAR);
+
+  PROCEDURE SP_SET_TABLA_6(COD_GRUPO_CIA_IN IN CHAR, COD_LOCAL_IN IN CHAR);
+
+
+END PTOVENTA_REPLICA_FID_LOCAL;
+
+/

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<project name="FarmaVenta" default="jar">
+  
+  <property name="classes" location="classes"/>
+  <property name="lib" location="lib"/>
+  <property name="src" location="src"/>
+  <property name="deploy" location="deploy"/>
+  <property name="docs" location="docs"/>
+  
+  <!-- DESA -->
+  <tstamp> 
+    <format property="current.time_one" pattern="yyyyMMdd"/> 
+  </tstamp>
+  <property name="compilacion_DESA" value="BD${current.time_one}"/>
+  <!-- QA: Actualizar version en cada pase a produccion -->
+  <property name="compilacion_QA" value="RC${current.time_one}"/>
+  <!-- PROD: Actualizar version en cada pase a produccion -->
+  <property name="compilacion_PROD" value="GA${current.time_one}"/>
+  
+  <property name="jar.name" value="farmaventa_${current.time_one}.jar"/>
+  <property name="jar-signed.name" value="farmaventa_${current.time_one}-signed.jar"/>
+  <property name="version_jar" value="v2.4.5"/>
+  <property name="compilacion_jar" value="${compilacion_PROD}"/>
+
+  <target name="init">
+    <tstamp/>
+    <delete dir="${classes}"/>
+    <mkdir dir="${classes}"/>
+  </target>
+
+  <path id="manifest.classpath.path">
+    <fileset dir="${lib}" includes="**/*.jar"/>
+  </path>
+  
+  <target name="compile" description="Compile Java source files" depends="init, propiedades">
+    <javac destdir="${classes}" classpathref="manifest.classpath.path"
+           debug="on" nowarn="off" deprecation="on" encoding="Cp1252">
+           <!--source="1.4" target="1.4"-->
+      <src path="${src}"/>
+    </javac>
+    <copy todir="${classes}">
+      <fileset dir="${src}">
+        <include name="**/*.properties"/>
+        <include name="**/*.jpg"/>
+        <include name="**/*.xml"/>
+        <include name="**/*.gif"/>
+      </fileset>
+    </copy>
+  </target>
+
+  <target name="del_jar" description="borra archivo jar">  
+    <mkdir dir="${deploy}"/>
+    <delete>
+      <fileset dir="${deploy}" includes="**/*.jar"/>
+    </delete>
+  </target>
+  
+  <pathconvert property="manifest.classpath.prop" pathsep=" ">
+    <mapper>
+      <chainedmapper>
+        <!-- remove absolute path -->
+        <flattenmapper/>
+        <!-- add lib/ prefix -->
+        <globmapper from="*" to="..\lib\*"/>
+      </chainedmapper>
+    </mapper>
+    <path refid="manifest.classpath.path"/>
+  </pathconvert>
+  
+  <target name="jar" depends="del_jar"
+          description="crear un archivo Jar para la aplicación">
+    <jar destfile="${deploy}/${jar.name}">
+      <fileset dir="${classes}" includes="**/*.class"/>
+      <fileset dir="${classes}" includes="**/farmaventa.properties"/>
+      <fileset dir="${classes}" includes="**/*.jpg"/>
+      <fileset dir="${classes}" includes="**/*.xml"/>
+      <fileset dir="${classes}" includes="**/*.gif"/>
+      <manifest>
+        <attribute name="Built-By" value="${user.name}"/>
+        <attribute name="Main-Class" value="mifarma.ptoventa.EconoFar"/>
+        <attribute name="Signature-Version" value="${version_jar}"/>
+        <attribute name="Class-Path" value="${manifest.classpath.prop}"/>
+      </manifest>
+    </jar>
+  </target>
+  
+  <target name="propiedades">
+    <delete file="${src}/farmaventa.properties"/>
+    <propertyfile file="${src}/farmaventa.properties">
+        <entry  key="version" value="${version_jar}"/>
+        <entry  key="compilacion" value="${compilacion_jar}"/>
+    </propertyfile>
+  </target>
+
+  <!-- Generate javadocs for current project into ${doc.dir} -->
+  <target name="doc" description="generate documentation">
+    <javadoc sourcepath="${src}" destdir="${docs}"/>
+  </target>
+  
+  <target name="execute">
+    <java jar="${deploy}/${jar.name}"
+                fork="true">
+      <arg value="${src}/PtoVentaServ.properties"/>
+      <arg value="${src}/ptoventaid.properties"/>
+      <arg value="${src}/PtoVentaServRemotos.properties"/>
+    </java>
+  </target>
+
+  <target name="firmarJar">
+    <signjar jar="${deploy}/${jar.name}"
+               signedjar="${deploy}/${jar-signed.name}"
+               alias="mifarma"
+               storepass="cibertec"
+               keystore="C:\Documents and Settings\erios\Mis documentos\Mifarma_Desarrollo\20130710_FirmarJar\storeMifarma"
+               keypass="cibertec"/>
+  </target>
+  
+  <target name="firmarLibs">
+    <signjar   alias="mifarma"
+               storepass="cibertec"
+               keystore="C:\Documents and Settings\erios\Mis documentos\Mifarma_Desarrollo\20130710_FirmarJar\storeMifarma"
+               keypass="cibertec">
+	  <path>
+		<fileset dir="${deploy}/lib" includes="**/*.jar" />
+	  </path>
+	</signjar>
+  </target>
+  
+  <target name="packJar">
+  <exec executable="pack200">
+    <arg value="${deploy}/${jar.name}.pack.gz"/>
+    <arg value="${deploy}/${jar.name}"/>
+  </exec>
+</target>
+
+</project>

@@ -5,6 +5,8 @@ public class Usuario {
     private int id;
     private String login;
     private String clave;
+    private String estado;
+    private String nombre;
     
     public Usuario() {
         super();
@@ -32,5 +34,21 @@ public class Usuario {
 
     public String getClave() {
         return clave;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getNombre() {
+        return nombre;
     }
 }

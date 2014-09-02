@@ -36,6 +36,9 @@ public class FacadeConfiguracion {
             throw new Exception("Usuario no existe.");
         }
         //2.Valida estado        
+        if(!usuario.getEstado().equals("A")){
+            throw new Exception("Usuario no esta activo.");
+        }
         //3.Valida clave
         if(!usuario.getClave().equals(pClave)){
             throw new Exception("La clave no es correcta.");

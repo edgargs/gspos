@@ -9,5 +9,6 @@
    </list>
    <list n="listOfChildren">
       <hash><url n="URL" path="configuracion/configuracion.jpr"/></hash>
+      <hash><url n="URL" path="general/general.jpr"/></hash>
    </list>
 </jws:workspace>

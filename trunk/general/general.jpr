@@ -14,15 +14,7 @@
    </list>
    <value n="defaultPackage" v="general"/>
    <hash n="oracle.ide.model.DependencyConfiguration">
-      <list n="dependencyList">
-         <hash>
-            <hash n="dependable">
-               <url n="sourceOwnerURL" path="../gsPOS.jws"/>
-               <url n="sourceURL" path="../configuracion/configuracion.jpr"/>
-            </hash>
-            <value n="recognizerId" v="oracle.jdeveloper.library"/>
-         </hash>
-      </list>
+      <list n="dependencyList"/>
    </hash>
    <hash n="oracle.ide.model.TechnologyScopeConfiguration">
       <list n="technologyScope">

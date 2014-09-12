@@ -12,33 +12,19 @@ import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class DAOConfiguracion implements DAOTransaccion {
+public class DAOConfiguracion extends DAOTransaccion {
     
     private static final Logger log = LoggerFactory.getLogger(DAOConfiguracion.class);
     
-    private SqlSession sqlSession = null;
     private MapperConfiguracion mapper = null;
     
     public DAOConfiguracion() {
         super();
     }
 
-    @Override
     public void openConnection() throws Exception{
         sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
-        mapper = sqlSession.getMapper(MapperConfiguracion.class);
-    }
-
-    @Override
-    public void commit() throws Exception{
-        sqlSession.commit(true);
-        sqlSession.close();
-    }
-
-    @Override
-    public void rollback() throws Exception{
-        sqlSession.rollback(true);
-        sqlSession.close();
+        mapper = getSqlSession().getMapper(MapperConfiguracion.class);
     }
     
     public Usuario validarLogin(String pLogin) throws Exception{

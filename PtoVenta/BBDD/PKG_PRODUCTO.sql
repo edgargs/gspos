@@ -1,0 +1,64 @@
+--------------------------------------------------------
+--  DDL for Package PKG_PRODUCTO
+--------------------------------------------------------
+
+  CREATE OR REPLACE PACKAGE "PTOVENTA"."PKG_PRODUCTO" IS
+ V_PRECIO_PUBLICO       VARCHAR2(3) := '001'    ;
+ V_PRECIO_FARMACIA      VARCHAR2(3) := '002'    ;
+ V_PRECIO_DLV           VARCHAR2(3) := '003'    ;
+
+ FUNCTION FN_PRECIO_LOCAL(A_COD_PROD          PTOVENTA.LGT_PROD_LOCAL.COD_PROD%TYPE,
+                    A_COD_LOCAL         PTOVENTA.LGT_PROD_LOCAL.COD_LOCAL%TYPE,
+                    --A_COD_CIA           PTOVENTA.LGT_PROD_LOCAL.COD_CIA%TYPE,
+                    A_COD_GRUPO_CIA     PTOVENTA.LGT_PROD_LOCAL.COD_GRUPO_CIA%TYPE
+                    ) RETURN NUMBER;
+FUNCTION FN_PRECIO
+    (
+        A_CIA          VARCHAR2,
+        A_COD_LOCAL    LGT_PROD_LOCAL.COD_LOCAL%TYPE,
+        A_COD_PRODUCTO LGT_PROD_LOCAL.COD_PROD%TYPE,
+        A_COD_PRECIO   MAE_TIPO_PRECIO.COD_TIPO_PRECIO%TYPE,
+        A_COD_CONVENIO MAE_CONVENIO.COD_CONVENIO%TYPE DEFAULT NULL
+    ) RETURN FLOAT;
+    FUNCTION FN_PRE_VTA_PRECIOLOCAL
+    (
+        A_COD_CIA      VARCHAR2,
+        A_COD_LOCAL      VARCHAR2,
+        A_COD_PRODUCTO VARCHAR2,
+        A_COD_PRECIO   VARCHAR2,
+        A_COD_CONVENIO VARCHAR2 DEFAULT NULL
+    ) RETURN FLOAT ;
+FUNCTION FN_DEV_APTO_PETIT
+    (
+        A_COD_PETITORIO CAB_PETITORIO.COD_PETITORIO%TYPE,
+        A_COD_PRODUCTO  LGT_PROD.COD_PROD%TYPE
+    ) RETURN CHAR;
+    /**********************************************************************/
+    /**********************************************************************/
+    /**********************************************************************/
+    FUNCTION FN_DEV_APTO_PETIT
+    (
+        A_COD_PETITORIO CAB_PETITORIO.COD_PETITORIO%TYPE,
+        A_COD_PRODUCTO  LGT_PROD.COD_PROD%TYPE,
+        A_FLG_EXCLUYE   VARCHAR2
+    ) RETURN FLOAT;
+FUNCTION FN_SEGMENTO(A_CADENA    VARCHAR2,
+                                       A_ITEM      INT,
+                                       A_SEPARADOR CHAR DEFAULT '|')
+    RETURN VARCHAR2;
+    	FUNCTION FN_PRE_C_PVP ( A_COD_PRODUCTO VARCHAR2, A_COD_TIPO VARCHAR2 )
+	  RETURN FLOAT;
+    FUNCTION FN_PRE_ULT_COMPRA(A_COD_PRODUCTO lgt_prod.COD_PROd%TYPE)
+    RETURN FLOAT ;
+    FUNCTION FN_BTL_DEVUELVE_PRECIO_MAY(
+  A_COD_LOCAL         PTOVENTA.LGT_PROD_LOCAL.COD_LOCAL%TYPE,
+  A_COD_PROD          PTOVENTA.LGT_PROD_LOCAL.COD_PROD%TYPE,
+  A_COD_GRUPO_CIA     PTOVENTA.LGT_PROD_LOCAL.COD_GRUPO_CIA%TYPE )
+  RETURN NUMBER;
+    FUNCTION FN_DEV_APTO_CONV(
+         A_COD_PRODUCTO  LGT_PROD.COD_PROD%TYPE,
+         A_COD_CONVENIO  MAE_CONVENIO.COD_CONVENIO%TYPE
+      ) RETURN VARCHAR2;
+end ;
+
+/

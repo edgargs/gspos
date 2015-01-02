@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+ 
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <layout class="ch.qos.logback.classic.PatternLayout">
+      <Pattern>%d{HH:mm:ss.SSS} [%-5level] [%thread] [%logger{0}:%line] - %msg%n</Pattern>
+    </layout>
+  </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter-->
+        
+        <file>C:\farmaventa\log\FarmaVenta.log</file>
+        
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+          <!-- daily rollover -->
+          <fileNamePattern>C:\farmaventa\log\FarmaVenta.%d{yyyy-MM-dd}.zip</fileNamePattern>
+          <!--fileNamePattern>C:\farmaventa\log\FarmaVenta.%d{yyyy-MM-dd}.%i.zip</fileNamePattern-->
+          <!--timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP"-->
+            <!-- or whenever the file size reaches 100MB -->
+            <!--maxFileSize>100MB</maxFileSize-->
+          <!--/timeBasedFileNamingAndTriggeringPolicy-->
+          <!-- keep 7 days' worth of history -->
+          <maxHistory>7</maxHistory>
+        </rollingPolicy>
+        
+        <encoder>
+          <pattern>%d{HH:mm:ss.SSS} [%-5level] [%thread] [%logger{0}:%line] - %msg%n</pattern>
+        </encoder>
+    </appender>
+ 
+    <logger name="mifarma.ptoventa.caja" level="DEBUG"/>
+    <logger name="mifarma.ptoventa.pinpad" level="DEBUG"/>
+    <logger name="mifarma.ptoventa.convenioBTLMF" level="DEBUG"/>
+    <logger name="mifarma.ptoventa.recepcionCiega" level="DEBUG"/>
+    <logger name="mifarma.ptoventa.recaudacion" level="DEBUG"/>
+    <logger name="mifarma.ptoventa.inventario" level="DEBUG"/>
+    <logger name="mifarma.ptoventa.ventas" level="DEBUG"/>
+    <logger name="mifarma.ptoventa.delivery" level="DEBUG"/>
+    <logger name="mifarma.ptoventa.comprobanteElectronico" level="DEBUG"/>
+    <logger name="mifarma.ptoventa.administracion" level="DEBUG"/>
+    <logger name="mifarma.electronico" level="DEBUG"/>
+    
+   
+  <root level="INFO">
+    <appender-ref ref="STDOUT" />
+    <appender-ref ref="FILE" />
+  </root>
+</configuration>

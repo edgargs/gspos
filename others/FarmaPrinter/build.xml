@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<project name="FarmaPrinter" default="jar">
+  
+  <property name="src" location="src"/>
+  <property name="classes"  location="classes"/>  
+  <property name="lib"  location="lib"/>
+
+  <property name="version_PROD" value="v1.6.1"/>    
+  <property name="version_jar" value="${version_PROD}"/>
+  <property name="jar.name"  location="farmaprinter-${version_PROD}.jar"/>
+	
+    <target name="init"
+       description="borra archivo jar">
+       <delete file="${jar.name}"/>
+	   <delete dir="${classes}"/>
+    <mkdir dir="${classes}"/>
+    </target>
+    
+  <path id="manifest.classpath.path">
+    <fileset dir="${lib}" includes="**/*.jar"/>
+  </path>
+  
+  <target name="compile" description="Compile Java source files" depends="init">
+    <javac destdir="${classes}" classpathref="manifest.classpath.path"
+           debug="on" nowarn="off" deprecation="on" encoding="Cp1252">
+           <!--source="1.4" target="1.4"-->
+      <src path="${src}"/>
+    </javac>    
+  </target>
+  
+    <target name="jar" depends="compile"
+     description="crear un archivo Jar para la aplicación">
+        <jar destfile="${jar.name}">
+            <fileset dir="${classes}" includes="**/*.class"/>
+			<manifest>
+				<attribute name="Built-By" value="${user.name}"/>
+				<attribute name="Signature-Version" value="${version_jar}"/>
+			</manifest>
+        </jar>
+        
+        <!-- move file="${jar.name}" todir="${libNew}"/ -->
+    </target>
+    
+    <target name="del_classes"
+     description="elimina la carpeta classes">
+    <delete dir="${classes}"/>
+  </target>
+</project>

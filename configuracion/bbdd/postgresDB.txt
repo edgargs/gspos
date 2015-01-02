@@ -1,7 +1,0 @@
-"pg_ctl" -D "D:\ERIOS\Mifarma\20130718_postgresDB" -l D:\ERIOS\Mifarma\20130718_gsPos_DB\postgresDB_log start
-createuser.exe gsPos
-createdb.exe -O gsPos gsPos
-pg_ctl stop -D "D:\ERIOS\Mifarma\20130718_postgresDB"
-
-#Conectar
-psql -U gsPos -h localhost gsPos

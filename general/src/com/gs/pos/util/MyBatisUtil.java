@@ -8,6 +8,9 @@ import java.util.Properties;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+/**
+ * @author ERIOS
+ */
 public class MyBatisUtil {
     
     private static SqlSessionFactory factory;

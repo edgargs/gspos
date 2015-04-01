@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mifarma.six.daemon.dao.MapperSixDaemon">
+    <resultMap type="mifarma.transf.daemon.bean.BeanLocal" id="local">
+        <result property="codGrupoCia" column="COD_GRUPO_CIA"/>
+        <result property="codCia" column="COD_CIA"/>
+        <result property="codLocal" column="COD_LOCAL"/>
+        <result property="ipServidorLocal" column="IP_SERVIDOR_LOCAL"/>        
+    </resultMap>
+</mapper>

@@ -1,0 +1,12 @@
+# SrvEnvioTransferencias v1.3.0
+
+# dos2unix -n SrvEnvioTransferencias.txt SrvEnvioTransferencias.sh
+
+export RUTA=/mf_daemon/SrvEnvioTransferencias
+export JAVA_DIR=/mf_daemon/jdk1.7/jre/bin
+export LOG=$RUTA/logback/
+export CONF=$RUTA/conf
+export BIN=$RUTA/bin
+
+$JAVA_DIR/java -DUSER_HOME=$LOG -jar $BIN/srvenviotransferencias-v1.3.0.jar $CONF/farmadaemon.properties $CONF/servermail.properties
+# pause

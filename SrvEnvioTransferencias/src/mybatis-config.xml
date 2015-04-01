@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  
+<configuration>
+    <settings>
+        <setting name="jdbcTypeForNull" value="NULL"/>  
+    </settings>
+      <environments default="matriz">
+          <environment id="matriz">
+                <transactionManager type="JDBC"/>
+                <dataSource type="POOLED">    
+                    <property name="driver" value="${jdbc.driverClassName}"/>
+                    <property name="url" value="${jdbc.url}"/>
+                    <property name="username" value="${jdbc.username}"/>
+                    <property name="password" value="${jdbc.password}"/>
+                    <property name="poolMaximumActiveConnections" value="40" /> <!--DEFAULT 10 -->
+                    <!--property name="poolMaximumCheckoutTime" value="2000" /--> <!--DEFAULT 20000 -->
+                    <!--property name="poolTimeToWait" value="2000" /--> <!--DEFAULT 20000 -->
+                </dataSource>
+          </environment>  
+          <environment id="ptoventa">
+                <transactionManager type="JDBC"/>
+                <dataSource type="UNPOOLED">    
+                    <property name="driver" value="${jdbcPto.driverClassName}"/>
+                    <property name="url" value="${jdbcPto.url}"/>
+                    <property name="username" value="${jdbcPto.username}"/>
+                    <property name="password" value="${jdbcPto.password}"/>
+                </dataSource>
+          </environment>
+      </environments>
+      
+      <mappers>
+        <mapper class="mifarma.transf.daemon.dao.MapperDaemon"/> 
+        <mapper resource="mifarma/transf/daemon/bean/MapperLocal.xml"/> 
+        <mapper resource="mifarma/transf/daemon/bean/MapperTransferencia.xml"/> 
+      </mappers>
+</configuration>

@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<project name="FrameWork" default="jar">
+  
+  <property name="classes"  location="classes"/>
+  <property name="jar.name"  location="framework-20150820.jar"/>
+  <property name="lib"  location="lib"/>
+  <property name="src" location="src"/>
+    
+    <target name="init"
+       description="borra archivo jar">
+       <delete file="${jar.name}"/>
+	   <delete dir="${classes}"/>
+		<mkdir dir="${classes}"/>
+    </target>
+    
+  <path id="manifest.classpath.path">
+    <fileset dir="${lib}" includes="**/*.jar"/>
+  </path>
+  
+  <target name="compile" description="Compile Java source files" depends="init">
+    <javac destdir="${classes}" classpathref="manifest.classpath.path"
+           debug="on" nowarn="off" deprecation="on" encoding="Cp1252">
+           <!--source="1.4" target="1.4"-->
+      <src path="${src}"/>
+    </javac>
+    <copy todir="${classes}">
+      <fileset dir="${src}">
+        <include name="**/*.properties"/>
+        <include name="**/*.xml"/>
+      </fileset>
+    </copy>
+  </target>
+  
+    <target name="jar" depends="compile"
+     description="crear un archivo Jar para la aplicación">
+        <jar destfile="${jar.name}">
+            <fileset dir="${classes}" includes="**/*.class"/>
+        </jar>
+        
+        <!-- move file="${jar.name}" todir="${libNew}"/ -->
+    </target>
+    
+    <target name="del_classes"
+     description="elimina la carpeta classes">
+    <delete dir="${classes}"/>
+  </target>
+</project>

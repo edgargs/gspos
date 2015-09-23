@@ -91,8 +91,6 @@ public class DlgLogin extends JDialog {
     // Constructores
     // **************************************************************************
     String pMsjCabecera = "";
-    private boolean pMarcacion = true;
-
     public DlgLogin() {
         this(null, "", false);
         
@@ -402,9 +400,7 @@ public class DlgLogin extends JDialog {
         }
         
         // dubilluz 13.01.2015
-        if(pMarcacion){
-            ingresaAsistencia(vSecurityLogin.getLoginSequential());
-        }
+        ingresaAsistencia(vSecurityLogin.getLoginSequential());
         // dubilluz 13.01.2015        
         
         FarmaVariables.vNuSecUsu = vSecurityLogin.getLoginSequential();
@@ -722,7 +718,4 @@ public class DlgLogin extends JDialog {
         jEditorPaneAba.setText(pMsjCabecera);
     }
 
-    public void setMarcacion(boolean pMarcacion){
-        this.pMarcacion = pMarcacion;
-    }
 }

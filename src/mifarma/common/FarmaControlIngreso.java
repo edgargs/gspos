@@ -20,13 +20,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.InputEvent;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 
 import java.sql.SQLException;
@@ -34,7 +29,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
-import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -62,8 +56,6 @@ public class FarmaControlIngreso extends JDialog {
     private JLabelWhite lblIndFiscalizado = new JLabelWhite();
     private JButtonLabel btnTipo = new JButtonLabel();
     private JLabelWhite lblMensaje = new JLabelWhite();
-    private JButtonLabel btnHistoria = new JButtonLabel();
-    private JCheckBox chkVer=new  JCheckBox();
     private JButtonLabel btnDni = new JButtonLabel();
     private JComboBox cmbTipo = new JComboBox();
     private JLabelOrange lblPersonal = new JLabelOrange();
@@ -159,43 +151,6 @@ public class FarmaControlIngreso extends JDialog {
                 btnTipo_actionPerformed(e);
             }
         });
-        
-        btnHistoria.setText("Ver Marcaciones:");
-        btnHistoria.setBounds(new Rectangle(600, 50, 100, 20));
-        btnHistoria.setForeground(new Color(255, 130, 14));
-        btnHistoria.setMnemonic('e');
-        btnHistoria.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                btnHistoria_actionPerformed(e);
-            }
-        });
-        chkVer.setBounds(new Rectangle(700, 50, 20, 20));
-        chkVer.setForeground(new Color(255, 130, 14));
-        chkVer.addMouseListener(new MouseListener(){
-
-
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                }
-
-                @Override
-                public void mousePressed(MouseEvent e) {
-                    chkVer_MousePressed(e);  
-
-                }
-
-                @Override
-                public void mouseReleased(MouseEvent e) {
-                }
-
-                @Override
-                public void mouseEntered(MouseEvent e) {
-                }
-
-                @Override
-                public void mouseExited(MouseEvent e) {
-                }
-            });
         lblMensaje.setText("<html>PRESIONE <FONT COLOR=RED><FONT SIZE=+1>'E'</FONT></FONT> PARA ENTRADA O <FONT COLOR=BLUE><FONT SIZE=+1>'S'</FONT></FONT> PARA SALIDA. LUEGO <FONT SIZE=+1>F11 O ENTER </FONT> PARA GRABAR EL REGISTRO.</html>");
         lblMensaje.setBounds(new Rectangle(10, 75, 660, 25));
         lblMensaje.setForeground(Color.black);
@@ -256,9 +211,6 @@ public class FarmaControlIngreso extends JDialog {
         jPanelWhite2.add(cmbTipo, null);
         jPanelWhite2.add(lblPersonal, null);
         jPanelWhite2.add(txtDni, null);
-        jPanelWhite2.add(btnHistoria, null);
-        jPanelWhite2.add(chkVer, null);
-        
         jPanelWhite1.add(jPanelTitle1, null);
         scrLista.getViewport().add(tblLista, null);
         jPanelWhite1.add(scrLista, null);
@@ -304,18 +256,6 @@ public class FarmaControlIngreso extends JDialog {
       FarmaUtility.moveFocus(cmbTipo);
       //  FarmaUtility.moveFocus(txtDni);
     }
-    private void btnHistoria_actionPerformed(ActionEvent e ){
-       
-        seleccionChkVer();
-    }
-    private void chkVer_MousePressed(MouseEvent e){
-        tableModel.clearTable(); 
-        if(!chkVer.isSelected()){
-           cargaLogin();
-           
-        }
-    }
-  
 
     private void btnDni_actionPerformed(ActionEvent e) {
         FarmaUtility.moveFocus(txtDni);
@@ -490,7 +430,7 @@ public class FarmaControlIngreso extends JDialog {
         FarmaUtility.centrarVentana(this);
 
         //mostrarHora();
-       // cargaListaRegistro();CHUANES/20/07/2015
+        cargaListaRegistro();
         //cargarFecha();
     }
 
@@ -692,20 +632,6 @@ public class FarmaControlIngreso extends JDialog {
 
 
                     }
-                    //CHUANES 
-                    //04/08/2015
-                   if(isPendienteMarcarSalida()){
-                         vAvisoTrabLocal="Existe Marcaciones pendientes de Salida por Registrar";
-                                                 
-                                                
-                    
-                    }
-                    //CHUANES 
-                    //04/08/2015
-                   if(isPendienteJustInasistencia()){
-                       vAvisoTrabLocal=" Existe Justificaciones de Inasistencias pendientes por Registar";
-                      
-                   }
 
                     //----------------------------------------------------------------------------------------------------------
                     if (JConfirmDialog.rptaConfirmDialog(this, vAvisoTrabLocal + "\n" +
@@ -720,9 +646,7 @@ public class FarmaControlIngreso extends JDialog {
                             //DBControlIngreso.validarIngreso(txtDni.getText().trim());
                             //DBControlIngreso.ActualizarDatosIngreso(txtDni.getText().trim());
                             FarmaUtility.aceptarTransaccion();
-                            
-                            //cargaListaRegistro();CHUANES 20/07/2015
-                            cargaListaRegistroDni(txtDni.getText().trim());
+                            cargaListaRegistro();
                             if (tblLista.getRowCount() > 0) {
                                 FarmaUtility.findTextInJTable(tblLista, txtDni.getText().trim(), 0, 0);
                             }
@@ -858,7 +782,6 @@ public class FarmaControlIngreso extends JDialog {
 
     private void cargaListaRegistro() {
         try {
-            tableModel.clearTable(); 
             cargaListaRegistrosTABLE(tableModel);
             FarmaUtility.ordenar(tblLista, tableModel, COL_ORD, FarmaConstants.ORDEN_DESCENDENTE);
             lblItems.setText(tblLista.getRowCount() + "");
@@ -867,100 +790,6 @@ public class FarmaControlIngreso extends JDialog {
             FarmaUtility.showMessage(this, "Ha ocurrido un error al listar los registros.\n" +
                     s.getMessage(), txtDni);
         }
-    }
-  //FUNCIONALIDAD DEL CHECKBOX
-    private void seleccionChkVer(){
-        tableModel.clearTable();
-        if(chkVer.isSelected()){
-        chkVer.setSelected(false); 
-        }else{
-        chkVer.setSelected(true);
-        cargaLogin();
-        } 
-    }
-
-    //LISTA EL REGISTRO SOLO DEL USUARIO QUE MARCO SU HORARIO
-    //CHUANES 20/07/2015
-    private void cargaListaRegistroDni(String pDni){
-        try{
-            tableModel.clearTable();
-            chkVer.setSelected(false);
-            cargaListaRegistrosDni(tableModel, pDni);
-            lblItems.setText(tblLista.getRowCount() + "");
-            
-        }catch(SQLException e){
-            log.error("ERROR AL CARGAR REGISTRO X DNI"+e.getMessage());
-            FarmaUtility.showMessage(this, "Ha ocurrido un error al listar los registros.\n" +
-                    e.getMessage(), txtDni);
-        }
-    }
-    //CARGA LOGIN PARA VER EL HISTORIAL DE MARCACION DEL DIA
-    //CHUANES 20/07/2015
-    private void cargaLogin(){
-      
-        DlgLogin dlgLogin = new DlgLogin(myParentFrame,"Acceso al FarmaVenta", true);
-        dlgLogin.setMarcacion(false);
-        dlgLogin.setVisible(true);
-        if (FarmaVariables.vAceptar) {
-            if (dlgLogin.verificaRol(FarmaConstants.ROL_ADMLOCAL)){
-              
-                cargaListaRegistro();
-                
-            }else{
-                FarmaUtility.showMessage(this, "El usuario no tiene asignado el rol adecuado!!!", null);
-                FarmaVariables.dlgLogin=dlgLogin;
-                chkVer.setSelected(false);
-                return;  
-            }
-           
-            FarmaVariables.vAceptar = false;
-        }else{
-            chkVer.setSelected(false);  
-        }
-     
-        
-    }
-    //CHUANES 21/07/2015
-    //verifica si es administrador de local y si le falta marcar salidas 
-    private boolean isPendienteMarcarSalida(){
-      int existeMarcaciones=0;
-      boolean flag=false;
-      String resultado="";
-        try {
-            resultado=validaRolAdministrador(txtDni.getText().trim());
-            existeMarcaciones=existeMarcacionesPendientes();
-            log.info("Es Administrador ?"+resultado);
-            log.info("cantidad de marcaciones de salida "+existeMarcaciones);
-            if(resultado.equalsIgnoreCase(FarmaConstants.INDICADOR_S) && existeMarcaciones>0 ){
-                flag=true;
-            }
-                
-        } catch (SQLException e) {
-            log.info("Error al valida rol"+e.getMessage());
-            flag=false;
-        }
-        return flag;
-    }
-    //CHUANES 04/08/2015
-    //verificar regitrar justificaciones para el QF
-    private boolean isPendienteJustInasistencia(){
-        int existeInasistencias=0;
-        boolean flag=false;
-        String resultado="";
-          try {
-              resultado=validaRolAdministrador(txtDni.getText().trim());
-              existeInasistencias=existeJustificacionesPendientes();
-              log.info("Es Administrador ?"+resultado);
-              log.info("cantidad de marcaciones de salida "+existeInasistencias);
-              if(resultado.equalsIgnoreCase(FarmaConstants.INDICADOR_S) && existeInasistencias>0 ){
-                  flag=true;
-              }
-                  
-          } catch (SQLException e) {
-              log.info("Error al valida rol"+e.getMessage());
-              flag=false;
-          }
-          return flag;
     }
 
     private void cargarFecha() {
@@ -1265,15 +1094,7 @@ public class FarmaControlIngreso extends JDialog {
         FarmaDBUtility.executeSQLStoredProcedure(pTableModel, "PTOVENTA_INGR_PERS.GET_LISTA_REGISTROS(?,?)",
                                                  parametros, false);
     }
-    //CHUANES 04/08/2015
-    public static void cargaListaRegistrosDni(FarmaTableModel pTableModel ,String pDni)throws SQLException{
-       ArrayList parametros = new ArrayList();
-        parametros.add(FarmaVariables.vCodGrupoCia);
-        parametros.add(FarmaVariables.vCodLocal);
-        parametros.add(pDni);
-        FarmaDBUtility.executeSQLStoredProcedure(pTableModel, "PTOVENTA_INGR_PERS.GET_LISTA_REGISTROS_DNI(?,?,?)",
-                                                 parametros, false);    
-    }
+
     /**
      *
      * @param pDni
@@ -1460,49 +1281,6 @@ public class FarmaControlIngreso extends JDialog {
                     e.getMessage(), txtDni); 
         }
         return indicador; 
-    }
-    //CHUANES 24/08/2015
-    public static String validaRolAdministrador(String pDni)throws SQLException{
-         ArrayList parametros = new ArrayList();
-        parametros.add(FarmaVariables.vCodGrupoCia);
-        parametros.add(FarmaVariables.vCodCia);
-        parametros.add(FarmaVariables.vCodLocal);
-        parametros.add(pDni);
-        log.debug("invocando a PTOVENTA_INGR_PERS.IS_ADMINISTRADOR_LOCAL(?,?,?,?): " + parametros);
-        return FarmaDBUtility.executeSQLStoredProcedureStr("PTOVENTA_INGR_PERS.IS_ADMINISTRADOR_LOCAL(?,?,?,?)", parametros);
-        
-    }
-    //CHUANES 24/08/2015
-    public static int existeMarcacionesPendientes(){
-        ArrayList lstMarcacion=new ArrayList();  
-        ArrayList   parametros = new ArrayList();
-          parametros.add(FarmaVariables.vCodGrupoCia);
-          parametros.add(FarmaVariables.vCodCia);
-          parametros.add(FarmaVariables.vCodLocal); 
-          try {
-              FarmaDBUtility.executeSQLStoredProcedureArrayList(lstMarcacion, "PTOVENTA_MARCACION_HORARIO.LISTADO_MARCACION(?,?,?)",
-                                                                parametros);
-          } catch (Exception e) {
-              log.error("",e.getMessage());
-             
-          }
-        return lstMarcacion.size();
-            
-    }
-    //CHUANES 24/08/2015
-    public static int existeJustificacionesPendientes(){
-        ArrayList lstInasistencias=new ArrayList();  
-        ArrayList  parametros = new ArrayList();
-          parametros.add(FarmaVariables.vCodGrupoCia);
-          parametros.add(FarmaVariables.vCodLocal); 
-          try {
-              FarmaDBUtility.executeSQLStoredProcedureArrayList(lstInasistencias, "PTOVENTA_MARCACION_HORARIO.LISTADO_INASISTENCIAS(?,?)",
-                                                                parametros);
-          } catch (Exception e) {
-              log.error("",e.getMessage());
-             
-          }
-       return  lstInasistencias.size();
     }
     public String getIndicador() {
         return indicador;

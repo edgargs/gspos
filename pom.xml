@@ -26,16 +26,16 @@
   </build>
   <dependencies>
     <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-      <version>1.7.12</version>
+      <groupId>mifarma</groupId>
+      <artifactId>componentes</artifactId>
+      <version>20150625</version>
       <type>jar</type>
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>mifarma</groupId>
-      <artifactId>componentes</artifactId>
-      <version>20150625</version>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.7.12</version>
       <type>jar</type>
       <scope>compile</scope>
     </dependency>

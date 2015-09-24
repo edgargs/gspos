@@ -1,9 +1,12 @@
 package mifarma.common;
 
+import com.gs.mifarma.componentes.JButtonLabel;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Frame;
+import java.awt.GridLayout;
 import java.awt.Rectangle;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
@@ -12,6 +15,10 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+
+import java.sql.SQLException;
+
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -22,26 +29,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 
-import mifarma.common.FarmaConstants;
-import mifarma.common.FarmaLengthText;
-import mifarma.common.FarmaSecurity;
-import mifarma.common.FarmaUtility;
-import mifarma.common.FarmaVariables;
-
-import com.gs.mifarma.componentes.*;
-
-
-import java.awt.GridLayout;
-
-import java.sql.SQLException;
-
-import java.util.ArrayList;
-
-import mifarma.common.FarmaCambioClave;
 import mifarma.ptoventa.reference.BeanValidaUsuario;
 import mifarma.ptoventa.reference.BeanVariables;
 
@@ -441,8 +431,9 @@ public class DlgLogin extends JDialog {
            FarmaControlIngreso dlgControlIngreso = new FarmaControlIngreso(myParentFrame, "", true);
            dlgControlIngreso.setVisible(true);
         }
-        if(vDebeMarcarAsistencia(pSecUsu))
-            ingresaAsistencia(pSecUsu);
+        //ERIOS 24.09.2015 Solucion temporal. Se debe quitar la referencias a formularios de negocio.
+        //if(vDebeMarcarAsistencia(pSecUsu))
+            //ingresaAsistencia(pSecUsu);
     }
     
     

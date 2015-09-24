@@ -1,5 +1,6 @@
 package mifarma.common;
 
+
 import com.gs.mifarma.componentes.JButtonLabel;
 import com.gs.mifarma.componentes.JConfirmDialog;
 import com.gs.mifarma.componentes.JLabelOrange;
@@ -37,6 +38,7 @@ import javax.swing.JTable;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 
 public class FarmaControlIngreso extends JDialog {
     private static final Logger log = LoggerFactory.getLogger(FarmaControlIngreso.class);
@@ -574,11 +576,13 @@ public class FarmaControlIngreso extends JDialog {
                 flag = true;
                 if (vTipo.trim().equalsIgnoreCase(TIPO_SALIDA)) {
                     if (ValidaRolQF(txtDni.getText().trim())) {
-                        if (!existeRegistroTemp()) {
-
-                            FarmaUtility.showMessage(this, "Debe registrar temperaturas para poder marcar su salida.",
-                                                     cmbTipo);
-                            flag = false;
+                        if(validaEntrada()){
+                            if (!existeRegistroTemp()) {
+    
+                                FarmaUtility.showMessage(this, "Debe registrar temperaturas para poder marcar su salida.",
+                                                         cmbTipo);
+                                flag = false;
+                            }
                         }
                     }
                 }
@@ -770,6 +774,29 @@ public class FarmaControlIngreso extends JDialog {
         return retorno;
     }
 
+    /**
+     * Se valida si existe entrada
+     * @author ERIOS
+     * @since 23.09.2015
+     * @return
+     * @throws SQLException
+     */
+    private boolean validaEntrada(){
+        boolean retorno = false;
+        ArrayList vArrayAux1 = new ArrayList();
+        try {
+            validaSalida(vArrayAux1, txtDni.getText().trim());
+            if(vArrayAux1.size()>0){
+                //Existe un ingreso hoy
+                retorno = true;
+            }
+        } catch (SQLException e) {
+            log.error("",e);            
+        }
+        
+        return retorno;
+    }
+    
     private void mostrarHora() {
         lblHora = new FarmaHora();
         lblHora.setText("");

@@ -4,7 +4,7 @@
   <groupId>mifarma</groupId>
   <artifactId>farmaimagenes</artifactId>
   <packaging>jar</packaging>
-  <version>20150923</version>
+  <version>20151014</version>
   <name>farmaimagenes</name>
   <url>http://maven.apache.org</url>
   <build>
@@ -15,6 +15,7 @@
               <include>**/*.jpg</include>
               <include>**/*.gif</include>
               <include>**/*.png</include>
+			  <include>**/*.wav</include>
         </includes>
       </resource>
     </resources>

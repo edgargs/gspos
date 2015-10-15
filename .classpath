@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<classpath>
-  <classpathentry kind="src" path="src" including="**/*.java"/>
-  <classpathentry kind="output" path="classes"/>
-  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
-  <classpathentry kind="var" path="M2_REPO/org/slf4j/slf4j-api/1.7.12/slf4j-api-1.7.12.jar"/>
-  <classpathentry kind="var" path="M2_REPO/mifarma/componentes/20150625/componentes-20150625.jar"/>
-  <classpathentry kind="var" path="M2_REPO/oracle/jdeveloper/ojdbc6/11.2.0.2.0/ojdbc6-11.2.0.2.0.jar"/>
-</classpath>

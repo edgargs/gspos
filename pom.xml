@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>mifarma</groupId>
   <artifactId>framework</artifactId>
-  <version>20150924</version>
+  <version>20150925</version>
   <description>Project for FrameWork</description>
   <build>
     <sourceDirectory>src/</sourceDirectory>

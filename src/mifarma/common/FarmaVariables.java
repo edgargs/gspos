@@ -2,9 +2,8 @@ package mifarma.common;
 
 import java.util.ArrayList;
 
-import mifarma.common.DlgLogin;
-
 import mifarma.ptoventa.reference.BeanConexion;
+
 
 /**
  * Copyright (c) 2006 MiFarma S.A.C.<br>
@@ -213,6 +212,14 @@ public class FarmaVariables {
     public static  long N_Monto_tr=0L;     
     public static  String S_Llave_Dosif="";
     
+    /**
+     * Variables de version
+     * @author ERIOS
+     * @since 2.2.9
+     */
+    public static String vNombreModulo = "";
+    public static String vVersion = "";
+    public static String vCompilacion = "";
     
     /**
      *Constructor

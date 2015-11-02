@@ -1,8 +1,15 @@
 package mifarma.common;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
+import java.util.ArrayList;
 import java.util.Date;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 /**
  * Copyright (c) 2006 MiFarma S.A.C.<br>
@@ -20,6 +27,8 @@ import java.util.Date;
 
 public class FarmaConnection {
 
+    private static final Logger log = LoggerFactory.getLogger(FarmaConnection.class);
+    
     /** Almacena la conexión actualmente vigente */
     static Connection conn;
 
@@ -49,9 +58,11 @@ public class FarmaConnection {
             conn.setAutoCommit(false);
             Date fecha2 = new Date();
             long milisegundos2 = fecha2.getTime();
-            System.out.println("Tiempo de Abrir Conexion(ms): " + 
+            log.debug("Tiempo de Abrir Conexion(ms): " + 
                                (milisegundos2 - milisegundos1));
-            System.out.println("FarmaConnection: conn inicializada");
+            
+            setVersion();
+            log.debug("FarmaConnection: conn inicializada");
         }        
         return conn;
     }
@@ -91,7 +102,30 @@ public class FarmaConnection {
      */
     public static void anularConnection() {
         conn = null;
-        System.out.println("FarmaConnection: conn anulada");
+        log.debug("FarmaConnection: conn anulada");
     }
 
+    /**
+     * Se indica la version del sistema
+     * @author ERIOS
+     * @since 2.2.9
+     * @throws SQLException
+     */
+    public static void setVersion() throws SQLException {        
+        if(!FarmaVariables.vNombreModulo.equals("") &&
+            !FarmaVariables.vVersion.equals("") &&
+            !FarmaVariables.vCompilacion.equals("")){
+            
+            ArrayList parametros = new ArrayList();
+            parametros.add(FarmaVariables.vCodGrupoCia);
+            parametros.add(FarmaVariables.vCodCia);
+            parametros.add(FarmaVariables.vCodLocal);
+            parametros.add(FarmaVariables.vNombreModulo.toUpperCase());
+            parametros.add(FarmaVariables.vVersion);
+            parametros.add(FarmaVariables.vCompilacion);
+            
+            FarmaDBUtility.executeSQLStoredProcedure(null, "FARMA_SECURITY.SET_MODULO_VERSION(?,?,?,?,?,?)", parametros,
+                                                     false);
+        }
+    }
 }

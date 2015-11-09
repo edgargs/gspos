@@ -1,5 +1,6 @@
 package mifarma.common;
 
+
 import com.gs.mifarma.componentes.JButtonLabel;
 
 import java.awt.Color;
@@ -432,6 +433,7 @@ public class DlgLogin extends JDialog {
            dlgControlIngreso.setVisible(true);
         }
         //ERIOS 24.09.2015 Solucion temporal. Se debe quitar la referencias a formularios de negocio.
+        //ERIOS 09.11.2015 Eliminar luego del pase v3.4.0
         //if(vDebeMarcarAsistencia(pSecUsu))
             //ingresaAsistencia(pSecUsu);
     }

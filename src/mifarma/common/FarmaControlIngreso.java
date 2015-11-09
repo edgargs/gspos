@@ -1289,7 +1289,7 @@ public class FarmaControlIngreso extends JDialog {
      * **/
     public String indIngreso() throws SQLException { 
         ArrayList parametros = new ArrayList();
-        return FarmaDBUtility.executeSQLStoredProcedureStr("PTOVENTA_INGR_PERS.INDICADOR_MARCACION_INGRESO", parametros);
+        return FarmaDBUtility.executeSQLStoredProcedureStr("PTOVENTA_INGR_PERS.INGR_F_IND_MARCACION", parametros);
     }
     /**
      * CHUANES

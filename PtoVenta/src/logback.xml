@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <property resource="logback.properties" />
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>%d{HH:mm:ss.SSS} [%-5level] [%thread] [%logger{0}:%line] - %msg%n</Pattern>
+        </layout>
+    </appender>
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter-->
+        <file>C:\farmaventa\log\FarmaVenta.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>C:\farmaventa\log\FarmaVenta.%d{yyyy-MM-dd}.zip</fileNamePattern>
+            <!--fileNamePattern>C:\farmaventa\log\FarmaVenta.%d{yyyy-MM-dd}.%i.zip</fileNamePattern-->
+            <!--timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP"-->
+            <!-- or whenever the file size reaches 100MB -->
+            <!--maxFileSize>100MB</maxFileSize-->
+            <!--/timeBasedFileNamingAndTriggeringPolicy-->
+            <!-- keep 7 days' worth of history -->
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%-5level] [%thread] [%logger{0}:%line] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="mifarma.common.FarmaDBUtility" level="DEBUG"/>
+    <logger name="mifarma.ptoventa.ce.dao.MapperCajaElectronica" level="DEBUG"/>
+    <logger name="mifarma.ptoventa.recaudacion.dao.MapperRecaudacion" level="DEBUG"/>
+    <logger name="mifarma.ptoventa.recaudacion.dao.MapperRecaudacionTrsscSix" level="DEBUG"/>
+    <logger name="mifarma.ptoventa.recetario.dao.MapperRecetario" level="DEBUG"/>
+    <logger name="mifarma.ptoventa.inventario.dao.MapperInventario" level="DEBUG"/>
+    <logger name="mifarma.ptoventa.caja.dao.MapperCaja" level="DEBUG"/>
+    <logger name="mifarma.ptoventa.psicotropicos.dao.MapperPsicotropicos" level="DEBUG"/>
+    <logger name="mifarma.ptoventa.administracion.producto.dao.MapperProducto" level="DEBUG"/>
+    <logger name="mifarma.ptoventa.stocknegativo.dao.MapperStockNegativo" level="DEBUG"/>
+    <logger name="mifarma.ptoventa.convenioBTLMF.dao.MapperConvenioBTLMF" level="DEBUG"/>
+	<logger name="mifarma.ptoventa.convenioBTLMF.dao.MapperRACConvenioBTLMF" level="DEBUG"/>
+    <logger name="mifarma.ptoventa.delivery.dao.MapperRACDelivery" level="DEBUG"/>
+    <logger name="mifarma.electronico.impresion.dao.MapperComprobanteElectronico" level="DEBUG"/>
+    <logger name="mifarma.ptoventa.encuesta.dao.MapperEncuesta" level="DEBUG"/>
+    <logger name="mifarma.ptoventa.puntos.dao.MapperPuntos" level="DEBUG"/>
+    <logger name="mifarma.ptoventa.lealtad.dao.MapperLealtad" level="DEBUG"/>
+    <logger name="mifarma.ptoventa.lealtad.dao.MapperLealtadMatriz" level="DEBUG"/>
+	<logger name="mifarma.ptoventa.fidelizacion.dao.MapperFidelizacion" level="DEBUG"/>
+	<logger name="mifarma.ptoventa.lectorHuella.dao.MapperLectorHuella" level="DEBUG"/>
+	<logger class="mifarma.ptoventa.reportes.dao.MapperReporte" level="DEBUG"/>
+	<logger name="mifarma.ptoventa.cliente.dao.MapperCliente" level="DEBUG"/>
+
+    <root level="${USER_LEVEL:-INFO}">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
+    </root>
+</configuration>

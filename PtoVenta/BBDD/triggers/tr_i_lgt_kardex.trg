@@ -1,0 +1,82 @@
+CREATE OR REPLACE TRIGGER PTOVENTA.TR_I_LGT_KARDEX AFTER INSERT  ON LGT_KARDEX
+FOR EACH ROW
+DECLARE
+  cValida   CHAR(1) := 'N'; -- POR DEFECTO NO VA A VALIDAR
+--  cPrimerRegistro BOOLEAN := FALSE;
+  nStkFinalAnt    LGT_KARDEX_AUX.STK_FINAL_PROD%TYPE;
+  nValFrac        LGT_KARDEX_AUX.VAL_FRACC_PROD%TYPE;
+BEGIN
+
+     SELECT LLAVE_TAB_GRAL
+     INTO  cValida
+     FROM PBL_TAB_GRAL
+     WHERE ID_TAB_GRAL = '271';
+
+-- ***************************************************************************
+-- VERIFICA QUE EL ÚLTIMO REGISTRO DE KARDEX TENGA CANTIDAD FINAL IGUAL AL NUEVO STOCK INICIAL
+   BEGIN
+       SELECT A.STK_FINAL_PROD, A.VAL_FRACC_PROD
+       INTO  nStkFinalAnt, nValFrac
+       FROM LGT_KARDEX_AUX A
+       WHERE A.COD_GRUPO_CIA = :NEW.COD_GRUPO_CIA
+         AND A.COD_LOCAL = :NEW.COD_LOCAL
+         AND A.COD_PROD = :NEW.COD_PROD;
+
+      IF ( nStkFinalAnt / nValFrac ) != (:NEW.STK_ANTERIOR_PROD / :NEW.VAL_FRACC_PROD) THEN
+         IF (cValida = 'S' AND :NEW.COD_MOT_KARDEX != '100') THEN
+            INSERT INTO AUX_LGT_KARDEX_ERROR (COD_GRUPO_CIA, COD_LOCAL, SEC_KARDEX, COD_PROD, STK_FINAL_NEW, VAL_FRACC_NEW, STK_FINAL_OLD, VAL_FRACC_OLD)
+             SELECT :NEW.COD_GRUPO_CIA, :NEW.COD_LOCAL, :NEW.SEC_KARDEX, :NEW.COD_PROD, :NEW.STK_FINAL_PROD, :NEW.VAL_FRACC_PROD, A.STK_FINAL_PROD, A.VAL_FRACC_PROD
+             FROM LGT_KARDEX_AUX A
+             WHERE A.COD_GRUPO_CIA = :NEW.COD_GRUPO_CIA
+               AND A.COD_LOCAL = :NEW.COD_LOCAL
+               AND A.COD_PROD = :NEW.COD_PROD;
+         END IF;
+      END IF;
+
+/*
+      IF ( nStkFinalAnt / nValFrac ) != (:NEW.STK_ANTERIOR_PROD / :NEW.VAL_FRACC_PROD) THEN
+         IF cValida = 'S' THEN
+            NULL;
+--            RAISE_APPLICATION_ERROR(-20001,'Error en kardex. No se cumple la validación de stocks. STK_ANT_OLD=' || nStkFinalAnt  || ', FRAC_ANT_OLD=' || nValFrac || ', STK_ANT_NEW=' || :NEW.STK_ANTERIOR_PROD || ', FRAC_ANT_NEW=' || :NEW.VAL_FRACC_PROD);
+         ELSE
+            INSERT INTO AUX_LGT_KARDEX_ERROR (COD_GRUPO_CIA, COD_LOCAL, SEC_KARDEX, COD_PROD, STK_FINAL_NEW, VAL_FRACC_NEW, STK_FINAL_OLD, VAL_FRACC_OLD)
+             SELECT :NEW.COD_GRUPO_CIA, :NEW.COD_LOCAL, :NEW.SEC_KARDEX, :NEW.COD_PROD, :NEW.STK_FINAL_PROD, :NEW.VAL_FRACC_PROD, A.STK_FINAL_PROD, A.VAL_FRACC_PROD
+             FROM LGT_KARDEX_AUX A
+             WHERE A.COD_GRUPO_CIA = :NEW.COD_GRUPO_CIA
+               AND A.COD_LOCAL = :NEW.COD_LOCAL
+               AND A.COD_PROD = :NEW.COD_PROD;
+
+         END IF;
+      END IF;
+*/
+--        cPrimerRegistro := FALSE;
+
+       EXCEPTION
+                WHEN NO_DATA_FOUND THEN
+                     NULL;
+--                     cPrimerRegistro := TRUE;
+   END;
+
+-- ***************************************************************************
+-- VA A ACTUALIZAR EL ÚLTIMO SECUENCIAL DE KARDEX EN LA TABLA AUXILIAR
+
+     IF cValida = 'S' THEN
+        BEGIN
+           INSERT INTO LGT_KARDEX_AUX (COD_GRUPO_CIA, COD_LOCAL, COD_PROD, SEC_KARDEX, STK_FINAL_PROD, VAL_FRACC_PROD)
+           VALUES (:NEW.COD_GRUPO_CIA, :NEW.COD_LOCAL, :NEW.COD_PROD, :NEW.SEC_KARDEX, :NEW.STK_FINAL_PROD, :NEW.VAL_FRACC_PROD);
+
+            EXCEPTION
+              WHEN DUP_VAL_ON_INDEX THEN
+                   UPDATE LGT_KARDEX_AUX K
+                   SET SEC_KARDEX = :NEW.SEC_KARDEX,
+                       STK_FINAL_PROD = :NEW.STK_FINAL_PROD,
+                       VAL_FRACC_PROD = :NEW.VAL_FRACC_PROD
+                   WHERE COD_GRUPO_CIA = :NEW.COD_GRUPO_CIA
+                     AND COD_LOCAL = :NEW.COD_LOCAL
+                     AND COD_PROD = :NEW.COD_PROD;
+        END;
+     END IF;
+
+END TR_I_LGT_KARDEX;
+/
+

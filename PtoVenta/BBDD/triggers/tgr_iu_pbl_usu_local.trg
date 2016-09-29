@@ -1,0 +1,99 @@
+CREATE OR REPLACE TRIGGER PTOVENTA."TGR_IU_PBL_USU_LOCAL"
+  BEFORE update OF CLAVE_USU ON  pbl_usu_local
+  for each row
+--AUTOHR:Cesar Huanes.
+--FECHA:03.03.2015
+declare
+  vCantidad NUMBER;
+  vMaxClave NUMBER;
+  vNumero CHAR(2);
+  vIndicador CHAR(1);
+  begin
+/*******INICIO VALIDACION**************/
+--BUSCAMOS LAS  4 ULTIMAS CLAVES CAMBIADAS
+SELECT  TO_NUMBER(TAB.LLAVE_TAB_GRAL) INTO vMaxClave   FROM PBL_TAB_GRAL TAB WHERE TAB.ID_TAB_GRAL='677' ;
+  SELECT NVL(COUNT(*),0) INTO vCantidad
+  --M.PUESTO,M.FEC_CREA_CLAVE,M.CLAVE_ANTERIOR
+  FROM
+        (
+          SELECT
+          RANK() OVER(PARTITION BY COD_GRUPO_CIA, COD_LOCAL, SEC_USU_LOCAL  ORDER BY FEC_CREA_CLAVE) "PUESTO" ,
+          T.CLAVE_ANTERIOR,T.FEC_CREA_CLAVE,T.SEC_USU_LOCAL
+          FROM HIST_CLAVE_USU_LOCAL  T
+          WHERE COD_GRUPO_CIA=:OLD.COD_GRUPO_CIA
+          AND  COD_LOCAL=:OLD.COD_LOCAL
+          AND  SEC_USU_LOCAL = :OLD.SEC_USU_LOCAL
+          AND FEC_CREA_CLAVE < SYSDATE
+        ) M
+  WHERE
+  M.CLAVE_ANTERIOR=:NEW.CLAVE_USU
+  AND  M.PUESTO <=  (SELECT MAX(L.PUESTO)
+  FROM
+        (
+          SELECT
+          RANK() OVER(PARTITION BY COD_GRUPO_CIA, COD_LOCAL, SEC_USU_LOCAL  ORDER BY FEC_CREA_CLAVE) "PUESTO" ,
+          T.CLAVE_ANTERIOR,T.FEC_CREA_CLAVE,T.SEC_USU_LOCAL
+          FROM HIST_CLAVE_USU_LOCAL  T
+          WHERE COD_GRUPO_CIA=:OLD.COD_GRUPO_CIA
+          AND  COD_LOCAL=:OLD.COD_LOCAL
+          AND  SEC_USU_LOCAL = :OLD.SEC_USU_LOCAL
+          AND FEC_CREA_CLAVE < SYSDATE
+        ) L)
+  AND  M.PUESTO> (SELECT MAX(N.PUESTO)-(vMaxClave)+1
+  FROM
+        (
+        SELECT
+        RANK() OVER(PARTITION BY COD_GRUPO_CIA, COD_LOCAL, SEC_USU_LOCAL  ORDER BY FEC_CREA_CLAVE) "PUESTO" ,
+        T.CLAVE_ANTERIOR,T.FEC_CREA_CLAVE,T.SEC_USU_LOCAL
+        FROM HIST_CLAVE_USU_LOCAL  T
+        WHERE COD_GRUPO_CIA=:OLD.COD_GRUPO_CIA
+        AND  COD_LOCAL=:OLD.COD_LOCAL
+        AND  SEC_USU_LOCAL = :OLD.SEC_USU_LOCAL
+        AND FEC_CREA_CLAVE < SYSDATE
+
+        ) N)
+
+  ORDER BY M.SEC_USU_LOCAL, M.FEC_CREA_CLAVE;
+/*****************FIN DE VALIDACION**********************/
+  vNumero:=TO_CHAR(vMaxClave);
+
+  /***if cSecUsuLoc_in = '000' or cSecUsuLoc_in >= '900' THEN
+    v_cResultado := 'N';
+    ELSE
+    v_cResultado := 'S';**/
+ IF  :OLD.SEC_USU_LOCAL='000' or :OLD.SEC_USU_LOCAL >= '900'  THEN
+ vIndicador:='N';
+  ELSE
+ vIndicador:='S';
+  END IF;
+
+IF  vIndicador='S' THEN
+
+ IF :NEW.CLAVE_USU=:OLD.CLAVE_USU THEN
+  raise_application_error(-20000,'La nueva contraseña debe ser diferente a las'||vNumero||' ultimas cambiadas.');
+
+ ELSE
+  IF vCantidad>0 THEN
+   raise_application_error(-20000,'La nueva contraseña debe ser diferente a las '||vNumero||' ultimas cambiadas.');
+  ELSE
+      INSERT INTO  HIST_CLAVE_USU_LOCAL(COD_GRUPO_CIA,
+      COD_LOCAL,
+      SEC_USU_LOCAL,
+      FEC_CREA_CLAVE,
+      CLAVE_ACTUAL,
+      CLAVE_ANTERIOR,
+      FEC_CREA_USU_EXE,
+      USU_CREA_EXE
+      )VALUES (:OLD.COD_GRUPO_CIA,:OLD.COD_LOCAL,:OLD.SEC_USU_LOCAL,SYSDATE,
+      :NEW.CLAVE_USU,:OLD.CLAVE_USU,:NEW.FEC_MOD_USU_LOCAL,:NEW.USU_MOD_USU_LOCAL);
+
+  END IF;
+
+  END IF;
+
+END IF;
+
+
+  end TGR_IU_PBL_USU_LOCAL;
+/
+

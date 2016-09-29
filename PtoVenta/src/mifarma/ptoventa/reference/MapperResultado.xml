@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mifarma.ptoventa.referece.MapperResultado">
+
+    <resultMap type="mifarma.ptoventa.reference.BeanResultado" id="resultado">
+        <result property="strResultado" column="RESULTADO"/>
+    </resultMap>
+    <resultMap type="mifarma.ptoventa.encuesta.modelo.BeanEncuesta" id="encuesta">
+        <result property="codigoEncuesta" column="COD_ENCUESTA"/>
+    </resultMap>
+    <resultMap type="mifarma.ptoventa.encuesta.modelo.BeanPreguntaEncuesta" id="preguntaEncuesta">
+        <result property="codigoEncuesta" column="COD_ENCUESTA"/>
+        <result property="secPregunta" column="SEC_PREGUNTA"/>
+        <result property="descPegunta" column="DESC_PREGUNTA"/>
+        <result property="tipoPregunta" column="TIPO_PREGUNTA"/>
+        <result property="tipoValidacion" column="TIPO_VALIDACION"/>
+    </resultMap>
+    
+    <resultMap type="mifarma.ptoventa.puntos.modelo.BeanAfiliado" id="afiliado">
+        <result property="dni" column="DNI"/>
+        <result property="nombre" column="NOMBRE"/>
+        <result property="apParterno" column="APE_PATERNO"/>
+        <result property="apMarterno" column="APE_MATERNO"/>
+        <result property="fechaNacimiento" column="FECHA_NAC"/>
+        <result property="genero" column="SEXO"/>
+        <result property="direccion" column="DIRECCION"/>
+        <result property="telefono" column="TELEFONO"/>
+        <result property="email" column="CORREO"/>
+        <result property="celular" column="CELULAR"/>
+        <result property="departamento" column="DEPARTAMENTO"/>
+        <result property="provincia" column="PROVINCIA"/>
+        <result property="distrito" column="DISTRITO"/>
+        <result property="tipoDireccion" column="TIPO_DIRECCION"/>
+        <result property="referencias" column="REFERENCIA"/>
+        <result property="tipoLugar" column="TIPO_LUGAR"/>
+    </resultMap>
+    
+    <resultMap type="mifarma.ptoventa.reference.BeanImpresion" id="impresion">
+        <result property="IP_PC" column="IP_PC"/>
+        <result property="ID_DOC" column="ID_DOC"/>
+        <result property="ORDEN" column="ORDEN"/>
+        <result property="VALOR" column="VALOR"/>
+        <result property="TIPO_DATO" column="TIPO_DATO"/>
+        <result property="TAMANIO" column="TAMANIO"/>
+        <result property="ALINEACION" column="ALINEACION"/>
+        <result property="NEGRITA" column="NEGRITA"/>
+        <result property="SUBRAYADO" column="SUBRAYADO"/>
+        <result property="INTERLINEADO" column="INTERLINEADO"/>
+        <result property="COLOR_INVERSO" column="COLOR_INVERSO"/>
+        <result property="SALTO_LINEA" column="SALTO_LINEA"/>
+    </resultMap>
+    
+    <resultMap type="mifarma.ptoventa.puntos.modelo.BeanListaProductos" id="listaproductosptos">
+        <result property="articulo" column="ARTICULO"/>
+        <result property="cantidad" column="CANTIDAD"/>
+        <result property="precioUnitario" column="PRECIO_UNIT"/>
+        <result property="importe" column="IMPORTE"/>
+        <result property="puntos" column="PUNTOS"/>
+        <result property="puntosAhorro" column="PUNTOS_AHORRO"/>
+    </resultMap>
+    
+    <resultMap type="mifarma.ptoventa.fidelizacion.modelo.BeanTipoDocIdentidad" id="tipoDocIdentidad">
+        <result property="codigo" column="CODIGO"/>
+        <result property="descripcion" column="DESCRIPCION"/>
+        <result property="mascara" column="MASCARA"/>
+        <result property="separadorMascara" column="SEPARADOR"/>
+    </resultMap>
+    
+    <resultMap type="mifarma.ptoventa.reportes.modelo.ConcursoGigante.BeanPeriodoReporteGigante" id="periodoReporGigante">
+        <result property="mesId" column="MES_ID"/>
+        <result property="periodo" column="PERIODO"/>
+    </resultMap>
+    
+    <resultMap type="mifarma.ptoventa.reportes.modelo.ConcursoGigante.BeanResumenReporteGigante" id="resumenReporGigante">
+        <result property="categoria" column="CATEGORIA"/>
+        <result property="valMeta" column="META"/>
+        <result property="valAvance" column="AVANCE"/>
+        <result property="valCumplimiento" column="CUMPLIMIENTO"/>
+    </resultMap>
+    
+    <resultMap type="mifarma.ptoventa.lectorHuella.modelo.UsuarioFV" id="usuarioFV">
+        <result property="secUsuLocal" column="SEC_USU"/>
+        <result property="nroDocumento" column="NRO_DOCUMENTO"/>
+        <result property="apellidoPaterno" column="AP_PATERNO"/>
+        <result property="apellidoMaterno" column="AP_MATERNO"/>
+        <result property="nombres" column="NOMBRES"/>
+        
+        <result property="izquierdaMenique" column="IZQUIERDA_MENIQUE"/>
+        <result property="izquierdaAnular" column="IZQUIERDA_ANULAR"/>
+        <result property="izquierdaMedio" column="IZQUIERDA_MEDIO"/>
+        <result property="izquierdaIndice" column="IZQUIERDA_INDICE"/>
+        <result property="izquierdaPulgar" column="IZQUIERDA_PULGAR"/>
+        <result property="derechaPulgar" column="DERECHA_PULGAR"/>
+        <result property="derechaIndice" column="DERECHA_INDICE"/>
+        <result property="derechaMedio" column="DERECHA_MEDIO"/>
+        <result property="derechaAnular" column="DERECHA_ANULAR"/>
+        <result property="derechaMenique" column="DERECHA_MENIQUE"/>
+    </resultMap>
+</mapper>

@@ -7,7 +7,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.gs.hacom.dcs.Util;
-import com.gs.opengts.opt.servers.calamp.CalAmpEvent;
 import com.gs.opengts.opt.servers.calamp.CalAmpEvent2;
 
 public class FacadeDaemon {
@@ -28,9 +27,7 @@ public class FacadeDaemon {
 		try{
 		    //1.0 Abre conexion
 		    dao.openConnection();
-		    //2.0 Graba transferencia BV
-		    //dao.grabarTransfBV(pLgtNotaEsCab);
-		    //3.0 Actualiza envio
+		    //2.0 Graba
 		    dao.registraEvento(myEvent);
 		    dao.commit();
 		    booState = true;

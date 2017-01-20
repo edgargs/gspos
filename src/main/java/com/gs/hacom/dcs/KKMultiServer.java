@@ -30,14 +30,12 @@ package com.gs.hacom.dcs;
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */ 
 
-import java.net.*;
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import com.gs.hacom.dcs.dao.ConnectMSSQLServer;
-
-import java.io.*;
 
 public class KKMultiServer {
 	
@@ -54,11 +52,7 @@ public class KKMultiServer {
 	        System.exit(1);
 	    }
 
-	    ConnectMSSQLServer connServer;
-		// Cargamos conn a BBDD
-		connServer = ConnectMSSQLServer.newInstance("jdbc:sqlserver://192.168.5.35;databaseName=MATRIX", "sa",
-				"hcm123");
-		
+	    
         int portNumber = Integer.parseInt(strPort);
         boolean listening = true;
         boolean isUDP = true;
@@ -81,7 +75,6 @@ public class KKMultiServer {
 		        }
 		    } catch (IOException e) {
 	            logger.error("Could not listen on port " + portNumber);
-	            connServer.endConnection();
 	            System.exit(-1);
 	        }
         }

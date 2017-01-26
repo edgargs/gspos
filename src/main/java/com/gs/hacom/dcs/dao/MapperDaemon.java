@@ -1,24 +1,26 @@
 package com.gs.hacom.dcs.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
-
-import com.gs.opengts.opt.servers.calamp.CalAmpEvent2;
+import org.apache.ibatis.mapping.StatementType;
 
 public interface MapperDaemon {
 
-    /*@Select(value="{call 
-            "PTOVENTA.PKG_DAEMON_TRANSF.GET_LOCALES_ENVIO(" +
-                "#{carrier}," +
-                "#{cCodCia_in}" +
-            ")}")
+	@Insert(value = " {call dbo.MTX_sp_EventNewDCS( " +
+            " #{eventID,jdbcType=INTEGER,mode=OUT}, " +
+            " #{deviceID,jdbcType=VARCHAR,mode=IN}, " +
+            " #{eventStatusID,jdbcType=INTEGER,mode=IN}, " +
+            " #{latitude,jdbcType=FLOAT,mode=IN}, " +
+            " #{longitude,jdbcType=FLOAT,mode=IN}, " +
+            " #{speedKPH,jdbcType=FLOAT,mode=IN}, " +
+            " #{odometerKm,jdbcType=FLOAT,mode=IN} " +
+            " )} ")
 	@Options(statementType = StatementType.CALLABLE)
-	public void getLocalesEnvio(Map<String,Object>  mapParametros);*/
-
-    @Insert("INSERT INTO MTXEvent(accountID) VALUES(#{carrier})")
-	public void registraEvento(CalAmpEvent2 myEvent);
+	public void registraEvento(Map<String,Object> myEvent);
 
     @Select("SELECT * FROM MTXConfigDCS WHERE deviceID = #{deviceID}")
 	public List<ConfigMessage> getConfigMessage(ConfigMessage configMessage);

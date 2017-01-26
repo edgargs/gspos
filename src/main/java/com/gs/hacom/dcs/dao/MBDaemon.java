@@ -1,5 +1,6 @@
 package com.gs.hacom.dcs.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
 
@@ -47,8 +48,15 @@ public class MBDaemon implements DAODaemon {
 
 	@Override
 	public void registraEvento(CalAmpEvent2 myEvent) throws Exception {
-		
-        mapper.registraEvento(myEvent);
+		HashMap<String,Object> params = new HashMap<>();
+		params.put("deviceID",myEvent.getMobileID());
+		params.put("eventStatusID",0);
+		params.put("latitude",myEvent.getLatitude());
+		params.put("longitude",myEvent.getLongitude());
+		params.put("speedKPH",myEvent.getSpeedKPH());
+		params.put("odometerKm",0);
+		logger.debug(params);
+        mapper.registraEvento(params);
 		
 	}
 

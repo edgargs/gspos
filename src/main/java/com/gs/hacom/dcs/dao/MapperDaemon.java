@@ -13,6 +13,7 @@ public interface MapperDaemon {
 	@Insert(value = " {call dbo.MTX_sp_EventNewDCS( " +
             " #{eventID,jdbcType=INTEGER,mode=OUT}, " +
             " #{deviceID,jdbcType=VARCHAR,mode=IN}, " +
+            " #{timestamp,jdbcType=BIGINT,mode=IN}, " +
             " #{eventStatusID,jdbcType=INTEGER,mode=IN}, " +
             " #{latitude,jdbcType=FLOAT,mode=IN}, " +
             " #{longitude,jdbcType=FLOAT,mode=IN}, " +

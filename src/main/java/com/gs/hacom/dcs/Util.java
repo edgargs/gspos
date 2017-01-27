@@ -113,7 +113,7 @@ public class Util {
         calAmpEvent.setEventCode((int)payload.readULong(1, 0, "EventCode"));
         long l = payload.readULong(1, 0, "AccumCount");
         payload.readSkip(1); //Spare
-        //Print.logInfo((String)("Accumulators present: " + l), (Object[])new Object[0]);
+        logger.debug("Accumulators present: " + l);
         for (long i = 0; i < l; ++i) {
             long l2 = payload.readULong(4, 0, "Accum" + i);
             calAmpEvent.addAccumulator(l2);

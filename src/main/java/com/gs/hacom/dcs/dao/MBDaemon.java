@@ -50,7 +50,9 @@ public class MBDaemon implements DAODaemon {
 	public void registraEvento(CalAmpEvent2 myEvent) throws Exception {
 		HashMap<String,Object> params = new HashMap<>();
 		params.put("deviceID",myEvent.getMobileID());
-		params.put("eventStatusID",0);
+		params.put("timestamp",myEvent.getUpdateTime());
+		int myEventCode = CalAmpEvent2._defaultUserCode(myEvent.getEventCode());
+		params.put("eventStatusID",myEventCode);
 		params.put("latitude",myEvent.getLatitude());
 		params.put("longitude",myEvent.getLongitude());
 		params.put("speedKPH",myEvent.getSpeedKPH());

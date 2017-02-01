@@ -14,6 +14,8 @@ public class FacadeDaemon {
 	private static final Logger logger = LogManager.getLogger(FacadeDaemon.class);
 	
 	private DAODaemon dao;
+
+	private boolean cancel;
     
     public FacadeDaemon() throws Exception {
         super();
@@ -23,14 +25,19 @@ public class FacadeDaemon {
 
 	public boolean saveEvent(CalAmpEvent2 myEvent) {
 		logger.info("Graba Evento:"+myEvent.getMobileID());
-		boolean booState;
+		boolean booState = false;
 		try{
 		    //1.0 Abre conexion
 		    dao.openConnection();
+		    //TimeUnit.SECONDS.sleep(15);
 		    //2.0 Graba
-		    dao.registraEvento(myEvent);
-		    dao.commit();
-		    booState = true;
+		    if(!cancel){
+		    	dao.registraEvento(myEvent);
+			    dao.commit();
+			    booState = true;
+		    }else{
+		    	logger.warn("Operacion cancelada");
+		    }
 		}catch(Exception e){
 		    dao.rollback();
 		    logger.error("",e);
@@ -55,5 +62,9 @@ public class FacadeDaemon {
 			logger.error("",e);
 		}
 		return configMessage;
+	}
+	
+	public void cancel() {
+		this.cancel = true;
 	}
 }

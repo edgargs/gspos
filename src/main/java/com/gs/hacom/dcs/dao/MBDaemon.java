@@ -56,7 +56,11 @@ public class MBDaemon implements DAODaemon {
 		params.put("latitude",myEvent.getLatitude());
 		params.put("longitude",myEvent.getLongitude());
 		params.put("speedKPH",myEvent.getSpeedKPH());
-		params.put("odometerKm",0);
+		params.put("odometerKm",myEvent.getOdometerKM());
+		params.put("fuel",myEvent.getFuel());
+		params.put("heading",myEvent.getHeading());
+		params.put("HDOP",myEvent.getHDOP());
+		params.put("satelliteCount",myEvent.getSatelliteCount());
 		logger.debug(params);
         mapper.registraEvento(params);
 		

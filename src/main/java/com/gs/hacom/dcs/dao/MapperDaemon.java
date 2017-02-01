@@ -18,7 +18,11 @@ public interface MapperDaemon {
             " #{latitude,jdbcType=FLOAT,mode=IN}, " +
             " #{longitude,jdbcType=FLOAT,mode=IN}, " +
             " #{speedKPH,jdbcType=FLOAT,mode=IN}, " +
-            " #{odometerKm,jdbcType=FLOAT,mode=IN} " +
+            " #{odometerKm,jdbcType=FLOAT,mode=IN}, " +
+            " #{fuel,jdbcType=FLOAT,mode=IN}, " +
+            " #{heading,jdbcType=FLOAT,mode=IN}, " +
+            " #{HDOP,jdbcType=FLOAT,mode=IN}, " +
+            " #{satelliteCount,jdbcType=INTEGER,mode=IN} " +
             " )} ")
 	@Options(statementType = StatementType.CALLABLE)
 	public void registraEvento(Map<String,Object> myEvent);

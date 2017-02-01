@@ -37,7 +37,8 @@ public class CalAmpEvent2 {
     private int userMessageType = 0;
     private byte[] userMessage = null;
     private double odometerKM = 0.0;
-
+    private double fuel = 0.0;
+    
     public void addAccumulator(long l) {
         if (this.accums == null) {
             this.accums = new Vector<>();

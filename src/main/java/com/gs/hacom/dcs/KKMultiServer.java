@@ -52,31 +52,38 @@ public class KKMultiServer {
 	        System.exit(1);
 	    }
 
-	    
-        int portNumber = Integer.parseInt(strPort);
-        boolean listening = true;
-        boolean isUDP = true;
-        if (!isUDP) {
-	        /*try (ServerSocket serverSocket = new ServerSocket(portNumber)) { 
-	            while (listening) {
-		            new KKMultiServerThread(serverSocket.accept()).start();
+	    logger.info("Inicio del programa.");
+	    while(true){
+	        int portNumber = Integer.parseInt(strPort);
+	        boolean listening = true;
+	        boolean isUDP = true;
+	        if (!isUDP) {
+		        /*try (ServerSocket serverSocket = new ServerSocket(portNumber)) { 
+		            while (listening) {
+			            new KKMultiServerThread(serverSocket.accept()).start();
+			        }
+			    } catch (IOException e) {
+		            System.err.println("Could not listen on port " + portNumber);
+		            System.exit(-1);
+		        }*/
+	        } else {
+		        try (DatagramSocket datagramSocket = new DatagramSocket(portNumber)) { 
+		            while (listening) {
+		            	byte           bufer[] = new byte[1024];
+		        		DatagramPacket peticion  = new DatagramPacket(bufer, bufer.length);
+		        		datagramSocket.receive(peticion);
+			            new KKMultiDataThread(datagramSocket,peticion).start();
+			        }
+			    } catch (IOException e) {
+			    	logger.error("Could not listen on port " + portNumber,e);	            
 		        }
-		    } catch (IOException e) {
-	            System.err.println("Could not listen on port " + portNumber);
-	            System.exit(-1);
-	        }*/
-        } else {
-	        try (DatagramSocket datagramSocket = new DatagramSocket(portNumber)) { 
-	            while (listening) {
-	            	byte           bufer[] = new byte[1024];
-	        		DatagramPacket peticion  = new DatagramPacket(bufer, bufer.length);
-	        		datagramSocket.receive(peticion);
-		            new KKMultiDataThread(datagramSocket,peticion).start();
-		        }
-		    } catch (IOException e) {
-	            logger.error("Could not listen on port " + portNumber);
-	            System.exit(-1);
 	        }
-        }
+	        try {
+	        	logger.warn("Espera antes de volver a re-iniciar.");
+				Thread.sleep(3*60*1000);
+			} catch (InterruptedException e) {
+				logger.error("",e);
+			}
+	    }
     }
 }

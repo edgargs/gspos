@@ -6,4 +6,4 @@ Use for execute:
 export levelProgram
 export logProgram
 export configProgram
-java -jar matrix-dcs-XXX.jar
+java -jar matrix-dcs-XXX.jar >/dev/null 2>&1 &

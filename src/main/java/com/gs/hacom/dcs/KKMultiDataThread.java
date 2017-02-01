@@ -1,8 +1,16 @@
 package com.gs.hacom.dcs;
 
+import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.util.Calendar;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,6 +26,10 @@ public class KKMultiDataThread extends Thread {
 	private DatagramPacket peticion = null;
 	private DatagramSocket socketUDP = null;
 	
+	private Util utilDCS = new Util();
+	private CalAmpEvent2 myEvent = null;
+	private FacadeDaemon facadeDaemon;
+	
     public KKMultiDataThread() {
     	
     }
@@ -29,7 +41,46 @@ public class KKMultiDataThread extends Thread {
 	}
 
 	public void run() {
-				
+		try {
+			facadeDaemon = new FacadeDaemon();
+		} catch (Exception e1) {
+			logger.error("",e1);
+			return;
+		}
+		
+		ExecutorService executorService = Executors.newSingleThreadExecutor();
+		//Future<Boolean> future = executorService.submit(()->processTrama());
+		Future<Boolean> future = executorService.submit(new Callable<Boolean>(){
+			public Boolean call(){
+			return processTrama();
+			}
+		});
+		boolean stateSave = false;
+		try {
+			stateSave = future.get(10, TimeUnit.SECONDS);
+		} catch (InterruptedException | ExecutionException | TimeoutException e) {
+			facadeDaemon.cancel();
+			logger.error("",e);
+		}
+
+		if(myEvent != null){
+			byte finalPacket[] = utilDCS.createPacket_ACK(stateSave, myEvent.getSequence(), myEvent.getMessageType());
+			
+			// Construimos el DatagramPacket para enviar la respuesta
+			DatagramPacket respuesta = new DatagramPacket(finalPacket, finalPacket.length,
+					peticion.getAddress(), peticion.getPort());
+			
+			// Enviamos la respuesta
+			try {
+				socketUDP.send(respuesta);
+			} catch (IOException e) {
+				logger.error("",e);
+			}
+		}
+	}
+	
+	private boolean processTrama() {
+		boolean stateSave = false;
         try  {
                        
         	logger.debug("Datagrama recibido del host: " + peticion.getAddress());
@@ -38,26 +89,20 @@ public class KKMultiDataThread extends Thread {
  
 			
 			// Grabamos en BBDD
-        	Util utilDCS = new Util();
-			CalAmpEvent2 myEvent = utilDCS.getEvent(peticion.getData());
-			FacadeDaemon facadeDaemon = new FacadeDaemon();
-			boolean stateSave = facadeDaemon.saveEvent(myEvent);
+        	
+			myEvent = utilDCS.getEvent(peticion.getData());
 			
-			if (stateSave) {
-				byte finalPacket[] = utilDCS.createPacket_ACK(true, myEvent.getSequence(), myEvent.getMessageType());
-				// Construimos el DatagramPacket para enviar la respuesta
-				DatagramPacket respuesta = new DatagramPacket(finalPacket, finalPacket.length,
-						peticion.getAddress(), peticion.getPort());
-				
-				// Enviamos la respuesta
-				socketUDP.send(respuesta);
-			} else {
-				logger.warn("No hay conexion con BBDD");
+			stateSave = facadeDaemon.saveEvent(myEvent);
+			
+			if (!stateSave) {
+				logger.warn("Error en BBDD");
 			}
          
         } catch (Exception e) {
            logger.error("",e);
         }
+        
+        return stateSave;
     }
 	
 	

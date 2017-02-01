@@ -18,14 +18,14 @@ apply plugin: 'spring-boot'
 
 apply plugin: 'application'
 
-mainClassName = 'com.gs.hacom.dcs.ServidorUDP'
+mainClassName = 'com.gs.hacom.dcs.KKMultiServer'
 
 // Apply the java plugin to add support for Java
 apply plugin: 'java'
 
 version = '0.1.0-SNAPSHOT'
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
 
 // In this section you declare where to find the dependencies of your project
 repositories {

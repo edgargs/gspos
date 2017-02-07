@@ -51,8 +51,7 @@ public class MBDaemon implements DAODaemon {
 		HashMap<String,Object> params = new HashMap<>();
 		params.put("deviceID",myEvent.getMobileID());
 		params.put("timestamp",myEvent.getUpdateTime());
-		int myEventCode = CalAmpEvent2._defaultUserCode(myEvent.getEventCode());
-		params.put("eventStatusID",myEventCode);
+		params.put("eventCode",myEvent.getEventCode());
 		params.put("latitude",myEvent.getLatitude());
 		params.put("longitude",myEvent.getLongitude());
 		params.put("speedKPH",myEvent.getSpeedKPH());

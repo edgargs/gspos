@@ -23,7 +23,7 @@ mainClassName = 'com.gs.hacom.dcs.KKMultiServer'
 // Apply the java plugin to add support for Java
 apply plugin: 'java'
 
-version = '0.1.0-SNAPSHOT'
+version = '0.1.4-SNAPSHOT'
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 

@@ -199,6 +199,7 @@ public class Payload {
 
     /**
      * Sets internal debug logging
+     * @param debug
      */
     public static void SetDebugLogging(boolean debug) {
         DebugLogging = debug;
@@ -206,6 +207,7 @@ public class Payload {
 
     /**
      * Gets internal debug logging
+     * @return debug logging
      */
     public static boolean GetDebugLogging() {
         return DebugLogging;
@@ -453,6 +455,7 @@ public class Payload {
     /**
      * Returns true if there are at least <code>length</code> bytes that
      * can be read from the payload
+     * @param length
      * @return True if there at least <code>length</code> readable bytes
      *         in the payload
      */
@@ -504,6 +507,7 @@ public class Payload {
     /**
      * Returns true if there are at least <code>length</code> bytes that
      * can be writen to the payload
+     * @param length
      * @return True if there at least <code>length</code> writeable bytes
      *         in the payload
      */
@@ -519,6 +523,7 @@ public class Payload {
 
     /**
      * Returns true if there are bytes available for writing
+     * @return Available write
      */
     public boolean hasAvailableWrite() {
         return (this.getAvailableWriteLength() > 0);
@@ -704,7 +709,7 @@ public class Payload {
     // ------------------------------------------------------------------------
 
     /**
-     * Read <code>length</code< of bytes from the payload
+     * Read <code>length</code> of bytes from the payload
      * @param length The number fo bytes to read from the payload
      * @return The read byte array
      */
@@ -713,7 +718,7 @@ public class Payload {
     }
 
     /**
-     * Read <code>length</code< of bytes from the payload
+     * Read <code>length</code> of bytes from the payload
      * @param length The number fo bytes to read from the payload
      * @param msg    Debug message (used during "DebugLogging")
      * @return The read byte array
@@ -1489,7 +1494,7 @@ public class Payload {
      * @param len The number of bytes to encode the value to
      * @param bigEndian True if the bytes are to be big-endian ordered, false if little-endian
      * @param val The value to encode
-     * @return The number of bytes writen to <code>data</data>. 0 or
+     * @return The number of bytes writen to <code>data</code>. 0 or
      *         <code>len</code>
      */
     public static int encodeLong(byte data[], int ofs, int len, boolean bigEndian, long val) {
@@ -1633,7 +1638,7 @@ public class Payload {
      * @param bigEndian True if the bytes are to be big-endian ordered,
      *        false if little-endian
      * @param val The value to encode
-     * @return The number of bytes writen to <code>data</data>. 0 or
+     * @return The number of bytes writen to <code>data</code>. 0 or
      *         <code>len</code>
      */
     public static int encodeDouble(byte data[], int ofs, int len, boolean bigEndian, double val) {
@@ -1909,6 +1914,7 @@ public class Payload {
      * bytes are written or the string terminates
      * @param s The string to write
      * @param wrtLen The maximum number of bytes to write
+     * @param varLength
      * @return The number of bytes written
      */
     public int writeString(String s, int wrtLen, boolean varLength) {

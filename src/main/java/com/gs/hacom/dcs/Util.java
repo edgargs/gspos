@@ -1,3 +1,9 @@
+/* 
+  =======================================================================================
+    Copyright 2016, HACOM S.A.C.
+    Proyecto: MATRIX - Sistema de Optimización de Transporte Urbano.
+  =======================================================================================
+*/
 package com.gs.hacom.dcs;
 
 import java.io.IOException;
@@ -16,6 +22,9 @@ import com.gs.opengts.opt.servers.calamp.CalAmpEvent2;
 import com.gs.opengts.util.Payload;
 import com.gs.opengts.util.StringTools;
 
+/**
+ * Clase con métodos útiles para el programa.
+ */
 public class Util {
 
 	private static final Logger logger = LogManager.getLogger(Util.class);
@@ -133,6 +142,12 @@ public class Util {
         return calAmpEvent;
     }
 	
+	/**
+	 * Se emplea para decodificar en el formato BCD.
+	 * @since 2010/01/01
+	 * @param arrby Texto codificado en bytes
+	 * @return cadena decodificada
+	 */
 	private static String DecodeBCD(byte[] arrby) {
         if ((arrby == null) || (arrby.length == 0))	{
             return "";

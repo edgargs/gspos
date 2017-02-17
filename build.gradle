@@ -18,12 +18,12 @@ apply plugin: 'spring-boot'
 
 apply plugin: 'application'
 
-mainClassName = 'com.gs.hacom.dcs.KKMultiServer'
+mainClassName = 'com.gs.hacom.dcs.MultiServerDCS'
 
 // Apply the java plugin to add support for Java
 apply plugin: 'java'
 
-version = '0.1.4-SNAPSHOT'
+version = '1.0.0-SNAPSHOT'
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
@@ -75,4 +75,9 @@ configurations {
 
 dependencies {
     mycustomconfiguration configurations.runtime
+}
+
+javadoc {
+  //include 'com/gs/hacom/*'
+  //options.addStringOption('k', 'UTF-8')
 }

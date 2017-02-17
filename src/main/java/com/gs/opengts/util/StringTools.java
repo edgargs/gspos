@@ -1019,6 +1019,7 @@ public class StringTools {
      * Trims the specified leading character from the input string
      * @param s  The input String
      * @param c  The leading character to trim
+     * @return Trim leading
      */
     public static String trimLeading(String s, char c) {
         int slen = (s != null)
@@ -1043,6 +1044,7 @@ public class StringTools {
     /**
      * Trims the leading spaces from the input string
      * @param s  The input String
+     * @return Trim leading
      */
     public static String trimLeading(String s) {
         int slen = (s != null)
@@ -1067,6 +1069,7 @@ public class StringTools {
     /**
      * Trims the leading spaces from the string value of the input object
      * @param s  The input object
+     * @return Trim leading
      */
     public static String trimLeading(Object s) {
         return (s != null)
@@ -1080,6 +1083,7 @@ public class StringTools {
      * Trims the specified trailing character from the input string
      * @param s  The input String
      * @param c  The trailing character to trim
+     * @return Trim trailing
      */
     public static String trimTrailing(String s, char c) {
         int slen = (s != null)
@@ -1104,6 +1108,7 @@ public class StringTools {
     /**
      * Trims the trailing spaces from the input string
      * @param s  The input String
+     * @return Trim trailing
      */
     public static String trimTrailing(String s) {
         int slen = (s != null)
@@ -1128,6 +1133,7 @@ public class StringTools {
     /**
      * Trims the trailing spaces from the string value of the input object
      * @param s  The input object
+     * @return Trim trailing
      */
     public static String trimTrailing(Object s) {
         return (s != null)
@@ -1409,6 +1415,7 @@ public class StringTools {
     /**
      * Parse the specified object into a Number value
      * @param data  The object to parse
+     * @param numberClass
      * @param dft   The default Number value if unable to parse the specified object
      * @return The parsed Number value
      */
@@ -2896,6 +2903,7 @@ public class StringTools {
     /**
      * Converts the specified short value to a hex representation
      * @param val  The short value to convert to hex
+     * @param bitLen
      * @return The String containing the hex representation
      */
     public static String toHexString(Number val, int bitLen) {
@@ -3789,6 +3797,9 @@ public class StringTools {
 
     /**
      * See StringTools.parseString(String, char)
+     * @param value
+     * @param delim
+     * @return String split
      */
     public static String[] split(String value, char delim) {
         return StringTools.parseString(value, String.valueOf(delim), true);
@@ -3796,6 +3807,10 @@ public class StringTools {
 
     /**
      * See StringTools.parseString(String, char, boolean)
+     * @param value
+     * @param delim
+     * @param trim
+     * @return String split
      */
     public static String[] split(String value, char delim, boolean trim) {
         return StringTools.parseString(value, String.valueOf(delim), trim);
@@ -3803,6 +3818,9 @@ public class StringTools {
 
     /**
      * See StringTools.parseString(StringBuffer, char)
+     * @param value Value
+     * @param delim Delimiter
+     * @return String split
      */
     public static String[] split(StringBuffer value, char delim) {
         return StringTools.parseString(value, String.valueOf(delim), true);
@@ -3810,6 +3828,10 @@ public class StringTools {
 
     /**
      * See StringTools.parseString(StringBuffer, char, boolean)
+     * @param value Value
+     * @param  delim Delimiter
+     * @param trim If trim?
+     * @return String split
      */
     public static String[] split(StringBuffer value, char delim, boolean trim) {
         return StringTools.parseString(value, String.valueOf(delim), trim);
@@ -4507,6 +4529,7 @@ public class StringTools {
      * 'getKeyValue' method.
      * @param text The text containing the "${key}" fields
      * @param keyMap  The KeyValueMap object used to retrieve values for the specific 'keys'
+     * @return String replace
      */
     public static String replaceKeys(String text, KeyValueMap keyMap) {
         return replaceKeys(text, keyMap, null, null /* keyStart */, null /* keyEnd */, null /* argDelim */,
@@ -4518,6 +4541,8 @@ public class StringTools {
      * 'getKeyValue' method.
      * @param text The text containing the "${key}" fields
      * @param keyMap  The KeyValueMap object used to retrieve values for the specific 'keys'
+     * @param filter
+     * @return String replace
      */
     public static String replaceKeys(String text, KeyValueMap keyMap, ValueFilter filter) {
         return replaceKeys(text, keyMap, filter, null /* keyStart */, null /* keyEnd */, null /* argDelim */,
@@ -4529,6 +4554,12 @@ public class StringTools {
      * 'getKeyValue' method.
      * @param text The text containing the "${key}" fields
      * @param keyMap  The KeyValueMap object used to retrieve values for the specific 'keys'
+     * @param filter
+     * @param keyStart
+     * @param keyEnd
+     * @param argDelim
+     * @param dftDelim
+     * @return String replace
      */
     public static String replaceKeys(String text, KeyValueMap keyMap, ValueFilter filter, String keyStart,
                                      String keyEnd, String argDelim, String dftDelim) {
@@ -4686,6 +4717,9 @@ public class StringTools {
 
     /**
      * See StringTools.leftAlign(String,int)
+     * @param s		The input String
+     * @param len	The length up to which ' ' characters will be appended
+     * @return String left justify
      */
     public static String leftJustify(String s, int len) {
         return StringTools.padRight(s, ' ', len);
@@ -4724,6 +4758,9 @@ public class StringTools {
 
     /**
      * See StringTools.rightAlign(String,int)
+     * @param s
+     * @param len
+     * @return String rigth justify
      */
     public static String rightJustify(String s, int len) {
         return StringTools.padLeft(s, ' ', len);
@@ -4955,6 +4992,7 @@ public class StringTools {
      * @param text  The target String
      * @param startDelim  The pattern used to determine the start of a 'key' variable
      * @param endDelim    The pattern used to determine the end of a key variable
+     * @param dftDelim    The pattern used to determine the definition of key
      * @param rep  An array containing key/value pairs
      * @return The String containing the replaced key variables
      */
@@ -4969,6 +5007,7 @@ public class StringTools {
      * @param text  The target String
      * @param startDelim  The pattern used to determine the start of a 'key' variable
      * @param endDelim    The pattern used to determine the end of a key variable
+     * @param dftDelim    The pattern used to determine the definition of key
      * @param rep  An array containing key/value pairs
      * @param htmlFilter True to encode the resulting key value for display within an html context
      * @return The String containing the replaced key variables
@@ -4998,6 +5037,7 @@ public class StringTools {
      * @param text  The target String
      * @param startDelim  The pattern used to determine the start of a 'key' variable
      * @param endDelim    The pattern used to determine the end of a key variable
+     * @param dftDelim    The pattern used to determine the definition of key
      * @param map  A map containing key/value pairs
      * @return The String containing the replaced key variables
      */
@@ -5012,6 +5052,7 @@ public class StringTools {
      * @param text  The target String
      * @param startDelim  The pattern used to determine the start of a 'key' variable
      * @param endDelim    The pattern used to determine the end of a key variable
+     * @param dftDelim    The pattern used to determine the definition of key
      * @param map  A map containing key/value pairs
      * @param htmlFilter True to encode the resulting key value for display within an html context
      * @return The String containing the replaced key variables
@@ -5043,6 +5084,7 @@ public class StringTools {
      * @param text  The target String
      * @param startDelim  The pattern used to determine the start of a 'key' variable
      * @param endDelim    The pattern used to determine the end of a key variable
+     * @param dftDelim    The pattern used to determine the definition of key
      * @param rmap  A StringTools.KeyValueMap (previously ReplacementMap) containing key/value pairs
      * @return The String containing the replaced key variables
      */
@@ -5058,6 +5100,7 @@ public class StringTools {
      * @param text  The target String
      * @param startDelim  The pattern used to determine the start of a 'key' variable
      * @param endDelim    The pattern used to determine the end of a key variable
+     * @param dftDelim    The pattern used to determine the definition of key
      * @param rmap  A StringTools.KeyValueMap (previously ReplacementMap) containing key/value pairs
      * @param htmlFilter True to encode the resulting key value for display within an html context
      * @return The String containing the replaced key variables
@@ -5261,7 +5304,7 @@ public class StringTools {
      * Compares byte arrays for equality
      * @param b1  First byte array
      * @param b2  Second byte array
-     * @return 0 if byte arrays are equal, < 0 if the first non-matching byte is less than the second, > 0 if
+     * @return 0 if byte arrays are equal, {@literal <} 0 if the first non-matching byte is less than the second, {@literal >} 0 if
      *         the first non-matching byte is greater than the second
      */
     public static int compare(byte b1[], byte b2[]) {
@@ -5273,7 +5316,7 @@ public class StringTools {
      * @param b1  First byte array
      * @param b2  Second byte array
      * @param len Length of bytes to compare
-     * @return 0 if byte arrays are equal, < 0 if the first non-matching byte is less than the second, > 0 if
+     * @return 0 if byte arrays are equal, {@literal <}  0 if the first non-matching byte is less than the second, {@literal >} 0 if
      *         the first non-matching byte is greater than the second
      */
     public static int compare(byte b1[], byte b2[], int len) {
@@ -5312,8 +5355,8 @@ public class StringTools {
      * Compares byte arrays for equality
      * @param b1  First byte array
      * @param s   Second String value
-     * @return 0 if the byte array is equal to the specified String, < 0 if the first non-matching
-     *         byte is less than the correspoinding character/byte in the String, > 0 if
+     * @return 0 if the byte array is equal to the specified String, {@literal <} 0 if the first non-matching
+     *         byte is less than the correspoinding character/byte in the String, {@literal >} 0 if
      *         the first non-matching byte is greater than the correspoinding character/byte in the String
      */
     public static int compare(byte b1[], String s) {

@@ -1,7 +1,9 @@
 /* 
   =======================================================================================
-    Copyright 2016, HACOM S.A.C.
-    Proyecto: MATRIX - Sistema de Optimización de Transporte Urbano.
+    Copyright 2017, HACOM S.A.C.
+    Proyecto: MATRIX - Sistema de Optimizacion de Transporte Urbano.
+  =======================================================================================
+	Change History:
   =======================================================================================
 */
 package com.gs.hacom.dcs;
@@ -23,7 +25,10 @@ import com.gs.opengts.util.Payload;
 import com.gs.opengts.util.StringTools;
 
 /**
- * Clase con métodos útiles para el programa.
+ * Clase con metodos utiles para el programa.
+ * 
+ * @version 1.0
+ * @since 2017/01/01
  */
 public class Util {
 
@@ -47,19 +52,22 @@ public class Util {
     public static double MAXIMUM_HDOP = -1.0;
     public static boolean ESTIMATE_ODOMETER = false;
     
+    /**
+     * Convierte el paquete, en un evento del sistema.
+     * @param arrby Trama recepcionada.
+     * @return Evento parseado.
+     */
 	public CalAmpEvent2 getEvent(byte[] arrby) {
 		
-		Payload payload = null;
-		CalAmpEvent2 calAmpEvent = new CalAmpEvent2();
-	    
+		Payload payload = null;		
 		payload = new Payload(arrby);
 		payload.readSkip(1);
         
+		CalAmpEvent2 calAmpEvent = new CalAmpEvent2();
+	    
         int n = (int)payload.readULong(1, 0);
-        //this.mobileIDBytes = payload.readBytes(n);
         calAmpEvent.setMobileID(DecodeBCD(payload.readBytes(n)));
         
-        //this.mobileIDTypeLen = (int)payload.readULong(1, 0);
         calAmpEvent.setMobileIDType((int)payload.readULong((int)payload.readULong(1, 0), 0));
         //Message Header
         calAmpEvent.setServiceType((int)payload.readULong(1, 0));
@@ -91,18 +99,12 @@ public class Util {
 	            //return null;
         	case 2: { //case 2080: {
 			    logger.debug("EVENT: [" + arrby.length + "] ");
-	            //byte[] arrby2 = java.util.Arrays.copyOfRange(arrby, 13, arrby.length);
-			    //payload = new Payload(arrby);
 
 			    return parseMessage_EVENT(payload,calAmpEvent);
-			    //this.parseState = 0;
-			    //return null;
         	} case 10: { //} case 2208: {
                 logger.debug("MINI_EVENT: [" + arrby.length + "] ");
-                //payload = new Payload(arrby);
+                
                 return this.parseMessage_MINI_EVENT(payload,calAmpEvent);
-                //this.parseState = 0;
-                //return null;
             } default: {
             	return calAmpEvent;
             }
@@ -110,6 +112,12 @@ public class Util {
 	    }			    
 	}
 	
+	/**
+	 * Obtiene el mensaje del tipo EVENT.
+	 * @param payload Trama recepcionada.
+	 * @param calAmpEvent Evento a completar.
+	 * @return Evento del sistema.
+	 */
 	private CalAmpEvent2 parseMessage_EVENT(Payload payload, CalAmpEvent2 calAmpEvent) {
         //CalAmpEvent2 calAmpEvent = new CalAmpEvent2(); //(0, this.mobileIDType, this.mobileIDString);
         
@@ -155,14 +163,11 @@ public class Util {
         String string = StringTools.toHexString((byte[])arrby);
         return string.endsWith("F") ? string.substring(0, string.length() - 1) : string;
     }
-	
-//	public static boolean saveEvent(ConnectMSSQLServer connServer, CalAmpEvent myEvent) {
-//		String insertString = "INSERT INTO MTXEvent(accountID) VALUES(?)";
-//		Object[] parameters = new Object[] { myEvent.getCarrier() };
-//		return connServer.executeSQL(insertString, parameters);
-//	}
-	
 
+	/**
+	 * Recupera parametros de conexion a base de datos.
+	 * @param properties Propiedades del sistema.
+	 */
     public static void iniciaConfiguracion(Properties properties) {
         IPBD = properties.getProperty("IPDB");
         SID = properties.getProperty("NameDB");
@@ -171,6 +176,12 @@ public class Util {
         PuertoBD= properties.getProperty("PortDB");        
     }
     
+    /**
+     * Lee archivo de propiedades.
+     * @param filename Nombre del archivo por defecto.
+     * @return Propiedades del sistema.
+     * @throws IOException Error de acceder al archivo.
+     */
     public static Properties loadFromFile(String filename) throws IOException {
         
     	String value = System.getenv("configProgram");
@@ -193,22 +204,13 @@ public class Util {
         }
     }
     
-    public double getMinimumSpeedKPH() {
-        return (double)MINIMUM_SPEED_KPH;
-    }
-    
-    public long getSimulateDigitalInputs() {
-        return (long)SIMEVENT_DIGITAL_INPUTS & 255;
-    }
-    
-    public double getMaximumHDOP() {
-        return (double)MAXIMUM_HDOP;
-    }
-    
-    public boolean getEstimateOdometer() {
-        return (boolean)ESTIMATE_ODOMETER;
-    }
-    
+    /**
+     * Crea mensaje de ACK.
+     * @param bl True si se proceso correctamente.
+     * @param sequence Secuencia del mensaje.
+     * @param messageType Tipo de mensaje.
+     * @return Mensaje de respuesta.
+     */
     public byte[] createPacket_ACK(boolean bl, int sequence, int messageType) {
         int n;
         Payload payload = new Payload();
@@ -238,6 +240,12 @@ public class Util {
         return payload.getBytes();
     }
     
+    /**
+	 * Obtiene el mensaje del tipo MINI_EVENT.
+	 * @param payload Trama recepcionada.
+	 * @param calAmpEvent Evento a completar.
+	 * @return Evento del sistema.
+	 */
     private CalAmpEvent2 parseMessage_MINI_EVENT(Payload payload, CalAmpEvent2 calAmpEvent) {
         //CalAmpEvent2 calAmpEvent = new CalAmpEvent2(); //(5, this.mobileIDType, this.mobileIDString);
         calAmpEvent.setUpdateTime(payload.readULong(4, 0));
@@ -279,7 +287,7 @@ public class Util {
             long l6 = payload.readULong(4, 0);
             calAmpEvent.addAccumulator(l6);
         }
-        logger.debug(calAmpEvent.toString());
+        logger.info(calAmpEvent.toString());
         return calAmpEvent;
     }
 }

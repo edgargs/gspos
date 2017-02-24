@@ -1,16 +1,18 @@
+/* 
+  =======================================================================================
+    Copyright 2017, HACOM S.A.C.
+    Proyecto: MATRIX - Sistema de Optimizacion de Transporte Urbano.
+  =======================================================================================
+	Change History: 
+  =======================================================================================
+*/
 package com.gs.hacom.dcs;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.util.Calendar;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
+import java.util.Properties;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,36 +21,50 @@ import com.gs.hacom.dcs.dao.FacadeDaemon;
 import com.gs.opengts.opt.servers.calamp.CalAmpEvent2;
 import com.gs.opengts.util.StringTools;
 
+/**
+ * Servidor UPD.
+ * 
+ * @version 1.0
+ * @since 2017/01/01
+ * @see com.gs.hacom.dcs.dao.FacadeDaemon
+ */
 public class ServerUDPThread extends Thread {
 	
 	private static final Logger logger = LogManager.getLogger(ServerUDPThread.class);
 	
 	private DatagramPacket peticion = null;
 	private DatagramSocket socketUDP = null;
+	Properties propDatabase;
 	
 	private Util utilDCS = new Util();
 	private CalAmpEvent2 myEvent = null;
 	private FacadeDaemon facadeDaemon;
 	
-    /*public ServerUDPThread() {
-    	
-    }*/
-    
-	public ServerUDPThread(DatagramSocket socketUDP, DatagramPacket udpClient) {
+    /**
+     * Constructor del servicio UDP.
+     * @param socketUDP Puerto de inicio.
+     * @param udpClient Paquete a procesar.
+     * @param propDatabase Propiedades del servicio.
+     */
+	public ServerUDPThread(DatagramSocket socketUDP, DatagramPacket udpClient, Properties propDatabase) {
 		logger.info("Nuevo Hilo "+Calendar.getInstance().getTimeInMillis());
 		this.socketUDP = socketUDP;
 		this.peticion = udpClient;
+		this.propDatabase = propDatabase;
 	}
 
+	/**
+	 * Procesa el paquete enviado y retorna ACK.
+	 */
 	public void run() {
 		try {
-			facadeDaemon = new FacadeDaemon();
+			facadeDaemon = new FacadeDaemon(propDatabase);
 		} catch (Exception e1) {
 			logger.error("",e1);
 			return;
 		}
 		
-		ExecutorService executorService = Executors.newSingleThreadExecutor();
+		/*ExecutorService executorService = Executors.newSingleThreadExecutor();
 		//Future<Boolean> future = executorService.submit(()->processTrama());
 		Future<Boolean> future = executorService.submit(new Callable<Boolean>(){
 			public Boolean call(){
@@ -61,9 +77,12 @@ public class ServerUDPThread extends Thread {
 		} catch (InterruptedException | ExecutionException | TimeoutException e) {
 			facadeDaemon.cancel();
 			logger.error("",e);
-		}
+		}*/
 
+		boolean stateSave = processTrama();
+		
 		if(myEvent != null){
+			logger.info("Envio de respuesta: "+stateSave);
 			byte finalPacket[] = utilDCS.createPacket_ACK(stateSave, myEvent.getSequence(), myEvent.getMessageType());
 			
 			// Construimos el DatagramPacket para enviar la respuesta
@@ -79,6 +98,10 @@ public class ServerUDPThread extends Thread {
 		}
 	}
 	
+	/**
+	 * Graba el paquete en base de datos.
+	 * @return True si se grabo correctamente.
+	 */
 	private boolean processTrama() {
 		boolean stateSave = false;
         try  {

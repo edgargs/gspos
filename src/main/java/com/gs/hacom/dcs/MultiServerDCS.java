@@ -1,7 +1,7 @@
 /* 
   =======================================================================================
     Copyright 2017, HACOM S.A.C.
-    Proyecto: MATRIX - Sistema de Optimización de Transporte Urbano.
+    Proyecto: MATRIX - Sistema de Optimizacion de Transporte Urbano.
   =======================================================================================
 	Change History:
 	2017/02/01  Edgar Rios
@@ -13,6 +13,7 @@ package com.gs.hacom.dcs;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.util.Properties;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -29,7 +30,11 @@ public class MultiServerDCS {
 
 	private static final Logger logger = LogManager.getLogger(MultiServerDCS.class);
 
-	public static void main(String[] args) throws IOException {
+	/**
+	 * Ejecuta el servidor.
+	 * @param args Puerto de inicio.
+	 */
+	public static void main(String[] args) {
 		String strPort = "";
 		if (args.length == 0) {
 			strPort = "20700";
@@ -37,6 +42,15 @@ public class MultiServerDCS {
 			strPort = args[0];
 		} else if (args.length != 1) {
 			logger.error("Usage: java KKMultiServer <port number>");
+			System.exit(1);
+		}
+		
+		//Lee propiedades
+		Properties propDatabase = null;
+		try {
+			propDatabase = Util.loadFromFile("config.properties");
+		} catch (IOException e1) {
+			logger.error("",e1);
 			System.exit(1);
 		}
 
@@ -60,7 +74,7 @@ public class MultiServerDCS {
 						byte bufer[] = new byte[1024];
 						DatagramPacket peticion = new DatagramPacket(bufer, bufer.length);
 						datagramSocket.receive(peticion);
-						new ServerUDPThread(datagramSocket, peticion).start();
+						new ServerUDPThread(datagramSocket, peticion, propDatabase).start();
 					}
 				} catch (IOException e) {
 					logger.error("Could not listen on port " + portNumber, e);

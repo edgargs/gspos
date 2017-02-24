@@ -1,3 +1,11 @@
+/* 
+  =======================================================================================
+    Copyright 2017, HACOM S.A.C.
+    Proyecto: MATRIX - Sistema de Optimizacion de Transporte Urbano.
+  =======================================================================================
+	Change History:
+  =======================================================================================
+*/
 package com.gs.hacom.dcs.dao;
 
 import java.util.HashMap;
@@ -12,6 +20,12 @@ import org.apache.logging.log4j.Logger;
 import com.gs.hacom.dcs.Util;
 import com.gs.opengts.opt.servers.calamp.CalAmpEvent2;
 
+/**
+ * Interacciones Mybatis con base de datos.
+ * 
+ * @version 1.0
+ * @since 2017/01/01
+ */
 public class MBDaemon implements DAODaemon {
 
 	private static final Logger logger = LogManager.getLogger(MBDaemon.class);
@@ -24,18 +38,27 @@ public class MBDaemon implements DAODaemon {
 		Util.iniciaConfiguracion(propDatabase);
 	}
 
+    /**
+	 * Confirma la transaccion.
+	 */
 	@Override
     public void commit() {
         sqlSession.commit(true);
         sqlSession.close();
     }
 
+	/**
+     * Deshace la transaccion.
+     */
     @Override
     public void rollback() {
         sqlSession.rollback(true);
         sqlSession.close();
     }
     
+    /**
+     * Inicia comunicacion.
+     */
     @Override
     public void openConnection() {
         sqlSession = getSqlSessionFactory().openSession();
@@ -45,7 +68,12 @@ public class MBDaemon implements DAODaemon {
     private SqlSessionFactory getSqlSessionFactory() {
         return MyBatisUtil.getSqlSessionFactory();
     }
-
+    
+    /**
+	 * Registra el evento en base de datos.
+	 * @param myEvent Evento del sistema.
+	 * @throws Exception Error de base de datos.
+	 */
 	@Override
 	public void registraEvento(CalAmpEvent2 myEvent) throws Exception {
 		HashMap<String,Object> params = new HashMap<>();
@@ -65,6 +93,12 @@ public class MBDaemon implements DAODaemon {
 		
 	}
 
+	/**
+	 * Obtiene la configuracion de la trama.
+	 * @param configMessage Filtro para la consulta.
+	 * @return Configuracion de la trama.
+	 * @throws Exception Error de base de datos.
+	 */
 	@Override
 	public List<ConfigMessage> getConfigMessage(ConfigMessage configMessage) throws Exception {
 		return mapper.getConfigMessage(configMessage);

@@ -1,3 +1,11 @@
+/* 
+  =======================================================================================
+    Copyright 2017, HACOM S.A.C.
+    Proyecto: MATRIX - Sistema de Optimizacion de Transporte Urbano.
+  =======================================================================================
+	Change History:
+  =======================================================================================
+*/
 package com.gs.hacom.dcs.dao;
 
 import java.sql.Connection;
@@ -10,6 +18,12 @@ import java.sql.Statement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * Coneccion JDBC al servidor SQLServer.
+ * 
+ * @version 1.0
+ * @since 2017/01/01
+ */
 public class ConnectMSSQLServer {
 	
 	private static final Logger logger = LogManager.getLogger(ConnectMSSQLServer.class);
@@ -20,6 +34,12 @@ public class ConnectMSSQLServer {
 	private ConnectMSSQLServer() {
 	}
 
+	/**
+	 * Coneccion y setencias al servidor SQLServer.
+	 * @param db_connect_string Cadena de conexion.
+	 * @param db_userid Usuario de base de datos.
+	 * @param db_password Clave de base de datos.
+	 */
 	private void dbConnect(String db_connect_string, String db_userid, String db_password) {
 		Connection conn = null;
 		ResultSet rs = null;
@@ -70,6 +90,13 @@ public class ConnectMSSQLServer {
 		connServer.dbConnect("jdbc:sqlserver://192.168.5.35;databaseName=MATRIX", "sa", "hcm123");
 	}
 
+	/**
+	 * Retorna la conexion a la base de datos indicada.
+	 * @param db_connect_string Cadena de conexion.
+	 * @param db_userid Usuario de base de datos.
+	 * @param db_password Clave de base de datos.
+	 * @return Conexion a la base de datos.
+	 */
 	public static ConnectMSSQLServer newInstance(String db_connect_string, String db_userid, String db_password) {
 
 		if (conn != null) {
@@ -87,6 +114,9 @@ public class ConnectMSSQLServer {
 		return connServer;
 	}
 
+	/**
+	 * Finaliza la conexion.
+	 */
 	public void endConnection() {
 		try {
 			conn.close();
@@ -98,6 +128,12 @@ public class ConnectMSSQLServer {
 		}
 	}
 
+	/**
+	 * Ejecuta la setencia en la base de datos.
+	 * @param insertString Setencia SQL.
+	 * @param parameters Parametros de la sentencia.
+	 * @return True si se ejecuto con exito.
+	 */
 	public boolean executeSQL(String insertString, Object[] parameters) {
 		boolean stateExecute = false;
 		// String insertString = "INSERT INTO MTXEvent(accountID) VALUES(?)";
@@ -127,6 +163,10 @@ public class ConnectMSSQLServer {
 		return stateExecute;
 	}
 
+	/**
+	 * Verifica el estado de la conexion.
+	 * @return True si la conexion no ha sido cerrada.
+	 */
 	public boolean startConnection() {
 
 		try {
@@ -137,6 +177,10 @@ public class ConnectMSSQLServer {
 		}
 	}
 
+	/**
+	 * Recupera la conexion a base de datos. 
+	 * @return Conexion a base de datos.
+	 */
 	public static ConnectMSSQLServer getInstance() {
 
 		return connServer;

@@ -4,6 +4,8 @@
     Proyecto: MATRIX - Sistema de Optimizacion de Transporte Urbano.
   =======================================================================================
 	Change History:
+	2017/02/27 Edgar Rios
+	  Se agrega el parametro creationTime.
   =======================================================================================
 */
 package com.gs.hacom.dcs.dao;
@@ -40,7 +42,8 @@ public interface MapperDaemon {
             " #{fuel,jdbcType=FLOAT,mode=IN}, " +
             " #{heading,jdbcType=FLOAT,mode=IN}, " +
             " #{HDOP,jdbcType=FLOAT,mode=IN}, " +
-            " #{satelliteCount,jdbcType=INTEGER,mode=IN} " +
+            " #{satelliteCount,jdbcType=INTEGER,mode=IN}, " +
+            " #{creationTime,jdbcType=BIGINT,mode=IN}" +
             " )} ")
 	@Options(statementType = StatementType.CALLABLE)
 	public void registraEvento(Map<String,Object> myEvent);

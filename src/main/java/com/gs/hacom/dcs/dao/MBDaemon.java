@@ -88,6 +88,7 @@ public class MBDaemon implements DAODaemon {
 		params.put("heading",myEvent.getHeading());
 		params.put("HDOP",myEvent.getHDOP());
 		params.put("satelliteCount",myEvent.getSatelliteCount());
+		params.put("creationTime",Util.TimeEpoch());
 		logger.debug(params);
         mapper.registraEvento(params);
 		

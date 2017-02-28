@@ -4,6 +4,8 @@
     Proyecto: MATRIX - Sistema de Optimizacion de Transporte Urbano.
   =======================================================================================
 	Change History:
+	2017/02/27 Edgar Rios
+	  Se agrega el metodo TimeEpoch().
   =======================================================================================
 */
 package com.gs.hacom.dcs;
@@ -290,5 +292,14 @@ public class Util {
         logger.info(calAmpEvent.toString());
         return calAmpEvent;
     }
+    
+    /**
+     * Se obtiene el valor de tiempo epoch
+     * @return Tiempo epoch
+     */
+    public static Long TimeEpoch() {
+		long epoch = System.currentTimeMillis() / 1000;
+		return epoch;
+	}
 }
 

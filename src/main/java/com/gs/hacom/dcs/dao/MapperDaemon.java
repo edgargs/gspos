@@ -46,7 +46,7 @@ public interface MapperDaemon {
             " #{creationTime,jdbcType=BIGINT,mode=IN}" +
             " )} ")
 	@Options(statementType = StatementType.CALLABLE)
-	public void registraEvento(Map<String,Object> myEvent);
+	public void registraEvento(Map<String,Object> myEvent) throws Exception;
 
 	/**
 	 * Obtiene la configuracion de la trama.
@@ -54,5 +54,5 @@ public interface MapperDaemon {
 	 * @return Configuracion de la trama.
 	 */
     @Select("SELECT * FROM MTXConfigDCS WHERE deviceID = #{deviceID}")
-	public List<ConfigMessage> getConfigMessage(ConfigMessage configMessage);
+	public List<ConfigMessage> getConfigMessage(ConfigMessage configMessage) throws Exception;
 }

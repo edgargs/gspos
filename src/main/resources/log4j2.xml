@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN">
   <Properties>
-    <Property name="levelProgram">TRACE</Property>
-    <Property name="logProgram">logs</Property>
+    <Property name="level.program">TRACE</Property>
+    <Property name="log.program">logs</Property>
   </Properties>
   <Appenders>
     <Console name="Console" target="SYSTEM_OUT">
       <PatternLayout pattern="%d [%-5level] [%t] %c{1.} - %msg%n"/>
     </Console>
-    <RollingFile name="RollingFile" fileName="${env:logProgram}/app.log"
-                 filePattern="${env:logProgram}/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+    <RollingFile name="RollingFile" fileName="${sys:log.program}/app.log"
+                 filePattern="${sys:log.program}/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
       <PatternLayout pattern="%d [%-5level] [%t] %c{1.} - %msg%n"/>
       <Policies>
         <TimeBasedTriggeringPolicy />
@@ -20,7 +20,7 @@
   </Appenders>
   <Loggers>
     <!-- Logger name="com.gs.hacom.dcs" level="trace" / -->
-    <Root level="${env:levelProgram}">
+    <Root level="${sys:level.program}">
       <AppenderRef ref="Console"/>
       <AppenderRef ref="RollingFile"/>
     </Root>

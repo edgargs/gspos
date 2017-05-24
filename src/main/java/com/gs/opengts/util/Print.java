@@ -132,4 +132,29 @@ public class Print {
 		
 	}
 
+	public static void logInfo(String string, String strFromPayload) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static void logError(String string, int intFromPayload) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static void logInfo(String string, int intFromPayload) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static void logError(String string, int messageLengthBytes, int length) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static void logInfo(String string, double odometer) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -18,8 +18,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.gs.hacom.dcs.dao.FacadeDaemon;
-import com.gs.opengts.opt.servers.calamp.CalAmpEvent2;
+import com.gs.opengts.opt.servers.calamp.CalAmpPacketHandler;
+import com.gs.opengts.opt.servers.cellocator.CellocatorPacketHandler;
 import com.gs.opengts.util.StringTools;
+
+import hacom.pe.datos.entidades.Event;
 
 /**
  * Servidor UPD.
@@ -36,9 +39,11 @@ public class ServerUDPThread extends Thread {
 	private DatagramSocket socketUDP = null;
 	Properties propDatabase;
 	
-	private Util utilDCS = new Util();
-	private CalAmpEvent2 myEvent = null;
+	//private CalAmpPacketHandler utilDCS = new CalAmpPacketHandler();
+	private Event myEvent = null;
 	private FacadeDaemon facadeDaemon;
+	
+	private ContextDevice context = null;
 	
     /**
      * Constructor del servicio UDP.
@@ -51,6 +56,13 @@ public class ServerUDPThread extends Thread {
 		this.socketUDP = socketUDP;
 		this.peticion = udpClient;
 		this.propDatabase = propDatabase;
+		
+		String typeProvider = propDatabase.getProperty("Provider", "CALAMP");
+		if (typeProvider.equals("CALAMP")){
+			context = new ContextDevice(new CalAmpPacketHandler());
+		} else {
+			context = new ContextDevice(new CellocatorPacketHandler());
+		}
 	}
 
 	/**
@@ -83,7 +95,8 @@ public class ServerUDPThread extends Thread {
 		
 		if(myEvent != null){
 			logger.info("Envio de respuesta: "+stateSave);
-			byte finalPacket[] = utilDCS.createPacket_ACK(stateSave, myEvent.getSequence(), myEvent.getMessageType());
+			
+			byte finalPacket[] = context.createPacket_ACK(stateSave);
 			
 			// Construimos el DatagramPacket para enviar la respuesta
 			DatagramPacket respuesta = new DatagramPacket(finalPacket, finalPacket.length,
@@ -113,7 +126,7 @@ public class ServerUDPThread extends Thread {
 			
 			// Grabamos en BBDD
         	
-			myEvent = utilDCS.getEvent(peticion.getData());
+			myEvent = context.getEvent(peticion.getData());
 			
 			stateSave = facadeDaemon.saveEvent(myEvent);
 			

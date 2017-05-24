@@ -48,7 +48,7 @@ public class MultiServerDCS {
 		//Lee propiedades
 		Properties propDatabase = null;
 		try {
-			propDatabase = Util.loadFromFile("config.properties");
+			propDatabase = Util.loadFromFile();
 		} catch (IOException e1) {
 			logger.error("",e1);
 			System.exit(1);
@@ -69,9 +69,14 @@ public class MultiServerDCS {
 				 * System.exit(-1); }
 				 */
 			} else {
+				int lengthBuffer = 1024;
+				String typeProvider = propDatabase.getProperty("Provider", "CALAMP");
+				if (typeProvider.equals("CELLOCATOR")){
+					lengthBuffer = 70;
+				}
 				try (DatagramSocket datagramSocket = new DatagramSocket(portNumber)) {
 					while (listening) {
-						byte bufer[] = new byte[1024];
+						byte bufer[] = new byte[lengthBuffer];
 						DatagramPacket peticion = new DatagramPacket(bufer, bufer.length);
 						datagramSocket.receive(peticion);
 						new ServerUDPThread(datagramSocket, peticion, propDatabase).start();

@@ -14,6 +14,8 @@ import java.util.Properties;
 import com.gs.hacom.dcs.Util;
 import com.gs.opengts.opt.servers.calamp.CalAmpEvent2;
 
+import hacom.pe.datos.entidades.Event;
+
 /**
  * Interacciones JDBC con base de datos.
  * 
@@ -84,6 +86,12 @@ public class JDBCDaemon implements DAODaemon {
 	public List<ConfigMessage> getConfigMessage(ConfigMessage configMessage) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void registraEvento(Event myEvent) throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

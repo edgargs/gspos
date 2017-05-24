@@ -12,6 +12,8 @@ import java.util.List;
 
 import com.gs.opengts.opt.servers.calamp.CalAmpEvent2;
 
+import hacom.pe.datos.entidades.Event;
+
 /**
  * Transacciones del servidor DCS.
  * 
@@ -36,4 +38,10 @@ public interface DAODaemon extends DAOTransaccion{
 	 */
 	public List<ConfigMessage> getConfigMessage(ConfigMessage configMessage) throws Exception;
 
+	/**
+	 * Registra el evento en base de datos.
+	 * @param myEvent Evento del sistema.
+	 * @throws Exception Error de base de datos.
+	 */
+	public void registraEvento(Event myEvent) throws Exception;
 }

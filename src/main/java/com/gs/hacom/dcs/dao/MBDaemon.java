@@ -20,6 +20,8 @@ import org.apache.logging.log4j.Logger;
 import com.gs.hacom.dcs.Util;
 import com.gs.opengts.opt.servers.calamp.CalAmpEvent2;
 
+import hacom.pe.datos.entidades.Event;
+
 /**
  * Interacciones Mybatis con base de datos.
  * 
@@ -74,7 +76,7 @@ public class MBDaemon implements DAODaemon {
 	 * @param myEvent Evento del sistema.
 	 * @throws Exception Error de base de datos.
 	 */
-	@Override
+	
 	public void registraEvento(CalAmpEvent2 myEvent) throws Exception {
 		HashMap<String,Object> params = new HashMap<>();
 		params.put("deviceID",myEvent.getMobileID());
@@ -90,7 +92,7 @@ public class MBDaemon implements DAODaemon {
 		params.put("satelliteCount",myEvent.getSatelliteCount());
 		params.put("creationTime",Util.TimeEpoch());
 		logger.debug(params);
-        mapper.registraEvento(params);
+        mapper.registraCalAmpEvent(params);
 		
 	}
 
@@ -103,6 +105,16 @@ public class MBDaemon implements DAODaemon {
 	@Override
 	public List<ConfigMessage> getConfigMessage(ConfigMessage configMessage) throws Exception {
 		return mapper.getConfigMessage(configMessage);
+	}
+	
+	/**
+	 * Registra el evento en base de datos.
+	 * @param myEvent Evento del sistema.
+	 * @throws Exception Error de base de datos.
+	 */
+	@Override
+	public void registraEvento(Event myEvent) throws Exception {
+		mapper.registraEvento(myEvent);
 	}
 
 }

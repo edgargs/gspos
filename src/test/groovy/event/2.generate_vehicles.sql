@@ -1,11 +1,13 @@
 USE MATRIX
 GO
 
-DECLARE @total BIGINT = 100
 
-DECLARE @accountID INT = 5
-DECLARE @routeID INT = 4
+DECLARE @accountID INT = 2
+DECLARE @routeID INT = 2
 
+SELECT *
+FROM MTXCompanyGroup
+WHERE accountID = @accountID
 
 DECLARE @cnt INT = 1;
 
@@ -18,7 +20,8 @@ DECLARE @licensePlate varchar(32)
 DECLARE db_cursor CURSOR FOR
 SELECT gpsID
 FROM MTXGps AS g
-WHERE accountID = 5
+WHERE accountID = 2
+AND gpsTypeID = 8
 AND vehicleID  IS NULL
 /*AND NOT EXISTS (SELECT * FROM MTXVehicle AS v
 				WHERE accountID = 5
@@ -32,8 +35,8 @@ FETCH NEXT FROM db_cursor INTO @gpsID
 
 WHILE @@FETCH_STATUS = 0   
 BEGIN   
-       SET @code = 'P'+CAST(@cnt AS varchar)
-	SET @licensePlate = 'DDD-'+CAST(@cnt AS varchar)
+       SET @code = 'P'+ FORMAT(@cnt,'0000') --CAST(@cnt AS varchar)
+	SET @licensePlate = 'DD-'+FORMAT(@cnt,'0000') --CAST(@cnt AS varchar)
 	EXEC [dbo].[MTX_sp_VehicleNew]
 				@vehicle,
 				@accountID,
@@ -45,7 +48,7 @@ BEGIN
 				NULL,
 				NULL,
 				NULL,
-				1,--@companyGroupID INT = NULL,
+				3,--@companyGroupID INT = NULL,
 				1,--@isactive  INT  = NULL,
 				null				
 
@@ -58,7 +61,7 @@ CLOSE db_cursor
 DEALLOCATE db_cursor
 
 
-SELECT *
+SELECT count(*)
 FROM MTXVehicle
-WHERE accountID = 5
-and routeID = 4
+WHERE accountID = 2
+and routeID = 2

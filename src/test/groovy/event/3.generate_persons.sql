@@ -1,10 +1,10 @@
 USE MATRIX
 GO
 
-DECLARE @total BIGINT = 100
+DECLARE @total BIGINT = 1000
 
-DECLARE @accountID INT = 5
-DECLARE @routeID INT = 4
+DECLARE @accountID INT = 2
+DECLARE @routeID INT = 2
 
 
 DECLARE @cnt INT = 1;
@@ -18,12 +18,12 @@ BEGIN
 	SET @uniqueID = @base+@cnt
 	PRINT @uniqueID
 	INSERT INTO MTXPerson(accountID,routeID,name,lastName,uniqueID,personTypeID,isActive)
-	VALUES(@accountID,@routeID,'N'+CAST(@cnt AS varchar),'L'+CAST(@cnt AS varchar),@uniqueID,1,1)
+	VALUES(@accountID,@routeID,'N'+FORMAT(@cnt,'0000'),'L'+FORMAT(@cnt,'0000'),@uniqueID,1,1)
 
 	SET @cnt = @cnt + 1;
 END;
 
-SELECT *
+SELECT COUNT(*)
 FROM MTXPerson
-WHERE accountID = 5
-and routeID = 4
+WHERE accountID = 2
+and routeID = 2

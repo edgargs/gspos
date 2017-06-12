@@ -15,18 +15,16 @@ import java.util.Random
 import groovy.transform.Field
 
 //class SendTrama{
-    def connDESA = ["192.168.5.35",1433,"sa","hcm123"]
-    def dcsDESA = ["192.168.5.38",30100]
-
-    def connBBDD = connDESA
+    
     @Field def srvDCS
-    srvDCS    = dcsDESA
-
-def conMatrix = Sql.newInstance("jdbc:sqlserver://${connBBDD[0]}:${connBBDD[1]};databaseName=MATRIX",connBBDD[2],connBBDD[3],"com.microsoft.sqlserver.jdbc.SQLServerDriver")
-
-    @Field def accountID = 5
-    @Field def routeID = 4
         
+    @Field def conMatrix
+
+    @Field def accountID
+    @Field def routeID
+    @Field def gpsTypeID
+        
+    @Field def iniHilos = 1
     @Field def cantHilos = 10
     @Field def tiempo = 5 //segundos
         
@@ -36,6 +34,7 @@ def conMatrix = Sql.newInstance("jdbc:sqlserver://${connBBDD[0]}:${connBBDD[1]};
     static void main(String[] args) {
         /*
         groovy -cp "bin/;lib/sqljdbc42.jar;src/" src/test/groovy/event/SendTrama.groovy
+        groovy -cp "bin/;lib/sqljdbc42.jar;src/" src/test/groovy/event/SendTrama.groovy 21 50
         */
         
         println args
@@ -158,7 +157,7 @@ def conMatrix = Sql.newInstance("jdbc:sqlserver://${connBBDD[0]}:${connBBDD[1]};
         println "Cantidad Hilos : ${cantHilos}"
         def threadPool = Executors.newFixedThreadPool(cantHilos)
          try {
-          List<Future> futures = (1..cantHilos).collect{num->
+          List<Future> futures = (iniHilos..cantHilos).collect{num->
             threadPool.submit({->
             myClosure num } as Callable);
           }
@@ -189,7 +188,7 @@ void generateCalamp(int num,timenow) {
 		ON g.vehicleID = v.vehicleID
 WHERE v.accountID = ?
 and v.routeID = ?
-and g.gpsTypeID = 3''',[accountID,routeID])
+and g.gpsTypeID = ?''',[accountID,routeID,gpsTypeID])
         //Carga posiciones
         route = conMatrix.rows('SELECT routeDetailID, latitude, longitude FROM MTXRouteDetail WHERE accountID = ? and routeID = ?',[accountID,routeID])
         //conMatrix.close()
@@ -204,7 +203,7 @@ and g.gpsTypeID = 3''',[accountID,routeID])
 
             println "Total person: ${person.size()}"
 
-            1.upto(cantHilos,{
+            iniHilos.upto(cantHilos,{
                 int num = it-1
                 List vehicle = conMatrix.rows("SELECT vehicleID FROM MTXVehicle WHERE gpsID = ?",gps[num].gpsID)
                 println "Total vehicle: ${vehicle.size()}"
@@ -234,9 +233,37 @@ long epoch() {
 }
 
 void updateVariables(args) {
-    if(args.size()>0){
-        cantHilos = Integer.parseInt(args[0])
+    
+    iniHilos = (args.size() > 0)?Integer.parseInt(args[0]):1
+    cantHilos = (args.size() > 1)?Integer.parseInt(args[1]):10
+    confEnv = (args.size() > 2)?args[2]:"DESA"
+
+    //CONNECION
+    def connBBDD
+
+    if(confEnv=="PROD"){
+        def connPROD = ["192.168.1.104",1433,"matrix",'3X3tn$$$w']
+        def dcsPROD = ["192.168.1.39",30100]
+
+        connBBDD = connPROD
+        srvDCS    = dcsPROD
+        
+        accountID = 2
+        routeID = 2
+        gpsTypeID = 8
+    }else{
+        def connDESA = ["192.168.5.35",1433,"sa","hcm123"]
+        def dcsDESA = ["192.168.5.38",30100]
+
+        connBBDD = connDESA
+        srvDCS    = dcsDESA
+        
+        accountID = 5
+        routeID = 4
+        gpsTypeID = 3
     }
+    conMatrix = Sql.newInstance("jdbc:sqlserver://${connBBDD[0]}:${connBBDD[1]};databaseName=MATRIX",connBBDD[2],connBBDD[3],"com.microsoft.sqlserver.jdbc.SQLServerDriver")
+
 }
 //}
 

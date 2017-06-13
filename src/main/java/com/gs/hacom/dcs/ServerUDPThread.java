@@ -45,6 +45,8 @@ public class ServerUDPThread extends Thread {
 	
 	private ContextDevice context = null;
 	
+	private long time01,time02,time03,time04;
+	
     /**
      * Constructor del servicio UDP.
      * @param socketUDP Puerto de inicio.
@@ -52,7 +54,8 @@ public class ServerUDPThread extends Thread {
      * @param propDatabase Propiedades del servicio.
      */
 	public ServerUDPThread(DatagramSocket socketUDP, DatagramPacket udpClient, Properties propDatabase) {
-		logger.info("Nuevo Hilo "+Calendar.getInstance().getTimeInMillis());
+		time01 = Calendar.getInstance().getTimeInMillis();
+		logger.debug("Nuevo Hilo "+time01);
 		this.socketUDP = socketUDP;
 		this.peticion = udpClient;
 		this.propDatabase = propDatabase;
@@ -94,7 +97,7 @@ public class ServerUDPThread extends Thread {
 		boolean stateSave = processTrama();
 		
 		if(myEvent != null){
-			logger.info("Envio de respuesta: "+stateSave);
+			logger.debug("Envio de respuesta: "+stateSave);
 			
 			byte finalPacket[] = context.createPacket_ACK(stateSave);
 			
@@ -108,6 +111,9 @@ public class ServerUDPThread extends Thread {
 			} catch (IOException e) {
 				logger.error("",e);
 			}
+			
+			time04 = Calendar.getInstance().getTimeInMillis();
+			logger.info(String.format("Finaliza transaccion: %d %d %d %d", time01,time02-time01,time03-time02,time04-time03));
 		}
 	}
 	
@@ -127,9 +133,10 @@ public class ServerUDPThread extends Thread {
 			// Grabamos en BBDD
         	
 			myEvent = context.getEvent(peticion.getData());
-			
+			logger.info(myEvent.toString());
+			time02 = Calendar.getInstance().getTimeInMillis();
 			stateSave = facadeDaemon.saveEvent(myEvent);
-			
+			time03 = Calendar.getInstance().getTimeInMillis();
 			if (!stateSave) {
 				logger.warn("Error en BBDD");
 			}

@@ -177,7 +177,7 @@ public class CalAmpPacketHandler implements StrategyDevice{
             long l6 = payload.readULong(4, 0);
             calAmpEvent.addAccumulator(l6);
         }
-        logger.info(calAmpEvent.toString());
+        logger.debug(calAmpEvent.toString());
         return calAmpEvent;
     }
     

@@ -31,6 +31,9 @@ import groovy.transform.Field
     @Field List gps
     @Field List route
 
+    @Field long totHilos = 0
+    @Field long totTime = 0
+
     static void main(String[] args) {
         /*
         groovy -cp "bin/;lib/sqljdbc42.jar;src/" src/test/groovy/event/SendTrama.groovy
@@ -79,9 +82,16 @@ import groovy.transform.Field
       //String sentence = st;
       sendData = buildTrama(esn, latitude, longitude,timenow)
       DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, portDCS);
+        def timeIni = milliseconds()
       clientSocket.send(sendPacket);
       DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
       clientSocket.receive(receivePacket);
+        def timeDiff = milliseconds() - timeIni
+
+        totHilos++
+        totTime += timeDiff                    
+
+        println "Client DCS : time=${timenow} proc=${timeDiff} :: promedio=${totTime/totHilos}"
       String modifiedSentence = new String(receivePacket.getData());
       //System.out.println("FROM SERVER:" + modifiedSentence);
       clientSocket.close();
@@ -149,8 +159,7 @@ import groovy.transform.Field
                     def timenow = epoch()
                     //println "Client DCS [${num}]: time=${timenow} "
                     generateCalamp(num,timenow)
-                    def timeDiff = epoch() - timenow
-                    println "Client DCS [${num}]: time=${timenow} proc=${timeDiff}"
+                    
                     sleep(tiempo*1000)
                 }
             }
@@ -232,6 +241,14 @@ long epoch() {
     return epoch1/1000
 }
 
+long milliseconds() {
+    now = Calendar.instance
+    //println 'now is a ' + now.class.name
+    date = now.time
+    epoch1 = date.time
+    return epoch1
+}
+
 void updateVariables(args) {
     
     iniHilos = (args.size() > 0)?Integer.parseInt(args[0]):1
@@ -271,6 +288,6 @@ println args
 
 updateVariables(args)
 
-loadData(conMatrix,false)
+loadData(conMatrix,true)
 
 multiClient()

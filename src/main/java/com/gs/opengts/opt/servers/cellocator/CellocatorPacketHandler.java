@@ -145,7 +145,7 @@ public class CellocatorPacketHandler implements StrategyDevice{
 
         //strUnitID = String.format("%012d", intUnitID);
         strUnitID = String.valueOf(intUnitID);
-        Print.logInfo("Unit's ID: [" + strUnitID + "]");
+        logger.info("Unit's ID: [" + strUnitID + "]");
 
         CellocatorEvent cellocatorEvent = new CellocatorEvent(strUnitID);
 

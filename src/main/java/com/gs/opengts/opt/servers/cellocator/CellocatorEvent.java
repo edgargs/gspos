@@ -17,7 +17,7 @@ public class CellocatorEvent {
     private long fixTime = 0;
     private double longitude = 0.0;
     private double latitude = 0.0;
-    private int fixStatus = 0;
+    //private int fixStatus = 0;
     private int satelliteCount = 0;
 //    private double hdop = 0.0;
     private double altitudeMeters = 0.0;

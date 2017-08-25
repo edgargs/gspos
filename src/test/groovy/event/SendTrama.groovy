@@ -227,10 +227,16 @@ and g.gpsTypeID = ?''',[accountID,routeID,gpsTypeID])
 
 void creaDispatch(Sql sql,int personID,int vehicleID, int routeTerminalID,String service) {
     long timestamp = epoch()
-    int dispatchStatusID = 2
-    sql.execute( "{call dbo.MTX_sp_DispatchNew(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}" ,
-             [0,'',accountID,routeID,personID,0,vehicleID,0,0,routeTerminalID,timestamp,service,dispatchStatusID,0,0,0,0] )
-    //sql.close()
+    int dispatchStatusID = 1
+    sql.call( "{call dbo.MTX_sp_DispatchNew(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}" ,
+             [Sql.INTEGER,'',accountID,routeID,personID,0,vehicleID,0,0,routeTerminalID,timestamp,service,dispatchStatusID,0,0,0,0] ) {
+			 dispatchID -> 
+				//Inicia el despacho
+				dispatchStatusID = 2
+				sql.execute( "{call dbo.MTX_sp_DispatchHistoryNew(?, ?, ?, ?, ?)}" ,
+						 [0,dispatchID,dispatchStatusID,timestamp,0] )
+	}	
+	//sql.close()
 }
 
 long epoch() {
@@ -265,9 +271,9 @@ void updateVariables(args) {
         connBBDD = connPROD
         srvDCS    = dcsPROD
         
-        accountID = 2
-        routeID = 2
-        gpsTypeID = 8
+        accountID = 5
+        routeID = 4
+        gpsTypeID = 4 // 8	SIMULADOR CALAMP
     }else{
         def connDESA = ["192.168.5.35",1433,"sa","hcm123"]
         def dcsDESA = ["192.168.5.38",30100]
@@ -288,6 +294,6 @@ println args
 
 updateVariables(args)
 
-loadData(conMatrix,true)
+loadData(conMatrix,false)
 
 multiClient()

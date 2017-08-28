@@ -274,7 +274,17 @@ void updateVariables(args) {
         accountID = 5
         routeID = 4
         gpsTypeID = 4 // 8	SIMULADOR CALAMP
-    }else{
+    } else if(confEnv=="LOCAL"){
+        def connDESA = ["192.168.5.35",1433,"sa","hcm123"]
+        def dcsDESA = ["127.0.0.1",20700]
+
+        connBBDD = connDESA
+        srvDCS    = dcsDESA
+        
+        accountID = 5
+        routeID = 4
+        gpsTypeID = 3
+    } else{
         def connDESA = ["192.168.5.35",1433,"sa","hcm123"]
         def dcsDESA = ["192.168.5.38",30100]
 

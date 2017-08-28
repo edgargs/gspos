@@ -8,6 +8,9 @@ package hacom.pe.datos.entidades;
   =======================================================================================
 */
 
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+
 import lombok.Data;
 
 /**
@@ -66,5 +69,14 @@ public class Event {
 	private String deviceID;
 	private int eventCode = 0;
 	private String typeProvider = "";
+	
+	// 2017-08-25
+	private DatagramSocket datagramSocket; 
+	private DatagramPacket peticion;
+	
+	public void setDatagram(DatagramSocket datagramSocket, DatagramPacket peticion) {
+		this.datagramSocket = datagramSocket;
+		this.peticion = peticion;
+	}
 	
 }

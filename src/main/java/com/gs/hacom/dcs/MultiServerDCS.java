@@ -14,9 +14,16 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.util.Properties;
+import java.util.concurrent.ConcurrentHashMap;
+
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import com.gs.opengts.opt.servers.calamp.CalAmpPacketHandler;
+import com.gs.opengts.opt.servers.cellocator.CellocatorPacketHandler;
+
+import hacom.pe.datos.entidades.Event;
 
 
 /**
@@ -29,7 +36,15 @@ import org.apache.logging.log4j.Logger;
 public class MultiServerDCS {
 
 	private static final Logger logger = LogManager.getLogger(MultiServerDCS.class);
+	
+	static Properties propDatabase = null;
 
+	static ConcurrentHashMap<String,ServerUDPThread> devices = new ConcurrentHashMap<>();
+	
+	static ContextDevice context = null;
+	private static ContextDevice deviceCalAmp = new ContextDevice(new CalAmpPacketHandler());
+	private static ContextDevice deviceCellocator = new ContextDevice(new CellocatorPacketHandler());
+	
 	/**
 	 * Ejecuta el servidor.
 	 * @param args Puerto de inicio.
@@ -46,7 +61,7 @@ public class MultiServerDCS {
 		}
 		
 		//Lee propiedades
-		Properties propDatabase = null;
+		
 		try {
 			propDatabase = Util.loadFromFile();
 		} catch (IOException e1) {
@@ -74,12 +89,24 @@ public class MultiServerDCS {
 				if (typeProvider.equals("CELLOCATOR")){
 					lengthBuffer = 70;
 				}
+				
+				// 2017-08-25 Determina el contexto
+				//String typeProvider = propDatabase.getProperty("Provider", "CALAMP");
+				if (typeProvider.equals("CALAMP")){
+					context = deviceCalAmp;
+				} else {
+					context = deviceCellocator;
+				}
+				
 				try (DatagramSocket datagramSocket = new DatagramSocket(portNumber)) {
 					while (listening) {
 						byte bufer[] = new byte[lengthBuffer];
 						DatagramPacket peticion = new DatagramPacket(bufer, bufer.length);
 						datagramSocket.receive(peticion);
-						new ServerUDPThread(datagramSocket, peticion, propDatabase).start();
+						
+						// Lambda Runnable
+						Runnable r2 = () -> processDatagram(datagramSocket, peticion);
+						(new Thread(r2,"ProcesaDatagrama")).start();
 					}
 				} catch (IOException e) {
 					logger.error("Could not listen on port " + portNumber, e);
@@ -91,6 +118,35 @@ public class MultiServerDCS {
 			} catch (InterruptedException e) {
 				logger.error("", e);
 			}
+		}
+	}
+
+	private static void processDatagram(DatagramSocket datagramSocket, DatagramPacket peticion) {
+		
+		Event myEvent = null;
+		
+		myEvent = context.getEvent(peticion.getData());
+		logger.info(myEvent.toString());
+		
+		synchronized(devices) {			
+			
+			//1.1 			
+			String esn = myEvent.getDeviceID();
+			ServerUDPThread hilo;
+		
+			hilo = devices.get(esn);
+			
+			if(hilo == null || hilo.getState() == Thread.State.TERMINATED){
+				devices.remove(esn);
+				
+				hilo = new ServerUDPThread(propDatabase, context);
+				devices.put(esn, hilo);
+				hilo.start();
+			}
+			myEvent.setDatagram(datagramSocket, peticion);
+			hilo.addEvent(myEvent);
+			logger.debug("Agrega nuevo evento.");
+			
 		}
 	}
 }

@@ -24,7 +24,7 @@ mainClassName = 'com.gs.hacom.dcs.MultiServerDCS'
 apply plugin: 'java'
 apply plugin: 'groovy'
 
-version = '1.2.0-SNAPSHOT'
+version = '1.2.1-SNAPSHOT'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 

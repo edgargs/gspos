@@ -105,6 +105,7 @@ public class ServerUDPThread extends Thread {
 			//Thread.sleep(10*1000);
 			
 		}
+			map = null;
 		
 		} catch (Exception e1) {
 			logger.error("",e1);

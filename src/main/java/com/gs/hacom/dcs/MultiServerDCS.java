@@ -125,7 +125,7 @@ public class MultiServerDCS {
 		
 		Event myEvent = null;
 		
-		myEvent = context.getEvent(peticion.getData());
+		myEvent = context.getEvent(peticion);
 		logger.info(myEvent.toString());
 		
 		synchronized(devices) {			

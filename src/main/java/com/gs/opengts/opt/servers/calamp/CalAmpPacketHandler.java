@@ -1,5 +1,7 @@
 package com.gs.opengts.opt.servers.calamp;
 
+import java.net.DatagramPacket;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -239,5 +241,9 @@ public class CalAmpPacketHandler implements StrategyDevice{
     	newEvent.setCreationTime(Util.TimeEpoch());
 		
     	return newEvent;
+    }
+    
+    public Event getEvent(DatagramPacket peticion) {
+    	return getEvent(peticion.getData());
     }
 }

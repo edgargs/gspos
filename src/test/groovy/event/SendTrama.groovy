@@ -38,6 +38,7 @@ import groovy.transform.Field
         /*
         groovy -cp "bin/;lib/sqljdbc42.jar;src/" src/test/groovy/event/SendTrama.groovy
         groovy -cp "bin/;lib/sqljdbc42.jar;src/" src/test/groovy/event/SendTrama.groovy 21 50
+		groovy -cp "bin/;lib/sqljdbc42.jar;src/" src/test/groovy/event/SendTrama.groovy 1 5 LOCAL
         */
         
         println args
@@ -304,6 +305,6 @@ println args
 
 updateVariables(args)
 
-loadData(conMatrix,false)
+loadData(conMatrix,true)
 
 multiClient()

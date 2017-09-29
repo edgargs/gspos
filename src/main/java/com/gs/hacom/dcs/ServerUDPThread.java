@@ -98,6 +98,10 @@ public class ServerUDPThread extends Thread {
 			if (myEvent != null) {
 				this.socketUDP = myEvent.getDatagramSocket();
 				this.peticion = myEvent.getPeticion();
+				
+				time01 = Calendar.getInstance().getTimeInMillis();
+				logger.info("Inicia transaccion: "+time01);
+				
 				processTrama(myEvent);
 			}
 			
@@ -105,7 +109,7 @@ public class ServerUDPThread extends Thread {
 			//Thread.sleep(10*1000);
 			
 		}
-			map = null;
+			//map = null;
 		
 		} catch (Exception e1) {
 			logger.error("",e1);
@@ -122,7 +126,7 @@ public class ServerUDPThread extends Thread {
         try  {
                        
         	logger.debug("Datagrama recibido del host: " + peticion.getAddress());
-        	logger.debug(" la data: " + StringTools.toHexString(peticion.getData()));
+        	logger.info(String.format("Message received: %d [%s]",time01,StringTools.toHexString(peticion.getData())) );
         	logger.debug(" desde el puerto remoto: " + peticion.getPort());
  
 			

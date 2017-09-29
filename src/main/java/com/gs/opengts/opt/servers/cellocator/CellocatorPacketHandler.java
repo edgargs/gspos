@@ -1,8 +1,10 @@
 package com.gs.opengts.opt.servers.cellocator;
 
+import java.net.DatagramPacket;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import org.apache.logging.log4j.LogManager;
@@ -22,6 +24,8 @@ public class CellocatorPacketHandler implements StrategyDevice{
 			
     private byte[] byteMessageNumerator;
 	private byte[] byteUnitID;
+
+	private DatagramPacket peticion;
 
 	private CellocatorEvent getHandlePacket(byte[] pktBytes) {
 
@@ -122,7 +126,13 @@ public class CellocatorPacketHandler implements StrategyDevice{
         strFromPayload = payload.readString(4);
         logger.debug(String.format("System Code: [%s]", strFromPayload));
         if(!strFromPayload.equals(Constants.SYSTEM_CODE)){
-            logger.error((String)"Wrong System Code.");
+        	long time01 = Calendar.getInstance().getTimeInMillis();
+        	logger.error(time01+"=> "+(String)"Wrong System Code.");
+        	logger.error(time01+"=> "+String.format("System Code: [%s]", strFromPayload));
+        	logger.error(time01+"=> "+(String)("Message received: [" + StringTools.toHexString((byte[])pktBytes)) + "]");
+        	if (peticion != null) {
+            	logger.error(time01+"=> "+"Datagrama recibido del host: " + peticion.getAddress()+":"+peticion.getPort());
+            }            	
             return null;
         }
 
@@ -145,7 +155,7 @@ public class CellocatorPacketHandler implements StrategyDevice{
 
         //strUnitID = String.format("%012d", intUnitID);
         strUnitID = String.valueOf(intUnitID);
-        logger.info("Unit's ID: [" + strUnitID + "]");
+        logger.debug("Unit's ID: [" + strUnitID + "]");
 
         CellocatorEvent cellocatorEvent = new CellocatorEvent(strUnitID);
 
@@ -367,7 +377,7 @@ public class CellocatorPacketHandler implements StrategyDevice{
 
         strUtcTime = String.format("%04d-%02d-%02d %02d:%02d:%02d GMT", utcTimeYear, utcTimeMonth, utcTimeDay, utcTimeHours,
                 utcTimeMinutes, utcTimeSeconds);
-        Print.logInfo("UTC time: " + strUtcTime);
+        logger.debug("UTC time: " + strUtcTime);
         cellocatorEvent.setUpdateTime(convertStringTotimestamp(strUtcTime));
         logger.debug(String.format("timestamp: [%d].", cellocatorEvent.getTimestamp()));
 
@@ -382,7 +392,10 @@ public class CellocatorPacketHandler implements StrategyDevice{
         }
         checksumCalc = checksumCalc & 0xFF;
         if( checksum != checksumCalc){
-            logger.error(String.format("Checksum error. Receive: [%d] <> Calculated: [%d].", checksum, checksumCalc));
+        	long time01 = Calendar.getInstance().getTimeInMillis();
+        	logger.debug(time01+"=> "+"Unit's ID: [" + strUnitID + "]");
+            logger.error(time01+"=> "+String.format("Checksum error. Receive: [%d] <> Calculated: [%d].", checksum, checksumCalc));
+            logger.error(time01+"=> "+(String)("Message received: [" + StringTools.toHexString((byte[])pktBytes)) + "]");
             return null;
         }
         Print.logInfo("Checksum: [%d] OK!", checksum);
@@ -508,5 +521,10 @@ public class CellocatorPacketHandler implements StrategyDevice{
 	   	newEvent.setEventStatusID(myCellocatorEvent.getStatusCode());
 			
 	   	return newEvent;
+   }
+   
+   public Event getEvent(DatagramPacket peticion) {
+	   this.peticion = peticion;
+	   return getEvent(peticion.getData());
    }
 }
